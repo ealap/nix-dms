@@ -649,8 +649,8 @@ Item {
         anchors.fill: parent
         acceptedButtons: Qt.RightButton
 
-        property real scrollAccumulator: 0
-        property real touchpadThreshold: 500
+        property real touchpadAccumulator: 0
+        property real mouseAccumulator: 0
         property bool scrollInProgress: false
 
         Timer {
@@ -674,24 +674,29 @@ Item {
                 return;
 
             const delta = wheel.angleDelta.y;
-            const isMouseWheel = Math.abs(delta) >= 120 && (Math.abs(delta) % 120) === 0;
+            const isTouchpad = wheel.pixelDelta && wheel.pixelDelta.y !== 0;
             const reverse = SettingsData.reverseScrolling ? -1 : 1;
-            const direction = delta * reverse < 0 ? 1 : -1;
 
-            if (isMouseWheel) {
+            if (isTouchpad) {
+                touchpadAccumulator += delta;
+                if (Math.abs(touchpadAccumulator) < 500)
+                    return;
+                const direction = touchpadAccumulator * reverse < 0 ? 1 : -1;
                 root.switchWorkspace(direction);
                 scrollInProgress = true;
                 scrollCooldown.restart();
-            } else {
-                scrollAccumulator += delta;
-                if (Math.abs(scrollAccumulator) >= touchpadThreshold) {
-                    const touchDirection = scrollAccumulator < 0 ? 1 : -1;
-                    root.switchWorkspace(touchDirection);
-                    scrollInProgress = true;
-                    scrollCooldown.restart();
-                    scrollAccumulator = 0;
-                }
+                touchpadAccumulator = 0;
+                return;
             }
+
+            mouseAccumulator += delta;
+            if (Math.abs(mouseAccumulator) < 120)
+                return;
+            const direction = mouseAccumulator * reverse < 0 ? 1 : -1;
+            root.switchWorkspace(direction);
+            scrollInProgress = true;
+            scrollCooldown.restart();
+            mouseAccumulator = 0;
         }
     }
 
