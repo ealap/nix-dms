@@ -14,7 +14,7 @@ import "settings/SettingsStore.js" as Store
 Singleton {
     id: root
 
-    readonly property int settingsConfigVersion: 4
+    readonly property int settingsConfigVersion: 5
 
     readonly property bool isGreeterMode: Quickshell.env("DMS_RUN_GREETER") === "1" || Quickshell.env("DMS_RUN_GREETER") === "true"
 
@@ -57,7 +57,10 @@ Singleton {
     property bool _pluginSettingsLoading: false
     property bool _parseError: false
     property bool _pluginParseError: false
-    property bool hasTriedDefaultSettings: false
+    property bool _hasLoaded: false
+    property bool _isReadOnly: false
+    property bool _hasUnsavedChanges: false
+    property var _loadedSettingsSnapshot: null
     property var pluginSettings: ({})
 
     property alias dankBarLeftWidgetsModel: leftWidgetsModel
@@ -201,8 +204,10 @@ Singleton {
     property bool spotlightCloseNiriOverview: true
     property bool niriOverviewOverlayEnabled: true
 
-    property string weatherLocation: "New York, NY"
-    property string weatherCoordinates: "40.7128,-74.0060"
+    property string _legacyWeatherLocation: "New York, NY"
+    property string _legacyWeatherCoordinates: "40.7128,-74.0060"
+    readonly property string weatherLocation: SessionData.weatherLocation
+    readonly property string weatherCoordinates: SessionData.weatherCoordinates
     property bool useAutoLocation: false
     property bool weatherEnabled: true
 
@@ -775,6 +780,9 @@ Singleton {
     function loadSettings() {
         _loading = true;
         _parseError = false;
+        _hasUnsavedChanges = false;
+        _pendingMigration = null;
+
         try {
             const txt = settingsFile.text();
             let obj = (txt && txt.trim()) ? JSON.parse(txt) : null;
@@ -783,15 +791,25 @@ Singleton {
             if (oldVersion < settingsConfigVersion) {
                 const migrated = Store.migrateToVersion(obj, settingsConfigVersion);
                 if (migrated) {
-                    settingsFile.setText(JSON.stringify(migrated, null, 2));
+                    _pendingMigration = migrated;
                     obj = migrated;
                 }
             }
 
             Store.parse(root, obj);
+
+            if (obj.weatherLocation !== undefined)
+                _legacyWeatherLocation = obj.weatherLocation;
+            if (obj.weatherCoordinates !== undefined)
+                _legacyWeatherCoordinates = obj.weatherCoordinates;
+
+            _loadedSettingsSnapshot = JSON.stringify(Store.toJson(root));
+            _hasLoaded = true;
             applyStoredTheme();
             applyStoredIconTheme();
             Processes.detectQtTools();
+
+            _checkSettingsWritable();
         } catch (e) {
             _parseError = true;
             const msg = e.message;
@@ -803,6 +821,33 @@ Singleton {
             _loading = false;
         }
         loadPluginSettings();
+    }
+
+    property var _pendingMigration: null
+
+    function _checkSettingsWritable() {
+        settingsWritableCheckProcess.running = true;
+    }
+
+    function _onWritableCheckComplete(writable) {
+        _isReadOnly = !writable;
+        if (_isReadOnly) {
+            console.info("SettingsData: settings.json is read-only (NixOS home-manager mode)");
+        } else if (_pendingMigration) {
+            settingsFile.setText(JSON.stringify(_pendingMigration, null, 2));
+        }
+        _pendingMigration = null;
+    }
+
+    function _checkForUnsavedChanges() {
+        if (!_hasLoaded || !_loadedSettingsSnapshot)
+            return false;
+        const current = JSON.stringify(Store.toJson(root));
+        return current !== _loadedSettingsSnapshot;
+    }
+
+    function getCurrentSettingsJson() {
+        return JSON.stringify(Store.toJson(root), null, 2);
     }
 
     function loadPluginSettings() {
@@ -832,8 +877,12 @@ Singleton {
     }
 
     function saveSettings() {
-        if (_loading || _parseError)
+        if (_loading || _parseError || !_hasLoaded)
             return;
+        if (_isReadOnly) {
+            _hasUnsavedChanges = _checkForUnsavedChanges();
+            return;
+        }
         settingsFile.setText(JSON.stringify(Store.toJson(root), null, 2));
     }
 
@@ -1398,9 +1447,7 @@ Singleton {
     }
 
     function setWeatherLocation(displayName, coordinates) {
-        weatherLocation = displayName;
-        weatherCoordinates = coordinates;
-        saveSettings();
+        SessionData.setWeatherLocation(displayName, coordinates);
     }
 
     function setIconTheme(themeName) {
@@ -1798,11 +1845,24 @@ Singleton {
             if (isGreeterMode)
                 return;
             _loading = true;
+            _hasUnsavedChanges = false;
             try {
                 const txt = settingsFile.text();
-                const obj = (txt && txt.trim()) ? JSON.parse(txt) : null;
+                if (!txt || !txt.trim()) {
+                    _parseError = true;
+                    return;
+                }
+                const obj = JSON.parse(txt);
                 _parseError = false;
                 Store.parse(root, obj);
+
+                if (obj.weatherLocation !== undefined)
+                    _legacyWeatherLocation = obj.weatherLocation;
+                if (obj.weatherCoordinates !== undefined)
+                    _legacyWeatherCoordinates = obj.weatherCoordinates;
+
+                _loadedSettingsSnapshot = JSON.stringify(Store.toJson(root));
+                _hasLoaded = true;
                 applyStoredTheme();
                 applyStoredIconTheme();
             } catch (e) {
@@ -1813,13 +1873,9 @@ Singleton {
             } finally {
                 _loading = false;
             }
-            hasTriedDefaultSettings = false;
         }
         onLoadFailed: error => {
-            if (!isGreeterMode && !hasTriedDefaultSettings) {
-                hasTriedDefaultSettings = true;
-                Processes.checkDefaultSettings();
-            } else if (!isGreeterMode) {
+            if (!isGreeterMode) {
                 applyStoredTheme();
             }
         }
@@ -1846,4 +1902,20 @@ Singleton {
     }
 
     property bool pluginSettingsFileExists: false
+
+    Process {
+        id: settingsWritableCheckProcess
+
+        property string settingsPath: Paths.strip(settingsFile.path)
+
+        command: ["sh", "-c", "[ -w \"" + settingsPath + "\" ] && echo 'writable' || echo 'readonly'"]
+        running: false
+
+        stdout: StdioCollector {
+            onStreamFinished: {
+                const result = text.trim();
+                root._onWritableCheckComplete(result === "writable");
+            }
+        }
+    }
 }
