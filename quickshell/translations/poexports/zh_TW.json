@@ -1676,11 +1676,17 @@
   "Grid Columns": {
     "Grid Columns": "網格欄數"
   },
+  "Group Workspace Apps": {
+    "Group Workspace Apps": ""
+  },
   "Group by App": {
     "Group by App": "App 分組"
   },
   "Group multiple windows of the same app together with a window count indicator": {
     "Group multiple windows of the same app together with a window count indicator": "將同一應用程式的多個視窗匯集在一起，並附帶視窗數量指示器"
+  },
+  "Group repeated application icons in unfocused workspaces": {
+    "Group repeated application icons in unfocused workspaces": ""
   },
   "HDR (EDID)": {
     "HDR (EDID)": "HDR (EDID)"
@@ -2939,6 +2945,9 @@
   "Scroll title if it doesn't fit in widget": {
     "Scroll title if it doesn't fit in widget": "若標題不符合小工具空間，請捲動"
   },
+  "Scroll wheel behavior on media widget": {
+    "Scroll wheel behavior on media widget": ""
+  },
   "Scrolling": {
     "Scrolling": "滾動"
   },
@@ -3209,6 +3218,9 @@
   "Show workspace index numbers in the top bar workspace switcher": {
     "Show workspace index numbers in the top bar workspace switcher": "在頂部欄工作區切換器中顯示工作區編號"
   },
+  "Show workspace name on horizontal bars, and first letter on vertical bars": {
+    "Show workspace name on horizontal bars, and first letter on vertical bars": ""
+  },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "顯示所有正在運行的應用程式並帶有焦點指示"
   },
@@ -3238,6 +3250,12 @@
   },
   "Sizing": {
     "Sizing": "尺寸"
+  },
+  "Smartcard Authentication": {
+    "Smartcard Authentication": ""
+  },
+  "Smartcard PIN": {
+    "Smartcard PIN": ""
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": "部分外掛程式需要較新版 DMS："
@@ -3850,6 +3868,9 @@
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "工作區編號"
   },
+  "Workspace Names": {
+    "Workspace Names": ""
+  },
   "Workspace Padding": {
     "Workspace Padding": "工作區內距"
   },
@@ -4029,6 +4050,9 @@
   },
   "profile image file browser title": {
     "Select Profile Image": "選擇個人資料圖片"
+  },
+  "read-only settings warning for NixOS home-manager users": {
+    "Settings are read-only. Changes will not persist.": ""
   },
   "registry theme description": {
     "Color theme from DMS registry": "來自 DMS 登錄檔的色彩主題"

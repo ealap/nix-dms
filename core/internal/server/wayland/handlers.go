@@ -45,7 +45,7 @@ func handleGetState(conn net.Conn, req models.Request, manager *Manager) {
 func handleSetTemperature(conn net.Conn, req models.Request, manager *Manager) {
 	var lowTemp, highTemp int
 
-	if temp, ok := req.Params["temp"].(float64); ok {
+	if temp, ok := models.Get[float64](req, "temp"); ok {
 		lowTemp = int(temp)
 		highTemp = int(temp)
 	} else {
@@ -93,24 +93,10 @@ func handleSetLocation(conn net.Conn, req models.Request, manager *Manager) {
 }
 
 func handleSetManualTimes(conn net.Conn, req models.Request, manager *Manager) {
-	sunriseParam := req.Params["sunrise"]
-	sunsetParam := req.Params["sunset"]
+	sunriseStr, sunriseOK := models.Get[string](req, "sunrise")
+	sunsetStr, sunsetOK := models.Get[string](req, "sunset")
 
-	if sunriseParam == nil || sunsetParam == nil {
-		manager.ClearManualTimes()
-		models.Respond(conn, req.ID, models.SuccessResult{Success: true, Message: "manual times cleared"})
-		return
-	}
-
-	sunriseStr, ok := sunriseParam.(string)
-	if !ok || sunriseStr == "" {
-		manager.ClearManualTimes()
-		models.Respond(conn, req.ID, models.SuccessResult{Success: true, Message: "manual times cleared"})
-		return
-	}
-
-	sunsetStr, ok := sunsetParam.(string)
-	if !ok || sunsetStr == "" {
+	if !sunriseOK || !sunsetOK || sunriseStr == "" || sunsetStr == "" {
 		manager.ClearManualTimes()
 		models.Respond(conn, req.ID, models.SuccessResult{Success: true, Message: "manual times cleared"})
 		return

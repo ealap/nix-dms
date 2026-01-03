@@ -168,14 +168,14 @@ func handleSearch(conn net.Conn, req models.Request, m *Manager) {
 		Offset:   params.IntOpt(req.Params, "offset", 0),
 	}
 
-	if img, ok := req.Params["isImage"].(bool); ok {
+	if img, ok := models.Get[bool](req, "isImage"); ok {
 		p.IsImage = &img
 	}
-	if b, ok := req.Params["before"].(float64); ok {
+	if b, ok := models.Get[float64](req, "before"); ok {
 		v := int64(b)
 		p.Before = &v
 	}
-	if a, ok := req.Params["after"].(float64); ok {
+	if a, ok := models.Get[float64](req, "after"); ok {
 		v := int64(a)
 		p.After = &v
 	}
@@ -190,19 +190,19 @@ func handleGetConfig(conn net.Conn, req models.Request, m *Manager) {
 func handleSetConfig(conn net.Conn, req models.Request, m *Manager) {
 	cfg := m.GetConfig()
 
-	if _, ok := req.Params["maxHistory"]; ok {
-		cfg.MaxHistory = params.IntOpt(req.Params, "maxHistory", cfg.MaxHistory)
+	if v, ok := models.Get[float64](req, "maxHistory"); ok {
+		cfg.MaxHistory = int(v)
 	}
-	if _, ok := req.Params["maxEntrySize"]; ok {
-		cfg.MaxEntrySize = int64(params.IntOpt(req.Params, "maxEntrySize", int(cfg.MaxEntrySize)))
+	if v, ok := models.Get[float64](req, "maxEntrySize"); ok {
+		cfg.MaxEntrySize = int64(v)
 	}
-	if _, ok := req.Params["autoClearDays"]; ok {
-		cfg.AutoClearDays = params.IntOpt(req.Params, "autoClearDays", cfg.AutoClearDays)
+	if v, ok := models.Get[float64](req, "autoClearDays"); ok {
+		cfg.AutoClearDays = int(v)
 	}
-	if v, ok := req.Params["clearAtStartup"].(bool); ok {
+	if v, ok := models.Get[bool](req, "clearAtStartup"); ok {
 		cfg.ClearAtStartup = v
 	}
-	if v, ok := req.Params["disabled"].(bool); ok {
+	if v, ok := models.Get[bool](req, "disabled"); ok {
 		cfg.Disabled = v
 	}
 

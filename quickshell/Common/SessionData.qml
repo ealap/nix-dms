@@ -979,7 +979,7 @@ Singleton {
 
         property string sessionPath: Paths.strip(settingsFile.path)
 
-        command: ["sh", "-c", "[ -w \"" + sessionPath + "\" ] && echo 'writable' || echo 'readonly'"]
+        command: ["sh", "-c", "[ ! -f \"" + sessionPath + "\" ] || [ -w \"" + sessionPath + "\" ] && echo 'writable' || echo 'readonly'"]
         running: false
 
         stdout: StdioCollector {

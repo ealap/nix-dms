@@ -5,12 +5,22 @@ import (
 	"net"
 
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/log"
+	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/params"
 )
 
 type Request struct {
 	ID     int            `json:"id,omitempty"`
 	Method string         `json:"method"`
 	Params map[string]any `json:"params,omitempty"`
+}
+
+func Get[T any](r Request, key string) (T, bool) {
+	v, err := params.Get[T](r.Params, key)
+	return v, err == nil
+}
+
+func GetOr[T any](r Request, key string, def T) T {
+	return params.GetOpt(r.Params, key, def)
 }
 
 type Response[T any] struct {

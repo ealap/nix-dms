@@ -792,7 +792,7 @@
     "Confirm": "Onayla"
   },
   "Confirm Delete": {
-    "Confirm Delete": ""
+    "Confirm Delete": "Silmeyi Onayla"
   },
   "Confirm Display Changes": {
     "Confirm Display Changes": "Ekran Değişikliklerini Onaylayın"
@@ -1218,7 +1218,7 @@
     "Driver": "Sürücü"
   },
   "Duplicate": {
-    "Duplicate": ""
+    "Duplicate": "Çoğalt"
   },
   "Duplicate Wallpaper with Blur": {
     "Duplicate Wallpaper with Blur": "Duvar kağıdını bulanıklık ile çoğalt"
@@ -1452,13 +1452,13 @@
     "Failed to move job": "İş taşınamadı"
   },
   "Failed to parse plugin_settings.json": {
-    "Failed to parse plugin_settings.json": ""
+    "Failed to parse plugin_settings.json": "plugin_settings.json ayrıştırılamadı"
   },
   "Failed to parse session.json": {
-    "Failed to parse session.json": ""
+    "Failed to parse session.json": "session.json ayrıştırılamadı"
   },
   "Failed to parse settings.json": {
-    "Failed to parse settings.json": ""
+    "Failed to parse settings.json": "settings.json ayrıştırılamadı"
   },
   "Failed to pause printer": {
     "Failed to pause printer": "Yazıcıyı duraklatma başarısız"
@@ -1676,11 +1676,17 @@
   "Grid Columns": {
     "Grid Columns": "Izgara Sütunları"
   },
+  "Group Workspace Apps": {
+    "Group Workspace Apps": ""
+  },
   "Group by App": {
     "Group by App": "Uygulamaya Göre Gruplandır"
   },
   "Group multiple windows of the same app together with a window count indicator": {
     "Group multiple windows of the same app together with a window count indicator": "Aynı uygulamanın birden fazla penceresini pencere sayısı göstergesi ile gruplayın"
+  },
+  "Group repeated application icons in unfocused workspaces": {
+    "Group repeated application icons in unfocused workspaces": ""
   },
   "HDR (EDID)": {
     "HDR (EDID)": "HDR (EDID)"
@@ -2829,10 +2835,10 @@
     "Resume": "Sürdür"
   },
   "Reverse Scrolling Direction": {
-    "Reverse Scrolling Direction": ""
+    "Reverse Scrolling Direction": "Ters Kaydırma Yönü"
   },
   "Reverse workspace switch direction when scrolling over the bar": {
-    "Reverse workspace switch direction when scrolling over the bar": ""
+    "Reverse workspace switch direction when scrolling over the bar": "Bar üzerinde kaydırırken çalışma alanı geçiş yönünü tersine çevir"
   },
   "Revert": {
     "Revert": "Geri Al"
@@ -2938,6 +2944,9 @@
   },
   "Scroll title if it doesn't fit in widget": {
     "Scroll title if it doesn't fit in widget": "Widget'a sığmazsa başlığı kaydırın"
+  },
+  "Scroll wheel behavior on media widget": {
+    "Scroll wheel behavior on media widget": ""
   },
   "Scrolling": {
     "Scrolling": "Kaydırma"
@@ -3209,6 +3218,9 @@
   "Show workspace index numbers in the top bar workspace switcher": {
     "Show workspace index numbers in the top bar workspace switcher": "Üst çubuktaki çalışma alanı değiştiricide çalışma alanı dizin numaralarını göster"
   },
+  "Show workspace name on horizontal bars, and first letter on vertical bars": {
+    "Show workspace name on horizontal bars, and first letter on vertical bars": ""
+  },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "Odak göstergesiyle çalışan tüm uygulamaları gösterir"
   },
@@ -3238,6 +3250,12 @@
   },
   "Sizing": {
     "Sizing": "Boyutlandırma"
+  },
+  "Smartcard Authentication": {
+    "Smartcard Authentication": ""
+  },
+  "Smartcard PIN": {
+    "Smartcard PIN": ""
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": "Bazı eklentiler daha yeni bir DMS sürümü gerektirir:"
@@ -3850,6 +3868,9 @@
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "Çalışma Alanı Sıra Numarası"
   },
+  "Workspace Names": {
+    "Workspace Names": ""
+  },
   "Workspace Padding": {
     "Workspace Padding": "Çalışma Alanı Dolgusu"
   },
@@ -4029,6 +4050,9 @@
   },
   "profile image file browser title": {
     "Select Profile Image": "Profil Resmi Seç"
+  },
+  "read-only settings warning for NixOS home-manager users": {
+    "Settings are read-only. Changes will not persist.": ""
   },
   "registry theme description": {
     "Color theme from DMS registry": "DMS kayıt defterinden renk teması"

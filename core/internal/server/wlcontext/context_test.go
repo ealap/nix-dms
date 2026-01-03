@@ -5,13 +5,29 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"golang.org/x/sys/unix"
 )
 
-func TestSharedContext_ConcurrentPostNonBlocking(t *testing.T) {
-	sc := &SharedContext{
-		cmdQueue: make(chan func(), 256),
-		stopChan: make(chan struct{}),
+func newTestSharedContext(t *testing.T, queueSize int) *SharedContext {
+	t.Helper()
+	fds := make([]int, 2)
+	if err := unix.Pipe(fds); err != nil {
+		t.Fatalf("failed to create test pipe: %v", err)
 	}
+	t.Cleanup(func() {
+		unix.Close(fds[0])
+		unix.Close(fds[1])
+	})
+	return &SharedContext{
+		cmdQueue: make(chan func(), queueSize),
+		stopChan: make(chan struct{}),
+		wakeR:    fds[0],
+		wakeW:    fds[1],
+	}
+}
+
+func TestSharedContext_ConcurrentPostNonBlocking(t *testing.T) {
+	sc := newTestSharedContext(t, 256)
 
 	var wg sync.WaitGroup
 	const goroutines = 100
@@ -33,10 +49,7 @@ func TestSharedContext_ConcurrentPostNonBlocking(t *testing.T) {
 }
 
 func TestSharedContext_PostQueueFull(t *testing.T) {
-	sc := &SharedContext{
-		cmdQueue: make(chan func(), 2),
-		stopChan: make(chan struct{}),
-	}
+	sc := newTestSharedContext(t, 2)
 
 	sc.Post(func() {})
 	sc.Post(func() {})
@@ -47,11 +60,8 @@ func TestSharedContext_PostQueueFull(t *testing.T) {
 }
 
 func TestSharedContext_StartMultipleTimes(t *testing.T) {
-	sc := &SharedContext{
-		cmdQueue: make(chan func(), 256),
-		stopChan: make(chan struct{}),
-		started:  false,
-	}
+	sc := newTestSharedContext(t, 256)
+	sc.started = true
 
 	var wg sync.WaitGroup
 	const goroutines = 10
@@ -70,10 +80,7 @@ func TestSharedContext_StartMultipleTimes(t *testing.T) {
 }
 
 func TestSharedContext_DrainCmdQueue(t *testing.T) {
-	sc := &SharedContext{
-		cmdQueue: make(chan func(), 256),
-		stopChan: make(chan struct{}),
-	}
+	sc := newTestSharedContext(t, 256)
 
 	counter := 0
 	for i := 0; i < 10; i++ {
@@ -89,10 +96,7 @@ func TestSharedContext_DrainCmdQueue(t *testing.T) {
 }
 
 func TestSharedContext_DrainCmdQueueEmpty(t *testing.T) {
-	sc := &SharedContext{
-		cmdQueue: make(chan func(), 256),
-		stopChan: make(chan struct{}),
-	}
+	sc := newTestSharedContext(t, 256)
 
 	sc.drainCmdQueue()
 
@@ -100,10 +104,7 @@ func TestSharedContext_DrainCmdQueueEmpty(t *testing.T) {
 }
 
 func TestSharedContext_ConcurrentDrainAndPost(t *testing.T) {
-	sc := &SharedContext{
-		cmdQueue: make(chan func(), 256),
-		stopChan: make(chan struct{}),
-	}
+	sc := newTestSharedContext(t, 256)
 
 	var wg sync.WaitGroup
 

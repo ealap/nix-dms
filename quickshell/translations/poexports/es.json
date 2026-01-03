@@ -1287,7 +1287,7 @@
     "Show Password Field": "Mostrar campo de contraseña"
   },
   "Enable power action icon on the lock screen window": {
-    "Show Power Actions": ""
+    "Show Power Actions": "Mostrar acciones de energia"
   },
   "Enable profile image display on the lock screen window": {
     "Show Profile Image": "Mostrar imagen de perfil"
@@ -1676,11 +1676,17 @@
   "Grid Columns": {
     "Grid Columns": "Columnas de cuadrícula"
   },
+  "Group Workspace Apps": {
+    "Group Workspace Apps": ""
+  },
   "Group by App": {
     "Group by App": "Agrupar por aplicación"
   },
   "Group multiple windows of the same app together with a window count indicator": {
     "Group multiple windows of the same app together with a window count indicator": "Mostrar número de ventanas agrupadas en el icono de la aplicación"
+  },
+  "Group repeated application icons in unfocused workspaces": {
+    "Group repeated application icons in unfocused workspaces": ""
   },
   "HDR (EDID)": {
     "HDR (EDID)": ""
@@ -2112,7 +2118,7 @@
     "Memory": "Memoria"
   },
   "Memory Graph": {
-    "Memory Graph": ""
+    "Memory Graph": "Grafico de memoria"
   },
   "Memory Usage": {
     "Memory Usage": "Uso de memoria"
@@ -2939,6 +2945,9 @@
   "Scroll title if it doesn't fit in widget": {
     "Scroll title if it doesn't fit in widget": ""
   },
+  "Scroll wheel behavior on media widget": {
+    "Scroll wheel behavior on media widget": ""
+  },
   "Scrolling": {
     "Scrolling": "Desplazamiento"
   },
@@ -3209,6 +3218,9 @@
   "Show workspace index numbers in the top bar workspace switcher": {
     "Show workspace index numbers in the top bar workspace switcher": "Indicar el orden de los espacios en la barra superior"
   },
+  "Show workspace name on horizontal bars, and first letter on vertical bars": {
+    "Show workspace name on horizontal bars, and first letter on vertical bars": ""
+  },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "Mostrar todas las ventanas abiertas destacando la enfocada"
   },
@@ -3238,6 +3250,12 @@
   },
   "Sizing": {
     "Sizing": ""
+  },
+  "Smartcard Authentication": {
+    "Smartcard Authentication": ""
+  },
+  "Smartcard PIN": {
+    "Smartcard PIN": ""
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": "Algunos plugins requieren una version más nueva de DMS:"
@@ -3850,6 +3868,9 @@
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "Espacios de trabajo numerados"
   },
+  "Workspace Names": {
+    "Workspace Names": ""
+  },
   "Workspace Padding": {
     "Workspace Padding": "Margen de los espacios de trabajo"
   },
@@ -4029,6 +4050,9 @@
   },
   "profile image file browser title": {
     "Select Profile Image": "Elegir foto de perfil"
+  },
+  "read-only settings warning for NixOS home-manager users": {
+    "Settings are read-only. Changes will not persist.": ""
   },
   "registry theme description": {
     "Color theme from DMS registry": ""

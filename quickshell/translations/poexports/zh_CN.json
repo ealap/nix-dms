@@ -792,7 +792,7 @@
     "Confirm": "确认"
   },
   "Confirm Delete": {
-    "Confirm Delete": ""
+    "Confirm Delete": "确认删除"
   },
   "Confirm Display Changes": {
     "Confirm Display Changes": "确认显示更改"
@@ -1218,7 +1218,7 @@
     "Driver": "驱动程序"
   },
   "Duplicate": {
-    "Duplicate": ""
+    "Duplicate": "复制"
   },
   "Duplicate Wallpaper with Blur": {
     "Duplicate Wallpaper with Blur": "带模糊效果的壁纸复本"
@@ -1452,13 +1452,13 @@
     "Failed to move job": "移动任务失败"
   },
   "Failed to parse plugin_settings.json": {
-    "Failed to parse plugin_settings.json": ""
+    "Failed to parse plugin_settings.json": "无法解析plugin_settings.json"
   },
   "Failed to parse session.json": {
-    "Failed to parse session.json": ""
+    "Failed to parse session.json": "无法解析session.json"
   },
   "Failed to parse settings.json": {
-    "Failed to parse settings.json": ""
+    "Failed to parse settings.json": "无法解析settings.json"
   },
   "Failed to pause printer": {
     "Failed to pause printer": "无法暂停打印机"
@@ -1676,11 +1676,17 @@
   "Grid Columns": {
     "Grid Columns": "网格列"
   },
+  "Group Workspace Apps": {
+    "Group Workspace Apps": ""
+  },
   "Group by App": {
     "Group by App": "按应用分组"
   },
   "Group multiple windows of the same app together with a window count indicator": {
     "Group multiple windows of the same app together with a window count indicator": "将同一应用的多个窗口合并显示，并标注窗口数量"
+  },
+  "Group repeated application icons in unfocused workspaces": {
+    "Group repeated application icons in unfocused workspaces": ""
   },
   "HDR (EDID)": {
     "HDR (EDID)": "HDR（EDID）"
@@ -2829,10 +2835,10 @@
     "Resume": "恢复"
   },
   "Reverse Scrolling Direction": {
-    "Reverse Scrolling Direction": ""
+    "Reverse Scrolling Direction": "反转滚动方向"
   },
   "Reverse workspace switch direction when scrolling over the bar": {
-    "Reverse workspace switch direction when scrolling over the bar": ""
+    "Reverse workspace switch direction when scrolling over the bar": "当在状态栏上滚动时，反转工作区切换方向"
   },
   "Revert": {
     "Revert": "恢复: "
@@ -2938,6 +2944,9 @@
   },
   "Scroll title if it doesn't fit in widget": {
     "Scroll title if it doesn't fit in widget": "如果在部件中标题不适配，则可以滚动标题"
+  },
+  "Scroll wheel behavior on media widget": {
+    "Scroll wheel behavior on media widget": ""
   },
   "Scrolling": {
     "Scrolling": "滚动"
@@ -3209,6 +3218,9 @@
   "Show workspace index numbers in the top bar workspace switcher": {
     "Show workspace index numbers in the top bar workspace switcher": "在顶栏工作区切换器中显示工作区索引号"
   },
+  "Show workspace name on horizontal bars, and first letter on vertical bars": {
+    "Show workspace name on horizontal bars, and first letter on vertical bars": ""
+  },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "显示所有正在运行应用程序，并标记焦点所在"
   },
@@ -3238,6 +3250,12 @@
   },
   "Sizing": {
     "Sizing": "大小调整"
+  },
+  "Smartcard Authentication": {
+    "Smartcard Authentication": ""
+  },
+  "Smartcard PIN": {
+    "Smartcard PIN": ""
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": "有些插件需要更新版的 DMS："
@@ -3850,6 +3868,9 @@
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "工作区序号"
   },
+  "Workspace Names": {
+    "Workspace Names": ""
+  },
   "Workspace Padding": {
     "Workspace Padding": "工作区内边距"
   },
@@ -4029,6 +4050,9 @@
   },
   "profile image file browser title": {
     "Select Profile Image": "选择个人信息图像"
+  },
+  "read-only settings warning for NixOS home-manager users": {
+    "Settings are read-only. Changes will not persist.": ""
   },
   "registry theme description": {
     "Color theme from DMS registry": "DMS注册表的颜色主题"

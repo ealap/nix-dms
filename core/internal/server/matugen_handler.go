@@ -15,37 +15,23 @@ type MatugenQueueResult struct {
 }
 
 func handleMatugenQueue(conn net.Conn, req models.Request) {
-	getString := func(key string) string {
-		if v, ok := req.Params[key].(string); ok {
-			return v
-		}
-		return ""
-	}
-
-	getBool := func(key string, def bool) bool {
-		if v, ok := req.Params[key].(bool); ok {
-			return v
-		}
-		return def
-	}
-
 	opts := matugen.Options{
-		StateDir:            getString("stateDir"),
-		ShellDir:            getString("shellDir"),
-		ConfigDir:           getString("configDir"),
-		Kind:                getString("kind"),
-		Value:               getString("value"),
-		Mode:                getString("mode"),
-		IconTheme:           getString("iconTheme"),
-		MatugenType:         getString("matugenType"),
-		RunUserTemplates:    getBool("runUserTemplates", true),
-		StockColors:         getString("stockColors"),
-		SyncModeWithPortal:  getBool("syncModeWithPortal", false),
-		TerminalsAlwaysDark: getBool("terminalsAlwaysDark", false),
-		SkipTemplates:       getString("skipTemplates"),
+		StateDir:            models.GetOr(req, "stateDir", ""),
+		ShellDir:            models.GetOr(req, "shellDir", ""),
+		ConfigDir:           models.GetOr(req, "configDir", ""),
+		Kind:                models.GetOr(req, "kind", ""),
+		Value:               models.GetOr(req, "value", ""),
+		Mode:                matugen.ColorMode(models.GetOr(req, "mode", "")),
+		IconTheme:           models.GetOr(req, "iconTheme", ""),
+		MatugenType:         models.GetOr(req, "matugenType", ""),
+		RunUserTemplates:    models.GetOr(req, "runUserTemplates", true),
+		StockColors:         models.GetOr(req, "stockColors", ""),
+		SyncModeWithPortal:  models.GetOr(req, "syncModeWithPortal", false),
+		TerminalsAlwaysDark: models.GetOr(req, "terminalsAlwaysDark", false),
+		SkipTemplates:       models.GetOr(req, "skipTemplates", ""),
 	}
 
-	wait := getBool("wait", true)
+	wait := models.GetOr(req, "wait", true)
 
 	queue := matugen.GetQueue()
 	resultCh := queue.Submit(opts)

@@ -356,7 +356,7 @@
   {
     "term": "Add Widget",
     "context": "Add Widget",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:749, Modules/Settings/WidgetSelectionPopup.qml:92, Modules/Settings/DesktopWidgetsTab.qml:65, Modules/ControlCenter/Components/EditControls.qml:58, Modules/ControlCenter/Components/EditControls.qml:159",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:767, Modules/Settings/WidgetSelectionPopup.qml:92, Modules/Settings/DesktopWidgetsTab.qml:65, Modules/ControlCenter/Components/EditControls.qml:58, Modules/ControlCenter/Components/EditControls.qml:159",
     "comment": ""
   },
   {
@@ -404,7 +404,7 @@
   {
     "term": "All",
     "context": "All",
-    "reference": "Services/AppSearchService.qml:314, Services/AppSearchService.qml:330, Modals/Spotlight/SpotlightModal.qml:65, Modules/AppDrawer/CategorySelector.qml:11, Modules/AppDrawer/AppLauncher.qml:16, Modules/AppDrawer/AppLauncher.qml:27, Modules/AppDrawer/AppLauncher.qml:28, Modules/AppDrawer/AppLauncher.qml:45, Modules/AppDrawer/AppLauncher.qml:46, Modules/AppDrawer/AppLauncher.qml:80, Modules/AppDrawer/AppDrawerPopout.qml:57, Modules/Settings/KeybindsTab.qml:378, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:94, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:97, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:109",
+    "reference": "Services/AppSearchService.qml:314, Services/AppSearchService.qml:330, Modals/Spotlight/SpotlightModal.qml:65, Modules/AppDrawer/CategorySelector.qml:11, Modules/AppDrawer/AppLauncher.qml:16, Modules/AppDrawer/AppLauncher.qml:27, Modules/AppDrawer/AppLauncher.qml:28, Modules/AppDrawer/AppLauncher.qml:45, Modules/AppDrawer/AppLauncher.qml:46, Modules/AppDrawer/AppLauncher.qml:84, Modules/AppDrawer/AppDrawerPopout.qml:57, Modules/Settings/KeybindsTab.qml:378, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:94, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:97, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:109",
     "comment": ""
   },
   {
@@ -440,13 +440,13 @@
   {
     "term": "Always on icons",
     "context": "Always on icons",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:1003",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:1021",
     "comment": ""
   },
   {
     "term": "Always show a minimum of 3 workspaces, even if fewer are available",
     "context": "Always show a minimum of 3 workspaces, even if fewer are available",
-    "reference": "Modules/Settings/WorkspacesTab.qml:42",
+    "reference": "Modules/Settings/WorkspacesTab.qml:51",
     "comment": ""
   },
   {
@@ -488,13 +488,13 @@
   {
     "term": "Anonymous Identity",
     "context": "Anonymous Identity",
-    "reference": "Modals/WifiPasswordModal.qml:134",
+    "reference": "Modals/WifiPasswordModal.qml:150",
     "comment": ""
   },
   {
     "term": "Anonymous Identity (optional)",
     "context": "Anonymous Identity (optional)",
-    "reference": "Modals/WifiPasswordModal.qml:479",
+    "reference": "Modals/WifiPasswordModal.qml:509",
     "comment": ""
   },
   {
@@ -536,7 +536,7 @@
   {
     "term": "Apply warm color temperature to reduce eye strain. Use automation settings below to control when it activates.",
     "context": "Apply warm color temperature to reduce eye strain. Use automation settings below to control when it activates.",
-    "reference": "Modules/Settings/GammaControlTab.qml:76",
+    "reference": "Modules/Settings/GammaControlTab.qml:77",
     "comment": ""
   },
   {
@@ -560,7 +560,7 @@
   {
     "term": "Audio",
     "context": "Audio",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:823",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:841",
     "comment": ""
   },
   {
@@ -632,25 +632,25 @@
   {
     "term": "Authenticate",
     "context": "Authenticate",
-    "reference": "Modals/PolkitAuthModal.qml:312",
+    "reference": "Modals/PolkitAuthModal.qml:313",
     "comment": ""
   },
   {
     "term": "Authentication",
     "context": "Authentication",
-    "reference": "Modals/PolkitAuthModal.qml:45",
+    "reference": "Modals/PolkitAuthModal.qml:46",
     "comment": ""
   },
   {
     "term": "Authentication Required",
     "context": "Authentication Required",
-    "reference": "Modals/PolkitAuthModal.qml:133",
+    "reference": "Modals/PolkitAuthModal.qml:134",
     "comment": ""
   },
   {
     "term": "Authentication failed, please try again",
     "context": "Authentication failed, please try again",
-    "reference": "Modals/PolkitAuthModal.qml:241",
+    "reference": "Modals/PolkitAuthModal.qml:242",
     "comment": ""
   },
   {
@@ -746,7 +746,7 @@
   {
     "term": "Automatic Control",
     "context": "Automatic Control",
-    "reference": "Modules/Settings/GammaControlTab.qml:146",
+    "reference": "Modules/Settings/GammaControlTab.qml:139",
     "comment": ""
   },
   {
@@ -770,7 +770,7 @@
   {
     "term": "Automatically detect location based on IP address",
     "context": "Automatically detect location based on IP address",
-    "reference": "Modules/Settings/GammaControlTab.qml:353",
+    "reference": "Modules/Settings/GammaControlTab.qml:346",
     "comment": ""
   },
   {
@@ -872,7 +872,7 @@
   {
     "term": "Battery",
     "context": "Battery",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:853, Modules/Settings/WidgetsTab.qml:168, Modules/ControlCenter/Models/WidgetModel.qml:161, Modules/ControlCenter/Widgets/BatteryPill.qml:17",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:871, Modules/Settings/WidgetsTab.qml:168, Modules/ControlCenter/Models/WidgetModel.qml:161, Modules/ControlCenter/Widgets/BatteryPill.qml:17",
     "comment": ""
   },
   {
@@ -944,7 +944,7 @@
   {
     "term": "Bluetooth",
     "context": "Bluetooth",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:818, Modules/ControlCenter/Models/WidgetModel.qml:110",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:836, Modules/ControlCenter/Models/WidgetModel.qml:110",
     "comment": ""
   },
   {
@@ -1034,7 +1034,7 @@
   {
     "term": "Brightness",
     "context": "Brightness",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:843, Modules/Settings/LauncherTab.qml:274, Modules/Settings/OSDTab.qml:113",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:861, Modules/Settings/LauncherTab.qml:274, Modules/Settings/OSDTab.qml:113",
     "comment": ""
   },
   {
@@ -1046,7 +1046,7 @@
   {
     "term": "Brightness Value",
     "context": "Brightness Value",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:848",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:866",
     "comment": ""
   },
   {
@@ -1142,13 +1142,13 @@
   {
     "term": "Camera",
     "context": "Camera",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:1084",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:1102",
     "comment": ""
   },
   {
     "term": "Cancel",
     "context": "Cancel",
-    "reference": "Modals/BluetoothPairingModal.qml:272, Modals/PolkitAuthModal.qml:285, Modals/WifiPasswordModal.qml:625, Widgets/KeybindItem.qml:1539, Modals/FileBrowser/FileBrowserOverwriteDialog.qml:83, Modules/Settings/PluginBrowser.qml:113, Modules/Settings/PluginBrowser.qml:718, Modules/Settings/ThemeBrowser.qml:120",
+    "reference": "Modals/BluetoothPairingModal.qml:272, Modals/PolkitAuthModal.qml:286, Modals/WifiPasswordModal.qml:655, Widgets/KeybindItem.qml:1539, Modals/FileBrowser/FileBrowserOverwriteDialog.qml:83, Modules/Settings/PluginBrowser.qml:113, Modules/Settings/PluginBrowser.qml:718, Modules/Settings/ThemeBrowser.qml:120",
     "comment": ""
   },
   {
@@ -1208,7 +1208,7 @@
   {
     "term": "Certificate Password",
     "context": "Certificate Password",
-    "reference": "Modals/WifiPasswordModal.qml:126",
+    "reference": "Modals/WifiPasswordModal.qml:141",
     "comment": ""
   },
   {
@@ -1412,7 +1412,7 @@
   {
     "term": "Clipboard works but nothing saved to disk",
     "context": "Clipboard works but nothing saved to disk",
-    "reference": "Modules/Settings/ClipboardTab.qml:342",
+    "reference": "Modules/Settings/ClipboardTab.qml:332",
     "comment": ""
   },
   {
@@ -1478,7 +1478,7 @@
   {
     "term": "Color Temperature",
     "context": "Color Temperature",
-    "reference": "Modules/Settings/GammaControlTab.qml:101",
+    "reference": "Modules/Settings/GammaControlTab.qml:105",
     "comment": ""
   },
   {
@@ -1490,13 +1490,13 @@
   {
     "term": "Color temperature for day time",
     "context": "Color temperature for day time",
-    "reference": "Modules/Settings/GammaControlTab.qml:123",
+    "reference": "Modules/Settings/GammaControlTab.qml:125",
     "comment": ""
   },
   {
     "term": "Color temperature for night mode",
     "context": "Color temperature for night mode",
-    "reference": "Modules/Settings/GammaControlTab.qml:102",
+    "reference": "Modules/Settings/GammaControlTab.qml:106",
     "comment": ""
   },
   {
@@ -1532,7 +1532,7 @@
   {
     "term": "Compact Mode",
     "context": "Compact Mode",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:536",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:554",
     "comment": ""
   },
   {
@@ -1598,7 +1598,7 @@
   {
     "term": "Configure icons for named workspaces. Icons take priority over numbers when both are enabled.",
     "context": "Configure icons for named workspaces. Icons take priority over numbers when both are enabled.",
-    "reference": "Modules/Settings/WorkspacesTab.qml:146",
+    "reference": "Modules/Settings/WorkspacesTab.qml:165",
     "comment": ""
   },
   {
@@ -1640,19 +1640,19 @@
   {
     "term": "Connect",
     "context": "Connect",
-    "reference": "Modals/WifiPasswordModal.qml:665, Modules/ControlCenter/Details/BluetoothDetail.qml:549, Modules/ControlCenter/Details/NetworkDetail.qml:717",
+    "reference": "Modals/WifiPasswordModal.qml:695, Modules/ControlCenter/Details/BluetoothDetail.qml:549, Modules/ControlCenter/Details/NetworkDetail.qml:717",
     "comment": ""
   },
   {
     "term": "Connect to VPN",
     "context": "Connect to VPN",
-    "reference": "Modals/WifiPasswordModal.qml:263",
+    "reference": "Modals/WifiPasswordModal.qml:289",
     "comment": ""
   },
   {
     "term": "Connect to Wi-Fi",
     "context": "Connect to Wi-Fi",
-    "reference": "Modals/WifiPasswordModal.qml:263",
+    "reference": "Modals/WifiPasswordModal.qml:290",
     "comment": ""
   },
   {
@@ -1718,7 +1718,7 @@
   {
     "term": "Copied to clipboard",
     "context": "Copied to clipboard",
-    "reference": "Modals/Clipboard/ClipboardHistoryModal.qml:150, Modules/Settings/DesktopWidgetInstanceCard.qml:301",
+    "reference": "Modals/Settings/SettingsModal.qml:282, Modals/Settings/SettingsModal.qml:299, Modals/Clipboard/ClipboardHistoryModal.qml:150, Modules/Settings/DesktopWidgetInstanceCard.qml:301",
     "comment": ""
   },
   {
@@ -1796,19 +1796,19 @@
   {
     "term": "Current Period",
     "context": "Current Period",
-    "reference": "Modules/Settings/GammaControlTab.qml:539",
+    "reference": "Modules/Settings/GammaControlTab.qml:532",
     "comment": ""
   },
   {
     "term": "Current Status",
     "context": "Current Status",
-    "reference": "Modules/Settings/GammaControlTab.qml:465",
+    "reference": "Modules/Settings/GammaControlTab.qml:458",
     "comment": ""
   },
   {
     "term": "Current Temp",
     "context": "Current Temp",
-    "reference": "Modules/Settings/GammaControlTab.qml:504",
+    "reference": "Modules/Settings/GammaControlTab.qml:497",
     "comment": ""
   },
   {
@@ -2060,13 +2060,13 @@
   {
     "term": "Day Temperature",
     "context": "Day Temperature",
-    "reference": "Modules/Settings/GammaControlTab.qml:122",
+    "reference": "Modules/Settings/GammaControlTab.qml:124",
     "comment": ""
   },
   {
     "term": "Daytime",
     "context": "Daytime",
-    "reference": "Modules/Settings/GammaControlTab.qml:531",
+    "reference": "Modules/Settings/GammaControlTab.qml:524",
     "comment": ""
   },
   {
@@ -2208,27 +2208,15 @@
     "comment": ""
   },
   {
-    "term": "Disable Clipboard Manager",
-    "context": "Disable Clipboard Manager",
-    "reference": "Modules/Settings/ClipboardTab.qml:331",
-    "comment": ""
-  },
-  {
     "term": "Disable History Persistence",
     "context": "Disable History Persistence",
-    "reference": "Modules/Settings/ClipboardTab.qml:341",
+    "reference": "Modules/Settings/ClipboardTab.qml:331",
     "comment": ""
   },
   {
     "term": "Disable Output",
     "context": "Disable Output",
     "reference": "Modules/Settings/DisplayConfig/HyprlandOutputSettings.qml:76, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:63",
-    "comment": ""
-  },
-  {
-    "term": "Disable clipboard manager entirely (requires restart)",
-    "context": "Disable clipboard manager entirely (requires restart)",
-    "reference": "Modules/Settings/ClipboardTab.qml:332",
     "comment": ""
   },
   {
@@ -2324,7 +2312,7 @@
   {
     "term": "Display application icons in workspace indicators",
     "context": "Display application icons in workspace indicators",
-    "reference": "Modules/Settings/WorkspacesTab.qml:51",
+    "reference": "Modules/Settings/WorkspacesTab.qml:60",
     "comment": ""
   },
   {
@@ -2348,7 +2336,7 @@
   {
     "term": "Display only workspaces that contain windows",
     "context": "Display only workspaces that contain windows",
-    "reference": "Modules/Settings/WorkspacesTab.qml:110",
+    "reference": "Modules/Settings/WorkspacesTab.qml:129",
     "comment": ""
   },
   {
@@ -2438,7 +2426,7 @@
   {
     "term": "Domain (optional)",
     "context": "Domain (optional)",
-    "reference": "Modals/WifiPasswordModal.qml:510",
+    "reference": "Modals/WifiPasswordModal.qml:540",
     "comment": ""
   },
   {
@@ -2618,7 +2606,7 @@
   {
     "term": "End",
     "context": "End",
-    "reference": "Modules/Settings/GammaControlTab.qml:302",
+    "reference": "Modules/Settings/GammaControlTab.qml:295",
     "comment": ""
   },
   {
@@ -2636,7 +2624,7 @@
   {
     "term": "Enter PIN for ",
     "context": "Enter PIN for ",
-    "reference": "Modals/BluetoothPairingModal.qml:137",
+    "reference": "Modals/BluetoothPairingModal.qml:137, Modals/WifiPasswordModal.qml:304",
     "comment": ""
   },
   {
@@ -2648,7 +2636,7 @@
   {
     "term": "Enter credentials for ",
     "context": "Enter credentials for ",
-    "reference": "Modals/WifiPasswordModal.qml:276, Modals/WifiPasswordModal.qml:279",
+    "reference": "Modals/WifiPasswordModal.qml:306, Modals/WifiPasswordModal.qml:309",
     "comment": ""
   },
   {
@@ -2684,7 +2672,7 @@
   {
     "term": "Enter password for ",
     "context": "Enter password for ",
-    "reference": "Modals/WifiPasswordModal.qml:278, Modals/WifiPasswordModal.qml:279",
+    "reference": "Modals/WifiPasswordModal.qml:308, Modals/WifiPasswordModal.qml:309",
     "comment": ""
   },
   {
@@ -2912,19 +2900,19 @@
   {
     "term": "Failed to parse plugin_settings.json",
     "context": "Failed to parse plugin_settings.json",
-    "reference": "Common/SettingsData.qml:827",
+    "reference": "Common/SettingsData.qml:874",
     "comment": ""
   },
   {
     "term": "Failed to parse session.json",
     "context": "Failed to parse session.json",
-    "reference": "Common/SessionData.qml:200",
+    "reference": "Common/SessionData.qml:211",
     "comment": ""
   },
   {
     "term": "Failed to parse settings.json",
     "context": "Failed to parse settings.json",
-    "reference": "Common/SettingsData.qml:799, Common/SettingsData.qml:1812",
+    "reference": "Common/SettingsData.qml:819, Common/SettingsData.qml:1874",
     "comment": ""
   },
   {
@@ -3296,13 +3284,13 @@
   {
     "term": "Gamma Control",
     "context": "Gamma Control",
-    "reference": "Modals/Settings/SettingsSidebar.qml:214, Modules/Settings/GammaControlTab.qml:63",
+    "reference": "Modals/Settings/SettingsSidebar.qml:214, Modules/Settings/GammaControlTab.qml:64",
     "comment": ""
   },
   {
     "term": "Gamma control not available. Requires DMS API v6+.",
     "context": "Gamma control not available. Requires DMS API v6+.",
-    "reference": "Modules/Settings/GammaControlTab.qml:76",
+    "reference": "Modules/Settings/GammaControlTab.qml:77",
     "comment": ""
   },
   {
@@ -3378,6 +3366,12 @@
     "comment": ""
   },
   {
+    "term": "Group Workspace Apps",
+    "context": "Group Workspace Apps",
+    "reference": "Modules/Settings/WorkspacesTab.qml:109",
+    "comment": ""
+  },
+  {
     "term": "Group by App",
     "context": "Group by App",
     "reference": "Modules/Settings/DockTab.qml:121",
@@ -3387,6 +3381,12 @@
     "term": "Group multiple windows of the same app together with a window count indicator",
     "context": "Group multiple windows of the same app together with a window count indicator",
     "reference": "Modules/Settings/DockTab.qml:122",
+    "comment": ""
+  },
+  {
+    "term": "Group repeated application icons in unfocused workspaces",
+    "context": "Group repeated application icons in unfocused workspaces",
+    "reference": "Modules/Settings/WorkspacesTab.qml:110",
     "comment": ""
   },
   {
@@ -3524,7 +3524,7 @@
   {
     "term": "Hour",
     "context": "Hour",
-    "reference": "Modules/Settings/GammaControlTab.qml:239",
+    "reference": "Modules/Settings/GammaControlTab.qml:232",
     "comment": ""
   },
   {
@@ -3650,7 +3650,7 @@
   {
     "term": "Incorrect password",
     "context": "Incorrect password",
-    "reference": "Modals/WifiPasswordModal.qml:290",
+    "reference": "Modals/WifiPasswordModal.qml:320",
     "comment": ""
   },
   {
@@ -3908,7 +3908,7 @@
   {
     "term": "Latitude",
     "context": "Latitude",
-    "reference": "Modules/Settings/GammaControlTab.qml:386, Modules/Settings/TimeWeatherTab.qml:421",
+    "reference": "Modules/Settings/GammaControlTab.qml:379, Modules/Settings/TimeWeatherTab.qml:421",
     "comment": ""
   },
   {
@@ -4094,7 +4094,7 @@
   {
     "term": "Longitude",
     "context": "Longitude",
-    "reference": "Modules/Settings/GammaControlTab.qml:409, Modules/Settings/TimeWeatherTab.qml:470",
+    "reference": "Modules/Settings/GammaControlTab.qml:402, Modules/Settings/TimeWeatherTab.qml:470",
     "comment": ""
   },
   {
@@ -4136,7 +4136,7 @@
   {
     "term": "Manual Coordinates",
     "context": "Manual Coordinates",
-    "reference": "Modules/Settings/GammaControlTab.qml:374",
+    "reference": "Modules/Settings/GammaControlTab.qml:367",
     "comment": ""
   },
   {
@@ -4226,7 +4226,7 @@
   {
     "term": "Max apps to show",
     "context": "Max apps to show",
-    "reference": "Modules/Settings/WorkspacesTab.qml:70",
+    "reference": "Modules/Settings/WorkspacesTab.qml:79",
     "comment": ""
   },
   {
@@ -4352,7 +4352,7 @@
   {
     "term": "Microphone",
     "context": "Microphone",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:833, Modules/Settings/WidgetsTabSection.qml:1032",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:851, Modules/Settings/WidgetsTabSection.qml:1050",
     "comment": ""
   },
   {
@@ -4364,7 +4364,7 @@
   {
     "term": "Microphone Volume",
     "context": "Microphone Volume",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:838",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:856",
     "comment": ""
   },
   {
@@ -4394,7 +4394,7 @@
   {
     "term": "Minute",
     "context": "Minute",
-    "reference": "Modules/Settings/GammaControlTab.qml:247",
+    "reference": "Modules/Settings/GammaControlTab.qml:240",
     "comment": ""
   },
   {
@@ -4502,7 +4502,7 @@
   {
     "term": "Named Workspace Icons",
     "context": "Named Workspace Icons",
-    "reference": "Modules/Settings/WorkspacesTab.qml:140",
+    "reference": "Modules/Settings/WorkspacesTab.qml:159",
     "comment": ""
   },
   {
@@ -4514,7 +4514,7 @@
   {
     "term": "Network",
     "context": "Network",
-    "reference": "Services/CupsService.qml:134, Modals/Settings/SettingsSidebar.qml:228, Modules/ProcessList/PerformanceTab.qml:342, Modules/Settings/WidgetsTabSection.qml:808, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:229, Modules/ControlCenter/Details/NetworkDetail.qml:73, Modules/ControlCenter/Models/WidgetModel.qml:101",
+    "reference": "Services/CupsService.qml:134, Modals/Settings/SettingsSidebar.qml:228, Modules/ProcessList/PerformanceTab.qml:342, Modules/Settings/WidgetsTabSection.qml:826, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:229, Modules/ControlCenter/Details/NetworkDetail.qml:73, Modules/ControlCenter/Models/WidgetModel.qml:101",
     "comment": ""
   },
   {
@@ -4592,25 +4592,25 @@
   {
     "term": "Next Transition",
     "context": "Next Transition",
-    "reference": "Modules/Settings/GammaControlTab.qml:650",
+    "reference": "Modules/Settings/GammaControlTab.qml:643",
     "comment": ""
   },
   {
     "term": "Night",
     "context": "Night",
-    "reference": "Services/WeatherService.qml:313, Modules/Settings/GammaControlTab.qml:531",
+    "reference": "Services/WeatherService.qml:313, Modules/Settings/GammaControlTab.qml:524",
     "comment": ""
   },
   {
     "term": "Night Mode",
     "context": "Night Mode",
-    "reference": "Modules/Settings/GammaControlTab.qml:75, Modules/ControlCenter/Models/WidgetModel.qml:68, Modules/ControlCenter/Components/DragDropGrid.qml:601",
+    "reference": "Modules/Settings/GammaControlTab.qml:76, Modules/ControlCenter/Models/WidgetModel.qml:68, Modules/ControlCenter/Components/DragDropGrid.qml:601",
     "comment": ""
   },
   {
     "term": "Night Temperature",
     "context": "Night Temperature",
-    "reference": "Modules/Settings/GammaControlTab.qml:101",
+    "reference": "Modules/Settings/GammaControlTab.qml:105",
     "comment": ""
   },
   {
@@ -4994,7 +4994,7 @@
   {
     "term": "Only adjust gamma based on time or location rules.",
     "context": "Only adjust gamma based on time or location rules.",
-    "reference": "Modules/Settings/GammaControlTab.qml:147",
+    "reference": "Modules/Settings/GammaControlTab.qml:140",
     "comment": ""
   },
   {
@@ -5144,7 +5144,7 @@
   {
     "term": "PIN",
     "context": "PIN",
-    "reference": "Modals/WifiPasswordModal.qml:130",
+    "reference": "Modals/WifiPasswordModal.qml:146",
     "comment": ""
   },
   {
@@ -5192,7 +5192,7 @@
   {
     "term": "Password",
     "context": "Password",
-    "reference": "Modals/WifiPasswordModal.qml:123, Modals/WifiPasswordModal.qml:132, Modals/WifiPasswordModal.qml:442",
+    "reference": "Modals/WifiPasswordModal.qml:138, Modals/WifiPasswordModal.qml:148, Modals/WifiPasswordModal.qml:472",
     "comment": ""
   },
   {
@@ -5228,7 +5228,7 @@
   {
     "term": "Per-Monitor Workspaces",
     "context": "Per-Monitor Workspaces",
-    "reference": "Modules/Settings/WorkspacesTab.qml:100",
+    "reference": "Modules/Settings/WorkspacesTab.qml:119",
     "comment": ""
   },
   {
@@ -5504,7 +5504,7 @@
   {
     "term": "Printer",
     "context": "Printer",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:858",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:876",
     "comment": ""
   },
   {
@@ -5552,7 +5552,7 @@
   {
     "term": "Private Key Password",
     "context": "Private Key Password",
-    "reference": "Modals/WifiPasswordModal.qml:128",
+    "reference": "Modals/WifiPasswordModal.qml:143",
     "comment": ""
   },
   {
@@ -5786,13 +5786,13 @@
   {
     "term": "Reverse Scrolling Direction",
     "context": "Reverse Scrolling Direction",
-    "reference": "Modules/Settings/WorkspacesTab.qml:119",
+    "reference": "Modules/Settings/WorkspacesTab.qml:138",
     "comment": ""
   },
   {
     "term": "Reverse workspace switch direction when scrolling over the bar",
     "context": "Reverse workspace switch direction when scrolling over the bar",
-    "reference": "Modules/Settings/WorkspacesTab.qml:120",
+    "reference": "Modules/Settings/WorkspacesTab.qml:139",
     "comment": ""
   },
   {
@@ -5918,7 +5918,7 @@
   {
     "term": "Save password",
     "context": "Save password",
-    "reference": "Modals/WifiPasswordModal.qml:597",
+    "reference": "Modals/WifiPasswordModal.qml:627",
     "comment": ""
   },
   {
@@ -5978,19 +5978,13 @@
   {
     "term": "Screen sharing",
     "context": "Screen sharing",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:1136",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:1154",
     "comment": ""
   },
   {
     "term": "Scroll Wheel",
     "context": "Scroll Wheel",
-    "reference": "Modules/Settings/MediaPlayerTab.qml:50, Modules/Settings/DankBarTab.qml:778",
-    "comment": ""
-  },
-  {
-    "term": "Scroll on widget changes media volume",
-    "context": "Scroll on widget changes media volume",
-    "reference": "Modules/Settings/MediaPlayerTab.qml:51",
+    "reference": "Modules/Settings/MediaPlayerTab.qml:56, Modules/Settings/DankBarTab.qml:778",
     "comment": ""
   },
   {
@@ -6003,6 +5997,12 @@
     "term": "Scroll title if it doesn't fit in widget",
     "context": "Scroll title if it doesn't fit in widget",
     "reference": "Modules/Settings/MediaPlayerTab.qml:37",
+    "comment": ""
+  },
+  {
+    "term": "Scroll wheel behavior on media widget",
+    "context": "Scroll wheel behavior on media widget",
+    "reference": "Modules/Settings/MediaPlayerTab.qml:57",
     "comment": ""
   },
   {
@@ -6252,6 +6252,12 @@
     "comment": ""
   },
   {
+    "term": "Settings are read-only. Changes will not persist.",
+    "context": "read-only settings warning for NixOS home-manager users",
+    "reference": "Modals/Settings/SettingsModal.qml:261",
+    "comment": ""
+  },
+  {
     "term": "Setup",
     "context": "Setup",
     "reference": "Modules/Settings/KeybindsTab.qml:338, Modules/Settings/DisplayConfig/IncludeWarningBox.qml:77",
@@ -6296,7 +6302,7 @@
   {
     "term": "Show All Tags",
     "context": "Show All Tags",
-    "reference": "Modules/Settings/WorkspacesTab.qml:129",
+    "reference": "Modules/Settings/WorkspacesTab.qml:148",
     "comment": ""
   },
   {
@@ -6404,7 +6410,7 @@
   {
     "term": "Show Occupied Workspaces Only",
     "context": "Show Occupied Workspaces Only",
-    "reference": "Modules/Settings/WorkspacesTab.qml:109",
+    "reference": "Modules/Settings/WorkspacesTab.qml:128",
     "comment": ""
   },
   {
@@ -6482,13 +6488,13 @@
   {
     "term": "Show Workspace Apps",
     "context": "Show Workspace Apps",
-    "reference": "Modules/Settings/WorkspacesTab.qml:50",
+    "reference": "Modules/Settings/WorkspacesTab.qml:59",
     "comment": ""
   },
   {
     "term": "Show all 9 tags instead of only occupied tags (DWL only)",
     "context": "Show all 9 tags instead of only occupied tags (DWL only)",
-    "reference": "Modules/Settings/WorkspacesTab.qml:130",
+    "reference": "Modules/Settings/WorkspacesTab.qml:149",
     "comment": ""
   },
   {
@@ -6596,13 +6602,13 @@
   {
     "term": "Show only workspaces belonging to each specific monitor.",
     "context": "Show only workspaces belonging to each specific monitor.",
-    "reference": "Modules/Settings/WorkspacesTab.qml:101",
+    "reference": "Modules/Settings/WorkspacesTab.qml:120",
     "comment": ""
   },
   {
     "term": "Show password",
     "context": "Show password",
-    "reference": "Modals/WifiPasswordModal.qml:557",
+    "reference": "Modals/WifiPasswordModal.qml:587",
     "comment": ""
   },
   {
@@ -6615,6 +6621,12 @@
     "term": "Show workspace index numbers in the top bar workspace switcher",
     "context": "Show workspace index numbers in the top bar workspace switcher",
     "reference": "Modules/Settings/WorkspacesTab.qml:33",
+    "comment": ""
+  },
+  {
+    "term": "Show workspace name on horizontal bars, and first letter on vertical bars",
+    "context": "Show workspace name on horizontal bars, and first letter on vertical bars",
+    "reference": "Modules/Settings/WorkspacesTab.qml:42",
     "comment": ""
   },
   {
@@ -6680,13 +6692,13 @@
   {
     "term": "Smartcard Authentication",
     "context": "Smartcard Authentication",
-    "reference": "Modals/WifiPasswordModal.qml:272",
+    "reference": "Modals/WifiPasswordModal.qml:287",
     "comment": ""
   },
   {
     "term": "Smartcard PIN",
     "context": "Smartcard PIN",
-    "reference": "Modals/WifiPasswordModal.qml:194",
+    "reference": "Modals/WifiPasswordModal.qml:209",
     "comment": ""
   },
   {
@@ -6776,7 +6788,7 @@
   {
     "term": "Start",
     "context": "Start",
-    "reference": "Modules/Settings/GammaControlTab.qml:259",
+    "reference": "Modules/Settings/GammaControlTab.qml:252",
     "comment": ""
   },
   {
@@ -6824,13 +6836,13 @@
   {
     "term": "Sunrise",
     "context": "Sunrise",
-    "reference": "Services/WeatherService.qml:245, Modules/Settings/GammaControlTab.qml:581",
+    "reference": "Services/WeatherService.qml:245, Modules/Settings/GammaControlTab.qml:574",
     "comment": ""
   },
   {
     "term": "Sunset",
     "context": "Sunset",
-    "reference": "Services/WeatherService.qml:270, Modules/Settings/GammaControlTab.qml:617",
+    "reference": "Services/WeatherService.qml:270, Modules/Settings/GammaControlTab.qml:610",
     "comment": ""
   },
   {
@@ -6872,7 +6884,7 @@
   {
     "term": "Switch User",
     "context": "Switch User",
-    "reference": "Modules/Greetd/GreeterContent.qml:661",
+    "reference": "Modules/Greetd/GreeterContent.qml:660",
     "comment": ""
   },
   {
@@ -7424,7 +7436,7 @@
   {
     "term": "Use IP Location",
     "context": "Use IP Location",
-    "reference": "Modules/Settings/GammaControlTab.qml:352",
+    "reference": "Modules/Settings/GammaControlTab.qml:345",
     "comment": ""
   },
   {
@@ -7520,13 +7532,13 @@
   {
     "term": "Username",
     "context": "Username",
-    "reference": "Modals/WifiPasswordModal.qml:121, Modals/WifiPasswordModal.qml:410, Widgets/VpnProfileDelegate.qml:42, Modules/Settings/NetworkTab.qml:1742",
+    "reference": "Modals/WifiPasswordModal.qml:136, Modals/WifiPasswordModal.qml:440, Widgets/VpnProfileDelegate.qml:42, Modules/Settings/NetworkTab.qml:1742",
     "comment": ""
   },
   {
     "term": "Uses sunrise/sunset times to automatically adjust night mode based on your location.",
     "context": "Uses sunrise/sunset times to automatically adjust night mode based on your location.",
-    "reference": "Modules/Settings/GammaControlTab.qml:430",
+    "reference": "Modules/Settings/GammaControlTab.qml:423",
     "comment": ""
   },
   {
@@ -7538,7 +7550,7 @@
   {
     "term": "VPN",
     "context": "VPN",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:813, Modules/Settings/WidgetsTab.qml:175, Modules/Settings/NetworkTab.qml:1404, Modules/ControlCenter/Models/WidgetModel.qml:187, Modules/ControlCenter/BuiltinPlugins/VpnWidget.qml:15",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:831, Modules/Settings/WidgetsTab.qml:175, Modules/Settings/NetworkTab.qml:1404, Modules/ControlCenter/Models/WidgetModel.qml:187, Modules/ControlCenter/BuiltinPlugins/VpnWidget.qml:15",
     "comment": ""
   },
   {
@@ -7550,7 +7562,7 @@
   {
     "term": "VPN Password",
     "context": "VPN Password",
-    "reference": "Modals/WifiPasswordModal.qml:191",
+    "reference": "Modals/WifiPasswordModal.qml:211",
     "comment": ""
   },
   {
@@ -7670,7 +7682,7 @@
   {
     "term": "Volume",
     "context": "Volume",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:828, Modules/Settings/OSDTab.qml:99",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:846, Modules/Settings/OSDTab.qml:99",
     "comment": ""
   },
   {
@@ -7736,7 +7748,7 @@
   {
     "term": "Warm color temperature to apply",
     "context": "Warm color temperature to apply",
-    "reference": "Modules/Settings/GammaControlTab.qml:102",
+    "reference": "Modules/Settings/GammaControlTab.qml:106",
     "comment": ""
   },
   {
@@ -7778,7 +7790,7 @@
   {
     "term": "Wi-Fi Password",
     "context": "Wi-Fi Password",
-    "reference": "Modals/WifiPasswordModal.qml:191",
+    "reference": "Modals/WifiPasswordModal.qml:212",
     "comment": ""
   },
   {
@@ -7926,9 +7938,15 @@
     "comment": ""
   },
   {
+    "term": "Workspace Names",
+    "context": "Workspace Names",
+    "reference": "Modules/Settings/WorkspacesTab.qml:41",
+    "comment": ""
+  },
+  {
     "term": "Workspace Padding",
     "context": "Workspace Padding",
-    "reference": "Modules/Settings/WorkspacesTab.qml:41",
+    "reference": "Modules/Settings/WorkspacesTab.qml:50",
     "comment": ""
   },
   {

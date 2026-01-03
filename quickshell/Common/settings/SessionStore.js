@@ -4,11 +4,14 @@
 
 function parse(root, jsonObj) {
     var SPEC = SpecModule.SPEC;
-    for (var k in SPEC) {
-        root[k] = SPEC[k].def;
-    }
 
     if (!jsonObj) return;
+
+    for (var k in SPEC) {
+        if (!(k in jsonObj)) {
+            root[k] = SPEC[k].def;
+        }
+    }
 
     for (var k in jsonObj) {
         if (!SPEC[k]) continue;

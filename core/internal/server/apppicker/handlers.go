@@ -19,9 +19,9 @@ func HandleRequest(conn net.Conn, req models.Request, manager *Manager) {
 func handleOpen(conn net.Conn, req models.Request, manager *Manager) {
 	log.Infof("AppPicker: Received %s request with params: %+v", req.Method, req.Params)
 
-	target, ok := req.Params["target"].(string)
+	target, ok := models.Get[string](req, "target")
 	if !ok {
-		target, ok = req.Params["url"].(string)
+		target, ok = models.Get[string](req, "url")
 		if !ok {
 			log.Warnf("AppPicker: Invalid target parameter in request")
 			models.RespondError(conn, req.ID, "invalid target parameter")
@@ -31,24 +31,17 @@ func handleOpen(conn net.Conn, req models.Request, manager *Manager) {
 
 	event := OpenEvent{
 		Target:      target,
-		RequestType: "url",
+		RequestType: models.GetOr(req, "requestType", "url"),
+		MimeType:    models.GetOr(req, "mimeType", ""),
 	}
 
-	if mimeType, ok := req.Params["mimeType"].(string); ok {
-		event.MimeType = mimeType
-	}
-
-	if categories, ok := req.Params["categories"].([]any); ok {
+	if categories, ok := models.Get[[]any](req, "categories"); ok {
 		event.Categories = make([]string, 0, len(categories))
 		for _, cat := range categories {
 			if catStr, ok := cat.(string); ok {
 				event.Categories = append(event.Categories, catStr)
 			}
 		}
-	}
-
-	if requestType, ok := req.Params["requestType"].(string); ok {
-		event.RequestType = requestType
 	}
 
 	log.Infof("AppPicker: Broadcasting event: %+v", event)

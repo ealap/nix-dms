@@ -171,9 +171,11 @@ Singleton {
     ]
 
     property bool showWorkspaceIndex: false
+    property bool showWorkspaceName: false
     property bool showWorkspacePadding: false
     property bool workspaceScrolling: false
     property bool showWorkspaceApps: false
+    property bool groupWorkspaceApps: true
     property int maxWorkspaceIcons: 3
     property bool workspacesPerMonitor: true
     property bool showOccupiedWorkspacesOnly: false
@@ -183,7 +185,7 @@ Singleton {
     property bool waveProgressEnabled: true
     property bool scrollTitleEnabled: true
     property bool audioVisualizerEnabled: true
-    property bool audioScrollEnabled: true
+    property string audioScrollMode: "volume"
     property bool clockCompactMode: false
     property bool focusedWindowCompactMode: false
     property bool runningAppsCompactMode: true
@@ -798,9 +800,9 @@ Singleton {
 
             Store.parse(root, obj);
 
-            if (obj.weatherLocation !== undefined)
+            if (obj?.weatherLocation !== undefined)
                 _legacyWeatherLocation = obj.weatherLocation;
-            if (obj.weatherCoordinates !== undefined)
+            if (obj?.weatherCoordinates !== undefined)
                 _legacyWeatherCoordinates = obj.weatherCoordinates;
 
             _loadedSettingsSnapshot = JSON.stringify(Store.toJson(root));
@@ -1908,7 +1910,7 @@ Singleton {
 
         property string settingsPath: Paths.strip(settingsFile.path)
 
-        command: ["sh", "-c", "[ -w \"" + settingsPath + "\" ] && echo 'writable' || echo 'readonly'"]
+        command: ["sh", "-c", "[ ! -f \"" + settingsPath + "\" ] || [ -w \"" + settingsPath + "\" ] && echo 'writable' || echo 'readonly'"]
         running: false
 
         stdout: StdioCollector {

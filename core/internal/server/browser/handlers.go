@@ -9,7 +9,7 @@ import (
 func HandleRequest(conn net.Conn, req models.Request, manager *Manager) {
 	switch req.Method {
 	case "browser.open":
-		url, ok := req.Params["url"].(string)
+		url, ok := models.Get[string](req, "url")
 		if !ok {
 			models.RespondError(conn, req.ID, "invalid url parameter")
 			return

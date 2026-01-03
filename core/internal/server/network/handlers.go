@@ -157,7 +157,7 @@ func handleConnectWiFi(conn net.Conn, req models.Request, manager *Manager) {
 	connReq.Username = params.StringOpt(req.Params, "username", "")
 	connReq.Device = params.StringOpt(req.Params, "device", "")
 
-	if interactive, ok := req.Params["interactive"].(bool); ok {
+	if interactive, ok := models.Get[bool](req, "interactive"); ok {
 		connReq.Interactive = interactive
 	} else {
 		state := manager.GetState()
@@ -185,7 +185,7 @@ func handleConnectWiFi(conn net.Conn, req models.Request, manager *Manager) {
 	connReq.ClientCertPath = params.StringOpt(req.Params, "clientCertPath", "")
 	connReq.PrivateKeyPath = params.StringOpt(req.Params, "privateKeyPath", "")
 
-	if useSystemCACerts, ok := req.Params["useSystemCACerts"].(bool); ok {
+	if useSystemCACerts, ok := models.Get[bool](req, "useSystemCACerts"); ok {
 		connReq.UseSystemCACerts = &useSystemCACerts
 	}
 
@@ -528,13 +528,13 @@ func handleUpdateVPNConfig(conn net.Conn, req models.Request, manager *Manager) 
 
 	updates := make(map[string]any)
 
-	if name, ok := req.Params["name"].(string); ok {
+	if name, ok := models.Get[string](req, "name"); ok {
 		updates["name"] = name
 	}
-	if autoconnect, ok := req.Params["autoconnect"].(bool); ok {
+	if autoconnect, ok := models.Get[bool](req, "autoconnect"); ok {
 		updates["autoconnect"] = autoconnect
 	}
-	if data, ok := req.Params["data"].(map[string]any); ok {
+	if data, ok := models.Get[map[string]any](req, "data"); ok {
 		updates["data"] = data
 	}
 

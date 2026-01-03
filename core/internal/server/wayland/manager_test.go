@@ -13,7 +13,7 @@ import (
 
 func TestManager_ActorSerializesOutputStateAccess(t *testing.T) {
 	m := &Manager{
-		cmdq:     make(chan cmd, 128),
+		cmdq:     make(chan cmd, 8192),
 		stopChan: make(chan struct{}),
 	}
 

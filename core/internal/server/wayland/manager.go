@@ -878,18 +878,35 @@ func (m *Manager) handleDBusSignal(sig *dbus.Signal) {
 		return
 	}
 	preparing, ok := sig.Body[0].(bool)
-	if !ok {
-		return
-	}
-	if preparing {
+	if !ok || preparing {
 		return
 	}
 	m.configMutex.RLock()
 	enabled := m.config.Enabled
 	m.configMutex.RUnlock()
-	if enabled {
-		m.triggerUpdate()
+	if !enabled {
+		return
 	}
+	time.AfterFunc(500*time.Millisecond, func() {
+		m.post(func() {
+			m.configMutex.RLock()
+			stillEnabled := m.config.Enabled
+			m.configMutex.RUnlock()
+			if !stillEnabled || !m.controlsInitialized {
+				return
+			}
+			m.outputs.Range(func(_ uint32, out *outputState) bool {
+				if out.gammaControl != nil {
+					out.gammaControl.(*wlr_gamma_control.ZwlrGammaControlV1).Destroy()
+					out.gammaControl = nil
+				}
+				out.retryCount = 0
+				out.failed = false
+				m.recreateOutputControl(out)
+				return true
+			})
+		})
+	})
 }
 
 func (m *Manager) triggerUpdate() {

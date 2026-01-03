@@ -43,12 +43,8 @@ func handleGetState(conn net.Conn, req models.Request, manager *Manager) {
 }
 
 func handleActivateWorkspace(conn net.Conn, req models.Request, manager *Manager) {
-	groupID, ok := req.Params["groupID"].(string)
-	if !ok {
-		groupID = ""
-	}
-
-	workspaceID, ok := req.Params["workspaceID"].(string)
+	groupID := models.GetOr(req, "groupID", "")
+	workspaceID, ok := models.Get[string](req, "workspaceID")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'workspaceID' parameter")
 		return
@@ -63,12 +59,8 @@ func handleActivateWorkspace(conn net.Conn, req models.Request, manager *Manager
 }
 
 func handleDeactivateWorkspace(conn net.Conn, req models.Request, manager *Manager) {
-	groupID, ok := req.Params["groupID"].(string)
-	if !ok {
-		groupID = ""
-	}
-
-	workspaceID, ok := req.Params["workspaceID"].(string)
+	groupID := models.GetOr(req, "groupID", "")
+	workspaceID, ok := models.Get[string](req, "workspaceID")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'workspaceID' parameter")
 		return
@@ -83,12 +75,8 @@ func handleDeactivateWorkspace(conn net.Conn, req models.Request, manager *Manag
 }
 
 func handleRemoveWorkspace(conn net.Conn, req models.Request, manager *Manager) {
-	groupID, ok := req.Params["groupID"].(string)
-	if !ok {
-		groupID = ""
-	}
-
-	workspaceID, ok := req.Params["workspaceID"].(string)
+	groupID := models.GetOr(req, "groupID", "")
+	workspaceID, ok := models.Get[string](req, "workspaceID")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'workspaceID' parameter")
 		return
@@ -103,13 +91,13 @@ func handleRemoveWorkspace(conn net.Conn, req models.Request, manager *Manager) 
 }
 
 func handleCreateWorkspace(conn net.Conn, req models.Request, manager *Manager) {
-	groupID, ok := req.Params["groupID"].(string)
+	groupID, ok := models.Get[string](req, "groupID")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'groupID' parameter")
 		return
 	}
 
-	workspaceName, ok := req.Params["name"].(string)
+	workspaceName, ok := models.Get[string](req, "name")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'name' parameter")
 		return

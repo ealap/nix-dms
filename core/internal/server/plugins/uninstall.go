@@ -9,7 +9,7 @@ import (
 )
 
 func HandleUninstall(conn net.Conn, req models.Request) {
-	name, ok := req.Params["name"].(string)
+	name, ok := models.Get[string](req, "name")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'name' parameter")
 		return

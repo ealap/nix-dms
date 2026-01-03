@@ -41,19 +41,19 @@ func handleGetState(conn net.Conn, req models.Request, manager *Manager) {
 }
 
 func handleSetTags(conn net.Conn, req models.Request, manager *Manager) {
-	output, ok := req.Params["output"].(string)
+	output, ok := models.Get[string](req, "output")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'output' parameter")
 		return
 	}
 
-	tagmask, ok := req.Params["tagmask"].(float64)
+	tagmask, ok := models.Get[float64](req, "tagmask")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'tagmask' parameter")
 		return
 	}
 
-	toggleTagset, ok := req.Params["toggleTagset"].(float64)
+	toggleTagset, ok := models.Get[float64](req, "toggleTagset")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'toggleTagset' parameter")
 		return
@@ -68,19 +68,19 @@ func handleSetTags(conn net.Conn, req models.Request, manager *Manager) {
 }
 
 func handleSetClientTags(conn net.Conn, req models.Request, manager *Manager) {
-	output, ok := req.Params["output"].(string)
+	output, ok := models.Get[string](req, "output")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'output' parameter")
 		return
 	}
 
-	andTags, ok := req.Params["andTags"].(float64)
+	andTags, ok := models.Get[float64](req, "andTags")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'andTags' parameter")
 		return
 	}
 
-	xorTags, ok := req.Params["xorTags"].(float64)
+	xorTags, ok := models.Get[float64](req, "xorTags")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'xorTags' parameter")
 		return
@@ -95,13 +95,13 @@ func handleSetClientTags(conn net.Conn, req models.Request, manager *Manager) {
 }
 
 func handleSetLayout(conn net.Conn, req models.Request, manager *Manager) {
-	output, ok := req.Params["output"].(string)
+	output, ok := models.Get[string](req, "output")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'output' parameter")
 		return
 	}
 
-	index, ok := req.Params["index"].(float64)
+	index, ok := models.Get[float64](req, "index")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'index' parameter")
 		return

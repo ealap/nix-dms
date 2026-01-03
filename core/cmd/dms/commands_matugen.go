@@ -74,7 +74,7 @@ func buildMatugenOptions(cmd *cobra.Command) matugen.Options {
 		ConfigDir:           configDir,
 		Kind:                kind,
 		Value:               value,
-		Mode:                mode,
+		Mode:                matugen.ColorMode(mode),
 		IconTheme:           iconTheme,
 		MatugenType:         matugenType,
 		RunUserTemplates:    runUserTemplates,

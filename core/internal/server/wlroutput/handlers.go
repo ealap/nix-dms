@@ -56,7 +56,7 @@ func handleGetState(conn net.Conn, req models.Request, manager *Manager) {
 }
 
 func handleApplyConfiguration(conn net.Conn, req models.Request, manager *Manager, test bool) {
-	headsParam, ok := req.Params["heads"]
+	headsParam, ok := models.Get[any](req, "heads")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing 'heads' parameter")
 		return

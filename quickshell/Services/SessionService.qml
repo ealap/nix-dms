@@ -170,26 +170,35 @@ Singleton {
         const userPrefix = SettingsData.launchPrefix?.trim() || "";
         const defaultPrefix = Quickshell.env("DMS_DEFAULT_LAUNCH_PREFIX") || "";
         const prefix = userPrefix.length > 0 ? userPrefix : defaultPrefix;
+        const workDir = desktopEntry.workingDirectory || Quickshell.env("HOME");
+        const escapedCmd = cmd.map(arg => escapeShellArg(arg)).join(" ");
+        const shellCmd = prefix.length > 0 ? `${prefix} ${escapedCmd}` : escapedCmd;
+
+        if (desktopEntry.runInTerminal) {
+            const terminal = Quickshell.env("TERMINAL") || "xterm";
+            Quickshell.execDetached({
+                command: [terminal, "-e", "sh", "-c", shellCmd],
+                workingDirectory: workDir
+            });
+            return;
+        }
 
         if (prefix.length > 0 && needsShellExecution(prefix)) {
-            const escapedCmd = cmd.map(arg => escapeShellArg(arg)).join(" ");
-            const shellCmd = `${prefix} ${escapedCmd}`;
-
             Quickshell.execDetached({
                 command: ["sh", "-c", shellCmd],
-                workingDirectory: desktopEntry.workingDirectory || Quickshell.env("HOME")
+                workingDirectory: workDir
             });
-        } else {
-            if (prefix.length > 0) {
-                const launchPrefix = prefix.split(" ");
-                cmd = launchPrefix.concat(cmd);
-            }
-
-            Quickshell.execDetached({
-                command: cmd,
-                workingDirectory: desktopEntry.workingDirectory || Quickshell.env("HOME")
-            });
+            return;
         }
+
+        if (prefix.length > 0) {
+            cmd = prefix.split(" ").concat(cmd);
+        }
+
+        Quickshell.execDetached({
+            command: cmd,
+            workingDirectory: workDir
+        });
     }
 
     function launchDesktopAction(desktopEntry, action, useNvidia) {

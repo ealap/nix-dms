@@ -91,6 +91,32 @@ Singleton {
     property var pendingThemeRequest: null
     property var matugenColors: ({})
     property var _pendingGenerateParams: null
+
+    readonly property var dank16: {
+        const raw = matugenColors?.dank16;
+        if (!raw)
+            return null;
+
+        const dark = {};
+        const light = {};
+        const def = {};
+
+        for (let i = 0; i < 16; i++) {
+            const key = "color" + i;
+            const c = raw[key];
+            if (!c)
+                continue;
+            dark[key] = c.dark;
+            light[key] = c.light;
+            def[key] = c.default;
+        }
+
+        return {
+            dark,
+            light,
+            "default": def
+        };
+    }
     property var customThemeData: null
     property var customThemeRawData: null
     readonly property var currentThemeVariants: customThemeRawData?.variants || null
@@ -1302,7 +1328,7 @@ Singleton {
             const colorsPath = SessionData.isGreeterMode ? greetCfgDir + "/colors.json" : stateDir + "/dms-colors.json";
             return colorsPath;
         }
-        watchChanges: currentTheme === dynamic && !SessionData.isGreeterMode
+        watchChanges: !SessionData.isGreeterMode
 
         function parseAndLoadColors() {
             try {
@@ -1323,17 +1349,13 @@ Singleton {
         }
 
         onLoaded: {
-            if (currentTheme === dynamic) {
-                console.info("Theme: Dynamic colors file loaded successfully");
+            if (currentTheme === dynamic)
                 colorsFileLoadFailed = false;
-                parseAndLoadColors();
-            }
+            parseAndLoadColors();
         }
 
         onFileChanged: {
-            if (currentTheme === dynamic) {
-                dynamicColorsFileView.reload();
-            }
+            dynamicColorsFileView.reload();
         }
 
         onLoadFailed: function (error) {

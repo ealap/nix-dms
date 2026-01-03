@@ -10,7 +10,7 @@ import (
 )
 
 func HandleSearch(conn net.Conn, req models.Request) {
-	query, ok := req.Params["query"].(string)
+	query, ok := models.Get[string](req, "query")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'query' parameter")
 		return
@@ -30,15 +30,15 @@ func HandleSearch(conn net.Conn, req models.Request) {
 
 	searchResults := plugins.FuzzySearch(query, pluginList)
 
-	if category, ok := req.Params["category"].(string); ok && category != "" {
+	if category := models.GetOr(req, "category", ""); category != "" {
 		searchResults = plugins.FilterByCategory(category, searchResults)
 	}
 
-	if compositor, ok := req.Params["compositor"].(string); ok && compositor != "" {
+	if compositor := models.GetOr(req, "compositor", ""); compositor != "" {
 		searchResults = plugins.FilterByCompositor(compositor, searchResults)
 	}
 
-	if capability, ok := req.Params["capability"].(string); ok && capability != "" {
+	if capability := models.GetOr(req, "capability", ""); capability != "" {
 		searchResults = plugins.FilterByCapability(capability, searchResults)
 	}
 

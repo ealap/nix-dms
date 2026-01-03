@@ -1676,11 +1676,17 @@
   "Grid Columns": {
     "Grid Columns": "グリッド列"
   },
+  "Group Workspace Apps": {
+    "Group Workspace Apps": ""
+  },
   "Group by App": {
     "Group by App": "アプリ別にグループ化"
   },
   "Group multiple windows of the same app together with a window count indicator": {
     "Group multiple windows of the same app together with a window count indicator": "同じアプリの複数のウィンドウをウィンドウ数インジケーターでグループ化します"
+  },
+  "Group repeated application icons in unfocused workspaces": {
+    "Group repeated application icons in unfocused workspaces": ""
   },
   "HDR (EDID)": {
     "HDR (EDID)": ""
@@ -2939,6 +2945,9 @@
   "Scroll title if it doesn't fit in widget": {
     "Scroll title if it doesn't fit in widget": ""
   },
+  "Scroll wheel behavior on media widget": {
+    "Scroll wheel behavior on media widget": ""
+  },
   "Scrolling": {
     "Scrolling": "スクロール"
   },
@@ -3209,6 +3218,9 @@
   "Show workspace index numbers in the top bar workspace switcher": {
     "Show workspace index numbers in the top bar workspace switcher": "上部バーのワークスペーススイッチャーにワークスペースインデックス番号を表示"
   },
+  "Show workspace name on horizontal bars, and first letter on vertical bars": {
+    "Show workspace name on horizontal bars, and first letter on vertical bars": ""
+  },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "実行中のすべてのアプリケーションをフォーカス状態で表示"
   },
@@ -3238,6 +3250,12 @@
   },
   "Sizing": {
     "Sizing": ""
+  },
+  "Smartcard Authentication": {
+    "Smartcard Authentication": ""
+  },
+  "Smartcard PIN": {
+    "Smartcard PIN": ""
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": ""
@@ -3850,6 +3868,9 @@
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "ワークスペースのインデックス番号"
   },
+  "Workspace Names": {
+    "Workspace Names": ""
+  },
   "Workspace Padding": {
     "Workspace Padding": "ワークスペースのパディング"
   },
@@ -4029,6 +4050,9 @@
   },
   "profile image file browser title": {
     "Select Profile Image": "プロファイル画像を選んでください"
+  },
+  "read-only settings warning for NixOS home-manager users": {
+    "Settings are read-only. Changes will not persist.": ""
   },
   "registry theme description": {
     "Color theme from DMS registry": ""

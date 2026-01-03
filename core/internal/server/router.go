@@ -192,19 +192,19 @@ func RouteRequest(conn net.Conn, req models.Request) {
 func handleClipboardSetConfig(conn net.Conn, req models.Request) {
 	cfg := clipboard.LoadConfig()
 
-	if v, ok := req.Params["maxHistory"].(float64); ok {
+	if v, ok := models.Get[float64](req, "maxHistory"); ok {
 		cfg.MaxHistory = int(v)
 	}
-	if v, ok := req.Params["maxEntrySize"].(float64); ok {
+	if v, ok := models.Get[float64](req, "maxEntrySize"); ok {
 		cfg.MaxEntrySize = int64(v)
 	}
-	if v, ok := req.Params["autoClearDays"].(float64); ok {
+	if v, ok := models.Get[float64](req, "autoClearDays"); ok {
 		cfg.AutoClearDays = int(v)
 	}
-	if v, ok := req.Params["clearAtStartup"].(bool); ok {
+	if v, ok := models.Get[bool](req, "clearAtStartup"); ok {
 		cfg.ClearAtStartup = v
 	}
-	if v, ok := req.Params["disabled"].(bool); ok {
+	if v, ok := models.Get[bool](req, "disabled"); ok {
 		cfg.Disabled = v
 	}
 

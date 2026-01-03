@@ -186,7 +186,7 @@
     "Add a border around the dock": "Szegély hozzáadása a dokk körül"
   },
   "Add a custom prefix to all application launches. This can be used for things like 'uwsm-app', 'systemd-run', or other command wrappers.": {
-    "Add a custom prefix to all application launches. This can be used for things like 'uwsm-app', 'systemd-run', or other command wrappers.": "Adj meg egy egyedi előtagot minden alkalmazás indításához. Ez használható például „uwsm-app”, „systemd-run” vagy más parancscsomagolókhoz."
+    "Add a custom prefix to all application launches. This can be used for things like 'uwsm-app', 'systemd-run', or other command wrappers.": "Adj meg egy egyéni előtagot minden alkalmazás indításához. Ez használható például „uwsm-app”, „systemd-run” vagy más parancscsomagolókhoz."
   },
   "Add and configure widgets that appear on your desktop": {
     "Add and configure widgets that appear on your desktop": "Asztali widgetek hozzáadása és konfigurálása"
@@ -357,7 +357,7 @@
     "Auto-hide Dock": "Automatikusan rejtse el a dokkot"
   },
   "Auto-saving...": {
-    "Auto-saving...": "Automatikus mentés..."
+    "Auto-saving...": "Automatikus mentés…"
   },
   "Autoconnect": {
     "Autoconnect": "Automatikus csatlakozás"
@@ -675,7 +675,7 @@
     "Click Import to add a .ovpn or .conf": "Kattints az importálás gombra .ovpn vagy .conf fájl hozzáadásához"
   },
   "Click any shortcut to edit. Changes save to dms/binds.kdl": {
-    "Click any shortcut to edit. Changes save to dms/binds.kdl": "Kattints bármely gyorsbillentyűre a szerkesztéshez. A változtatások a dms/binds.kdl fájlba mentődnek"
+    "Click any shortcut to edit. Changes save to dms/binds.kdl": "Kattints bármelyik gyorsbillentyűre a szerkesztéshez. A változtatások a dms/binds.kdl fájlba mentődnek"
   },
   "Click to capture": {
     "Click to capture": "Kattints a rögzítéshez"
@@ -792,7 +792,7 @@
     "Confirm": "Megerősítés"
   },
   "Confirm Delete": {
-    "Confirm Delete": ""
+    "Confirm Delete": "Törlés megerősítése"
   },
   "Confirm Display Changes": {
     "Confirm Display Changes": "Kijelzőváltoztatások megerősítése"
@@ -822,7 +822,7 @@
     "Connecting to Device": "Csatlakozás az eszközhöz"
   },
   "Connecting...": {
-    "Connecting...": "Csatlakozás..."
+    "Connecting...": "Csatlakozás…"
   },
   "Contrast": {
     "Contrast": "Kontraszt"
@@ -873,7 +873,7 @@
     "Create Printer": "Nyomtató létrehozása"
   },
   "Creating...": {
-    "Creating...": "Létrehozás..."
+    "Creating...": "Létrehozás…"
   },
   "Critical Priority": {
     "Critical Priority": "Kritikus prioritás"
@@ -936,7 +936,7 @@
     "Custom Transparency": "Egyéni átlátszóság"
   },
   "Custom...": {
-    "Custom...": "Egyéni..."
+    "Custom...": "Egyéni…"
   },
   "Custom: ": {
     "Custom: ": "Egyéni: "
@@ -1101,7 +1101,7 @@
     "Disabled": "Kikapcsolva"
   },
   "Disabling WiFi...": {
-    "Disabling WiFi...": "WiFi kikapcsolása..."
+    "Disabling WiFi...": "WiFi kikapcsolása…"
   },
   "Discard": {
     "Discard": "Elvetés"
@@ -1218,7 +1218,7 @@
     "Driver": "Illesztőprogram"
   },
   "Duplicate": {
-    "Duplicate": ""
+    "Duplicate": "Kettőzés"
   },
   "Duplicate Wallpaper with Blur": {
     "Duplicate Wallpaper with Blur": "Háttérkép megkettőzése elmosással"
@@ -1305,7 +1305,7 @@
     "Enabled": "Engedélyezve"
   },
   "Enabling WiFi...": {
-    "Enabling WiFi...": "WiFi bekapcsolása..."
+    "Enabling WiFi...": "WiFi bekapcsolása…"
   },
   "End": {
     "End": "Vége"
@@ -1332,7 +1332,7 @@
     "Enter custom top bar format (e.g., ddd MMM d)": "Egyéni felső sáv formátum megadása (pl. ddd MMM d)"
   },
   "Enter filename...": {
-    "Enter filename...": "Adj meg egy fájlnevet..."
+    "Enter filename...": "Adj meg egy fájlnevet…"
   },
   "Enter launch prefix (e.g., 'uwsm-app')": {
     "Enter launch prefix (e.g., 'uwsm-app')": "Írd be az indítási előtagot (pl. „uwsm-app”)"
@@ -1452,13 +1452,13 @@
     "Failed to move job": "A feladat áthelyezése sikertelen"
   },
   "Failed to parse plugin_settings.json": {
-    "Failed to parse plugin_settings.json": ""
+    "Failed to parse plugin_settings.json": "Nem sikerült a plugin_settings.json feldolgozása"
   },
   "Failed to parse session.json": {
-    "Failed to parse session.json": ""
+    "Failed to parse session.json": "Nem sikerült a session.json feldolgozása"
   },
   "Failed to parse settings.json": {
-    "Failed to parse settings.json": ""
+    "Failed to parse settings.json": "Nem sikerült a settings.json feldolgozása"
   },
   "Failed to pause printer": {
     "Failed to pause printer": "Sikertelen a nyomtató szüneteltetése"
@@ -1545,10 +1545,10 @@
     "Filesystem usage monitoring": "Fájlrendszer használat figyelése"
   },
   "Find in Text": {
-    "Find in Text": "Keresés szövegben..."
+    "Find in Text": "Keresés szövegben…"
   },
   "Find in note...": {
-    "Find in note...": "Keresés jegyzetben..."
+    "Find in note...": "Keresés jegyzetben…"
   },
   "Fine-tune animation timing in milliseconds": {
     "Fine-tune animation timing in milliseconds": "Animációs időzítés finomhangolása milliszekundumban"
@@ -1676,11 +1676,17 @@
   "Grid Columns": {
     "Grid Columns": "Rácsos oszlopok"
   },
+  "Group Workspace Apps": {
+    "Group Workspace Apps": ""
+  },
   "Group by App": {
     "Group by App": "Csoportosítás alkalmazás szerint"
   },
   "Group multiple windows of the same app together with a window count indicator": {
     "Group multiple windows of the same app together with a window count indicator": "Ugyanazon alkalmazás több ablakának csoportosítása egy ablakszám jelzővel"
+  },
+  "Group repeated application icons in unfocused workspaces": {
+    "Group repeated application icons in unfocused workspaces": ""
   },
   "HDR (EDID)": {
     "HDR (EDID)": "HDR (EDID)"
@@ -1815,7 +1821,7 @@
     "Indicator Style": "Jelző stílusa"
   },
   "Individual Batteries": {
-    "Individual Batteries": "Egyedi akkumulátorok"
+    "Individual Batteries": "Egyéni akkumulátorok"
   },
   "Individual bar configuration": {
     "Individual bar configuration": "Egyéni sáv konfiguráció"
@@ -1950,16 +1956,16 @@
     "Lively palette with saturated accents.": "Élénk paletta telített kiemelésekkel."
   },
   "Loading codecs...": {
-    "Loading codecs...": "Kodekek betöltése..."
+    "Loading codecs...": "Kodekek betöltése…"
   },
   "Loading keybinds...": {
-    "Loading keybinds...": "Gyorsbillentyűk betöltése..."
+    "Loading keybinds...": "Gyorsbillentyűk betöltése…"
   },
   "Loading plugins...": {
-    "Loading plugins...": "Bővítmények betöltése..."
+    "Loading plugins...": "Bővítmények betöltése…"
   },
   "Loading...": {
-    "Loading...": "Betöltés..."
+    "Loading...": "Betöltés…"
   },
   "Local": {
     "Local": "Helyi"
@@ -2172,7 +2178,7 @@
     "Monocle": "Monokli"
   },
   "Monospace Font": {
-    "Monospace Font": "Monospace betűtípus"
+    "Monospace Font": "Rögzített szélességű betűtípus"
   },
   "Morning": {
     "Morning": "Reggel"
@@ -2454,7 +2460,7 @@
     "Open search bar to find text": "Keresősáv megnyitása a szöveg kereséséhez"
   },
   "Open with...": {
-    "Open with...": "Megnyitás ezzel..."
+    "Open with...": "Megnyitás ezzel…"
   },
   "Optional description": {
     "Optional description": "Opcionális leírás"
@@ -2526,7 +2532,7 @@
     "Pairing failed": "Párosítás sikertelen"
   },
   "Pairing...": {
-    "Pairing...": "Párosítás..."
+    "Pairing...": "Párosítás…"
   },
   "Passkey:": {
     "Passkey:": "Jelszó:"
@@ -2670,7 +2676,7 @@
     "Preset Widths (%)": "Előre beállított szélességek (%)"
   },
   "Press key...": {
-    "Press key...": "Nyomj meg egy billentyűt..."
+    "Press key...": "Nyomj meg egy billentyűt…"
   },
   "Pressure": {
     "Pressure": "Légnyomás"
@@ -2727,7 +2733,7 @@
     "Profile Image Error": "Profilkép-hiba"
   },
   "Profile image is too large. Please use a smaller image.": {
-    "Profile image is too large. Please use a smaller image.": "A profilkép túl nagy. Használj kisebb képet."
+    "Profile image is too large. Please use a smaller image.": "A profilkép túl nagy, használj kisebb képet."
   },
   "Protocol": {
     "Protocol": "Protokoll"
@@ -2829,10 +2835,10 @@
     "Resume": "Folytatás"
   },
   "Reverse Scrolling Direction": {
-    "Reverse Scrolling Direction": ""
+    "Reverse Scrolling Direction": "Görgetési irány megfordítása"
   },
   "Reverse workspace switch direction when scrolling over the bar": {
-    "Reverse workspace switch direction when scrolling over the bar": ""
+    "Reverse workspace switch direction when scrolling over the bar": "Munkaterület-váltási irány megfordítása a sáv feletti görgetéskor"
   },
   "Revert": {
     "Revert": "Visszaállítás"
@@ -2919,7 +2925,7 @@
     "Scanning": "Szkennelés"
   },
   "Scanning...": {
-    "Scanning...": "Keresés..."
+    "Scanning...": "Keresés…"
   },
   "Science": {
     "Science": "Tudomány"
@@ -2939,6 +2945,9 @@
   "Scroll title if it doesn't fit in widget": {
     "Scroll title if it doesn't fit in widget": "Görgesd a címet, ha nem fér bele a widgetbe"
   },
+  "Scroll wheel behavior on media widget": {
+    "Scroll wheel behavior on media widget": ""
+  },
   "Scrolling": {
     "Scrolling": "Görgetés"
   },
@@ -2949,22 +2958,22 @@
     "Search filenames": "Fájlnév keresése"
   },
   "Search for a location...": {
-    "Search for a location...": "Keress rá egy helyszínre..."
+    "Search for a location...": "Keress rá egy helyszínre…"
   },
   "Search keybinds...": {
-    "Search keybinds...": "Billentyűk keresése..."
+    "Search keybinds...": "Billentyűk keresése…"
   },
   "Search plugins...": {
-    "Search plugins...": "Bővítmények keresése..."
+    "Search plugins...": "Bővítmények keresése…"
   },
   "Search widgets...": {
-    "Search widgets...": "Widgetek keresése..."
+    "Search widgets...": "Widgetek keresése…"
   },
   "Search...": {
-    "Search...": "Keresés..."
+    "Search...": "Keresés…"
   },
   "Searching...": {
-    "Searching...": "Keresés..."
+    "Searching...": "Keresés…"
   },
   "Secondary": {
     "Secondary": "Másodlagos"
@@ -2994,13 +3003,13 @@
     "Select a widget to add. You can add multiple instances of the same widget if needed.": "Válassz ki egy widgetet a hozzáadáshoz. Több példányt is hozzáadhatsz ugyanabból a widgetből, ha szükséges."
   },
   "Select an image file...": {
-    "Select an image file...": "Képfájl kiválasztása..."
+    "Select an image file...": "Képfájl kiválasztása…"
   },
   "Select device...": {
-    "Select device...": "Eszköz kiválasztása..."
+    "Select device...": "Eszköz kiválasztása…"
   },
   "Select driver...": {
-    "Select driver...": "Illesztőprogram kiválasztása..."
+    "Select driver...": "Illesztőprogram kiválasztása…"
   },
   "Select font weight for UI text": {
     "Select font weight for UI text": "Válaszd ki a betűvastagságot az UI szöveghez"
@@ -3009,7 +3018,7 @@
     "Select monitor to configure wallpaper": "Válassz monitort a háttérkép konfigurálásához"
   },
   "Select monospace font for process list and technical displays": {
-    "Select monospace font for process list and technical displays": "Monospace betűtípus (folyamatlistához és technikai kijelzőkhöz)"
+    "Select monospace font for process list and technical displays": "Rögzített szélességű betűtípus (folyamatlistához és technikai kijelzőkhöz)"
   },
   "Select system sound theme": {
     "Select system sound theme": "Rendszerhang-téma kiválasztása"
@@ -3024,7 +3033,7 @@
     "Select which transitions to include in randomization": "Válaszd ki, mely átmenetek legyenek a véletlenszerűsítésben"
   },
   "Select...": {
-    "Select...": "Kiválasztás..."
+    "Select...": "Kiválasztás…"
   },
   "Selected image file not found.": {
     "Selected image file not found.": "A kiválasztott képfájl nem található."
@@ -3209,6 +3218,9 @@
   "Show workspace index numbers in the top bar workspace switcher": {
     "Show workspace index numbers in the top bar workspace switcher": "Munkaterület indexszámok megjelenítése a felső sáv munkaterület-váltójában"
   },
+  "Show workspace name on horizontal bars, and first letter on vertical bars": {
+    "Show workspace name on horizontal bars, and first letter on vertical bars": ""
+  },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "Megjeleníti az összes futó alkalmazást fókuszjelzéssel"
   },
@@ -3238,6 +3250,12 @@
   },
   "Sizing": {
     "Sizing": "Méretezés"
+  },
+  "Smartcard Authentication": {
+    "Smartcard Authentication": ""
+  },
+  "Smartcard PIN": {
+    "Smartcard PIN": ""
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": "Néhány bővítmény a DMS újabb verzióját igényli:"
@@ -3285,7 +3303,7 @@
     "Start": "Indítás"
   },
   "Start typing your notes here...": {
-    "Start typing your notes here...": "Kezdd itt beírni a jegyzeteidet..."
+    "Start typing your notes here...": "Kezdd itt beírni a jegyzeteidet…"
   },
   "State": {
     "State": "Állapot"
@@ -3492,7 +3510,7 @@
     "Toggle visibility of this bar configuration": "A sávkonfiguráció láthatóságának váltása"
   },
   "Toggling...": {
-    "Toggling...": "Váltás..."
+    "Toggling...": "Váltás…"
   },
   "Tomorrow": {
     "Tomorrow": "Holnap"
@@ -3576,7 +3594,7 @@
     "Unsaved changes": "Nem mentett változtatások"
   },
   "Unsaved note...": {
-    "Unsaved note...": "Nem mentett jegyzet..."
+    "Unsaved note...": "Nem mentett jegyzet…"
   },
   "Untitled": {
     "Untitled": "Névtelen"
@@ -3606,7 +3624,7 @@
     "Use Imperial units (°F, mph, inHg) instead of Metric (°C, km/h, hPa)": "Angolszász mértékegységek (°F, mph, inHg) használata a metrikus (°C, km/h, hPa) helyett"
   },
   "Use Monospace Font": {
-    "Use Monospace Font": "Monospace betűtípus használata"
+    "Use Monospace Font": "Rögzített szélességű betűtípus használata"
   },
   "Use System Theme": {
     "Use System Theme": "Rendszertéma használata"
@@ -3621,7 +3639,7 @@
     "Use custom gaps instead of bar spacing": "Egyéni térközök használata a sáv térközei helyett"
   },
   "Use custom window radius instead of theme radius": {
-    "Use custom window radius instead of theme radius": "Egyedi ablaksugár használata a témasugár helyett"
+    "Use custom window radius instead of theme radius": "Egyéni ablaksugár használata a téma sugara helyett"
   },
   "Use fingerprint reader for lock screen authentication (requires enrolled fingerprints)": {
     "Use fingerprint reader for lock screen authentication (requires enrolled fingerprints)": "Ujjlenyomat-olvasó használata a zárolási képernyőn történő hitelesítéshez (regisztrált ujjlenyomatok szükségesek)"
@@ -3850,6 +3868,9 @@
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "Munkaterület-indexszámok"
   },
+  "Workspace Names": {
+    "Workspace Names": ""
+  },
   "Workspace Padding": {
     "Workspace Padding": "Munkaterület kitöltés"
   },
@@ -3980,7 +4001,7 @@
     "leave empty for default": "hagyd üresen az alapértelmezéshez"
   },
   "loading indicator": {
-    "Loading...": "Betöltés..."
+    "Loading...": "Betöltés…"
   },
   "loginctl not available - lock integration requires DMS socket connection": {
     "loginctl not available - lock integration requires DMS socket connection": "loginctl nem elérhető – a zár integrációhoz DMS socket kapcsolat szükséges"
@@ -4025,10 +4046,13 @@
     "Install Plugin": "Bővítmény telepítése"
   },
   "plugin search placeholder": {
-    "Search plugins...": "Bővítmények keresése..."
+    "Search plugins...": "Bővítmények keresése…"
   },
   "profile image file browser title": {
     "Select Profile Image": "Profilkép kiválasztása"
+  },
+  "read-only settings warning for NixOS home-manager users": {
+    "Settings are read-only. Changes will not persist.": ""
   },
   "registry theme description": {
     "Color theme from DMS registry": "Színtéma a DMS regiszterből"
@@ -4058,7 +4082,7 @@
     "Install Theme": "Téma telepítése"
   },
   "theme search placeholder": {
-    "Search themes...": "Témák keresése..."
+    "Search themes...": "Témák keresése…"
   },
   "uninstall action button": {
     "Uninstall": "Eltávolítás"

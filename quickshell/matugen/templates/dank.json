@@ -1,4 +1,22 @@
 {
+    "dank16": {
+        "color0": {"dark": "{{dank16.color0.dark.hex}}", "light": "{{dank16.color0.light.hex}}", "default": "{{dank16.color0.default.hex}}"},
+        "color1": {"dark": "{{dank16.color1.dark.hex}}", "light": "{{dank16.color1.light.hex}}", "default": "{{dank16.color1.default.hex}}"},
+        "color2": {"dark": "{{dank16.color2.dark.hex}}", "light": "{{dank16.color2.light.hex}}", "default": "{{dank16.color2.default.hex}}"},
+        "color3": {"dark": "{{dank16.color3.dark.hex}}", "light": "{{dank16.color3.light.hex}}", "default": "{{dank16.color3.default.hex}}"},
+        "color4": {"dark": "{{dank16.color4.dark.hex}}", "light": "{{dank16.color4.light.hex}}", "default": "{{dank16.color4.default.hex}}"},
+        "color5": {"dark": "{{dank16.color5.dark.hex}}", "light": "{{dank16.color5.light.hex}}", "default": "{{dank16.color5.default.hex}}"},
+        "color6": {"dark": "{{dank16.color6.dark.hex}}", "light": "{{dank16.color6.light.hex}}", "default": "{{dank16.color6.default.hex}}"},
+        "color7": {"dark": "{{dank16.color7.dark.hex}}", "light": "{{dank16.color7.light.hex}}", "default": "{{dank16.color7.default.hex}}"},
+        "color8": {"dark": "{{dank16.color8.dark.hex}}", "light": "{{dank16.color8.light.hex}}", "default": "{{dank16.color8.default.hex}}"},
+        "color9": {"dark": "{{dank16.color9.dark.hex}}", "light": "{{dank16.color9.light.hex}}", "default": "{{dank16.color9.default.hex}}"},
+        "color10": {"dark": "{{dank16.color10.dark.hex}}", "light": "{{dank16.color10.light.hex}}", "default": "{{dank16.color10.default.hex}}"},
+        "color11": {"dark": "{{dank16.color11.dark.hex}}", "light": "{{dank16.color11.light.hex}}", "default": "{{dank16.color11.default.hex}}"},
+        "color12": {"dark": "{{dank16.color12.dark.hex}}", "light": "{{dank16.color12.light.hex}}", "default": "{{dank16.color12.default.hex}}"},
+        "color13": {"dark": "{{dank16.color13.dark.hex}}", "light": "{{dank16.color13.light.hex}}", "default": "{{dank16.color13.default.hex}}"},
+        "color14": {"dark": "{{dank16.color14.dark.hex}}", "light": "{{dank16.color14.light.hex}}", "default": "{{dank16.color14.default.hex}}"},
+        "color15": {"dark": "{{dank16.color15.dark.hex}}", "light": "{{dank16.color15.light.hex}}", "default": "{{dank16.color15.default.hex}}"}
+    },
     "colors": {
         "dark": {
             "background": "{{colors.background.dark.hex}}",

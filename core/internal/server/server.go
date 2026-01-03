@@ -520,7 +520,7 @@ func handleSubscribe(conn net.Conn, req models.Request) {
 	clientID := fmt.Sprintf("meta-client-%p", conn)
 
 	var services []string
-	if servicesParam, ok := req.Params["services"].([]any); ok {
+	if servicesParam, ok := models.Get[[]any](req, "services"); ok {
 		for _, s := range servicesParam {
 			if str, ok := s.(string); ok {
 				services = append(services, str)

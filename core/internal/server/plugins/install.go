@@ -9,7 +9,7 @@ import (
 )
 
 func HandleInstall(conn net.Conn, req models.Request) {
-	idOrName, ok := req.Params["name"].(string)
+	idOrName, ok := models.Get[string](req, "name")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'name' parameter")
 		return

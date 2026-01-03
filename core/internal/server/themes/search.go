@@ -9,7 +9,7 @@ import (
 )
 
 func HandleSearch(conn net.Conn, req models.Request) {
-	query, ok := req.Params["query"].(string)
+	query, ok := models.Get[string](req, "query")
 	if !ok {
 		models.RespondError(conn, req.ID, "missing or invalid 'query' parameter")
 		return

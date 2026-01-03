@@ -1,5 +1,4 @@
 pragma Singleton
-
 pragma ComponentBehavior: Bound
 
 import QtQuick
@@ -9,111 +8,117 @@ import qs.Common
 Singleton {
     id: root
 
-    property var applications: DesktopEntries.applications.values.filter(app => !app.noDisplay && !app.runInTerminal)
+    property var applications: DesktopEntries.applications.values.filter(app => !app.noDisplay)
 
     readonly property int maxResults: 10
     readonly property int frecencySampleSize: 10
 
-    readonly property var timeBuckets: [{
+    readonly property var timeBuckets: [
+        {
             "maxDays": 4,
             "weight": 100
-        }, {
+        },
+        {
             "maxDays": 14,
             "weight": 70
-        }, {
+        },
+        {
             "maxDays": 31,
             "weight": 50
-        }, {
+        },
+        {
             "maxDays": 90,
             "weight": 30
-        }, {
+        },
+        {
             "maxDays": 99999,
             "weight": 10
-        }]
+        }
+    ]
 
     function tokenize(text) {
-        return text.toLowerCase().trim().split(/[\s\-_]+/).filter(w => w.length > 0)
+        return text.toLowerCase().trim().split(/[\s\-_]+/).filter(w => w.length > 0);
     }
 
     function wordBoundaryMatch(text, query) {
-        const textWords = tokenize(text)
-        const queryWords = tokenize(query)
+        const textWords = tokenize(text);
+        const queryWords = tokenize(query);
 
         if (queryWords.length === 0)
-            return false
+            return false;
         if (queryWords.length > textWords.length)
-            return false
+            return false;
 
         for (var i = 0; i <= textWords.length - queryWords.length; i++) {
-            let allMatch = true
+            let allMatch = true;
             for (var j = 0; j < queryWords.length; j++) {
                 if (!textWords[i + j].startsWith(queryWords[j])) {
-                    allMatch = false
-                    break
+                    allMatch = false;
+                    break;
                 }
             }
             if (allMatch)
-                return true
+                return true;
         }
-        return false
+        return false;
     }
 
     function levenshteinDistance(s1, s2) {
-        const len1 = s1.length
-        const len2 = s2.length
-        const matrix = []
+        const len1 = s1.length;
+        const len2 = s2.length;
+        const matrix = [];
 
         for (var i = 0; i <= len1; i++) {
-            matrix[i] = [i]
+            matrix[i] = [i];
         }
         for (var j = 0; j <= len2; j++) {
-            matrix[0][j] = j
+            matrix[0][j] = j;
         }
 
         for (var i = 1; i <= len1; i++) {
             for (var j = 1; j <= len2; j++) {
-                const cost = s1[i - 1] === s2[j - 1] ? 0 : 1
-                matrix[i][j] = Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j - 1] + cost)
+                const cost = s1[i - 1] === s2[j - 1] ? 0 : 1;
+                matrix[i][j] = Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j - 1] + cost);
             }
         }
-        return matrix[len1][len2]
+        return matrix[len1][len2];
     }
 
     function fuzzyMatchScore(text, query) {
-        const queryLower = query.toLowerCase()
-        const maxDistance = query.length <= 2 ? 0 : query.length === 3 ? 1 : query.length <= 6 ? 2 : 3
+        const queryLower = query.toLowerCase();
+        const maxDistance = query.length <= 2 ? 0 : query.length === 3 ? 1 : query.length <= 6 ? 2 : 3;
 
-        let bestScore = 0
+        let bestScore = 0;
 
-        const distance = levenshteinDistance(text.toLowerCase(), queryLower)
+        const distance = levenshteinDistance(text.toLowerCase(), queryLower);
         if (distance <= maxDistance) {
-            const maxLen = Math.max(text.length, query.length)
-            bestScore = 1 - (distance / maxLen)
+            const maxLen = Math.max(text.length, query.length);
+            bestScore = 1 - (distance / maxLen);
         }
 
-        const words = tokenize(text)
+        const words = tokenize(text);
         for (const word of words) {
-            const wordDistance = levenshteinDistance(word, queryLower)
+            const wordDistance = levenshteinDistance(word, queryLower);
             if (wordDistance <= maxDistance) {
-                const maxLen = Math.max(word.length, query.length)
-                const score = 1 - (wordDistance / maxLen)
-                bestScore = Math.max(bestScore, score)
+                const maxLen = Math.max(word.length, query.length);
+                const score = 1 - (wordDistance / maxLen);
+                bestScore = Math.max(bestScore, score);
             }
         }
 
-        return bestScore
+        return bestScore;
     }
 
     function calculateFrecency(app) {
-        const usageRanking = AppUsageHistoryData.appUsageRanking || {}
-        const appId = app.id || (app.execString || app.exec || "")
-        const idVariants = [appId, appId.replace(".desktop", ""), app.id, app.id ? app.id.replace(".desktop", "") : null].filter(id => id)
+        const usageRanking = AppUsageHistoryData.appUsageRanking || {};
+        const appId = app.id || (app.execString || app.exec || "");
+        const idVariants = [appId, appId.replace(".desktop", ""), app.id, app.id ? app.id.replace(".desktop", "") : null].filter(id => id);
 
-        let usageData = null
+        let usageData = null;
         for (const variant of idVariants) {
             if (usageRanking[variant]) {
-                usageData = usageRanking[variant]
-                break
+                usageData = usageRanking[variant];
+                break;
             }
         }
 
@@ -121,135 +126,135 @@ Singleton {
             return {
                 "frecency": 0,
                 "daysSinceUsed": 999999
-            }
+            };
         }
 
-        const usageCount = usageData.usageCount || 0
-        const lastUsed = usageData.lastUsed || 0
-        const now = Date.now()
-        const daysSinceUsed = (now - lastUsed) / (1000 * 60 * 60 * 24)
+        const usageCount = usageData.usageCount || 0;
+        const lastUsed = usageData.lastUsed || 0;
+        const now = Date.now();
+        const daysSinceUsed = (now - lastUsed) / (1000 * 60 * 60 * 24);
 
-        let timeBucketWeight = 10
+        let timeBucketWeight = 10;
         for (const bucket of timeBuckets) {
             if (daysSinceUsed <= bucket.maxDays) {
-                timeBucketWeight = bucket.weight
-                break
+                timeBucketWeight = bucket.weight;
+                break;
             }
         }
 
-        const contextBonus = 100
-        const sampleSize = Math.min(usageCount, frecencySampleSize)
-        const frecency = (timeBucketWeight * contextBonus * sampleSize) / 100
+        const contextBonus = 100;
+        const sampleSize = Math.min(usageCount, frecencySampleSize);
+        const frecency = (timeBucketWeight * contextBonus * sampleSize) / 100;
 
         return {
             "frecency": frecency,
             "daysSinceUsed": daysSinceUsed
-        }
+        };
     }
 
     function searchApplications(query) {
         if (!query || query.length === 0) {
-            return applications
+            return applications;
         }
         if (applications.length === 0)
-            return []
+            return [];
 
-        const queryLower = query.toLowerCase().trim()
-        const scoredApps = []
-        const results = []
+        const queryLower = query.toLowerCase().trim();
+        const scoredApps = [];
+        const results = [];
 
         for (const app of applications) {
-            const name = (app.name || "").toLowerCase()
-            const genericName = (app.genericName || "").toLowerCase()
-            const comment = (app.comment || "").toLowerCase()
-            const id = (app.id || "").toLowerCase()
-            const keywords = app.keywords ? app.keywords.map(k => k.toLowerCase()) : []
+            const name = (app.name || "").toLowerCase();
+            const genericName = (app.genericName || "").toLowerCase();
+            const comment = (app.comment || "").toLowerCase();
+            const id = (app.id || "").toLowerCase();
+            const keywords = app.keywords ? app.keywords.map(k => k.toLowerCase()) : [];
 
-            let textScore = 0
-            let matchType = "none"
+            let textScore = 0;
+            let matchType = "none";
 
             if (name === queryLower) {
-                textScore = 10000
-                matchType = "exact"
+                textScore = 10000;
+                matchType = "exact";
             } else if (name.startsWith(queryLower)) {
-                textScore = 5000
-                matchType = "prefix"
+                textScore = 5000;
+                matchType = "prefix";
             } else if (wordBoundaryMatch(name, queryLower)) {
-                textScore = 1000
-                matchType = "word_boundary"
+                textScore = 1000;
+                matchType = "word_boundary";
             } else if (name.includes(queryLower)) {
-                textScore = 500
-                matchType = "substring"
+                textScore = 500;
+                matchType = "substring";
             } else if (genericName && genericName.startsWith(queryLower)) {
-                textScore = 800
-                matchType = "generic_prefix"
+                textScore = 800;
+                matchType = "generic_prefix";
             } else if (genericName && genericName.includes(queryLower)) {
-                textScore = 400
-                matchType = "generic"
+                textScore = 400;
+                matchType = "generic";
             } else if (id && id.includes(queryLower)) {
-                textScore = 350
-                matchType = "id"
+                textScore = 350;
+                matchType = "id";
             }
 
             if (matchType === "none" && keywords.length > 0) {
                 for (const keyword of keywords) {
                     if (keyword.startsWith(queryLower)) {
-                        textScore = 300
-                        matchType = "keyword_prefix"
-                        break
+                        textScore = 300;
+                        matchType = "keyword_prefix";
+                        break;
                     } else if (keyword.includes(queryLower)) {
-                        textScore = 150
-                        matchType = "keyword"
-                        break
+                        textScore = 150;
+                        matchType = "keyword";
+                        break;
                     }
                 }
             }
 
             if (matchType === "none" && comment && comment.includes(queryLower)) {
-                textScore = 50
-                matchType = "comment"
+                textScore = 50;
+                matchType = "comment";
             }
 
             if (matchType === "none") {
-                const fuzzyScore = fuzzyMatchScore(name, queryLower)
+                const fuzzyScore = fuzzyMatchScore(name, queryLower);
                 if (fuzzyScore > 0) {
-                    textScore = fuzzyScore * 100
-                    matchType = "fuzzy"
+                    textScore = fuzzyScore * 100;
+                    matchType = "fuzzy";
                 }
             }
 
             if (matchType !== "none") {
-                const frecencyData = calculateFrecency(app)
+                const frecencyData = calculateFrecency(app);
 
                 results.push({
-                                 "app": app,
-                                 "textScore": textScore,
-                                 "frecency": frecencyData.frecency,
-                                 "daysSinceUsed": frecencyData.daysSinceUsed,
-                                 "matchType": matchType
-                             })
+                    "app": app,
+                    "textScore": textScore,
+                    "frecency": frecencyData.frecency,
+                    "daysSinceUsed": frecencyData.daysSinceUsed,
+                    "matchType": matchType
+                });
             }
         }
 
         for (const result of results) {
-            const frecencyBonus = result.frecency > 0 ? Math.min(result.frecency / 10, 2000) : 0
-            const recencyBonus = result.daysSinceUsed < 1 ? 1500 : result.daysSinceUsed < 7 ? 1000 : result.daysSinceUsed < 30 ? 500 : 0
+            const frecencyBonus = result.frecency > 0 ? Math.min(result.frecency / 10, 2000) : 0;
+            const recencyBonus = result.daysSinceUsed < 1 ? 1500 : result.daysSinceUsed < 7 ? 1000 : result.daysSinceUsed < 30 ? 500 : 0;
 
-            const finalScore = result.textScore + frecencyBonus + recencyBonus
+            const finalScore = result.textScore + frecencyBonus + recencyBonus;
 
             scoredApps.push({
-                                "app": result.app,
-                                "score": finalScore
-                            })
+                "app": result.app,
+                "score": finalScore
+            });
         }
 
-        scoredApps.sort((a, b) => b.score - a.score)
-        return scoredApps.slice(0, maxResults).map(item => item.app)
+        scoredApps.sort((a, b) => b.score - a.score);
+        return scoredApps.slice(0, maxResults).map(item => item.app);
     }
 
     function getCategoriesForApp(app) {
         if (!app?.categories)
-            return []
+            return [];
 
         const categoryMap = {
             "AudioVideo": I18n.tr("Media"),
@@ -276,207 +281,241 @@ Singleton {
             "Accessories": I18n.tr("Utilities"),
             "FileManager": I18n.tr("Utilities"),
             "TerminalEmulator": I18n.tr("Utilities")
-        }
+        };
 
-        const mappedCategories = new Set()
+        const mappedCategories = new Set();
 
         for (const cat of app.categories) {
             if (categoryMap[cat])
-                mappedCategories.add(categoryMap[cat])
+                mappedCategories.add(categoryMap[cat]);
         }
 
-        return Array.from(mappedCategories)
+        return Array.from(mappedCategories);
     }
 
     property var categoryIcons: ({
-                                     "All": "apps",
-                                     "Media": "music_video",
-                                     "Development": "code",
-                                     "Games": "sports_esports",
-                                     "Graphics": "photo_library",
-                                     "Internet": "web",
-                                     "Office": "content_paste",
-                                     "Settings": "settings",
-                                     "System": "host",
-                                     "Utilities": "build"
-                                 })
+            "All": "apps",
+            "Media": "music_video",
+            "Development": "code",
+            "Games": "sports_esports",
+            "Graphics": "photo_library",
+            "Internet": "web",
+            "Office": "content_paste",
+            "Settings": "settings",
+            "System": "host",
+            "Utilities": "build"
+        })
 
     function getCategoryIcon(category) {
         // Check if it's a plugin category
-        const pluginIcon = getPluginCategoryIcon(category)
+        const pluginIcon = getPluginCategoryIcon(category);
         if (pluginIcon) {
-            return pluginIcon
+            return pluginIcon;
         }
-        return categoryIcons[category] || "folder"
+        return categoryIcons[category] || "folder";
     }
 
     function getAllCategories() {
-        const categories = new Set([I18n.tr("All")])
+        const categories = new Set([I18n.tr("All")]);
 
         for (const app of applications) {
-            const appCategories = getCategoriesForApp(app)
-            appCategories.forEach(cat => categories.add(cat))
+            const appCategories = getCategoriesForApp(app);
+            appCategories.forEach(cat => categories.add(cat));
         }
 
         // Add plugin categories
-        const pluginCategories = getPluginCategories()
-        pluginCategories.forEach(cat => categories.add(cat))
+        const pluginCategories = getPluginCategories();
+        pluginCategories.forEach(cat => categories.add(cat));
 
-        const result = Array.from(categories).sort()
-        return result
+        const result = Array.from(categories).sort();
+        return result;
     }
 
     function getAppsInCategory(category) {
         if (category === I18n.tr("All")) {
-            return applications
+            return applications;
         }
 
         // Check if it's a plugin category
-        const pluginItems = getPluginItems(category, "")
+        const pluginItems = getPluginItems(category, "");
         if (pluginItems.length > 0) {
-            return pluginItems
+            return pluginItems;
         }
 
         return applications.filter(app => {
-                                       const appCategories = getCategoriesForApp(app)
-                                       return appCategories.includes(category)
-                                   })
+            const appCategories = getCategoriesForApp(app);
+            return appCategories.includes(category);
+        });
     }
 
     // Plugin launcher support functions
     function getPluginCategories() {
         if (typeof PluginService === "undefined") {
-            return []
+            return [];
         }
 
-        const categories = []
-        const launchers = PluginService.getLauncherPlugins()
+        const categories = [];
+        const launchers = PluginService.getLauncherPlugins();
 
         for (const pluginId in launchers) {
-            const plugin = launchers[pluginId]
-            const categoryName = plugin.name || pluginId
-            categories.push(categoryName)
+            const plugin = launchers[pluginId];
+            const categoryName = plugin.name || pluginId;
+            categories.push(categoryName);
         }
 
-        return categories
+        return categories;
     }
 
     function getPluginCategoryIcon(category) {
         if (typeof PluginService === "undefined")
-            return null
+            return null;
 
-        const launchers = PluginService.getLauncherPlugins()
+        const launchers = PluginService.getLauncherPlugins();
         for (const pluginId in launchers) {
-            const plugin = launchers[pluginId]
+            const plugin = launchers[pluginId];
             if ((plugin.name || pluginId) === category) {
-                return plugin.icon || "extension"
+                return plugin.icon || "extension";
             }
         }
-        return null
+        return null;
     }
 
     function getAllPluginItems() {
         if (typeof PluginService === "undefined") {
-            return []
+            return [];
         }
 
-        let allItems = []
-        const launchers = PluginService.getLauncherPlugins()
+        let allItems = [];
+        const launchers = PluginService.getLauncherPlugins();
 
         for (const pluginId in launchers) {
-            const categoryName = launchers[pluginId].name || pluginId
-            const items = getPluginItems(categoryName, "")
-            allItems = allItems.concat(items)
+            const categoryName = launchers[pluginId].name || pluginId;
+            const items = getPluginItems(categoryName, "");
+            allItems = allItems.concat(items);
         }
 
-        return allItems
+        return allItems;
     }
 
     function getPluginItems(category, query) {
         if (typeof PluginService === "undefined")
-            return []
+            return [];
 
-        const launchers = PluginService.getLauncherPlugins()
+        const launchers = PluginService.getLauncherPlugins();
         for (const pluginId in launchers) {
-            const plugin = launchers[pluginId]
+            const plugin = launchers[pluginId];
             if ((plugin.name || pluginId) === category) {
-                return getPluginItemsForPlugin(pluginId, query)
+                return getPluginItemsForPlugin(pluginId, query);
             }
         }
-        return []
+        return [];
     }
 
     function getPluginItemsForPlugin(pluginId, query) {
         if (typeof PluginService === "undefined") {
-            return []
+            return [];
         }
 
-        const component = PluginService.pluginLauncherComponents[pluginId]
-        if (!component)
-            return []
+        let instance = PluginService.pluginInstances[pluginId];
+        let isPersistent = true;
+
+        if (!instance) {
+            const component = PluginService.pluginLauncherComponents[pluginId];
+            if (!component)
+                return [];
+
+            try {
+                instance = component.createObject(root, {
+                    "pluginService": PluginService
+                });
+                isPersistent = false;
+            } catch (e) {
+                console.warn("AppSearchService: Error creating temporary plugin instance", pluginId, ":", e);
+                return [];
+            }
+        }
+
+        if (!instance)
+            return [];
 
         try {
-            const instance = component.createObject(root, {
-                                                        "pluginService": PluginService
-                                                    })
-
-            if (instance && typeof instance.getItems === "function") {
-                const items = instance.getItems(query || "")
-                instance.destroy()
-                return items || []
+            if (typeof instance.getItems === "function") {
+                const items = instance.getItems(query || "");
+                if (!isPersistent)
+                    instance.destroy();
+                return items || [];
             }
 
-            if (instance) {
-                instance.destroy()
+            if (!isPersistent) {
+                instance.destroy();
             }
         } catch (e) {
-            console.warn("AppSearchService: Error getting items from plugin", pluginId, ":", e)
+            console.warn("AppSearchService: Error getting items from plugin", pluginId, ":", e);
+            if (!isPersistent)
+                instance.destroy();
         }
 
-        return []
+        return [];
     }
 
     function executePluginItem(item, pluginId) {
         if (typeof PluginService === "undefined")
-            return false
+            return false;
 
-        const component = PluginService.pluginLauncherComponents[pluginId]
-        if (!component)
-            return false
+        let instance = PluginService.pluginInstances[pluginId];
+        let isPersistent = true;
 
-        try {
-            const instance = component.createObject(root, {
-                                                        "pluginService": PluginService
-                                                    })
+        if (!instance) {
+            const component = PluginService.pluginLauncherComponents[pluginId];
+            if (!component)
+                return false;
 
-            if (instance && typeof instance.executeItem === "function") {
-                instance.executeItem(item)
-                instance.destroy()
-                return true
+            try {
+                instance = component.createObject(root, {
+                    "pluginService": PluginService
+                });
+                isPersistent = false;
+            } catch (e) {
+                console.warn("AppSearchService: Error creating temporary plugin instance for execution", pluginId, ":", e);
+                return false;
             }
-
-            if (instance) {
-                instance.destroy()
-            }
-        } catch (e) {
-            console.warn("AppSearchService: Error executing item from plugin", pluginId, ":", e)
         }
 
-        return false
+        if (!instance)
+            return false;
+
+        try {
+            if (typeof instance.executeItem === "function") {
+                instance.executeItem(item);
+                if (!isPersistent)
+                    instance.destroy();
+                return true;
+            }
+
+            if (!isPersistent) {
+                instance.destroy();
+            }
+        } catch (e) {
+            console.warn("AppSearchService: Error executing item from plugin", pluginId, ":", e);
+            if (!isPersistent)
+                instance.destroy();
+        }
+
+        return false;
     }
 
     function searchPluginItems(query) {
         if (typeof PluginService === "undefined")
-            return []
+            return [];
 
-        let allItems = []
-        const launchers = PluginService.getLauncherPlugins()
+        let allItems = [];
+        const launchers = PluginService.getLauncherPlugins();
 
         for (const pluginId in launchers) {
-            const items = getPluginItemsForPlugin(pluginId, query)
-            allItems = allItems.concat(items)
+            const items = getPluginItemsForPlugin(pluginId, query);
+            allItems = allItems.concat(items);
         }
 
-        return allItems
+        return allItems;
     }
 }

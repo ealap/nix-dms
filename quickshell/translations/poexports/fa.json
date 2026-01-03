@@ -792,7 +792,7 @@
     "Confirm": "تأیید"
   },
   "Confirm Delete": {
-    "Confirm Delete": ""
+    "Confirm Delete": "تأیید حذف"
   },
   "Confirm Display Changes": {
     "Confirm Display Changes": "تأیید تغییرات نمایشگر"
@@ -1218,7 +1218,7 @@
     "Driver": "درایور"
   },
   "Duplicate": {
-    "Duplicate": ""
+    "Duplicate": "تکثیر"
   },
   "Duplicate Wallpaper with Blur": {
     "Duplicate Wallpaper with Blur": "تصویر پس‌زمینه تکراری با تاری"
@@ -1452,13 +1452,13 @@
     "Failed to move job": "انتقال کار چاپ ناموفق بود"
   },
   "Failed to parse plugin_settings.json": {
-    "Failed to parse plugin_settings.json": ""
+    "Failed to parse plugin_settings.json": "تجزیه فایل plugin_settings.json ناموفق بود"
   },
   "Failed to parse session.json": {
-    "Failed to parse session.json": ""
+    "Failed to parse session.json": "تجزیه فایل session.json ناموفق بود"
   },
   "Failed to parse settings.json": {
-    "Failed to parse settings.json": ""
+    "Failed to parse settings.json": "تجزیه فایل settings.json ناموفق بود"
   },
   "Failed to pause printer": {
     "Failed to pause printer": "توقف چاپگر ناموفق بود"
@@ -1676,11 +1676,17 @@
   "Grid Columns": {
     "Grid Columns": "ستون‌های جدول"
   },
+  "Group Workspace Apps": {
+    "Group Workspace Apps": ""
+  },
   "Group by App": {
     "Group by App": "گروه‌بندی بر اساس برنامه"
   },
   "Group multiple windows of the same app together with a window count indicator": {
     "Group multiple windows of the same app together with a window count indicator": "گروه‌بندی چندین پنجره از برنامه یکسان با نشانگر تعداد پنجره‌ها"
+  },
+  "Group repeated application icons in unfocused workspaces": {
+    "Group repeated application icons in unfocused workspaces": ""
   },
   "HDR (EDID)": {
     "HDR (EDID)": "HDR (EDID)"
@@ -2829,10 +2835,10 @@
     "Resume": "ازسرگیری"
   },
   "Reverse Scrolling Direction": {
-    "Reverse Scrolling Direction": ""
+    "Reverse Scrolling Direction": "جهت اسکرول معکوس"
   },
   "Reverse workspace switch direction when scrolling over the bar": {
-    "Reverse workspace switch direction when scrolling over the bar": ""
+    "Reverse workspace switch direction when scrolling over the bar": "جهت تغییر workspace را هنگام اسکرول‌کردن روی نوار معکوس کن"
   },
   "Revert": {
     "Revert": "برگرداندن"
@@ -2938,6 +2944,9 @@
   },
   "Scroll title if it doesn't fit in widget": {
     "Scroll title if it doesn't fit in widget": "اگر عنوان در ابزارک جا نشد آن را حرکت بده"
+  },
+  "Scroll wheel behavior on media widget": {
+    "Scroll wheel behavior on media widget": ""
   },
   "Scrolling": {
     "Scrolling": "اسکرولینگ"
@@ -3209,6 +3218,9 @@
   "Show workspace index numbers in the top bar workspace switcher": {
     "Show workspace index numbers in the top bar workspace switcher": "نمایش شماره شاخص workspace در تغییردهنده workspace نوار بالا"
   },
+  "Show workspace name on horizontal bars, and first letter on vertical bars": {
+    "Show workspace name on horizontal bars, and first letter on vertical bars": ""
+  },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "همه برنامه‌های درحال اجرا را با نشانگر متمرکز نمایش می‌دهد"
   },
@@ -3238,6 +3250,12 @@
   },
   "Sizing": {
     "Sizing": "اندازه‌دهی"
+  },
+  "Smartcard Authentication": {
+    "Smartcard Authentication": ""
+  },
+  "Smartcard PIN": {
+    "Smartcard PIN": ""
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": "برخی افزونه‌ها نیازمند نسخه جدیدتر DMS هستند:"
@@ -3850,6 +3868,9 @@
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "شماره شاخص workspace"
   },
+  "Workspace Names": {
+    "Workspace Names": ""
+  },
   "Workspace Padding": {
     "Workspace Padding": "فاصله درونی workspace"
   },
@@ -4029,6 +4050,9 @@
   },
   "profile image file browser title": {
     "Select Profile Image": "انتخاب تصویر نمایه"
+  },
+  "read-only settings warning for NixOS home-manager users": {
+    "Settings are read-only. Changes will not persist.": ""
   },
   "registry theme description": {
     "Color theme from DMS registry": "رنگ تم از مخزن DMS"

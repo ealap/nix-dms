@@ -2576,13 +2576,6 @@
     "comment": ""
   },
   {
-    "term": "Disable Clipboard Manager",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
     "term": "Disable History Persistence",
     "translation": "",
     "context": "",
@@ -2591,13 +2584,6 @@
   },
   {
     "term": "Disable Output",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
-    "term": "Disable clipboard manager entirely (requires restart)",
     "translation": "",
     "context": "",
     "reference": "",
@@ -3941,6 +3927,13 @@
     "comment": ""
   },
   {
+    "term": "Group Workspace Apps",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Group by App",
     "translation": "",
     "context": "",
@@ -3949,6 +3942,13 @@
   },
   {
     "term": "Group multiple windows of the same app together with a window count indicator",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Group repeated application icons in unfocused workspaces",
     "translation": "",
     "context": "",
     "reference": "",
@@ -6986,13 +6986,6 @@
     "comment": ""
   },
   {
-    "term": "Scroll on widget changes media volume",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
     "term": "Scroll song title",
     "translation": "",
     "context": "",
@@ -7001,6 +6994,13 @@
   },
   {
     "term": "Scroll title if it doesn't fit in widget",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Scroll wheel behavior on media widget",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7290,6 +7290,13 @@
     "term": "Settings",
     "translation": "",
     "context": "settings window title",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Settings are read-only. Changes will not persist.",
+    "translation": "",
+    "context": "read-only settings warning for NixOS home-manager users",
     "reference": "",
     "comment": ""
   },
@@ -7721,6 +7728,13 @@
     "comment": ""
   },
   {
+    "term": "Show workspace name on horizontal bars, and first letter on vertical bars",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Shows all running applications with focus indication",
     "translation": "",
     "context": "",
@@ -7785,6 +7799,20 @@
   },
   {
     "term": "Sizing",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Smartcard Authentication",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Smartcard PIN",
     "translation": "",
     "context": "",
     "reference": "",
@@ -9227,6 +9255,13 @@
   },
   {
     "term": "Workspace Index Numbers",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Workspace Names",
     "translation": "",
     "context": "",
     "reference": "",
