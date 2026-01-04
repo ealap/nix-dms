@@ -14,6 +14,9 @@
   "%1 connected": {
     "%1 connected": "%1 متصل"
   },
+  "%1 days ago": {
+    "%1 days ago": ""
+  },
   "%1 display(s)": {
     "%1 display(s)": "%1 نمایشگر"
   },
@@ -28,6 +31,9 @@
   },
   "%1 widgets": {
     "%1 widgets": "%1 ابزارک"
+  },
+  "%1m ago": {
+    "%1m ago": ""
   },
   "(Unnamed)": {
     "(Unnamed)": "(بدون نام)"
@@ -1373,6 +1379,9 @@
   "Fade to lock screen": {
     "Fade to lock screen": "محو شدن برای قفل صفحه"
   },
+  "Fade to monitor off": {
+    "Fade to monitor off": ""
+  },
   "Failed to activate configuration": {
     "Failed to activate configuration": "فعال‌سازی پیکربندی ناموفق بود"
   },
@@ -1664,6 +1673,9 @@
   "Gradually fade the screen before locking with a configurable grace period": {
     "Gradually fade the screen before locking with a configurable grace period": "قبل از قفل شدن صفحه نمایش را با یک دوره زمانی قابل تنظیم به تدریج محو کن"
   },
+  "Gradually fade the screen before turning off monitors with a configurable grace period": {
+    "Gradually fade the screen before turning off monitors with a configurable grace period": ""
+  },
   "Graph Time Range": {
     "Graph Time Range": "بازه زمانی نمودار"
   },
@@ -1677,7 +1689,7 @@
     "Grid Columns": "ستون‌های جدول"
   },
   "Group Workspace Apps": {
-    "Group Workspace Apps": ""
+    "Group Workspace Apps": "گروه‌بندی برنامه‌های workspace"
   },
   "Group by App": {
     "Group by App": "گروه‌بندی بر اساس برنامه"
@@ -1686,7 +1698,7 @@
     "Group multiple windows of the same app together with a window count indicator": "گروه‌بندی چندین پنجره از برنامه یکسان با نشانگر تعداد پنجره‌ها"
   },
   "Group repeated application icons in unfocused workspaces": {
-    "Group repeated application icons in unfocused workspaces": ""
+    "Group repeated application icons in unfocused workspaces": "برنامه‌های تکرارشده در workspaceهای فوکوس نشده را گروه‌بندی کن"
   },
   "HDR (EDID)": {
     "HDR (EDID)": "HDR (EDID)"
@@ -1997,6 +2009,9 @@
   "Lock before suspend": {
     "Lock before suspend": "قفل‌کردن قبل از تعلیق"
   },
+  "Lock fade grace period": {
+    "Lock fade grace period": ""
+  },
   "Log Out": {
     "Log Out": "خروج"
   },
@@ -2170,6 +2185,9 @@
   },
   "Monitor Configuration": {
     "Monitor Configuration": "پیکربندی مانیتور"
+  },
+  "Monitor fade grace period": {
+    "Monitor fade grace period": ""
   },
   "Monitor whose wallpaper drives dynamic theming colors": {
     "Monitor whose wallpaper drives dynamic theming colors": "مانیتوری که تصویر پس‌زمینه آن رنگ‌های تم پویا را تعیین می‌کند"
@@ -2946,7 +2964,7 @@
     "Scroll title if it doesn't fit in widget": "اگر عنوان در ابزارک جا نشد آن را حرکت بده"
   },
   "Scroll wheel behavior on media widget": {
-    "Scroll wheel behavior on media widget": ""
+    "Scroll wheel behavior on media widget": "رفتار چرخ اسکرول در ابزارک رسانه"
   },
   "Scrolling": {
     "Scrolling": "اسکرولینگ"
@@ -3219,7 +3237,7 @@
     "Show workspace index numbers in the top bar workspace switcher": "نمایش شماره شاخص workspace در تغییردهنده workspace نوار بالا"
   },
   "Show workspace name on horizontal bars, and first letter on vertical bars": {
-    "Show workspace name on horizontal bars, and first letter on vertical bars": ""
+    "Show workspace name on horizontal bars, and first letter on vertical bars": "نام  workspace را در نوارهای افقی و اولین حرف را در نوار‌های عمودی نمایش بده"
   },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "همه برنامه‌های درحال اجرا را با نشانگر متمرکز نمایش می‌دهد"
@@ -3252,10 +3270,10 @@
     "Sizing": "اندازه‌دهی"
   },
   "Smartcard Authentication": {
-    "Smartcard Authentication": ""
+    "Smartcard Authentication": "احراز هویت با کارت هوشمند"
   },
   "Smartcard PIN": {
-    "Smartcard PIN": ""
+    "Smartcard PIN": "PIN کارت هوشمند"
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": "برخی افزونه‌ها نیازمند نسخه جدیدتر DMS هستند:"
@@ -3869,7 +3887,7 @@
     "Workspace Index Numbers": "شماره شاخص workspace"
   },
   "Workspace Names": {
-    "Workspace Names": ""
+    "Workspace Names": "نام workspaceها"
   },
   "Workspace Padding": {
     "Workspace Padding": "فاصله درونی workspace"
@@ -4030,6 +4048,50 @@
   "no wallpaper status": {
     "No wallpaper selected": "هیچ تصویر پس‌زمینه‌ای انتخاب نشده"
   },
+  "notification center tab": {
+    "Current": "",
+    "History": ""
+  },
+  "notification history filter": {
+    "All": "",
+    "Last hour": "",
+    "Today": "",
+    "Yesterday": ""
+  },
+  "notification history filter for content older than other filters": {
+    "Older": ""
+  },
+  "notification history filter | notification history retention option": {
+    "30 days": "",
+    "7 days": ""
+  },
+  "notification history limit": {
+    "Maximum number of notifications to keep": ""
+  },
+  "notification history retention option": {
+    "1 day": "",
+    "14 days": "",
+    "3 days": "",
+    "Forever": ""
+  },
+  "notification history retention settings label": {
+    "History Retention": ""
+  },
+  "notification history setting": {
+    "Auto-delete notifications older than this": "",
+    "Save critical priority notifications to history": "",
+    "Save low priority notifications to history": "",
+    "Save normal priority notifications to history": ""
+  },
+  "notification history toggle description": {
+    "Save dismissed notifications to history": ""
+  },
+  "notification history toggle label": {
+    "Enable History": ""
+  },
+  "now": {
+    "now": ""
+  },
   "official": {
     "official": "رسمی"
   },
@@ -4052,7 +4114,7 @@
     "Select Profile Image": "انتخاب تصویر نمایه"
   },
   "read-only settings warning for NixOS home-manager users": {
-    "Settings are read-only. Changes will not persist.": ""
+    "Settings are read-only. Changes will not persist.": "تنظیمات تنها قابل خواندن هستند. تغییرات حفظ نخواهند شد."
   },
   "registry theme description": {
     "Color theme from DMS registry": "رنگ تم از مخزن DMS"
@@ -4125,6 +4187,9 @@
   },
   "wtype not available - install wtype for paste support": {
     "wtype not available - install wtype for paste support": "wtype در دسترس نیست - wtype را برای پشتیبانی از الصاق نصب کنید"
+  },
+  "yesterday": {
+    "yesterday": ""
   },
   "• Install only from trusted sources": {
     "• Install only from trusted sources": "نصب تنها از منابع معتبر"

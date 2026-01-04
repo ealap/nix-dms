@@ -3,7 +3,6 @@ import Quickshell.Hyprland
 import Quickshell.Io
 import qs.Common
 import qs.Modals.Common
-import qs.Services
 
 DankModal {
     id: spotlightModal
@@ -18,62 +17,69 @@ DankModal {
     property bool spotlightOpen: false
     property alias spotlightContent: spotlightContentInstance
     property bool openedFromOverview: false
+    property bool isClosing: false
+
+    function resetContent() {
+        if (!spotlightContent)
+            return;
+        if (spotlightContent.appLauncher) {
+            spotlightContent.appLauncher.searchQuery = "";
+            spotlightContent.appLauncher.selectedIndex = 0;
+            spotlightContent.appLauncher.setCategory(I18n.tr("All"));
+        }
+        if (spotlightContent.fileSearchController)
+            spotlightContent.fileSearchController.reset();
+        if (spotlightContent.resetScroll)
+            spotlightContent.resetScroll();
+        if (spotlightContent.searchField)
+            spotlightContent.searchField.text = "";
+        spotlightContent.searchMode = "apps";
+    }
 
     function show() {
         openedFromOverview = false;
+        isClosing = false;
+        resetContent();
         spotlightOpen = true;
+        if (spotlightContent?.appLauncher)
+            spotlightContent.appLauncher.ensureInitialized();
         open();
 
         Qt.callLater(() => {
-            if (spotlightContent && spotlightContent.searchField) {
+            if (spotlightContent?.searchField)
                 spotlightContent.searchField.forceActiveFocus();
-            }
         });
     }
 
     function showWithQuery(query) {
-        if (spotlightContent) {
-            if (spotlightContent.appLauncher) {
-                spotlightContent.appLauncher.searchQuery = query;
-            }
-            if (spotlightContent.searchField) {
-                spotlightContent.searchField.text = query;
-            }
-        }
-
+        openedFromOverview = false;
+        isClosing = false;
+        resetContent();
         spotlightOpen = true;
+        if (spotlightContent?.appLauncher) {
+            spotlightContent.appLauncher.ensureInitialized();
+            spotlightContent.appLauncher.searchQuery = query;
+        }
+        if (spotlightContent?.searchField)
+            spotlightContent.searchField.text = query;
         open();
 
         Qt.callLater(() => {
-            if (spotlightContent && spotlightContent.searchField) {
+            if (spotlightContent?.searchField)
                 spotlightContent.searchField.forceActiveFocus();
-            }
         });
     }
 
     function hide() {
         openedFromOverview = false;
+        isClosing = true;
         spotlightOpen = false;
         close();
     }
 
     onDialogClosed: {
-        if (spotlightContent) {
-            if (spotlightContent.appLauncher) {
-                spotlightContent.appLauncher.searchQuery = "";
-                spotlightContent.appLauncher.selectedIndex = 0;
-                spotlightContent.appLauncher.setCategory(I18n.tr("All"));
-            }
-            if (spotlightContent.fileSearchController) {
-                spotlightContent.fileSearchController.reset();
-            }
-            if (spotlightContent.resetScroll) {
-                spotlightContent.resetScroll();
-            }
-            if (spotlightContent.searchField) {
-                spotlightContent.searchField.text = "";
-            }
-        }
+        isClosing = false;
+        resetContent();
     }
 
     function toggle() {

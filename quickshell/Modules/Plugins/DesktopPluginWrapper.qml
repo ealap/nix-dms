@@ -17,6 +17,7 @@ Item {
     property var pluginService: null
     property string instanceId: ""
     property var instanceData: null
+    property bool widgetEnabled: true
 
     readonly property bool isBuiltin: pluginId === "desktopClock" || pluginId === "systemMonitor"
     readonly property var activeComponent: isBuiltin ? builtinComponent : PluginService.pluginDesktopComponents[pluginId] ?? null
@@ -202,7 +203,7 @@ Item {
     PanelWindow {
         id: widgetWindow
         screen: root.screen
-        visible: root.visible && root.activeComponent !== null
+        visible: root.widgetEnabled && root.activeComponent !== null
         color: "transparent"
 
         WlrLayershell.namespace: "quickshell:desktop-widget:" + root.pluginId + (root.instanceId ? ":" + root.instanceId : "")

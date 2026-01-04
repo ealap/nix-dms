@@ -73,6 +73,15 @@ Item {
                 }
 
                 SettingsToggleRow {
+                    settingKey: "fadeToDpmsEnabled"
+                    tags: ["fade", "dpms", "monitor", "screen", "idle", "grace period"]
+                    text: I18n.tr("Fade to monitor off")
+                    description: I18n.tr("Gradually fade the screen before turning off monitors with a configurable grace period")
+                    checked: SettingsData.fadeToDpmsEnabled
+                    onToggled: checked => SettingsData.set("fadeToDpmsEnabled", checked)
+                }
+
+                SettingsToggleRow {
                     settingKey: "lockBeforeSuspend"
                     tags: ["lock", "suspend", "sleep", "security"]
                     text: I18n.tr("Lock before suspend")
@@ -89,7 +98,7 @@ Item {
                     property var periodOptions: ["1 second", "2 seconds", "3 seconds", "4 seconds", "5 seconds", "10 seconds", "15 seconds", "20 seconds", "30 seconds"]
                     property var periodValues: [1, 2, 3, 4, 5, 10, 15, 20, 30]
 
-                    text: I18n.tr("Fade grace period")
+                    text: I18n.tr("Lock fade grace period")
                     options: periodOptions
                     visible: SettingsData.fadeToLockEnabled
                     enabled: SettingsData.fadeToLockEnabled
@@ -105,6 +114,32 @@ Item {
                         if (index < 0)
                             return;
                         SettingsData.set("fadeToLockGracePeriod", periodValues[index]);
+                    }
+                }
+
+                SettingsDropdownRow {
+                    id: fadeDpmsGracePeriodDropdown
+                    settingKey: "fadeToDpmsGracePeriod"
+                    tags: ["fade", "grace", "period", "timeout", "dpms", "monitor"]
+                    property var periodOptions: ["1 second", "2 seconds", "3 seconds", "4 seconds", "5 seconds", "10 seconds", "15 seconds", "20 seconds", "30 seconds"]
+                    property var periodValues: [1, 2, 3, 4, 5, 10, 15, 20, 30]
+
+                    text: I18n.tr("Monitor fade grace period")
+                    options: periodOptions
+                    visible: SettingsData.fadeToDpmsEnabled
+                    enabled: SettingsData.fadeToDpmsEnabled
+
+                    Component.onCompleted: {
+                        const currentPeriod = SettingsData.fadeToDpmsGracePeriod;
+                        const index = periodValues.indexOf(currentPeriod);
+                        currentValue = index >= 0 ? periodOptions[index] : "5 seconds";
+                    }
+
+                    onValueChanged: value => {
+                        const index = periodOptions.indexOf(value);
+                        if (index < 0)
+                            return;
+                        SettingsData.set("fadeToDpmsGracePeriod", periodValues[index]);
                     }
                 }
                 SettingsDropdownRow {

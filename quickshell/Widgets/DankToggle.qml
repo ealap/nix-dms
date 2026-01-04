@@ -73,7 +73,7 @@ Item {
                 font.weight: Font.Medium
                 opacity: toggle.enabled ? 1 : 0.4
                 width: parent.width
-                anchors.left: parent.left
+                horizontalAlignment: Text.AlignLeft
             }
 
             StyledText {
@@ -83,7 +83,7 @@ Item {
                 wrapMode: Text.WordWrap
                 width: Math.min(implicitWidth, toggle.width - 120)
                 visible: toggle.description.length > 0
-                anchors.left: parent.left
+                horizontalAlignment: Text.AlignLeft
             }
         }
     }

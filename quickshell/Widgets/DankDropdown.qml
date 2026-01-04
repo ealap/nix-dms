@@ -69,7 +69,7 @@ Item {
             color: Theme.surfaceText
             font.weight: Font.Medium
             width: parent.width
-            anchors.left: parent.left
+            horizontalAlignment: Text.AlignLeft
         }
 
         StyledText {
@@ -79,7 +79,7 @@ Item {
             visible: description.length > 0
             wrapMode: Text.WordWrap
             width: parent.width
-            anchors.left: parent.left
+            horizontalAlignment: Text.AlignLeft
         }
     }
 
@@ -146,6 +146,7 @@ Item {
                 width: contentRow.width - (contentRow.children[0].visible ? contentRow.children[0].width + contentRow.spacing : 0)
                 elide: Text.ElideRight
                 wrapMode: Text.NoWrap
+                horizontalAlignment: Text.AlignLeft
             }
         }
 
@@ -231,6 +232,8 @@ Item {
         }
 
         contentItem: Rectangle {
+            LayoutMirroring.enabled: I18n.isRtl
+            LayoutMirroring.childrenInherit: true
             color: Qt.rgba(Theme.surfaceContainer.r, Theme.surfaceContainer.g, Theme.surfaceContainer.b, 1)
             border.color: Theme.primary
             border.width: 2
@@ -313,11 +316,14 @@ Item {
 
                     StyledText {
                         anchors.left: parent.left
+                        anchors.right: parent.right
                         anchors.leftMargin: Theme.spacingS
+                        anchors.rightMargin: Theme.spacingS
                         anchors.verticalCenter: parent.verticalCenter
                         text: root.emptyText
                         font.pixelSize: Theme.fontSizeMedium
                         color: Theme.surfaceVariantText
+                        horizontalAlignment: Text.AlignLeft
                     }
                 }
 
@@ -357,7 +363,9 @@ Item {
 
                         Row {
                             anchors.left: parent.left
+                            anchors.right: parent.right
                             anchors.leftMargin: Theme.spacingS
+                            anchors.rightMargin: Theme.spacingS
                             anchors.verticalCenter: parent.verticalCenter
                             spacing: Theme.spacingS
 
@@ -374,9 +382,10 @@ Item {
                                 font.pixelSize: Theme.fontSizeMedium
                                 color: delegateRoot.isCurrentValue ? Theme.primary : Theme.surfaceText
                                 font.weight: delegateRoot.isCurrentValue ? Font.Medium : Font.Normal
-                                width: root.popupWidth > 0 ? undefined : (delegateRoot.width - parent.x - Theme.spacingS)
+                                width: root.popupWidth > 0 ? undefined : (delegateRoot.width - parent.x - Theme.spacingS * 2)
                                 elide: root.popupWidth > 0 ? Text.ElideNone : Text.ElideRight
                                 wrapMode: Text.NoWrap
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
 

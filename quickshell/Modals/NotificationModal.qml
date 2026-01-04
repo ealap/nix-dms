@@ -18,6 +18,8 @@ DankModal {
 
     property bool notificationModalOpen: false
     property var notificationListRef: null
+    property var historyListRef: null
+    property int currentTab: 0
 
     function show() {
         notificationModalOpen = true;
@@ -61,7 +63,7 @@ DankModal {
         NotificationService.clearAllNotifications();
     }
 
-    function dismissAllPopups () {
+    function dismissAllPopups() {
         NotificationService.dismissAllPopups();
     }
 
@@ -80,7 +82,18 @@ DankModal {
             NotificationService.onOverlayClose();
         }
     }
-    modalFocusScope.Keys.onPressed: event => modalKeyboardController.handleKey(event)
+    modalFocusScope.Keys.onPressed: event => {
+        if (event.key === Qt.Key_Escape) {
+            hide();
+            event.accepted = true;
+            return;
+        }
+        if (currentTab === 1 && historyListRef) {
+            historyListRef.handleKey(event);
+            return;
+        }
+        modalKeyboardController.handleKey(event);
+    }
 
     NotificationKeyboardController {
         id: modalKeyboardController
@@ -145,21 +158,20 @@ DankModal {
 
                 NotificationHeader {
                     id: notificationHeader
-
                     keyboardController: modalKeyboardController
+                    onCurrentTabChanged: notificationModal.currentTab = currentTab
                 }
 
                 NotificationSettings {
                     id: notificationSettings
-
                     expanded: notificationHeader.showSettings
                 }
 
                 KeyboardNavigatedNotificationList {
                     id: notificationList
-
                     width: parent.width
                     height: parent.height - y
+                    visible: notificationHeader.currentTab === 0
                     keyboardController: modalKeyboardController
                     Component.onCompleted: {
                         notificationModal.notificationListRef = notificationList;
@@ -168,6 +180,14 @@ DankModal {
                             modalKeyboardController.rebuildFlatNavigation();
                         }
                     }
+                }
+
+                HistoryNotificationList {
+                    id: historyList
+                    width: parent.width
+                    height: parent.height - y
+                    visible: notificationHeader.currentTab === 1
+                    Component.onCompleted: notificationModal.historyListRef = historyList
                 }
             }
 
@@ -178,7 +198,7 @@ DankModal {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.margins: Theme.spacingL
-                showHints: modalKeyboardController.showKeyboardHints
+                showHints: notificationHeader.currentTab === 0 ? modalKeyboardController.showKeyboardHints : historyList.showKeyboardHints
             }
         }
     }

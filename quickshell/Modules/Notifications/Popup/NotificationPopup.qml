@@ -362,6 +362,7 @@ PanelWindow {
                     id: iconContainer
 
                     readonly property bool hasNotificationImage: notificationData && notificationData.image && notificationData.image !== ""
+                    readonly property bool needsImagePersist: hasNotificationImage && notificationData.image.startsWith("image://qsimage/") && !notificationData.persistedImagePath
 
                     width: 63
                     height: 63
@@ -390,6 +391,22 @@ PanelWindow {
                     fallbackText: {
                         const appName = notificationData?.appName || "?";
                         return appName.charAt(0).toUpperCase();
+                    }
+
+                    onImageStatusChanged: {
+                        if (imageStatus === Image.Ready && needsImagePersist) {
+                            const cachePath = NotificationService.getImageCachePath(notificationData);
+                            saveImageToFile(cachePath);
+                        }
+                    }
+
+                    onImageSaved: filePath => {
+                        if (!notificationData)
+                            return;
+                        notificationData.persistedImagePath = filePath;
+                        const wrapperId = notificationData.notification?.id?.toString() || "";
+                        if (wrapperId)
+                            NotificationService.updateHistoryImage(wrapperId, filePath);
                     }
                 }
 

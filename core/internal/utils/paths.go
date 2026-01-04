@@ -6,6 +6,15 @@ import (
 	"strings"
 )
 
+func XDGStateHome() string {
+	if dir := os.Getenv("XDG_STATE_HOME"); dir != "" {
+		return dir
+	}
+
+	home, _ := os.UserHomeDir()
+	return filepath.Join(append([]string{home}, ".local", "state")...)
+}
+
 func ExpandPath(path string) (string, error) {
 	expanded := os.ExpandEnv(path)
 	expanded = filepath.Clean(expanded)

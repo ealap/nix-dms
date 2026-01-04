@@ -104,6 +104,46 @@ Item {
         }
     }
 
+    Variants {
+        model: Quickshell.screens
+
+        delegate: Loader {
+            id: fadeDpmsWindowLoader
+            required property var modelData
+            active: SettingsData.fadeToDpmsEnabled
+            asynchronous: false
+
+            sourceComponent: FadeToDpmsWindow {
+                screen: fadeDpmsWindowLoader.modelData
+
+                onFadeCompleted: {
+                    IdleService.requestMonitorOff();
+                }
+
+                onFadeCancelled: {
+                    console.log("Fade to DPMS cancelled by user on screen:", fadeDpmsWindowLoader.modelData.name);
+                }
+            }
+
+            Connections {
+                target: IdleService
+                enabled: fadeDpmsWindowLoader.item !== null
+
+                function onFadeToDpmsRequested() {
+                    if (fadeDpmsWindowLoader.item) {
+                        fadeDpmsWindowLoader.item.startFade();
+                    }
+                }
+
+                function onCancelFadeToDpms() {
+                    if (fadeDpmsWindowLoader.item) {
+                        fadeDpmsWindowLoader.item.cancelFade();
+                    }
+                }
+            }
+        }
+    }
+
     Repeater {
         id: dankBarRepeater
         model: ScriptModel {

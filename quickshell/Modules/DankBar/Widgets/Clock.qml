@@ -40,6 +40,7 @@ BasePill {
                         }
                         font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
                         color: Theme.widgetTextColor
+                        width: Math.round(font.pixelSize * 0.6)
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignBottom
                     }
@@ -56,6 +57,7 @@ BasePill {
                         }
                         font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
                         color: Theme.widgetTextColor
+                        width: Math.round(font.pixelSize * 0.6)
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignBottom
                     }
@@ -69,6 +71,7 @@ BasePill {
                         text: String(systemClock?.date?.getMinutes()).padStart(2, '0').charAt(0)
                         font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
                         color: Theme.widgetTextColor
+                        width: Math.round(font.pixelSize * 0.6)
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignBottom
                     }
@@ -77,6 +80,7 @@ BasePill {
                         text: String(systemClock?.date?.getMinutes()).padStart(2, '0').charAt(1)
                         font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
                         color: Theme.widgetTextColor
+                        width: Math.round(font.pixelSize * 0.6)
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignBottom
                     }
@@ -91,6 +95,7 @@ BasePill {
                         text: String(systemClock?.date?.getSeconds()).padStart(2, '0').charAt(0)
                         font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
                         color: Theme.widgetTextColor
+                        width: Math.round(font.pixelSize * 0.6)
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignBottom
                     }
@@ -99,6 +104,7 @@ BasePill {
                         text: String(systemClock?.date?.getSeconds()).padStart(2, '0').charAt(1)
                         font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
                         color: Theme.widgetTextColor
+                        width: Math.round(font.pixelSize * 0.6)
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignBottom
                     }
@@ -133,6 +139,7 @@ BasePill {
                         }
                         font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
                         color: Theme.primary
+                        width: Math.round(font.pixelSize * 0.6)
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignBottom
                     }
@@ -147,6 +154,7 @@ BasePill {
                         }
                         font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
                         color: Theme.primary
+                        width: Math.round(font.pixelSize * 0.6)
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignBottom
                     }
@@ -167,6 +175,7 @@ BasePill {
                         }
                         font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
                         color: Theme.primary
+                        width: Math.round(font.pixelSize * 0.6)
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignBottom
                     }
@@ -181,6 +190,7 @@ BasePill {
                         }
                         font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
                         color: Theme.primary
+                        width: Math.round(font.pixelSize * 0.6)
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignBottom
                     }

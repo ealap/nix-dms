@@ -186,8 +186,10 @@ func runShellInteractive(session bool) {
 
 	cmd := exec.CommandContext(ctx, "qs", "-p", configPath)
 	cmd.Env = append(os.Environ(), "DMS_SOCKET="+socketPath)
-	if qtRules := log.GetQtLoggingRules(); qtRules != "" {
-		cmd.Env = append(cmd.Env, "QT_LOGGING_RULES="+qtRules)
+	if os.Getenv("QT_LOGGING_RULES") == "" {
+		if qtRules := log.GetQtLoggingRules(); qtRules != "" {
+			cmd.Env = append(cmd.Env, "QT_LOGGING_RULES="+qtRules)
+		}
 	}
 
 	if isSessionManaged && hasSystemdRun() {
@@ -424,8 +426,10 @@ func runShellDaemon(session bool) {
 
 	cmd := exec.CommandContext(ctx, "qs", "-p", configPath)
 	cmd.Env = append(os.Environ(), "DMS_SOCKET="+socketPath)
-	if qtRules := log.GetQtLoggingRules(); qtRules != "" {
-		cmd.Env = append(cmd.Env, "QT_LOGGING_RULES="+qtRules)
+	if os.Getenv("QT_LOGGING_RULES") == "" {
+		if qtRules := log.GetQtLoggingRules(); qtRules != "" {
+			cmd.Env = append(cmd.Env, "QT_LOGGING_RULES="+qtRules)
+		}
 	}
 
 	if isSessionManaged && hasSystemdRun() {

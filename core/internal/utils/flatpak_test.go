@@ -208,3 +208,64 @@ func TestFlatpakInstallationDirCommandFailure(t *testing.T) {
 		t.Errorf("expected 'not installed' error, got: %v", err)
 	}
 }
+
+func TestAnyFlatpakExistsSomeExist(t *testing.T) {
+	tempDir := t.TempDir()
+	fakeFlatpak := filepath.Join(tempDir, "flatpak")
+
+	// Script that succeeds only for "app.exists.test"
+	script := `#!/bin/sh
+if [ "$1" = "info" ] && [ "$2" = "app.exists.test" ]; then
+  exit 0
+fi
+exit 1
+`
+	err := os.WriteFile(fakeFlatpak, []byte(script), 0755)
+	if err != nil {
+		t.Fatalf("failed to create fake flatpak: %v", err)
+	}
+
+	originalPath := os.Getenv("PATH")
+	t.Setenv("PATH", tempDir+":"+originalPath)
+
+	result := AnyFlatpakExists("com.nonexistent.flatpak", "app.exists.test", "com.another.nonexistent")
+	if !result {
+		t.Errorf("expected true when at least one flatpak exists")
+	}
+}
+
+func TestAnyFlatpakExistsNoneExist(t *testing.T) {
+	tempDir := t.TempDir()
+	fakeFlatpak := filepath.Join(tempDir, "flatpak")
+
+	script := "#!/bin/sh\nexit 1\n"
+	err := os.WriteFile(fakeFlatpak, []byte(script), 0755)
+	if err != nil {
+		t.Fatalf("failed to create fake flatpak: %v", err)
+	}
+
+	originalPath := os.Getenv("PATH")
+	t.Setenv("PATH", tempDir+":"+originalPath)
+
+	result := AnyFlatpakExists("com.nonexistent.flatpak1", "com.nonexistent.flatpak2")
+	if result {
+		t.Errorf("expected false when no flatpaks exist")
+	}
+}
+
+func TestAnyFlatpakExistsNoFlatpak(t *testing.T) {
+	tempDir := t.TempDir()
+	t.Setenv("PATH", tempDir)
+
+	result := AnyFlatpakExists("any.package.name", "another.package")
+	if result {
+		t.Errorf("expected false when flatpak not in PATH, got true")
+	}
+}
+
+func TestAnyFlatpakExistsEmpty(t *testing.T) {
+	result := AnyFlatpakExists()
+	if result {
+		t.Errorf("expected false when no flatpaks specified")
+	}
+}

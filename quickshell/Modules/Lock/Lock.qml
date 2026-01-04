@@ -23,15 +23,12 @@ Scope {
             Quickshell.execDetached(["sh", "-c", SettingsData.customPowerActionLock]);
             return;
         }
+        shouldLock = true;
         if (!processingExternalEvent && SettingsData.loginctlLockIntegration && DMSService.isConnected) {
             DMSService.lockSession(response => {
-                if (response.error) {
-                    console.warn("Lock: Failed to call loginctl.lock:", response.error);
-                    shouldLock = true;
-                }
+                if (response.error)
+                    console.warn("Lock: loginctl.lock failed:", response.error);
             });
-        } else {
-            shouldLock = true;
         }
     }
 
@@ -81,6 +78,11 @@ Scope {
 
         locked: shouldLock
 
+        onLockedChanged: {
+            if (locked)
+                dpmsReapplyTimer.start();
+        }
+
         WlSessionLockSurface {
             id: lockSurface
 
@@ -120,15 +122,12 @@ Scope {
         target: "lock"
 
         function lock() {
-            if (!root.processingExternalEvent && SettingsData.loginctlLockIntegration && DMSService.isConnected) {
+            root.shouldLock = true;
+            if (SettingsData.loginctlLockIntegration && DMSService.isConnected) {
                 DMSService.lockSession(response => {
-                    if (response.error) {
-                        console.warn("Lock: Failed to call loginctl.lock:", response.error);
-                        root.shouldLock = true;
-                    }
+                    if (response.error)
+                        console.warn("Lock: loginctl.lock failed:", response.error);
                 });
-            } else {
-                root.shouldLock = true;
             }
         }
 
@@ -139,5 +138,12 @@ Scope {
         function isLocked(): bool {
             return sessionLock.locked;
         }
+    }
+
+    Timer {
+        id: dpmsReapplyTimer
+        interval: 100
+        repeat: false
+        onTriggered: IdleService.reapplyDpmsIfNeeded()
     }
 }

@@ -67,6 +67,7 @@
     "list.focusOutline": "{{colors.primary.dark.hex}}",
     "list.focusBackground": "{{colors.surface_container_high.dark.hex}}",
     "list.highlightForeground": "{{colors.primary.dark.hex}}",
+    "list.focusHighlightForeground": "{{colors.on_primary.dark.hex}}",
     "list.errorForeground": "{{colors.error.dark.hex}}",
     "list.warningForeground": "{{colors.secondary.dark.hex}}",
     //
@@ -162,9 +163,9 @@
     //
     // Scrollbar
     //
-    "scrollbarSlider.background": "{{colors.outline.dark.hex}}40",
-    "scrollbarSlider.hoverBackground": "{{colors.outline.dark.hex}}60",
-    "scrollbarSlider.activeBackground": "{{colors.outline.dark.hex}}80",
+    "scrollbarSlider.background": "{{colors.on_surface_variant.dark.hex}}50",
+    "scrollbarSlider.hoverBackground": "{{colors.on_surface_variant.dark.hex}}80",
+    "scrollbarSlider.activeBackground": "{{colors.on_surface_variant.dark.hex}}AA",
     //
     // Terminal (Dank16)
     //
@@ -192,78 +193,106 @@
   //
   "tokenColors": [
     {
-      "scope": [
-        "comment"
-      ],
+      "scope": ["comment"],
       "settings": {
         "foreground": "{{dank16.color8.dark.hex}}"
       }
     },
     {
-      "scope": [
-        "keyword"
-      ],
+      "scope": ["keyword"],
       "settings": {
         "foreground": "{{dank16.color5.dark.hex}}"
       }
     },
     {
-      "scope": [
-        "string"
-      ],
+      "scope": ["string"],
       "settings": {
         "foreground": "{{dank16.color3.dark.hex}}"
       }
     },
     {
-      "scope": [
-        "constant",
-        "number"
-      ],
+      "scope": ["constant", "constant.language", "constant.numeric"],
       "settings": {
         "foreground": "{{dank16.color12.dark.hex}}"
       }
     },
     {
-      "scope": [
-        "variable"
-      ],
+      "scope": ["variable"],
       "settings": {
         "foreground": "{{dank16.color15.dark.hex}}"
       }
     },
     {
-      "scope": [
-        "entity.name.function"
-      ],
+      "scope": ["entity.name.function"],
       "settings": {
         "foreground": "{{dank16.color2.dark.hex}}"
       }
     },
     {
-      "scope": [
-        "entity.name.class",
-        "support.type"
-      ],
+      "scope": ["entity.name.class", "support.type"],
       "settings": {
         "foreground": "{{dank16.color12.dark.hex}}"
       }
     },
     {
-      "scope": [
-        "invalid"
-      ],
+      "scope": ["invalid"],
       "settings": {
         "foreground": "{{colors.error.dark.hex}}"
       }
     },
     {
-      "scope": [
-        "markup.heading"
-      ],
+      "scope": ["markup.heading"],
       "settings": {
         "foreground": "{{colors.primary.dark.hex}}",
         "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": ["entity.name.tag.yaml", "punctuation.definition.block.sequence.item.yaml"],
+      "settings": {
+        "foreground": "{{colors.on_surface.dark.hex}}"
+      }
+    },
+    {
+      "scope": ["source.yaml string.unquoted", "source.yaml string.quoted"],
+      "settings": {
+        "foreground": "{{dank16.color3.dark.hex}}"
+      }
+    },
+    {
+      "scope": ["constant.language.boolean.yaml", "constant.language.null.yaml"],
+      "settings": {
+        "foreground": "{{dank16.color12.dark.hex}}"
+      }
+    },
+    {
+      "scope": ["punctuation.separator.key-value.mapping.yaml"],
+      "settings": {
+        "foreground": "{{colors.on_surface.dark.hex}}"
+      }
+    },
+    {
+      "scope": ["entity.name.tag.toml", "support.type.property-name.toml"],
+      "settings": {
+        "foreground": "{{colors.on_surface.dark.hex}}"
+      }
+    },
+    {
+      "scope": ["string.quoted.single.basic.line.toml", "string.quoted.double.basic.line.toml"],
+      "settings": {
+        "foreground": "{{dank16.color3.dark.hex}}"
+      }
+    },
+    {
+      "scope": ["constant.language.boolean.toml", "constant.numeric.toml"],
+      "settings": {
+        "foreground": "{{dank16.color12.dark.hex}}"
+      }
+    },
+    {
+      "scope": ["meta.object-literal.key", "support.type.property-name.json"],
+      "settings": {
+        "foreground": "{{colors.on_surface.dark.hex}}"
       }
     }
   ],

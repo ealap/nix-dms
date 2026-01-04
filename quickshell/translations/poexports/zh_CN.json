@@ -14,6 +14,9 @@
   "%1 connected": {
     "%1 connected": "已连接 %1"
   },
+  "%1 days ago": {
+    "%1 days ago": ""
+  },
   "%1 display(s)": {
     "%1 display(s)": "%1 显示"
   },
@@ -28,6 +31,9 @@
   },
   "%1 widgets": {
     "%1 widgets": "%1 部件"
+  },
+  "%1m ago": {
+    "%1m ago": ""
   },
   "(Unnamed)": {
     "(Unnamed)": "(未命名)"
@@ -1373,6 +1379,9 @@
   "Fade to lock screen": {
     "Fade to lock screen": "淡出至锁定屏幕"
   },
+  "Fade to monitor off": {
+    "Fade to monitor off": ""
+  },
   "Failed to activate configuration": {
     "Failed to activate configuration": "无法应用配置"
   },
@@ -1664,6 +1673,9 @@
   "Gradually fade the screen before locking with a configurable grace period": {
     "Gradually fade the screen before locking with a configurable grace period": "在锁定前通过可配置的宽限期逐渐淡出屏幕"
   },
+  "Gradually fade the screen before turning off monitors with a configurable grace period": {
+    "Gradually fade the screen before turning off monitors with a configurable grace period": ""
+  },
   "Graph Time Range": {
     "Graph Time Range": "图表时间范围"
   },
@@ -1677,7 +1689,7 @@
     "Grid Columns": "网格列"
   },
   "Group Workspace Apps": {
-    "Group Workspace Apps": ""
+    "Group Workspace Apps": "分组工作区应用"
   },
   "Group by App": {
     "Group by App": "按应用分组"
@@ -1686,7 +1698,7 @@
     "Group multiple windows of the same app together with a window count indicator": "将同一应用的多个窗口合并显示，并标注窗口数量"
   },
   "Group repeated application icons in unfocused workspaces": {
-    "Group repeated application icons in unfocused workspaces": ""
+    "Group repeated application icons in unfocused workspaces": "在不聚焦的工作区中将重复应用图标分组"
   },
   "HDR (EDID)": {
     "HDR (EDID)": "HDR（EDID）"
@@ -1997,6 +2009,9 @@
   "Lock before suspend": {
     "Lock before suspend": "挂起前锁屏"
   },
+  "Lock fade grace period": {
+    "Lock fade grace period": ""
+  },
   "Log Out": {
     "Log Out": "注销"
   },
@@ -2170,6 +2185,9 @@
   },
   "Monitor Configuration": {
     "Monitor Configuration": "监视器配置"
+  },
+  "Monitor fade grace period": {
+    "Monitor fade grace period": ""
   },
   "Monitor whose wallpaper drives dynamic theming colors": {
     "Monitor whose wallpaper drives dynamic theming colors": "监视使用动态主题色的壁纸"
@@ -2946,7 +2964,7 @@
     "Scroll title if it doesn't fit in widget": "如果在部件中标题不适配，则可以滚动标题"
   },
   "Scroll wheel behavior on media widget": {
-    "Scroll wheel behavior on media widget": ""
+    "Scroll wheel behavior on media widget": "媒体部件上的滚轮行为"
   },
   "Scrolling": {
     "Scrolling": "滚动"
@@ -3219,7 +3237,7 @@
     "Show workspace index numbers in the top bar workspace switcher": "在顶栏工作区切换器中显示工作区索引号"
   },
   "Show workspace name on horizontal bars, and first letter on vertical bars": {
-    "Show workspace name on horizontal bars, and first letter on vertical bars": ""
+    "Show workspace name on horizontal bars, and first letter on vertical bars": "在水平状态栏上显示工作区名称，而在垂直状态栏上显示首字母。"
   },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "显示所有正在运行应用程序，并标记焦点所在"
@@ -3252,10 +3270,10 @@
     "Sizing": "大小调整"
   },
   "Smartcard Authentication": {
-    "Smartcard Authentication": ""
+    "Smartcard Authentication": "智能卡认证"
   },
   "Smartcard PIN": {
-    "Smartcard PIN": ""
+    "Smartcard PIN": "智能卡PIN"
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": "有些插件需要更新版的 DMS："
@@ -3869,7 +3887,7 @@
     "Workspace Index Numbers": "工作区序号"
   },
   "Workspace Names": {
-    "Workspace Names": ""
+    "Workspace Names": "工作区名称"
   },
   "Workspace Padding": {
     "Workspace Padding": "工作区内边距"
@@ -4030,6 +4048,50 @@
   "no wallpaper status": {
     "No wallpaper selected": "未选择壁纸"
   },
+  "notification center tab": {
+    "Current": "",
+    "History": ""
+  },
+  "notification history filter": {
+    "All": "",
+    "Last hour": "",
+    "Today": "",
+    "Yesterday": ""
+  },
+  "notification history filter for content older than other filters": {
+    "Older": ""
+  },
+  "notification history filter | notification history retention option": {
+    "30 days": "",
+    "7 days": ""
+  },
+  "notification history limit": {
+    "Maximum number of notifications to keep": ""
+  },
+  "notification history retention option": {
+    "1 day": "",
+    "14 days": "",
+    "3 days": "",
+    "Forever": ""
+  },
+  "notification history retention settings label": {
+    "History Retention": ""
+  },
+  "notification history setting": {
+    "Auto-delete notifications older than this": "",
+    "Save critical priority notifications to history": "",
+    "Save low priority notifications to history": "",
+    "Save normal priority notifications to history": ""
+  },
+  "notification history toggle description": {
+    "Save dismissed notifications to history": ""
+  },
+  "notification history toggle label": {
+    "Enable History": ""
+  },
+  "now": {
+    "now": ""
+  },
   "official": {
     "official": "官方"
   },
@@ -4052,7 +4114,7 @@
     "Select Profile Image": "选择个人信息图像"
   },
   "read-only settings warning for NixOS home-manager users": {
-    "Settings are read-only. Changes will not persist.": ""
+    "Settings are read-only. Changes will not persist.": "设置处于只读状态。更改将不会保存。"
   },
   "registry theme description": {
     "Color theme from DMS registry": "DMS注册表的颜色主题"
@@ -4125,6 +4187,9 @@
   },
   "wtype not available - install wtype for paste support": {
     "wtype not available - install wtype for paste support": "wtype不可用，为支持粘贴，请安装wtype"
+  },
+  "yesterday": {
+    "yesterday": ""
   },
   "• Install only from trusted sources": {
     "• Install only from trusted sources": "• 仅从可信来源安装"

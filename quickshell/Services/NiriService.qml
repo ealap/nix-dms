@@ -145,6 +145,26 @@ Singleton {
         }
     }
 
+    Process {
+        id: ensureOutputsProcess
+        property string outputsPath: ""
+
+        onExited: exitCode => {
+            if (exitCode !== 0)
+                console.warn("NiriService: Failed to ensure outputs.kdl, exit code:", exitCode);
+        }
+    }
+
+    Process {
+        id: ensureBindsProcess
+        property string bindsPath: ""
+
+        onExited: exitCode => {
+            if (exitCode !== 0)
+                console.warn("NiriService: Failed to ensure binds.kdl, exit code:", exitCode);
+        }
+    }
+
     DankSocket {
         id: eventStreamSocket
         path: root.socketPath
@@ -1042,6 +1062,16 @@ Singleton {
         writeAlttabProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && cat > "${alttabPath}" << 'EOF'\n${alttabContent}\nEOF`];
         writeAlttabProcess.running = true;
 
+        const outputsPath = niriDmsDir + "/outputs.kdl";
+        ensureOutputsProcess.outputsPath = outputsPath;
+        ensureOutputsProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && [ ! -f "${outputsPath}" ] && touch "${outputsPath}" || true`];
+        ensureOutputsProcess.running = true;
+
+        const bindsPath = niriDmsDir + "/binds.kdl";
+        ensureBindsProcess.bindsPath = bindsPath;
+        ensureBindsProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && [ ! -f "${bindsPath}" ] && touch "${bindsPath}" || true`];
+        ensureBindsProcess.running = true;
+
         configGenerationPending = false;
     }
 
@@ -1147,8 +1177,7 @@ Singleton {
             kdlContent += `output "${identifier}" {\n`;
 
             if (niriSettings.disabled) {
-                kdlContent += `    off\n}\n\n`;
-                continue;
+                kdlContent += `    off\n`;
             }
 
             if (output.current_mode !== undefined && output.modes && output.modes[output.current_mode]) {
@@ -1157,7 +1186,7 @@ Singleton {
             }
 
             if (output.logical) {
-                kdlContent += `    scale ${output.logical.scale ?? 1.0}\n`;
+                kdlContent += `    scale ${output.logical.scale || 1.0}\n`;
 
                 if (output.logical.transform && output.logical.transform !== "Normal") {
                     const transformMap = {

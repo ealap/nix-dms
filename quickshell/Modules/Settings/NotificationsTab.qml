@@ -219,6 +219,105 @@ Item {
                     }
                 }
             }
+
+            SettingsCard {
+                width: parent.width
+                iconName: "history"
+                title: I18n.tr("History Settings")
+                settingKey: "notificationHistory"
+
+                SettingsToggleRow {
+                    settingKey: "notificationHistoryEnabled"
+                    tags: ["notification", "history", "enable", "disable", "save"]
+                    text: I18n.tr("Enable History", "notification history toggle label")
+                    description: I18n.tr("Save dismissed notifications to history", "notification history toggle description")
+                    checked: SettingsData.notificationHistoryEnabled
+                    onToggled: checked => SettingsData.set("notificationHistoryEnabled", checked)
+                }
+
+                SettingsSliderRow {
+                    settingKey: "notificationHistoryMaxCount"
+                    tags: ["notification", "history", "max", "count", "limit"]
+                    text: I18n.tr("Maximum History")
+                    description: I18n.tr("Maximum number of notifications to keep", "notification history limit")
+                    value: SettingsData.notificationHistoryMaxCount
+                    minimum: 10
+                    maximum: 200
+                    step: 10
+                    unit: ""
+                    defaultValue: 50
+                    onSliderValueChanged: newValue => SettingsData.set("notificationHistoryMaxCount", newValue)
+                }
+
+                SettingsDropdownRow {
+                    settingKey: "notificationHistoryMaxAgeDays"
+                    tags: ["notification", "history", "max", "age", "days", "retention"]
+                    text: I18n.tr("History Retention", "notification history retention settings label")
+                    description: I18n.tr("Auto-delete notifications older than this", "notification history setting")
+                    currentValue: {
+                        switch (SettingsData.notificationHistoryMaxAgeDays) {
+                        case 0:
+                            return I18n.tr("Forever", "notification history retention option");
+                        case 1:
+                            return I18n.tr("1 day", "notification history retention option");
+                        case 3:
+                            return I18n.tr("3 days", "notification history retention option");
+                        case 7:
+                            return I18n.tr("7 days", "notification history retention option");
+                        case 14:
+                            return I18n.tr("14 days", "notification history retention option");
+                        case 30:
+                            return I18n.tr("30 days", "notification history retention option");
+                        default:
+                            return SettingsData.notificationHistoryMaxAgeDays + " " + I18n.tr("days");
+                        }
+                    }
+                    options: [I18n.tr("Forever", "notification history retention option"), I18n.tr("1 day", "notification history retention option"), I18n.tr("3 days", "notification history retention option"), I18n.tr("7 days", "notification history retention option"), I18n.tr("14 days", "notification history retention option"), I18n.tr("30 days", "notification history retention option")]
+                    onValueChanged: value => {
+                        let days = 7;
+                        if (value === I18n.tr("Forever", "notification history retention option"))
+                            days = 0;
+                        else if (value === I18n.tr("1 day", "notification history retention option"))
+                            days = 1;
+                        else if (value === I18n.tr("3 days", "notification history retention option"))
+                            days = 3;
+                        else if (value === I18n.tr("7 days", "notification history retention option"))
+                            days = 7;
+                        else if (value === I18n.tr("14 days", "notification history retention option"))
+                            days = 14;
+                        else if (value === I18n.tr("30 days", "notification history retention option"))
+                            days = 30;
+                        SettingsData.set("notificationHistoryMaxAgeDays", days);
+                    }
+                }
+
+                SettingsToggleRow {
+                    settingKey: "notificationHistorySaveLow"
+                    tags: ["notification", "history", "save", "low", "priority"]
+                    text: I18n.tr("Low Priority")
+                    description: I18n.tr("Save low priority notifications to history", "notification history setting")
+                    checked: SettingsData.notificationHistorySaveLow
+                    onToggled: checked => SettingsData.set("notificationHistorySaveLow", checked)
+                }
+
+                SettingsToggleRow {
+                    settingKey: "notificationHistorySaveNormal"
+                    tags: ["notification", "history", "save", "normal", "priority"]
+                    text: I18n.tr("Normal Priority")
+                    description: I18n.tr("Save normal priority notifications to history", "notification history setting")
+                    checked: SettingsData.notificationHistorySaveNormal
+                    onToggled: checked => SettingsData.set("notificationHistorySaveNormal", checked)
+                }
+
+                SettingsToggleRow {
+                    settingKey: "notificationHistorySaveCritical"
+                    tags: ["notification", "history", "save", "critical", "priority"]
+                    text: I18n.tr("Critical Priority")
+                    description: I18n.tr("Save critical priority notifications to history", "notification history setting")
+                    checked: SettingsData.notificationHistorySaveCritical
+                    onToggled: checked => SettingsData.set("notificationHistorySaveCritical", checked)
+                }
+            }
         }
     }
 }

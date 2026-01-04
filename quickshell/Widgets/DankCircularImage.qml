@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Effects
-import Quickshell
 import qs.Common
 import qs.Widgets
 
@@ -12,6 +11,19 @@ Rectangle {
     property string fallbackText: ""
     property bool hasImage: imageSource !== ""
     property alias imageStatus: internalImage.status
+
+    signal imageSaved(string filePath)
+
+    function saveImageToFile(filePath) {
+        if (internalImage.status !== Image.Ready)
+            return false;
+        internalImage.grabToImage(function (result) {
+            if (result && result.saveToFile(filePath)) {
+                root.imageSaved(filePath);
+            }
+        });
+        return true;
+    }
 
     radius: width / 2
     color: Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.1)
@@ -66,7 +78,6 @@ Rectangle {
         color: Theme.surfaceVariantText
         visible: (internalImage.status !== Image.Ready || root.imageSource === "") && root.fallbackIcon !== ""
     }
-
 
     StyledText {
         anchors.centerIn: parent

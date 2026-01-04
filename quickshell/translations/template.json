@@ -35,6 +35,13 @@
     "comment": ""
   },
   {
+    "term": "%1 days ago",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "%1 display(s)",
     "translation": "",
     "context": "",
@@ -70,6 +77,13 @@
     "comment": ""
   },
   {
+    "term": "%1m ago",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "(Unnamed)",
     "translation": "",
     "context": "",
@@ -86,7 +100,7 @@
   {
     "term": "1 day",
     "translation": "",
-    "context": "",
+    "context": "notification history retention option",
     "reference": "",
     "comment": ""
   },
@@ -135,7 +149,7 @@
   {
     "term": "14 days",
     "translation": "",
-    "context": "",
+    "context": "notification history retention option",
     "reference": "",
     "comment": ""
   },
@@ -184,7 +198,7 @@
   {
     "term": "3 days",
     "translation": "",
-    "context": "",
+    "context": "notification history retention option",
     "reference": "",
     "comment": ""
   },
@@ -198,7 +212,7 @@
   {
     "term": "30 days",
     "translation": "",
-    "context": "",
+    "context": "notification history filter | notification history retention option",
     "reference": "",
     "comment": ""
   },
@@ -233,7 +247,7 @@
   {
     "term": "7 days",
     "translation": "",
-    "context": "",
+    "context": "notification history filter | notification history retention option",
     "reference": "",
     "comment": ""
   },
@@ -471,7 +485,7 @@
   {
     "term": "All",
     "translation": "",
-    "context": "",
+    "context": "notification history filter",
     "reference": "",
     "comment": ""
   },
@@ -822,6 +836,13 @@
     "term": "Auto-close Niri overview when launching apps.",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Auto-delete notifications older than this",
+    "translation": "",
+    "context": "notification history setting",
     "reference": "",
     "comment": ""
   },
@@ -2086,6 +2107,13 @@
     "comment": ""
   },
   {
+    "term": "Current",
+    "translation": "",
+    "context": "notification center tab",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Current Items",
     "translation": "",
     "context": "",
@@ -2975,6 +3003,13 @@
     "comment": ""
   },
   {
+    "term": "Enable History",
+    "translation": "",
+    "context": "notification history toggle label",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Enable Overview Overlay",
     "translation": "",
     "context": "",
@@ -3185,14 +3220,14 @@
     "comment": ""
   },
   {
-    "term": "Fade grace period",
+    "term": "Fade to lock screen",
     "translation": "",
     "context": "",
     "reference": "",
     "comment": ""
   },
   {
-    "term": "Fade to lock screen",
+    "term": "Fade to monitor off",
     "translation": "",
     "context": "",
     "reference": "",
@@ -3752,6 +3787,13 @@
     "comment": ""
   },
   {
+    "term": "Forever",
+    "translation": "",
+    "context": "notification history retention option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Forget",
     "translation": "",
     "context": "",
@@ -3879,6 +3921,13 @@
   },
   {
     "term": "Gradually fade the screen before locking with a configurable grace period",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Gradually fade the screen before turning off monitors with a configurable grace period",
     "translation": "",
     "context": "",
     "reference": "",
@@ -4049,6 +4098,20 @@
     "term": "High-fidelity palette that preserves source hues.",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "History",
+    "translation": "",
+    "context": "notification center tab",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "History Retention",
+    "translation": "",
+    "context": "notification history retention settings label",
     "reference": "",
     "comment": ""
   },
@@ -4522,6 +4585,13 @@
     "comment": ""
   },
   {
+    "term": "Last hour",
+    "translation": "",
+    "context": "notification history filter",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Last launched %1",
     "translation": "",
     "context": "",
@@ -4753,6 +4823,13 @@
     "comment": ""
   },
   {
+    "term": "Lock fade grace period",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Log Out",
     "translation": "",
     "context": "",
@@ -4959,6 +5036,13 @@
     "term": "Maximum number of clipboard entries to keep",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Maximum number of notifications to keep",
+    "translation": "",
+    "context": "notification history limit",
     "reference": "",
     "comment": ""
   },
@@ -5174,6 +5258,13 @@
   },
   {
     "term": "Monitor Configuration",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Monitor fade grace period",
     "translation": "",
     "context": "",
     "reference": "",
@@ -5806,6 +5897,13 @@
     "term": "Offline Report",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Older",
+    "translation": "",
+    "context": "notification history filter for content older than other filters",
     "reference": "",
     "comment": ""
   },
@@ -6898,6 +6996,34 @@
     "term": "Save Notepad File",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Save critical priority notifications to history",
+    "translation": "",
+    "context": "notification history setting",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Save dismissed notifications to history",
+    "translation": "",
+    "context": "notification history toggle description",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Save low priority notifications to history",
+    "translation": "",
+    "context": "notification history setting",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Save normal priority notifications to history",
+    "translation": "",
+    "context": "notification history setting",
     "reference": "",
     "comment": ""
   },
@@ -8388,7 +8514,7 @@
   {
     "term": "Today",
     "translation": "",
-    "context": "",
+    "context": "notification history filter",
     "reference": "",
     "comment": ""
   },
@@ -9324,6 +9450,13 @@
     "comment": ""
   },
   {
+    "term": "Yesterday",
+    "translation": "",
+    "context": "notification history filter",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "You have unsaved changes. Save before closing this tab?",
     "translation": "",
     "context": "",
@@ -9471,6 +9604,13 @@
     "comment": ""
   },
   {
+    "term": "now",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "official",
     "translation": "",
     "context": "",
@@ -9500,6 +9640,13 @@
   },
   {
     "term": "wtype not available - install wtype for paste support",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "yesterday",
     "translation": "",
     "context": "",
     "reference": "",

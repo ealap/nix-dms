@@ -2,7 +2,6 @@ import QtQuick
 import qs.Common
 import qs.Services
 import qs.Widgets
-import qs.Modules.Notifications.Center
 
 DankPopout {
     id: root
@@ -112,8 +111,11 @@ DankPopout {
                 baseHeight += Theme.spacingM * 2;
 
                 const settingsHeight = notificationSettings.expanded ? notificationSettings.contentHeight : 0;
-                let listHeight = notificationList.listContentHeight;
-                if (NotificationService.groupedNotifications.length === 0) {
+                let listHeight = notificationHeader.currentTab === 0 ? notificationList.listContentHeight : Math.max(200, NotificationService.historyList.length * 80);
+                if (notificationHeader.currentTab === 0 && NotificationService.groupedNotifications.length === 0) {
+                    listHeight = 200;
+                }
+                if (notificationHeader.currentTab === 1 && NotificationService.historyList.length === 0) {
                     listHeight = 200;
                 }
 
@@ -143,7 +145,13 @@ DankPopout {
                 if (event.key === Qt.Key_Escape) {
                     notificationHistoryVisible = false;
                     event.accepted = true;
-                } else if (externalKeyboardController) {
+                    return;
+                }
+                if (notificationHeader.currentTab === 1) {
+                    historyList.handleKey(event);
+                    return;
+                }
+                if (externalKeyboardController) {
                     externalKeyboardController.handleKey(event);
                 }
             }
@@ -187,7 +195,14 @@ DankPopout {
                     KeyboardNavigatedNotificationList {
                         id: notificationList
                         objectName: "notificationList"
+                        visible: notificationHeader.currentTab === 0
+                        width: parent.width
+                        height: parent.height - notificationContent.cachedHeaderHeight - notificationSettings.height - contentColumnInner.spacing * 2
+                    }
 
+                    HistoryNotificationList {
+                        id: historyList
+                        visible: notificationHeader.currentTab === 1
                         width: parent.width
                         height: parent.height - notificationContent.cachedHeaderHeight - notificationSettings.height - contentColumnInner.spacing * 2
                     }
@@ -200,7 +215,7 @@ DankPopout {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.margins: Theme.spacingL
-                showHints: (externalKeyboardController && externalKeyboardController.showKeyboardHints) || false
+                showHints: notificationHeader.currentTab === 0 ? (externalKeyboardController && externalKeyboardController.showKeyboardHints) || false : historyList.showKeyboardHints
                 z: 200
             }
         }

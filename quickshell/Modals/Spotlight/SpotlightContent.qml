@@ -467,6 +467,7 @@ Item {
         Item {
             width: parent.width
             height: parent.height - y
+            opacity: parentModal?.isClosing ? 0 : 1
 
             SpotlightResults {
                 id: resultsView

@@ -103,7 +103,7 @@ Variants {
                 }
                 pluginService: (liveInstanceData.widgetType !== "desktopClock" && liveInstanceData.widgetType !== "systemMonitor") ? PluginService : null
                 screen: screenDelegate.screen
-                visible: shouldBeVisible
+                widgetEnabled: shouldBeVisible
             }
         }
     }

@@ -8,7 +8,8 @@ import qs.Common
 Singleton {
     id: root
 
-    property var applications: DesktopEntries.applications.values.filter(app => !app.noDisplay)
+    property var applications: []
+    property var _cachedCategories: null
 
     readonly property int maxResults: 10
     readonly property int frecencySampleSize: 10
@@ -35,6 +36,20 @@ Singleton {
             "weight": 10
         }
     ]
+
+    function refreshApplications() {
+        applications = DesktopEntries.applications.values;
+        _cachedCategories = null;
+    }
+
+    Connections {
+        target: DesktopEntries
+        function onApplicationsChanged() {
+            root.refreshApplications();
+        }
+    }
+
+    Component.onCompleted: refreshApplications()
 
     function tokenize(text) {
         return text.toLowerCase().trim().split(/[\s\-_]+/).filter(w => w.length > 0);
@@ -316,19 +331,20 @@ Singleton {
     }
 
     function getAllCategories() {
-        const categories = new Set([I18n.tr("All")]);
+        if (_cachedCategories)
+            return _cachedCategories;
 
+        const categories = new Set([I18n.tr("All")]);
         for (const app of applications) {
             const appCategories = getCategoriesForApp(app);
             appCategories.forEach(cat => categories.add(cat));
         }
 
-        // Add plugin categories
         const pluginCategories = getPluginCategories();
         pluginCategories.forEach(cat => categories.add(cat));
 
-        const result = Array.from(categories).sort();
-        return result;
+        _cachedCategories = Array.from(categories).sort();
+        return _cachedCategories;
     }
 
     function getAppsInCategory(category) {

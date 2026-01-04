@@ -69,7 +69,7 @@ Item {
                     if (!toplevel.screens)
                         return false;
                     for (let i = 0; i < toplevel.screens.length; i++) {
-                        if (toplevel.screens[i].name === screenName)
+                        if (toplevel.screens[i]?.name === screenName)
                             return true;
                     }
                     return false;

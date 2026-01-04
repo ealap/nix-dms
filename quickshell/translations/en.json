@@ -20,13 +20,19 @@
   {
     "term": "%1 class(es)",
     "context": "%1 class(es)",
-    "reference": "Modules/Settings/PrinterTab.qml:1231",
+    "reference": "Modules/Settings/PrinterTab.qml:1228",
     "comment": ""
   },
   {
     "term": "%1 connected",
     "context": "%1 connected",
     "reference": "Modules/Settings/NetworkTab.qml:289",
+    "comment": ""
+  },
+  {
+    "term": "%1 days ago",
+    "context": "%1 days ago",
+    "reference": "Services/NotificationService.qml:206",
     "comment": ""
   },
   {
@@ -38,13 +44,13 @@
   {
     "term": "%1 job(s)",
     "context": "%1 job(s)",
-    "reference": "Modules/Settings/PrinterTab.qml:688",
+    "reference": "Modules/Settings/PrinterTab.qml:685",
     "comment": ""
   },
   {
     "term": "%1 printer(s)",
     "context": "%1 printer(s)",
-    "reference": "Modules/Settings/PrinterTab.qml:542, Modules/Settings/PrinterTab.qml:1294",
+    "reference": "Modules/Settings/PrinterTab.qml:539, Modules/Settings/PrinterTab.qml:1291",
     "comment": ""
   },
   {
@@ -57,6 +63,12 @@
     "term": "%1 widgets",
     "context": "%1 widgets",
     "reference": "Modules/Settings/DankBarTab.qml:417",
+    "comment": ""
+  },
+  {
+    "term": "%1m ago",
+    "context": "%1m ago",
+    "reference": "Services/NotificationService.qml:196",
     "comment": ""
   },
   {
@@ -73,8 +85,8 @@
   },
   {
     "term": "1 day",
-    "context": "1 day",
-    "reference": "Modules/Settings/ClipboardTab.qml:103",
+    "context": "notification history retention option",
+    "reference": "Modules/Settings/NotificationsTab.qml:262, Modules/Settings/NotificationsTab.qml:275, Modules/Settings/NotificationsTab.qml:280, Modules/Settings/ClipboardTab.qml:103",
     "comment": ""
   },
   {
@@ -115,8 +127,8 @@
   },
   {
     "term": "14 days",
-    "context": "14 days",
-    "reference": "Modules/Settings/ClipboardTab.qml:115",
+    "context": "notification history retention option",
+    "reference": "Modules/Settings/NotificationsTab.qml:268, Modules/Settings/NotificationsTab.qml:275, Modules/Settings/NotificationsTab.qml:286, Modules/Settings/ClipboardTab.qml:115",
     "comment": ""
   },
   {
@@ -157,8 +169,8 @@
   },
   {
     "term": "3 days",
-    "context": "3 days",
-    "reference": "Modules/Settings/ClipboardTab.qml:107",
+    "context": "notification history retention option",
+    "reference": "Modules/Settings/NotificationsTab.qml:264, Modules/Settings/NotificationsTab.qml:275, Modules/Settings/NotificationsTab.qml:282, Modules/Settings/ClipboardTab.qml:107",
     "comment": ""
   },
   {
@@ -169,8 +181,8 @@
   },
   {
     "term": "30 days",
-    "context": "30 days",
-    "reference": "Modules/Settings/ClipboardTab.qml:119",
+    "context": "notification history filter | notification history retention option",
+    "reference": "Modules/Settings/NotificationsTab.qml:270, Modules/Settings/NotificationsTab.qml:275, Modules/Settings/NotificationsTab.qml:288, Modules/Settings/ClipboardTab.qml:119, Modules/Notifications/Center/HistoryNotificationList.qml:91",
     "comment": ""
   },
   {
@@ -199,8 +211,8 @@
   },
   {
     "term": "7 days",
-    "context": "7 days",
-    "reference": "Modules/Settings/ClipboardTab.qml:111",
+    "context": "notification history filter | notification history retention option",
+    "reference": "Modules/Settings/NotificationsTab.qml:266, Modules/Settings/NotificationsTab.qml:275, Modules/Settings/NotificationsTab.qml:284, Modules/Settings/ClipboardTab.qml:111, Modules/Notifications/Center/HistoryNotificationList.qml:90",
     "comment": ""
   },
   {
@@ -248,13 +260,13 @@
   {
     "term": "Accept Jobs",
     "context": "Accept Jobs",
-    "reference": "Modules/Settings/PrinterTab.qml:962",
+    "reference": "Modules/Settings/PrinterTab.qml:959",
     "comment": ""
   },
   {
     "term": "Accepting",
     "context": "Accepting",
-    "reference": "Modules/Settings/PrinterTab.qml:824",
+    "reference": "Modules/Settings/PrinterTab.qml:821",
     "comment": ""
   },
   {
@@ -296,7 +308,7 @@
   {
     "term": "Active",
     "context": "Active",
-    "reference": "Modules/Settings/NetworkTab.qml:675, Modules/ControlCenter/Details/AudioInputDetail.qml:204, Modules/ControlCenter/Details/AudioOutputDetail.qml:216",
+    "reference": "Modules/Settings/NetworkTab.qml:689, Modules/ControlCenter/Details/AudioInputDetail.qml:204, Modules/ControlCenter/Details/AudioOutputDetail.qml:216",
     "comment": ""
   },
   {
@@ -392,7 +404,7 @@
   {
     "term": "Advanced",
     "context": "Advanced",
-    "reference": "Modules/Settings/PowerSleepTab.qml:539, Modules/Settings/ClipboardTab.qml:321",
+    "reference": "Modules/Settings/PowerSleepTab.qml:574, Modules/Settings/ClipboardTab.qml:321",
     "comment": ""
   },
   {
@@ -403,8 +415,8 @@
   },
   {
     "term": "All",
-    "context": "All",
-    "reference": "Services/AppSearchService.qml:314, Services/AppSearchService.qml:330, Modals/Spotlight/SpotlightModal.qml:65, Modules/AppDrawer/CategorySelector.qml:11, Modules/AppDrawer/AppLauncher.qml:16, Modules/AppDrawer/AppLauncher.qml:27, Modules/AppDrawer/AppLauncher.qml:28, Modules/AppDrawer/AppLauncher.qml:45, Modules/AppDrawer/AppLauncher.qml:46, Modules/AppDrawer/AppLauncher.qml:84, Modules/AppDrawer/AppDrawerPopout.qml:57, Modules/Settings/KeybindsTab.qml:378, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:94, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:97, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:109",
+    "context": "notification history filter",
+    "reference": "Services/AppSearchService.qml:319, Services/AppSearchService.qml:335, Modals/Spotlight/SpotlightModal.qml:65, Modules/AppDrawer/CategorySelector.qml:11, Modules/AppDrawer/AppLauncher.qml:16, Modules/AppDrawer/AppLauncher.qml:27, Modules/AppDrawer/AppLauncher.qml:28, Modules/AppDrawer/AppLauncher.qml:45, Modules/AppDrawer/AppLauncher.qml:46, Modules/AppDrawer/AppLauncher.qml:84, Modules/AppDrawer/AppDrawerPopout.qml:57, Modules/Settings/KeybindsTab.qml:378, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:94, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:97, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:109, Modules/Notifications/Center/HistoryNotificationList.qml:86",
     "comment": ""
   },
   {
@@ -620,13 +632,13 @@
   {
     "term": "Auth",
     "context": "Auth",
-    "reference": "Widgets/VpnProfileDelegate.qml:54, Modules/Settings/NetworkTab.qml:1752",
+    "reference": "Widgets/VpnProfileDelegate.qml:54, Modules/Settings/NetworkTab.qml:1807",
     "comment": ""
   },
   {
     "term": "Auth Type",
     "context": "Auth Type",
-    "reference": "Widgets/VpnProfileDelegate.qml:72, Modules/Settings/NetworkTab.qml:1767",
+    "reference": "Widgets/VpnProfileDelegate.qml:72, Modules/Settings/NetworkTab.qml:1822",
     "comment": ""
   },
   {
@@ -674,7 +686,7 @@
   {
     "term": "Auto",
     "context": "Auto",
-    "reference": "Modules/Settings/NetworkTab.qml:207, Modules/Settings/NetworkTab.qml:802, Modules/Settings/NetworkTab.qml:806, Modules/Settings/NetworkTab.qml:807, Modules/Settings/NetworkTab.qml:810, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:351, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:359, Modules/ControlCenter/Details/NetworkDetail.qml:102, Modules/ControlCenter/Details/NetworkDetail.qml:103, Modules/ControlCenter/Details/NetworkDetail.qml:106, Modules/ControlCenter/Details/NetworkDetail.qml:109",
+    "reference": "Modules/Settings/NetworkTab.qml:207, Modules/Settings/NetworkTab.qml:807, Modules/Settings/NetworkTab.qml:811, Modules/Settings/NetworkTab.qml:812, Modules/Settings/NetworkTab.qml:815, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:351, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:359, Modules/ControlCenter/Details/NetworkDetail.qml:102, Modules/ControlCenter/Details/NetworkDetail.qml:103, Modules/ControlCenter/Details/NetworkDetail.qml:106, Modules/ControlCenter/Details/NetworkDetail.qml:109",
     "comment": ""
   },
   {
@@ -708,6 +720,12 @@
     "comment": ""
   },
   {
+    "term": "Auto-delete notifications older than this",
+    "context": "notification history setting",
+    "reference": "Modules/Settings/NotificationsTab.qml:256",
+    "comment": ""
+  },
+  {
     "term": "Auto-hide",
     "context": "Auto-hide",
     "reference": "Modules/Settings/DankBarTab.qml:665",
@@ -728,7 +746,7 @@
   {
     "term": "Autoconnect",
     "context": "Autoconnect",
-    "reference": "Widgets/VpnProfileDelegate.qml:77, Modules/Settings/NetworkTab.qml:1355, Modules/Settings/NetworkTab.qml:1771",
+    "reference": "Widgets/VpnProfileDelegate.qml:77, Modules/Settings/NetworkTab.qml:1388, Modules/Settings/NetworkTab.qml:1826",
     "comment": ""
   },
   {
@@ -782,13 +800,13 @@
   {
     "term": "Automatically lock after",
     "context": "Automatically lock after",
-    "reference": "Modules/Settings/PowerSleepTab.qml:161",
+    "reference": "Modules/Settings/PowerSleepTab.qml:196",
     "comment": ""
   },
   {
     "term": "Automatically lock the screen when the system prepares to suspend",
     "context": "Automatically lock the screen when the system prepares to suspend",
-    "reference": "Modules/Settings/PowerSleepTab.qml:79, Modules/Settings/LockScreenTab.qml:113",
+    "reference": "Modules/Settings/PowerSleepTab.qml:88, Modules/Settings/LockScreenTab.qml:113",
     "comment": ""
   },
   {
@@ -806,7 +824,7 @@
   {
     "term": "Available Networks",
     "context": "Available Networks",
-    "reference": "Modules/Settings/NetworkTab.qml:928",
+    "reference": "Modules/Settings/NetworkTab.qml:933",
     "comment": ""
   },
   {
@@ -824,7 +842,7 @@
   {
     "term": "BSSID",
     "context": "BSSID",
-    "reference": "Modules/Settings/NetworkTab.qml:1303",
+    "reference": "Modules/Settings/NetworkTab.qml:1336",
     "comment": ""
   },
   {
@@ -854,7 +872,7 @@
   {
     "term": "Balanced palette with focused accents (default).",
     "context": "Balanced palette with focused accents (default).",
-    "reference": "Common/Theme.qml:204",
+    "reference": "Common/Theme.qml:230",
     "comment": ""
   },
   {
@@ -878,7 +896,7 @@
   {
     "term": "Battery Charge Limit",
     "context": "Battery Charge Limit",
-    "reference": "Modules/Settings/PowerSleepTab.qml:547",
+    "reference": "Modules/Settings/PowerSleepTab.qml:582",
     "comment": ""
   },
   {
@@ -1220,7 +1238,7 @@
   {
     "term": "Channel",
     "context": "Channel",
-    "reference": "Modules/Settings/NetworkTab.qml:1288",
+    "reference": "Modules/Settings/NetworkTab.qml:1321",
     "comment": ""
   },
   {
@@ -1310,19 +1328,19 @@
   {
     "term": "Cipher",
     "context": "Cipher",
-    "reference": "Widgets/VpnProfileDelegate.qml:48, Modules/Settings/NetworkTab.qml:1747",
+    "reference": "Widgets/VpnProfileDelegate.qml:48, Modules/Settings/NetworkTab.qml:1802",
     "comment": ""
   },
   {
     "term": "Clear",
     "context": "Clear",
-    "reference": "Modules/Settings/PrinterTab.qml:1042, Modules/Notifications/Center/NotificationHeader.qml:98",
+    "reference": "Modules/Settings/PrinterTab.qml:1039, Modules/Notifications/Center/NotificationHeader.qml:117",
     "comment": ""
   },
   {
     "term": "Clear All",
     "context": "Clear All",
-    "reference": "Modals/Clipboard/ClipboardHistoryModal.qml:221, Modules/Settings/PrinterTab.qml:1026",
+    "reference": "Modals/Clipboard/ClipboardHistoryModal.qml:221, Modules/Settings/PrinterTab.qml:1023",
     "comment": ""
   },
   {
@@ -1334,7 +1352,7 @@
   {
     "term": "Clear All Jobs",
     "context": "Clear All Jobs",
-    "reference": "Modules/Settings/PrinterTab.qml:1040",
+    "reference": "Modules/Settings/PrinterTab.qml:1037",
     "comment": ""
   },
   {
@@ -1364,7 +1382,7 @@
   {
     "term": "Click Import to add a .ovpn or .conf",
     "context": "Click Import to add a .ovpn or .conf",
-    "reference": "Widgets/VpnDetailContent.qml:181, Modules/Settings/NetworkTab.qml:1534",
+    "reference": "Widgets/VpnDetailContent.qml:181, Modules/Settings/NetworkTab.qml:1567",
     "comment": ""
   },
   {
@@ -1508,7 +1526,7 @@
   {
     "term": "Colorful mix of bright contrasting accents.",
     "context": "Colorful mix of bright contrasting accents.",
-    "reference": "Common/Theme.qml:224",
+    "reference": "Common/Theme.qml:250",
     "comment": ""
   },
   {
@@ -1658,7 +1676,7 @@
   {
     "term": "Connected",
     "context": "Connected",
-    "reference": "Modules/Settings/AboutTab.qml:669, Modules/Settings/NetworkTab.qml:385, Modules/Settings/NetworkTab.qml:1092, Modules/Settings/NetworkTab.qml:1416, Modules/ControlCenter/Details/BluetoothDetail.qml:250, Modules/ControlCenter/Details/NetworkDetail.qml:564, Modules/ControlCenter/BuiltinPlugins/VpnWidget.qml:21",
+    "reference": "Modules/Settings/AboutTab.qml:669, Modules/Settings/NetworkTab.qml:385, Modules/Settings/NetworkTab.qml:1111, Modules/Settings/NetworkTab.qml:1449, Modules/ControlCenter/Details/BluetoothDetail.qml:250, Modules/ControlCenter/Details/NetworkDetail.qml:564, Modules/ControlCenter/BuiltinPlugins/VpnWidget.qml:21",
     "comment": ""
   },
   {
@@ -1772,19 +1790,25 @@
   {
     "term": "Create Printer",
     "context": "Create Printer",
-    "reference": "Modules/Settings/PrinterTab.qml:482",
+    "reference": "Modules/Settings/PrinterTab.qml:479",
     "comment": ""
   },
   {
     "term": "Creating...",
     "context": "Creating...",
-    "reference": "Modules/Settings/PrinterTab.qml:482",
+    "reference": "Modules/Settings/PrinterTab.qml:479",
     "comment": ""
   },
   {
     "term": "Critical Priority",
     "context": "Critical Priority",
-    "reference": "Modules/Settings/NotificationsTab.qml:208, Modules/Notifications/Center/NotificationSettings.qml:190",
+    "reference": "Modules/Settings/NotificationsTab.qml:208, Modules/Settings/NotificationsTab.qml:315, Modules/Notifications/Center/NotificationSettings.qml:203, Modules/Notifications/Center/NotificationSettings.qml:366",
+    "comment": ""
+  },
+  {
+    "term": "Current",
+    "context": "notification center tab",
+    "reference": "Modules/Notifications/Center/NotificationHeader.qml:151",
     "comment": ""
   },
   {
@@ -1856,7 +1880,7 @@
   {
     "term": "Custom Hibernate Command",
     "context": "Custom Hibernate Command",
-    "reference": "Modules/Settings/PowerSleepTab.qml:488",
+    "reference": "Modules/Settings/PowerSleepTab.qml:523",
     "comment": ""
   },
   {
@@ -1868,37 +1892,37 @@
   {
     "term": "Custom Lock Command",
     "context": "Custom Lock Command",
-    "reference": "Modules/Settings/PowerSleepTab.qml:473",
+    "reference": "Modules/Settings/PowerSleepTab.qml:508",
     "comment": ""
   },
   {
     "term": "Custom Logout Command",
     "context": "Custom Logout Command",
-    "reference": "Modules/Settings/PowerSleepTab.qml:478",
+    "reference": "Modules/Settings/PowerSleepTab.qml:513",
     "comment": ""
   },
   {
     "term": "Custom Power Actions",
     "context": "Custom Power Actions",
-    "reference": "Modules/Settings/PowerSleepTab.qml:466",
+    "reference": "Modules/Settings/PowerSleepTab.qml:501",
     "comment": ""
   },
   {
     "term": "Custom Power Off Command",
     "context": "Custom Power Off Command",
-    "reference": "Modules/Settings/PowerSleepTab.qml:498",
+    "reference": "Modules/Settings/PowerSleepTab.qml:533",
     "comment": ""
   },
   {
     "term": "Custom Reboot Command",
     "context": "Custom Reboot Command",
-    "reference": "Modules/Settings/PowerSleepTab.qml:493",
+    "reference": "Modules/Settings/PowerSleepTab.qml:528",
     "comment": ""
   },
   {
     "term": "Custom Suspend Command",
     "context": "Custom Suspend Command",
-    "reference": "Modules/Settings/PowerSleepTab.qml:483",
+    "reference": "Modules/Settings/PowerSleepTab.qml:518",
     "comment": ""
   },
   {
@@ -1934,7 +1958,7 @@
   {
     "term": "Customize which actions appear in the power menu",
     "context": "Customize which actions appear in the power menu",
-    "reference": "Modules/Settings/PowerSleepTab.qml:316",
+    "reference": "Modules/Settings/PowerSleepTab.qml:351",
     "comment": ""
   },
   {
@@ -2090,7 +2114,7 @@
   {
     "term": "Default selected action",
     "context": "Default selected action",
-    "reference": "Modules/Settings/PowerSleepTab.qml:336",
+    "reference": "Modules/Settings/PowerSleepTab.qml:371",
     "comment": ""
   },
   {
@@ -2108,37 +2132,37 @@
   {
     "term": "Delete",
     "context": "Delete",
-    "reference": "Widgets/VpnDetailContent.qml:218, Modules/Settings/DesktopWidgetInstanceCard.qml:146, Modules/Settings/PrinterTab.qml:750, Modules/Settings/PrinterTab.qml:1330, Modules/Settings/NetworkTab.qml:1679",
+    "reference": "Widgets/VpnDetailContent.qml:218, Modules/Settings/DesktopWidgetInstanceCard.qml:146, Modules/Settings/PrinterTab.qml:747, Modules/Settings/PrinterTab.qml:1327, Modules/Settings/NetworkTab.qml:1712",
     "comment": ""
   },
   {
     "term": "Delete Class",
     "context": "Delete Class",
-    "reference": "Modules/Settings/PrinterTab.qml:1328",
+    "reference": "Modules/Settings/PrinterTab.qml:1325",
     "comment": ""
   },
   {
     "term": "Delete Printer",
     "context": "Delete Printer",
-    "reference": "Modules/Settings/PrinterTab.qml:748",
+    "reference": "Modules/Settings/PrinterTab.qml:745",
     "comment": ""
   },
   {
     "term": "Delete VPN",
     "context": "Delete VPN",
-    "reference": "Widgets/VpnDetailContent.qml:216, Modules/Settings/NetworkTab.qml:1677",
+    "reference": "Widgets/VpnDetailContent.qml:216, Modules/Settings/NetworkTab.qml:1710",
     "comment": ""
   },
   {
     "term": "Derives colors that closely match the underlying image.",
     "context": "Derives colors that closely match the underlying image.",
-    "reference": "Common/Theme.qml:212",
+    "reference": "Common/Theme.qml:238",
     "comment": ""
   },
   {
     "term": "Description",
     "context": "Description",
-    "reference": "Modules/Settings/PrinterTab.qml:458",
+    "reference": "Modules/Settings/PrinterTab.qml:456",
     "comment": ""
   },
   {
@@ -2168,7 +2192,7 @@
   {
     "term": "Development",
     "context": "Development",
-    "reference": "Services/AppSearchService.qml:258, Services/AppSearchService.qml:259, Services/AppSearchService.qml:260, Widgets/DankIconPicker.qml:32",
+    "reference": "Services/AppSearchService.qml:263, Services/AppSearchService.qml:264, Services/AppSearchService.qml:265, Widgets/DankIconPicker.qml:32",
     "comment": ""
   },
   {
@@ -2222,7 +2246,7 @@
   {
     "term": "Disabled",
     "context": "Disabled",
-    "reference": "Modules/Settings/NetworkTab.qml:742, Modules/Settings/DankBarTab.qml:431, Modules/Settings/DisplayConfig/DisplayConfigState.qml:847, Modules/Settings/DisplayConfig/DisplayConfigState.qml:853, Modules/Settings/DisplayConfig/DisplayConfigState.qml:855, Modules/Settings/DisplayConfig/DisplayConfigState.qml:867",
+    "reference": "Modules/Settings/NetworkTab.qml:756, Modules/Settings/DankBarTab.qml:431, Modules/Settings/DisplayConfig/DisplayConfigState.qml:847, Modules/Settings/DisplayConfig/DisplayConfigState.qml:853, Modules/Settings/DisplayConfig/DisplayConfigState.qml:855, Modules/Settings/DisplayConfig/DisplayConfigState.qml:867",
     "comment": ""
   },
   {
@@ -2240,13 +2264,13 @@
   {
     "term": "Disconnect",
     "context": "Disconnect",
-    "reference": "Widgets/VpnDetailContent.qml:121, Modules/Settings/NetworkTab.qml:1485, Modules/ControlCenter/Details/BluetoothDetail.qml:549, Modules/ControlCenter/Details/NetworkDetail.qml:395, Modules/ControlCenter/Details/NetworkDetail.qml:717",
+    "reference": "Widgets/VpnDetailContent.qml:121, Modules/Settings/NetworkTab.qml:1518, Modules/ControlCenter/Details/BluetoothDetail.qml:549, Modules/ControlCenter/Details/NetworkDetail.qml:395, Modules/ControlCenter/Details/NetworkDetail.qml:717",
     "comment": ""
   },
   {
     "term": "Disconnected",
     "context": "Disconnected",
-    "reference": "Modules/Settings/NetworkTab.qml:162, Modules/Settings/NetworkTab.qml:387, Modules/Settings/NetworkTab.qml:1413, Modules/Settings/DisplayConfig/OutputCard.qml:67, Modules/Settings/DisplayConfig/MonitorRect.qml:92, Modules/ControlCenter/BuiltinPlugins/VpnWidget.qml:18",
+    "reference": "Modules/Settings/NetworkTab.qml:162, Modules/Settings/NetworkTab.qml:387, Modules/Settings/NetworkTab.qml:1446, Modules/Settings/DisplayConfig/OutputCard.qml:67, Modules/Settings/DisplayConfig/MonitorRect.qml:92, Modules/ControlCenter/BuiltinPlugins/VpnWidget.qml:18",
     "comment": ""
   },
   {
@@ -2300,7 +2324,7 @@
   {
     "term": "Display all priorities over fullscreen apps",
     "context": "Display all priorities over fullscreen apps",
-    "reference": "Modules/Settings/NotificationsTab.qml:143, Modules/Notifications/Center/NotificationSettings.qml:237",
+    "reference": "Modules/Settings/NotificationsTab.qml:143, Modules/Notifications/Center/NotificationSettings.qml:251",
     "comment": ""
   },
   {
@@ -2342,7 +2366,7 @@
   {
     "term": "Display power menu actions in a grid instead of a list",
     "context": "Display power menu actions in a grid instead of a list",
-    "reference": "Modules/Settings/PowerSleepTab.qml:327",
+    "reference": "Modules/Settings/PowerSleepTab.qml:362",
     "comment": ""
   },
   {
@@ -2378,13 +2402,13 @@
   {
     "term": "Diverse palette spanning the full spectrum.",
     "context": "Diverse palette spanning the full spectrum.",
-    "reference": "Common/Theme.qml:236",
+    "reference": "Common/Theme.qml:262",
     "comment": ""
   },
   {
     "term": "Do Not Disturb",
     "context": "Do Not Disturb",
-    "reference": "Modules/Settings/NotificationsTab.qml:152, Modules/ControlCenter/Models/WidgetModel.qml:85, Modules/ControlCenter/Components/DragDropGrid.qml:605, Modules/Notifications/Center/NotificationHeader.qml:41, Modules/Notifications/Center/NotificationSettings.qml:131",
+    "reference": "Modules/Settings/NotificationsTab.qml:152, Modules/ControlCenter/Models/WidgetModel.qml:85, Modules/ControlCenter/Components/DragDropGrid.qml:605, Modules/Notifications/Center/NotificationHeader.qml:63, Modules/Notifications/Center/NotificationSettings.qml:143",
     "comment": ""
   },
   {
@@ -2432,7 +2456,7 @@
   {
     "term": "Don't Change",
     "context": "Don't Change",
-    "reference": "Modules/Settings/PowerSleepTab.qml:114",
+    "reference": "Modules/Settings/PowerSleepTab.qml:149",
     "comment": ""
   },
   {
@@ -2510,7 +2534,7 @@
   {
     "term": "Education",
     "context": "Education",
-    "reference": "Services/AppSearchService.qml:261",
+    "reference": "Services/AppSearchService.qml:266",
     "comment": ""
   },
   {
@@ -2547,6 +2571,12 @@
     "term": "Enable GPU Temperature",
     "context": "Enable GPU Temperature",
     "reference": "Modules/ProcessList/SystemOverview.qml:391",
+    "comment": ""
+  },
+  {
+    "term": "Enable History",
+    "context": "notification history toggle label",
+    "reference": "Modules/Settings/NotificationsTab.qml:232",
     "comment": ""
   },
   {
@@ -2684,7 +2714,7 @@
   {
     "term": "Enterprise",
     "context": "Enterprise",
-    "reference": "Modules/Settings/NetworkTab.qml:1308",
+    "reference": "Modules/Settings/NetworkTab.qml:1341",
     "comment": ""
   },
   {
@@ -2730,15 +2760,15 @@
     "comment": ""
   },
   {
-    "term": "Fade grace period",
-    "context": "Fade grace period",
-    "reference": "Modules/Settings/PowerSleepTab.qml:92",
-    "comment": ""
-  },
-  {
     "term": "Fade to lock screen",
     "context": "Fade to lock screen",
     "reference": "Modules/Settings/PowerSleepTab.qml:69",
+    "comment": ""
+  },
+  {
+    "term": "Fade to monitor off",
+    "context": "Fade to monitor off",
+    "reference": "Modules/Settings/PowerSleepTab.qml:78",
     "comment": ""
   },
   {
@@ -2900,7 +2930,7 @@
   {
     "term": "Failed to parse plugin_settings.json",
     "context": "Failed to parse plugin_settings.json",
-    "reference": "Common/SettingsData.qml:874",
+    "reference": "Common/SettingsData.qml:882",
     "comment": ""
   },
   {
@@ -2912,7 +2942,7 @@
   {
     "term": "Failed to parse settings.json",
     "context": "Failed to parse settings.json",
-    "reference": "Common/SettingsData.qml:819, Common/SettingsData.qml:1874",
+    "reference": "Common/SettingsData.qml:827, Common/SettingsData.qml:1882",
     "comment": ""
   },
   {
@@ -3216,9 +3246,15 @@
     "comment": ""
   },
   {
+    "term": "Forever",
+    "context": "notification history retention option",
+    "reference": "Modules/Settings/NotificationsTab.qml:260, Modules/Settings/NotificationsTab.qml:275, Modules/Settings/NotificationsTab.qml:278",
+    "comment": ""
+  },
+  {
     "term": "Forget",
     "context": "Forget",
-    "reference": "Modules/Settings/NetworkTab.qml:1187",
+    "reference": "Modules/Settings/NetworkTab.qml:1206",
     "comment": ""
   },
   {
@@ -3230,7 +3266,7 @@
   {
     "term": "Forget Network",
     "context": "Forget Network",
-    "reference": "Modules/Settings/NetworkTab.qml:1185, Modules/ControlCenter/Details/NetworkDetail.qml:797",
+    "reference": "Modules/Settings/NetworkTab.qml:1204, Modules/ControlCenter/Details/NetworkDetail.qml:797",
     "comment": ""
   },
   {
@@ -3248,7 +3284,7 @@
   {
     "term": "Frequency",
     "context": "Frequency",
-    "reference": "Modules/Settings/NetworkTab.qml:1283",
+    "reference": "Modules/Settings/NetworkTab.qml:1316",
     "comment": ""
   },
   {
@@ -3278,7 +3314,7 @@
   {
     "term": "Games",
     "context": "Games",
-    "reference": "Services/AppSearchService.qml:262",
+    "reference": "Services/AppSearchService.qml:267",
     "comment": ""
   },
   {
@@ -3330,6 +3366,12 @@
     "comment": ""
   },
   {
+    "term": "Gradually fade the screen before turning off monitors with a configurable grace period",
+    "context": "Gradually fade the screen before turning off monitors with a configurable grace period",
+    "reference": "Modules/Settings/PowerSleepTab.qml:79",
+    "comment": ""
+  },
+  {
     "term": "Graph Time Range",
     "context": "Graph Time Range",
     "reference": "Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:48",
@@ -3338,7 +3380,7 @@
   {
     "term": "Graphics",
     "context": "Graphics",
-    "reference": "Services/AppSearchService.qml:263, Services/AppSearchService.qml:264",
+    "reference": "Services/AppSearchService.qml:268, Services/AppSearchService.qml:269",
     "comment": ""
   },
   {
@@ -3470,19 +3512,31 @@
   {
     "term": "High-fidelity palette that preserves source hues.",
     "context": "High-fidelity palette that preserves source hues.",
-    "reference": "Common/Theme.qml:220",
+    "reference": "Common/Theme.qml:246",
+    "comment": ""
+  },
+  {
+    "term": "History",
+    "context": "notification center tab",
+    "reference": "Modules/Notifications/Center/NotificationHeader.qml:151",
+    "comment": ""
+  },
+  {
+    "term": "History Retention",
+    "context": "notification history retention settings label",
+    "reference": "Modules/Settings/NotificationsTab.qml:255",
     "comment": ""
   },
   {
     "term": "History Settings",
     "context": "History Settings",
-    "reference": "Modules/Settings/ClipboardTab.qml:241",
+    "reference": "Modules/Settings/NotificationsTab.qml:226, Modules/Settings/ClipboardTab.qml:241, Modules/Notifications/Center/NotificationSettings.qml:274",
     "comment": ""
   },
   {
     "term": "Hold Duration",
     "context": "Hold Duration",
-    "reference": "Modules/Settings/PowerSleepTab.qml:444",
+    "reference": "Modules/Settings/PowerSleepTab.qml:479",
     "comment": ""
   },
   {
@@ -3494,7 +3548,7 @@
   {
     "term": "Hold to Confirm Power Actions",
     "context": "Hold to Confirm Power Actions",
-    "reference": "Modules/Settings/PowerSleepTab.qml:431",
+    "reference": "Modules/Settings/PowerSleepTab.qml:466",
     "comment": ""
   },
   {
@@ -3560,7 +3614,7 @@
   {
     "term": "IP Address:",
     "context": "IP Address:",
-    "reference": "Modules/Settings/NetworkTab.qml:864",
+    "reference": "Modules/Settings/NetworkTab.qml:869",
     "comment": ""
   },
   {
@@ -3596,7 +3650,7 @@
   {
     "term": "Idle monitoring not supported - requires newer Quickshell version",
     "context": "Idle monitoring not supported - requires newer Quickshell version",
-    "reference": "Modules/Settings/PowerSleepTab.qml:301",
+    "reference": "Modules/Settings/PowerSleepTab.qml:336",
     "comment": ""
   },
   {
@@ -3620,7 +3674,7 @@
   {
     "term": "Import",
     "context": "Import",
-    "reference": "Widgets/VpnDetailContent.qml:84, Modules/Settings/NetworkTab.qml:1448",
+    "reference": "Widgets/VpnDetailContent.qml:84, Modules/Settings/NetworkTab.qml:1481",
     "comment": ""
   },
   {
@@ -3764,7 +3818,7 @@
   {
     "term": "Interface:",
     "context": "Interface:",
-    "reference": "Modules/Settings/NetworkTab.qml:844",
+    "reference": "Modules/Settings/NetworkTab.qml:849",
     "comment": ""
   },
   {
@@ -3776,7 +3830,7 @@
   {
     "term": "Internet",
     "context": "Internet",
-    "reference": "Services/AppSearchService.qml:265, Services/AppSearchService.qml:266, Services/AppSearchService.qml:267",
+    "reference": "Services/AppSearchService.qml:270, Services/AppSearchService.qml:271, Services/AppSearchService.qml:272",
     "comment": ""
   },
   {
@@ -3806,7 +3860,7 @@
   {
     "term": "Jobs",
     "context": "Jobs",
-    "reference": "Modules/Settings/PrinterTab.qml:995, Modules/ControlCenter/BuiltinPlugins/CupsWidget.qml:181",
+    "reference": "Modules/Settings/PrinterTab.qml:992, Modules/ControlCenter/BuiltinPlugins/CupsWidget.qml:181",
     "comment": ""
   },
   {
@@ -3873,6 +3927,12 @@
     "term": "LED device",
     "context": "LED device",
     "reference": "Modules/ControlCenter/Details/BrightnessDetail.qml:324",
+    "comment": ""
+  },
+  {
+    "term": "Last hour",
+    "context": "notification history filter",
+    "reference": "Modules/Notifications/Center/HistoryNotificationList.qml:87",
     "comment": ""
   },
   {
@@ -3992,7 +4052,7 @@
   {
     "term": "Lively palette with saturated accents.",
     "context": "Lively palette with saturated accents.",
-    "reference": "Common/Theme.qml:208",
+    "reference": "Common/Theme.qml:234",
     "comment": ""
   },
   {
@@ -4010,7 +4070,7 @@
   {
     "term": "Loading...",
     "context": "loading indicator",
-    "reference": "Widgets/VpnProfileDelegate.qml:220, Modules/Settings/PluginBrowser.qml:378, Modules/Settings/PrinterTab.qml:367, Modules/Settings/ThemeBrowser.qml:357, Modules/Settings/NetworkTab.qml:604, Modules/Settings/NetworkTab.qml:1258, Modules/Settings/NetworkTab.qml:1716",
+    "reference": "Widgets/VpnProfileDelegate.qml:220, Modules/Settings/PluginBrowser.qml:378, Modules/Settings/PrinterTab.qml:367, Modules/Settings/ThemeBrowser.qml:357, Modules/Settings/NetworkTab.qml:618, Modules/Settings/NetworkTab.qml:1291, Modules/Settings/NetworkTab.qml:1771",
     "comment": ""
   },
   {
@@ -4022,7 +4082,7 @@
   {
     "term": "Location",
     "context": "Location",
-    "reference": "Modules/Settings/PrinterTab.qml:436, Modules/Settings/PrinterTab.qml:820",
+    "reference": "Modules/Settings/PrinterTab.qml:435, Modules/Settings/PrinterTab.qml:817",
     "comment": ""
   },
   {
@@ -4070,7 +4130,13 @@
   {
     "term": "Lock before suspend",
     "context": "Lock before suspend",
-    "reference": "Modules/Settings/PowerSleepTab.qml:78, Modules/Settings/LockScreenTab.qml:112",
+    "reference": "Modules/Settings/PowerSleepTab.qml:87, Modules/Settings/LockScreenTab.qml:112",
+    "comment": ""
+  },
+  {
+    "term": "Lock fade grace period",
+    "context": "Lock fade grace period",
+    "reference": "Modules/Settings/PowerSleepTab.qml:101",
     "comment": ""
   },
   {
@@ -4100,7 +4166,7 @@
   {
     "term": "Low Priority",
     "context": "Low Priority",
-    "reference": "Modules/Settings/NotificationsTab.qml:174, Modules/Notifications/Center/NotificationSettings.qml:160",
+    "reference": "Modules/Settings/NotificationsTab.qml:174, Modules/Settings/NotificationsTab.qml:297, Modules/Notifications/Center/NotificationSettings.qml:173, Modules/Notifications/Center/NotificationSettings.qml:298",
     "comment": ""
   },
   {
@@ -4112,7 +4178,7 @@
   {
     "term": "MTU",
     "context": "MTU",
-    "reference": "Widgets/VpnProfileDelegate.qml:66, Modules/Settings/NetworkTab.qml:1762",
+    "reference": "Widgets/VpnProfileDelegate.qml:66, Modules/Settings/NetworkTab.qml:1817",
     "comment": ""
   },
   {
@@ -4244,13 +4310,19 @@
   {
     "term": "Maximum History",
     "context": "Maximum History",
-    "reference": "Modules/Settings/ClipboardTab.qml:249",
+    "reference": "Modules/Settings/NotificationsTab.qml:241, Modules/Settings/ClipboardTab.qml:249",
     "comment": ""
   },
   {
     "term": "Maximum number of clipboard entries to keep",
     "context": "Maximum number of clipboard entries to keep",
     "reference": "Modules/Settings/ClipboardTab.qml:250",
+    "comment": ""
+  },
+  {
+    "term": "Maximum number of notifications to keep",
+    "context": "notification history limit",
+    "reference": "Modules/Settings/NotificationsTab.qml:242",
     "comment": ""
   },
   {
@@ -4262,7 +4334,7 @@
   {
     "term": "Media",
     "context": "Media",
-    "reference": "Services/AppSearchService.qml:255, Services/AppSearchService.qml:256, Services/AppSearchService.qml:257, Widgets/DankIconPicker.qml:40, Widgets/KeybindItem.qml:1028, Widgets/KeybindItem.qml:1037, Widgets/KeybindItem.qml:1043, Modules/DankDash/DankDashPopout.qml:276",
+    "reference": "Services/AppSearchService.qml:260, Services/AppSearchService.qml:261, Services/AppSearchService.qml:262, Widgets/DankIconPicker.qml:40, Widgets/KeybindItem.qml:1028, Widgets/KeybindItem.qml:1037, Widgets/KeybindItem.qml:1043, Modules/DankDash/DankDashPopout.qml:276",
     "comment": ""
   },
   {
@@ -4388,7 +4460,7 @@
   {
     "term": "Minimal palette built around a single hue.",
     "context": "Minimal palette built around a single hue.",
-    "reference": "Common/Theme.qml:228",
+    "reference": "Common/Theme.qml:254",
     "comment": ""
   },
   {
@@ -4412,7 +4484,7 @@
   {
     "term": "Mode",
     "context": "Mode",
-    "reference": "Modules/Settings/NetworkTab.qml:1298, Modules/Settings/DisplayConfig/DisplayConfigState.qml:841",
+    "reference": "Modules/Settings/NetworkTab.qml:1331, Modules/Settings/DisplayConfig/DisplayConfigState.qml:841",
     "comment": ""
   },
   {
@@ -4424,7 +4496,7 @@
   {
     "term": "Model",
     "context": "Model",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:218, Modules/Settings/PrinterTab.qml:815, Modules/Settings/DisplayConfigTab.qml:103, Modules/Settings/DisplayConfig/DisplayConfigState.qml:832",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:218, Modules/Settings/PrinterTab.qml:812, Modules/Settings/DisplayConfigTab.qml:103, Modules/Settings/DisplayConfig/DisplayConfigState.qml:832",
     "comment": ""
   },
   {
@@ -4437,6 +4509,12 @@
     "term": "Monitor Configuration",
     "context": "Monitor Configuration",
     "reference": "Modules/Settings/DisplayConfigTab.qml:73, Modules/Settings/DisplayConfig/NoBackendMessage.qml:38",
+    "comment": ""
+  },
+  {
+    "term": "Monitor fade grace period",
+    "context": "Monitor fade grace period",
+    "reference": "Modules/Settings/PowerSleepTab.qml:127",
     "comment": ""
   },
   {
@@ -4484,7 +4562,7 @@
   {
     "term": "Muted palette with subdued, calming tones.",
     "context": "Muted palette with subdued, calming tones.",
-    "reference": "Common/Theme.qml:232",
+    "reference": "Common/Theme.qml:258",
     "comment": ""
   },
   {
@@ -4634,7 +4712,7 @@
   {
     "term": "No",
     "context": "No",
-    "reference": "Widgets/VpnProfileDelegate.qml:78, Modules/Settings/PrinterTab.qml:825, Modules/Settings/NetworkTab.qml:1772, Modules/Settings/DisplayConfig/DisplayConfigState.qml:853, Modules/Settings/DisplayConfig/DisplayConfigState.qml:857, Modules/Settings/DisplayConfig/DisplayConfigState.qml:867, Modules/Settings/DisplayConfig/DisplayConfigState.qml:877, Modules/Settings/DisplayConfig/DisplayConfigState.qml:879",
+    "reference": "Widgets/VpnProfileDelegate.qml:78, Modules/Settings/PrinterTab.qml:822, Modules/Settings/NetworkTab.qml:1827, Modules/Settings/DisplayConfig/DisplayConfigState.qml:853, Modules/Settings/DisplayConfig/DisplayConfigState.qml:857, Modules/Settings/DisplayConfig/DisplayConfigState.qml:867, Modules/Settings/DisplayConfig/DisplayConfigState.qml:877, Modules/Settings/DisplayConfig/DisplayConfigState.qml:879",
     "comment": ""
   },
   {
@@ -4670,7 +4748,7 @@
   {
     "term": "No VPN profiles",
     "context": "No VPN profiles",
-    "reference": "Widgets/VpnDetailContent.qml:174, Modules/Settings/NetworkTab.qml:1527",
+    "reference": "Widgets/VpnDetailContent.qml:174, Modules/Settings/NetworkTab.qml:1560",
     "comment": ""
   },
   {
@@ -4796,13 +4874,13 @@
   {
     "term": "No printers configured",
     "context": "No printers configured",
-    "reference": "Modules/Settings/PrinterTab.qml:541",
+    "reference": "Modules/Settings/PrinterTab.qml:538",
     "comment": ""
   },
   {
     "term": "No printers found",
     "context": "No printers found",
-    "reference": "Modules/Settings/PrinterTab.qml:581",
+    "reference": "Modules/Settings/PrinterTab.qml:578",
     "comment": ""
   },
   {
@@ -4856,7 +4934,7 @@
   {
     "term": "Normal Priority",
     "context": "Normal Priority",
-    "reference": "Modules/Settings/NotificationsTab.qml:191, Modules/Notifications/Center/NotificationSettings.qml:175",
+    "reference": "Modules/Settings/NotificationsTab.qml:191, Modules/Settings/NotificationsTab.qml:306, Modules/Notifications/Center/NotificationSettings.qml:188, Modules/Notifications/Center/NotificationSettings.qml:332",
     "comment": ""
   },
   {
@@ -4868,19 +4946,19 @@
   {
     "term": "Not connected",
     "context": "Not connected",
-    "reference": "Modules/Settings/NetworkTab.qml:745",
+    "reference": "Modules/Settings/NetworkTab.qml:759",
     "comment": ""
   },
   {
     "term": "Note: this only changes the percentage, it does not actually limit charging.",
     "context": "Note: this only changes the percentage, it does not actually limit charging.",
-    "reference": "Modules/Settings/PowerSleepTab.qml:548",
+    "reference": "Modules/Settings/PowerSleepTab.qml:583",
     "comment": ""
   },
   {
     "term": "Notepad",
     "context": "Notepad",
-    "reference": "DMSShell.qml:598, Modules/Settings/WidgetsTab.qml:224",
+    "reference": "DMSShell.qml:638, Modules/Settings/WidgetsTab.qml:224",
     "comment": ""
   },
   {
@@ -4910,7 +4988,7 @@
   {
     "term": "Notification Overlay",
     "context": "Notification Overlay",
-    "reference": "Modules/Settings/NotificationsTab.qml:142, Modules/Notifications/Center/NotificationSettings.qml:231",
+    "reference": "Modules/Settings/NotificationsTab.qml:142, Modules/Notifications/Center/NotificationSettings.qml:245",
     "comment": ""
   },
   {
@@ -4922,13 +5000,13 @@
   {
     "term": "Notification Settings",
     "context": "Notification Settings",
-    "reference": "Modules/Notifications/Center/NotificationSettings.qml:108",
+    "reference": "Modules/Notifications/Center/NotificationSettings.qml:119",
     "comment": ""
   },
   {
     "term": "Notification Timeouts",
     "context": "Notification Timeouts",
-    "reference": "Modules/Settings/NotificationsTab.qml:168, Modules/Notifications/Center/NotificationSettings.qml:153",
+    "reference": "Modules/Settings/NotificationsTab.qml:168, Modules/Notifications/Center/NotificationSettings.qml:166",
     "comment": ""
   },
   {
@@ -4940,7 +5018,7 @@
   {
     "term": "Notifications",
     "context": "Notifications",
-    "reference": "Modals/Settings/SettingsSidebar.qml:142, Modules/Notifications/Center/NotificationHeader.qml:25",
+    "reference": "Modals/Settings/SettingsSidebar.qml:142, Modules/Notifications/Center/NotificationHeader.qml:49",
     "comment": ""
   },
   {
@@ -4970,13 +5048,19 @@
   {
     "term": "Office",
     "context": "Office",
-    "reference": "Services/AppSearchService.qml:268, Services/AppSearchService.qml:269, Services/AppSearchService.qml:270, Services/AppSearchService.qml:271",
+    "reference": "Services/AppSearchService.qml:273, Services/AppSearchService.qml:274, Services/AppSearchService.qml:275, Services/AppSearchService.qml:276",
     "comment": ""
   },
   {
     "term": "Offline Report",
     "context": "Offline Report",
     "reference": "Services/CupsService.qml:814",
+    "comment": ""
+  },
+  {
+    "term": "Older",
+    "context": "notification history filter for content older than other filters",
+    "reference": "Modules/Notifications/Center/HistoryNotificationList.qml:92",
     "comment": ""
   },
   {
@@ -5006,7 +5090,7 @@
   {
     "term": "Only visible if hibernate is supported by your system",
     "context": "Only visible if hibernate is supported by your system",
-    "reference": "Modules/Settings/PowerSleepTab.qml:395",
+    "reference": "Modules/Settings/PowerSleepTab.qml:430",
     "comment": ""
   },
   {
@@ -5018,7 +5102,7 @@
   {
     "term": "Open",
     "context": "Open",
-    "reference": "Modules/Notepad/NotepadTextEditor.qml:527, Modules/Settings/NetworkTab.qml:1092, Modules/Settings/NetworkTab.qml:1308, Modules/ControlCenter/Details/NetworkDetail.qml:564",
+    "reference": "Modules/Notepad/NotepadTextEditor.qml:527, Modules/Settings/NetworkTab.qml:1111, Modules/Settings/NetworkTab.qml:1341, Modules/ControlCenter/Details/NetworkDetail.qml:564",
     "comment": ""
   },
   {
@@ -5036,19 +5120,19 @@
   {
     "term": "Open with...",
     "context": "Open with...",
-    "reference": "DMSShell.qml:468, Modals/BrowserPickerModal.qml:11",
+    "reference": "DMSShell.qml:508, Modals/BrowserPickerModal.qml:11",
     "comment": ""
   },
   {
     "term": "Optional description",
     "context": "Optional description",
-    "reference": "Modules/Settings/PrinterTab.qml:469",
+    "reference": "Modules/Settings/PrinterTab.qml:466",
     "comment": ""
   },
   {
     "term": "Optional location",
     "context": "Optional location",
-    "reference": "Modules/Settings/PrinterTab.qml:447",
+    "reference": "Modules/Settings/PrinterTab.qml:445",
     "comment": ""
   },
   {
@@ -5198,7 +5282,7 @@
   {
     "term": "Pause",
     "context": "Pause",
-    "reference": "Modules/Settings/PrinterTab.qml:888, Modules/ControlCenter/BuiltinPlugins/CupsWidget.qml:136",
+    "reference": "Modules/Settings/PrinterTab.qml:885, Modules/ControlCenter/BuiltinPlugins/CupsWidget.qml:136",
     "comment": ""
   },
   {
@@ -5402,13 +5486,13 @@
   {
     "term": "Power Action Confirmation",
     "context": "Power Action Confirmation",
-    "reference": "Modules/Settings/PowerSleepTab.qml:425",
+    "reference": "Modules/Settings/PowerSleepTab.qml:460",
     "comment": ""
   },
   {
     "term": "Power Menu Customization",
     "context": "Power Menu Customization",
-    "reference": "Modules/Settings/PowerSleepTab.qml:312",
+    "reference": "Modules/Settings/PowerSleepTab.qml:347",
     "comment": ""
   },
   {
@@ -5510,7 +5594,7 @@
   {
     "term": "Printer Classes",
     "context": "Printer Classes",
-    "reference": "Modules/Settings/PrinterTab.qml:1224",
+    "reference": "Modules/Settings/PrinterTab.qml:1221",
     "comment": ""
   },
   {
@@ -5528,13 +5612,13 @@
   {
     "term": "Printer name (no spaces)",
     "context": "Printer name (no spaces)",
-    "reference": "Modules/Settings/PrinterTab.qml:425",
+    "reference": "Modules/Settings/PrinterTab.qml:424",
     "comment": ""
   },
   {
     "term": "Printers",
     "context": "Printers",
-    "reference": "Modals/Settings/SettingsSidebar.qml:241, Modules/Settings/PrinterTab.qml:154, Modules/Settings/PrinterTab.qml:531, Modules/ControlCenter/Models/WidgetModel.qml:197, Modules/ControlCenter/BuiltinPlugins/CupsWidget.qml:16",
+    "reference": "Modals/Settings/SettingsSidebar.qml:241, Modules/Settings/PrinterTab.qml:154, Modules/Settings/PrinterTab.qml:528, Modules/ControlCenter/Models/WidgetModel.qml:197, Modules/ControlCenter/BuiltinPlugins/CupsWidget.qml:16",
     "comment": ""
   },
   {
@@ -5588,7 +5672,7 @@
   {
     "term": "Protocol",
     "context": "Protocol",
-    "reference": "Widgets/VpnProfileDelegate.qml:60, Modules/Settings/NetworkTab.qml:1757",
+    "reference": "Widgets/VpnProfileDelegate.qml:60, Modules/Settings/NetworkTab.qml:1812",
     "comment": ""
   },
   {
@@ -5630,13 +5714,13 @@
   {
     "term": "Rate",
     "context": "Rate",
-    "reference": "Modules/Settings/NetworkTab.qml:1293",
+    "reference": "Modules/Settings/NetworkTab.qml:1326",
     "comment": ""
   },
   {
     "term": "Reason",
     "context": "Reason",
-    "reference": "Services/CupsService.qml:355, Modules/Settings/PrinterTab.qml:810",
+    "reference": "Services/CupsService.qml:355, Modules/Settings/PrinterTab.qml:807",
     "comment": ""
   },
   {
@@ -5678,7 +5762,7 @@
   {
     "term": "Reject Jobs",
     "context": "Reject Jobs",
-    "reference": "Modules/Settings/PrinterTab.qml:962",
+    "reference": "Modules/Settings/PrinterTab.qml:959",
     "comment": ""
   },
   {
@@ -5708,7 +5792,7 @@
   {
     "term": "Require holding button/key to confirm power off, restart, suspend, hibernate and logout",
     "context": "Require holding button/key to confirm power off, restart, suspend, hibernate and logout",
-    "reference": "Modules/Settings/PowerSleepTab.qml:432",
+    "reference": "Modules/Settings/PowerSleepTab.qml:467",
     "comment": ""
   },
   {
@@ -5774,13 +5858,13 @@
   {
     "term": "Restart the DankMaterialShell",
     "context": "Restart the DankMaterialShell",
-    "reference": "Modules/Settings/PowerSleepTab.qml:390",
+    "reference": "Modules/Settings/PowerSleepTab.qml:425",
     "comment": ""
   },
   {
     "term": "Resume",
     "context": "Resume",
-    "reference": "Modules/Settings/PrinterTab.qml:888, Modules/ControlCenter/BuiltinPlugins/CupsWidget.qml:136",
+    "reference": "Modules/Settings/PrinterTab.qml:885, Modules/ControlCenter/BuiltinPlugins/CupsWidget.qml:136",
     "comment": ""
   },
   {
@@ -5916,6 +6000,30 @@
     "comment": ""
   },
   {
+    "term": "Save critical priority notifications to history",
+    "context": "notification history setting",
+    "reference": "Modules/Settings/NotificationsTab.qml:316",
+    "comment": ""
+  },
+  {
+    "term": "Save dismissed notifications to history",
+    "context": "notification history toggle description",
+    "reference": "Modules/Settings/NotificationsTab.qml:233",
+    "comment": ""
+  },
+  {
+    "term": "Save low priority notifications to history",
+    "context": "notification history setting",
+    "reference": "Modules/Settings/NotificationsTab.qml:298",
+    "comment": ""
+  },
+  {
+    "term": "Save normal priority notifications to history",
+    "context": "notification history setting",
+    "reference": "Modules/Settings/NotificationsTab.qml:307",
+    "comment": ""
+  },
+  {
     "term": "Save password",
     "context": "Save password",
     "reference": "Modals/WifiPasswordModal.qml:627",
@@ -5924,13 +6032,13 @@
   {
     "term": "Saved",
     "context": "Saved",
-    "reference": "Modules/Notepad/NotepadTextEditor.qml:591, Modules/Settings/NetworkTab.qml:1105, Modules/ControlCenter/Details/NetworkDetail.qml:570",
+    "reference": "Modules/Notepad/NotepadTextEditor.qml:591, Modules/Settings/NetworkTab.qml:1124, Modules/ControlCenter/Details/NetworkDetail.qml:570",
     "comment": ""
   },
   {
     "term": "Saved Configurations",
     "context": "Saved Configurations",
-    "reference": "Modules/Settings/NetworkTab.qml:630",
+    "reference": "Modules/Settings/NetworkTab.qml:644",
     "comment": ""
   },
   {
@@ -5966,13 +6074,13 @@
   {
     "term": "Scanning...",
     "context": "Scanning...",
-    "reference": "Modules/Settings/PrinterTab.qml:295, Modules/Settings/NetworkTab.qml:974",
+    "reference": "Modules/Settings/PrinterTab.qml:295, Modules/Settings/NetworkTab.qml:993",
     "comment": ""
   },
   {
     "term": "Science",
     "context": "Science",
-    "reference": "Services/AppSearchService.qml:272",
+    "reference": "Services/AppSearchService.qml:277",
     "comment": ""
   },
   {
@@ -6056,7 +6164,7 @@
   {
     "term": "Search...",
     "context": "Search...",
-    "reference": "Widgets/DankDropdown.qml:265, Modals/Settings/SettingsSidebar.qml:541",
+    "reference": "Widgets/DankDropdown.qml:268, Modals/Settings/SettingsSidebar.qml:541",
     "comment": ""
   },
   {
@@ -6074,13 +6182,13 @@
   {
     "term": "Secured",
     "context": "Secured",
-    "reference": "Modules/Settings/NetworkTab.qml:1092, Modules/ControlCenter/Details/NetworkDetail.qml:564",
+    "reference": "Modules/Settings/NetworkTab.qml:1111, Modules/ControlCenter/Details/NetworkDetail.qml:564",
     "comment": ""
   },
   {
     "term": "Security",
     "context": "Security",
-    "reference": "Modules/Settings/NetworkTab.qml:1307",
+    "reference": "Modules/Settings/NetworkTab.qml:1340",
     "comment": ""
   },
   {
@@ -6224,7 +6332,7 @@
   {
     "term": "Server",
     "context": "Server",
-    "reference": "Widgets/VpnProfileDelegate.qml:36, Modules/Settings/NetworkTab.qml:1737",
+    "reference": "Widgets/VpnProfileDelegate.qml:36, Modules/Settings/NetworkTab.qml:1792",
     "comment": ""
   },
   {
@@ -6248,7 +6356,7 @@
   {
     "term": "Settings",
     "context": "settings window title",
-    "reference": "Services/AppSearchService.qml:273, Services/PopoutService.qml:260, Services/PopoutService.qml:277, Modals/Settings/SettingsSidebar.qml:110, Modals/Settings/SettingsModal.qml:59, Modals/Settings/SettingsModal.qml:189, Modules/DankDash/DankDashPopout.qml:293",
+    "reference": "Services/AppSearchService.qml:278, Services/PopoutService.qml:260, Services/PopoutService.qml:277, Modals/Settings/SettingsSidebar.qml:110, Modals/Settings/SettingsModal.qml:59, Modals/Settings/SettingsModal.qml:189, Modules/DankDash/DankDashPopout.qml:293",
     "comment": ""
   },
   {
@@ -6356,7 +6464,7 @@
   {
     "term": "Show Hibernate",
     "context": "Show Hibernate",
-    "reference": "Modules/Settings/PowerSleepTab.qml:394",
+    "reference": "Modules/Settings/PowerSleepTab.qml:429",
     "comment": ""
   },
   {
@@ -6374,13 +6482,13 @@
   {
     "term": "Show Lock",
     "context": "Show Lock",
-    "reference": "Modules/Settings/PowerSleepTab.qml:381",
+    "reference": "Modules/Settings/PowerSleepTab.qml:416",
     "comment": ""
   },
   {
     "term": "Show Log Out",
     "context": "Show Log Out",
-    "reference": "Modules/Settings/PowerSleepTab.qml:373",
+    "reference": "Modules/Settings/PowerSleepTab.qml:408",
     "comment": ""
   },
   {
@@ -6428,7 +6536,7 @@
   {
     "term": "Show Power Off",
     "context": "Show Power Off",
-    "reference": "Modules/Settings/PowerSleepTab.qml:377",
+    "reference": "Modules/Settings/PowerSleepTab.qml:412",
     "comment": ""
   },
   {
@@ -6440,13 +6548,13 @@
   {
     "term": "Show Reboot",
     "context": "Show Reboot",
-    "reference": "Modules/Settings/PowerSleepTab.qml:369",
+    "reference": "Modules/Settings/PowerSleepTab.qml:404",
     "comment": ""
   },
   {
     "term": "Show Restart DMS",
     "context": "Show Restart DMS",
-    "reference": "Modules/Settings/PowerSleepTab.qml:389",
+    "reference": "Modules/Settings/PowerSleepTab.qml:424",
     "comment": ""
   },
   {
@@ -6458,7 +6566,7 @@
   {
     "term": "Show Suspend",
     "context": "Show Suspend",
-    "reference": "Modules/Settings/PowerSleepTab.qml:385",
+    "reference": "Modules/Settings/PowerSleepTab.qml:420",
     "comment": ""
   },
   {
@@ -6662,13 +6770,13 @@
   {
     "term": "Signal",
     "context": "Signal",
-    "reference": "Modules/Settings/NetworkTab.qml:1278",
+    "reference": "Modules/Settings/NetworkTab.qml:1311",
     "comment": ""
   },
   {
     "term": "Signal:",
     "context": "Signal:",
-    "reference": "Modules/Settings/NetworkTab.qml:884",
+    "reference": "Modules/Settings/NetworkTab.qml:889",
     "comment": ""
   },
   {
@@ -6800,7 +6908,7 @@
   {
     "term": "State",
     "context": "State",
-    "reference": "Modules/Settings/PrinterTab.qml:805, Modules/Settings/NetworkTab.qml:538",
+    "reference": "Modules/Settings/PrinterTab.qml:802, Modules/Settings/NetworkTab.qml:538",
     "comment": ""
   },
   {
@@ -6866,13 +6974,13 @@
   {
     "term": "Suspend behavior",
     "context": "Suspend behavior",
-    "reference": "Modules/Settings/PowerSleepTab.qml:262",
+    "reference": "Modules/Settings/PowerSleepTab.qml:297",
     "comment": ""
   },
   {
     "term": "Suspend system after",
     "context": "Suspend system after",
-    "reference": "Modules/Settings/PowerSleepTab.qml:227",
+    "reference": "Modules/Settings/PowerSleepTab.qml:262",
     "comment": ""
   },
   {
@@ -6890,7 +6998,7 @@
   {
     "term": "Switch to power profile",
     "context": "Switch to power profile",
-    "reference": "Modules/Settings/PowerSleepTab.qml:119",
+    "reference": "Modules/Settings/PowerSleepTab.qml:154",
     "comment": ""
   },
   {
@@ -6908,7 +7016,7 @@
   {
     "term": "System",
     "context": "System",
-    "reference": "Services/AppSearchService.qml:274, Widgets/DankIconPicker.qml:44, Modals/Settings/SettingsSidebar.qml:235, Modules/ProcessList/SystemTab.qml:127",
+    "reference": "Services/AppSearchService.qml:279, Widgets/DankIconPicker.qml:44, Modals/Settings/SettingsSidebar.qml:235, Modules/ProcessList/SystemTab.qml:127",
     "comment": ""
   },
   {
@@ -7016,7 +7124,7 @@
   {
     "term": "Test Page",
     "context": "Test Page",
-    "reference": "Modules/Settings/PrinterTab.qml:928",
+    "reference": "Modules/Settings/PrinterTab.qml:925",
     "comment": ""
   },
   {
@@ -7189,8 +7297,8 @@
   },
   {
     "term": "Today",
-    "context": "Today",
-    "reference": "Services/WeatherService.qml:435",
+    "context": "notification history filter",
+    "reference": "Services/WeatherService.qml:435, Modules/Notifications/Center/HistoryNotificationList.qml:88",
     "comment": ""
   },
   {
@@ -7202,7 +7310,7 @@
   {
     "term": "Toggling...",
     "context": "Toggling...",
-    "reference": "Modules/Settings/NetworkTab.qml:740",
+    "reference": "Modules/Settings/NetworkTab.qml:754",
     "comment": ""
   },
   {
@@ -7286,7 +7394,7 @@
   {
     "term": "Turn off monitors after",
     "context": "Turn off monitors after",
-    "reference": "Modules/Settings/PowerSleepTab.qml:194",
+    "reference": "Modules/Settings/PowerSleepTab.qml:229",
     "comment": ""
   },
   {
@@ -7346,7 +7454,7 @@
   {
     "term": "Unknown",
     "context": "unknown author",
-    "reference": "Modules/Settings/PluginBrowser.qml:492, Modules/Settings/PrinterTab.qml:1288, Modules/Settings/ThemeBrowser.qml:531, Modules/Settings/NetworkTab.qml:122, Modules/Settings/NetworkTab.qml:164, Modules/Settings/NetworkTab.qml:370, Modules/Settings/NetworkTab.qml:391, Modules/Settings/NetworkTab.qml:539, Modules/Settings/NetworkTab.qml:668, Modules/Settings/NetworkTab.qml:1072, Modules/ControlCenter/Details/BatteryDetail.qml:177, Modules/ControlCenter/Components/HeaderPane.qml:60",
+    "reference": "Modules/Settings/PluginBrowser.qml:492, Modules/Settings/PrinterTab.qml:1285, Modules/Settings/ThemeBrowser.qml:531, Modules/Settings/NetworkTab.qml:122, Modules/Settings/NetworkTab.qml:164, Modules/Settings/NetworkTab.qml:370, Modules/Settings/NetworkTab.qml:391, Modules/Settings/NetworkTab.qml:539, Modules/Settings/NetworkTab.qml:682, Modules/Settings/NetworkTab.qml:1091, Modules/ControlCenter/Details/BatteryDetail.qml:177, Modules/ControlCenter/Components/HeaderPane.qml:60",
     "comment": ""
   },
   {
@@ -7430,7 +7538,7 @@
   {
     "term": "Use Grid Layout",
     "context": "Use Grid Layout",
-    "reference": "Modules/Settings/PowerSleepTab.qml:326",
+    "reference": "Modules/Settings/PowerSleepTab.qml:361",
     "comment": ""
   },
   {
@@ -7532,7 +7640,7 @@
   {
     "term": "Username",
     "context": "Username",
-    "reference": "Modals/WifiPasswordModal.qml:136, Modals/WifiPasswordModal.qml:440, Widgets/VpnProfileDelegate.qml:42, Modules/Settings/NetworkTab.qml:1742",
+    "reference": "Modals/WifiPasswordModal.qml:136, Modals/WifiPasswordModal.qml:440, Widgets/VpnProfileDelegate.qml:42, Modules/Settings/NetworkTab.qml:1797",
     "comment": ""
   },
   {
@@ -7544,13 +7652,13 @@
   {
     "term": "Utilities",
     "context": "Utilities",
-    "reference": "Services/AppSearchService.qml:275, Services/AppSearchService.qml:276, Services/AppSearchService.qml:277, Services/AppSearchService.qml:278",
+    "reference": "Services/AppSearchService.qml:280, Services/AppSearchService.qml:281, Services/AppSearchService.qml:282, Services/AppSearchService.qml:283",
     "comment": ""
   },
   {
     "term": "VPN",
     "context": "VPN",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:831, Modules/Settings/WidgetsTab.qml:175, Modules/Settings/NetworkTab.qml:1404, Modules/ControlCenter/Models/WidgetModel.qml:187, Modules/ControlCenter/BuiltinPlugins/VpnWidget.qml:15",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:831, Modules/Settings/WidgetsTab.qml:175, Modules/Settings/NetworkTab.qml:1437, Modules/ControlCenter/Models/WidgetModel.qml:187, Modules/ControlCenter/BuiltinPlugins/VpnWidget.qml:15",
     "comment": ""
   },
   {
@@ -7658,7 +7766,7 @@
   {
     "term": "Vibrant palette with playful saturation.",
     "context": "Vibrant palette with playful saturation.",
-    "reference": "Common/Theme.qml:216",
+    "reference": "Common/Theme.qml:242",
     "comment": ""
   },
   {
@@ -7706,7 +7814,7 @@
   {
     "term": "WPA/WPA2",
     "context": "WPA/WPA2",
-    "reference": "Modules/Settings/NetworkTab.qml:1308",
+    "reference": "Modules/Settings/NetworkTab.qml:1341",
     "comment": ""
   },
   {
@@ -7808,13 +7916,13 @@
   {
     "term": "WiFi",
     "context": "WiFi",
-    "reference": "Modules/Settings/NetworkTab.qml:160, Modules/Settings/NetworkTab.qml:207, Modules/Settings/NetworkTab.qml:731, Modules/ControlCenter/Details/NetworkDetail.qml:121",
+    "reference": "Modules/Settings/NetworkTab.qml:160, Modules/Settings/NetworkTab.qml:207, Modules/Settings/NetworkTab.qml:745, Modules/ControlCenter/Details/NetworkDetail.qml:121",
     "comment": ""
   },
   {
     "term": "WiFi Device",
     "context": "WiFi Device",
-    "reference": "Modules/Settings/NetworkTab.qml:787, Modules/Settings/NetworkTab.qml:819",
+    "reference": "Modules/Settings/NetworkTab.qml:792, Modules/Settings/NetworkTab.qml:824",
     "comment": ""
   },
   {
@@ -7988,7 +8096,13 @@
   {
     "term": "Yes",
     "context": "Yes",
-    "reference": "Widgets/VpnProfileDelegate.qml:78, Modules/Settings/PrinterTab.qml:825, Modules/Settings/NetworkTab.qml:1772, Modules/Settings/DisplayConfig/DisplayConfigState.qml:853, Modules/Settings/DisplayConfig/DisplayConfigState.qml:857, Modules/Settings/DisplayConfig/DisplayConfigState.qml:867, Modules/Settings/DisplayConfig/DisplayConfigState.qml:877, Modules/Settings/DisplayConfig/DisplayConfigState.qml:879",
+    "reference": "Widgets/VpnProfileDelegate.qml:78, Modules/Settings/PrinterTab.qml:822, Modules/Settings/NetworkTab.qml:1827, Modules/Settings/DisplayConfig/DisplayConfigState.qml:853, Modules/Settings/DisplayConfig/DisplayConfigState.qml:857, Modules/Settings/DisplayConfig/DisplayConfigState.qml:867, Modules/Settings/DisplayConfig/DisplayConfigState.qml:877, Modules/Settings/DisplayConfig/DisplayConfigState.qml:879",
+    "comment": ""
+  },
+  {
+    "term": "Yesterday",
+    "context": "notification history filter",
+    "reference": "Modules/Notifications/Center/HistoryNotificationList.qml:89",
     "comment": ""
   },
   {
@@ -8030,7 +8144,7 @@
   {
     "term": "days",
     "context": "days",
-    "reference": "Modules/Settings/ClipboardTab.qml:152",
+    "reference": "Modules/Settings/NotificationsTab.qml:272, Modules/Settings/ClipboardTab.qml:152",
     "comment": ""
   },
   {
@@ -8118,6 +8232,12 @@
     "comment": ""
   },
   {
+    "term": "now",
+    "context": "now",
+    "reference": "Services/NotificationService.qml:195",
+    "comment": ""
+  },
+  {
     "term": "official",
     "context": "official",
     "reference": "Modules/Settings/PluginBrowser.qml:462, Modules/Settings/ThemeBrowser.qml:498",
@@ -8145,6 +8265,12 @@
     "term": "wtype not available - install wtype for paste support",
     "context": "wtype not available - install wtype for paste support",
     "reference": "Modals/Clipboard/ClipboardHistoryModal.qml:59",
+    "comment": ""
+  },
+  {
+    "term": "yesterday",
+    "context": "yesterday",
+    "reference": "Services/NotificationService.qml:205",
     "comment": ""
   },
   {

@@ -53,6 +53,8 @@ Singleton {
     signal lockRequested
     signal fadeToLockRequested
     signal cancelFadeToLock
+    signal fadeToDpmsRequested
+    signal cancelFadeToDpms
     signal requestMonitorOff
     signal requestMonitorOn
     signal requestSuspend
@@ -61,9 +63,15 @@ Singleton {
     property var lockMonitor: null
     property var suspendMonitor: null
     property var lockComponent: null
+    property bool monitorsOff: false
 
     function wake() {
         requestMonitorOn();
+    }
+
+    function reapplyDpmsIfNeeded() {
+        if (monitorsOff)
+            CompositorService.powerOffMonitors();
     }
 
     function createIdleMonitors() {
@@ -90,8 +98,15 @@ Singleton {
             monitorOffMonitor.timeout = Qt.binding(() => root.monitorTimeout);
             monitorOffMonitor.isIdleChanged.connect(function () {
                 if (monitorOffMonitor.isIdle) {
-                    root.requestMonitorOff();
+                    if (SettingsData.fadeToDpmsEnabled) {
+                        root.fadeToDpmsRequested();
+                    } else {
+                        root.requestMonitorOff();
+                    }
                 } else {
+                    if (SettingsData.fadeToDpmsEnabled) {
+                        root.cancelFadeToDpms();
+                    }
                     root.requestMonitorOn();
                 }
             });
@@ -131,10 +146,12 @@ Singleton {
     Connections {
         target: root
         function onRequestMonitorOff() {
+            monitorsOff = true;
             CompositorService.powerOffMonitors();
         }
 
         function onRequestMonitorOn() {
+            monitorsOff = false;
             CompositorService.powerOnMonitors();
         }
 

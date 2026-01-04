@@ -52,6 +52,7 @@ DankPopout {
 
     onOpened: {
         searchMode = "apps";
+        appLauncher.ensureInitialized();
         appLauncher.searchQuery = "";
         appLauncher.selectedIndex = 0;
         appLauncher.setCategory(I18n.tr("All"));
@@ -344,7 +345,7 @@ DankPopout {
                         width: parent.width - Theme.spacingS * 2
                         height: 40
                         anchors.horizontalCenter: parent.horizontalCenter
-                        visible: searchField.text.length === 0 && appDrawerPopout.searchMode === "apps"
+                        visible: appDrawerPopout.searchMode === "apps"
 
                         Rectangle {
                             width: 180
@@ -404,7 +405,7 @@ DankPopout {
                         height: {
                             let usedHeight = 40 + Theme.spacingS;
                             usedHeight += 52 + Theme.spacingS;
-                            usedHeight += (searchField.text.length === 0 && appDrawerPopout.searchMode === "apps" ? 40 : 0);
+                            usedHeight += appDrawerPopout.searchMode === "apps" ? 40 : 0;
                             return parent.height - usedHeight;
                         }
                         radius: Theme.cornerRadius

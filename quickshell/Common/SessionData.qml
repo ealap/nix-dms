@@ -127,11 +127,19 @@ Singleton {
     }
 
     function _onWritableCheckComplete(writable) {
+        const wasReadOnly = _isReadOnly;
         _isReadOnly = !writable;
         if (_isReadOnly) {
-            console.info("SessionData: session.json is read-only (NixOS home-manager mode)");
-        } else if (_pendingMigration) {
-            settingsFile.setText(JSON.stringify(_pendingMigration, null, 2));
+            _hasUnsavedChanges = _checkForUnsavedChanges();
+            if (!wasReadOnly)
+                console.info("SessionData: session.json is now read-only");
+        } else {
+            _loadedSessionSnapshot = getCurrentSessionJson();
+            _hasUnsavedChanges = false;
+            if (wasReadOnly)
+                console.info("SessionData: session.json is now writable");
+            if (_pendingMigration)
+                settingsFile.setText(JSON.stringify(_pendingMigration, null, 2));
         }
         _pendingMigration = null;
     }
@@ -215,11 +223,9 @@ Singleton {
     function saveSettings() {
         if (isGreeterMode || _parseError || !_hasLoaded)
             return;
-        if (_isReadOnly) {
-            _hasUnsavedChanges = _checkForUnsavedChanges();
-            return;
-        }
         settingsFile.setText(getCurrentSessionJson());
+        if (_isReadOnly)
+            _checkSessionWritable();
     }
 
     function migrateFromUndefinedToV1(settings) {
@@ -952,6 +958,10 @@ Singleton {
                 _hasUnsavedChanges = false;
                 parseSettings(settingsFile.text());
             }
+        }
+        onSaveFailed: error => {
+            root._isReadOnly = true;
+            root._hasUnsavedChanges = root._checkForUnsavedChanges();
         }
     }
 

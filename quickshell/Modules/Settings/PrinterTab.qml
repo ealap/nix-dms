@@ -421,7 +421,6 @@ Item {
 
                                 DankTextField {
                                     width: parent.width - 80 - Theme.spacingS
-                                    height: 40
                                     placeholderText: I18n.tr("Printer name (no spaces)")
                                     text: printerTab.newPrinterName
                                     onTextEdited: printerTab.newPrinterName = text.replace(/\s/g, "-")
@@ -443,7 +442,6 @@ Item {
 
                                 DankTextField {
                                     width: parent.width - 80 - Theme.spacingS
-                                    height: 40
                                     placeholderText: I18n.tr("Optional location")
                                     text: printerTab.newPrinterLocation
                                     onTextEdited: printerTab.newPrinterLocation = text
@@ -465,7 +463,6 @@ Item {
 
                                 DankTextField {
                                     width: parent.width - 80 - Theme.spacingS
-                                    height: 40
                                     placeholderText: I18n.tr("Optional description")
                                     text: printerTab.newPrinterInfo
                                     onTextEdited: printerTab.newPrinterInfo = text

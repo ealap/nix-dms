@@ -14,6 +14,9 @@
   "%1 connected": {
     "%1 connected": ""
   },
+  "%1 days ago": {
+    "%1 days ago": ""
+  },
   "%1 display(s)": {
     "%1 display(s)": "%1 表示"
   },
@@ -28,6 +31,9 @@
   },
   "%1 widgets": {
     "%1 widgets": "%1 ウィジェット"
+  },
+  "%1m ago": {
+    "%1m ago": ""
   },
   "(Unnamed)": {
     "(Unnamed)": "（名前なし）"
@@ -1373,6 +1379,9 @@
   "Fade to lock screen": {
     "Fade to lock screen": ""
   },
+  "Fade to monitor off": {
+    "Fade to monitor off": ""
+  },
   "Failed to activate configuration": {
     "Failed to activate configuration": "設定が適用できませんでした"
   },
@@ -1663,6 +1672,9 @@
   },
   "Gradually fade the screen before locking with a configurable grace period": {
     "Gradually fade the screen before locking with a configurable grace period": ""
+  },
+  "Gradually fade the screen before turning off monitors with a configurable grace period": {
+    "Gradually fade the screen before turning off monitors with a configurable grace period": ""
   },
   "Graph Time Range": {
     "Graph Time Range": ""
@@ -1997,6 +2009,9 @@
   "Lock before suspend": {
     "Lock before suspend": "一時停止前にロック"
   },
+  "Lock fade grace period": {
+    "Lock fade grace period": ""
+  },
   "Log Out": {
     "Log Out": "ログアウト"
   },
@@ -2170,6 +2185,9 @@
   },
   "Monitor Configuration": {
     "Monitor Configuration": ""
+  },
+  "Monitor fade grace period": {
+    "Monitor fade grace period": ""
   },
   "Monitor whose wallpaper drives dynamic theming colors": {
     "Monitor whose wallpaper drives dynamic theming colors": "ダイナミックテーマの色を駆動する壁紙をモニター"
@@ -4030,6 +4048,50 @@
   "no wallpaper status": {
     "No wallpaper selected": ""
   },
+  "notification center tab": {
+    "Current": "",
+    "History": ""
+  },
+  "notification history filter": {
+    "All": "",
+    "Last hour": "",
+    "Today": "",
+    "Yesterday": ""
+  },
+  "notification history filter for content older than other filters": {
+    "Older": ""
+  },
+  "notification history filter | notification history retention option": {
+    "30 days": "",
+    "7 days": ""
+  },
+  "notification history limit": {
+    "Maximum number of notifications to keep": ""
+  },
+  "notification history retention option": {
+    "1 day": "",
+    "14 days": "",
+    "3 days": "",
+    "Forever": ""
+  },
+  "notification history retention settings label": {
+    "History Retention": ""
+  },
+  "notification history setting": {
+    "Auto-delete notifications older than this": "",
+    "Save critical priority notifications to history": "",
+    "Save low priority notifications to history": "",
+    "Save normal priority notifications to history": ""
+  },
+  "notification history toggle description": {
+    "Save dismissed notifications to history": ""
+  },
+  "notification history toggle label": {
+    "Enable History": ""
+  },
+  "now": {
+    "now": ""
+  },
   "official": {
     "official": "公式"
   },
@@ -4125,6 +4187,9 @@
   },
   "wtype not available - install wtype for paste support": {
     "wtype not available - install wtype for paste support": ""
+  },
+  "yesterday": {
+    "yesterday": ""
   },
   "• Install only from trusted sources": {
     "• Install only from trusted sources": "• 信頼できるソースからのみインストールする"

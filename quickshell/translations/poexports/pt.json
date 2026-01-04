@@ -14,6 +14,9 @@
   "%1 connected": {
     "%1 connected": "%1 conectado(s)"
   },
+  "%1 days ago": {
+    "%1 days ago": ""
+  },
   "%1 display(s)": {
     "%1 display(s)": "%1 monitor(es)"
   },
@@ -29,6 +32,9 @@
   "%1 widgets": {
     "%1 widgets": "%1 widgets"
   },
+  "%1m ago": {
+    "%1m ago": ""
+  },
   "(Unnamed)": {
     "(Unnamed)": "(Sem nome)"
   },
@@ -36,7 +42,7 @@
     "0 = square corners": "0 = cantos quadrados"
   },
   "1 day": {
-    "1 day": ""
+    "1 day": "1 dia"
   },
   "1 event": {
     "1 event": "1 evento"
@@ -57,7 +63,7 @@
     "10-bit Color": ""
   },
   "14 days": {
-    "14 days": ""
+    "14 days": "14 dias"
   },
   "15 seconds": {
     "15 seconds": "15 segundos"
@@ -78,13 +84,13 @@
     "270°": ""
   },
   "3 days": {
-    "3 days": ""
+    "3 days": "3 dias"
   },
   "3 seconds": {
     "3 seconds": "3 segundos"
   },
   "30 days": {
-    "30 days": ""
+    "30 days": "30 dias"
   },
   "30 seconds": {
     "30 seconds": "30 segundos"
@@ -93,19 +99,19 @@
     "3rd party": "Terceiros"
   },
   "5 minutes": {
-    "5 minutes": ""
+    "5 minutes": "5 minutos"
   },
   "5 seconds": {
-    "5 seconds": ""
+    "5 seconds": "5 segundos"
   },
   "7 days": {
-    "7 days": ""
+    "7 days": "7 dias"
   },
   "8 seconds": {
-    "8 seconds": ""
+    "8 seconds": "8 segundos"
   },
   "90 days": {
-    "90 days": ""
+    "90 days": "90 dias"
   },
   "90°": {
     "90°": ""
@@ -195,7 +201,7 @@
     "Adjust the number of columns in grid view mode.": "Ajusta o número de colunas no modo de visualização em grade"
   },
   "Advanced": {
-    "Advanced": ""
+    "Advanced": "Avançado"
   },
   "Afternoon": {
     "Afternoon": "Tarde"
@@ -216,7 +222,7 @@
     "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": "Alt+←/Backspace: Voltar • F1/I: Informações de Arquivo • F10: Ajuda • Esc: Fechar"
   },
   "Always Show Percentage": {
-    "Always Show Percentage": ""
+    "Always Show Percentage": "Sempre Mostrar Porcentagem"
   },
   "Always on icons": {
     "Always on icons": "Ícones sempre ligados"
@@ -231,7 +237,7 @@
     "Always show when there's only one connected display": ""
   },
   "Amount": {
-    "Amount": ""
+    "Amount": "Quantidade"
   },
   "Analog": {
     "Analog": ""
@@ -300,7 +306,7 @@
     "Audio Output Switch": ""
   },
   "Audio Visualizer": {
-    "Audio Visualizer": ""
+    "Audio Visualizer": "Visualizador de Áudio"
   },
   "Audio volume control": {
     "Audio volume control": ""
@@ -348,7 +354,7 @@
     "Auto-Clear After": ""
   },
   "Auto-close Niri overview when launching apps.": {
-    "Auto-close Niri overview when launching apps.": ""
+    "Auto-close Niri overview when launching apps.": "Fechar automaticamente overview do niri ao lançar aplicativos."
   },
   "Auto-hide": {
     "Auto-hide": "Esconder Automaticamente"
@@ -444,7 +450,7 @@
     "Battery level and power management": "Nível de bateria e manejamento de energia"
   },
   "Behavior": {
-    "Behavior": ""
+    "Behavior": "Comportamento"
   },
   "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": {
     "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": "Vincular o bloqueio de tela aos sinais do DBus do loginctl. Desative se estiver usando um bloqueio de tela externo"
@@ -579,7 +585,7 @@
     "Capacity": "Capacidade"
   },
   "Caps Lock": {
-    "Caps Lock": ""
+    "Caps Lock": "Caps Lock"
   },
   "Caps Lock Indicator": {
     "Caps Lock Indicator": "Indicador de Caps Lock"
@@ -660,10 +666,10 @@
     "Clear All Jobs": "Limpar Todos os Trabalhos"
   },
   "Clear all history when server starts": {
-    "Clear all history when server starts": ""
+    "Clear all history when server starts": "Limpar todo o histórico quando o servidor iniciar"
   },
   "Clear at Startup": {
-    "Clear at Startup": ""
+    "Clear at Startup": "Limpar ao Iniciar"
   },
   "Click 'Setup' to create dms/binds.kdl and add include to config.kdl.": {
     "Click 'Setup' to create dms/binds.kdl and add include to config.kdl.": ""
@@ -681,7 +687,7 @@
     "Click to capture": "Clique para capturar"
   },
   "Clipboard": {
-    "Clipboard": ""
+    "Clipboard": "Área de transferência"
   },
   "Clipboard History": {
     "Clipboard History": "Histórico da Área de Transferência"
@@ -690,10 +696,10 @@
     "Clipboard Manager": "Gerenciador da Área de Transferência"
   },
   "Clipboard service not available": {
-    "Clipboard service not available": ""
+    "Clipboard service not available": "Serviço de área de transferência não disponível"
   },
   "Clipboard works but nothing saved to disk": {
-    "Clipboard works but nothing saved to disk": ""
+    "Clipboard works but nothing saved to disk": "A área de transferência funciona mas nada é salvo no disco"
   },
   "Clock": {
     "Clock": "Relógio"
@@ -708,7 +714,7 @@
     "Close Overview on Launch": "Fechar Overview ao Lançar Aplicativos"
   },
   "Color": {
-    "Color": ""
+    "Color": "Cor"
   },
   "Color Gamut": {
     "Color Gamut": ""
@@ -717,7 +723,7 @@
     "Color Management": ""
   },
   "Color Mode": {
-    "Color Mode": ""
+    "Color Mode": "Modo de Cor"
   },
   "Color Override": {
     "Color Override": "Sobrescrever Cor"
@@ -726,7 +732,7 @@
     "Color Picker": "Seletor de Cores"
   },
   "Color Temperature": {
-    "Color Temperature": ""
+    "Color Temperature": "Temperatura da Cor"
   },
   "Color displayed on monitors without the lock screen": {
     "Color displayed on monitors without the lock screen": ""
@@ -840,7 +846,7 @@
     "Controls opacity of all popouts, modals, and their content layers": ""
   },
   "Cooldown": {
-    "Cooldown": ""
+    "Cooldown": "Tempo de espera"
   },
   "Copied to clipboard": {
     "Copied to clipboard": "Copiado para a área de transferência"
@@ -855,7 +861,7 @@
     "Copy Process Name": "Copiar Nome do Processo"
   },
   "Corner Radius": {
-    "Corner Radius": ""
+    "Corner Radius": "Arredondamento"
   },
   "Corner Radius Override": {
     "Corner Radius Override": "Sobrescrever Arredondamento"
@@ -882,13 +888,13 @@
     "Current Items": "Itens Atuais"
   },
   "Current Period": {
-    "Current Period": ""
+    "Current Period": "Período Atual"
   },
   "Current Status": {
-    "Current Status": ""
+    "Current Status": "Status Atual"
   },
   "Current Temp": {
-    "Current Temp": ""
+    "Current Temp": "Temperatura Atual"
   },
   "Current Weather": {
     "Current Weather": "Clima Atual"
@@ -960,7 +966,7 @@
     "DMS out of date": "DMS desatualizado"
   },
   "DMS service is not connected. Clipboard settings are unavailable.": {
-    "DMS service is not connected. Clipboard settings are unavailable.": ""
+    "DMS service is not connected. Clipboard settings are unavailable.": "Serviço do DMS não está conectado. Configurações de área de transferência não estão disponíveis."
   },
   "DMS shell actions (launcher, clipboard, etc.)": {
     "DMS shell actions (launcher, clipboard, etc.)": "Ações do shell do DMS (lançador, área de transferência, etc.)"
@@ -1086,16 +1092,16 @@
     "Disable Autoconnect": "Desativar conexão automática"
   },
   "Disable Clipboard Manager": {
-    "Disable Clipboard Manager": ""
+    "Disable Clipboard Manager": "Desativar Gerenciador de Área de Transferência"
   },
   "Disable History Persistence": {
-    "Disable History Persistence": ""
+    "Disable History Persistence": "Desativar Persistência de Histórico"
   },
   "Disable Output": {
     "Disable Output": ""
   },
   "Disable clipboard manager entirely (requires restart)": {
-    "Disable clipboard manager entirely (requires restart)": ""
+    "Disable clipboard manager entirely (requires restart)": "Desativa o gerenciador de área de transferência inteiramente (requer reinício)"
   },
   "Disabled": {
     "Disabled": "Desativado"
@@ -1164,7 +1170,7 @@
     "Display seconds in the clock": ""
   },
   "Display the power system menu": {
-    "Display the power system menu": ""
+    "Display the power system menu": "Mostra o menu de energia do sistema"
   },
   "Display volume and brightness percentage values in OSD popups": {
     "Display volume and brightness percentage values in OSD popups": ""
@@ -1284,16 +1290,16 @@
     "Enable loginctl lock integration": "Ativar integração de bloqueio do loginctl"
   },
   "Enable password field display on the lock screen window": {
-    "Show Password Field": ""
+    "Show Password Field": "Mostrar Campo de Senha"
   },
   "Enable power action icon on the lock screen window": {
-    "Show Power Actions": ""
+    "Show Power Actions": "Mostrar Ações de Energia"
   },
   "Enable profile image display on the lock screen window": {
-    "Show Profile Image": ""
+    "Show Profile Image": "Mostrar Imagem de Perfil"
   },
   "Enable system date display on the lock screen window": {
-    "Show System Date": ""
+    "Show System Date": "Mostrar Data do Sistema"
   },
   "Enable system status icons on the lock screen window": {
     "Show System Icons": ""
@@ -1373,6 +1379,9 @@
   "Fade to lock screen": {
     "Fade to lock screen": "Esmaecer para a tela de bloqueio"
   },
+  "Fade to monitor off": {
+    "Fade to monitor off": ""
+  },
   "Failed to activate configuration": {
     "Failed to activate configuration": "Erro ao ativar configuração"
   },
@@ -1395,7 +1404,7 @@
     "Failed to connect to %1": ""
   },
   "Failed to copy entry": {
-    "Failed to copy entry": ""
+    "Failed to copy entry": "Falha ao copiar entrada"
   },
   "Failed to create printer": {
     "Failed to create printer": "Falha ao criar impressora"
@@ -1446,7 +1455,7 @@
     "Failed to load VPN config": "Falha ao carregar configuração da VPN"
   },
   "Failed to load clipboard configuration.": {
-    "Failed to load clipboard configuration.": ""
+    "Failed to load clipboard configuration.": "Falha ao carregar configuração de área de transferência."
   },
   "Failed to move job": {
     "Failed to move job": "Falha ao mover trabalho"
@@ -1482,7 +1491,7 @@
     "Failed to resume printer": "Falha ao resumir impressora"
   },
   "Failed to save clipboard setting": {
-    "Failed to save clipboard setting": ""
+    "Failed to save clipboard setting": "Falha ao salvar configuração de área de transferência"
   },
   "Failed to save keybind": {
     "Failed to save keybind": "Falha ao salvar atalho"
@@ -1581,7 +1590,7 @@
     "Focused Window": "Janela Focada"
   },
   "Follow focus": {
-    "Follow focus": ""
+    "Follow focus": "Seguir foco"
   },
   "Font Family": {
     "Font Family": "Família da Fonte"
@@ -1664,6 +1673,9 @@
   "Gradually fade the screen before locking with a configurable grace period": {
     "Gradually fade the screen before locking with a configurable grace period": "Gradualmente esmaecer a tela antes de bloquear com um período de tolerância configurável"
   },
+  "Gradually fade the screen before turning off monitors with a configurable grace period": {
+    "Gradually fade the screen before turning off monitors with a configurable grace period": ""
+  },
   "Graph Time Range": {
     "Graph Time Range": ""
   },
@@ -1728,7 +1740,7 @@
     "High-fidelity palette that preserves source hues.": "Paleta de alta fidelidade que preserva tons da fonte."
   },
   "History Settings": {
-    "History Settings": ""
+    "History Settings": "Configurações do Histórico"
   },
   "Hold Duration": {
     "Hold Duration": "Duração do Pressionamento"
@@ -1740,7 +1752,7 @@
     "Hold to Confirm Power Actions": "Manter Pressionado para Confirmar Ações de Energia"
   },
   "Hold to confirm (%1 ms)": {
-    "Hold to confirm (%1 ms)": ""
+    "Hold to confirm (%1 ms)": "Segure para confirmar (%1 ms)"
   },
   "Hold to confirm (%1s)": {
     "Hold to confirm (%1s)": "Manter pressionado para confirmar (%1s)"
@@ -1791,13 +1803,13 @@
     "Idle monitoring not supported - requires newer Quickshell version": "Monitoramento de inatividade não disponível – requer versão mais recente do Quickshell"
   },
   "If the field is hidden, it will appear as soon as a key is pressed.": {
-    "If the field is hidden, it will appear as soon as a key is pressed.": ""
+    "If the field is hidden, it will appear as soon as a key is pressed.": "Se o campo está escondido, ele aparecerá no momento que uma tecla e pressionada."
   },
   "Image": {
     "Image": "Imagem"
   },
   "Image copied to clipboard": {
-    "Image copied to clipboard": ""
+    "Image copied to clipboard": "Imagem copiada para a área de trabalho"
   },
   "Import": {
     "Import": "Importar"
@@ -1989,13 +2001,16 @@
     "Lock Screen Format": "Formato da Tela de Bloqueio"
   },
   "Lock Screen behaviour": {
-    "Lock Screen behaviour": ""
+    "Lock Screen behaviour": "Comportamento da Tela de Bloqueio"
   },
   "Lock Screen layout": {
-    "Lock Screen layout": ""
+    "Lock Screen layout": "Layout da Tela de Bloqueio"
   },
   "Lock before suspend": {
     "Lock before suspend": "Bloquear antes de suspender"
+  },
+  "Lock fade grace period": {
+    "Lock fade grace period": ""
   },
   "Log Out": {
     "Log Out": "Sair"
@@ -2061,25 +2076,25 @@
     "Matugen Target Monitor": "Monitor-alvo do Matugen"
   },
   "Matugen Templates": {
-    "Matugen Templates": ""
+    "Matugen Templates": "Templates do Matugen"
   },
   "Max apps to show": {
     "Max apps to show": "Máximo de apps para mostrar"
   },
   "Maximize Detection": {
-    "Maximize Detection": ""
+    "Maximize Detection": "Detecção de Maximizado"
   },
   "Maximum Entry Size": {
-    "Maximum Entry Size": ""
+    "Maximum Entry Size": "Tamanho Máximo de Entrada"
   },
   "Maximum History": {
-    "Maximum History": ""
+    "Maximum History": "Histórico Máximo"
   },
   "Maximum number of clipboard entries to keep": {
-    "Maximum number of clipboard entries to keep": ""
+    "Maximum number of clipboard entries to keep": "Número máximo de entradas da área de transferência para guardar"
   },
   "Maximum size per clipboard entry": {
-    "Maximum size per clipboard entry": ""
+    "Maximum size per clipboard entry": "Tamanho máximo por entrada da área de transferência"
   },
   "Media": {
     "Media": "Mídia"
@@ -2171,6 +2186,9 @@
   "Monitor Configuration": {
     "Monitor Configuration": ""
   },
+  "Monitor fade grace period": {
+    "Monitor fade grace period": ""
+  },
   "Monitor whose wallpaper drives dynamic theming colors": {
     "Monitor whose wallpaper drives dynamic theming colors": "Monitor o qual papel de parede controla cores de tema dinâmicas"
   },
@@ -2229,7 +2247,7 @@
     "Network download and upload speed display": "Monitor de velocidades de download e upload da rede"
   },
   "Never": {
-    "Never": ""
+    "Never": "Nunca"
   },
   "New": {
     "New": "Novo"
@@ -2247,7 +2265,7 @@
     "New York, NY": "Nova York, NY"
   },
   "Next Transition": {
-    "Next Transition": ""
+    "Next Transition": "Próxima Transição"
   },
   "Night": {
     "Night": "Noite"
@@ -2259,7 +2277,7 @@
     "Night Temperature": "Temperatura Noturna"
   },
   "Niri Integration": {
-    "Niri Integration": ""
+    "Niri Integration": "Integração com niri"
   },
   "Niri Layout Overrides": {
     "Niri Layout Overrides": ""
@@ -2280,7 +2298,7 @@
     "No Bluetooth adapter found": "Adaptador Bluetooth não encontrado"
   },
   "No GPU detected": {
-    "No GPU detected": ""
+    "No GPU detected": "Nenhuma GPU detectada"
   },
   "No Media": {
     "No Media": "Sem Mídia"
@@ -2367,7 +2385,7 @@
     "Normal": ""
   },
   "Normal Font": {
-    "Normal Font": ""
+    "Normal Font": "Fonte Normal"
   },
   "Normal Priority": {
     "Normal Priority": "Prioridade Normal"
@@ -2469,7 +2487,7 @@
     "Optional location": "Localização opcional"
   },
   "Options": {
-    "Options": ""
+    "Options": "Opções"
   },
   "Other": {
     "Other": "Outro"
@@ -2493,7 +2511,7 @@
     "Override": "Sobrescrever"
   },
   "Override Corner Radius": {
-    "Override Corner Radius": ""
+    "Override Corner Radius": "Sobrescrever Arredondamento"
   },
   "Override Gaps": {
     "Override Gaps": ""
@@ -2619,7 +2637,7 @@
     "Plugins": "Plugins"
   },
   "Pointer": {
-    "Pointer": ""
+    "Pointer": "Ponteiro"
   },
   "Popup Position": {
     "Popup Position": "Posição do Popup"
@@ -2634,7 +2652,7 @@
     "Possible Override Conflicts": ""
   },
   "Power": {
-    "Power": ""
+    "Power": "Energia"
   },
   "Power & Security": {
     "Power & Security": "Energia & Segurança"
@@ -2655,7 +2673,7 @@
     "Power Options": "Opções de Energia"
   },
   "Power Profile": {
-    "Power Profile": ""
+    "Power Profile": "Perfil de Energia"
   },
   "Power Profile Degradation": {
     "Power Profile Degradation": "Degradação do Perfil de Energia"
@@ -2664,7 +2682,7 @@
     "Power profile management available": ""
   },
   "Power source": {
-    "Power source": ""
+    "Power source": "Fonte de energia"
   },
   "Precipitation Chance": {
     "Precipitation Chance": "Chance de Precipitação"
@@ -2790,7 +2808,7 @@
     "Remove": "Remover"
   },
   "Remove gaps and border when windows are maximized": {
-    "Remove gaps and border when windows are maximized": ""
+    "Remove gaps and border when windows are maximized": "Remover espaçámentos e borda quando janelas estão maximizadas"
   },
   "Report": {
     "Report": "Relatório"
@@ -2868,7 +2886,7 @@
     "Rounded corners for windows": ""
   },
   "Run DMS Templates": {
-    "Run DMS Templates": ""
+    "Run DMS Templates": "Rodar templates do DMS"
   },
   "Run User Templates": {
     "Run User Templates": "Executar Templates do Usuário"
@@ -3273,7 +3291,7 @@
     "Sound Theme": "Tema do Som"
   },
   "Sounds": {
-    "Sounds": ""
+    "Sounds": "Sons"
   },
   "Space between windows": {
     "Space between windows": ""
@@ -3369,7 +3387,7 @@
     "System Monitor Unavailable": "Monitor do Sistema Indisponível"
   },
   "System Sounds": {
-    "System Sounds": ""
+    "System Sounds": "Sons do Sistema"
   },
   "System Tray": {
     "System Tray": "Bandeja do Sistema"
@@ -3468,7 +3486,7 @@
     "Time & Weather": "Hora & Clima"
   },
   "Time Format": {
-    "Time Format": ""
+    "Time Format": "Formato de Tempo"
   },
   "Time remaining: %1": {
     "Time remaining: %1": ""
@@ -3549,7 +3567,7 @@
     "Transition Effect": "Efeito de Transição"
   },
   "Transparency": {
-    "Transparency": ""
+    "Transparency": "Transparência"
   },
   "Turn off monitors after": {
     "Turn off monitors after": "Desligar monitores depois de"
@@ -3558,10 +3576,10 @@
     "Type": "Tipo"
   },
   "Typography": {
-    "Typography": ""
+    "Typography": "Tipografia"
   },
   "Typography & Motion": {
-    "Typography & Motion": ""
+    "Typography & Motion": "Tipografia & Movimento"
   },
   "Unavailable": {
     "Unavailable": "Indisponível"
@@ -3741,7 +3759,7 @@
     "Visual effect used when wallpaper changes": "Efeito visual usado na mudança do papel de parede"
   },
   "Volume": {
-    "Volume": ""
+    "Volume": "Volume"
   },
   "Volume Changed": {
     "Volume Changed": "Volume Alterado"
@@ -3854,7 +3872,7 @@
     "Wind Speed": "Velocidade do Vento"
   },
   "Window Corner Radius": {
-    "Window Corner Radius": ""
+    "Window Corner Radius": "Arredondamento de Janelas"
   },
   "Window Gaps": {
     "Window Gaps": ""
@@ -3977,7 +3995,7 @@
     "events": "eventos"
   },
   "files": {
-    "files": ""
+    "files": "arquivos"
   },
   "generic theme description": {
     "Material Design inspired color themes": ""
@@ -4016,7 +4034,7 @@
     "Matugen Missing": ""
   },
   "minutes": {
-    "minutes": ""
+    "minutes": "minutos"
   },
   "ms": {
     "ms": ""
@@ -4029,6 +4047,50 @@
   },
   "no wallpaper status": {
     "No wallpaper selected": ""
+  },
+  "notification center tab": {
+    "Current": "",
+    "History": ""
+  },
+  "notification history filter": {
+    "All": "",
+    "Last hour": "",
+    "Today": "",
+    "Yesterday": ""
+  },
+  "notification history filter for content older than other filters": {
+    "Older": ""
+  },
+  "notification history filter | notification history retention option": {
+    "30 days": "",
+    "7 days": ""
+  },
+  "notification history limit": {
+    "Maximum number of notifications to keep": ""
+  },
+  "notification history retention option": {
+    "1 day": "",
+    "14 days": "",
+    "3 days": "",
+    "Forever": ""
+  },
+  "notification history retention settings label": {
+    "History Retention": ""
+  },
+  "notification history setting": {
+    "Auto-delete notifications older than this": "",
+    "Save critical priority notifications to history": "",
+    "Save low priority notifications to history": "",
+    "Save normal priority notifications to history": ""
+  },
+  "notification history toggle description": {
+    "Save dismissed notifications to history": ""
+  },
+  "notification history toggle label": {
+    "Enable History": ""
+  },
+  "now": {
+    "now": ""
   },
   "official": {
     "official": "oficial"
@@ -4058,7 +4120,7 @@
     "Color theme from DMS registry": ""
   },
   "seconds": {
-    "seconds": ""
+    "seconds": "segundos"
   },
   "settings window title": {
     "Settings": "Configurações"
@@ -4125,6 +4187,9 @@
   },
   "wtype not available - install wtype for paste support": {
     "wtype not available - install wtype for paste support": ""
+  },
+  "yesterday": {
+    "yesterday": ""
   },
   "• Install only from trusted sources": {
     "• Install only from trusted sources": "Instale apenas de fontes confiáveis"

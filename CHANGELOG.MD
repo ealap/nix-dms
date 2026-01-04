@@ -15,3 +15,4 @@ This file is more of a quick reference so I know what to account for before next
   - new IPC targets
 - Initial RTL support/i18n
 - Theme registry
+- Notification persistence & history

@@ -78,6 +78,7 @@
     "list.focusBackground": "{{colors.surface_container_high.light.hex}}",
     "list.focusForeground": "{{colors.on_surface.light.hex}}",
     "list.highlightForeground": "{{colors.primary.light.hex}}",
+    "list.focusHighlightForeground": "{{colors.on_primary.light.hex}}",
     "list.errorForeground": "{{colors.error.light.hex}}",
     "list.warningForeground": "{{colors.tertiary.light.hex}}",
     "statusBar.background": "{{colors.surface_container.light.hex}}",
@@ -154,9 +155,9 @@
     "breadcrumb.foreground": "{{colors.outline.light.hex}}",
     "breadcrumb.focusForeground": "{{colors.on_surface.light.hex}}",
     "breadcrumb.activeSelectionForeground": "{{colors.primary.light.hex}}",
-    "scrollbarSlider.background": "{{colors.outline.light.hex}}40",
-    "scrollbarSlider.hoverBackground": "{{colors.outline.light.hex}}60",
-    "scrollbarSlider.activeBackground": "{{colors.outline.light.hex}}80",
+    "scrollbarSlider.background": "{{colors.on_surface_variant.light.hex}}50",
+    "scrollbarSlider.hoverBackground": "{{colors.on_surface_variant.light.hex}}80",
+    "scrollbarSlider.activeBackground": "{{colors.on_surface_variant.light.hex}}AA",
     "menubar.selectionBackground": "{{colors.primary_container.light.hex}}",
     "menubar.selectionForeground": "{{colors.on_primary_container.light.hex}}",
     "menu.background": "{{colors.surface_container.light.hex}}",
@@ -239,10 +240,46 @@
         "meta.object-literal.key",
         "meta.property.object",
         "variable.other.property",
-        "entity.name.tag.yaml"
+        "support.type.property-name.json"
       ],
       "settings": {
-        "foreground": "{{dank16.color4.light.hex}}"
+        "foreground": "{{colors.on_surface.light.hex}}"
+      }
+    },
+    {
+      "scope": ["entity.name.tag.yaml", "punctuation.definition.block.sequence.item.yaml", "punctuation.separator.key-value.mapping.yaml"],
+      "settings": {
+        "foreground": "{{colors.on_surface.light.hex}}"
+      }
+    },
+    {
+      "scope": ["source.yaml string.unquoted", "source.yaml string.quoted"],
+      "settings": {
+        "foreground": "{{dank16.color3.light.hex}}"
+      }
+    },
+    {
+      "scope": ["constant.language.boolean.yaml", "constant.language.null.yaml"],
+      "settings": {
+        "foreground": "{{dank16.color0.light.hex}}"
+      }
+    },
+    {
+      "scope": ["entity.name.tag.toml", "support.type.property-name.toml"],
+      "settings": {
+        "foreground": "{{colors.on_surface.light.hex}}"
+      }
+    },
+    {
+      "scope": ["string.quoted.single.basic.line.toml", "string.quoted.double.basic.line.toml"],
+      "settings": {
+        "foreground": "{{dank16.color2.light.hex}}"
+      }
+    },
+    {
+      "scope": ["constant.language.boolean.toml", "constant.numeric.toml"],
+      "settings": {
+        "foreground": "{{dank16.color0.light.hex}}"
       }
     },
     {

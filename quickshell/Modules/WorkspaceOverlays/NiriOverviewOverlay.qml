@@ -125,7 +125,12 @@ Scope {
                 }
 
                 onShouldShowSpotlightChanged: {
-                    if (shouldShowSpotlight || !isActiveScreen)
+                    if (shouldShowSpotlight) {
+                        if (spotlightContent?.appLauncher)
+                            spotlightContent.appLauncher.ensureInitialized();
+                        return;
+                    }
+                    if (!isActiveScreen)
                         return;
                     Qt.callLater(() => keyboardFocusScope.forceActiveFocus());
                 }
