@@ -41,14 +41,14 @@ FloatingWindow {
 
     onVisibleChanged: {
         if (visible) {
-            if (parentModal) {
+            if (parentModal && "shouldHaveFocus" in parentModal) {
                 parentModal.shouldHaveFocus = false;
                 parentModal.allowFocusOverride = true;
             }
             content.reset();
             Qt.callLater(() => content.forceActiveFocus());
         } else {
-            if (parentModal) {
+            if (parentModal && "allowFocusOverride" in parentModal) {
                 parentModal.allowFocusOverride = false;
                 parentModal.shouldHaveFocus = Qt.binding(() => parentModal.shouldBeVisible);
             }

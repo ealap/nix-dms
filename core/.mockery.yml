@@ -68,3 +68,9 @@ packages:
       outpkg: mocks_wlclient
     interfaces:
       WaylandDisplay:
+  github.com/AvengeMedia/DankMaterialShell/core/internal/utils:
+    config:
+      dir: "internal/mocks/utils"
+      outpkg: mocks_utils
+    interfaces:
+      AppChecker:

@@ -30,7 +30,7 @@ Singleton {
         return useAuto ? Math.max(4, spacing) : manualValue;
     }
 
-    property string currentTheme: "blue"
+    property string currentTheme: "purple"
     property string currentThemeCategory: "generic"
     property bool isLightMode: typeof SessionData !== "undefined" ? SessionData.isLightMode : false
     property bool colorsFileLoadFailed: false
@@ -196,7 +196,7 @@ Singleton {
 
     readonly property var currentThemeData: {
         if (currentTheme === "custom") {
-            return customThemeData || StockThemes.getThemeByName("blue", isLightMode);
+            return customThemeData || StockThemes.getThemeByName("purple", isLightMode);
         } else if (currentTheme === dynamic) {
             return {
                 "primary": getMatugenColor("primary", "#42a5f5"),

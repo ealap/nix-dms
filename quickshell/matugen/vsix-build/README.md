@@ -1,6 +1,6 @@
 # Dynamic Base16 DankShell Theme
 
-A VSCode theme for [DankMaterialShell](https://github.com/EverydayCodeAlchemy/DankMaterialShellGit).
+A VSCode theme for [DankMaterialShell](https://github.com/AvengeMedia/DankMaterialShell).
 
 ## How It Works
 

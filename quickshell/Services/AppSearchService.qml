@@ -42,6 +42,68 @@ Singleton {
         _cachedCategories = null;
     }
 
+    readonly property var coreApps: [
+        {
+            name: "DMS Settings",
+            icon: Qt.resolvedUrl("../assets/danklogo2.svg"),
+            comment: "Manage DMS configuration",
+            action: "ipc:settings",
+            categories: ["Settings", "System"],
+            isCore: true
+        },
+        {
+            name: "DMS Notepad",
+            icon: "material:description",
+            comment: "Quick notes",
+            action: "ipc:notepad",
+            categories: ["Office", "Utility"],
+            isCore: true
+        },
+        {
+            name: "DMS System Monitor",
+            icon: "material:monitor_heart",
+            comment: "System monitor and process list",
+            action: "ipc:processlist",
+            categories: ["System", "Monitor"],
+            isCore: true
+        }
+    ]
+
+    function getCoreApps(query) {
+        if (!query || query.length === 0) {
+            return coreApps;
+        }
+
+        const lowerQuery = query.toLowerCase();
+        return coreApps.filter(app => {
+            return app.name.toLowerCase().includes(lowerQuery) || app.comment.toLowerCase().includes(lowerQuery);
+        });
+    }
+
+    function executeCoreApp(app) {
+        if (!app || !app.action) {
+            return false;
+        }
+
+        const actionParts = app.action.split(":");
+        const actionType = actionParts[0];
+        const actionTarget = actionParts[1];
+
+        if (actionType === "ipc") {
+            if (actionTarget === "settings") {
+                Quickshell.execDetached(["dms", "ipc", "call", "settings", "toggle"]);
+                return true;
+            } else if (actionTarget === "notepad") {
+                Quickshell.execDetached(["dms", "ipc", "call", "notepad", "toggle"]);
+                return true;
+            } else if (actionTarget === "processlist") {
+                Quickshell.execDetached(["dms", "ipc", "call", "processlist", "focusOrToggle"]);
+                return true;
+            }
+        }
+        return false;
+    }
+
     Connections {
         target: DesktopEntries
         function onApplicationsChanged() {

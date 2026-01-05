@@ -3,7 +3,7 @@
   "displayName": "DMS - Dank Material Shell Theme",
   "description": "Dynamic theme using matugen & dank16 terminal colors - auto-updated by DankMaterialShell",
   "publisher": "DankLinux",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "icon": "danklogo.png",
   "engines": {
     "vscode": "^1.70.0"

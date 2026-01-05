@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Controls
 import Quickshell
 import Quickshell.Widgets
 import qs.Common
@@ -54,7 +53,7 @@ Item {
         source: root.iconPath
         smooth: true
         asynchronous: true
-        visible: !root.isMaterial && !root.isUnicode && status === Image.Ready
+        visible: !root.isMaterial && !root.isUnicode && root.iconPath !== "" && status === Image.Ready
     }
 
     Rectangle {
@@ -65,7 +64,7 @@ Item {
         anchors.rightMargin: root.fallbackRightMargin
         anchors.topMargin: root.fallbackTopMargin
         anchors.bottomMargin: root.fallbackBottomMargin
-        visible: !root.isMaterial && !root.isUnicode && iconImg.status !== Image.Ready
+        visible: !root.isMaterial && !root.isUnicode && (root.iconPath === "" || iconImg.status !== Image.Ready)
         color: root.fallbackBackgroundColor
         radius: Theme.cornerRadius
         border.width: 0

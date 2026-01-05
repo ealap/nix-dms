@@ -1,7 +1,6 @@
 pragma Singleton
 pragma ComponentBehavior: Bound
 
-import QtCore
 import QtQuick
 import Quickshell
 import Quickshell.Io
@@ -15,7 +14,7 @@ Singleton {
         return greetCfgDir + "/settings.json";
     }
 
-    property string currentThemeName: "blue"
+    property string currentThemeName: "purple"
     property bool settingsLoaded: false
     property string customThemeFile: ""
     property string matugenScheme: "scheme-tonal-spot"
@@ -48,7 +47,7 @@ Singleton {
         try {
             if (content && content.trim()) {
                 const settings = JSON.parse(content);
-                currentThemeName = settings.currentThemeName !== undefined ? settings.currentThemeName : "blue";
+                currentThemeName = settings.currentThemeName !== undefined ? settings.currentThemeName : "purple";
                 customThemeFile = settings.customThemeFile !== undefined ? settings.customThemeFile : "";
                 matugenScheme = settings.matugenScheme !== undefined ? settings.matugenScheme : "scheme-tonal-spot";
                 use24HourClock = settings.use24HourClock !== undefined ? settings.use24HourClock : true;

@@ -895,6 +895,26 @@ Item {
     }
 
     IpcHandler {
+        function open(): string {
+            FirstLaunchService.showWelcome();
+            return "WELCOME_OPEN_SUCCESS";
+        }
+
+        function doctor(): string {
+            FirstLaunchService.showDoctor();
+            return "WELCOME_DOCTOR_SUCCESS";
+        }
+
+        function page(pageNum: string): string {
+            const num = parseInt(pageNum) || 0;
+            FirstLaunchService.showGreeter(num);
+            return `WELCOME_PAGE_SUCCESS: ${num}`;
+        }
+
+        target: "welcome"
+    }
+
+    IpcHandler {
         function toggleOverlay(instanceId: string): string {
             if (!instanceId)
                 return "ERROR: No instance ID specified";

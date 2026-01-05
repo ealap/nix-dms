@@ -24,6 +24,7 @@ PanelWindow {
     readonly property string clearText: I18n.tr("Dismiss")
 
     signal entered
+    signal exitStarted
     signal exitFinished
 
     function startExit() {
@@ -31,6 +32,7 @@ PanelWindow {
             return;
         }
         exiting = true;
+        exitStarted();
         exitAnim.restart();
         exitWatchdog.restart();
         if (NotificationService.removeFromVisibleNotifications)
@@ -61,7 +63,7 @@ PanelWindow {
         win.exitFinished();
     }
 
-    visible: hasValidData
+    visible: !_finalized
     WlrLayershell.layer: {
         const envLayer = Quickshell.env("DMS_NOTIFICATION_LAYER");
         if (envLayer) {
@@ -211,7 +213,7 @@ PanelWindow {
         y: Theme.snap((win.height - alignedHeight) / 2, dpr)
         width: alignedWidth
         height: alignedHeight
-        visible: win.hasValidData
+        visible: !win._finalized
 
         property real swipeOffset: 0
         readonly property real dismissThreshold: isTopCenter ? height * 0.4 : width * 0.35

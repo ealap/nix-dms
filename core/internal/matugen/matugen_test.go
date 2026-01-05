@@ -4,6 +4,8 @@ import (
 	"os"
 	"path/filepath"
 	"testing"
+
+	mocks_utils "github.com/AvengeMedia/DankMaterialShell/core/internal/mocks/utils"
 )
 
 func TestAppendConfigBinaryExists(t *testing.T) {
@@ -28,7 +30,10 @@ func TestAppendConfigBinaryExists(t *testing.T) {
 	}
 	defer cfgFile.Close()
 
-	opts := &Options{ShellDir: shellDir}
+	mockChecker := mocks_utils.NewMockAppChecker(t)
+	mockChecker.EXPECT().AnyCommandExists("sh").Return(true)
+
+	opts := &Options{ShellDir: shellDir, AppChecker: mockChecker}
 
 	appendConfig(opts, cfgFile, []string{"sh"}, nil, "test.toml")
 
@@ -68,7 +73,11 @@ func TestAppendConfigBinaryDoesNotExist(t *testing.T) {
 	}
 	defer cfgFile.Close()
 
-	opts := &Options{ShellDir: shellDir}
+	mockChecker := mocks_utils.NewMockAppChecker(t)
+	mockChecker.EXPECT().AnyCommandExists("nonexistent-binary-12345").Return(false)
+	mockChecker.EXPECT().AnyFlatpakExists().Return(false)
+
+	opts := &Options{ShellDir: shellDir, AppChecker: mockChecker}
 
 	appendConfig(opts, cfgFile, []string{"nonexistent-binary-12345"}, []string{}, "test.toml")
 
@@ -105,7 +114,10 @@ func TestAppendConfigFlatpakExists(t *testing.T) {
 	}
 	defer cfgFile.Close()
 
-	opts := &Options{ShellDir: shellDir}
+	mockChecker := mocks_utils.NewMockAppChecker(t)
+	mockChecker.EXPECT().AnyFlatpakExists("app.zen_browser.zen").Return(true)
+
+	opts := &Options{ShellDir: shellDir, AppChecker: mockChecker}
 
 	appendConfig(opts, cfgFile, nil, []string{"app.zen_browser.zen"}, "test.toml")
 
@@ -142,7 +154,11 @@ func TestAppendConfigFlatpakDoesNotExist(t *testing.T) {
 	}
 	defer cfgFile.Close()
 
-	opts := &Options{ShellDir: shellDir}
+	mockChecker := mocks_utils.NewMockAppChecker(t)
+	mockChecker.EXPECT().AnyCommandExists().Return(false)
+	mockChecker.EXPECT().AnyFlatpakExists("com.nonexistent.flatpak").Return(false)
+
+	opts := &Options{ShellDir: shellDir, AppChecker: mockChecker}
 
 	appendConfig(opts, cfgFile, []string{}, []string{"com.nonexistent.flatpak"}, "test.toml")
 
@@ -179,7 +195,10 @@ func TestAppendConfigBothExist(t *testing.T) {
 	}
 	defer cfgFile.Close()
 
-	opts := &Options{ShellDir: shellDir}
+	mockChecker := mocks_utils.NewMockAppChecker(t)
+	mockChecker.EXPECT().AnyCommandExists("sh").Return(true)
+
+	opts := &Options{ShellDir: shellDir, AppChecker: mockChecker}
 
 	appendConfig(opts, cfgFile, []string{"sh"}, []string{"app.zen_browser.zen"}, "test.toml")
 
@@ -216,7 +235,11 @@ func TestAppendConfigNeitherExists(t *testing.T) {
 	}
 	defer cfgFile.Close()
 
-	opts := &Options{ShellDir: shellDir}
+	mockChecker := mocks_utils.NewMockAppChecker(t)
+	mockChecker.EXPECT().AnyCommandExists("nonexistent-binary-12345").Return(false)
+	mockChecker.EXPECT().AnyFlatpakExists("com.nonexistent.flatpak").Return(false)
+
+	opts := &Options{ShellDir: shellDir, AppChecker: mockChecker}
 
 	appendConfig(opts, cfgFile, []string{"nonexistent-binary-12345"}, []string{"com.nonexistent.flatpak"}, "test.toml")
 

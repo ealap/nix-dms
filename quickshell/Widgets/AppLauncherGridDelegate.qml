@@ -45,7 +45,7 @@ Rectangle {
             width: computedIconSize
             height: computedIconSize
             anchors.horizontalCenter: parent.horizontalCenter
-            iconValue: model.icon && model.icon !== "" ? model.icon : model.startupClass
+            iconValue: (model.icon && model.icon !== "") ? model.icon : ""
             iconSize: computedIconSize
             fallbackText: (model.name && model.name.length > 0) ? model.name.charAt(0).toUpperCase() : "A"
             materialIconSizeAdjustment: root.iconMaterialSizeAdjustment

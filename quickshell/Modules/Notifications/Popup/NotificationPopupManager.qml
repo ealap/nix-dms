@@ -20,6 +20,7 @@ QtObject {
     popupComponent: Component {
         NotificationPopup {
             onEntered: manager._onPopupEntered(this)
+            onExitStarted: manager._onPopupExitStarted(this)
             onExitFinished: manager._onPopupExitFinished(this)
         }
     }
@@ -274,6 +275,14 @@ QtObject {
     }
 
     function _onPopupEntered(p) {
+    }
+
+    function _onPopupExitStarted(p) {
+        if (!p)
+            return;
+        const survivors = _active().sort((a, b) => a.screenY - b.screenY);
+        for (let k = 0; k < survivors.length; ++k)
+            survivors[k].screenY = topMargin + k * baseNotificationHeight;
     }
 
     function _onPopupExitFinished(p) {

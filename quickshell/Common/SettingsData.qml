@@ -67,7 +67,7 @@ Singleton {
     property alias dankBarCenterWidgetsModel: centerWidgetsModel
     property alias dankBarRightWidgetsModel: rightWidgetsModel
 
-    property string currentThemeName: "blue"
+    property string currentThemeName: "purple"
     property string currentThemeCategory: "generic"
     property string customThemeFile: ""
     property var registryThemeVariants: ({})

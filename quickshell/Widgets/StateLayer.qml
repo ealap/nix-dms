@@ -23,7 +23,7 @@ MouseArea {
 
     Timer {
         id: hoverDelay
-        interval: 1000
+        interval: 400
         repeat: false
         onTriggered: {
             tooltip.show(root.tooltipText, root, 0, 0, "bottom");

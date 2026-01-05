@@ -713,6 +713,63 @@ Item {
                 }
             }
 
+            StyledRect {
+                width: parent.width
+                height: toolsSection.implicitHeight + Theme.spacingL * 2
+                radius: Theme.cornerRadius
+                color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                border.color: Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.2)
+                border.width: 0
+
+                Column {
+                    id: toolsSection
+
+                    anchors.fill: parent
+                    anchors.margins: Theme.spacingL
+                    spacing: Theme.spacingM
+
+                    Row {
+                        width: parent.width
+                        spacing: Theme.spacingM
+
+                        DankIcon {
+                            name: "build"
+                            size: Theme.iconSize
+                            color: Theme.primary
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        StyledText {
+                            text: I18n.tr("Tools")
+                            font.pixelSize: Theme.fontSizeLarge
+                            font.weight: Font.Medium
+                            color: Theme.surfaceText
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                    }
+
+                    Row {
+                        spacing: Theme.spacingS
+
+                        DankButton {
+                            text: I18n.tr("Show Welcome")
+                            iconName: "waving_hand"
+                            backgroundColor: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.08)
+                            textColor: Theme.surfaceText
+                            onClicked: FirstLaunchService.showWelcome()
+                        }
+
+                        DankButton {
+                            text: I18n.tr("System Check")
+                            iconName: "vital_signs"
+                            backgroundColor: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.08)
+                            textColor: Theme.surfaceText
+                            onClicked: FirstLaunchService.showDoctor()
+                        }
+                    }
+                }
+            }
+
             StyledText {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: `<a href="https://github.com/AvengeMedia/DankMaterialShell/blob/master/LICENSE" style="text-decoration:none; color:${Theme.surfaceVariantText};">MIT License</a>`

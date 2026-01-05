@@ -102,12 +102,10 @@ Item {
 
         property string text: ""
 
-        implicitWidth: Math.min(300, Math.max(120, textContent.implicitWidth + Theme.spacingM * 2))
-        implicitHeight: textContent.implicitHeight + Theme.spacingS * 2
-        width: implicitWidth
-        height: implicitHeight
-
-        padding: 0
+        leftPadding: Theme.spacingM
+        rightPadding: Theme.spacingM
+        topPadding: Theme.spacingS
+        bottomPadding: Theme.spacingS
         closePolicy: Popup.NoAutoClose
         modal: false
         dim: false
@@ -122,6 +120,7 @@ Item {
         contentItem: Text {
             id: textContent
 
+            width: Math.min(implicitWidth, 500)
             text: tooltip.text
             font.pixelSize: Theme.fontSizeSmall
             color: Theme.surfaceText

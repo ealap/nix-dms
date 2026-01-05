@@ -6,7 +6,7 @@ function percentToUnit(v) {
 }
 
 var SPEC = {
-    currentThemeName: { def: "blue", onChange: "applyStoredTheme" },
+    currentThemeName: { def: "purple", onChange: "applyStoredTheme" },
     currentThemeCategory: { def: "generic" },
     customThemeFile: { def: "" },
     registryThemeVariants: { def: {} },

@@ -147,6 +147,7 @@ func (c category) String() string {
 
 const (
 	checkNameMaxLength = 21
+	doctorDocsURL      = "https://danklinux.com/docs/dankmaterialshell/cli-doctor"
 )
 
 type checkResult struct {
@@ -155,6 +156,7 @@ type checkResult struct {
 	status   status
 	message  string
 	details  string
+	url      string
 }
 
 type checkResultJSON struct {
@@ -163,6 +165,7 @@ type checkResultJSON struct {
 	Status   string `json:"status"`
 	Message  string `json:"message"`
 	Details  string `json:"details,omitempty"`
+	URL      string `json:"url,omitempty"`
 }
 
 type doctorOutputJSON struct {
@@ -182,6 +185,7 @@ func (r checkResult) toJSON() checkResultJSON {
 		Status:   string(r.status),
 		Message:  r.message,
 		Details:  r.details,
+		URL:      r.url,
 	}
 }
 
@@ -231,20 +235,21 @@ func checkSystemInfo() []checkResult {
 
 		if strings.Contains(err.Error(), "Unsupported distribution") {
 			osRelease := readOSRelease()
-			if osRelease["ID"] == "nixos" {
+			switch {
+			case osRelease["ID"] == "nixos":
 				status = statusOK
 				message = osRelease["PRETTY_NAME"]
 				if message == "" {
 					message = fmt.Sprintf("NixOS %s", osRelease["VERSION_ID"])
 				}
 				details = "Supported for runtime (install via NixOS module or Flake)"
-			} else if osRelease["PRETTY_NAME"] != "" {
+			case osRelease["PRETTY_NAME"] != "":
 				message = fmt.Sprintf("%s (not supported by dms setup)", osRelease["PRETTY_NAME"])
 				details = "DMS may work but automatic installation is not available"
 			}
 		}
 
-		results = append(results, checkResult{catSystem, "Operating System", status, message, details})
+		results = append(results, checkResult{catSystem, "Operating System", status, message, details, doctorDocsURL + "#operating-system"})
 	} else {
 		status := statusOK
 		message := osInfo.PrettyName
@@ -258,6 +263,7 @@ func checkSystemInfo() []checkResult {
 		results = append(results, checkResult{
 			catSystem, "Operating System", status, message,
 			fmt.Sprintf("ID: %s, Version: %s, Arch: %s", osInfo.Distribution.ID, osInfo.VersionID, osInfo.Architecture),
+			doctorDocsURL + "#operating-system",
 		})
 	}
 
@@ -266,7 +272,7 @@ func checkSystemInfo() []checkResult {
 	if arch != "amd64" && arch != "arm64" {
 		archStatus = statusError
 	}
-	results = append(results, checkResult{catSystem, "Architecture", archStatus, arch, ""})
+	results = append(results, checkResult{catSystem, "Architecture", archStatus, arch, "", doctorDocsURL + "#architecture"})
 
 	waylandDisplay := os.Getenv("WAYLAND_DISPLAY")
 	xdgSessionType := os.Getenv("XDG_SESSION_TYPE")
@@ -276,13 +282,15 @@ func checkSystemInfo() []checkResult {
 		results = append(results, checkResult{
 			catSystem, "Display Server", statusOK, "Wayland",
 			fmt.Sprintf("WAYLAND_DISPLAY=%s", waylandDisplay),
+			doctorDocsURL + "#display-server",
 		})
 	case xdgSessionType == "x11":
-		results = append(results, checkResult{catSystem, "Display Server", statusError, "X11 (DMS requires Wayland)", ""})
+		results = append(results, checkResult{catSystem, "Display Server", statusError, "X11 (DMS requires Wayland)", "", doctorDocsURL + "#display-server"})
 	default:
 		results = append(results, checkResult{
 			catSystem, "Display Server", statusWarn, "Unknown (ensure you're running Wayland)",
 			fmt.Sprintf("XDG_SESSION_TYPE=%s", xdgSessionType),
+			doctorDocsURL + "#display-server",
 		})
 	}
 
@@ -299,9 +307,10 @@ func checkEnvironmentVars() []checkResult {
 func checkEnvVar(name string) []checkResult {
 	value := os.Getenv(name)
 	if value != "" {
-		return []checkResult{{catEnvironment, name, statusInfo, value, ""}}
-	} else if doctorVerbose {
-		return []checkResult{{catEnvironment, name, statusInfo, "Not set", ""}}
+		return []checkResult{{catEnvironment, name, statusInfo, value, "", doctorDocsURL + "#environment-variables"}}
+	}
+	if doctorVerbose {
+		return []checkResult{{catEnvironment, name, statusInfo, "Not set", "", doctorDocsURL + "#environment-variables"}}
 	}
 	return nil
 }
@@ -328,7 +337,7 @@ func checkVersions(qsMissingFeatures bool) []checkResult {
 	}
 
 	results := []checkResult{
-		{catVersions, "DMS CLI", statusOK, formatVersion(Version), dmsCliDetails},
+		{catVersions, "DMS CLI", statusOK, formatVersion(Version), dmsCliDetails, doctorDocsURL + "#dms-cli"},
 	}
 
 	qsVersion, qsStatus, qsPath := getQuickshellVersionInfo(qsMissingFeatures)
@@ -336,13 +345,13 @@ func checkVersions(qsMissingFeatures bool) []checkResult {
 	if doctorVerbose && qsPath != "" {
 		qsDetails = qsPath
 	}
-	results = append(results, checkResult{catVersions, "Quickshell", qsStatus, qsVersion, qsDetails})
+	results = append(results, checkResult{catVersions, "Quickshell", qsStatus, qsVersion, qsDetails, doctorDocsURL + "#quickshell"})
 
 	dmsVersion, dmsPath := getDMSShellVersion()
 	if dmsVersion != "" {
-		results = append(results, checkResult{catVersions, "DMS Shell", statusOK, dmsVersion, dmsPath})
+		results = append(results, checkResult{catVersions, "DMS Shell", statusOK, dmsVersion, dmsPath, doctorDocsURL + "#dms-shell"})
 	} else {
-		results = append(results, checkResult{catVersions, "DMS Shell", statusError, "Not installed or not detected", "Run 'dms setup' to install"})
+		results = append(results, checkResult{catVersions, "DMS Shell", statusError, "Not installed or not detected", "Run 'dms setup' to install", doctorDocsURL + "#dms-shell"})
 	}
 
 	return results
@@ -405,16 +414,16 @@ func checkDMSInstallation() []checkResult {
 	}
 
 	if dmsPath == "" {
-		return []checkResult{{catInstallation, "DMS Configuration", statusError, "Not found", "shell.qml not found in any config path"}}
+		return []checkResult{{catInstallation, "DMS Configuration", statusError, "Not found", "shell.qml not found in any config path", doctorDocsURL + "#dms-configuration"}}
 	}
 
-	results = append(results, checkResult{catInstallation, "DMS Configuration", statusOK, "Found", dmsPath})
+	results = append(results, checkResult{catInstallation, "DMS Configuration", statusOK, "Found", dmsPath, doctorDocsURL + "#dms-configuration"})
 
 	shellQml := filepath.Join(dmsPath, "shell.qml")
 	if _, err := os.Stat(shellQml); err != nil {
-		results = append(results, checkResult{catInstallation, "shell.qml", statusError, "Missing", shellQml})
+		results = append(results, checkResult{catInstallation, "shell.qml", statusError, "Missing", shellQml, doctorDocsURL + "#dms-configuration"})
 	} else {
-		results = append(results, checkResult{catInstallation, "shell.qml", statusOK, "Present", shellQml})
+		results = append(results, checkResult{catInstallation, "shell.qml", statusOK, "Present", shellQml, doctorDocsURL + "#dms-configuration"})
 	}
 
 	if doctorVerbose {
@@ -427,7 +436,7 @@ func checkDMSInstallation() []checkResult {
 		case strings.Contains(dmsPath, ".config"):
 			installType = "User config"
 		}
-		results = append(results, checkResult{catInstallation, "Install Type", statusInfo, installType, dmsPath})
+		results = append(results, checkResult{catInstallation, "Install Type", statusInfo, installType, dmsPath, doctorDocsURL + "#dms-configuration"})
 	}
 
 	return results
@@ -450,24 +459,26 @@ func checkWindowManagers() []checkResult {
 	foundAny := false
 
 	for _, c := range compositors {
-		if slices.ContainsFunc(c.commands, utils.CommandExists) {
-			foundAny = true
-			var compositorPath string
-			for _, cmd := range c.commands {
-				if path, err := exec.LookPath(cmd); err == nil {
-					compositorPath = path
-					break
-				}
-			}
-			details := ""
-			if doctorVerbose && compositorPath != "" {
-				details = compositorPath
-			}
-			results = append(results, checkResult{
-				catCompositor, c.name, statusOK,
-				getVersionFromCommand(c.versionCmd, c.versionArg, c.versionRegex), details,
-			})
+		if !slices.ContainsFunc(c.commands, utils.CommandExists) {
+			continue
 		}
+		foundAny = true
+		var compositorPath string
+		for _, cmd := range c.commands {
+			if path, err := exec.LookPath(cmd); err == nil {
+				compositorPath = path
+				break
+			}
+		}
+		details := ""
+		if doctorVerbose && compositorPath != "" {
+			details = compositorPath
+		}
+		results = append(results, checkResult{
+			catCompositor, c.name, statusOK,
+			getVersionFromCommand(c.versionCmd, c.versionArg, c.versionRegex), details,
+			doctorDocsURL + "#compositor",
+		})
 	}
 
 	if !foundAny {
@@ -475,11 +486,12 @@ func checkWindowManagers() []checkResult {
 			catCompositor, "Compositor", statusError,
 			"No supported Wayland compositor found",
 			"Install Hyprland, niri, Sway, River, or Wayfire",
+			doctorDocsURL + "#compositor",
 		})
 	}
 
 	if wm := detectRunningWM(); wm != "" {
-		results = append(results, checkResult{catCompositor, "Active", statusInfo, wm, ""})
+		results = append(results, checkResult{catCompositor, "Active", statusInfo, wm, "", doctorDocsURL + "#compositor"})
 	}
 
 	return results
@@ -601,7 +613,7 @@ ShellRoot {
 			status, message = statusInfo, "Not available"
 			missingFeatures = true
 		}
-		results = append(results, checkResult{catQuickshellFeatures, f.name, status, message, f.desc})
+		results = append(results, checkResult{catQuickshellFeatures, f.name, status, message, f.desc, doctorDocsURL + "#quickshell-features"})
 	}
 
 	return results, missingFeatures
@@ -610,16 +622,16 @@ ShellRoot {
 func checkI2CAvailability() checkResult {
 	ddc, err := brightness.NewDDCBackend()
 	if err != nil {
-		return checkResult{catOptionalFeatures, "I2C/DDC", statusInfo, "Not available", "External monitor brightness control"}
+		return checkResult{catOptionalFeatures, "I2C/DDC", statusInfo, "Not available", "External monitor brightness control", doctorDocsURL + "#optional-features"}
 	}
 	defer ddc.Close()
 
 	devices, err := ddc.GetDevices()
 	if err != nil || len(devices) == 0 {
-		return checkResult{catOptionalFeatures, "I2C/DDC", statusInfo, "No monitors detected", "External monitor brightness control"}
+		return checkResult{catOptionalFeatures, "I2C/DDC", statusInfo, "No monitors detected", "External monitor brightness control", doctorDocsURL + "#optional-features"}
 	}
 
-	return checkResult{catOptionalFeatures, "I2C/DDC", statusOK, fmt.Sprintf("%d monitor(s) detected", len(devices)), "External monitor brightness control"}
+	return checkResult{catOptionalFeatures, "I2C/DDC", statusOK, fmt.Sprintf("%d monitor(s) detected", len(devices)), "External monitor brightness control", doctorDocsURL + "#optional-features"}
 }
 
 func detectNetworkBackend() string {
@@ -649,25 +661,24 @@ func checkOptionalDependencies() []checkResult {
 	var results []checkResult
 
 	if utils.IsServiceActive("accounts-daemon", false) {
-		results = append(results, checkResult{catOptionalFeatures, "accountsservice", statusOK, "Running", "User accounts"})
+		results = append(results, checkResult{catOptionalFeatures, "accountsservice", statusOK, "Running", "User accounts", doctorDocsURL + "#optional-features"})
 	} else {
-		results = append(results, checkResult{catOptionalFeatures, "accountsservice", statusWarn, "Not running", "User accounts"})
+		results = append(results, checkResult{catOptionalFeatures, "accountsservice", statusWarn, "Not running", "User accounts", doctorDocsURL + "#optional-features"})
 	}
 
 	if utils.IsServiceActive("power-profiles-daemon", false) {
-		results = append(results, checkResult{catOptionalFeatures, "power-profiles-daemon", statusOK, "Running", "Power profile management"})
+		results = append(results, checkResult{catOptionalFeatures, "power-profiles-daemon", statusOK, "Running", "Power profile management", doctorDocsURL + "#optional-features"})
 	} else {
-		results = append(results, checkResult{catOptionalFeatures, "power-profiles-daemon", statusInfo, "Not running", "Power profile management"})
+		results = append(results, checkResult{catOptionalFeatures, "power-profiles-daemon", statusInfo, "Not running", "Power profile management", doctorDocsURL + "#optional-features"})
 	}
 
-	i2cStatus := checkI2CAvailability()
-	results = append(results, i2cStatus)
+	results = append(results, checkI2CAvailability())
 
 	terminals := []string{"ghostty", "kitty", "alacritty", "foot", "wezterm"}
 	if idx := slices.IndexFunc(terminals, utils.CommandExists); idx >= 0 {
-		results = append(results, checkResult{catOptionalFeatures, "Terminal", statusOK, terminals[idx], ""})
+		results = append(results, checkResult{catOptionalFeatures, "Terminal", statusOK, terminals[idx], "", doctorDocsURL + "#optional-features"})
 	} else {
-		results = append(results, checkResult{catOptionalFeatures, "Terminal", statusWarn, "None found", "Install ghostty, kitty, or alacritty"})
+		results = append(results, checkResult{catOptionalFeatures, "Terminal", statusWarn, "None found", "Install ghostty, kitty, or alacritty", doctorDocsURL + "#optional-features"})
 	}
 
 	deps := []struct {
@@ -676,7 +687,7 @@ func checkOptionalDependencies() []checkResult {
 	}{
 		{"matugen", "matugen", "", "Dynamic theming", true},
 		{"dgop", "dgop", "", "System monitoring", true},
-		{"cava", "cava", "", "Audio waveform", false},
+		{"cava", "cava", "", "Audio visualizer", true},
 		{"khal", "khal", "", "Calendar events", false},
 		{"Network", "nmcli", "iwctl", "Network management", false},
 		{"danksearch", "dsearch", "", "File search", false},
@@ -686,13 +697,12 @@ func checkOptionalDependencies() []checkResult {
 
 	for _, d := range deps {
 		found, foundCmd := utils.CommandExists(d.cmd), d.cmd
-		if !found && d.altCmd != "" {
-			if utils.CommandExists(d.altCmd) {
-				found, foundCmd = true, d.altCmd
-			}
+		if !found && d.altCmd != "" && utils.CommandExists(d.altCmd) {
+			found, foundCmd = true, d.altCmd
 		}
 
-		if found {
+		switch {
+		case found:
 			message := "Installed"
 			details := d.desc
 			if d.name == "Network" {
@@ -711,11 +721,11 @@ func checkOptionalDependencies() []checkResult {
 					}
 				}
 			}
-			results = append(results, checkResult{catOptionalFeatures, d.name, statusOK, message, details})
-		} else if d.important {
-			results = append(results, checkResult{catOptionalFeatures, d.name, statusWarn, "Missing", d.desc})
-		} else {
-			results = append(results, checkResult{catOptionalFeatures, d.name, statusInfo, "Not installed", d.desc})
+			results = append(results, checkResult{catOptionalFeatures, d.name, statusOK, message, details, doctorDocsURL + "#optional-features"})
+		case d.important:
+			results = append(results, checkResult{catOptionalFeatures, d.name, statusWarn, "Missing", d.desc, doctorDocsURL + "#optional-features"})
+		default:
+			results = append(results, checkResult{catOptionalFeatures, d.name, statusInfo, "Not installed", d.desc, doctorDocsURL + "#optional-features"})
 		}
 	}
 
@@ -738,19 +748,18 @@ func checkConfigurationFiles() []checkResult {
 	var results []checkResult
 	for _, cf := range configFiles {
 		info, err := os.Stat(cf.path)
-		if err == nil {
-			status := statusOK
-			message := "Present"
-
-			if info.Mode().Perm()&0200 == 0 {
-				status = statusWarn
-				message += " (read-only)"
-			}
-
-			results = append(results, checkResult{catConfigFiles, cf.name, status, message, cf.path})
-		} else {
-			results = append(results, checkResult{catConfigFiles, cf.name, statusInfo, "Not yet created", cf.path})
+		if err != nil {
+			results = append(results, checkResult{catConfigFiles, cf.name, statusInfo, "Not yet created", cf.path, doctorDocsURL + "#config-files"})
+			continue
 		}
+
+		status := statusOK
+		message := "Present"
+		if info.Mode().Perm()&0200 == 0 {
+			status = statusWarn
+			message += " (read-only)"
+		}
+		results = append(results, checkResult{catConfigFiles, cf.name, status, message, cf.path, doctorDocsURL + "#config-files"})
 	}
 	return results
 }
@@ -764,29 +773,31 @@ func checkSystemdServices() []checkResult {
 
 	dmsState := getServiceState("dms", true)
 	if !dmsState.exists {
-		results = append(results, checkResult{catServices, "dms.service", statusInfo, "Not installed", "Optional user service"})
+		results = append(results, checkResult{catServices, "dms.service", statusInfo, "Not installed", "Optional user service", doctorDocsURL + "#services"})
 	} else {
 		status, message := statusOK, dmsState.enabled
 		if dmsState.active != "" {
 			message = fmt.Sprintf("%s, %s", dmsState.enabled, dmsState.active)
 		}
-		if dmsState.enabled == "disabled" {
+		switch {
+		case dmsState.enabled == "disabled":
 			status, message = statusWarn, "Disabled"
-		} else if dmsState.active == "failed" || dmsState.active == "inactive" {
+		case dmsState.active == "failed" || dmsState.active == "inactive":
 			status = statusError
 		}
-		results = append(results, checkResult{catServices, "dms.service", status, message, ""})
+		results = append(results, checkResult{catServices, "dms.service", status, message, "", doctorDocsURL + "#services"})
 	}
 
 	greetdState := getServiceState("greetd", false)
-	if greetdState.exists {
+	switch {
+	case greetdState.exists:
 		status := statusOK
 		if greetdState.enabled == "disabled" {
 			status = statusInfo
 		}
-		results = append(results, checkResult{catServices, "greetd", status, greetdState.enabled, ""})
-	} else if doctorVerbose {
-		results = append(results, checkResult{catServices, "greetd", statusInfo, "Not installed", "Optional greeter service"})
+		results = append(results, checkResult{catServices, "greetd", status, greetdState.enabled, "", doctorDocsURL + "#services"})
+	case doctorVerbose:
+		results = append(results, checkResult{catServices, "greetd", statusInfo, "Not installed", "Optional greeter service", doctorDocsURL + "#services"})
 	}
 
 	return results

@@ -20,11 +20,7 @@ Item {
     property int debounceInterval: 50
     property bool keyboardNavigationActive: false
     property bool suppressUpdatesWhileLaunching: false
-    property var categories: {
-        const allCategories = AppSearchService.getAllCategories().filter(cat => cat !== "Education" && cat !== "Science");
-        const result = [I18n.tr("All")];
-        return result.concat(allCategories.filter(cat => cat !== I18n.tr("All")));
-    }
+    property var categories: []
     readonly property var categoryIcons: categories.map(category => AppSearchService.getCategoryIcon(category))
     property var appUsageRanking: AppUsageHistoryData.appUsageRanking || {}
     property alias model: filteredModel
@@ -42,6 +38,7 @@ Item {
         if (_initialized)
             return;
         _initialized = true;
+        updateCategories();
         updateFilteredModel();
     }
 
@@ -117,9 +114,13 @@ Item {
                         const items = AppSearchService.getPluginItems(pluginCategory, "");
                         emptyTriggerItems = emptyTriggerItems.concat(items);
                     });
-                    apps = AppSearchService.applications.concat(emptyTriggerItems);
+                    // Add Core Apps
+                    const coreItems = AppSearchService.getCoreApps("");
+                    apps = AppSearchService.applications.concat(emptyTriggerItems).concat(coreItems);
                 } else {
                     apps = AppSearchService.getAppsInCategory(selectedCategory).slice(0, maxResults);
+                    const coreItems = AppSearchService.getCoreApps("").filter(app => app.categories.includes(selectedCategory));
+                    apps = apps.concat(coreItems);
                 }
             } else {
                 if (selectedCategory === allCategory) {
@@ -132,7 +133,9 @@ Item {
                         const items = AppSearchService.getPluginItems(pluginCategory, searchQuery);
                         emptyTriggerItems = emptyTriggerItems.concat(items);
                     });
-                    apps = apps.concat(emptyTriggerItems);
+
+                    const coreItems = AppSearchService.getCoreApps(searchQuery);
+                    apps = apps.concat(emptyTriggerItems).concat(coreItems);
                 } else {
                     const categoryApps = AppSearchService.getAppsInCategory(selectedCategory);
                     if (categoryApps.length > 0) {
@@ -142,6 +145,9 @@ Item {
                     } else {
                         apps = [];
                     }
+
+                    const coreItems = AppSearchService.getCoreApps(searchQuery).filter(app => app.categories.includes(selectedCategory));
+                    apps = apps.concat(coreItems);
                 }
             }
         }
@@ -176,7 +182,7 @@ Item {
                 seenNames.add(itemKey);
                 uniqueApps.push(app);
 
-                const isPluginItem = app.action !== undefined;
+                const isPluginItem = app.isCore ? false : (app.action !== undefined);
                 filteredModel.append({
                     "name": app.name || "",
                     "exec": app.execString || app.exec || app.action || "",
@@ -184,6 +190,7 @@ Item {
                     "comment": app.comment || "",
                     "categories": app.categories || [],
                     "isPlugin": isPluginItem,
+                    "isCore": app.isCore === true,
                     "appIndex": uniqueApps.length - 1
                 });
             }
@@ -239,6 +246,12 @@ Item {
         suppressUpdatesWhileLaunching = true;
 
         const actualApp = _uniqueApps[appData.appIndex];
+
+        if (appData.isCore) {
+            AppSearchService.executeCoreApp(actualApp);
+            appLaunched(appData);
+            return;
+        }
 
         if (appData.isPlugin) {
             const pluginId = getPluginIdForItem(actualApp);

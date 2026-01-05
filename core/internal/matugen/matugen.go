@@ -51,6 +51,7 @@ type Options struct {
 	SyncModeWithPortal  bool
 	TerminalsAlwaysDark bool
 	SkipTemplates       string
+	AppChecker          utils.AppChecker
 }
 
 type ColorsOutput struct {
@@ -100,6 +101,9 @@ func Run(opts Options) error {
 	}
 	if opts.IconTheme == "" {
 		opts.IconTheme = "System Default"
+	}
+	if opts.AppChecker == nil {
+		opts.AppChecker = utils.DefaultAppChecker{}
 	}
 
 	if err := os.MkdirAll(opts.StateDir, 0755); err != nil {
@@ -353,10 +357,7 @@ func appendConfig(
 	if _, err := os.Stat(configPath); err != nil {
 		return
 	}
-	cmdExists := checkCmd == nil || utils.AnyCommandExists(checkCmd...)
-	flatpakExists := checkFlatpaks == nil || utils.AnyFlatpakExists(checkFlatpaks...)
-
-	if !cmdExists && !flatpakExists {
+	if !appExists(opts.AppChecker, checkCmd, checkFlatpaks) {
 		return
 	}
 	data, err := os.ReadFile(configPath)
@@ -372,10 +373,7 @@ func appendTerminalConfig(opts *Options, cfgFile *os.File, tmpDir string, checkC
 	if _, err := os.Stat(configPath); err != nil {
 		return
 	}
-	cmdExists := checkCmd == nil || utils.AnyCommandExists(checkCmd...)
-	flatpakExists := checkFlatpaks == nil || utils.AnyFlatpakExists(checkFlatpaks...)
-
-	if !cmdExists && !flatpakExists {
+	if !appExists(opts.AppChecker, checkCmd, checkFlatpaks) {
 		return
 	}
 	data, err := os.ReadFile(configPath)
@@ -426,6 +424,20 @@ func appendTerminalConfig(opts *Options, cfgFile *os.File, tmpDir string, checkC
 
 	cfgFile.WriteString(substituteShellDir(content, opts.ShellDir))
 	cfgFile.WriteString("\n")
+}
+
+func appExists(checker utils.AppChecker, checkCmd []string, checkFlatpaks []string) bool {
+	// Both nil is treated as "skip check" / unconditionally run
+	if checkCmd == nil && checkFlatpaks == nil {
+		return true
+	}
+	if checkCmd != nil && checker.AnyCommandExists(checkCmd...) {
+		return true
+	}
+	if checkFlatpaks != nil && checker.AnyFlatpakExists(checkFlatpaks...) {
+		return true
+	}
+	return false
 }
 
 func appendVSCodeConfig(cfgFile *os.File, name, extBaseDir, shellDir string) {
