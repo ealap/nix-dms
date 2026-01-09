@@ -6,6 +6,8 @@ import (
 	"testing"
 
 	mocks_utils "github.com/AvengeMedia/DankMaterialShell/core/internal/mocks/utils"
+	"github.com/AvengeMedia/DankMaterialShell/core/internal/utils"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestAppendConfigBinaryExists(t *testing.T) {
@@ -319,5 +321,74 @@ func TestAppendConfigFileDoesNotExist(t *testing.T) {
 
 	if len(output) != 0 {
 		t.Errorf("expected no config when file doesn't exist, got: %q", string(output))
+	}
+}
+
+func TestSubstituteVars(t *testing.T) {
+	configDir := utils.XDGConfigHome()
+	dataDir := utils.XDGDataHome()
+	cacheDir := utils.XDGCacheHome()
+
+	tests := []struct {
+		name     string
+		input    string
+		shellDir string
+		expected string
+	}{
+		{
+			name:     "substitutes SHELL_DIR",
+			input:    "input_path = 'SHELL_DIR/matugen/templates/foo.conf'",
+			shellDir: "/home/user/shell",
+			expected: "input_path = '/home/user/shell/matugen/templates/foo.conf'",
+		},
+		{
+			name:     "substitutes CONFIG_DIR",
+			input:    "output_path = 'CONFIG_DIR/kitty/theme.conf'",
+			shellDir: "/home/user/shell",
+			expected: "output_path = '" + configDir + "/kitty/theme.conf'",
+		},
+		{
+			name:     "substitutes DATA_DIR",
+			input:    "output_path = 'DATA_DIR/color-schemes/theme.colors'",
+			shellDir: "/home/user/shell",
+			expected: "output_path = '" + dataDir + "/color-schemes/theme.colors'",
+		},
+		{
+			name:     "substitutes CACHE_DIR",
+			input:    "output_path = 'CACHE_DIR/wal/colors.json'",
+			shellDir: "/home/user/shell",
+			expected: "output_path = '" + cacheDir + "/wal/colors.json'",
+		},
+		{
+			name:     "substitutes all dir types",
+			input:    "'SHELL_DIR/a' 'CONFIG_DIR/b' 'DATA_DIR/c' 'CACHE_DIR/d'",
+			shellDir: "/shell",
+			expected: "'/shell/a' '" + configDir + "/b' '" + dataDir + "/c' '" + cacheDir + "/d'",
+		},
+		{
+			name:     "no substitution when no placeholders",
+			input:    "input_path = '/absolute/path/foo.conf'",
+			shellDir: "/home/user/shell",
+			expected: "input_path = '/absolute/path/foo.conf'",
+		},
+		{
+			name:     "multiple SHELL_DIR occurrences",
+			input:    "'SHELL_DIR/a' and 'SHELL_DIR/b'",
+			shellDir: "/shell",
+			expected: "'/shell/a' and '/shell/b'",
+		},
+		{
+			name:     "only substitutes quoted paths",
+			input:    "SHELL_DIR/unquoted and 'SHELL_DIR/quoted'",
+			shellDir: "/shell",
+			expected: "SHELL_DIR/unquoted and '/shell/quoted'",
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			result := substituteVars(tc.input, tc.shellDir)
+			assert.Equal(t, tc.expected, result)
+		})
 	}
 }

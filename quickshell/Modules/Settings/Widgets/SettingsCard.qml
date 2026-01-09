@@ -135,6 +135,8 @@ StyledRect {
                     color: Theme.surfaceText
                     anchors.verticalCenter: parent.verticalCenter
                     visible: root.title !== ""
+                    width: implicitWidth
+                    horizontalAlignment: Text.AlignLeft
                 }
             }
 

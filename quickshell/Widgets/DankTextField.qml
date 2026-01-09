@@ -105,7 +105,7 @@ StyledRect {
         anchors.bottomMargin: root.bottomPadding
         font.pixelSize: Theme.fontSizeMedium
         color: Theme.surfaceText
-        horizontalAlignment: I18n.isRtl ? TextInput.AlignRight : TextInput.AlignLeft
+        horizontalAlignment: TextInput.AlignLeft
         verticalAlignment: TextInput.AlignVCenter
         selectByMouse: !root.ignoreLeftRightKeys
         clip: true
@@ -189,7 +189,7 @@ StyledRect {
         text: root.placeholderText
         font: textInput.font
         color: placeholderColor
-        horizontalAlignment: textInput.horizontalAlignment
+        horizontalAlignment: Text.AlignLeft
         verticalAlignment: textInput.verticalAlignment
         visible: textInput.text.length === 0 && !textInput.activeFocus
         elide: I18n.isRtl ? Text.ElideLeft : Text.ElideRight

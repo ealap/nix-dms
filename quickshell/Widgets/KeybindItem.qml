@@ -1,4 +1,4 @@
-pragma ComponentBehavior: Bound
+pragma ComponentBehavior
 
 import QtQuick
 import QtQuick.Layouts
@@ -12,6 +12,9 @@ import "../Common/KeybindActions.js" as Actions
 Item {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property var bindData: ({})
     property bool isExpanded: false
     property var panelWindow: null
@@ -24,7 +27,9 @@ Item {
     property string editAction: ""
     property string editDesc: ""
     property int editCooldownMs: 0
+    property string editFlags: ""
     property int _savedCooldownMs: -1
+    property string _savedFlags: ""
     property bool hasChanges: false
     property string _actionType: ""
     property bool addingNewKey: false
@@ -42,7 +47,7 @@ Item {
 
     readonly property var keys: bindData.keys || []
     readonly property bool hasOverride: {
-        for (let i = 0; i < keys.length; i++) {
+        for (var i = 0; i < keys.length; i++) {
             if (keys[i].isOverride)
                 return true;
         }
@@ -92,7 +97,7 @@ Item {
     }
 
     function restoreToKey(keyToFind) {
-        for (let i = 0; i < keys.length; i++) {
+        for (var i = 0; i < keys.length; i++) {
             if (keys[i].key === keyToFind) {
                 editingKeyIndex = i;
                 editKey = keyToFind;
@@ -104,9 +109,15 @@ Item {
                 } else {
                     editCooldownMs = keys[i].cooldownMs || 0;
                 }
+                if (_savedFlags) {
+                    editFlags = _savedFlags;
+                    _savedFlags = "";
+                } else {
+                    editFlags = keys[i].flags || "";
+                }
                 hasChanges = false;
                 _actionType = Actions.getActionType(editAction);
-                useCustomCompositor = _actionType === "compositor" && editAction && !Actions.isKnownCompositorAction(editAction);
+                useCustomCompositor = _actionType === "compositor" && editAction && !Actions.isKnownCompositorAction(KeybindsService.currentProvider, editAction);
                 return;
             }
         }
@@ -124,9 +135,10 @@ Item {
         editAction = bindData.action || "";
         editDesc = bindData.desc || "";
         editCooldownMs = editingKeyIndex >= 0 ? (keys[editingKeyIndex].cooldownMs || 0) : 0;
+        editFlags = editingKeyIndex >= 0 ? (keys[editingKeyIndex].flags || "") : "";
         hasChanges = false;
         _actionType = Actions.getActionType(editAction);
-        useCustomCompositor = _actionType === "compositor" && editAction && !Actions.isKnownCompositorAction(editAction);
+        useCustomCompositor = _actionType === "compositor" && editAction && !Actions.isKnownCompositorAction(KeybindsService.currentProvider, editAction);
     }
 
     function startAddingNewKey() {
@@ -143,6 +155,7 @@ Item {
         editingKeyIndex = index;
         editKey = keys[index].key;
         editCooldownMs = keys[index].cooldownMs || 0;
+        editFlags = keys[index].flags || "";
         hasChanges = false;
     }
 
@@ -155,9 +168,12 @@ Item {
             editDesc = changes.desc;
         if (changes.cooldownMs !== undefined)
             editCooldownMs = changes.cooldownMs;
+        if (changes.flags !== undefined)
+            editFlags = changes.flags;
         const origKey = editingKeyIndex >= 0 && editingKeyIndex < keys.length ? keys[editingKeyIndex].key : "";
         const origCooldown = editingKeyIndex >= 0 && editingKeyIndex < keys.length ? (keys[editingKeyIndex].cooldownMs || 0) : 0;
-        hasChanges = editKey !== origKey || editAction !== (bindData.action || "") || editDesc !== (bindData.desc || "") || editCooldownMs !== origCooldown;
+        const origFlags = editingKeyIndex >= 0 && editingKeyIndex < keys.length ? (keys[editingKeyIndex].flags || "") : "";
+        hasChanges = editKey !== origKey || editAction !== (bindData.action || "") || editDesc !== (bindData.desc || "") || editCooldownMs !== origCooldown || editFlags !== origFlags;
     }
 
     function canSave() {
@@ -176,11 +192,13 @@ Item {
         if (expandedLoader.item?.currentTitle !== undefined)
             desc = expandedLoader.item.currentTitle;
         _savedCooldownMs = editCooldownMs;
+        _savedFlags = editFlags;
         saveBind(origKey, {
-            key: editKey,
-            action: editAction,
-            desc: desc,
-            cooldownMs: editCooldownMs
+            "key": editKey,
+            "action": editAction,
+            "desc": desc,
+            "cooldownMs": editCooldownMs,
+            "flags": editFlags
         });
         hasChanges = false;
         addingNewKey = false;
@@ -189,15 +207,14 @@ Item {
     function _createShortcutInhibitor() {
         if (!_shortcutInhibitorAvailable || _shortcutInhibitor)
             return;
-
         const qmlString = `
-            import QtQuick
-            import Quickshell.Wayland
+        import QtQuick
+        import Quickshell.Wayland
 
-            ShortcutInhibitor {
-                enabled: false
-                window: null
-            }
+        ShortcutInhibitor {
+        enabled: false
+        window: null
+        }
         `;
 
         _shortcutInhibitor = Qt.createQmlObject(qmlString, root, "KeybindItem.ShortcutInhibitor");
@@ -207,18 +224,21 @@ Item {
 
     function _destroyShortcutInhibitor() {
         if (_shortcutInhibitor) {
+            _shortcutInhibitor.enabled = false;
             _shortcutInhibitor.destroy();
             _shortcutInhibitor = null;
         }
     }
 
     function startRecording() {
+        _destroyShortcutInhibitor();
         _createShortcutInhibitor();
         recording = true;
     }
 
     function stopRecording() {
         recording = false;
+        _destroyShortcutInhibitor();
     }
 
     Column {
@@ -308,6 +328,7 @@ Item {
                         color: Theme.surfaceText
                         elide: Text.ElideRight
                         Layout.fillWidth: true
+                        horizontalAlignment: Text.AlignLeft
                     }
 
                     RowLayout {
@@ -436,6 +457,7 @@ Item {
                                 font.weight: Font.Medium
                                 color: Theme.primary
                                 Layout.fillWidth: true
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
 
@@ -617,7 +639,6 @@ Item {
                         Keys.onPressed: event => {
                             if (!root.recording)
                                 return;
-
                             event.accepted = true;
 
                             switch (event.key) {
@@ -654,7 +675,7 @@ Item {
                             }
 
                             root.updateEdit({
-                                key: KeyUtils.formatToken(mods, key)
+                                "key": KeyUtils.formatToken(mods, key)
                             });
                             root.stopRecording();
                         }
@@ -699,9 +720,8 @@ Item {
 
                                 if (!wheelKey)
                                     return;
-
                                 root.updateEdit({
-                                    key: KeyUtils.formatToken(mods, wheelKey)
+                                    "key": KeyUtils.formatToken(mods, wheelKey)
                                 });
                                 root.stopRecording();
                             }
@@ -756,6 +776,7 @@ Item {
                         color: Theme.primary
                         Layout.fillWidth: true
                         elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignLeft
                     }
                 }
 
@@ -824,26 +845,26 @@ Item {
                                         switch (typeDelegate.modelData.id) {
                                         case "dms":
                                             root.updateEdit({
-                                                action: KeybindsService.dmsActions[0].id,
-                                                desc: KeybindsService.dmsActions[0].label
+                                                "action": KeybindsService.dmsActions[0].id,
+                                                "desc": KeybindsService.dmsActions[0].label
                                             });
                                             break;
                                         case "compositor":
                                             root.updateEdit({
-                                                action: "close-window",
-                                                desc: "Close Window"
+                                                "action": "close-window",
+                                                "desc": "Close Window"
                                             });
                                             break;
                                         case "spawn":
                                             root.updateEdit({
-                                                action: "spawn ",
-                                                desc: ""
+                                                "action": "spawn ",
+                                                "desc": ""
                                             });
                                             break;
                                         case "shell":
                                             root.updateEdit({
-                                                action: "spawn sh -c \"\"",
-                                                desc: ""
+                                                "action": "spawn sh -c \"\"",
+                                                "desc": ""
                                             });
                                             break;
                                         }
@@ -890,8 +911,8 @@ Item {
                             for (const act of actions) {
                                 if (act.label === value) {
                                     root.updateEdit({
-                                        action: act.id,
-                                        desc: act.label
+                                        "action": act.id,
+                                        "desc": act.label
                                     });
                                     return;
                                 }
@@ -905,12 +926,12 @@ Item {
                     Layout.fillWidth: true
                     spacing: Theme.spacingM
 
-                    readonly property var argConfig: Actions.getActionArgConfig(root.editAction)
+                    readonly property var argConfig: Actions.getActionArgConfig(KeybindsService.currentProvider, root.editAction)
                     readonly property var parsedArgs: argConfig?.type === "dms" ? Actions.parseDmsActionArgs(root.editAction) : null
                     readonly property var dmsActionArgs: Actions.getDmsActionArgs()
-                    readonly property bool hasAmountArg: parsedArgs?.base ? (dmsActionArgs?.[parsedArgs.base]?.args?.some(a => a.name === "amount") ?? false) : false
-                    readonly property bool hasDeviceArg: parsedArgs?.base ? (dmsActionArgs?.[parsedArgs.base]?.args?.some(a => a.name === "device") ?? false) : false
-                    readonly property bool hasTabArg: parsedArgs?.base ? (dmsActionArgs?.[parsedArgs.base]?.args?.some(a => a.name === "tab") ?? false) : false
+                    readonly property bool hasAmountArg: parsedArgs?.base ? (dmsActionArgs[parsedArgs.base]?.args?.some(a => a.name === "amount") ?? false) : false
+                    readonly property bool hasDeviceArg: parsedArgs?.base ? (dmsActionArgs[parsedArgs.base]?.args?.some(a => a.name === "device") ?? false) : false
+                    readonly property bool hasTabArg: parsedArgs?.base ? (dmsActionArgs[parsedArgs.base]?.args?.some(a => a.name === "tab") ?? false) : false
 
                     visible: root._actionType === "dms" && argConfig?.type === "dms"
 
@@ -949,7 +970,7 @@ Item {
                             const newArgs = Object.assign({}, dmsArgsRow.parsedArgs.args);
                             newArgs.amount = text || "5";
                             root.updateEdit({
-                                action: Actions.buildDmsAction(dmsArgsRow.parsedArgs.base, newArgs)
+                                "action": Actions.buildDmsAction(dmsArgsRow.parsedArgs.base, newArgs)
                             });
                         }
                     }
@@ -997,7 +1018,7 @@ Item {
                             const newArgs = Object.assign({}, dmsArgsRow.parsedArgs.args);
                             newArgs.device = text;
                             root.updateEdit({
-                                action: Actions.buildDmsAction(dmsArgsRow.parsedArgs.base, newArgs)
+                                "action": Actions.buildDmsAction(dmsArgsRow.parsedArgs.base, newArgs)
                             });
                         }
                     }
@@ -1054,7 +1075,7 @@ Item {
                                 break;
                             }
                             root.updateEdit({
-                                action: Actions.buildDmsAction(dmsArgsRow.parsedArgs.base, newArgs)
+                                "action": Actions.buildDmsAction(dmsArgsRow.parsedArgs.base, newArgs)
                             });
                         }
                     }
@@ -1104,8 +1125,8 @@ Item {
                             for (const act of actions) {
                                 if (act.label === value) {
                                     root.updateEdit({
-                                        action: act.id,
-                                        desc: act.label
+                                        "action": act.id,
+                                        "desc": act.label
                                     });
                                     return;
                                 }
@@ -1146,10 +1167,10 @@ Item {
                     id: optionsRow
                     Layout.fillWidth: true
                     spacing: Theme.spacingM
-                    visible: root._actionType === "compositor" && !root.useCustomCompositor && Actions.getActionArgConfig(root.editAction)
+                    visible: root._actionType === "compositor" && !root.useCustomCompositor && Actions.getActionArgConfig(KeybindsService.currentProvider, root.editAction)
 
-                    readonly property var argConfig: Actions.getActionArgConfig(root.editAction)
-                    readonly property var parsedArgs: Actions.parseCompositorActionArgs(root.editAction)
+                    readonly property var argConfig: Actions.getActionArgConfig(KeybindsService.currentProvider, root.editAction)
+                    readonly property var parsedArgs: Actions.parseCompositorActionArgs(KeybindsService.currentProvider, root.editAction)
 
                     StyledText {
                         text: I18n.tr("Options")
@@ -1167,6 +1188,9 @@ Item {
                             id: argValueField
                             Layout.fillWidth: true
                             Layout.preferredHeight: root._inputHeight
+
+                            readonly property string _argName: optionsRow.argConfig?.config?.args[0]?.name || "value"
+
                             visible: {
                                 const cfg = optionsRow.argConfig;
                                 if (!cfg?.config?.args)
@@ -1174,19 +1198,20 @@ Item {
                                 const firstArg = cfg.config.args[0];
                                 return firstArg && (firstArg.type === "text" || firstArg.type === "number");
                             }
-                            placeholderText: optionsRow.argConfig?.config?.args?.[0]?.placeholder || ""
+                            placeholderText: optionsRow.argConfig?.config?.args[0]?.placeholder || ""
 
                             Connections {
                                 target: optionsRow
                                 function onParsedArgsChanged() {
-                                    const newText = optionsRow.parsedArgs?.args?.value || optionsRow.parsedArgs?.args?.index || "";
+                                    const argName = argValueField._argName;
+                                    const newText = optionsRow.parsedArgs?.args[argName] || "";
                                     if (argValueField.text !== newText)
                                         argValueField.text = newText;
                                 }
                             }
 
                             Component.onCompleted: {
-                                text = optionsRow.parsedArgs?.args?.value || optionsRow.parsedArgs?.args?.index || "";
+                                text = optionsRow.parsedArgs?.args[_argName] || "";
                             }
 
                             onEditingFinished: {
@@ -1194,15 +1219,10 @@ Item {
                                 if (!cfg)
                                     return;
                                 const parsed = optionsRow.parsedArgs;
-                                const args = {};
-                                if (cfg.config.args[0]?.type === "number")
-                                    args.index = text;
-                                else
-                                    args.value = text;
-                                if (parsed?.args?.focus === false)
-                                    args.focus = false;
+                                const args = Object.assign({}, parsed?.args || {});
+                                args[_argName] = text;
                                 root.updateEdit({
-                                    action: Actions.buildCompositorAction(parsed?.base || cfg.base, args)
+                                    "action": Actions.buildCompositorAction(KeybindsService.currentProvider, parsed?.base || cfg.base, args)
                                 });
                             }
                         }
@@ -1236,7 +1256,7 @@ Item {
                                     if (!newChecked)
                                         args.focus = false;
                                     root.updateEdit({
-                                        action: Actions.buildCompositorAction(cfg.base, args)
+                                        "action": Actions.buildCompositorAction(KeybindsService.currentProvider, cfg.base, args)
                                     });
                                 }
                             }
@@ -1257,14 +1277,14 @@ Item {
 
                                 DankToggle {
                                     id: showPointerToggle
-                                    checked: optionsRow.parsedArgs?.args?.["show-pointer"] === true
+                                    checked: optionsRow.parsedArgs?.args["show-pointer"] === true
                                     onToggled: newChecked => {
                                         const parsed = optionsRow.parsedArgs;
                                         const base = parsed?.base || "screenshot";
                                         const args = Object.assign({}, parsed?.args || {});
                                         args["show-pointer"] = newChecked;
                                         root.updateEdit({
-                                            action: Actions.buildCompositorAction(base, args)
+                                            "action": Actions.buildCompositorAction(KeybindsService.currentProvider, base, args)
                                         });
                                     }
                                 }
@@ -1282,14 +1302,14 @@ Item {
 
                                 DankToggle {
                                     id: writeToDiskToggle
-                                    checked: optionsRow.parsedArgs?.args?.["write-to-disk"] === true
+                                    checked: optionsRow.parsedArgs?.args["write-to-disk"] === true
                                     onToggled: newChecked => {
                                         const parsed = optionsRow.parsedArgs;
                                         const base = parsed?.base || "screenshot-screen";
                                         const args = Object.assign({}, parsed?.args || {});
                                         args["write-to-disk"] = newChecked;
                                         root.updateEdit({
-                                            action: Actions.buildCompositorAction(base, args)
+                                            "action": Actions.buildCompositorAction(KeybindsService.currentProvider, base, args)
                                         });
                                     }
                                 }
@@ -1327,7 +1347,7 @@ Item {
                             if (root._actionType !== "compositor")
                                 return;
                             root.updateEdit({
-                                action: text
+                                "action": text
                             });
                         }
                     }
@@ -1359,8 +1379,8 @@ Item {
                             onClicked: {
                                 root.useCustomCompositor = false;
                                 root.updateEdit({
-                                    action: "close-window",
-                                    desc: "Close Window"
+                                    "action": "close-window",
+                                    "desc": "Close Window"
                                 });
                             }
                         }
@@ -1393,7 +1413,7 @@ Item {
                             const parts = text.trim().split(" ").filter(p => p);
                             const action = parts.length > 0 ? "spawn " + parts.join(" ") : "spawn ";
                             root.updateEdit({
-                                action: action
+                                "action": action
                             });
                         }
                     }
@@ -1422,7 +1442,7 @@ Item {
                             if (root._actionType !== "shell")
                                 return;
                             root.updateEdit({
-                                action: Actions.buildShellAction(text)
+                                "action": Actions.buildShellAction(KeybindsService.currentProvider, text)
                             });
                         }
                     }
@@ -1447,7 +1467,7 @@ Item {
                         placeholderText: I18n.tr("Hotkey overlay title (optional)")
                         text: root.editDesc
                         onTextChanged: root.updateEdit({
-                            desc: text
+                            "desc": text
                         })
                     }
                 }
@@ -1455,6 +1475,114 @@ Item {
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: Theme.spacingM
+                    visible: KeybindsService.currentProvider === "hyprland"
+
+                    StyledText {
+                        text: I18n.tr("Flags")
+                        font.pixelSize: Theme.fontSizeSmall
+                        font.weight: Font.Medium
+                        color: Theme.surfaceVariantText
+                        Layout.preferredWidth: root._labelWidth
+                    }
+
+                    Flow {
+                        Layout.fillWidth: true
+                        spacing: Theme.spacingM
+
+                        RowLayout {
+                            spacing: Theme.spacingXS
+
+                            DankToggle {
+                                checked: root.editFlags.indexOf("e") !== -1
+                                onToggled: newChecked => {
+                                    let flags = root.editFlags.split("").filter(f => f !== "e");
+                                    if (newChecked)
+                                        flags.push("e");
+                                    root.updateEdit({
+                                        "flags": flags.join("")
+                                    });
+                                }
+                            }
+
+                            StyledText {
+                                text: I18n.tr("Repeat")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceVariantText
+                            }
+                        }
+
+                        RowLayout {
+                            spacing: Theme.spacingXS
+
+                            DankToggle {
+                                checked: root.editFlags.indexOf("l") !== -1
+                                onToggled: newChecked => {
+                                    let flags = root.editFlags.split("").filter(f => f !== "l");
+                                    if (newChecked)
+                                        flags.push("l");
+                                    root.updateEdit({
+                                        "flags": flags.join("")
+                                    });
+                                }
+                            }
+
+                            StyledText {
+                                text: I18n.tr("Locked")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceVariantText
+                            }
+                        }
+
+                        RowLayout {
+                            spacing: Theme.spacingXS
+
+                            DankToggle {
+                                checked: root.editFlags.indexOf("r") !== -1
+                                onToggled: newChecked => {
+                                    let flags = root.editFlags.split("").filter(f => f !== "r");
+                                    if (newChecked)
+                                        flags.push("r");
+                                    root.updateEdit({
+                                        "flags": flags.join("")
+                                    });
+                                }
+                            }
+
+                            StyledText {
+                                text: I18n.tr("Release")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceVariantText
+                            }
+                        }
+
+                        RowLayout {
+                            spacing: Theme.spacingXS
+
+                            DankToggle {
+                                checked: root.editFlags.indexOf("o") !== -1
+                                onToggled: newChecked => {
+                                    let flags = root.editFlags.split("").filter(f => f !== "o");
+                                    if (newChecked)
+                                        flags.push("o");
+                                    root.updateEdit({
+                                        "flags": flags.join("")
+                                    });
+                                }
+                            }
+
+                            StyledText {
+                                text: I18n.tr("Long press")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceVariantText
+                            }
+                        }
+                    }
+                }
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: Theme.spacingM
+                    visible: KeybindsService.currentProvider === "niri"
 
                     StyledText {
                         text: I18n.tr("Cooldown")
@@ -1487,7 +1615,7 @@ Item {
                             const val = parseInt(text) || 0;
                             if (val !== root.editCooldownMs)
                                 root.updateEdit({
-                                    cooldownMs: val
+                                    "cooldownMs": val
                                 });
                         }
                     }

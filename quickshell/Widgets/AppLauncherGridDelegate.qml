@@ -39,22 +39,39 @@ Rectangle {
         anchors.centerIn: parent
         spacing: Theme.spacingS
 
-        AppIconRenderer {
-            property int computedIconSize: Math.min(root.maxIconSize, Math.max(root.minIconSize, root.cellWidth * root.iconSizeRatio))
-
-            width: computedIconSize
-            height: computedIconSize
+        Item {
+            width: iconRenderer.computedIconSize
+            height: iconRenderer.computedIconSize
             anchors.horizontalCenter: parent.horizontalCenter
-            iconValue: (model.icon && model.icon !== "") ? model.icon : ""
-            iconSize: computedIconSize
-            fallbackText: (model.name && model.name.length > 0) ? model.name.charAt(0).toUpperCase() : "A"
-            materialIconSizeAdjustment: root.iconMaterialSizeAdjustment
-            unicodeIconScale: root.iconUnicodeScale
-            fallbackTextScale: Math.min(28, computedIconSize * 0.5) / computedIconSize
-            iconMargins: 0
-            fallbackLeftMargin: root.iconFallbackLeftMargin
-            fallbackRightMargin: root.iconFallbackRightMargin
-            fallbackBottomMargin: root.iconFallbackBottomMargin
+
+            AppIconRenderer {
+                id: iconRenderer
+                property int computedIconSize: Math.min(root.maxIconSize, Math.max(root.minIconSize, root.cellWidth * root.iconSizeRatio))
+
+                width: computedIconSize
+                height: computedIconSize
+                iconValue: (model.icon && model.icon !== "") ? model.icon : ""
+                iconSize: computedIconSize
+                fallbackText: (model.name && model.name.length > 0) ? model.name.charAt(0).toUpperCase() : "A"
+                materialIconSizeAdjustment: root.iconMaterialSizeAdjustment
+                unicodeIconScale: root.iconUnicodeScale
+                fallbackTextScale: Math.min(28, computedIconSize * 0.5) / computedIconSize
+                iconMargins: 0
+                fallbackLeftMargin: root.iconFallbackLeftMargin
+                fallbackRightMargin: root.iconFallbackRightMargin
+                fallbackBottomMargin: root.iconFallbackBottomMargin
+            }
+
+            DankIcon {
+                visible: model.pinned === true
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                anchors.rightMargin: -4
+                anchors.bottomMargin: -4
+                name: "push_pin"
+                size: 14
+                color: Theme.primary
+            }
         }
 
         StyledText {
@@ -95,13 +112,11 @@ Rectangle {
             }
         }
         onPressAndHold: mouse => {
-            if (!root.isPlugin) {
-                const globalPos = mapToItem(null, mouse.x, mouse.y);
-                root.itemRightClicked(root.index, root.model, globalPos.x, globalPos.y);
-            }
+            const globalPos = mapToItem(null, mouse.x, mouse.y);
+            root.itemRightClicked(root.index, root.model, globalPos.x, globalPos.y);
         }
         onPressed: mouse => {
-            if (mouse.button === Qt.RightButton && !root.isPlugin) {
+            if (mouse.button === Qt.RightButton) {
                 const globalPos = mapToItem(null, mouse.x, mouse.y);
                 root.itemRightClicked(root.index, root.model, globalPos.x, globalPos.y);
                 mouse.accepted = true;

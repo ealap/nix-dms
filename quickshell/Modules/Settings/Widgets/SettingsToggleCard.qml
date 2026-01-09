@@ -7,6 +7,9 @@ import qs.Widgets
 StyledRect {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property string tab: ""
     property var tags: []
 
@@ -76,6 +79,7 @@ StyledRect {
                     color: Theme.surfaceVariantText
                     wrapMode: Text.WordWrap
                     width: parent.width
+                    horizontalAlignment: Text.AlignLeft
                     visible: root.description !== ""
                 }
             }

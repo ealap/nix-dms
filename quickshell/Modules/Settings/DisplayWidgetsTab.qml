@@ -8,6 +8,9 @@ import qs.Widgets
 Item {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     function getBarComponentsFromSettings() {
         const bars = SettingsData.barConfigs || [];
         return bars.map(bar => ({
@@ -165,6 +168,8 @@ Item {
                                 font.pixelSize: Theme.fontSizeLarge
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
@@ -173,6 +178,7 @@ Item {
                                 color: Theme.surfaceVariantText
                                 wrapMode: Text.WordWrap
                                 width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
                     }
@@ -194,6 +200,7 @@ Item {
                                     font.pixelSize: Theme.fontSizeMedium
                                     font.weight: Font.Medium
                                     color: Theme.surfaceText
+                                    horizontalAlignment: Text.AlignLeft
                                 }
 
                                 Item {
@@ -270,6 +277,8 @@ Item {
                                             font.pixelSize: Theme.fontSizeMedium
                                             font.weight: Font.Medium
                                             color: Theme.surfaceText
+                                            width: parent.width
+                                            horizontalAlignment: Text.AlignLeft
                                         }
 
                                         Row {
@@ -352,6 +361,8 @@ Item {
                                         font.pixelSize: Theme.fontSizeLarge
                                         font.weight: Font.Medium
                                         color: Theme.surfaceText
+                                        width: parent.width
+                                        horizontalAlignment: Text.AlignLeft
                                     }
 
                                     StyledText {
@@ -360,6 +371,7 @@ Item {
                                         color: Theme.surfaceVariantText
                                         wrapMode: Text.WordWrap
                                         width: parent.width
+                                        horizontalAlignment: Text.AlignLeft
                                     }
                                 }
                             }
@@ -373,6 +385,8 @@ Item {
                                     font.pixelSize: Theme.fontSizeSmall
                                     color: Theme.surfaceText
                                     font.weight: Font.Medium
+                                    width: parent.width
+                                    horizontalAlignment: Text.AlignLeft
                                 }
 
                                 Column {

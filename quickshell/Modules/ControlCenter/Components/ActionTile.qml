@@ -5,6 +5,9 @@ import qs.Widgets
 Rectangle {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property string iconName: ""
     property string text: ""
     property string secondaryText: ""
@@ -80,6 +83,7 @@ Rectangle {
                     color: isActive ? Theme.primaryText : Theme.surfaceText
                     elide: Text.ElideRight
                     wrapMode: Text.NoWrap
+                    horizontalAlignment: Text.AlignLeft
                 }
 
                 Typography {
@@ -90,6 +94,7 @@ Rectangle {
                     visible: text.length > 0
                     elide: Text.ElideRight
                     wrapMode: Text.NoWrap
+                    horizontalAlignment: Text.AlignLeft
                 }
             }
         }

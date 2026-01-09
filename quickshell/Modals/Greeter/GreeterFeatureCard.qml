@@ -9,11 +9,20 @@ Rectangle {
     property string title: ""
     property string description: ""
 
+    signal clicked
+
     readonly property real iconContainerSize: Math.round(Theme.iconSize * 1.5)
 
     height: Math.round(Theme.fontSizeMedium * 6.4)
     radius: Theme.cornerRadius
     color: Theme.surfaceContainerHigh
+
+    Rectangle {
+        anchors.fill: parent
+        radius: parent.radius
+        color: Theme.primary
+        opacity: mouseArea.containsMouse ? 0.12 : 0
+    }
 
     Column {
         anchors.centerIn: parent
@@ -53,5 +62,13 @@ Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
             }
         }
+    }
+
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
+        onClicked: root.clicked()
     }
 }

@@ -34,15 +34,19 @@ FloatingWindow {
     }
 
     function showWithTab(tabIndex: int) {
-        if (tabIndex >= 0)
+        if (tabIndex >= 0) {
             currentTabIndex = tabIndex;
+            sidebar.autoExpandForTab(tabIndex);
+        }
         visible = true;
     }
 
     function showWithTabName(tabName: string) {
         var idx = sidebar.resolveTabIndex(tabName);
-        if (idx >= 0)
+        if (idx >= 0) {
             currentTabIndex = idx;
+            sidebar.autoExpandForTab(idx);
+        }
         visible = true;
     }
 

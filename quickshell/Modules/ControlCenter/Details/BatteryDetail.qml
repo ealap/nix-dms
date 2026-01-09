@@ -5,6 +5,11 @@ import qs.Services
 import qs.Widgets
 
 Rectangle {
+    id: root
+
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     implicitHeight: contentColumn.implicitHeight + Theme.spacingL * 2
     radius: Theme.cornerRadius
     color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
@@ -110,6 +115,7 @@ Rectangle {
                     visible: text.length > 0
                     elide: Text.ElideRight
                     width: parent.width
+                    horizontalAlignment: Text.AlignLeft
                 }
             }
         }
@@ -249,6 +255,7 @@ Rectangle {
                             color: Qt.rgba(Theme.error.r, Theme.error.g, Theme.error.b, 0.8)
                             wrapMode: Text.WordWrap
                             width: parent.width
+                            horizontalAlignment: Text.AlignLeft
                         }
                     }
                 }

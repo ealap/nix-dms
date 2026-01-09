@@ -10,6 +10,9 @@ import qs.Modules.Settings.Widgets
 Item {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property var expandedStates: ({})
     property var parentModal: null
 
@@ -56,6 +59,7 @@ Item {
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.surfaceVariantText
                         wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignLeft
                     }
 
                     Row {
@@ -129,7 +133,7 @@ Item {
                 color: Theme.surfaceVariantText
                 width: parent.width
                 wrapMode: Text.WordWrap
-                horizontalAlignment: Text.AlignHCenter
+                horizontalAlignment: Text.AlignLeft
             }
 
             SettingsCard {
@@ -162,18 +166,23 @@ Item {
                         Column {
                             spacing: 2
                             anchors.verticalCenter: parent.verticalCenter
+                            width: parent.width - 40 - Theme.spacingM
 
                             StyledText {
                                 text: I18n.tr("Move Widget")
                                 font.pixelSize: Theme.fontSizeMedium
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
                                 text: I18n.tr("Right-click and drag anywhere on the widget")
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Theme.surfaceVariantText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
                     }
@@ -198,18 +207,23 @@ Item {
                         Column {
                             spacing: 2
                             anchors.verticalCenter: parent.verticalCenter
+                            width: parent.width - 40 - Theme.spacingM
 
                             StyledText {
                                 text: I18n.tr("Resize Widget")
                                 font.pixelSize: Theme.fontSizeMedium
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
                                 text: I18n.tr("Right-click and drag the bottom-right corner")
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Theme.surfaceVariantText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
                     }

@@ -10,6 +10,9 @@ import qs.Modals
 Rectangle {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     implicitHeight: {
         if (height > 0) {
             return height
@@ -237,6 +240,7 @@ Rectangle {
                                 font.weight: modelData.connected ? Font.Medium : Font.Normal
                                 elide: Text.ElideRight
                                 width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             Row {
@@ -463,6 +467,7 @@ Rectangle {
                                 color: Theme.surfaceText
                                 elide: Text.ElideRight
                                 width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             Row {

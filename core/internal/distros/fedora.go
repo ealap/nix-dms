@@ -153,7 +153,7 @@ func (f *FedoraDistribution) getDmsMapping(variant deps.PackageVariant) PackageM
 }
 
 func (f *FedoraDistribution) getHyprlandMapping(_ deps.PackageVariant) PackageMapping {
-	return PackageMapping{Name: "hyprland", Repository: RepoTypeCOPR, RepoURL: "solopasha/hyprland"}
+	return PackageMapping{Name: "hyprland", Repository: RepoTypeCOPR, RepoURL: "sdegler/hyprland"}
 }
 
 func (f *FedoraDistribution) getNiriMapping(variant deps.PackageVariant) PackageMapping {

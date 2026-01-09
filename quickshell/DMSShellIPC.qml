@@ -189,6 +189,13 @@ Item {
             if (CompositorService.isNiri && NiriService.currentOutput) {
                 return NiriService.currentOutput;
             }
+            if ((CompositorService.isSway || CompositorService.isScroll) && I3.workspaces?.values) {
+                const focusedWs = I3.workspaces.values.find(ws => ws.focused === true);
+                return focusedWs?.monitor?.name || "";
+            }
+            if (CompositorService.isDwl && DwlService.activeOutput) {
+                return DwlService.activeOutput;
+            }
             return "";
         }
 
@@ -592,6 +599,39 @@ Item {
             return barConfig.autoHide ? "BAR_MANUAL_HIDE_SUCCESS" : "BAR_AUTO_HIDE_SUCCESS";
         }
 
+        function getPosition(selector: string, value: string): string {
+            const {
+                barConfig,
+                error
+            } = getBarConfig(selector, value);
+            if (error)
+                return error;
+            const positions = ["top", "bottom", "left", "right"];
+            return positions[barConfig.position] || "unknown";
+        }
+
+        function setPosition(selector: string, value: string, position: string): string {
+            const {
+                barConfig,
+                error
+            } = getBarConfig(selector, value);
+            if (error)
+                return error;
+            const positionMap = {
+                "top": SettingsData.Position.Top,
+                "bottom": SettingsData.Position.Bottom,
+                "left": SettingsData.Position.Left,
+                "right": SettingsData.Position.Right
+            };
+            const posValue = positionMap[position.toLowerCase()];
+            if (posValue === undefined)
+                return "BAR_INVALID_POSITION";
+            SettingsData.updateBarConfig(barConfig.id, {
+                position: posValue
+            });
+            return "BAR_POSITION_SET_SUCCESS";
+        }
+
         target: "bar"
     }
 
@@ -787,7 +827,16 @@ Item {
             const widgets = BarWidgetService.getRegisteredWidgetIds();
             if (widgets.length === 0)
                 return "No widgets registered";
-            return widgets.join("\n");
+
+            const lines = [];
+            for (const widgetId of widgets) {
+                const widget = BarWidgetService.getWidgetOnFocusedScreen(widgetId);
+                let state = "";
+                if (widget?.effectiveVisible !== undefined)
+                    state = widget.effectiveVisible ? " [visible]" : " [hidden]";
+                lines.push(widgetId + state);
+            }
+            return lines.join("\n");
         }
 
         function status(widgetId: string): string {
@@ -804,6 +853,76 @@ Item {
             if (widget.popoutTarget?.shouldBeVisible)
                 return "visible";
             return "hidden";
+        }
+
+        function reveal(widgetId: string): string {
+            if (!widgetId)
+                return "ERROR: No widget ID specified";
+
+            if (!BarWidgetService.hasWidget(widgetId))
+                return `WIDGET_NOT_FOUND: ${widgetId}`;
+
+            const widget = BarWidgetService.getWidgetOnFocusedScreen(widgetId);
+            if (!widget)
+                return `WIDGET_NOT_AVAILABLE: ${widgetId}`;
+
+            if (typeof widget.setVisibilityOverride === "function") {
+                widget.setVisibilityOverride(true);
+                return `WIDGET_REVEAL_SUCCESS: ${widgetId}`;
+            }
+            return `WIDGET_REVEAL_NOT_SUPPORTED: ${widgetId}`;
+        }
+
+        function hide(widgetId: string): string {
+            if (!widgetId)
+                return "ERROR: No widget ID specified";
+
+            if (!BarWidgetService.hasWidget(widgetId))
+                return `WIDGET_NOT_FOUND: ${widgetId}`;
+
+            const widget = BarWidgetService.getWidgetOnFocusedScreen(widgetId);
+            if (!widget)
+                return `WIDGET_NOT_AVAILABLE: ${widgetId}`;
+
+            if (typeof widget.setVisibilityOverride === "function") {
+                widget.setVisibilityOverride(false);
+                return `WIDGET_HIDE_SUCCESS: ${widgetId}`;
+            }
+            return `WIDGET_HIDE_NOT_SUPPORTED: ${widgetId}`;
+        }
+
+        function reset(widgetId: string): string {
+            if (!widgetId)
+                return "ERROR: No widget ID specified";
+
+            if (!BarWidgetService.hasWidget(widgetId))
+                return `WIDGET_NOT_FOUND: ${widgetId}`;
+
+            const widget = BarWidgetService.getWidgetOnFocusedScreen(widgetId);
+            if (!widget)
+                return `WIDGET_NOT_AVAILABLE: ${widgetId}`;
+
+            if (typeof widget.clearVisibilityOverride === "function") {
+                widget.clearVisibilityOverride();
+                return `WIDGET_RESET_SUCCESS: ${widgetId}`;
+            }
+            return `WIDGET_RESET_NOT_SUPPORTED: ${widgetId}`;
+        }
+
+        function visibility(widgetId: string): string {
+            if (!widgetId)
+                return "ERROR: No widget ID specified";
+
+            if (!BarWidgetService.hasWidget(widgetId))
+                return `WIDGET_NOT_FOUND: ${widgetId}`;
+
+            const widget = BarWidgetService.getWidgetOnFocusedScreen(widgetId);
+            if (!widget)
+                return `WIDGET_NOT_AVAILABLE: ${widgetId}`;
+
+            if (widget.effectiveVisible !== undefined)
+                return widget.effectiveVisible ? "visible" : "hidden";
+            return "unknown";
         }
 
         target: "widget"

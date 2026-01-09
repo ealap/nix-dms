@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"time"
 
@@ -29,9 +30,16 @@ var matugenQueueCmd = &cobra.Command{
 	Run:   runMatugenQueue,
 }
 
+var matugenCheckCmd = &cobra.Command{
+	Use:   "check",
+	Short: "Check which template apps are detected",
+	Run:   runMatugenCheck,
+}
+
 func init() {
 	matugenCmd.AddCommand(matugenGenerateCmd)
 	matugenCmd.AddCommand(matugenQueueCmd)
+	matugenCmd.AddCommand(matugenCheckCmd)
 
 	for _, cmd := range []*cobra.Command{matugenGenerateCmd, matugenQueueCmd} {
 		cmd.Flags().String("state-dir", "", "State directory for cache files")
@@ -161,4 +169,13 @@ func runMatugenQueue(cmd *cobra.Command, args []string) {
 	case <-ctx.Done():
 		log.Fatalf("Timeout waiting for theme generation")
 	}
+}
+
+func runMatugenCheck(cmd *cobra.Command, args []string) {
+	checks := matugen.CheckTemplates(nil)
+	data, err := json.Marshal(checks)
+	if err != nil {
+		log.Fatalf("Failed to marshal check results: %v", err)
+	}
+	fmt.Println(string(data))
 }

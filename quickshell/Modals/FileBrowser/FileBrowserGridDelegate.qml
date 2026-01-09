@@ -21,67 +21,67 @@ StyledRect {
     signal itemSelected(int index, string path, string name, bool isDir)
 
     function getFileExtension(fileName) {
-        const parts = fileName.split('.')
+        const parts = fileName.split('.');
         if (parts.length > 1) {
-            return parts[parts.length - 1].toLowerCase()
+            return parts[parts.length - 1].toLowerCase();
         }
-        return ""
+        return "";
     }
 
     function determineFileType(fileName) {
-        const ext = getFileExtension(fileName)
+        const ext = getFileExtension(fileName);
 
-        const imageExts = ["png", "jpg", "jpeg", "gif", "bmp", "webp", "svg", "ico"]
+        const imageExts = ["png", "jpg", "jpeg", "gif", "bmp", "webp", "svg", "ico"];
         if (imageExts.includes(ext)) {
-            return "image"
+            return "image";
         }
 
-        const videoExts = ["mp4", "mkv", "avi", "mov", "webm", "flv", "wmv", "m4v"]
+        const videoExts = ["mp4", "mkv", "avi", "mov", "webm", "flv", "wmv", "m4v"];
         if (videoExts.includes(ext)) {
-            return "video"
+            return "video";
         }
 
-        const audioExts = ["mp3", "wav", "flac", "ogg", "m4a", "aac", "wma"]
+        const audioExts = ["mp3", "wav", "flac", "ogg", "m4a", "aac", "wma"];
         if (audioExts.includes(ext)) {
-            return "audio"
+            return "audio";
         }
 
-        const codeExts = ["js", "ts", "jsx", "tsx", "py", "go", "rs", "c", "cpp", "h", "java", "kt", "swift", "rb", "php", "html", "css", "scss", "json", "xml", "yaml", "yml", "toml", "sh", "bash", "zsh", "fish", "qml", "vue", "svelte"]
+        const codeExts = ["js", "ts", "jsx", "tsx", "py", "go", "rs", "c", "cpp", "h", "java", "kt", "swift", "rb", "php", "html", "css", "scss", "json", "xml", "yaml", "yml", "toml", "sh", "bash", "zsh", "fish", "qml", "vue", "svelte"];
         if (codeExts.includes(ext)) {
-            return "code"
+            return "code";
         }
 
-        const docExts = ["txt", "md", "pdf", "doc", "docx", "odt", "rtf"]
+        const docExts = ["txt", "md", "pdf", "doc", "docx", "odt", "rtf"];
         if (docExts.includes(ext)) {
-            return "document"
+            return "document";
         }
 
-        const archiveExts = ["zip", "tar", "gz", "bz2", "xz", "7z", "rar"]
+        const archiveExts = ["zip", "tar", "gz", "bz2", "xz", "7z", "rar"];
         if (archiveExts.includes(ext)) {
-            return "archive"
+            return "archive";
         }
 
         if (!ext || fileName.indexOf('.') === -1) {
-            return "binary"
+            return "binary";
         }
 
-        return "file"
+        return "file";
     }
 
     function isImageFile(fileName) {
         if (!fileName) {
-            return false
+            return false;
         }
-        return determineFileType(fileName) === "image"
+        return determineFileType(fileName) === "image";
     }
 
     function getIconForFile(fileName) {
-        const lowerName = fileName.toLowerCase()
+        const lowerName = fileName.toLowerCase();
         if (lowerName.startsWith("dockerfile")) {
-            return "docker"
+            return "docker";
         }
-        const ext = fileName.split('.').pop()
-        return ext || ""
+        const ext = fileName.split('.').pop();
+        return ext || "";
     }
 
     width: weMode ? 245 : iconSizes[iconSizeIndex] + 16
@@ -89,21 +89,21 @@ StyledRect {
     radius: Theme.cornerRadius
     color: {
         if (keyboardNavigationActive && delegateRoot.index === selectedIndex)
-            return Theme.surfacePressed
+            return Theme.surfacePressed;
 
-        return mouseArea.containsMouse ? Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency) : "transparent"
+        return mouseArea.containsMouse ? Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency) : "transparent";
     }
     border.color: keyboardNavigationActive && delegateRoot.index === selectedIndex ? Theme.primary : "transparent"
     border.width: (keyboardNavigationActive && delegateRoot.index === selectedIndex) ? 2 : 0
 
     Component.onCompleted: {
         if (keyboardNavigationActive && delegateRoot.index === selectedIndex)
-            itemSelected(delegateRoot.index, delegateRoot.filePath, delegateRoot.fileName, delegateRoot.fileIsDir)
+            itemSelected(delegateRoot.index, delegateRoot.filePath, delegateRoot.fileName, delegateRoot.fileIsDir);
     }
 
     onSelectedIndexChanged: {
         if (keyboardNavigationActive && selectedIndex === delegateRoot.index)
-            itemSelected(delegateRoot.index, delegateRoot.filePath, delegateRoot.fileName, delegateRoot.fileIsDir)
+            itemSelected(delegateRoot.index, delegateRoot.filePath, delegateRoot.fileName, delegateRoot.fileIsDir);
     }
 
     Column {
@@ -115,30 +115,31 @@ StyledRect {
             height: weMode ? 165 : (iconSizes[iconSizeIndex] - 8)
             anchors.horizontalCenter: parent.horizontalCenter
 
-            CachingImage {
+            Image {
                 id: gridPreviewImage
                 anchors.fill: parent
                 anchors.margins: 2
                 property var weExtensions: [".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".tga"]
                 property int weExtIndex: 0
-                source: {
-                    if (weMode && delegateRoot.fileIsDir) {
-                        return "file://" + delegateRoot.filePath + "/preview" + weExtensions[weExtIndex]
-                    }
-                    return (!delegateRoot.fileIsDir && isImageFile(delegateRoot.fileName)) ? ("file://" + delegateRoot.filePath) : ""
+                property string imagePath: {
+                    if (weMode && delegateRoot.fileIsDir)
+                        return delegateRoot.filePath + "/preview" + weExtensions[weExtIndex];
+                    return (!delegateRoot.fileIsDir && isImageFile(delegateRoot.fileName)) ? delegateRoot.filePath : "";
                 }
+                source: imagePath ? "file://" + imagePath.split('/').map(s => encodeURIComponent(s)).join('/') : ""
                 onStatusChanged: {
                     if (weMode && delegateRoot.fileIsDir && status === Image.Error) {
                         if (weExtIndex < weExtensions.length - 1) {
-                            weExtIndex++
-                            source = "file://" + delegateRoot.filePath + "/preview" + weExtensions[weExtIndex]
+                            weExtIndex++;
                         } else {
-                            source = ""
+                            imagePath = "";
                         }
                     }
                 }
                 fillMode: Image.PreserveAspectCrop
-                maxCacheSize: weMode ? 225 : iconSizes[iconSizeIndex]
+                sourceSize.width: weMode ? 225 : iconSizes[iconSizeIndex]
+                sourceSize.height: weMode ? 225 : iconSizes[iconSizeIndex]
+                asynchronous: true
                 visible: false
             }
 
@@ -198,7 +199,7 @@ StyledRect {
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
         onClicked: {
-            itemClicked(delegateRoot.index, delegateRoot.filePath, delegateRoot.fileName, delegateRoot.fileIsDir)
+            itemClicked(delegateRoot.index, delegateRoot.filePath, delegateRoot.fileName, delegateRoot.fileIsDir);
         }
     }
 }

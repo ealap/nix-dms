@@ -22,11 +22,8 @@ DankModal {
     function resetContent() {
         if (!spotlightContent)
             return;
-        if (spotlightContent.appLauncher) {
-            spotlightContent.appLauncher.searchQuery = "";
-            spotlightContent.appLauncher.selectedIndex = 0;
-            spotlightContent.appLauncher.setCategory(I18n.tr("All"));
-        }
+        if (spotlightContent.appLauncher)
+            spotlightContent.appLauncher.reset();
         if (spotlightContent.fileSearchController)
             spotlightContent.fileSearchController.reset();
         if (spotlightContent.resetScroll)

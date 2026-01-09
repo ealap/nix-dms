@@ -117,7 +117,7 @@ FloatingWindow {
             onDoubleClicked: windowControls.tryToggleMaximize()
         }
 
-        Row {
+        Item {
             id: headerRow
             anchors.left: parent.left
             anchors.right: parent.right
@@ -125,9 +125,13 @@ FloatingWindow {
             anchors.leftMargin: Theme.spacingM
             anchors.rightMargin: Theme.spacingM
             anchors.topMargin: Theme.spacingM
+            height: Math.max(titleColumn.height, buttonRow.height)
 
             Column {
-                width: parent.width - 60
+                id: titleColumn
+                anchors.left: parent.left
+                anchors.right: buttonRow.left
+                anchors.rightMargin: Theme.spacingM
                 spacing: Theme.spacingXS
 
                 StyledText {
@@ -162,10 +166,12 @@ FloatingWindow {
             }
 
             Row {
+                id: buttonRow
+                anchors.right: parent.right
                 spacing: Theme.spacingXS
 
                 DankActionButton {
-                    visible: windowControls.supported
+                    visible: windowControls.supported && windowControls.canMaximize
                     iconName: root.maximized ? "fullscreen_exit" : "fullscreen"
                     iconSize: Theme.iconSize - 4
                     iconColor: Theme.surfaceText

@@ -33,8 +33,12 @@ DankModal {
         if (parentPopout) {
             parentPopout.customKeyboardFocus = WlrKeyboardFocus.None;
         }
-        content.reset();
-        Qt.callLater(() => content.forceActiveFocus());
+        Qt.callLater(() => {
+            if (contentLoader.item) {
+                contentLoader.item.reset();
+                contentLoader.item.forceActiveFocus();
+            }
+        });
     }
 
     onDialogClosed: {
@@ -43,8 +47,7 @@ DankModal {
         }
     }
 
-    directContent: FileBrowserContent {
-        id: content
+    content: FileBrowserContent {
         focus: true
 
         browserTitle: fileBrowserSurfaceModal.browserTitle

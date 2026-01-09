@@ -6,6 +6,9 @@ import qs.Widgets
 Rectangle {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property string mountPath: "/"
     property string instanceId: ""
 
@@ -84,6 +87,7 @@ Rectangle {
                 color: Theme.surfaceVariantText
                 elide: Text.ElideMiddle
                 width: Math.min(implicitWidth, root.width - Theme.iconSizeSmall - Theme.spacingM)
+                horizontalAlignment: Text.AlignLeft
             }
 
             StyledText {

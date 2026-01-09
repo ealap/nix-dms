@@ -510,6 +510,16 @@ Singleton {
         objects: Pipewire.nodes.values.filter(node => node.audio && !node.isStream)
     }
 
+    Connections {
+        target: Pipewire
+        function onDefaultAudioSinkChanged() {
+            if (soundsAvailable) {
+                Qt.callLater(root.destroySoundPlayers);
+                Qt.callLater(root.createSoundPlayers);
+            }
+        }
+    }
+
     function setVolume(percentage) {
         if (!root.sink?.audio) {
             return "No audio sink available";

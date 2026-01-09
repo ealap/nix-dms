@@ -199,6 +199,7 @@ SettingsCard {
                     color: Theme.surfaceText
                     anchors.verticalCenter: parent.verticalCenter
                     width: 80
+                    horizontalAlignment: Text.AlignLeft
                 }
 
                 DankTextField {
@@ -246,6 +247,23 @@ SettingsCard {
             }
         }
 
+        SettingsDivider {
+            visible: CompositorService.isNiri
+        }
+
+        SettingsToggleRow {
+            visible: CompositorService.isNiri
+            text: I18n.tr("Show on Overview Only")
+            checked: instanceData?.config?.showOnOverviewOnly ?? false
+            onToggled: isChecked => {
+                if (!root.instanceId)
+                    return;
+                SettingsData.updateDesktopWidgetInstanceConfig(root.instanceId, {
+                    showOnOverviewOnly: isChecked
+                });
+            }
+        }
+
         SettingsDivider {}
 
         Item {
@@ -263,6 +281,8 @@ SettingsCard {
                     text: I18n.tr("Command")
                     font.pixelSize: Theme.fontSizeMedium
                     color: Theme.surfaceText
+                    width: parent.width
+                    horizontalAlignment: Text.AlignLeft
                 }
 
                 Rectangle {

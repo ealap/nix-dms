@@ -241,7 +241,11 @@ Item {
             maximizeDetection: defaultBar.maximizeDetection ?? true,
             scrollEnabled: defaultBar.scrollEnabled ?? true,
             scrollXBehavior: defaultBar.scrollXBehavior ?? "column",
-            scrollYBehavior: defaultBar.scrollYBehavior ?? "workspace"
+            scrollYBehavior: defaultBar.scrollYBehavior ?? "workspace",
+            shadowIntensity: defaultBar.shadowIntensity ?? 0,
+            shadowOpacity: defaultBar.shadowOpacity ?? 60,
+            shadowColorMode: defaultBar.shadowColorMode ?? "text",
+            shadowCustomColor: defaultBar.shadowCustomColor ?? "#000000"
         };
         SettingsData.addBarConfig(newBar);
         selectedBarId = newId;
@@ -1047,6 +1051,128 @@ Item {
                             property: "value"
                             value: selectedBarConfig?.gothCornerRadiusValue ?? 12
                             restoreMode: Binding.RestoreBinding
+                        }
+                    }
+                }
+            }
+
+            SettingsCard {
+                iconName: "layers"
+                title: I18n.tr("Shadow", "bar shadow settings card")
+                visible: selectedBarConfig?.enabled
+
+                readonly property bool shadowActive: (selectedBarConfig?.shadowIntensity ?? 0) > 0
+                readonly property bool isCustomColor: (selectedBarConfig?.shadowColorMode ?? "text") === "custom"
+
+                SettingsSliderRow {
+                    text: I18n.tr("Intensity", "shadow intensity slider")
+                    minimum: 0
+                    maximum: 100
+                    unit: "%"
+                    value: selectedBarConfig?.shadowIntensity ?? 0
+                    onSliderValueChanged: newValue => SettingsData.updateBarConfig(selectedBarId, {
+                            shadowIntensity: newValue
+                        })
+                }
+
+                SettingsSliderRow {
+                    visible: parent.shadowActive
+                    text: I18n.tr("Opacity")
+                    minimum: 10
+                    maximum: 100
+                    unit: "%"
+                    value: selectedBarConfig?.shadowOpacity ?? 60
+                    onSliderValueChanged: newValue => SettingsData.updateBarConfig(selectedBarId, {
+                            shadowOpacity: newValue
+                        })
+                }
+
+                Column {
+                    visible: parent.shadowActive
+                    width: parent.width
+                    spacing: Theme.spacingS
+
+                    StyledText {
+                        text: I18n.tr("Color")
+                        font.pixelSize: Theme.fontSizeMedium
+                        color: Theme.surfaceText
+                        x: Theme.spacingM
+                    }
+
+                    Item {
+                        width: parent.width
+                        height: shadowColorGroup.implicitHeight
+
+                        DankButtonGroup {
+                            id: shadowColorGroup
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            buttonPadding: parent.width < 420 ? Theme.spacingXS : Theme.spacingS
+                            minButtonWidth: parent.width < 420 ? 36 : 56
+                            textSize: parent.width < 420 ? Theme.fontSizeSmall : Theme.fontSizeMedium
+                            model: [I18n.tr("Text", "shadow color option"), I18n.tr("Surface", "shadow color option"), I18n.tr("Primary"), I18n.tr("Secondary"), I18n.tr("Custom")]
+                            selectionMode: "single"
+                            currentIndex: {
+                                switch (selectedBarConfig?.shadowColorMode || "text") {
+                                case "surface":
+                                    return 1;
+                                case "primary":
+                                    return 2;
+                                case "secondary":
+                                    return 3;
+                                case "custom":
+                                    return 4;
+                                default:
+                                    return 0;
+                                }
+                            }
+                            onSelectionChanged: (index, selected) => {
+                                if (!selected)
+                                    return;
+                                let mode = "text";
+                                switch (index) {
+                                case 1:
+                                    mode = "surface";
+                                    break;
+                                case 2:
+                                    mode = "primary";
+                                    break;
+                                case 3:
+                                    mode = "secondary";
+                                    break;
+                                case 4:
+                                    mode = "custom";
+                                    break;
+                                }
+                                SettingsData.updateBarConfig(selectedBarId, {
+                                    shadowColorMode: mode
+                                });
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        visible: selectedBarConfig?.shadowColorMode === "custom"
+                        width: 32
+                        height: 32
+                        radius: 16
+                        color: selectedBarConfig?.shadowCustomColor ?? "#000000"
+                        border.color: Theme.outline
+                        border.width: 1
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                PopoutService.colorPickerModal.selectedColor = selectedBarConfig?.shadowCustomColor ?? "#000000";
+                                PopoutService.colorPickerModal.pickerTitle = I18n.tr("Color");
+                                PopoutService.colorPickerModal.onColorSelectedCallback = function (color) {
+                                    SettingsData.updateBarConfig(selectedBarId, {
+                                        shadowCustomColor: color.toString()
+                                    });
+                                };
+                                PopoutService.colorPickerModal.show();
+                            }
                         }
                     }
                 }

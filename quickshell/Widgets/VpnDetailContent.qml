@@ -10,6 +10,9 @@ import qs.Widgets
 Rectangle {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property var parentPopout: null
     property string expandedUuid: ""
     property int listHeight: 180

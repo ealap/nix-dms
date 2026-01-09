@@ -89,6 +89,8 @@ Singleton {
     property bool qtThemingEnabled: typeof SettingsData !== "undefined" ? (SettingsData.qt5ctAvailable || SettingsData.qt6ctAvailable) : false
     property var workerRunning: false
     property var pendingThemeRequest: null
+
+    signal matugenCompleted(string mode, string result)
     property var matugenColors: ({})
     property var _pendingGenerateParams: null
 
@@ -544,7 +546,7 @@ Singleton {
         if (savePrefs && typeof SessionData !== "undefined" && !isGreeterMode)
             SessionData.setLightMode(light);
         if (!isGreeterMode) {
-            // Skip with matugen becuase, our script runner will do it.
+            // Skip with matugen because, our script runner will do it.
             if (!matugenAvailable) {
                 PortalService.setLightMode(light);
             }
@@ -908,6 +910,10 @@ Singleton {
                     skipTemplates.push("gtk");
                 if (!SettingsData.matugenTemplateNiri)
                     skipTemplates.push("niri");
+                if (!SettingsData.matugenTemplateHyprland)
+                    skipTemplates.push("hyprland");
+                if (!SettingsData.matugenTemplateMangowc)
+                    skipTemplates.push("mangowc");
                 if (!SettingsData.matugenTemplateQt5ct)
                     skipTemplates.push("qt5ct");
                 if (!SettingsData.matugenTemplateQt6ct)
@@ -1272,24 +1278,32 @@ Singleton {
 
         onExited: exitCode => {
             workerRunning = false;
+            const currentMode = (typeof SessionData !== "undefined" && SessionData.isLightMode) ? "light" : "dark";
 
-            if (exitCode === 0) {
+            switch (exitCode) {
+            case 0:
                 console.info("Theme: Matugen worker completed successfully");
-            } else if (exitCode === 2) {
+                root.matugenCompleted(currentMode, "success");
+                break;
+            case 2:
                 console.log("Theme: Matugen worker completed with code 2 (no changes needed)");
-            } else {
+                root.matugenCompleted(currentMode, "no-changes");
+                break;
+            default:
                 if (typeof ToastService !== "undefined") {
                     ToastService.showError("Theme worker failed (" + exitCode + ")");
                 }
                 console.warn("Theme: Matugen worker failed with exit code:", exitCode);
+                root.matugenCompleted(currentMode, "error");
             }
 
-            if (pendingThemeRequest) {
-                const req = pendingThemeRequest;
-                pendingThemeRequest = null;
-                console.info("Theme: Processing queued theme request");
-                setDesiredTheme(req.kind, req.value, req.isLight, req.iconTheme, req.matugenType, req.stockColors);
-            }
+            if (!pendingThemeRequest)
+                return;
+
+            const req = pendingThemeRequest;
+            pendingThemeRequest = null;
+            console.info("Theme: Processing queued theme request");
+            setDesiredTheme(req.kind, req.value, req.isLight, req.iconTheme, req.matugenType, req.stockColors);
         }
     }
 

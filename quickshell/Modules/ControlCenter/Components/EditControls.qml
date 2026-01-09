@@ -6,6 +6,9 @@ import qs.Widgets
 Row {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property var availableWidgets: []
     property Item popoutContent: null
 
@@ -103,6 +106,7 @@ Row {
                                 color: Theme.surfaceText
                                 elide: Text.ElideRight
                                 width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             Typography {
@@ -111,6 +115,7 @@ Row {
                                 color: Theme.outline
                                 elide: Text.ElideRight
                                 width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
 

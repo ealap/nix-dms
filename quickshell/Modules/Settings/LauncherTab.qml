@@ -356,7 +356,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "open_in_new"
-                title: I18n.tr("Niri Integration")
+                title: I18n.tr("Niri Integration").replace("Niri", "niri")
                 visible: CompositorService.isNiri
 
                 SettingsToggleRow {
@@ -375,6 +375,90 @@ Item {
                     description: I18n.tr("Show launcher overlay when typing in Niri overview. Disable to use another launcher.")
                     checked: SettingsData.niriOverviewOverlayEnabled
                     onToggled: checked => SettingsData.set("niriOverviewOverlayEnabled", checked)
+                }
+            }
+
+            SettingsCard {
+                id: builtInPluginsCard
+                width: parent.width
+                iconName: "extension"
+                title: "DMS"
+                settingKey: "builtInPlugins"
+
+                Column {
+                    width: parent.width
+                    spacing: Theme.spacingS
+
+                    Repeater {
+                        model: ["dms_settings", "dms_notepad", "dms_sysmon", "dms_settings_search"]
+
+                        delegate: Rectangle {
+                            id: pluginDelegate
+                            required property string modelData
+                            required property int index
+                            readonly property var plugin: AppSearchService.builtInPlugins[modelData]
+
+                            width: parent.width
+                            height: 56
+                            radius: Theme.cornerRadius
+                            color: Qt.rgba(Theme.surfaceContainer.r, Theme.surfaceContainer.g, Theme.surfaceContainer.b, 0.3)
+
+                            Row {
+                                anchors.left: parent.left
+                                anchors.leftMargin: Theme.spacingM
+                                anchors.verticalCenter: parent.verticalCenter
+                                spacing: Theme.spacingM
+
+                                DankIcon {
+                                    name: pluginDelegate.plugin?.cornerIcon ?? "extension"
+                                    size: Theme.iconSize
+                                    color: Theme.primary
+                                    anchors.verticalCenter: parent.verticalCenter
+                                }
+
+                                Column {
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    spacing: 2
+
+                                    StyledText {
+                                        text: pluginDelegate.plugin?.name ?? pluginDelegate.modelData
+                                        font.pixelSize: Theme.fontSizeMedium
+                                        color: Theme.surfaceText
+                                    }
+
+                                    StyledText {
+                                        text: pluginDelegate.plugin?.comment ?? ""
+                                        font.pixelSize: Theme.fontSizeSmall
+                                        color: Theme.surfaceVariantText
+                                    }
+                                }
+                            }
+
+                            Row {
+                                anchors.right: parent.right
+                                anchors.rightMargin: Theme.spacingM
+                                anchors.verticalCenter: parent.verticalCenter
+                                spacing: Theme.spacingM
+
+                                DankTextField {
+                                    id: triggerField
+                                    width: 60
+                                    visible: pluginDelegate.plugin?.isLauncher === true
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    placeholderText: I18n.tr("Trigger")
+                                    onTextEdited: SettingsData.setBuiltInPluginSetting(pluginDelegate.modelData, "trigger", text)
+                                    Component.onCompleted: text = SettingsData.getBuiltInPluginSetting(pluginDelegate.modelData, "trigger", pluginDelegate.plugin?.defaultTrigger ?? "")
+                                }
+
+                                DankToggle {
+                                    id: enableToggle
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    checked: SettingsData.getBuiltInPluginSetting(pluginDelegate.modelData, "enabled", true)
+                                    onToggled: SettingsData.setBuiltInPluginSetting(pluginDelegate.modelData, "enabled", checked)
+                                }
+                            }
+                        }
+                    }
                 }
             }
 

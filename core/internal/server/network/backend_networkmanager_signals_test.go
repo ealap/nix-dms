@@ -159,7 +159,7 @@ func TestNetworkManagerBackend_HandleDeviceChange(t *testing.T) {
 	}
 
 	assert.NotPanics(t, func() {
-		backend.handleDeviceChange(changes)
+		backend.handleDeviceChange("/org/freedesktop/NetworkManager/Devices/1", changes)
 	})
 }
 
@@ -174,7 +174,7 @@ func TestNetworkManagerBackend_HandleDeviceChange_Ip4Config(t *testing.T) {
 	}
 
 	assert.NotPanics(t, func() {
-		backend.handleDeviceChange(changes)
+		backend.handleDeviceChange("/org/freedesktop/NetworkManager/Devices/1", changes)
 	})
 }
 

@@ -14,6 +14,12 @@ import qs.Widgets
 Item {
     id: root
 
+    function encodeFileUrl(path) {
+        if (!path)
+            return "";
+        return "file://" + path.split('/').map(s => encodeURIComponent(s)).join('/');
+    }
+
     property string passwordBuffer: ""
     property bool demoMode: false
     property string screenName: ""
@@ -170,7 +176,7 @@ Item {
         anchors.fill: parent
         source: {
             var currentWallpaper = SessionData.getMonitorWallpaper(screenName);
-            return (currentWallpaper && !currentWallpaper.startsWith("#")) ? currentWallpaper : "";
+            return (currentWallpaper && !currentWallpaper.startsWith("#")) ? encodeFileUrl(currentWallpaper) : "";
         }
         fillMode: Theme.getFillMode(SettingsData.wallpaperFillMode)
         smooth: true
@@ -348,10 +354,305 @@ Item {
             opacity: 0.9
         }
 
+        Item {
+            id: lockNotificationPanel
+
+            readonly property int notificationMode: SettingsData.lockScreenNotificationMode
+            readonly property var notifications: NotificationService.groupedNotifications
+            readonly property int totalCount: {
+                let count = 0;
+                for (const group of notifications) {
+                    count += group.count || 0;
+                }
+                return count;
+            }
+            readonly property bool hasNotifications: totalCount > 0
+            readonly property var appNameGroups: {
+                const groups = {};
+                for (const group of notifications) {
+                    const appName = (group.appName || "Unknown").toLowerCase();
+                    if (!groups[appName]) {
+                        groups[appName] = {
+                            appName: group.appName || I18n.tr("Unknown"),
+                            count: 0,
+                            latestNotification: group.latestNotification
+                        };
+                    }
+                    groups[appName].count += group.count || 0;
+                    if (group.latestNotification && (!groups[appName].latestNotification || group.latestNotification.time > groups[appName].latestNotification.time)) {
+                        groups[appName].latestNotification = group.latestNotification;
+                    }
+                }
+                return Object.values(groups).sort((a, b) => b.count - a.count);
+            }
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: dateText.visible ? dateText.bottom : clockContainer.bottom
+            anchors.topMargin: Theme.spacingM
+            width: Math.min(380, parent.width - Theme.spacingXL * 2)
+            height: notificationMode === 0 || !hasNotifications ? 0 : contentLoader.height
+            visible: notificationMode > 0 && hasNotifications
+            clip: true
+
+            Behavior on height {
+                NumberAnimation {
+                    duration: Theme.mediumDuration
+                    easing.type: Theme.standardEasing
+                }
+            }
+
+            Loader {
+                id: contentLoader
+                anchors.left: parent.left
+                anchors.right: parent.right
+                active: lockNotificationPanel.notificationMode > 0 && lockNotificationPanel.hasNotifications
+                sourceComponent: {
+                    switch (lockNotificationPanel.notificationMode) {
+                    case 1:
+                        return countOnlyComponent;
+                    case 2:
+                        return appNamesComponent;
+                    case 3:
+                        return fullContentComponent;
+                    default:
+                        return null;
+                    }
+                }
+            }
+
+            Component {
+                id: countOnlyComponent
+
+                Rectangle {
+                    width: parent.width
+                    height: 44
+                    radius: Theme.cornerRadius
+                    color: Qt.rgba(0, 0, 0, 0.3)
+                    border.color: Qt.rgba(1, 1, 1, 0.1)
+                    border.width: 1
+
+                    Row {
+                        anchors.centerIn: parent
+                        spacing: Theme.spacingS
+
+                        DankIcon {
+                            name: "notifications"
+                            size: Theme.iconSize
+                            color: "white"
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        StyledText {
+                            text: lockNotificationPanel.totalCount === 1 ? I18n.tr("1 notification") : I18n.tr("%1 notifications").arg(lockNotificationPanel.totalCount)
+                            font.pixelSize: Theme.fontSizeMedium
+                            color: "white"
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                    }
+                }
+            }
+
+            Component {
+                id: appNamesComponent
+
+                Rectangle {
+                    width: parent.width
+                    height: Math.min(appNamesColumn.implicitHeight + Theme.spacingM * 2, 200)
+                    radius: Theme.cornerRadius
+                    color: Qt.rgba(0, 0, 0, 0.3)
+                    border.color: Qt.rgba(1, 1, 1, 0.1)
+                    border.width: 1
+                    clip: true
+
+                    Flickable {
+                        anchors.fill: parent
+                        anchors.margins: Theme.spacingM
+                        contentHeight: appNamesColumn.implicitHeight
+                        clip: true
+                        boundsBehavior: Flickable.StopAtBounds
+
+                        Column {
+                            id: appNamesColumn
+                            width: parent.width
+                            spacing: Theme.spacingS
+
+                            Repeater {
+                                model: lockNotificationPanel.appNameGroups.slice(0, 5)
+
+                                Row {
+                                    required property var modelData
+                                    width: parent.width
+                                    spacing: Theme.spacingS
+
+                                    DankIcon {
+                                        name: "notifications"
+                                        size: Theme.iconSize - 4
+                                        color: "white"
+                                        opacity: 0.8
+                                        anchors.verticalCenter: parent.verticalCenter
+                                    }
+
+                                    StyledText {
+                                        text: modelData.appName || I18n.tr("Unknown")
+                                        font.pixelSize: Theme.fontSizeMedium
+                                        color: "white"
+                                        elide: Text.ElideRight
+                                        width: parent.width - Theme.iconSize - countBadge.width - Theme.spacingS * 2
+                                        anchors.verticalCenter: parent.verticalCenter
+                                    }
+
+                                    Rectangle {
+                                        id: countBadge
+                                        width: countText.implicitWidth + Theme.spacingS * 2
+                                        height: 20
+                                        radius: 10
+                                        color: Qt.rgba(1, 1, 1, 0.2)
+                                        visible: modelData.count > 1
+                                        anchors.verticalCenter: parent.verticalCenter
+
+                                        StyledText {
+                                            id: countText
+                                            anchors.centerIn: parent
+                                            text: modelData.count > 99 ? "99+" : modelData.count.toString()
+                                            font.pixelSize: Theme.fontSizeSmall
+                                            color: "white"
+                                        }
+                                    }
+                                }
+                            }
+
+                            StyledText {
+                                visible: lockNotificationPanel.appNameGroups.length > 5
+                                text: I18n.tr("+ %1 more").arg(lockNotificationPanel.appNameGroups.length - 5)
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: "white"
+                                opacity: 0.7
+                            }
+                        }
+                    }
+                }
+            }
+
+            Component {
+                id: fullContentComponent
+
+                Rectangle {
+                    width: parent.width
+                    height: Math.min(fullContentColumn.implicitHeight + Theme.spacingM * 2, 280)
+                    radius: Theme.cornerRadius
+                    color: Qt.rgba(0, 0, 0, 0.3)
+                    border.color: Qt.rgba(1, 1, 1, 0.1)
+                    border.width: 1
+                    clip: true
+
+                    Flickable {
+                        anchors.fill: parent
+                        anchors.margins: Theme.spacingM
+                        contentHeight: fullContentColumn.implicitHeight
+                        clip: true
+                        boundsBehavior: Flickable.StopAtBounds
+
+                        Column {
+                            id: fullContentColumn
+                            width: parent.width
+                            spacing: Theme.spacingM
+
+                            Repeater {
+                                model: {
+                                    const items = [];
+                                    for (const group of lockNotificationPanel.appNameGroups) {
+                                        if (group.latestNotification && items.length < 5) {
+                                            items.push(group.latestNotification);
+                                        }
+                                    }
+                                    return items;
+                                }
+
+                                Rectangle {
+                                    required property var modelData
+                                    required property int index
+                                    width: parent.width
+                                    height: notifContent.implicitHeight + Theme.spacingS * 2
+                                    radius: Theme.cornerRadius - 4
+                                    color: Qt.rgba(1, 1, 1, 0.05)
+
+                                    Column {
+                                        id: notifContent
+                                        anchors.left: parent.left
+                                        anchors.right: parent.right
+                                        anchors.top: parent.top
+                                        anchors.margins: Theme.spacingS
+                                        spacing: 2
+
+                                        Row {
+                                            width: parent.width
+                                            spacing: Theme.spacingXS
+
+                                            StyledText {
+                                                text: modelData.appName || I18n.tr("Unknown")
+                                                font.pixelSize: Theme.fontSizeSmall
+                                                font.weight: Font.Medium
+                                                color: "white"
+                                                opacity: 0.7
+                                                elide: Text.ElideRight
+                                                width: parent.width - timeText.implicitWidth - Theme.spacingXS
+                                            }
+
+                                            StyledText {
+                                                id: timeText
+                                                text: modelData.timeStr || ""
+                                                font.pixelSize: Theme.fontSizeSmall
+                                                color: "white"
+                                                opacity: 0.5
+                                            }
+                                        }
+
+                                        StyledText {
+                                            width: parent.width
+                                            text: modelData.summary || ""
+                                            font.pixelSize: Theme.fontSizeMedium
+                                            font.weight: Font.Medium
+                                            color: "white"
+                                            elide: Text.ElideRight
+                                            maximumLineCount: 1
+                                            visible: text.length > 0
+                                        }
+
+                                        StyledText {
+                                            width: parent.width
+                                            text: {
+                                                const body = modelData.body || "";
+                                                return body.replace(/<[^>]*>/g, '').replace(/\n/g, ' ');
+                                            }
+                                            font.pixelSize: Theme.fontSizeSmall
+                                            color: "white"
+                                            opacity: 0.8
+                                            elide: Text.ElideRight
+                                            maximumLineCount: 2
+                                            wrapMode: Text.WordWrap
+                                            visible: text.length > 0
+                                        }
+                                    }
+                                }
+                            }
+
+                            StyledText {
+                                visible: lockNotificationPanel.appNameGroups.length > 5
+                                text: I18n.tr("+ %1 more").arg(lockNotificationPanel.appNameGroups.length - 5)
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: "white"
+                                opacity: 0.7
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         ColumnLayout {
             id: passwordLayout
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: dateText.visible ? dateText.bottom : clockContainer.bottom
+            anchors.top: lockNotificationPanel.visible ? lockNotificationPanel.bottom : (dateText.visible ? dateText.bottom : clockContainer.bottom)
             anchors.topMargin: Theme.spacingL
             spacing: Theme.spacingM
             width: 380
@@ -364,14 +665,10 @@ Item {
                     Layout.preferredWidth: 60
                     Layout.preferredHeight: 60
                     imageSource: {
-                        if (PortalService.profileImage === "") {
+                        if (PortalService.profileImage === "")
                             return "";
-                        }
-
-                        if (PortalService.profileImage.startsWith("/")) {
-                            return "file://" + PortalService.profileImage;
-                        }
-
+                        if (PortalService.profileImage.startsWith("/"))
+                            return encodeFileUrl(PortalService.profileImage);
                         return PortalService.profileImage;
                     }
                     fallbackIcon: "person"

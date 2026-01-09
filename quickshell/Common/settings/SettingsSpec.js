@@ -19,9 +19,16 @@ var SPEC = {
 
     widgetBackgroundColor: { def: "sch" },
     widgetColorMode: { def: "default" },
-    cornerRadius: { def: 12, onChange: "updateNiriLayout" },
-    niriLayoutGapsOverride: { def: -1, onChange: "updateNiriLayout" },
-    niriLayoutRadiusOverride: { def: -1, onChange: "updateNiriLayout" },
+    cornerRadius: { def: 12, onChange: "updateCompositorLayout" },
+    niriLayoutGapsOverride: { def: -1, onChange: "updateCompositorLayout" },
+    niriLayoutRadiusOverride: { def: -1, onChange: "updateCompositorLayout" },
+    niriLayoutBorderSize: { def: -1, onChange: "updateCompositorLayout" },
+    hyprlandLayoutGapsOverride: { def: -1, onChange: "updateCompositorLayout" },
+    hyprlandLayoutRadiusOverride: { def: -1, onChange: "updateCompositorLayout" },
+    hyprlandLayoutBorderSize: { def: -1, onChange: "updateCompositorLayout" },
+    mangoLayoutGapsOverride: { def: -1, onChange: "updateCompositorLayout" },
+    mangoLayoutRadiusOverride: { def: -1, onChange: "updateCompositorLayout" },
+    mangoLayoutBorderSize: { def: -1, onChange: "updateCompositorLayout" },
 
     use24HourClock: { def: true },
     showSeconds: { def: false },
@@ -127,6 +134,10 @@ var SPEC = {
     qt6ctAvailable: { def: false, persist: false },
     gtkAvailable: { def: false, persist: false },
 
+    cursorSettings: { def: { theme: "System Default", size: 24, niri: { hideWhenTyping: false, hideAfterInactiveMs: 0 }, hyprland: { hideOnKeyPress: false, hideOnTouch: false, inactiveTimeout: 0 }, dwl: { cursorHideTimeout: 0 } }, onChange: "updateCompositorCursor" },
+    availableCursorThemes: { def: ["System Default"], persist: false },
+    systemDefaultCursorTheme: { def: "", persist: false },
+
     launcherLogoMode: { def: "apps" },
     launcherLogoCustomPath: { def: "" },
     launcherLogoColorOverride: { def: "" },
@@ -166,9 +177,9 @@ var SPEC = {
     batteryChargeLimit: { def: 100 },
     lockBeforeSuspend: { def: false },
     loginctlLockIntegration: { def: true },
-    fadeToLockEnabled: { def: false },
+    fadeToLockEnabled: { def: true },
     fadeToLockGracePeriod: { def: 5 },
-    fadeToDpmsEnabled: { def: false },
+    fadeToDpmsEnabled: { def: true },
     fadeToDpmsGracePeriod: { def: 5 },
     launchPrefix: { def: "" },
     brightnessDevicePins: { def: {} },
@@ -185,6 +196,8 @@ var SPEC = {
     runDmsMatugenTemplates: { def: true },
     matugenTemplateGtk: { def: true },
     matugenTemplateNiri: { def: true },
+    matugenTemplateHyprland: { def: true },
+    matugenTemplateMangowc: { def: true },
     matugenTemplateQt5ct: { def: true },
     matugenTemplateQt6ct: { def: true },
     matugenTemplateFirefox: { def: true },
@@ -236,6 +249,7 @@ var SPEC = {
     fprintdAvailable: { def: false, persist: false },
     lockScreenActiveMonitor: { def: "all" },
     lockScreenInactiveColor: { def: "#000000" },
+    lockScreenNotificationMode: { def: 0 },
     hideBrightnessSlider: { def: false },
 
     notificationTimeoutLow: { def: 5000 },
@@ -322,7 +336,11 @@ var SPEC = {
         maximizeDetection: true,
         scrollEnabled: true,
         scrollXBehavior: "column",
-        scrollYBehavior: "workspace"
+        scrollYBehavior: "workspace",
+        shadowIntensity: 0,
+        shadowOpacity: 60,
+        shadowColorMode: "text",
+        shadowCustomColor: "#000000"
     }], onChange: "updateBarConfigs" },
 
     desktopClockEnabled: { def: false },
@@ -368,7 +386,9 @@ var SPEC = {
     desktopWidgetPositions: { def: {} },
     desktopWidgetGridSettings: { def: {} },
 
-    desktopWidgetInstances: { def: [] }
+    desktopWidgetInstances: { def: [] },
+
+    builtInPluginSettings: { def: {} }
 };
 
 function getValidKeys() {

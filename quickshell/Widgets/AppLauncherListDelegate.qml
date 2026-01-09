@@ -62,16 +62,31 @@ Rectangle {
             width: (model.icon !== undefined && model.icon !== "") ? (parent.width - root.iconSize - Theme.spacingL) : parent.width
             spacing: Theme.spacingXS
 
-            StyledText {
+            Row {
                 width: parent.width
-                text: model.name || ""
-                font.pixelSize: Theme.fontSizeLarge
-                color: Theme.surfaceText
-                font.weight: Font.Medium
-                elide: Text.ElideRight
-                horizontalAlignment: Text.AlignLeft
-                wrapMode: Text.NoWrap
-                maximumLineCount: 1
+                spacing: Theme.spacingXS
+
+                StyledText {
+                    width: parent.width - (pinIcon.visible ? pinIcon.width + Theme.spacingXS : 0)
+                    text: model.name || ""
+                    font.pixelSize: Theme.fontSizeLarge
+                    color: Theme.surfaceText
+                    font.weight: Font.Medium
+                    elide: Text.ElideRight
+                    horizontalAlignment: Text.AlignLeft
+                    wrapMode: Text.NoWrap
+                    maximumLineCount: 1
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+                DankIcon {
+                    id: pinIcon
+                    visible: model.pinned === true
+                    name: "push_pin"
+                    size: Theme.fontSizeMedium
+                    color: Theme.primary
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             StyledText {
@@ -111,13 +126,11 @@ Rectangle {
             }
         }
         onPressAndHold: mouse => {
-            if (!root.isPlugin) {
-                const globalPos = mapToItem(null, mouse.x, mouse.y);
-                root.itemRightClicked(root.index, root.model, globalPos.x, globalPos.y);
-            }
+            const globalPos = mapToItem(null, mouse.x, mouse.y);
+            root.itemRightClicked(root.index, root.model, globalPos.x, globalPos.y);
         }
         onPressed: mouse => {
-            if (mouse.button === Qt.RightButton && !root.isPlugin) {
+            if (mouse.button === Qt.RightButton) {
                 const globalPos = mapToItem(null, mouse.x, mouse.y);
                 root.itemRightClicked(root.index, root.model, globalPos.x, globalPos.y);
                 mouse.accepted = true;

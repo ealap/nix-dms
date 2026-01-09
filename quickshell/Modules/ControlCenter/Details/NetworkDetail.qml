@@ -9,6 +9,9 @@ import qs.Modals
 Rectangle {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     implicitHeight: {
         if (height > 0) {
             return height;

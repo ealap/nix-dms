@@ -11,12 +11,88 @@ Item {
     property int selectedMenuIndex: 0
     property bool keyboardNavigation: false
 
-    signal hideRequested()
+    signal hideRequested
 
     readonly property var desktopEntry: (currentApp && !currentApp.isPlugin && appLauncher && appLauncher._uniqueApps && currentApp.appIndex >= 0 && currentApp.appIndex < appLauncher._uniqueApps.length) ? appLauncher._uniqueApps[currentApp.appIndex] : null
 
+    readonly property var actualItem: (currentApp && appLauncher && appLauncher._uniqueApps && currentApp.appIndex >= 0 && currentApp.appIndex < appLauncher._uniqueApps.length) ? appLauncher._uniqueApps[currentApp.appIndex] : null
+
+    function getPluginContextMenuActions() {
+        if (!currentApp || !currentApp.isPlugin || !actualItem)
+            return [];
+
+        const pluginId = appLauncher.getPluginIdForItem(actualItem);
+        if (!pluginId) {
+            console.log("[ContextMenu] No pluginId found for item:", JSON.stringify(actualItem.categories));
+            return [];
+        }
+
+        const instance = PluginService.pluginInstances[pluginId];
+        if (!instance) {
+            console.log("[ContextMenu] No instance for pluginId:", pluginId);
+            return [];
+        }
+        if (typeof instance.getContextMenuActions !== "function") {
+            console.log("[ContextMenu] Instance has no getContextMenuActions:", pluginId);
+            return [];
+        }
+
+        const actions = instance.getContextMenuActions(actualItem);
+        if (!Array.isArray(actions))
+            return [];
+
+        return actions;
+    }
+
+    function executePluginAction(actionData) {
+        if (!currentApp || !actualItem)
+            return;
+
+        const pluginId = appLauncher.getPluginIdForItem(actualItem);
+        if (!pluginId)
+            return;
+
+        const instance = PluginService.pluginInstances[pluginId];
+        if (!instance)
+            return;
+
+        if (typeof actionData === "function") {
+            actionData();
+        } else if (typeof instance.executeContextMenuAction === "function") {
+            instance.executeContextMenuAction(actualItem, actionData);
+        }
+
+        if (appLauncher)
+            appLauncher.updateFilteredModel();
+
+        hideRequested();
+    }
+
     readonly property var menuItems: {
         const items = [];
+
+        if (currentApp && currentApp.isPlugin) {
+            const pluginActions = getPluginContextMenuActions();
+            for (let i = 0; i < pluginActions.length; i++) {
+                const act = pluginActions[i];
+                items.push({
+                    type: "item",
+                    icon: act.icon || "",
+                    text: act.text || act.name || "",
+                    action: () => executePluginAction(act.action)
+                });
+            }
+            if (items.length === 0) {
+                items.push({
+                    type: "item",
+                    icon: "content_copy",
+                    text: I18n.tr("Copy"),
+                    action: launchCurrentApp
+                });
+            }
+            return items;
+        }
+
         const appId = desktopEntry ? (desktopEntry.id || desktopEntry.execString || "") : "";
         const isPinned = SessionData.isPinnedApp(appId);
 
@@ -172,18 +248,25 @@ Item {
             focus: keyboardNavigation
 
             Keys.onPressed: event => {
-                if (event.key === Qt.Key_Down) {
+                switch (event.key) {
+                case Qt.Key_Down:
                     selectNext();
                     event.accepted = true;
-                } else if (event.key === Qt.Key_Up) {
+                    break;
+                case Qt.Key_Up:
                     selectPrevious();
                     event.accepted = true;
-                } else if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                    break;
+                case Qt.Key_Return:
+                case Qt.Key_Enter:
                     activateSelected();
                     event.accepted = true;
-                } else if (event.key === Qt.Key_Escape) {
+                    break;
+                case Qt.Key_Escape:
+                case Qt.Key_Left:
                     hideRequested();
                     event.accepted = true;
+                    break;
                 }
             }
 

@@ -323,7 +323,6 @@ Singleton {
             }
         }
 
-        userPreference = state.preference || "auto";
         isConnecting = state.isConnecting || false;
         connectingSSID = state.connectingSSID || "";
         connectionError = state.lastError || "";
@@ -414,7 +413,7 @@ Singleton {
         scanWifi();
     }
 
-    function connectToWifi(ssid, password = "", username = "", anonymousIdentity = "", domainSuffixMatch = "") {
+    function connectToWifi(ssid, password = "", username = "", anonymousIdentity = "", domainSuffixMatch = "", hidden = false) {
         if (!networkAvailable || isConnecting)
             return;
         pendingConnectionSSID = ssid;
@@ -428,6 +427,8 @@ Singleton {
         };
         if (effectiveWifiDevice)
             params.device = effectiveWifiDevice;
+        if (hidden)
+            params.hidden = true;
 
         if (DMSService.apiVersion >= 7) {
             if (password || username) {
@@ -612,8 +613,8 @@ Singleton {
         }
     }
 
-    function connectToWifiAndSetPreference(ssid, password, username = "", anonymousIdentity = "", domainSuffixMatch = "") {
-        connectToWifi(ssid, password, username, anonymousIdentity, domainSuffixMatch);
+    function connectToWifiAndSetPreference(ssid, password, username = "", anonymousIdentity = "", domainSuffixMatch = "", hidden = false) {
+        connectToWifi(ssid, password, username, anonymousIdentity, domainSuffixMatch, hidden);
         setNetworkPreference("wifi");
     }
 
@@ -676,12 +677,12 @@ Singleton {
         if (!info) {
             details = "Network information not found or network not available.";
         } else {
-            details += "Inteface: " + info.iface + "\\n";
+            details += "Interface: " + info.iface + "\\n";
             details += "Driver: " + info.driver + "\\n";
             details += "MAC Addr: " + info.hwAddr + "\\n";
             details += "Speed: " + info.speed + " Mb/s\\n\\n";
 
-            details += "IPv4 informations:\\n";
+            details += "IPv4 information:\\n";
 
             for (const ip4 of info.IPv4s.ips) {
                 details += "    IPv4 address: " + ip4 + "\\n";
@@ -690,7 +691,7 @@ Singleton {
             details += "    DNS: " + info.IPv4s.dns + "\\n";
 
             if (info.IPv6s.ips) {
-                details += "\\nIPv6 informations:\\n";
+                details += "\\nIPv6 information:\\n";
 
                 for (const ip6 of info.IPv6s.ips) {
                     details += "    IPv6 address: " + ip6 + "\\n";

@@ -6,6 +6,9 @@ import qs.Widgets
 Card {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     Component.onCompleted: DgopService.addRef("system")
     Component.onDestruction: DgopService.removeRef("system")
 
@@ -44,9 +47,11 @@ Card {
                 color: Theme.surfaceText
                 elide: Text.ElideRight
                 width: parent.parent.parent.width - avatarContainer.width - Theme.spacingM * 3
+                horizontalAlignment: Text.AlignLeft
             }
 
             Row {
+                anchors.left: parent.left
                 spacing: Theme.spacingS
 
                 SystemLogo {
@@ -76,10 +81,12 @@ Card {
                     anchors.verticalCenter: parent.verticalCenter
                     elide: Text.ElideRight
                     width: parent.parent.parent.parent.width - avatarContainer.width - Theme.spacingM * 3 - 16 - Theme.spacingS
+                    horizontalAlignment: Text.AlignLeft
                 }
             }
 
             Row {
+                anchors.left: parent.left
                 spacing: Theme.spacingS
 
                 DankIcon {

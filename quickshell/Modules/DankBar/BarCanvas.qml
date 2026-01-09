@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Shapes
 import qs.Common
 import qs.Services
@@ -52,6 +53,29 @@ Item {
         }
     }
 
+    readonly property real shadowIntensity: barConfig?.shadowIntensity ?? 0
+    readonly property bool shadowEnabled: shadowIntensity > 0
+    readonly property int blurMax: 64
+    readonly property real shadowBlurPx: shadowIntensity * 0.2
+    readonly property real shadowBlur: Math.max(0, Math.min(1, shadowBlurPx / blurMax))
+    readonly property real shadowOpacity: (barConfig?.shadowOpacity ?? 60) / 100
+    readonly property string shadowColorMode: barConfig?.shadowColorMode ?? "text"
+    readonly property color shadowBaseColor: {
+        switch (shadowColorMode) {
+        case "surface":
+            return Theme.surface;
+        case "primary":
+            return Theme.primary;
+        case "secondary":
+            return Theme.secondary;
+        case "custom":
+            return barConfig?.shadowCustomColor ?? "#000000";
+        default:
+            return Theme.surfaceText;
+        }
+    }
+    readonly property color shadowColor: Theme.withAlpha(shadowBaseColor, shadowOpacity * barWindow._backgroundAlpha)
+
     readonly property string mainPath: generatePathForPosition(width, height)
     readonly property string borderFullPath: generateBorderFullPath(width, height)
     readonly property string borderEdgePath: generateBorderEdgePath(width, height)
@@ -91,6 +115,44 @@ Item {
                 }
             }
             TrayMenuManager.closeAllMenus();
+        }
+    }
+
+    Loader {
+        id: shadowLoader
+        anchors.fill: parent
+        active: root.shadowEnabled && mainPathCorrectShape
+        asynchronous: false
+        sourceComponent: Item {
+            anchors.fill: parent
+
+            layer.enabled: true
+            layer.smooth: true
+            layer.samples: 8
+            layer.textureSize: Qt.size(Math.round(width * barWindow._dpr * 2), Math.round(height * barWindow._dpr * 2))
+            layer.effect: MultiEffect {
+                shadowEnabled: true
+                shadowBlur: root.shadowBlur
+                shadowColor: root.shadowColor
+                shadowVerticalOffset: root.isTop ? root.shadowBlurPx * 0.5 : (root.isBottom ? -root.shadowBlurPx * 0.5 : 0)
+                shadowHorizontalOffset: root.isLeft ? root.shadowBlurPx * 0.5 : (root.isRight ? -root.shadowBlurPx * 0.5 : 0)
+                autoPaddingEnabled: true
+            }
+
+            Shape {
+                anchors.fill: parent
+                preferredRendererType: Shape.CurveRenderer
+
+                ShapePath {
+                    fillColor: barWindow._bgColor
+                    strokeColor: "transparent"
+                    strokeWidth: 0
+
+                    PathSvg {
+                        path: root.mainPath
+                    }
+                }
+            }
         }
     }
 

@@ -20,6 +20,7 @@ Image {
 
     readonly property string imageHash: imagePath ? djb2Hash(imagePath) : ""
     readonly property string cachePath: imageHash ? `${Paths.stringify(Paths.imagecache)}/${imageHash}@${maxCacheSize}x${maxCacheSize}.png` : ""
+    readonly property string encodedImagePath: imagePath ? "file://" + imagePath.split('/').map(s => encodeURIComponent(s)).join('/') : ""
 
     asynchronous: true
     fillMode: Image.PreserveAspectCrop
@@ -33,15 +34,15 @@ Image {
             return;
         }
         Paths.mkdir(Paths.imagecache);
-        source = cachePath || imagePath;
+        source = cachePath || encodedImagePath;
     }
 
     onStatusChanged: {
         if (source == cachePath && status === Image.Error) {
-            source = imagePath;
+            source = encodedImagePath;
             return;
         }
-        if (source != imagePath || status !== Image.Ready || !cachePath)
+        if (source != encodedImagePath || status !== Image.Ready || !cachePath)
             return;
         Paths.mkdir(Paths.imagecache);
         const grabPath = cachePath;

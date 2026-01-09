@@ -57,12 +57,14 @@ var keybindsRemoveCmd = &cobra.Command{
 }
 
 func init() {
+	keybindsListCmd.Flags().BoolP("json", "j", false, "Output as JSON")
 	keybindsShowCmd.Flags().String("path", "", "Override config path for the provider")
 	keybindsSetCmd.Flags().String("desc", "", "Description for hotkey overlay")
 	keybindsSetCmd.Flags().Bool("allow-when-locked", false, "Allow when screen is locked")
 	keybindsSetCmd.Flags().Int("cooldown-ms", 0, "Cooldown in milliseconds")
 	keybindsSetCmd.Flags().Bool("no-repeat", false, "Disable key repeat")
 	keybindsSetCmd.Flags().String("replace-key", "", "Original key to replace (removes old key)")
+	keybindsSetCmd.Flags().String("flags", "", "Hyprland bind flags (e.g., 'e' for repeat, 'l' for locked, 'r' for release)")
 
 	keybindsCmd.AddCommand(keybindsListCmd)
 	keybindsCmd.AddCommand(keybindsShowCmd)
@@ -110,12 +112,21 @@ func initializeProviders() {
 	}
 }
 
-func runKeybindsList(_ *cobra.Command, _ []string) {
+func runKeybindsList(cmd *cobra.Command, _ []string) {
 	providerList := keybinds.GetDefaultRegistry().List()
+	asJSON, _ := cmd.Flags().GetBool("json")
+
+	if asJSON {
+		output, _ := json.Marshal(providerList)
+		fmt.Fprintln(os.Stdout, string(output))
+		return
+	}
+
 	if len(providerList) == 0 {
 		fmt.Fprintln(os.Stdout, "No providers available")
 		return
 	}
+
 	fmt.Fprintln(os.Stdout, "Available providers:")
 	for _, name := range providerList {
 		fmt.Fprintf(os.Stdout, "  - %s\n", name)
@@ -200,6 +211,9 @@ func runKeybindsSet(cmd *cobra.Command, args []string) {
 	}
 	if v, _ := cmd.Flags().GetBool("no-repeat"); v {
 		options["repeat"] = false
+	}
+	if v, _ := cmd.Flags().GetString("flags"); v != "" {
+		options["flags"] = v
 	}
 
 	desc, _ := cmd.Flags().GetString("desc")

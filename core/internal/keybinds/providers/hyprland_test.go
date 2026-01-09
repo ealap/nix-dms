@@ -7,35 +7,30 @@ import (
 )
 
 func TestNewHyprlandProvider(t *testing.T) {
-	tests := []struct {
-		name       string
-		configPath string
-		wantPath   string
-	}{
-		{
-			name:       "custom path",
-			configPath: "/custom/path",
-			wantPath:   "/custom/path",
-		},
-		{
-			name:       "empty path defaults",
-			configPath: "",
-			wantPath:   "$HOME/.config/hypr",
-		},
-	}
+	t.Run("custom path", func(t *testing.T) {
+		p := NewHyprlandProvider("/custom/path")
+		if p == nil {
+			t.Fatal("NewHyprlandProvider returned nil")
+		}
+		if p.configPath != "/custom/path" {
+			t.Errorf("configPath = %q, want %q", p.configPath, "/custom/path")
+		}
+	})
 
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			p := NewHyprlandProvider(tt.configPath)
-			if p == nil {
-				t.Fatal("NewHyprlandProvider returned nil")
-			}
-
-			if p.configPath != tt.wantPath {
-				t.Errorf("configPath = %q, want %q", p.configPath, tt.wantPath)
-			}
-		})
-	}
+	t.Run("empty path defaults", func(t *testing.T) {
+		p := NewHyprlandProvider("")
+		if p == nil {
+			t.Fatal("NewHyprlandProvider returned nil")
+		}
+		configDir, err := os.UserConfigDir()
+		if err != nil {
+			t.Fatalf("UserConfigDir failed: %v", err)
+		}
+		expected := filepath.Join(configDir, "hypr")
+		if p.configPath != expected {
+			t.Errorf("configPath = %q, want %q", p.configPath, expected)
+		}
+	})
 }
 
 func TestHyprlandProviderName(t *testing.T) {
@@ -109,7 +104,7 @@ func TestHyprlandProviderGetCheatSheetError(t *testing.T) {
 
 func TestFormatKey(t *testing.T) {
 	tmpDir := t.TempDir()
-	configFile := filepath.Join(tmpDir, "test.conf")
+	configFile := filepath.Join(tmpDir, "hyprland.conf")
 
 	tests := []struct {
 		name     string
@@ -163,7 +158,7 @@ func TestFormatKey(t *testing.T) {
 
 func TestDescriptionFallback(t *testing.T) {
 	tmpDir := t.TempDir()
-	configFile := filepath.Join(tmpDir, "test.conf")
+	configFile := filepath.Join(tmpDir, "hyprland.conf")
 
 	tests := []struct {
 		name     string

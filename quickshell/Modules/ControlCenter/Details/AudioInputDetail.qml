@@ -8,6 +8,9 @@ import qs.Widgets
 Rectangle {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property bool hasInputVolumeSliderInCC: {
         const widgets = SettingsData.controlCenterWidgets || [];
         return widgets.some(widget => widget.id === "inputVolumeSlider");
@@ -198,6 +201,7 @@ Rectangle {
                                 elide: Text.ElideRight
                                 width: parent.width
                                 wrapMode: Text.NoWrap
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
@@ -207,6 +211,7 @@ Rectangle {
                                 elide: Text.ElideRight
                                 width: parent.width
                                 wrapMode: Text.NoWrap
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
                     }

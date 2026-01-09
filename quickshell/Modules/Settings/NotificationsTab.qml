@@ -164,6 +164,28 @@ Item {
 
             SettingsCard {
                 width: parent.width
+                iconName: "lock"
+                title: I18n.tr("Lock Screen", "lock screen notifications settings card")
+                settingKey: "lockScreenNotifications"
+
+                SettingsDropdownRow {
+                    settingKey: "lockScreenNotificationMode"
+                    tags: ["lock", "screen", "notification", "notifications", "privacy"]
+                    text: I18n.tr("Notification Display", "lock screen notification privacy setting")
+                    description: I18n.tr("Control what notification information is shown on the lock screen", "lock screen notification privacy setting")
+                    options: [I18n.tr("Disabled", "lock screen notification mode option"), I18n.tr("Count Only", "lock screen notification mode option"), I18n.tr("App Names", "lock screen notification mode option"), I18n.tr("Full Content", "lock screen notification mode option")]
+                    currentValue: options[SettingsData.lockScreenNotificationMode] || options[0]
+                    onValueChanged: value => {
+                        const idx = options.indexOf(value);
+                        if (idx >= 0) {
+                            SettingsData.set("lockScreenNotificationMode", idx);
+                        }
+                    }
+                }
+            }
+
+            SettingsCard {
+                width: parent.width
                 iconName: "timer"
                 title: I18n.tr("Notification Timeouts")
                 settingKey: "notificationTimeouts"

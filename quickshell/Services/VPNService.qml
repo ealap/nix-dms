@@ -95,7 +95,7 @@ Singleton {
             }
 
             importError = response.result.error || "Import failed";
-            ToastService.showError(importError);
+            ToastService.showError(I18n.tr("Failed to import VPN"), importError);
         });
     }
 

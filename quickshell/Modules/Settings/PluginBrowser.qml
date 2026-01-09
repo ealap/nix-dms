@@ -409,6 +409,7 @@ FloatingWindow {
                         property bool isSelected: root.keyboardNavigationActive && index === root.selectedIndex
                         property bool isInstalled: modelData.installed || false
                         property bool isFirstParty: modelData.firstParty || false
+                        property bool isCompatible: PluginService.checkPluginCompatibility(modelData.requires_dms)
                         color: isSelected ? Theme.primarySelected : Theme.withAlpha(Theme.surfaceVariant, 0.3)
                         border.color: isSelected ? Theme.primary : Theme.withAlpha(Theme.outline, 0.2)
                         border.width: isSelected ? 2 : 1
@@ -512,14 +513,32 @@ FloatingWindow {
 
                                 Rectangle {
                                     id: installButton
-                                    width: 80
+
+                                    property string buttonState: {
+                                        if (isInstalled)
+                                            return "installed";
+                                        if (!isCompatible)
+                                            return "incompatible";
+                                        return "available";
+                                    }
+
+                                    width: buttonState === "incompatible" ? incompatRow.implicitWidth + Theme.spacingM * 2 : 80
                                     height: 32
                                     radius: Theme.cornerRadius
                                     anchors.verticalCenter: parent.verticalCenter
-                                    color: isInstalled ? Theme.surfaceVariant : Theme.primary
-                                    opacity: isInstalled ? 1 : (installMouseArea.containsMouse ? 0.9 : 1)
-                                    border.width: isInstalled ? 1 : 0
-                                    border.color: Theme.outline
+                                    color: {
+                                        switch (buttonState) {
+                                        case "installed":
+                                            return Theme.surfaceVariant;
+                                        case "incompatible":
+                                            return Theme.withAlpha(Theme.warning, 0.15);
+                                        default:
+                                            return Theme.primary;
+                                        }
+                                    }
+                                    opacity: buttonState === "available" && installMouseArea.containsMouse ? 0.9 : 1
+                                    border.width: buttonState !== "available" ? 1 : 0
+                                    border.color: buttonState === "incompatible" ? Theme.warning : Theme.outline
 
                                     Behavior on opacity {
                                         NumberAnimation {
@@ -529,21 +548,58 @@ FloatingWindow {
                                     }
 
                                     Row {
+                                        id: incompatRow
                                         anchors.centerIn: parent
                                         spacing: Theme.spacingXS
 
                                         DankIcon {
-                                            name: isInstalled ? "check" : "download"
+                                            name: {
+                                                switch (installButton.buttonState) {
+                                                case "installed":
+                                                    return "check";
+                                                case "incompatible":
+                                                    return "warning";
+                                                default:
+                                                    return "download";
+                                                }
+                                            }
                                             size: 14
-                                            color: isInstalled ? Theme.surfaceText : Theme.surface
+                                            color: {
+                                                switch (installButton.buttonState) {
+                                                case "installed":
+                                                    return Theme.surfaceText;
+                                                case "incompatible":
+                                                    return Theme.warning;
+                                                default:
+                                                    return Theme.surface;
+                                                }
+                                            }
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
 
                                         StyledText {
-                                            text: isInstalled ? I18n.tr("Installed", "installed status") : I18n.tr("Install", "install action button")
+                                            text: {
+                                                switch (installButton.buttonState) {
+                                                case "installed":
+                                                    return I18n.tr("Installed", "installed status");
+                                                case "incompatible":
+                                                    return I18n.tr("Requires %1", "version requirement").arg(modelData.requires_dms);
+                                                default:
+                                                    return I18n.tr("Install", "install action button");
+                                                }
+                                            }
                                             font.pixelSize: Theme.fontSizeSmall
                                             font.weight: Font.Medium
-                                            color: isInstalled ? Theme.surfaceText : Theme.surface
+                                            color: {
+                                                switch (installButton.buttonState) {
+                                                case "installed":
+                                                    return Theme.surfaceText;
+                                                case "incompatible":
+                                                    return Theme.warning;
+                                                default:
+                                                    return Theme.surface;
+                                                }
+                                            }
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
@@ -552,11 +608,9 @@ FloatingWindow {
                                         id: installMouseArea
                                         anchors.fill: parent
                                         hoverEnabled: true
-                                        cursorShape: isInstalled ? Qt.ArrowCursor : Qt.PointingHandCursor
-                                        enabled: !isInstalled
+                                        cursorShape: installButton.buttonState === "available" ? Qt.PointingHandCursor : Qt.ArrowCursor
+                                        enabled: installButton.buttonState === "available"
                                         onClicked: {
-                                            if (isInstalled)
-                                                return;
                                             const isDesktop = modelData.type === "desktop";
                                             root.installPlugin(modelData.name, isDesktop);
                                         }

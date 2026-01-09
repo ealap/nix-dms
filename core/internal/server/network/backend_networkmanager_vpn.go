@@ -3,6 +3,7 @@ package network
 import (
 	"bufio"
 	"context"
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -925,25 +926,24 @@ func (b *NetworkManagerBackend) ImportVPN(filePath string, name string) (*VPNImp
 func (b *NetworkManagerBackend) importVPNWithNmcli(filePath string, name string) (*VPNImportResult, error) {
 	vpnTypes := []string{"openvpn", "wireguard", "vpnc", "pptp", "l2tp", "openconnect", "strongswan"}
 
-	var output []byte
-	var err error
+	var allErrors []error
+	var outputStr string
 	for _, vpnType := range vpnTypes {
-		args := []string{"connection", "import", "type", vpnType, "file", filePath}
-		cmd := exec.Command("nmcli", args...)
-		output, err = cmd.CombinedOutput()
+		cmd := exec.Command("nmcli", "connection", "import", "type", vpnType, "file", filePath)
+		output, err := cmd.CombinedOutput()
 		if err == nil {
+			outputStr = string(output)
 			break
 		}
+		allErrors = append(allErrors, fmt.Errorf("%s: %s", vpnType, strings.TrimSpace(string(output))))
 	}
 
-	if err != nil {
+	if len(allErrors) == len(vpnTypes) {
 		return &VPNImportResult{
 			Success: false,
-			Error:   fmt.Sprintf("import failed: %s", strings.TrimSpace(string(output))),
+			Error:   errors.Join(allErrors...).Error(),
 		}, nil
 	}
-
-	outputStr := string(output)
 	var connUUID, connName string
 
 	lines := strings.Split(outputStr, "\n")

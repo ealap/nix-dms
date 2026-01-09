@@ -6,6 +6,9 @@ import qs.Widgets
 Item {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property var device: null
     property bool modalVisible: false
     property var parentItem

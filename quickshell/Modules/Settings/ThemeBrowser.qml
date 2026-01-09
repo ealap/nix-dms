@@ -328,7 +328,6 @@ FloatingWindow {
                 anchors.top: browserSearchField.bottom
                 anchors.topMargin: Theme.spacingM
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: Theme.spacingM
 
                 Item {
                     anchors.fill: parent
@@ -366,10 +365,6 @@ FloatingWindow {
                     id: themeBrowserList
 
                     anchors.fill: parent
-                    anchors.leftMargin: Theme.spacingM
-                    anchors.rightMargin: Theme.spacingM
-                    anchors.topMargin: Theme.spacingS
-                    anchors.bottomMargin: Theme.spacingS
                     spacing: Theme.spacingS
                     model: ScriptModel {
                         values: root.filteredThemes

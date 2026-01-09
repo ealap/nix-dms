@@ -719,19 +719,20 @@
       "apps",
       "collapse",
       "desktop",
+      "desktops",
       "group",
       "grouped",
       "icons",
       "program",
       "repeated",
-      "same",
       "spaces",
+      "unfocused",
       "virtual",
       "virtual desktops",
       "workspace",
       "workspaces"
     ],
-    "description": "Group repeated application icons in the same workspace"
+    "description": "Group repeated application icons in unfocused workspaces"
   },
   {
     "section": "workspaceIcons",
@@ -1283,6 +1284,20 @@
     ]
   },
   {
+    "section": "builtInPlugins",
+    "label": "DMS",
+    "tabIndex": 9,
+    "category": "Launcher",
+    "keywords": [
+      "dms",
+      "drawer",
+      "launcher",
+      "menu",
+      "start"
+    ],
+    "icon": "extension"
+  },
+  {
     "section": "niriOverviewOverlayEnabled",
     "label": "Enable Overview Overlay",
     "tabIndex": 9,
@@ -1535,6 +1550,94 @@
     "description": "Sync dark mode with settings portals for system-wide theme hints"
   },
   {
+    "section": "cursorHideAfterInactive",
+    "label": "Auto-Hide Timeout",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "after",
+      "appearance",
+      "auto",
+      "colors",
+      "cursor",
+      "hide",
+      "inactive",
+      "inactivity",
+      "look",
+      "scheme",
+      "style",
+      "theme",
+      "timeout"
+    ],
+    "description": "Hide cursor after inactivity (0 = disabled)"
+  },
+  {
+    "section": "niriLayoutBorderSize",
+    "label": "Border Size",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "border",
+      "colors",
+      "focus",
+      "look",
+      "niri",
+      "override",
+      "ring",
+      "scheme",
+      "size",
+      "style",
+      "theme",
+      "width",
+      "window"
+    ],
+    "description": "Width of window border and focus ring"
+  },
+  {
+    "section": "hyprlandLayoutBorderSize",
+    "label": "Border Size",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "border",
+      "colors",
+      "hyprland",
+      "look",
+      "override",
+      "scheme",
+      "size",
+      "style",
+      "theme",
+      "width",
+      "window"
+    ],
+    "description": "Width of window border (general.border_size)"
+  },
+  {
+    "section": "mangoLayoutBorderSize",
+    "label": "Border Size",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "border",
+      "colors",
+      "look",
+      "mango",
+      "mangowc",
+      "override",
+      "scheme",
+      "size",
+      "style",
+      "theme",
+      "width",
+      "window"
+    ],
+    "description": "Width of window border (borderpx)"
+  },
+  {
     "section": "colorMode",
     "label": "Color Mode",
     "tabIndex": 10,
@@ -1581,6 +1684,48 @@
       "theme"
     ],
     "description": "0 = square corners"
+  },
+  {
+    "section": "cursorSize",
+    "label": "Cursor Size",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "cursor",
+      "look",
+      "mouse",
+      "pixels",
+      "pointer",
+      "scheme",
+      "size",
+      "style",
+      "theme"
+    ],
+    "description": "Mouse pointer size in pixels"
+  },
+  {
+    "section": "cursorTheme",
+    "label": "Cursor Theme",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "colour",
+      "cursor",
+      "look",
+      "mouse",
+      "pointer",
+      "scheme",
+      "size",
+      "style",
+      "theme"
+    ],
+    "icon": "mouse",
+    "description": "Mouse pointer appearance",
+    "conditionKey": "isNiri"
   },
   {
     "section": "modalDarkenBackground",
@@ -1660,6 +1805,100 @@
     ]
   },
   {
+    "section": "cursorHideWhenTyping",
+    "label": "Hide When Typing",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "cursor",
+      "hide",
+      "keyboard",
+      "keys",
+      "look",
+      "pressing",
+      "scheme",
+      "style",
+      "theme",
+      "typing"
+    ],
+    "description": "Hide cursor when pressing keyboard keys",
+    "conditionKey": "isNiri"
+  },
+  {
+    "section": "cursorHideOnTouch",
+    "label": "Hide on Touch",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "cursor",
+      "hide",
+      "input",
+      "look",
+      "scheme",
+      "style",
+      "theme",
+      "touch"
+    ],
+    "description": "Hide cursor when using touch input",
+    "conditionKey": "isHyprland"
+  },
+  {
+    "section": "matugenTemplateHyprland",
+    "label": "Hyprland",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "hyprland",
+      "look",
+      "matugen",
+      "scheme",
+      "style",
+      "template",
+      "theme"
+    ]
+  },
+  {
+    "section": "hyprlandLayout",
+    "label": "Hyprland Layout Overrides",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "border",
+      "colors",
+      "custom",
+      "gap",
+      "gaps",
+      "hyprland",
+      "layout",
+      "look",
+      "margin",
+      "margins",
+      "overrides",
+      "padding",
+      "panel",
+      "radius",
+      "rounding",
+      "scheme",
+      "spacing",
+      "statusbar",
+      "style",
+      "taskbar",
+      "theme",
+      "topbar",
+      "window"
+    ],
+    "icon": "crop_square",
+    "description": "Use custom gaps instead of bar spacing",
+    "conditionKey": "isHyprland"
+  },
+  {
     "section": "iconTheme",
     "label": "Icon Theme",
     "tabIndex": 10,
@@ -1724,6 +1963,42 @@
       "theme"
     ],
     "description": "Use light theme instead of dark theme"
+  },
+  {
+    "section": "mangoLayout",
+    "label": "MangoWC Layout Overrides",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "border",
+      "colors",
+      "custom",
+      "dwl",
+      "gap",
+      "gaps",
+      "layout",
+      "look",
+      "mango",
+      "mangowc",
+      "margin",
+      "margins",
+      "overrides",
+      "padding",
+      "panel",
+      "radius",
+      "scheme",
+      "spacing",
+      "statusbar",
+      "style",
+      "taskbar",
+      "theme",
+      "topbar",
+      "window"
+    ],
+    "icon": "crop_square",
+    "description": "Use custom gaps instead of bar spacing",
+    "conditionKey": "isDwl"
   },
   {
     "section": "matugenScheme",
@@ -1812,6 +2087,7 @@
     "category": "Theme & Colors",
     "keywords": [
       "appearance",
+      "border",
       "colors",
       "custom",
       "gap",
@@ -1839,6 +2115,70 @@
     "conditionKey": "isNiri"
   },
   {
+    "section": "niriLayoutBorderSizeEnabled",
+    "label": "Override Border Size",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "border",
+      "colors",
+      "custom",
+      "focus",
+      "look",
+      "niri",
+      "override",
+      "ring",
+      "scheme",
+      "size",
+      "style",
+      "theme",
+      "width"
+    ],
+    "description": "Use custom border/focus-ring width"
+  },
+  {
+    "section": "hyprlandLayoutBorderSizeEnabled",
+    "label": "Override Border Size",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "border",
+      "colors",
+      "custom",
+      "hyprland",
+      "look",
+      "override",
+      "scheme",
+      "size",
+      "style",
+      "theme"
+    ],
+    "description": "Use custom border size"
+  },
+  {
+    "section": "mangoLayoutBorderSizeEnabled",
+    "label": "Override Border Size",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "border",
+      "colors",
+      "custom",
+      "look",
+      "mango",
+      "mangowc",
+      "override",
+      "scheme",
+      "size",
+      "style",
+      "theme"
+    ],
+    "description": "Use custom border size"
+  },
+  {
     "section": "niriLayoutRadiusOverrideEnabled",
     "label": "Override Corner Radius",
     "tabIndex": 10,
@@ -1852,6 +2192,58 @@
       "custom",
       "look",
       "niri",
+      "override",
+      "radius",
+      "round",
+      "rounded",
+      "scheme",
+      "style",
+      "theme",
+      "window"
+    ],
+    "description": "Use custom window radius instead of theme radius"
+  },
+  {
+    "section": "hyprlandLayoutRadiusOverrideEnabled",
+    "label": "Override Corner Radius",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "colour",
+      "corner",
+      "corners",
+      "custom",
+      "hyprland",
+      "look",
+      "override",
+      "radius",
+      "round",
+      "rounded",
+      "rounding",
+      "scheme",
+      "style",
+      "theme",
+      "window"
+    ],
+    "description": "Use custom window rounding instead of theme radius"
+  },
+  {
+    "section": "mangoLayoutRadiusOverrideEnabled",
+    "label": "Override Corner Radius",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "colour",
+      "corner",
+      "corners",
+      "custom",
+      "look",
+      "mango",
+      "mangowc",
       "override",
       "radius",
       "round",
@@ -1878,6 +2270,63 @@
       "margin",
       "margins",
       "niri",
+      "override",
+      "padding",
+      "panel",
+      "scheme",
+      "spacing",
+      "statusbar",
+      "style",
+      "taskbar",
+      "theme",
+      "topbar"
+    ],
+    "description": "Use custom gaps instead of bar spacing"
+  },
+  {
+    "section": "hyprlandLayoutGapsOverrideEnabled",
+    "label": "Override Gaps",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "custom",
+      "gap",
+      "gaps",
+      "hyprland",
+      "look",
+      "margin",
+      "margins",
+      "override",
+      "padding",
+      "panel",
+      "scheme",
+      "spacing",
+      "statusbar",
+      "style",
+      "taskbar",
+      "theme",
+      "topbar"
+    ],
+    "description": "Use custom gaps instead of bar spacing"
+  },
+  {
+    "section": "mangoLayoutGapsOverrideEnabled",
+    "label": "Override Gaps",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "custom",
+      "gap",
+      "gaps",
+      "look",
+      "mango",
+      "mangowc",
+      "margin",
+      "margins",
       "override",
       "padding",
       "panel",
@@ -2200,6 +2649,31 @@
     "description": "Rounded corners for windows"
   },
   {
+    "section": "mangoLayoutRadiusOverride",
+    "label": "Window Corner Radius",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "corner",
+      "corners",
+      "look",
+      "mango",
+      "mangowc",
+      "override",
+      "radius",
+      "round",
+      "rounded",
+      "scheme",
+      "style",
+      "theme",
+      "window",
+      "windows"
+    ],
+    "description": "Rounded corners for windows (border_radius)"
+  },
+  {
     "section": "niriLayoutGapsOverride",
     "label": "Window Gaps",
     "tabIndex": 10,
@@ -2220,6 +2694,77 @@
       "windows"
     ],
     "description": "Space between windows"
+  },
+  {
+    "section": "hyprlandLayoutGapsOverride",
+    "label": "Window Gaps",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "between",
+      "colors",
+      "gaps",
+      "hyprland",
+      "look",
+      "override",
+      "scheme",
+      "space",
+      "style",
+      "theme",
+      "window",
+      "windows"
+    ],
+    "description": "Space between windows (gaps_in and gaps_out)"
+  },
+  {
+    "section": "mangoLayoutGapsOverride",
+    "label": "Window Gaps",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "between",
+      "colors",
+      "gappiv",
+      "gappoh",
+      "gaps",
+      "look",
+      "mango",
+      "mangowc",
+      "override",
+      "scheme",
+      "space",
+      "style",
+      "theme",
+      "window",
+      "windows"
+    ],
+    "description": "Space between windows (gappih/gappiv/gappoh/gappov)"
+  },
+  {
+    "section": "hyprlandLayoutRadiusOverride",
+    "label": "Window Rounding",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "corners",
+      "hyprland",
+      "look",
+      "override",
+      "radius",
+      "round",
+      "rounded",
+      "rounding",
+      "scheme",
+      "style",
+      "theme",
+      "window",
+      "windows"
+    ],
+    "description": "Rounded corners for windows (decoration.rounding)"
   },
   {
     "section": "matugenTemplateDgop",
@@ -2293,6 +2838,23 @@
     ]
   },
   {
+    "section": "matugenTemplateMangowc",
+    "label": "mangowc",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "look",
+      "mangowc",
+      "matugen",
+      "scheme",
+      "style",
+      "template",
+      "theme"
+    ]
+  },
+  {
     "section": "matugenTemplateNeovim",
     "label": "neovim",
     "tabIndex": 10,
@@ -2300,20 +2862,15 @@
     "keywords": [
       "appearance",
       "colors",
-      "lazy",
       "look",
-      "manager",
       "matugen",
       "neovim",
-      "plugin",
-      "requires",
       "scheme",
       "style",
       "template",
       "terminal",
       "theme"
-    ],
-    "description": "Requires lazy plugin manager"
+    ]
   },
   {
     "section": "matugenTemplateNiri",
@@ -2550,25 +3107,31 @@
     "description": "If the field is hidden, it will appear as soon as a key is pressed."
   },
   {
-    "section": "lockBeforeSuspend",
-    "label": "Lock before suspend",
+    "section": "lockScreenNotificationMode",
+    "label": "Notification Display",
     "tabIndex": 11,
     "category": "Lock Screen",
     "keywords": [
-      "automatic",
-      "automatically",
-      "before",
+      "alert",
+      "control",
+      "display",
+      "information",
       "lock",
+      "lockscreen",
       "login",
+      "monitor",
+      "notif",
+      "notification",
+      "notifications",
+      "output",
       "password",
-      "prepares",
+      "privacy",
       "screen",
       "security",
-      "sleep",
-      "suspend",
-      "system"
+      "shown",
+      "what"
     ],
-    "description": "Automatically lock the screen when the system prepares to suspend"
+    "description": "Control what notification information is shown on the lock screen"
   },
   {
     "section": "lockScreenShowPasswordField",
@@ -3032,6 +3595,27 @@
     "description": "Scroll wheel behavior on media widget"
   },
   {
+    "section": "notificationHistorySaveCritical",
+    "label": "Critical Priority",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alert",
+      "alerts",
+      "critical",
+      "history",
+      "messages",
+      "notif",
+      "notification",
+      "notifications",
+      "notifs",
+      "priority",
+      "save",
+      "toast"
+    ],
+    "description": "Save critical priority notifications to history"
+  },
+  {
     "section": "notificationTimeoutCritical",
     "label": "Critical Priority",
     "tabIndex": 17,
@@ -3079,6 +3663,125 @@
     "description": "Suppress notification popups while enabled"
   },
   {
+    "section": "notificationHistoryEnabled",
+    "label": "Enable History",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alert",
+      "alerts",
+      "disable",
+      "dismissed",
+      "enable",
+      "history",
+      "messages",
+      "notif",
+      "notification",
+      "notifications",
+      "notifs",
+      "save",
+      "toast"
+    ],
+    "description": "Save dismissed notifications to history"
+  },
+  {
+    "section": "notificationHistoryMaxAgeDays",
+    "label": "History Retention",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "age",
+      "alert",
+      "alerts",
+      "auto",
+      "days",
+      "delete",
+      "history",
+      "max",
+      "messages",
+      "notif",
+      "notification",
+      "notifications",
+      "notifs",
+      "older",
+      "retention",
+      "toast"
+    ],
+    "description": "Auto-delete notifications older than this"
+  },
+  {
+    "section": "notificationHistory",
+    "label": "History Settings",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alert",
+      "alerts",
+      "disable",
+      "dismissed",
+      "enable",
+      "history",
+      "messages",
+      "notif",
+      "notification",
+      "notifications",
+      "notifs",
+      "save",
+      "settings",
+      "toast"
+    ],
+    "icon": "history",
+    "description": "Save dismissed notifications to history"
+  },
+  {
+    "section": "lockScreenNotifications",
+    "label": "Lock Screen",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alert",
+      "alerts",
+      "control",
+      "information",
+      "lock",
+      "lockscreen",
+      "login",
+      "messages",
+      "notif",
+      "notification",
+      "notifications",
+      "privacy",
+      "screen",
+      "security",
+      "shown",
+      "toast",
+      "what"
+    ],
+    "icon": "lock",
+    "description": "Control what notification information is shown on the lock screen"
+  },
+  {
+    "section": "notificationHistorySaveLow",
+    "label": "Low Priority",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alert",
+      "alerts",
+      "history",
+      "low",
+      "messages",
+      "notif",
+      "notification",
+      "notifications",
+      "notifs",
+      "priority",
+      "save",
+      "toast"
+    ],
+    "description": "Save low priority notifications to history"
+  },
+  {
     "section": "notificationTimeoutLow",
     "label": "Low Priority",
     "tabIndex": 17,
@@ -3098,6 +3801,51 @@
       "toast"
     ],
     "description": "Timeout for low priority notifications"
+  },
+  {
+    "section": "notificationHistoryMaxCount",
+    "label": "Maximum History",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alert",
+      "alerts",
+      "count",
+      "history",
+      "keep",
+      "limit",
+      "max",
+      "maximum",
+      "messages",
+      "notif",
+      "notification",
+      "notifications",
+      "notifs",
+      "number",
+      "toast"
+    ],
+    "description": "Maximum number of notifications to keep"
+  },
+  {
+    "section": "notificationHistorySaveNormal",
+    "label": "Normal Priority",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alert",
+      "alerts",
+      "history",
+      "messages",
+      "normal",
+      "notif",
+      "notification",
+      "notifications",
+      "notifs",
+      "priority",
+      "save",
+      "toast"
+    ],
+    "description": "Save normal priority notifications to history"
   },
   {
     "section": "notificationTimeoutNormal",
@@ -3388,24 +4136,6 @@
     ]
   },
   {
-    "section": "fadeToLockGracePeriod",
-    "label": "Fade grace period",
-    "tabIndex": 21,
-    "category": "Power & Sleep",
-    "keywords": [
-      "energy",
-      "fade",
-      "grace",
-      "lock",
-      "period",
-      "power",
-      "shutdown",
-      "sleep",
-      "suspend",
-      "timeout"
-    ]
-  },
-  {
     "section": "fadeToLockEnabled",
     "label": "Fade to lock screen",
     "tabIndex": 21,
@@ -3432,6 +4162,34 @@
       "suspend"
     ],
     "description": "Gradually fade the screen before locking with a configurable grace period"
+  },
+  {
+    "section": "fadeToDpmsEnabled",
+    "label": "Fade to monitor off",
+    "tabIndex": 21,
+    "category": "Power & Sleep",
+    "keywords": [
+      "before",
+      "configurable",
+      "dpms",
+      "energy",
+      "fade",
+      "grace",
+      "grace period",
+      "gradually",
+      "idle",
+      "monitor",
+      "monitors",
+      "off",
+      "period",
+      "power",
+      "screen",
+      "shutdown",
+      "sleep",
+      "suspend",
+      "turning"
+    ],
+    "description": "Gradually fade the screen before turning off monitors with a configurable grace period"
   },
   {
     "section": "powerActionHoldDuration",
@@ -3505,6 +4263,64 @@
     ],
     "icon": "schedule",
     "description": "Gradually fade the screen before locking with a configurable grace period"
+  },
+  {
+    "section": "lockBeforeSuspend",
+    "label": "Lock before suspend",
+    "tabIndex": 21,
+    "category": "Power & Sleep",
+    "keywords": [
+      "automatically",
+      "before",
+      "energy",
+      "lock",
+      "power",
+      "prepares",
+      "screen",
+      "security",
+      "shutdown",
+      "sleep",
+      "suspend",
+      "system"
+    ],
+    "description": "Automatically lock the screen when the system prepares to suspend"
+  },
+  {
+    "section": "fadeToLockGracePeriod",
+    "label": "Lock fade grace period",
+    "tabIndex": 21,
+    "category": "Power & Sleep",
+    "keywords": [
+      "energy",
+      "fade",
+      "grace",
+      "lock",
+      "period",
+      "power",
+      "shutdown",
+      "sleep",
+      "suspend",
+      "timeout"
+    ]
+  },
+  {
+    "section": "fadeToDpmsGracePeriod",
+    "label": "Monitor fade grace period",
+    "tabIndex": 21,
+    "category": "Power & Sleep",
+    "keywords": [
+      "dpms",
+      "energy",
+      "fade",
+      "grace",
+      "monitor",
+      "period",
+      "power",
+      "shutdown",
+      "sleep",
+      "suspend",
+      "timeout"
+    ]
   },
   {
     "section": "powerConfirmation",

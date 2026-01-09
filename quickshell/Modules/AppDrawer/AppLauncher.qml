@@ -96,7 +96,11 @@ Item {
             _updatingFromTrigger = true;
             selectedCategory = triggerResult.pluginCategory;
             _updatingFromTrigger = false;
-            apps = AppSearchService.getPluginItems(triggerResult.pluginCategory, triggerResult.query);
+            if (triggerResult.isBuiltIn) {
+                apps = AppSearchService.getBuiltInLauncherItems(triggerResult.pluginId, triggerResult.query);
+            } else {
+                apps = AppSearchService.getPluginItems(triggerResult.pluginCategory, triggerResult.query);
+            }
         } else {
             if (_isTriggered) {
                 _updatingFromTrigger = true;
@@ -114,7 +118,11 @@ Item {
                         const items = AppSearchService.getPluginItems(pluginCategory, "");
                         emptyTriggerItems = emptyTriggerItems.concat(items);
                     });
-                    // Add Core Apps
+                    const builtInEmptyTrigger = AppSearchService.getBuiltInLauncherPluginsWithEmptyTrigger();
+                    builtInEmptyTrigger.forEach(pluginId => {
+                        const items = AppSearchService.getBuiltInLauncherItems(pluginId, "");
+                        emptyTriggerItems = emptyTriggerItems.concat(items);
+                    });
                     const coreItems = AppSearchService.getCoreApps("");
                     apps = AppSearchService.applications.concat(emptyTriggerItems).concat(coreItems);
                 } else {
@@ -131,6 +139,11 @@ Item {
                         const plugin = PluginService.getLauncherPlugin(pluginId);
                         const pluginCategory = plugin.name || pluginId;
                         const items = AppSearchService.getPluginItems(pluginCategory, searchQuery);
+                        emptyTriggerItems = emptyTriggerItems.concat(items);
+                    });
+                    const builtInEmptyTrigger = AppSearchService.getBuiltInLauncherPluginsWithEmptyTrigger();
+                    builtInEmptyTrigger.forEach(pluginId => {
+                        const items = AppSearchService.getBuiltInLauncherItems(pluginId, searchQuery);
                         emptyTriggerItems = emptyTriggerItems.concat(items);
                     });
 
@@ -186,12 +199,14 @@ Item {
                 filteredModel.append({
                     "name": app.name || "",
                     "exec": app.execString || app.exec || app.action || "",
-                    "icon": app.icon !== undefined ? app.icon : (isPluginItem ? "" : "application-x-executable"),
+                    "icon": app.icon !== undefined ? String(app.icon) : (isPluginItem ? "" : "application-x-executable"),
                     "comment": app.comment || "",
                     "categories": app.categories || [],
                     "isPlugin": isPluginItem,
                     "isCore": app.isCore === true,
-                    "appIndex": uniqueApps.length - 1
+                    "isBuiltInLauncher": app.isBuiltInLauncher === true,
+                    "appIndex": uniqueApps.length - 1,
+                    "pinned": app._pinned === true
                 });
             }
         });
@@ -240,12 +255,17 @@ Item {
     }
 
     function launchApp(appData) {
-        if (!appData || typeof appData.appIndex === "undefined" || appData.appIndex < 0 || appData.appIndex >= _uniqueApps.length) {
+        if (!appData || typeof appData.appIndex === "undefined" || appData.appIndex < 0 || appData.appIndex >= _uniqueApps.length)
             return;
-        }
         suppressUpdatesWhileLaunching = true;
 
         const actualApp = _uniqueApps[appData.appIndex];
+
+        if (appData.isBuiltInLauncher) {
+            AppSearchService.executeBuiltInLauncherItem(actualApp);
+            appLaunched(appData);
+            return;
+        }
 
         if (appData.isCore) {
             AppSearchService.executeCoreApp(actualApp);
@@ -260,11 +280,20 @@ Item {
                 appLaunched(appData);
                 return;
             }
-        } else {
-            SessionService.launchDesktopEntry(actualApp);
-            appLaunched(appData);
-            AppUsageHistoryData.addAppUsage(actualApp);
+            return;
         }
+
+        SessionService.launchDesktopEntry(actualApp);
+        appLaunched(appData);
+        AppUsageHistoryData.addAppUsage(actualApp);
+    }
+
+    function reset() {
+        suppressUpdatesWhileLaunching = false;
+        searchQuery = "";
+        selectedIndex = 0;
+        setCategory(I18n.tr("All"));
+        updateFilteredModel();
     }
 
     function setCategory(category) {
@@ -320,35 +349,55 @@ Item {
         onTriggered: updateFilteredModel()
     }
 
-    // Plugin trigger system functions
     function checkPluginTriggers(query) {
-        if (!query || typeof PluginService === "undefined") {
+        if (!query)
             return {
                 triggered: false,
                 pluginCategory: "",
                 query: ""
             };
+
+        const builtInTriggers = AppSearchService.getBuiltInLauncherTriggers();
+        for (const trigger in builtInTriggers) {
+            if (!query.startsWith(trigger))
+                continue;
+            const pluginId = builtInTriggers[trigger];
+            const plugin = AppSearchService.builtInPlugins[pluginId];
+            if (!plugin)
+                continue;
+            return {
+                triggered: true,
+                pluginId: pluginId,
+                pluginCategory: plugin.name,
+                query: query.substring(trigger.length).trim(),
+                trigger: trigger,
+                isBuiltIn: true
+            };
         }
 
+        if (typeof PluginService === "undefined")
+            return {
+                triggered: false,
+                pluginCategory: "",
+                query: ""
+            };
+
         const triggers = PluginService.getAllPluginTriggers();
-
         for (const trigger in triggers) {
-            if (query.startsWith(trigger)) {
-                const pluginId = triggers[trigger];
-                const plugin = PluginService.getLauncherPlugin(pluginId);
-
-                if (plugin) {
-                    const remainingQuery = query.substring(trigger.length).trim();
-                    const result = {
-                        triggered: true,
-                        pluginId: pluginId,
-                        pluginCategory: plugin.name || pluginId,
-                        query: remainingQuery,
-                        trigger: trigger
-                    };
-                    return result;
-                }
-            }
+            if (!query.startsWith(trigger))
+                continue;
+            const pluginId = triggers[trigger];
+            const plugin = PluginService.getLauncherPlugin(pluginId);
+            if (!plugin)
+                continue;
+            return {
+                triggered: true,
+                pluginId: pluginId,
+                pluginCategory: plugin.name || pluginId,
+                query: query.substring(trigger.length).trim(),
+                trigger: trigger,
+                isBuiltIn: false
+            };
         }
 
         return {

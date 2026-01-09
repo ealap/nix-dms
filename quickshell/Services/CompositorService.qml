@@ -137,7 +137,11 @@ Singleton {
     Component.onCompleted: {
         detectCompositor();
         scheduleSort();
-        Qt.callLater(() => NiriService.generateNiriLayoutConfig());
+        Qt.callLater(() => {
+            NiriService.generateNiriLayoutConfig();
+            HyprlandService.generateLayoutConfig();
+            DwlService.generateLayoutConfig();
+        });
     }
 
     Connections {
@@ -396,7 +400,11 @@ Singleton {
         repeat: false
         onTriggered: {
             detectCompositor();
-            Qt.callLater(() => NiriService.generateNiriLayoutConfig());
+            Qt.callLater(() => {
+                NiriService.generateNiriLayoutConfig();
+                HyprlandService.generateLayoutConfig();
+                DwlService.generateLayoutConfig();
+            });
         }
     }
 

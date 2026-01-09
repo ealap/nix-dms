@@ -401,8 +401,8 @@ Singleton {
     }
 
     function checkIncludeStatus() {
-        const paths = getConfigPaths();
-        if (!paths) {
+        const compositor = CompositorService.compositor;
+        if (compositor !== "niri" && compositor !== "hyprland" && compositor !== "dwl") {
             includeStatus = {
                 "exists": false,
                 "included": false
@@ -410,14 +410,27 @@ Singleton {
             return;
         }
 
+        const filename = (compositor === "niri") ? "outputs.kdl" : "outputs.conf";
+        const compositorArg = (compositor === "dwl") ? "mangowc" : compositor;
+
         checkingInclude = true;
-        Proc.runCommand("check-outputs-include", ["sh", "-c", `exists=false; included=false; ` + `[ -f "${paths.outputsFile}" ] && exists=true; ` + `[ -f "${paths.configFile}" ] && grep -v '^[[:space:]]*\\(//\\|#\\)' "${paths.configFile}" | grep -q '${paths.grepPattern}' && included=true; ` + `echo "$exists $included"`], (output, exitCode) => {
+        Proc.runCommand("check-outputs-include", ["dms", "config", "resolve-include", compositorArg, filename], (output, exitCode) => {
             checkingInclude = false;
-            const parts = output.trim().split(" ");
-            includeStatus = {
-                "exists": parts[0] === "true",
-                "included": parts[1] === "true"
-            };
+            if (exitCode !== 0) {
+                includeStatus = {
+                    "exists": false,
+                    "included": false
+                };
+                return;
+            }
+            try {
+                includeStatus = JSON.parse(output.trim());
+            } catch (e) {
+                includeStatus = {
+                    "exists": false,
+                    "included": false
+                };
+            }
         });
     }
 

@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Effects
+import Quickshell
 import qs.Common
+import qs.Services
 import qs.Widgets
 
 Item {
@@ -87,6 +89,7 @@ Item {
                     iconName: "auto_awesome"
                     title: I18n.tr("Dynamic Theming", "greeter feature card title")
                     description: I18n.tr("Colors from wallpaper", "greeter feature card description")
+                    onClicked: PopoutService.openSettingsWithTab("theme")
                 }
 
                 GreeterFeatureCard {
@@ -94,6 +97,7 @@ Item {
                     iconName: "format_paint"
                     title: I18n.tr("App Theming", "greeter feature card title")
                     description: I18n.tr("GTK, Qt, IDEs, more", "greeter feature card description")
+                    onClicked: PopoutService.openSettingsWithTab("theme")
                 }
 
                 GreeterFeatureCard {
@@ -101,6 +105,7 @@ Item {
                     iconName: "download"
                     title: I18n.tr("Theme Registry", "greeter feature card title")
                     description: I18n.tr("Community themes", "greeter feature card description")
+                    onClicked: PopoutService.openSettingsWithTab("theme")
                 }
 
                 GreeterFeatureCard {
@@ -108,6 +113,7 @@ Item {
                     iconName: "view_carousel"
                     title: I18n.tr("DankBar", "greeter feature card title")
                     description: I18n.tr("Modular widget bar", "greeter feature card description")
+                    onClicked: PopoutService.openSettingsWithTab("dankbar_settings")
                 }
 
                 GreeterFeatureCard {
@@ -115,6 +121,7 @@ Item {
                     iconName: "extension"
                     title: I18n.tr("Plugins", "greeter feature card title")
                     description: I18n.tr("Extensible architecture", "greeter feature card description")
+                    onClicked: PopoutService.openSettingsWithTab("plugins")
                 }
 
                 GreeterFeatureCard {
@@ -122,6 +129,10 @@ Item {
                     iconName: "layers"
                     title: I18n.tr("Multi-Monitor", "greeter feature card title")
                     description: I18n.tr("Per-screen config", "greeter feature card description")
+                    onClicked: {
+                        const hasDisplayConfig = CompositorService.isNiri || CompositorService.isHyprland || CompositorService.isDwl;
+                        PopoutService.openSettingsWithTab(hasDisplayConfig ? "display_config" : "display_widgets");
+                    }
                 }
 
                 GreeterFeatureCard {
@@ -129,6 +140,7 @@ Item {
                     iconName: "nightlight"
                     title: I18n.tr("Display Control", "greeter feature card title")
                     description: I18n.tr("Night mode & gamma", "greeter feature card description")
+                    onClicked: PopoutService.openSettingsWithTab("display_gamma")
                 }
 
                 GreeterFeatureCard {
@@ -136,13 +148,16 @@ Item {
                     iconName: "tune"
                     title: I18n.tr("Control Center", "greeter feature card title")
                     description: I18n.tr("Quick system toggles", "greeter feature card description")
+                    // This is doing an IPC since its just easier and lazier to access the bar ref
+                    onClicked: Quickshell.execDetached(["dms", "ipc", "call", "control-center", "open"])
                 }
 
                 GreeterFeatureCard {
                     width: (parent.width - Theme.spacingS * 2) / 3
-                    iconName: "density_small"
-                    title: I18n.tr("System Tray", "greeter feature card title")
-                    description: I18n.tr("Background app icons", "greeter feature card description")
+                    iconName: "lock"
+                    title: I18n.tr("Lock Screen", "greeter feature card title")
+                    description: I18n.tr("Security & privacy", "greeter feature card description")
+                    onClicked: PopoutService.openSettingsWithTab("lock_screen")
                 }
             }
         }

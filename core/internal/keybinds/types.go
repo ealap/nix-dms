@@ -8,6 +8,7 @@ type Keybind struct {
 	Source        string   `json:"source,omitempty"`
 	HideOnOverlay bool     `json:"hideOnOverlay,omitempty"`
 	CooldownMs    int      `json:"cooldownMs,omitempty"`
+	Flags         string   `json:"flags,omitempty"` // Hyprland bind flags: e=repeat, l=locked, r=release, o=long-press
 	Conflict      *Keybind `json:"conflict,omitempty"`
 }
 

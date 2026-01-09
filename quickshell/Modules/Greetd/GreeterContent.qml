@@ -15,6 +15,12 @@ import qs.Modules.Lock
 Item {
     id: root
 
+    function encodeFileUrl(path) {
+        if (!path)
+            return "";
+        return "file://" + path.split('/').map(s => encodeURIComponent(s)).join('/');
+    }
+
     readonly property string xdgDataDirs: Quickshell.env("XDG_DATA_DIRS")
     property string screenName: ""
     property string randomFact: ""
@@ -162,7 +168,7 @@ Item {
             var _ = SessionData.perMonitorWallpaper;
             var __ = SessionData.monitorWallpapers;
             var currentWallpaper = SessionData.getMonitorWallpaper(screenName);
-            return (currentWallpaper && !currentWallpaper.startsWith("#")) ? currentWallpaper : "";
+            return (currentWallpaper && !currentWallpaper.startsWith("#")) ? encodeFileUrl(currentWallpaper) : "";
         }
         fillMode: Theme.getFillMode(GreetdSettings.wallpaperFillMode)
         smooth: true
@@ -356,14 +362,10 @@ Item {
                         Layout.preferredWidth: 60
                         Layout.preferredHeight: 60
                         imageSource: {
-                            if (PortalService.profileImage === "") {
+                            if (PortalService.profileImage === "")
                                 return "";
-                            }
-
-                            if (PortalService.profileImage.startsWith("/")) {
-                                return "file://" + PortalService.profileImage;
-                            }
-
+                            if (PortalService.profileImage.startsWith("/"))
+                                return encodeFileUrl(PortalService.profileImage);
                             return PortalService.profileImage;
                         }
                         fallbackIcon: "person"
@@ -1154,7 +1156,7 @@ Item {
             required property string modelData
 
             FolderListModel {
-                folder: "file://" + modelData
+                folder: encodeFileUrl(modelData)
                 nameFilters: ["*.desktop"]
                 showDirs: false
                 showDotAndDotDot: false

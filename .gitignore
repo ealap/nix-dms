@@ -108,3 +108,4 @@ bin/
 # direnv
 .envrc
 .direnv/
+quickshell/dms-plugins

@@ -327,7 +327,8 @@ Item {
                     property int windowCount: isGrouped ? modelData.windows.length : 1
                     property string tooltipText: {
                         root._desktopEntriesUpdateTrigger;
-                        const desktopEntry = appId ? DesktopEntries.heuristicLookup(appId) : null;
+                        const moddedId = Paths.moddedAppId(appId);
+                        const desktopEntry = moddedId ? DesktopEntries.heuristicLookup(moddedId) : null;
                         const appName = appId ? Paths.getAppName(appId, desktopEntry) : "Unknown";
 
                         if (isGrouped && windowCount > 1) {
@@ -365,7 +366,8 @@ Item {
                                 root._desktopEntriesUpdateTrigger;
                                 if (!appId)
                                     return "";
-                                const desktopEntry = DesktopEntries.heuristicLookup(appId);
+                                const moddedId = Paths.moddedAppId(appId);
+                                const desktopEntry = DesktopEntries.heuristicLookup(moddedId);
                                 return Paths.getAppIcon(appId, desktopEntry);
                             }
                             smooth: true
@@ -408,7 +410,8 @@ Item {
                                 if (!appId)
                                     return "?";
 
-                                const desktopEntry = DesktopEntries.heuristicLookup(appId);
+                                const moddedId = Paths.moddedAppId(appId);
+                                const desktopEntry = DesktopEntries.heuristicLookup(moddedId);
                                 const appName = Paths.getAppName(appId, desktopEntry);
                                 return appName.charAt(0).toUpperCase();
                             }
@@ -436,7 +439,6 @@ Item {
                             }
                         }
 
-                        // Window title text (only visible in expanded mode)
                         StyledText {
                             anchors.left: iconImg.right
                             anchors.leftMargin: Theme.spacingXS
@@ -576,7 +578,8 @@ Item {
                     property int windowCount: isGrouped ? modelData.windows.length : 1
                     property string tooltipText: {
                         root._desktopEntriesUpdateTrigger;
-                        const desktopEntry = appId ? DesktopEntries.heuristicLookup(appId) : null;
+                        const moddedId = Paths.moddedAppId(appId);
+                        const desktopEntry = moddedId ? DesktopEntries.heuristicLookup(moddedId) : null;
                         const appName = appId ? Paths.getAppName(appId, desktopEntry) : "Unknown";
 
                         if (isGrouped && windowCount > 1) {
@@ -613,7 +616,8 @@ Item {
                                 root._desktopEntriesUpdateTrigger;
                                 if (!appId)
                                     return "";
-                                const desktopEntry = DesktopEntries.heuristicLookup(appId);
+                                const moddedId = Paths.moddedAppId(appId);
+                                const desktopEntry = DesktopEntries.heuristicLookup(moddedId);
                                 return Paths.getAppIcon(appId, desktopEntry);
                             }
                             smooth: true
@@ -655,7 +659,8 @@ Item {
                                 if (!appId)
                                     return "?";
 
-                                const desktopEntry = DesktopEntries.heuristicLookup(appId);
+                                const moddedId = Paths.moddedAppId(appId);
+                                const desktopEntry = DesktopEntries.heuristicLookup(moddedId);
                                 const appName = Paths.getAppName(appId, desktopEntry);
                                 return appName.charAt(0).toUpperCase();
                             }

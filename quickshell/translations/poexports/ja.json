@@ -20,8 +20,17 @@
   "%1 display(s)": {
     "%1 display(s)": "%1 表示"
   },
+  "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": {
+    "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": ""
+  },
+  "%1 is now included in config": {
+    "%1 is now included in config": ""
+  },
   "%1 job(s)": {
     "%1 job(s)": ""
+  },
+  "%1 notifications": {
+    "%1 notifications": ""
   },
   "%1 printer(s)": {
     "%1 printer(s)": ""
@@ -38,6 +47,9 @@
   "(Unnamed)": {
     "(Unnamed)": "（名前なし）"
   },
+  "+ %1 more": {
+    "+ %1 more": ""
+  },
   "0 = square corners": {
     "0 = square corners": ""
   },
@@ -49,6 +61,9 @@
   },
   "1 minute": {
     "1 minute": ""
+  },
+  "1 notification": {
+    "1 notification": ""
   },
   "1 second": {
     "1 second": ""
@@ -128,6 +143,9 @@
   "About": {
     "About": "詳細"
   },
+  "Accent Color": {
+    "Accent Color": ""
+  },
   "Accept Jobs": {
     "Accept Jobs": ""
   },
@@ -151,6 +169,9 @@
   },
   "Activate": {
     "Activate": ""
+  },
+  "Activation": {
+    "Activation": ""
   },
   "Active": {
     "Active": ""
@@ -220,6 +241,9 @@
   },
   "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": {
     "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": "Alt+←/Backspace: 戻る • F1/I: ファイル情報 • F10: ヘルプ • Esc: 閉じる"
+  },
+  "Always Active": {
+    "Always Active": ""
   },
   "Always Show Percentage": {
     "Always Show Percentage": ""
@@ -353,6 +377,9 @@
   "Auto-Clear After": {
     "Auto-Clear After": ""
   },
+  "Auto-Hide Timeout": {
+    "Auto-Hide Timeout": ""
+  },
   "Auto-close Niri overview when launching apps.": {
     "Auto-close Niri overview when launching apps.": ""
   },
@@ -412,6 +439,9 @@
   },
   "Available Screens (%1)": {
     "Available Screens (%1)": ""
+  },
+  "Available in Detailed and Forecast view modes": {
+    "Available in Detailed and Forecast view modes": ""
   },
   "BSSID": {
     "BSSID": ""
@@ -499,6 +529,9 @@
   },
   "Border Opacity": {
     "Border Opacity": "ボーダーの透明度"
+  },
+  "Border Size": {
+    "Border Size": ""
   },
   "Border Thickness": {
     "Border Thickness": "ボーダーの太さ"
@@ -626,6 +659,9 @@
   "Choose colors from palette": {
     "Choose colors from palette": ""
   },
+  "Choose how the weather widget is displayed": {
+    "Choose how the weather widget is displayed": ""
+  },
   "Choose icon": {
     "Choose icon": "アイコンを選ぶ"
   },
@@ -671,6 +707,12 @@
   "Clear at Startup": {
     "Clear at Startup": ""
   },
+  "Click 'Setup' to create %1 and add include to config.": {
+    "Click 'Setup' to create %1 and add include to config.": ""
+  },
+  "Click 'Setup' to create cursor config and add include to your compositor config.": {
+    "Click 'Setup' to create cursor config and add include to your compositor config.": ""
+  },
   "Click 'Setup' to create dms/binds.kdl and add include to config.kdl.": {
     "Click 'Setup' to create dms/binds.kdl and add include to config.kdl.": ""
   },
@@ -679,6 +721,9 @@
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": ""
+  },
+  "Click any shortcut to edit. Changes save to %1": {
+    "Click any shortcut to edit. Changes save to %1": ""
   },
   "Click any shortcut to edit. Changes save to dms/binds.kdl": {
     "Click any shortcut to edit. Changes save to dms/binds.kdl": ""
@@ -755,6 +800,9 @@
   "Communication": {
     "Communication": "コミュニケーション"
   },
+  "Compact": {
+    "Compact": ""
+  },
   "Compact Mode": {
     "Compact Mode": "コンパクトモード"
   },
@@ -812,6 +860,9 @@
   "Connect": {
     "Connect": "接続"
   },
+  "Connect to Hidden Network": {
+    "Connect to Hidden Network": ""
+  },
   "Connect to VPN": {
     "Connect to VPN": "VPNに接続"
   },
@@ -853,6 +904,9 @@
   },
   "Copied!": {
     "Copied!": "コピーしました！"
+  },
+  "Copy": {
+    "Copy": ""
   },
   "Copy PID": {
     "Copy PID": "PIDをコピー"
@@ -908,8 +962,23 @@
   "Current: %1": {
     "Current: %1": ""
   },
+  "Cursor Config Not Configured": {
+    "Cursor Config Not Configured": ""
+  },
+  "Cursor Include Missing": {
+    "Cursor Include Missing": ""
+  },
+  "Cursor Size": {
+    "Cursor Size": ""
+  },
+  "Cursor Theme": {
+    "Cursor Theme": ""
+  },
   "Custom": {
     "Custom": "カスタム"
+  },
+  "Custom Color": {
+    "Custom Color": ""
   },
   "Custom Duration": {
     "Custom Duration": ""
@@ -1073,6 +1142,9 @@
   "Desktop clock widget name": {
     "Desktop Clock": ""
   },
+  "Detailed": {
+    "Detailed": ""
+  },
   "Development": {
     "Development": "開発"
   },
@@ -1159,6 +1231,9 @@
   },
   "Display currently focused application title": {
     "Display currently focused application title": "現在フォーカスされているアプリケーションのタイトルを表示"
+  },
+  "Display hourly weather predictions": {
+    "Display hourly weather predictions": ""
   },
   "Display only workspaces that contain windows": {
     "Display only workspaces that contain windows": ""
@@ -1342,6 +1417,9 @@
   },
   "Enter launch prefix (e.g., 'uwsm-app')": {
     "Enter launch prefix (e.g., 'uwsm-app')": ""
+  },
+  "Enter network name and password": {
+    "Enter network name and password": ""
   },
   "Enter passkey for ": {
     "Enter passkey for ": "パスキーを入力してください "
@@ -1535,6 +1613,9 @@
   "Failed to write temp file for validation": {
     "Failed to write temp file for validation": ""
   },
+  "Feels": {
+    "Feels": ""
+  },
   "Feels Like": {
     "Feels Like": "どうやら"
   },
@@ -1570,6 +1651,9 @@
   },
   "Fixing...": {
     "Fixing...": ""
+  },
+  "Flags": {
+    "Flags": ""
   },
   "Flipped": {
     "Flipped": ""
@@ -1615,6 +1699,12 @@
   },
   "Force terminal applications to always use dark color schemes": {
     "Force terminal applications to always use dark color schemes": "端末アプリで常に暗い配色を強制使用"
+  },
+  "Forecast": {
+    "Forecast": ""
+  },
+  "Forecast Days": {
+    "Forecast Days": ""
   },
   "Forecast Not Available": {
     "Forecast Not Available": ""
@@ -1727,11 +1817,32 @@
   "Hibernate": {
     "Hibernate": "休止状態"
   },
+  "Hidden": {
+    "Hidden": ""
+  },
+  "Hidden Network": {
+    "Hidden Network": ""
+  },
   "Hide Delay": {
     "Hide Delay": ""
   },
+  "Hide When Typing": {
+    "Hide When Typing": ""
+  },
   "Hide When Windows Open": {
     "Hide When Windows Open": ""
+  },
+  "Hide cursor after inactivity (0 = disabled)": {
+    "Hide cursor after inactivity (0 = disabled)": ""
+  },
+  "Hide cursor when pressing keyboard keys": {
+    "Hide cursor when pressing keyboard keys": ""
+  },
+  "Hide cursor when using touch input": {
+    "Hide cursor when using touch input": ""
+  },
+  "Hide on Touch": {
+    "Hide on Touch": ""
   },
   "Hide the dock when not in use and reveal it when hovering near the dock area": {
     "Hide the dock when not in use and reveal it when hovering near the dock area": "使用していないときはドックを非表示にし、ドックエリアの近くにホバーすると表示されます"
@@ -1769,11 +1880,17 @@
   "Hourly Forecast": {
     "Hourly Forecast": ""
   },
+  "Hourly Forecast Count": {
+    "Hourly Forecast Count": ""
+  },
   "How often to change wallpaper": {
     "How often to change wallpaper": "壁紙を切り替える間隔"
   },
   "Humidity": {
     "Humidity": "湿度"
+  },
+  "Hyprland Layout Overrides": {
+    "Hyprland Layout Overrides": ""
   },
   "I Understand": {
     "I Understand": "わかりました"
@@ -1888,6 +2005,15 @@
   },
   "Key": {
     "Key": ""
+  },
+  "Keybind Sources": {
+    "Keybind Sources": ""
+  },
+  "Keybinds Search Settings": {
+    "Keybinds Search Settings": ""
+  },
+  "Keybinds shown alongside regular search results": {
+    "Keybinds shown alongside regular search results": ""
   },
   "Keyboard Layout Name": {
     "Keyboard Layout Name": "キーボードレイアウト名"
@@ -2012,6 +2138,9 @@
   "Lock fade grace period": {
     "Lock fade grace period": ""
   },
+  "Locked": {
+    "Locked": ""
+  },
   "Log Out": {
     "Log Out": "ログアウト"
   },
@@ -2020,6 +2149,9 @@
   },
   "Long Text": {
     "Long Text": "長文"
+  },
+  "Long press": {
+    "Long press": ""
   },
   "Longitude": {
     "Longitude": "経度"
@@ -2041,6 +2173,9 @@
   },
   "Management": {
     "Management": ""
+  },
+  "MangoWC Layout Overrides": {
+    "MangoWC Layout Overrides": ""
   },
   "Manual Coordinates": {
     "Manual Coordinates": "手動座標"
@@ -2204,6 +2339,12 @@
   "Mount": {
     "Mount": "マウント"
   },
+  "Mouse pointer appearance": {
+    "Mouse pointer appearance": ""
+  },
+  "Mouse pointer size in pixels": {
+    "Mouse pointer size in pixels": ""
+  },
   "Move Widget": {
     "Move Widget": ""
   },
@@ -2236,6 +2377,9 @@
   },
   "Network Information": {
     "Network Information": "ネットワーク情報"
+  },
+  "Network Name (SSID)": {
+    "Network Name (SSID)": ""
   },
   "Network Speed Monitor": {
     "Network Speed Monitor": "ネットワーク速度モニター"
@@ -2305,6 +2449,9 @@
   },
   "No VPN profiles": {
     "No VPN profiles": ""
+  },
+  "No Weather Data": {
+    "No Weather Data": ""
   },
   "No Weather Data Available": {
     "No Weather Data Available": "気象データはありません"
@@ -2395,6 +2542,9 @@
   },
   "Not connected": {
     "Not connected": ""
+  },
+  "Not detected": {
+    "Not detected": ""
   },
   "Note: this only changes the percentage, it does not actually limit charging.": {
     "Note: this only changes the percentage, it does not actually limit charging.": ""
@@ -2509,6 +2659,9 @@
   },
   "Override": {
     "Override": ""
+  },
+  "Override Border Size": {
+    "Override Border Size": ""
   },
   "Override Corner Radius": {
     "Override Corner Radius": ""
@@ -2684,6 +2837,9 @@
   "Power source": {
     "Power source": ""
   },
+  "Precip": {
+    "Precip": ""
+  },
   "Precipitation Chance": {
     "Precipitation Chance": ""
   },
@@ -2801,6 +2957,9 @@
   "Reject Jobs": {
     "Reject Jobs": ""
   },
+  "Release": {
+    "Release": ""
+  },
   "Reload Plugin": {
     "Reload Plugin": "プラグインをリロード"
   },
@@ -2809,6 +2968,9 @@
   },
   "Remove gaps and border when windows are maximized": {
     "Remove gaps and border when windows are maximized": ""
+  },
+  "Repeat": {
+    "Repeat": ""
   },
   "Report": {
     "Report": "報告"
@@ -2884,6 +3046,12 @@
   },
   "Rounded corners for windows": {
     "Rounded corners for windows": ""
+  },
+  "Rounded corners for windows (border_radius)": {
+    "Rounded corners for windows (border_radius)": ""
+  },
+  "Rounded corners for windows (decoration.rounding)": {
+    "Rounded corners for windows (decoration.rounding)": ""
   },
   "Run DMS Templates": {
     "Run DMS Templates": ""
@@ -2969,6 +3137,9 @@
   "Scrolling": {
     "Scrolling": "スクロール"
   },
+  "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
+    "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": ""
+  },
   "Search file contents": {
     "Search file contents": "ファイルの内容を検索"
   },
@@ -2980,6 +3151,9 @@
   },
   "Search keybinds...": {
     "Search keybinds...": ""
+  },
+  "Search keyboard shortcuts from your compositor and applications": {
+    "Search keyboard shortcuts from your compositor and applications": ""
   },
   "Search plugins...": {
     "Search plugins...": "プラグインを検索..."
@@ -3023,6 +3197,9 @@
   "Select an image file...": {
     "Select an image file...": "画像ファイルを選ぶ..."
   },
+  "Select at least one provider": {
+    "Select at least one provider": ""
+  },
   "Select device...": {
     "Select device...": ""
   },
@@ -3046,6 +3223,9 @@
   },
   "Select the palette algorithm used for wallpaper-based colors": {
     "Select the palette algorithm used for wallpaper-based colors": "壁紙ベースの色で、使用するパレットアルゴリズムを選ぶ"
+  },
+  "Select which keybind providers to include": {
+    "Select which keybind providers to include": ""
   },
   "Select which transitions to include in randomization": {
     "Select which transitions to include in randomization": "含めたいトランジションをランダム化に選択"
@@ -3113,6 +3293,12 @@
   "Show Dock": {
     "Show Dock": "ドックを表示"
   },
+  "Show Feels Like Temperature": {
+    "Show Feels Like Temperature": ""
+  },
+  "Show Forecast": {
+    "Show Forecast": ""
+  },
   "Show GPU Temperature": {
     "Show GPU Temperature": ""
   },
@@ -3125,8 +3311,17 @@
   "Show Hour Numbers": {
     "Show Hour Numbers": ""
   },
+  "Show Hourly Forecast": {
+    "Show Hourly Forecast": ""
+  },
+  "Show Humidity": {
+    "Show Humidity": ""
+  },
   "Show Line Numbers": {
     "Show Line Numbers": "行番号を表示"
+  },
+  "Show Location": {
+    "Show Location": ""
   },
   "Show Lock": {
     "Show Lock": "ロックを表示"
@@ -3152,6 +3347,12 @@
   "Show Power Off": {
     "Show Power Off": "パワーオフを表示"
   },
+  "Show Precipitation Probability": {
+    "Show Precipitation Probability": ""
+  },
+  "Show Pressure": {
+    "Show Pressure": ""
+  },
   "Show Reboot": {
     "Show Reboot": "再起動を表示"
   },
@@ -3161,11 +3362,23 @@
   "Show Seconds": {
     "Show Seconds": ""
   },
+  "Show Sunrise/Sunset": {
+    "Show Sunrise/Sunset": ""
+  },
   "Show Suspend": {
     "Show Suspend": "一時停止を表示"
   },
   "Show Top Processes": {
     "Show Top Processes": ""
+  },
+  "Show Weather Condition": {
+    "Show Weather Condition": ""
+  },
+  "Show Welcome": {
+    "Show Welcome": ""
+  },
+  "Show Wind Speed": {
+    "Show Wind Speed": ""
   },
   "Show Workspace Apps": {
     "Show Workspace Apps": "ワークスペースアプリを表示"
@@ -3190,6 +3403,9 @@
   },
   "Show on Overview": {
     "Show on Overview": "概要に表示"
+  },
+  "Show on Overview Only": {
+    "Show on Overview Only": ""
   },
   "Show on all connected displays": {
     "Show on all connected displays": "すべての接続されたディスプレイに表示"
@@ -3296,6 +3512,12 @@
   "Space between windows": {
     "Space between windows": ""
   },
+  "Space between windows (gappih/gappiv/gappoh/gappov)": {
+    "Space between windows (gappih/gappiv/gappoh/gappov)": ""
+  },
+  "Space between windows (gaps_in and gaps_out)": {
+    "Space between windows (gaps_in and gaps_out)": ""
+  },
   "Spacer": {
     "Spacer": "間隔"
   },
@@ -3316,6 +3538,9 @@
   },
   "Stacked": {
     "Stacked": ""
+  },
+  "Standard": {
+    "Standard": ""
   },
   "Start": {
     "Start": "始める"
@@ -3539,6 +3764,9 @@
   "Toner Low": {
     "Toner Low": "トナーが低い"
   },
+  "Tools": {
+    "Tools": ""
+  },
   "Top": {
     "Top": "トップ"
   },
@@ -3569,11 +3797,20 @@
   "Transparency": {
     "Transparency": ""
   },
+  "Trigger": {
+    "Trigger": ""
+  },
+  "Trigger Prefix": {
+    "Trigger Prefix": ""
+  },
   "Turn off monitors after": {
     "Turn off monitors after": "後にモニターの電源を切る"
   },
   "Type": {
     "Type": ""
+  },
+  "Type this prefix to search keybinds": {
+    "Type this prefix to search keybinds": ""
   },
   "Typography": {
     "Typography": ""
@@ -3602,6 +3839,9 @@
   "Unknown Network": {
     "Unknown Network": ""
   },
+  "Unpin": {
+    "Unpin": ""
+  },
   "Unpin from Dock": {
     "Unpin from Dock": "ドックから固定を解除"
   },
@@ -3622,6 +3862,9 @@
   },
   "Update Plugin": {
     "Update Plugin": "プラグインを更新"
+  },
+  "Usage Tips": {
+    "Usage Tips": ""
   },
   "Use 24-hour time format instead of 12-hour AM/PM": {
     "Use 24-hour time format instead of 12-hour AM/PM": "12時間制のAM/PMではなく、24時間表記を使用"
@@ -3650,6 +3893,12 @@
   "Use animated wave progress bars for media playback": {
     "Use animated wave progress bars for media playback": "アニメーション化されたウェーブの進行状況バーをメディア再生に使用"
   },
+  "Use custom border size": {
+    "Use custom border size": ""
+  },
+  "Use custom border/focus-ring width": {
+    "Use custom border/focus-ring width": ""
+  },
   "Use custom command for update your system": {
     "Use custom command for update your system": "カスタムコマンドを使用してシステムを更新"
   },
@@ -3658,6 +3907,9 @@
   },
   "Use custom window radius instead of theme radius": {
     "Use custom window radius instead of theme radius": ""
+  },
+  "Use custom window rounding instead of theme radius": {
+    "Use custom window rounding instead of theme radius": ""
   },
   "Use fingerprint reader for lock screen authentication (requires enrolled fingerprints)": {
     "Use fingerprint reader for lock screen authentication (requires enrolled fingerprints)": "ロック画面認証に指紋リーダーを使用(登録された指紋が必要)"
@@ -3668,11 +3920,17 @@
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "システム設定からサウンドテーマを使用"
   },
+  "Use trigger prefix to activate": {
+    "Use trigger prefix to activate": ""
+  },
   "Use%": {
     "Use%": "使用％"
   },
   "Used": {
     "Used": "使用済み"
+  },
+  "Used when accent color is set to Custom": {
+    "Used when accent color is set to Custom": ""
   },
   "User": {
     "User": ""
@@ -3748,6 +4006,9 @@
   },
   "Vibrant palette with playful saturation.": {
     "Vibrant palette with playful saturation.": "遊び心のある彩度の鮮やかなパレット。"
+  },
+  "View Mode": {
+    "View Mode": ""
   },
   "Visibility": {
     "Visibility": "可視性"
@@ -3865,6 +4126,15 @@
   "Widget removed": {
     "Widget removed": ""
   },
+  "Width of window border (borderpx)": {
+    "Width of window border (borderpx)": ""
+  },
+  "Width of window border (general.border_size)": {
+    "Width of window border (general.border_size)": ""
+  },
+  "Width of window border and focus ring": {
+    "Width of window border and focus ring": ""
+  },
   "Wind": {
     "Wind": "風"
   },
@@ -3879,6 +4149,9 @@
   },
   "Window Gaps (px)": {
     "Window Gaps (px)": ""
+  },
+  "Window Rounding": {
+    "Window Rounding": ""
   },
   "Workspace": {
     "Workspace": "ワークスペース"
@@ -3931,6 +4204,9 @@
   "author attribution": {
     "by %1": ""
   },
+  "bar shadow settings card": {
+    "Shadow": ""
+  },
   "browse themes button | theme browser header | theme browser window title": {
     "Browse Themes": ""
   },
@@ -3963,6 +4239,9 @@
   },
   "dms/binds.kdl is now included in config.kdl": {
     "dms/binds.kdl is now included in config.kdl": ""
+  },
+  "dms/cursor config exists but is not included. Cursor settings won't apply.": {
+    "dms/cursor config exists but is not included. Cursor settings won't apply.": ""
   },
   "dms/outputs config exists but is not included in your compositor config. Display changes won't persist.": {
     "dms/outputs config exists but is not included in your compositor config. Display changes won't persist.": ""
@@ -4000,6 +4279,149 @@
   "generic theme description": {
     "Material Design inspired color themes": ""
   },
+  "greeter back button": {
+    "Back": ""
+  },
+  "greeter completion page subtitle": {
+    "DankMaterialShell is ready to use": ""
+  },
+  "greeter completion page title": {
+    "You're All Set!": ""
+  },
+  "greeter configure keybinds link": {
+    "Configure Keybinds": ""
+  },
+  "greeter dankbar description": {
+    "Widgets, layout, style": ""
+  },
+  "greeter displays description": {
+    "Resolution, position, scale": ""
+  },
+  "greeter dock description": {
+    "Position, pinned apps": ""
+  },
+  "greeter doctor page button": {
+    "Run Again": ""
+  },
+  "greeter doctor page empty state": {
+    "No checks passed": "",
+    "No errors": "",
+    "No info items": "",
+    "No warnings": ""
+  },
+  "greeter doctor page error count": {
+    "%1 issue(s) found": ""
+  },
+  "greeter doctor page loading text": {
+    "Analyzing configuration...": ""
+  },
+  "greeter doctor page status card": {
+    "Errors": "",
+    "Info": "",
+    "OK": "",
+    "Warnings": ""
+  },
+  "greeter doctor page success": {
+    "All checks passed": ""
+  },
+  "greeter doctor page title": {
+    "System Check": ""
+  },
+  "greeter documentation link": {
+    "Docs": ""
+  },
+  "greeter explore section header": {
+    "Explore": ""
+  },
+  "greeter feature card description": {
+    "Background app icons": "",
+    "Colors from wallpaper": "",
+    "Community themes": "",
+    "Extensible architecture": "",
+    "GTK, Qt, IDEs, more": "",
+    "Modular widget bar": "",
+    "Night mode & gamma": "",
+    "Per-screen config": "",
+    "Quick system toggles": "",
+    "Security & privacy": ""
+  },
+  "greeter feature card title": {
+    "App Theming": "",
+    "Control Center": "",
+    "Display Control": "",
+    "Dynamic Theming": "",
+    "Multi-Monitor": "",
+    "System Tray": "",
+    "Theme Registry": ""
+  },
+  "greeter feature card title | greeter plugins link": {
+    "Plugins": ""
+  },
+  "greeter feature card title | greeter settings link": {
+    "DankBar": ""
+  },
+  "greeter feature card title | lock screen notifications settings card": {
+    "Lock Screen": ""
+  },
+  "greeter finish button": {
+    "Finish": ""
+  },
+  "greeter first page button": {
+    "Get Started": ""
+  },
+  "greeter keybinds niri description": {
+    "niri shortcuts config": ""
+  },
+  "greeter keybinds section header": {
+    "DMS Shortcuts": ""
+  },
+  "greeter modal window title": {
+    "Welcome": ""
+  },
+  "greeter next button": {
+    "Next": ""
+  },
+  "greeter no keybinds message": {
+    "No DMS shortcuts configured": ""
+  },
+  "greeter notifications description": {
+    "Popup behavior, position": ""
+  },
+  "greeter settings link": {
+    "Displays": "",
+    "Dock": "",
+    "Keybinds": "",
+    "Notifications": "",
+    "Theme & Colors": "",
+    "Wallpaper": ""
+  },
+  "greeter settings section header": {
+    "Configure": ""
+  },
+  "greeter skip button": {
+    "Skip": ""
+  },
+  "greeter skip button tooltip": {
+    "Skip setup": ""
+  },
+  "greeter theme description": {
+    "Dynamic colors, presets": ""
+  },
+  "greeter themes link": {
+    "Themes": ""
+  },
+  "greeter wallpaper description": {
+    "Background image": ""
+  },
+  "greeter welcome page section header": {
+    "Features": ""
+  },
+  "greeter welcome page tagline": {
+    "A modern desktop shell for Wayland compositors": ""
+  },
+  "greeter welcome page title": {
+    "Welcome to DankMaterialShell": ""
+  },
   "install action button": {
     "Install": ""
   },
@@ -4020,6 +4442,19 @@
   },
   "loading indicator": {
     "Loading...": ""
+  },
+  "lock screen notification mode option": {
+    "App Names": "",
+    "Count Only": "",
+    "Disabled": "",
+    "Full Content": ""
+  },
+  "lock screen notification privacy setting": {
+    "Control what notification information is shown on the lock screen": "",
+    "Notification Display": ""
+  },
+  "lock screen notifications settings card": {
+    "Lock Screen": ""
   },
   "loginctl not available - lock integration requires DMS socket connection": {
     "loginctl not available - lock integration requires DMS socket connection": "loginctlが利用できません- ロック統合のためにDMS socketの接続が必要です。"
@@ -4128,6 +4563,13 @@
   "settings_displays": {
     "Widgets": ""
   },
+  "shadow color option": {
+    "Surface": "",
+    "Text": ""
+  },
+  "shadow intensity slider": {
+    "Intensity": ""
+  },
   "source code link": {
     "source": ""
   },
@@ -4163,6 +4605,9 @@
   },
   "update dms for NM integration.": {
     "update dms for NM integration.": "NM統合のためにDMSを更新します。"
+  },
+  "version requirement": {
+    "Requires %1": ""
   },
   "wallpaper directory file browser title": {
     "Select Wallpaper Directory": "壁紙のディレクトリを選んでください"

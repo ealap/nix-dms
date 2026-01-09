@@ -1,0 +1,3 @@
+[templates.dmsmango]
+input_path = 'SHELL_DIR/matugen/templates/mango-colors.conf'
+output_path = 'CONFIG_DIR/mango/dms/colors.conf'

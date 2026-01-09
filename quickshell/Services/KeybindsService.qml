@@ -1,11 +1,12 @@
 pragma Singleton
-pragma ComponentBehavior: Bound
+pragma ComponentBehavior
 
 import QtCore
 import QtQuick
 import Quickshell
 import Quickshell.Io
-import Quickshell.Wayland // ! Even though qmlls says this is unused, it is wrong
+import Quickshell.Wayland
+// ! Even though qmlls says this is unused, it is wrong
 import qs.Common
 import "../Common/KeybindActions.js" as Actions
 
@@ -26,14 +27,24 @@ Singleton {
         }
     }
 
-    property bool available: CompositorService.isNiri && shortcutInhibitorAvailable
-    property string currentProvider: "niri"
+    property bool available: (CompositorService.isNiri || CompositorService.isHyprland || CompositorService.isDwl) && shortcutInhibitorAvailable
+    property string currentProvider: {
+        if (CompositorService.isNiri)
+            return "niri";
+        if (CompositorService.isHyprland)
+            return "hyprland";
+        if (CompositorService.isDwl)
+            return "mangowc";
+        return "";
+    }
 
     readonly property string cheatsheetProvider: {
         if (CompositorService.isNiri)
             return "niri";
         if (CompositorService.isHyprland)
             return "hyprland";
+        if (CompositorService.isDwl)
+            return "mangowc";
         return "";
     }
     property bool cheatsheetAvailable: cheatsheetProvider !== ""
@@ -47,14 +58,14 @@ Singleton {
     property bool dmsBindsIncluded: true
 
     property var dmsStatus: ({
-            exists: true,
-            included: true,
-            includePosition: -1,
-            totalIncludes: 0,
-            bindsAfterDms: 0,
-            effective: true,
-            overriddenBy: 0,
-            statusMessage: ""
+            "exists": true,
+            "included": true,
+            "includePosition": -1,
+            "totalIncludes": 0,
+            "bindsAfterDms": 0,
+            "effective": true,
+            "overriddenBy": 0,
+            "statusMessage": ""
         })
 
     property var _rawData: null
@@ -64,10 +75,45 @@ Singleton {
     property var _flatCache: []
     property var displayList: []
     property int _dataVersion: 0
+    property string _pendingSavedKey: ""
 
     readonly property var categoryOrder: Actions.getCategoryOrder()
     readonly property string configDir: Paths.strip(StandardPaths.writableLocation(StandardPaths.ConfigLocation))
-    readonly property string dmsBindsPath: configDir + "/niri/dms/binds.kdl"
+    readonly property string compositorConfigDir: {
+        switch (currentProvider) {
+        case "niri":
+            return configDir + "/niri";
+        case "hyprland":
+            return configDir + "/hypr";
+        case "mangowc":
+            return configDir + "/mango";
+        default:
+            return "";
+        }
+    }
+    readonly property string dmsBindsPath: {
+        switch (currentProvider) {
+        case "niri":
+            return compositorConfigDir + "/dms/binds.kdl";
+        case "hyprland":
+        case "mangowc":
+            return compositorConfigDir + "/dms/binds.conf";
+        default:
+            return "";
+        }
+    }
+    readonly property string mainConfigPath: {
+        switch (currentProvider) {
+        case "niri":
+            return compositorConfigDir + "/config.kdl";
+        case "hyprland":
+            return compositorConfigDir + "/hyprland.conf";
+        case "mangowc":
+            return compositorConfigDir + "/config.conf";
+        default:
+            return "";
+        }
+    }
     readonly property var actionTypes: Actions.getActionTypes()
     readonly property var dmsActions: getDmsActions()
 
@@ -215,19 +261,33 @@ Singleton {
             root.lastError = "";
             root.dmsBindsIncluded = true;
             root.dmsBindsFixed();
-            ToastService.showSuccess(I18n.tr("Binds include added"), I18n.tr("dms/binds.kdl is now included in config.kdl"), "", "keybinds");
+            const bindsFile = root.currentProvider === "niri" ? "dms/binds.kdl" : "dms/binds.conf";
+            ToastService.showInfo(I18n.tr("Binds include added"), I18n.tr("%1 is now included in config").arg(bindsFile), "", "keybinds");
             Qt.callLater(root.forceReload);
         }
     }
 
     function fixDmsBindsInclude() {
-        if (fixing || dmsBindsIncluded)
+        if (fixing || dmsBindsIncluded || !compositorConfigDir)
             return;
         fixing = true;
-        const niriConfigDir = configDir + "/niri";
         const timestamp = Math.floor(Date.now() / 1000);
-        const backupPath = `${niriConfigDir}/config.kdl.dmsbackup${timestamp}`;
-        const script = `mkdir -p "${niriConfigDir}/dms" && touch "${niriConfigDir}/dms/binds.kdl" && cp "${niriConfigDir}/config.kdl" "${backupPath}" && echo 'include "dms/binds.kdl"' >> "${niriConfigDir}/config.kdl"`;
+        const backupPath = `${mainConfigPath}.dmsbackup${timestamp}`;
+        let script;
+        switch (currentProvider) {
+        case "niri":
+            script = `mkdir -p "${compositorConfigDir}/dms" && touch "${compositorConfigDir}/dms/binds.kdl" && cp "${mainConfigPath}" "${backupPath}" && echo 'include "dms/binds.kdl"' >> "${mainConfigPath}"`;
+            break;
+        case "hyprland":
+            script = `mkdir -p "${compositorConfigDir}/dms" && touch "${compositorConfigDir}/dms/binds.conf" && cp "${mainConfigPath}" "${backupPath}" && echo 'source = ./dms/binds.conf' >> "${mainConfigPath}"`;
+            break;
+        case "mangowc":
+            script = `mkdir -p "${compositorConfigDir}/dms" && touch "${compositorConfigDir}/dms/binds.conf" && cp "${mainConfigPath}" "${backupPath}" && echo 'source = ./dms/binds.conf' >> "${mainConfigPath}"`;
+            break;
+        default:
+            fixing = false;
+            return;
+        }
         fixProcess.command = ["sh", "-c", script];
         fixProcess.running = true;
     }
@@ -261,21 +321,19 @@ Singleton {
 
     function _processData() {
         keybinds = _rawData || {};
-        if (currentProvider === "niri") {
-            dmsBindsIncluded = _rawData?.dmsBindsIncluded ?? true;
-            const status = _rawData?.dmsStatus;
-            if (status) {
-                dmsStatus = {
-                    exists: status.exists ?? true,
-                    included: status.included ?? true,
-                    includePosition: status.includePosition ?? -1,
-                    totalIncludes: status.totalIncludes ?? 0,
-                    bindsAfterDms: status.bindsAfterDms ?? 0,
-                    effective: status.effective ?? true,
-                    overriddenBy: status.overriddenBy ?? 0,
-                    statusMessage: status.statusMessage ?? ""
-                };
-            }
+        dmsBindsIncluded = _rawData?.dmsBindsIncluded ?? true;
+        const status = _rawData?.dmsStatus;
+        if (status) {
+            dmsStatus = {
+                "exists": status.exists ?? true,
+                "included": status.included ?? true,
+                "includePosition": status.includePosition ?? -1,
+                "totalIncludes": status.totalIncludes ?? 0,
+                "bindsAfterDms": status.bindsAfterDms ?? 0,
+                "effective": status.effective ?? true,
+                "overriddenBy": status.overriddenBy ?? 0,
+                "statusMessage": status.statusMessage ?? ""
+            };
         }
 
         if (!_rawData?.binds) {
@@ -285,6 +343,10 @@ Singleton {
             displayList = [];
             _dataVersion++;
             bindsLoaded();
+            if (_pendingSavedKey) {
+                bindSaved(_pendingSavedKey);
+                _pendingSavedKey = "";
+            }
             return;
         }
 
@@ -292,7 +354,7 @@ Singleton {
         const bindsData = _rawData.binds;
         for (const cat in bindsData) {
             const binds = bindsData[cat];
-            for (let i = 0; i < binds.length; i++) {
+            for (var i = 0; i < binds.length; i++) {
                 const bind = binds[i];
                 const targetCat = Actions.isDmsAction(bind.action) ? "DMS" : cat;
                 if (!processed[targetCat])
@@ -309,19 +371,20 @@ Singleton {
 
         const grouped = [];
         const actionMap = {};
-        for (let ci = 0; ci < sortedCats.length; ci++) {
+        for (var ci = 0; ci < sortedCats.length; ci++) {
             const category = sortedCats[ci];
             const binds = processed[category];
             if (!binds)
                 continue;
-            for (let i = 0; i < binds.length; i++) {
+            for (var i = 0; i < binds.length; i++) {
                 const bind = binds[i];
                 const action = bind.action || "";
                 const keyData = {
-                    key: bind.key || "",
-                    source: bind.source || "config",
-                    isOverride: bind.source === "dms",
-                    cooldownMs: bind.cooldownMs || 0
+                    "key": bind.key || "",
+                    "source": bind.source || "config",
+                    "isOverride": bind.source === "dms",
+                    "cooldownMs": bind.cooldownMs || 0,
+                    "flags": bind.flags || ""
                 };
                 if (actionMap[action]) {
                     actionMap[action].keys.push(keyData);
@@ -331,11 +394,11 @@ Singleton {
                         actionMap[action].conflict = bind.conflict;
                 } else {
                     const entry = {
-                        category: category,
-                        action: action,
-                        desc: bind.desc || "",
-                        keys: [keyData],
-                        conflict: bind.conflict || null
+                        "category": category,
+                        "action": action,
+                        "desc": bind.desc || "",
+                        "keys": [keyData],
+                        "conflict": bind.conflict || null
                     };
                     actionMap[action] = entry;
                     grouped.push(entry);
@@ -346,19 +409,19 @@ Singleton {
         const list = [];
         for (const cat of sortedCats) {
             list.push({
-                id: "cat:" + cat,
-                type: "category",
-                name: cat
+                "id": "cat:" + cat,
+                "type": "category",
+                "name": cat
             });
             const binds = processed[cat];
             if (!binds)
                 continue;
             for (const bind of binds)
                 list.push({
-                    id: "bind:" + bind.key,
-                    type: "bind",
-                    key: bind.key,
-                    desc: bind.desc
+                    "id": "bind:" + bind.key,
+                    "type": "bind",
+                    "key": bind.key,
+                    "desc": bind.desc
                 });
         }
 
@@ -368,6 +431,10 @@ Singleton {
         displayList = list;
         _dataVersion++;
         bindsLoaded();
+        if (_pendingSavedKey) {
+            bindSaved(_pendingSavedKey);
+            _pendingSavedKey = "";
+        }
     }
 
     function getCategories() {
@@ -387,9 +454,11 @@ Singleton {
             cmd.push("--replace-key", originalKey);
         if (bindData.cooldownMs > 0)
             cmd.push("--cooldown-ms", String(bindData.cooldownMs));
+        if (bindData.flags)
+            cmd.push("--flags", bindData.flags);
         saveProcess.command = cmd;
         saveProcess.running = true;
-        bindSaved(bindData.key);
+        _pendingSavedKey = bindData.key;
     }
 
     function removeBind(key) {
@@ -413,15 +482,15 @@ Singleton {
     }
 
     function getActionLabel(action) {
-        return Actions.getActionLabel(action);
+        return Actions.getActionLabel(action, currentProvider);
     }
 
     function getCompositorCategories() {
-        return Actions.getCompositorCategories();
+        return Actions.getCompositorCategories(currentProvider);
     }
 
     function getCompositorActions(category) {
-        return Actions.getCompositorActions(category);
+        return Actions.getCompositorActions(currentProvider, category);
     }
 
     function getDmsActions() {
@@ -433,7 +502,7 @@ Singleton {
     }
 
     function buildShellAction(shellCmd) {
-        return Actions.buildShellAction(shellCmd);
+        return Actions.buildShellAction(currentProvider, shellCmd);
     }
 
     function parseSpawnCommand(action) {

@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell
 import qs.Common
 import qs.Modals
+import qs.Modals.Changelog
 import qs.Modals.Clipboard
 import qs.Modals.Greeter
 import qs.Modals.Settings
@@ -606,6 +607,8 @@ Item {
 
         active: false
 
+        Component.onCompleted: PopoutService.processListModalLoader = processListModalLoader
+
         ProcessListModal {
             id: processListModal
 
@@ -658,6 +661,9 @@ Item {
                 }
             }
         }
+
+        onInstancesChanged: PopoutService.notepadSlideouts = instances
+        Component.onCompleted: PopoutService.notepadSlideouts = instances
     }
 
     LazyLoader {
@@ -831,9 +837,29 @@ Item {
             function onGreeterRequested() {
                 if (greeterLoader.active && greeterLoader.item) {
                     greeterLoader.item.show();
-                } else {
-                    greeterLoader.active = true;
+                    return;
                 }
+                greeterLoader.active = true;
+            }
+        }
+    }
+
+    Loader {
+        id: changelogLoader
+        active: false
+        sourceComponent: ChangelogModal {
+            onChangelogDismissed: changelogLoader.active = false
+            Component.onCompleted: show()
+        }
+
+        Connections {
+            target: ChangelogService
+            function onChangelogRequested() {
+                if (changelogLoader.active && changelogLoader.item) {
+                    changelogLoader.item.show();
+                    return;
+                }
+                changelogLoader.active = true;
             }
         }
     }

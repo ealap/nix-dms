@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Effects
 import qs.Common
 import qs.Services
 import qs.Widgets
@@ -8,7 +7,10 @@ import qs.Widgets
 Card {
     id: root
 
-    signal clicked()
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
+    signal clicked
 
     Component.onCompleted: WeatherService.addRef()
     Component.onDestruction: WeatherService.removeRef()
@@ -60,10 +62,12 @@ Card {
             anchors.verticalCenter: parent.verticalCenter
 
             StyledText {
+                anchors.left: parent.left
                 text: {
-                    const temp = SettingsData.useFahrenheit ? WeatherService.weather.tempF : WeatherService.weather.temp
-                    if (temp === undefined || temp === null) return "--°" + (SettingsData.useFahrenheit ? "F" : "C")
-                    return temp + "°" + (SettingsData.useFahrenheit ? "F" : "C")
+                    const temp = SettingsData.useFahrenheit ? WeatherService.weather.tempF : WeatherService.weather.temp;
+                    if (temp === undefined || temp === null)
+                        return "--°" + (SettingsData.useFahrenheit ? "F" : "C");
+                    return temp + "°" + (SettingsData.useFahrenheit ? "F" : "C");
                 }
                 font.pixelSize: Theme.fontSizeXLarge + 4
                 color: Theme.surfaceText
@@ -76,6 +80,7 @@ Card {
                 color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.7)
                 elide: Text.ElideRight
                 width: parent.parent.parent.width - 48 - Theme.spacingL * 2
+                horizontalAlignment: Text.AlignLeft
             }
         }
     }

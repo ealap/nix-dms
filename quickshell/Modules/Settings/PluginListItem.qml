@@ -6,6 +6,9 @@ import qs.Widgets
 StyledRect {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property var pluginData: null
     property string expandedPluginId: ""
     property bool hasUpdate: false
@@ -167,6 +170,7 @@ StyledRect {
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.surfaceVariantText
                     width: parent.width
+                    horizontalAlignment: Text.AlignLeft
                 }
             }
 
@@ -338,6 +342,7 @@ StyledRect {
             color: Theme.surfaceVariantText
             wrapMode: Text.WordWrap
             visible: root.pluginDescription !== ""
+            horizontalAlignment: Text.AlignLeft
         }
 
         Flow {

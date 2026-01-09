@@ -6,6 +6,9 @@ import qs.Widgets
 Row {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property var defaultSink: AudioService.sink
     property color sliderTrackColor: "transparent"
 

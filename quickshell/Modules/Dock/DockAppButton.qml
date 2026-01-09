@@ -225,7 +225,7 @@ Item {
                     AppUsageHistoryData.addAppUsage({
                         "id": appData.appId,
                         "name": pinnedEntry.name || appData.appId,
-                        "icon": pinnedEntry.icon || "",
+                        "icon": pinnedEntry.icon ? String(pinnedEntry.icon) : "",
                         "exec": pinnedEntry.exec || "",
                         "comment": pinnedEntry.comment || ""
                     });
@@ -246,7 +246,7 @@ Item {
                         AppUsageHistoryData.addAppUsage({
                             "id": appData.appId,
                             "name": groupedEntry.name || appData.appId,
-                            "icon": groupedEntry.icon || "",
+                            "icon": groupedEntry.icon ? String(groupedEntry.icon) : "",
                             "exec": groupedEntry.exec || "",
                             "comment": groupedEntry.comment || ""
                         });
@@ -316,7 +316,7 @@ Item {
                         AppUsageHistoryData.addAppUsage({
                             "id": appData.appId,
                             "name": desktopEntry.name || appData.appId,
-                            "icon": desktopEntry.icon || "",
+                            "icon": desktopEntry.icon ? String(desktopEntry.icon) : "",
                             "exec": desktopEntry.exec || "",
                             "comment": desktopEntry.comment || ""
                         });

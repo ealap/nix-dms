@@ -174,7 +174,7 @@ misc {
     disable_hyprland_logo = true
 }
 
-exec = sh -c "$QS_CMD; hyprctl dispatch exit"
+exec-once = sh -c "$QS_CMD; hyprctl dispatch exit"
 HYPRLAND_EOF
             COMPOSITOR_CONFIG="$TEMP_CONFIG"
         else
@@ -182,7 +182,7 @@ HYPRLAND_EOF
             cat "$COMPOSITOR_CONFIG" > "$TEMP_CONFIG"
             cat >> "$TEMP_CONFIG" << HYPRLAND_EOF
 
-exec = sh -c "$QS_CMD; hyprctl dispatch exit"
+exec-once = sh -c "$QS_CMD; hyprctl dispatch exit"
 HYPRLAND_EOF
             COMPOSITOR_CONFIG="$TEMP_CONFIG"
         fi

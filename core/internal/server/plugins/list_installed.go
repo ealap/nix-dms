@@ -60,6 +60,7 @@ func HandleListInstalled(conn net.Conn, req models.Request) {
 				Dependencies: plugin.Dependencies,
 				FirstParty:   strings.HasPrefix(plugin.Repo, "https://github.com/AvengeMedia"),
 				HasUpdate:    hasUpdate,
+				RequiresDMS:  plugin.RequiresDMS,
 			})
 		} else {
 			result = append(result, PluginInfo{

@@ -6,6 +6,9 @@ import qs.Widgets
 Rectangle {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property string currentMountPath: "/"
     property string instanceId: ""
 
@@ -128,6 +131,7 @@ Rectangle {
                                 font.weight: modelData.mount === currentMountPath ? Font.Medium : Font.Normal
                                 elide: Text.ElideRight
                                 width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
@@ -137,6 +141,7 @@ Rectangle {
                                 elide: Text.ElideRight
                                 width: parent.width
                                 visible: modelData.mount !== "/"
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
@@ -145,6 +150,7 @@ Rectangle {
                                 color: Theme.surfaceVariantText
                                 elide: Text.ElideRight
                                 width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
                     }

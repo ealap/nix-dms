@@ -357,31 +357,51 @@ func (b *NetworkManagerBackend) updateWiFiNetworks() ([]WiFiNetwork, error) {
 
 	savedSSIDs := make(map[string]bool)
 	autoconnectMap := make(map[string]bool)
+	hiddenSSIDs := make(map[string]bool)
 	for _, conn := range connections {
 		connSettings, err := conn.GetSettings()
 		if err != nil {
 			continue
 		}
 
-		if connMeta, ok := connSettings["connection"]; ok {
-			if connType, ok := connMeta["type"].(string); ok && connType == "802-11-wireless" {
-				if wifiSettings, ok := connSettings["802-11-wireless"]; ok {
-					if ssidBytes, ok := wifiSettings["ssid"].([]byte); ok {
-						ssid := string(ssidBytes)
-						savedSSIDs[ssid] = true
-						autoconnect := true
-						if ac, ok := connMeta["autoconnect"].(bool); ok {
-							autoconnect = ac
-						}
-						autoconnectMap[ssid] = autoconnect
-					}
-				}
-			}
+		connMeta, ok := connSettings["connection"]
+		if !ok {
+			continue
+		}
+
+		connType, ok := connMeta["type"].(string)
+		if !ok || connType != "802-11-wireless" {
+			continue
+		}
+
+		wifiSettings, ok := connSettings["802-11-wireless"]
+		if !ok {
+			continue
+		}
+
+		ssidBytes, ok := wifiSettings["ssid"].([]byte)
+		if !ok {
+			continue
+		}
+
+		ssid := string(ssidBytes)
+		savedSSIDs[ssid] = true
+		autoconnect := true
+		if ac, ok := connMeta["autoconnect"].(bool); ok {
+			autoconnect = ac
+		}
+		autoconnectMap[ssid] = autoconnect
+
+		if hidden, ok := wifiSettings["hidden"].(bool); ok && hidden {
+			hiddenSSIDs[ssid] = true
 		}
 	}
 
 	b.stateMutex.RLock()
 	currentSSID := b.state.WiFiSSID
+	wifiConnected := b.state.WiFiConnected
+	wifiSignal := b.state.WiFiSignal
+	wifiBSSID := b.state.WiFiBSSID
 	b.stateMutex.RUnlock()
 
 	seenSSIDs := make(map[string]*WiFiNetwork)
@@ -444,6 +464,7 @@ func (b *NetworkManagerBackend) updateWiFiNetworks() ([]WiFiNetwork, error) {
 			Connected:   ssid == currentSSID,
 			Saved:       savedSSIDs[ssid],
 			Autoconnect: autoconnectMap[ssid],
+			Hidden:      hiddenSSIDs[ssid],
 			Frequency:   freq,
 			Mode:        modeStr,
 			Rate:        maxBitrate / 1000,
@@ -452,6 +473,23 @@ func (b *NetworkManagerBackend) updateWiFiNetworks() ([]WiFiNetwork, error) {
 
 		seenSSIDs[ssid] = &network
 		networks = append(networks, network)
+	}
+
+	if wifiConnected && currentSSID != "" {
+		if _, exists := seenSSIDs[currentSSID]; !exists {
+			hiddenNetwork := WiFiNetwork{
+				SSID:        currentSSID,
+				BSSID:       wifiBSSID,
+				Signal:      wifiSignal,
+				Secured:     true,
+				Connected:   true,
+				Saved:       savedSSIDs[currentSSID],
+				Autoconnect: autoconnectMap[currentSSID],
+				Hidden:      true,
+				Mode:        "infrastructure",
+			}
+			networks = append(networks, hiddenNetwork)
+		}
 	}
 
 	sortWiFiNetworks(networks)
@@ -515,40 +553,53 @@ func (b *NetworkManagerBackend) createAndConnectWiFiOnDevice(req ConnectionReque
 	nm := b.nmConn.(gonetworkmanager.NetworkManager)
 	dev := devInfo.device
 	w := devInfo.wireless
-	apPaths, err := w.GetAccessPoints()
-	if err != nil {
-		return fmt.Errorf("failed to get access points: %w", err)
-	}
 
 	var targetAP gonetworkmanager.AccessPoint
-	for _, ap := range apPaths {
-		ssid, err := ap.GetPropertySSID()
-		if err != nil || ssid != req.SSID {
-			continue
+	var flags, wpaFlags, rsnFlags uint32
+
+	if !req.Hidden {
+		apPaths, err := w.GetAccessPoints()
+		if err != nil {
+			return fmt.Errorf("failed to get access points: %w", err)
 		}
-		targetAP = ap
-		break
-	}
 
-	if targetAP == nil {
-		return fmt.Errorf("access point not found: %s", req.SSID)
-	}
+		for _, ap := range apPaths {
+			ssid, err := ap.GetPropertySSID()
+			if err != nil || ssid != req.SSID {
+				continue
+			}
+			targetAP = ap
+			break
+		}
 
-	flags, _ := targetAP.GetPropertyFlags()
-	wpaFlags, _ := targetAP.GetPropertyWPAFlags()
-	rsnFlags, _ := targetAP.GetPropertyRSNFlags()
+		if targetAP == nil {
+			return fmt.Errorf("access point not found: %s", req.SSID)
+		}
+
+		flags, _ = targetAP.GetPropertyFlags()
+		wpaFlags, _ = targetAP.GetPropertyWPAFlags()
+		rsnFlags, _ = targetAP.GetPropertyRSNFlags()
+	}
 
 	const KeyMgmt8021x = uint32(512)
 	const KeyMgmtPsk = uint32(256)
 	const KeyMgmtSae = uint32(1024)
 
-	isEnterprise := (wpaFlags&KeyMgmt8021x) != 0 || (rsnFlags&KeyMgmt8021x) != 0
-	isPsk := (wpaFlags&KeyMgmtPsk) != 0 || (rsnFlags&KeyMgmtPsk) != 0
-	isSae := (wpaFlags&KeyMgmtSae) != 0 || (rsnFlags&KeyMgmtSae) != 0
+	var isEnterprise, isPsk, isSae, secured bool
 
-	secured := flags != uint32(gonetworkmanager.Nm80211APFlagsNone) ||
-		wpaFlags != uint32(gonetworkmanager.Nm80211APSecNone) ||
-		rsnFlags != uint32(gonetworkmanager.Nm80211APSecNone)
+	switch {
+	case req.Hidden:
+		secured = req.Password != "" || req.Username != ""
+		isEnterprise = req.Username != ""
+		isPsk = req.Password != "" && !isEnterprise
+	default:
+		isEnterprise = (wpaFlags&KeyMgmt8021x) != 0 || (rsnFlags&KeyMgmt8021x) != 0
+		isPsk = (wpaFlags&KeyMgmtPsk) != 0 || (rsnFlags&KeyMgmtPsk) != 0
+		isSae = (wpaFlags&KeyMgmtSae) != 0 || (rsnFlags&KeyMgmtSae) != 0
+		secured = flags != uint32(gonetworkmanager.Nm80211APFlagsNone) ||
+			wpaFlags != uint32(gonetworkmanager.Nm80211APSecNone) ||
+			rsnFlags != uint32(gonetworkmanager.Nm80211APSecNone)
+	}
 
 	if isEnterprise {
 		log.Infof("[createAndConnectWiFi] Enterprise network detected (802.1x) - SSID: %s, interactive: %v",
@@ -567,11 +618,15 @@ func (b *NetworkManagerBackend) createAndConnectWiFiOnDevice(req ConnectionReque
 	settings["ipv6"] = map[string]any{"method": "auto"}
 
 	if secured {
-		settings["802-11-wireless"] = map[string]any{
+		wifiSettings := map[string]any{
 			"ssid":     []byte(req.SSID),
 			"mode":     "infrastructure",
 			"security": "802-11-wireless-security",
 		}
+		if req.Hidden {
+			wifiSettings["hidden"] = true
+		}
+		settings["802-11-wireless"] = wifiSettings
 
 		switch {
 		case isEnterprise || req.Username != "":
@@ -658,10 +713,14 @@ func (b *NetworkManagerBackend) createAndConnectWiFiOnDevice(req ConnectionReque
 			return fmt.Errorf("secured network but not SAE/PSK/802.1X (rsn=0x%x wpa=0x%x)", rsnFlags, wpaFlags)
 		}
 	} else {
-		settings["802-11-wireless"] = map[string]any{
+		wifiSettings := map[string]any{
 			"ssid": []byte(req.SSID),
 			"mode": "infrastructure",
 		}
+		if req.Hidden {
+			wifiSettings["hidden"] = true
+		}
+		settings["802-11-wireless"] = wifiSettings
 	}
 
 	if req.Interactive {
@@ -685,14 +744,23 @@ func (b *NetworkManagerBackend) createAndConnectWiFiOnDevice(req ConnectionReque
 			log.Infof("[createAndConnectWiFi] Enterprise connection added, activating (secret agent will be called)")
 		}
 
-		_, err = nm.ActivateWirelessConnection(conn, dev, targetAP)
+		if req.Hidden {
+			_, err = nm.ActivateConnection(conn, dev, nil)
+		} else {
+			_, err = nm.ActivateWirelessConnection(conn, dev, targetAP)
+		}
 		if err != nil {
 			return fmt.Errorf("failed to activate connection: %w", err)
 		}
 
 		log.Infof("[createAndConnectWiFi] Connection activation initiated, waiting for NetworkManager state changes...")
 	} else {
-		_, err = nm.AddAndActivateWirelessConnection(settings, dev, targetAP)
+		var err error
+		if req.Hidden {
+			_, err = nm.AddAndActivateConnection(settings, dev)
+		} else {
+			_, err = nm.AddAndActivateWirelessConnection(settings, dev, targetAP)
+		}
 		if err != nil {
 			return fmt.Errorf("failed to connect: %w", err)
 		}
@@ -813,6 +881,7 @@ func (b *NetworkManagerBackend) updateAllWiFiDevices() {
 
 	savedSSIDs := make(map[string]bool)
 	autoconnectMap := make(map[string]bool)
+	hiddenSSIDs := make(map[string]bool)
 	for _, conn := range connections {
 		connSettings, err := conn.GetSettings()
 		if err != nil {
@@ -846,6 +915,10 @@ func (b *NetworkManagerBackend) updateAllWiFiDevices() {
 			autoconnect = ac
 		}
 		autoconnectMap[ssid] = autoconnect
+
+		if hidden, ok := wifiSettings["hidden"].(bool); ok && hidden {
+			hiddenSSIDs[ssid] = true
+		}
 	}
 
 	var devices []WiFiDevice
@@ -939,6 +1012,7 @@ func (b *NetworkManagerBackend) updateAllWiFiDevices() {
 					Connected:   connected && apSSID == ssid,
 					Saved:       savedSSIDs[apSSID],
 					Autoconnect: autoconnectMap[apSSID],
+					Hidden:      hiddenSSIDs[apSSID],
 					Frequency:   freq,
 					Mode:        modeStr,
 					Rate:        maxBitrate / 1000,
@@ -949,6 +1023,25 @@ func (b *NetworkManagerBackend) updateAllWiFiDevices() {
 				seenSSIDs[apSSID] = &network
 				networks = append(networks, network)
 			}
+
+			if connected && ssid != "" {
+				if _, exists := seenSSIDs[ssid]; !exists {
+					hiddenNetwork := WiFiNetwork{
+						SSID:        ssid,
+						BSSID:       bssid,
+						Signal:      signal,
+						Secured:     true,
+						Connected:   true,
+						Saved:       savedSSIDs[ssid],
+						Autoconnect: autoconnectMap[ssid],
+						Hidden:      true,
+						Mode:        "infrastructure",
+						Device:      name,
+					}
+					networks = append(networks, hiddenNetwork)
+				}
+			}
+
 			sortWiFiNetworks(networks)
 		}
 

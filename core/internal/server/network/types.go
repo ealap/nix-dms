@@ -33,6 +33,7 @@ type WiFiNetwork struct {
 	Connected   bool   `json:"connected"`
 	Saved       bool   `json:"saved"`
 	Autoconnect bool   `json:"autoconnect"`
+	Hidden      bool   `json:"hidden"`
 	Frequency   uint32 `json:"frequency"`
 	Mode        string `json:"mode"`
 	Rate        uint32 `json:"rate"`
@@ -127,6 +128,7 @@ type ConnectionRequest struct {
 	AnonymousIdentity string `json:"anonymousIdentity,omitempty"`
 	DomainSuffixMatch string `json:"domainSuffixMatch,omitempty"`
 	Interactive       bool   `json:"interactive,omitempty"`
+	Hidden            bool   `json:"hidden,omitempty"`
 	Device            string `json:"device,omitempty"`
 	EAPMethod         string `json:"eapMethod,omitempty"`
 	Phase2Auth        string `json:"phase2Auth,omitempty"`

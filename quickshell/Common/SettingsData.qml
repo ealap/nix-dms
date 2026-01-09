@@ -62,6 +62,22 @@ Singleton {
     property bool _hasUnsavedChanges: false
     property var _loadedSettingsSnapshot: null
     property var pluginSettings: ({})
+    property var builtInPluginSettings: ({})
+
+    function getBuiltInPluginSetting(pluginId, key, defaultValue) {
+        if (!builtInPluginSettings[pluginId])
+            return defaultValue;
+        return builtInPluginSettings[pluginId][key] !== undefined ? builtInPluginSettings[pluginId][key] : defaultValue;
+    }
+
+    function setBuiltInPluginSetting(pluginId, key, value) {
+        const updated = JSON.parse(JSON.stringify(builtInPluginSettings));
+        if (!updated[pluginId])
+            updated[pluginId] = {};
+        updated[pluginId][key] = value;
+        builtInPluginSettings = updated;
+        saveSettings();
+    }
 
     property alias dankBarLeftWidgetsModel: leftWidgetsModel
     property alias dankBarCenterWidgetsModel: centerWidgetsModel
@@ -81,6 +97,13 @@ Singleton {
     property real cornerRadius: 12
     property int niriLayoutGapsOverride: -1
     property int niriLayoutRadiusOverride: -1
+    property int niriLayoutBorderSize: -1
+    property int hyprlandLayoutGapsOverride: -1
+    property int hyprlandLayoutRadiusOverride: -1
+    property int hyprlandLayoutBorderSize: -1
+    property int mangoLayoutGapsOverride: -1
+    property int mangoLayoutRadiusOverride: -1
+    property int mangoLayoutBorderSize: -1
 
     property bool use24HourClock: true
     property bool showSeconds: false
@@ -223,6 +246,25 @@ Singleton {
     property bool qt6ctAvailable: false
     property bool gtkAvailable: false
 
+    property var cursorSettings: ({
+            "theme": "System Default",
+            "size": 24,
+            "niri": {
+                "hideWhenTyping": false,
+                "hideAfterInactiveMs": 0
+            },
+            "hyprland": {
+                "hideOnKeyPress": false,
+                "hideOnTouch": false,
+                "inactiveTimeout": 0
+            },
+            "dwl": {
+                "cursorHideTimeout": 0
+            }
+        })
+    property var availableCursorThemes: ["System Default"]
+    property string systemDefaultCursorTheme: ""
+
     property string launcherLogoMode: "apps"
     property string launcherLogoCustomPath: ""
     property string launcherLogoColorOverride: ""
@@ -276,9 +318,9 @@ Singleton {
     property int batteryChargeLimit: 100
     property bool lockBeforeSuspend: false
     property bool loginctlLockIntegration: true
-    property bool fadeToLockEnabled: false
+    property bool fadeToLockEnabled: true
     property int fadeToLockGracePeriod: 5
-    property bool fadeToDpmsEnabled: false
+    property bool fadeToDpmsEnabled: true
     property int fadeToDpmsGracePeriod: 5
     property string launchPrefix: ""
     property var brightnessDevicePins: ({})
@@ -295,6 +337,8 @@ Singleton {
     property bool runDmsMatugenTemplates: true
     property bool matugenTemplateGtk: true
     property bool matugenTemplateNiri: true
+    property bool matugenTemplateHyprland: true
+    property bool matugenTemplateMangowc: true
     property bool matugenTemplateQt5ct: true
     property bool matugenTemplateQt6ct: true
     property bool matugenTemplateFirefox: true
@@ -347,6 +391,7 @@ Singleton {
     property bool fprintdAvailable: false
     property string lockScreenActiveMonitor: "all"
     property string lockScreenInactiveColor: "#000000"
+    property int lockScreenNotificationMode: 0
     property bool hideBrightnessSlider: false
 
     property int notificationTimeoutLow: 5000
@@ -434,7 +479,11 @@ Singleton {
             "maximizeDetection": true,
             "scrollEnabled": true,
             "scrollXBehavior": "column",
-            "scrollYBehavior": "workspace"
+            "scrollYBehavior": "workspace",
+            "shadowIntensity": 0,
+            "shadowOpacity": 60,
+            "shadowColorMode": "text",
+            "shadowCustomColor": "#000000"
         }
     ]
 
@@ -699,10 +748,15 @@ Singleton {
         }
     }
 
-    function updateNiriLayout() {
-        if (typeof NiriService !== "undefined" && typeof CompositorService !== "undefined" && CompositorService.isNiri) {
+    function updateCompositorLayout() {
+        if (typeof CompositorService === "undefined")
+            return;
+        if (CompositorService.isNiri && typeof NiriService !== "undefined")
             NiriService.generateNiriLayoutConfig();
-        }
+        if (CompositorService.isHyprland && typeof HyprlandService !== "undefined")
+            HyprlandService.generateLayoutConfig();
+        if (CompositorService.isDwl && typeof DwlService !== "undefined")
+            DwlService.generateLayoutConfig();
     }
 
     function applyStoredIconTheme() {
@@ -778,9 +832,10 @@ Singleton {
     readonly property var _hooks: ({
             "applyStoredTheme": applyStoredTheme,
             "regenSystemThemes": regenSystemThemes,
-            "updateNiriLayout": updateNiriLayout,
+            "updateCompositorLayout": updateCompositorLayout,
             "applyStoredIconTheme": applyStoredIconTheme,
-            "updateBarConfigs": updateBarConfigs
+            "updateBarConfigs": updateBarConfigs,
+            "updateCompositorCursor": updateCompositorCursor
         })
 
     function set(key, value) {
@@ -817,6 +872,7 @@ Singleton {
             _hasLoaded = true;
             applyStoredTheme();
             applyStoredIconTheme();
+            updateCompositorCursor();
             Processes.detectQtTools();
 
             _checkSettingsWritable();
@@ -944,6 +1000,46 @@ Singleton {
                 }
             }
             availableIconThemes = themes;
+        });
+    }
+
+    function detectAvailableCursorThemes() {
+        const xdgDataDirs = Quickshell.env("XDG_DATA_DIRS") || "";
+        const localData = Paths.strip(StandardPaths.writableLocation(StandardPaths.GenericDataLocation));
+        const homeDir = Paths.strip(StandardPaths.writableLocation(StandardPaths.HomeLocation));
+
+        const dataDirs = xdgDataDirs.trim() !== "" ? xdgDataDirs.split(":").concat([localData]) : ["/usr/share", "/usr/local/share", localData];
+
+        const cursorPaths = dataDirs.map(d => d + "/icons").concat([homeDir + "/.icons", homeDir + "/.local/share/icons"]);
+        const pathsArg = cursorPaths.join(" ");
+
+        const script = `
+            echo "SYSDEFAULT:$(gsettings get org.gnome.desktop.interface cursor-theme 2>/dev/null | sed "s/'//g" || echo '')"
+            for dir in ${pathsArg}; do
+                [ -d "$dir" ] || continue
+                for theme in "$dir"/*/; do
+                    [ -d "$theme" ] || continue
+                    [ -d "$theme/cursors" ] || continue
+                    basename "$theme"
+                done
+            done | grep -v '^icons$' | grep -v '^default$' | sort -u
+        `;
+
+        Proc.runCommand("detectCursorThemes", ["sh", "-c", script], (output, exitCode) => {
+            const themes = ["System Default"];
+            if (output && output.trim()) {
+                const lines = output.trim().split('\n');
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (line.startsWith("SYSDEFAULT:")) {
+                        systemDefaultCursorTheme = line.substring(11).trim();
+                        continue;
+                    }
+                    if (line)
+                        themes.push(line);
+                }
+            }
+            availableCursorThemes = themes;
         });
     }
 
@@ -1459,7 +1555,7 @@ Singleton {
 
     function setCornerRadius(radius) {
         set("cornerRadius", radius);
-        NiriService.generateNiriLayoutConfig();
+        updateCompositorLayout();
     }
 
     function setWeatherLocation(displayName, coordinates) {
@@ -1473,6 +1569,94 @@ Singleton {
         saveSettings();
         if (typeof Theme !== "undefined" && Theme.currentTheme === Theme.dynamic)
             Theme.generateSystemThemesFromCurrentTheme();
+    }
+
+    function setCursorTheme(themeName) {
+        const updated = JSON.parse(JSON.stringify(cursorSettings));
+        updated.theme = themeName;
+        cursorSettings = updated;
+        saveSettings();
+        updateCompositorCursor();
+    }
+
+    function setCursorSize(size) {
+        const updated = JSON.parse(JSON.stringify(cursorSettings));
+        updated.size = size;
+        cursorSettings = updated;
+        saveSettings();
+        updateCompositorCursor();
+    }
+
+    // This solution for xwayland cursor themes is from the xwls discussion:
+    // https://github.com/Supreeeme/xwayland-satellite/issues/104
+    // no idea if this matters on other compositors but we also set XCURSOR stuff in the launcher
+    function updateCompositorCursor() {
+        updateXResources();
+        if (typeof CompositorService === "undefined")
+            return;
+        if (CompositorService.isNiri && typeof NiriService !== "undefined") {
+            NiriService.generateNiriCursorConfig();
+            return;
+        }
+        if (CompositorService.isHyprland && typeof HyprlandService !== "undefined") {
+            HyprlandService.generateCursorConfig();
+            return;
+        }
+        if (CompositorService.isDwl && typeof DwlService !== "undefined") {
+            DwlService.generateCursorConfig();
+            return;
+        }
+    }
+
+    function updateXResources() {
+        const homeDir = Paths.strip(StandardPaths.writableLocation(StandardPaths.HomeLocation));
+        const xresourcesPath = homeDir + "/.Xresources";
+        const themeName = cursorSettings.theme === "System Default" ? systemDefaultCursorTheme : cursorSettings.theme;
+        const size = cursorSettings.size || 24;
+
+        if (!themeName)
+            return;
+
+        const script = `
+            xresources_file="${xresourcesPath}"
+            temp_file="\${xresources_file}.tmp.$$"
+            theme_name="${themeName}"
+            cursor_size="${size}"
+
+            if [ -f "$xresources_file" ]; then
+                grep -v '^[[:space:]]*Xcursor\\.theme:' "$xresources_file" | grep -v '^[[:space:]]*Xcursor\\.size:' > "$temp_file" 2>/dev/null || true
+            else
+                touch "$temp_file"
+            fi
+
+            echo "Xcursor.theme: $theme_name" >> "$temp_file"
+            echo "Xcursor.size: $cursor_size" >> "$temp_file"
+            mv "$temp_file" "$xresources_file"
+            xrdb -merge "$xresources_file" 2>/dev/null || true
+        `;
+
+        Quickshell.execDetached(["sh", "-c", script]);
+    }
+
+    function getCursorEnvironment() {
+        const isSystemDefault = cursorSettings.theme === "System Default";
+        const isDefaultSize = !cursorSettings.size || cursorSettings.size === 24;
+        if (isSystemDefault && isDefaultSize)
+            return {};
+
+        const themeName = isSystemDefault ? "" : cursorSettings.theme;
+        const size = String(cursorSettings.size || 24);
+        const env = {};
+
+        if (!isDefaultSize) {
+            env["XCURSOR_SIZE"] = size;
+            env["HYPRCURSOR_SIZE"] = size;
+        }
+        if (themeName) {
+            env["XCURSOR_THEME"] = themeName;
+            env["HYPRCURSOR_THEME"] = themeName;
+        }
+        return env;
     }
 
     function setGtkThemingEnabled(enabled) {
@@ -1541,9 +1725,7 @@ Singleton {
                 "spacing": spacing
             });
         }
-        if (typeof NiriService !== "undefined" && CompositorService.isNiri) {
-            NiriService.generateNiriLayoutConfig();
-        }
+        updateCompositorLayout();
     }
 
     function setDankBarPosition(position) {
@@ -1881,6 +2063,7 @@ Singleton {
                 _hasLoaded = true;
                 applyStoredTheme();
                 applyStoredIconTheme();
+                updateCompositorCursor();
             } catch (e) {
                 _parseError = true;
                 const msg = e.message;

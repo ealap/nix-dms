@@ -66,6 +66,7 @@ func HandleSearch(conn net.Conn, req models.Request) {
 			Dependencies: p.Dependencies,
 			Installed:    installed,
 			FirstParty:   strings.HasPrefix(p.Repo, "https://github.com/AvengeMedia"),
+			RequiresDMS:  p.RequiresDMS,
 		}
 	}
 

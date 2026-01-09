@@ -176,7 +176,7 @@ func (cd *ConfigDeployer) deployNiriConfig(terminal deps.Terminal, useSystemd bo
 	}
 
 	if existingConfig != "" {
-		mergedConfig, err := cd.mergeNiriOutputSections(newConfig, existingConfig)
+		mergedConfig, err := cd.mergeNiriOutputSections(newConfig, existingConfig, dmsDir)
 		if err != nil {
 			cd.log(fmt.Sprintf("Warning: Failed to merge output sections: %v", err))
 		} else {
@@ -209,6 +209,8 @@ func (cd *ConfigDeployer) deployNiriDmsConfigs(dmsDir, terminalCommand string) e
 		{"layout.kdl", NiriLayoutConfig},
 		{"alttab.kdl", NiriAlttabConfig},
 		{"binds.kdl", strings.ReplaceAll(NiriBindsConfig, "{{TERMINAL_COMMAND}}", terminalCommand)},
+		{"outputs.kdl", ""},
+		{"cursor.kdl", ""},
 	}
 
 	for _, cfg := range configs {
@@ -421,24 +423,31 @@ func (cd *ConfigDeployer) deployAlacrittyConfig() ([]DeploymentResult, error) {
 	return results, nil
 }
 
-// mergeNiriOutputSections extracts output sections from existing config and merges them into the new config
-func (cd *ConfigDeployer) mergeNiriOutputSections(newConfig, existingConfig string) (string, error) {
-	// Regular expression to match output sections (including commented ones)
+func (cd *ConfigDeployer) mergeNiriOutputSections(newConfig, existingConfig, dmsDir string) (string, error) {
 	outputRegex := regexp.MustCompile(`(?m)^(/-)?\s*output\s+"[^"]+"\s*\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}`)
-
-	// Find all output sections in the existing config
 	existingOutputs := outputRegex.FindAllString(existingConfig, -1)
 
 	if len(existingOutputs) == 0 {
-		// No output sections to merge
 		return newConfig, nil
 	}
 
-	// Remove the example output section from the new config
+	outputsPath := filepath.Join(dmsDir, "outputs.kdl")
+	if _, err := os.Stat(outputsPath); err != nil {
+		var outputsContent strings.Builder
+		for _, output := range existingOutputs {
+			outputsContent.WriteString(output)
+			outputsContent.WriteString("\n\n")
+		}
+		if err := os.WriteFile(outputsPath, []byte(outputsContent.String()), 0644); err != nil {
+			cd.log(fmt.Sprintf("Warning: Failed to migrate outputs to %s: %v", outputsPath, err))
+		} else {
+			cd.log("Migrated output sections to dms/outputs.kdl")
+		}
+	}
+
 	exampleOutputRegex := regexp.MustCompile(`(?m)^/-output "eDP-2" \{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}`)
 	mergedConfig := exampleOutputRegex.ReplaceAllString(newConfig, "")
 
-	// Find where to insert the output sections (after the input section)
 	inputEndRegex := regexp.MustCompile(`(?m)^}$`)
 	inputMatches := inputEndRegex.FindAllStringIndex(newConfig, -1)
 
@@ -446,7 +455,6 @@ func (cd *ConfigDeployer) mergeNiriOutputSections(newConfig, existingConfig stri
 		return "", fmt.Errorf("could not find insertion point for output sections")
 	}
 
-	// Insert after the first closing brace (end of input section)
 	insertPos := inputMatches[0][1]
 
 	var builder strings.Builder
@@ -473,6 +481,12 @@ func (cd *ConfigDeployer) deployHyprlandConfig(terminal deps.Terminal, useSystem
 	configDir := filepath.Dir(result.Path)
 	if err := os.MkdirAll(configDir, 0755); err != nil {
 		result.Error = fmt.Errorf("failed to create config directory: %w", err)
+		return result, result.Error
+	}
+
+	dmsDir := filepath.Join(configDir, "dms")
+	if err := os.MkdirAll(dmsDir, 0755); err != nil {
+		result.Error = fmt.Errorf("failed to create dms directory: %w", err)
 		return result, result.Error
 	}
 
@@ -515,7 +529,7 @@ func (cd *ConfigDeployer) deployHyprlandConfig(terminal deps.Terminal, useSystem
 	}
 
 	if existingConfig != "" {
-		mergedConfig, err := cd.mergeHyprlandMonitorSections(newConfig, existingConfig)
+		mergedConfig, err := cd.mergeHyprlandMonitorSections(newConfig, existingConfig, dmsDir)
 		if err != nil {
 			cd.log(fmt.Sprintf("Warning: Failed to merge monitor sections: %v", err))
 		} else {
@@ -529,18 +543,63 @@ func (cd *ConfigDeployer) deployHyprlandConfig(terminal deps.Terminal, useSystem
 		return result, result.Error
 	}
 
+	if err := cd.deployHyprlandDmsConfigs(dmsDir, terminalCommand); err != nil {
+		result.Error = fmt.Errorf("failed to deploy dms configs: %w", err)
+		return result, result.Error
+	}
+
 	result.Deployed = true
 	cd.log("Successfully deployed Hyprland configuration")
 	return result, nil
 }
 
-// mergeHyprlandMonitorSections extracts monitor sections from existing config and merges them into the new config
-func (cd *ConfigDeployer) mergeHyprlandMonitorSections(newConfig, existingConfig string) (string, error) {
+func (cd *ConfigDeployer) deployHyprlandDmsConfigs(dmsDir string, terminalCommand string) error {
+	configs := []struct {
+		name    string
+		content string
+	}{
+		{"colors.conf", HyprColorsConfig},
+		{"layout.conf", HyprLayoutConfig},
+		{"binds.conf", strings.ReplaceAll(HyprBindsConfig, "{{TERMINAL_COMMAND}}", terminalCommand)},
+		{"outputs.conf", ""},
+		{"cursor.conf", ""},
+	}
+
+	for _, cfg := range configs {
+		path := filepath.Join(dmsDir, cfg.name)
+		if _, err := os.Stat(path); err == nil {
+			cd.log(fmt.Sprintf("Skipping %s (already exists)", cfg.name))
+			continue
+		}
+		if err := os.WriteFile(path, []byte(cfg.content), 0644); err != nil {
+			return fmt.Errorf("failed to write %s: %w", cfg.name, err)
+		}
+		cd.log(fmt.Sprintf("Deployed %s", cfg.name))
+	}
+
+	return nil
+}
+
+func (cd *ConfigDeployer) mergeHyprlandMonitorSections(newConfig, existingConfig, dmsDir string) (string, error) {
 	monitorRegex := regexp.MustCompile(`(?m)^#?\s*monitor\s*=.*$`)
 	existingMonitors := monitorRegex.FindAllString(existingConfig, -1)
 
 	if len(existingMonitors) == 0 {
 		return newConfig, nil
+	}
+
+	outputsPath := filepath.Join(dmsDir, "outputs.conf")
+	if _, err := os.Stat(outputsPath); err != nil {
+		var outputsContent strings.Builder
+		for _, monitor := range existingMonitors {
+			outputsContent.WriteString(monitor)
+			outputsContent.WriteString("\n")
+		}
+		if err := os.WriteFile(outputsPath, []byte(outputsContent.String()), 0644); err != nil {
+			cd.log(fmt.Sprintf("Warning: Failed to migrate monitors to %s: %v", outputsPath, err))
+		} else {
+			cd.log("Migrated monitor sections to dms/outputs.conf")
+		}
 	}
 
 	exampleMonitorRegex := regexp.MustCompile(`(?m)^# monitor = eDP-2.*$`)

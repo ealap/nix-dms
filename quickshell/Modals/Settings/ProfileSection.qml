@@ -130,6 +130,7 @@ Rectangle {
                 color: Theme.surfaceText
                 elide: Text.ElideRight
                 width: parent.width
+                horizontalAlignment: Text.AlignLeft
             }
 
             StyledText {
@@ -138,6 +139,7 @@ Rectangle {
                 color: Theme.surfaceVariantText
                 elide: Text.ElideRight
                 width: parent.width
+                horizontalAlignment: Text.AlignLeft
             }
         }
     }

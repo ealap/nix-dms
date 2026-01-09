@@ -2,9 +2,21 @@ package network
 
 import (
 	"fmt"
+	"os/exec"
 	"time"
 
-	"github.com/Wifx/gonetworkmanager/v2"
+	"github.com/AvengeMedia/DankMaterialShell/core/internal/log"
+	"github.com/godbus/dbus/v5"
+)
+
+const (
+	priorityHigh    = int32(100)
+	priorityLow     = int32(10)
+	priorityDefault = int32(0)
+
+	metricPreferred    = int64(100)
+	metricNonPreferred = int64(300)
+	metricDefault      = int64(100)
 )
 
 func (m *Manager) SetConnectionPreference(pref ConnectionPreference) error {
@@ -36,83 +48,124 @@ func (m *Manager) SetConnectionPreference(pref ConnectionPreference) error {
 }
 
 func (m *Manager) prioritizeWiFi() error {
-	if err := m.setConnectionMetrics("802-11-wireless", 50); err != nil {
-		return err
+	if err := m.setConnectionPriority("802-11-wireless", priorityHigh, metricPreferred); err != nil {
+		log.Warnf("Failed to set WiFi priority: %v", err)
 	}
 
-	if err := m.setConnectionMetrics("802-3-ethernet", 100); err != nil {
-		return err
+	if err := m.setConnectionPriority("802-3-ethernet", priorityLow, metricNonPreferred); err != nil {
+		log.Warnf("Failed to set Ethernet priority: %v", err)
 	}
 
+	m.reapplyActiveConnections()
 	m.notifySubscribers()
 	return nil
 }
 
 func (m *Manager) prioritizeEthernet() error {
-	if err := m.setConnectionMetrics("802-3-ethernet", 50); err != nil {
-		return err
+	if err := m.setConnectionPriority("802-3-ethernet", priorityHigh, metricPreferred); err != nil {
+		log.Warnf("Failed to set Ethernet priority: %v", err)
 	}
 
-	if err := m.setConnectionMetrics("802-11-wireless", 100); err != nil {
-		return err
+	if err := m.setConnectionPriority("802-11-wireless", priorityLow, metricNonPreferred); err != nil {
+		log.Warnf("Failed to set WiFi priority: %v", err)
 	}
 
+	m.reapplyActiveConnections()
 	m.notifySubscribers()
 	return nil
 }
 
 func (m *Manager) balancePriorities() error {
-	if err := m.setConnectionMetrics("802-3-ethernet", 50); err != nil {
-		return err
+	if err := m.setConnectionPriority("802-3-ethernet", priorityDefault, metricDefault); err != nil {
+		log.Warnf("Failed to reset Ethernet priority: %v", err)
 	}
 
-	if err := m.setConnectionMetrics("802-11-wireless", 50); err != nil {
-		return err
+	if err := m.setConnectionPriority("802-11-wireless", priorityDefault, metricDefault); err != nil {
+		log.Warnf("Failed to reset WiFi priority: %v", err)
 	}
 
+	m.reapplyActiveConnections()
 	m.notifySubscribers()
 	return nil
 }
 
-func (m *Manager) setConnectionMetrics(connType string, metric uint32) error {
-	settingsMgr, err := gonetworkmanager.NewSettings()
+func (m *Manager) reapplyActiveConnections() {
+	m.stateMutex.RLock()
+	ethDev := m.state.EthernetDevice
+	wifiDev := m.state.WiFiDevice
+	m.stateMutex.RUnlock()
+
+	if ethDev != "" {
+		exec.Command("nmcli", "dev", "reapply", ethDev).Run()
+	}
+	if wifiDev != "" {
+		exec.Command("nmcli", "dev", "reapply", wifiDev).Run()
+	}
+}
+
+func (m *Manager) setConnectionPriority(connType string, autoconnectPriority int32, routeMetric int64) error {
+	conn, err := dbus.ConnectSystemBus()
 	if err != nil {
-		return fmt.Errorf("failed to get settings: %w", err)
+		return fmt.Errorf("failed to connect to system bus: %w", err)
+	}
+	defer conn.Close()
+
+	settingsObj := conn.Object("org.freedesktop.NetworkManager", "/org/freedesktop/NetworkManager/Settings")
+
+	var connPaths []dbus.ObjectPath
+	if err := settingsObj.Call("org.freedesktop.NetworkManager.Settings.ListConnections", 0).Store(&connPaths); err != nil {
+		return fmt.Errorf("failed to list connections: %w", err)
 	}
 
-	connections, err := settingsMgr.ListConnections()
-	if err != nil {
-		return fmt.Errorf("failed to get connections: %w", err)
-	}
+	for _, connPath := range connPaths {
+		connObj := conn.Object("org.freedesktop.NetworkManager", connPath)
 
-	for _, conn := range connections {
-		connSettings, err := conn.GetSettings()
-		if err != nil {
+		var settings map[string]map[string]dbus.Variant
+		if err := connObj.Call("org.freedesktop.NetworkManager.Settings.Connection.GetSettings", 0).Store(&settings); err != nil {
 			continue
 		}
 
-		if connMeta, ok := connSettings["connection"]; ok {
-			if cType, ok := connMeta["type"].(string); ok && cType == connType {
-				if connSettings["ipv4"] == nil {
-					connSettings["ipv4"] = make(map[string]any)
-				}
-				if ipv4Map := connSettings["ipv4"]; ipv4Map != nil {
-					ipv4Map["route-metric"] = int64(metric)
-				}
-
-				if connSettings["ipv6"] == nil {
-					connSettings["ipv6"] = make(map[string]any)
-				}
-				if ipv6Map := connSettings["ipv6"]; ipv6Map != nil {
-					ipv6Map["route-metric"] = int64(metric)
-				}
-
-				err = conn.Update(connSettings)
-				if err != nil {
-					continue
-				}
-			}
+		connSection, ok := settings["connection"]
+		if !ok {
+			continue
 		}
+
+		typeVariant, ok := connSection["type"]
+		if !ok {
+			continue
+		}
+
+		cType, ok := typeVariant.Value().(string)
+		if !ok || cType != connType {
+			continue
+		}
+
+		connName := ""
+		if idVariant, ok := connSection["id"]; ok {
+			connName, _ = idVariant.Value().(string)
+		}
+
+		if connName == "" {
+			continue
+		}
+
+		if err := exec.Command("nmcli", "con", "mod", connName,
+			"connection.autoconnect-priority", fmt.Sprintf("%d", autoconnectPriority)).Run(); err != nil {
+			log.Warnf("Failed to set autoconnect-priority for %v: %v", connName, err)
+			continue
+		}
+
+		if err := exec.Command("nmcli", "con", "mod", connName,
+			"ipv4.route-metric", fmt.Sprintf("%d", routeMetric)).Run(); err != nil {
+			log.Warnf("Failed to set ipv4.route-metric for %v: %v", connName, err)
+		}
+
+		if err := exec.Command("nmcli", "con", "mod", connName,
+			"ipv6.route-metric", fmt.Sprintf("%d", routeMetric)).Run(); err != nil {
+			log.Warnf("Failed to set ipv6.route-metric for %v: %v", connName, err)
+		}
+
+		log.Infof("Updated %v: autoconnect-priority=%d, route-metric=%d", connName, autoconnectPriority, routeMetric)
 	}
 
 	return nil
@@ -125,14 +178,18 @@ func (m *Manager) GetConnectionPreference() ConnectionPreference {
 }
 
 func (m *Manager) WasRecentlyFailed(ssid string) bool {
-	if nm, ok := m.backend.(*NetworkManagerBackend); ok {
-		nm.failedMutex.RLock()
-		defer nm.failedMutex.RUnlock()
-
-		if nm.lastFailedSSID == ssid {
-			elapsed := time.Now().Unix() - nm.lastFailedTime
-			return elapsed < 10
-		}
+	nm, ok := m.backend.(*NetworkManagerBackend)
+	if !ok {
+		return false
 	}
-	return false
+
+	nm.failedMutex.RLock()
+	defer nm.failedMutex.RUnlock()
+
+	if nm.lastFailedSSID != ssid {
+		return false
+	}
+
+	elapsed := time.Now().Unix() - nm.lastFailedTime
+	return elapsed < 10
 }

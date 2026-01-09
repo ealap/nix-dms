@@ -1,7 +1,6 @@
 import Qt.labs.folderlistmodel
 import QtCore
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Effects
 import qs.Common
 import qs.Modals.FileBrowser
@@ -311,7 +310,7 @@ Item {
         showFiles: true
         showDirs: false
         sortField: FolderListModel.Name
-        folder: wallpaperDir ? "file://" + wallpaperDir : ""
+        folder: wallpaperDir ? "file://" + wallpaperDir.split('/').map(s => encodeURIComponent(s)).join('/') : ""
     }
 
     FileBrowserSurfaceModal {
@@ -401,7 +400,9 @@ Item {
                         currentIndex = clampedIndex;
                         positionViewAtIndex(clampedIndex, GridView.Contain);
                     }
-                    Qt.callLater(() => { enableAnimation = true; });
+                    Qt.callLater(() => {
+                        enableAnimation = true;
+                    });
                 }
 
                 Connections {

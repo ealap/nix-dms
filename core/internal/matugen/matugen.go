@@ -23,6 +23,47 @@ const (
 	ColorModeLight ColorMode = "light"
 )
 
+type TemplateKind int
+
+const (
+	TemplateKindNormal TemplateKind = iota
+	TemplateKindTerminal
+	TemplateKindGTK
+	TemplateKindVSCode
+)
+
+type TemplateDef struct {
+	ID                 string
+	Commands           []string
+	Flatpaks           []string
+	ConfigFile         string
+	Kind               TemplateKind
+	RunUnconditionally bool
+}
+
+var templateRegistry = []TemplateDef{
+	{ID: "gtk", Kind: TemplateKindGTK, RunUnconditionally: true},
+	{ID: "niri", Commands: []string{"niri"}, ConfigFile: "niri.toml"},
+	{ID: "hyprland", Commands: []string{"Hyprland"}, ConfigFile: "hyprland.toml"},
+	{ID: "mangowc", Commands: []string{"mango"}, ConfigFile: "mangowc.toml"},
+	{ID: "qt5ct", Commands: []string{"qt5ct"}, ConfigFile: "qt5ct.toml"},
+	{ID: "qt6ct", Commands: []string{"qt6ct"}, ConfigFile: "qt6ct.toml"},
+	{ID: "firefox", Commands: []string{"firefox"}, ConfigFile: "firefox.toml"},
+	{ID: "pywalfox", Commands: []string{"pywalfox"}, ConfigFile: "pywalfox.toml"},
+	{ID: "zenbrowser", Commands: []string{"zen", "zen-browser"}, Flatpaks: []string{"app.zen_browser.zen"}, ConfigFile: "zenbrowser.toml"},
+	{ID: "vesktop", Commands: []string{"vesktop"}, Flatpaks: []string{"dev.vencord.Vesktop"}, ConfigFile: "vesktop.toml"},
+	{ID: "equibop", Commands: []string{"equibop"}, ConfigFile: "equibop.toml"},
+	{ID: "ghostty", Commands: []string{"ghostty"}, ConfigFile: "ghostty.toml", Kind: TemplateKindTerminal},
+	{ID: "kitty", Commands: []string{"kitty"}, ConfigFile: "kitty.toml", Kind: TemplateKindTerminal},
+	{ID: "foot", Commands: []string{"foot"}, ConfigFile: "foot.toml", Kind: TemplateKindTerminal},
+	{ID: "alacritty", Commands: []string{"alacritty"}, ConfigFile: "alacritty.toml", Kind: TemplateKindTerminal},
+	{ID: "wezterm", Commands: []string{"wezterm"}, ConfigFile: "wezterm.toml", Kind: TemplateKindTerminal},
+	{ID: "nvim", Commands: []string{"nvim"}, ConfigFile: "neovim.toml", Kind: TemplateKindTerminal},
+	{ID: "dgop", Commands: []string{"dgop"}, ConfigFile: "dgop.toml"},
+	{ID: "kcolorscheme", ConfigFile: "kcolorscheme.toml", RunUnconditionally: true},
+	{ID: "vscode", Kind: TemplateKindVSCode},
+}
+
 func (c *ColorMode) GTKTheme() string {
 	switch *c {
 	case ColorModeDark:
@@ -240,7 +281,7 @@ func buildMergedConfig(opts *Options, cfgFile *os.File, tmpDir string) error {
 			if strings.TrimSpace(line) == "[config]" {
 				continue
 			}
-			cfgFile.WriteString(substituteShellDir(line, opts.ShellDir) + "\n")
+			cfgFile.WriteString(substituteVars(line, opts.ShellDir) + "\n")
 		}
 		cfgFile.WriteString("\n")
 	}
@@ -251,73 +292,31 @@ output_path = '%s'
 
 `, opts.ShellDir, opts.ColorsOutput())
 
-	if !opts.ShouldSkipTemplate("gtk") {
-		switch opts.Mode {
-		case "light":
-			appendConfig(opts, cfgFile, nil, nil, "gtk3-light.toml")
-		default:
-			appendConfig(opts, cfgFile, nil, nil, "gtk3-dark.toml")
+	homeDir, _ := os.UserHomeDir()
+	for _, tmpl := range templateRegistry {
+		if opts.ShouldSkipTemplate(tmpl.ID) {
+			continue
 		}
-	}
 
-	if !opts.ShouldSkipTemplate("niri") {
-		appendConfig(opts, cfgFile, []string{"niri"}, nil, "niri.toml")
-	}
-	if !opts.ShouldSkipTemplate("qt5ct") {
-		appendConfig(opts, cfgFile, []string{"qt5ct"}, nil, "qt5ct.toml")
-	}
-	if !opts.ShouldSkipTemplate("qt6ct") {
-		appendConfig(opts, cfgFile, []string{"qt6ct"}, nil, "qt6ct.toml")
-	}
-	if !opts.ShouldSkipTemplate("firefox") {
-		appendConfig(opts, cfgFile, []string{"firefox"}, nil, "firefox.toml")
-	}
-	if !opts.ShouldSkipTemplate("pywalfox") {
-		appendConfig(opts, cfgFile, []string{"pywalfox"}, nil, "pywalfox.toml")
-	}
-	if !opts.ShouldSkipTemplate("zenbrowser") {
-		appendConfig(opts, cfgFile, []string{"zen", "zen-browser"}, []string{"app.zen_browser.zen"}, "zenbrowser.toml")
-	}
-	if !opts.ShouldSkipTemplate("vesktop") {
-		appendConfig(opts, cfgFile, []string{"vesktop"}, []string{"dev.vencord.Vesktop"}, "vesktop.toml")
-	}
-	if !opts.ShouldSkipTemplate("equibop") {
-		appendConfig(opts, cfgFile, []string{"equibop"}, nil, "equibop.toml")
-	}
-	if !opts.ShouldSkipTemplate("ghostty") {
-		appendTerminalConfig(opts, cfgFile, tmpDir, []string{"ghostty"}, nil, "ghostty.toml")
-	}
-	if !opts.ShouldSkipTemplate("kitty") {
-		appendTerminalConfig(opts, cfgFile, tmpDir, []string{"kitty"}, nil, "kitty.toml")
-	}
-	if !opts.ShouldSkipTemplate("foot") {
-		appendTerminalConfig(opts, cfgFile, tmpDir, []string{"foot"}, nil, "foot.toml")
-	}
-	if !opts.ShouldSkipTemplate("alacritty") {
-		appendTerminalConfig(opts, cfgFile, tmpDir, []string{"alacritty"}, nil, "alacritty.toml")
-	}
-	if !opts.ShouldSkipTemplate("wezterm") {
-		appendTerminalConfig(opts, cfgFile, tmpDir, []string{"wezterm"}, nil, "wezterm.toml")
-	}
-	if !opts.ShouldSkipTemplate("nvim") {
-		appendTerminalConfig(opts, cfgFile, tmpDir, []string{"nvim"}, nil, "neovim.toml")
-	}
-
-	if !opts.ShouldSkipTemplate("dgop") {
-		appendConfig(opts, cfgFile, []string{"dgop"}, nil, "dgop.toml")
-	}
-
-	if !opts.ShouldSkipTemplate("kcolorscheme") {
-		appendConfig(opts, cfgFile, nil, nil, "kcolorscheme.toml")
-	}
-
-	if !opts.ShouldSkipTemplate("vscode") {
-		homeDir, _ := os.UserHomeDir()
-		appendVSCodeConfig(cfgFile, "vscode", filepath.Join(homeDir, ".vscode/extensions"), opts.ShellDir)
-		appendVSCodeConfig(cfgFile, "codium", filepath.Join(homeDir, ".vscode-oss/extensions"), opts.ShellDir)
-		appendVSCodeConfig(cfgFile, "codeoss", filepath.Join(homeDir, ".config/Code - OSS/extensions"), opts.ShellDir)
-		appendVSCodeConfig(cfgFile, "cursor", filepath.Join(homeDir, ".cursor/extensions"), opts.ShellDir)
-		appendVSCodeConfig(cfgFile, "windsurf", filepath.Join(homeDir, ".windsurf/extensions"), opts.ShellDir)
+		switch tmpl.Kind {
+		case TemplateKindGTK:
+			switch opts.Mode {
+			case ColorModeLight:
+				appendConfig(opts, cfgFile, nil, nil, "gtk3-light.toml")
+			default:
+				appendConfig(opts, cfgFile, nil, nil, "gtk3-dark.toml")
+			}
+		case TemplateKindTerminal:
+			appendTerminalConfig(opts, cfgFile, tmpDir, tmpl.Commands, tmpl.Flatpaks, tmpl.ConfigFile)
+		case TemplateKindVSCode:
+			appendVSCodeConfig(cfgFile, "vscode", filepath.Join(homeDir, ".vscode/extensions"), opts.ShellDir)
+			appendVSCodeConfig(cfgFile, "codium", filepath.Join(homeDir, ".vscode-oss/extensions"), opts.ShellDir)
+			appendVSCodeConfig(cfgFile, "codeoss", filepath.Join(homeDir, ".config/Code - OSS/extensions"), opts.ShellDir)
+			appendVSCodeConfig(cfgFile, "cursor", filepath.Join(homeDir, ".cursor/extensions"), opts.ShellDir)
+			appendVSCodeConfig(cfgFile, "windsurf", filepath.Join(homeDir, ".windsurf/extensions"), opts.ShellDir)
+		default:
+			appendConfig(opts, cfgFile, tmpl.Commands, tmpl.Flatpaks, tmpl.ConfigFile)
+		}
 	}
 
 	if opts.RunUserTemplates {
@@ -364,7 +363,7 @@ func appendConfig(
 	if err != nil {
 		return
 	}
-	cfgFile.WriteString(substituteShellDir(string(data), opts.ShellDir))
+	cfgFile.WriteString(substituteVars(string(data), opts.ShellDir))
 	cfgFile.WriteString("\n")
 }
 
@@ -384,7 +383,7 @@ func appendTerminalConfig(opts *Options, cfgFile *os.File, tmpDir string, checkC
 	content := string(data)
 
 	if !opts.TerminalsAlwaysDark {
-		cfgFile.WriteString(substituteShellDir(content, opts.ShellDir))
+		cfgFile.WriteString(substituteVars(content, opts.ShellDir))
 		cfgFile.WriteString("\n")
 		return
 	}
@@ -422,7 +421,7 @@ func appendTerminalConfig(opts *Options, cfgFile *os.File, tmpDir string, checkC
 			fmt.Sprintf("'%s'", tmpPath))
 	}
 
-	cfgFile.WriteString(substituteShellDir(content, opts.ShellDir))
+	cfgFile.WriteString(substituteVars(content, opts.ShellDir))
 	cfgFile.WriteString("\n")
 }
 
@@ -467,8 +466,12 @@ output_path = '%s/themes/dankshell-light.json'
 	log.Infof("Added %s theme config (extension found at %s)", name, extDir)
 }
 
-func substituteShellDir(content, shellDir string) string {
-	return strings.ReplaceAll(content, "'SHELL_DIR/", "'"+shellDir+"/")
+func substituteVars(content, shellDir string) string {
+	result := strings.ReplaceAll(content, "'SHELL_DIR/", "'"+shellDir+"/")
+	result = strings.ReplaceAll(result, "'CONFIG_DIR/", "'"+utils.XDGConfigHome()+"/")
+	result = strings.ReplaceAll(result, "'DATA_DIR/", "'"+utils.XDGDataHome()+"/")
+	result = strings.ReplaceAll(result, "'CACHE_DIR/", "'"+utils.XDGCacheHome()+"/")
+	return result
 }
 
 func extractTOMLSection(content, startMarker, endMarker string) string {
@@ -677,4 +680,53 @@ func syncColorScheme(mode ColorMode) {
 	if err := exec.Command("gsettings", "set", "org.gnome.desktop.interface", "color-scheme", scheme).Run(); err != nil {
 		exec.Command("dconf", "write", "/org/gnome/desktop/interface/color-scheme", "'"+scheme+"'").Run()
 	}
+}
+
+type TemplateCheck struct {
+	ID       string `json:"id"`
+	Detected bool   `json:"detected"`
+}
+
+func CheckTemplates(checker utils.AppChecker) []TemplateCheck {
+	if checker == nil {
+		checker = utils.DefaultAppChecker{}
+	}
+
+	homeDir, _ := os.UserHomeDir()
+	checks := make([]TemplateCheck, 0, len(templateRegistry))
+
+	for _, tmpl := range templateRegistry {
+		detected := false
+
+		switch {
+		case tmpl.RunUnconditionally:
+			detected = true
+		case tmpl.Kind == TemplateKindVSCode:
+			detected = checkVSCodeExtension(homeDir)
+		default:
+			detected = appExists(checker, tmpl.Commands, tmpl.Flatpaks)
+		}
+
+		checks = append(checks, TemplateCheck{ID: tmpl.ID, Detected: detected})
+	}
+
+	return checks
+}
+
+func checkVSCodeExtension(homeDir string) bool {
+	extDirs := []string{
+		filepath.Join(homeDir, ".vscode/extensions"),
+		filepath.Join(homeDir, ".vscode-oss/extensions"),
+		filepath.Join(homeDir, ".config/Code - OSS/extensions"),
+		filepath.Join(homeDir, ".cursor/extensions"),
+		filepath.Join(homeDir, ".windsurf/extensions"),
+	}
+
+	for _, extDir := range extDirs {
+		pattern := filepath.Join(extDir, "danklinux.dms-theme-*")
+		if matches, err := filepath.Glob(pattern); err == nil && len(matches) > 0 {
+			return true
+		}
+	}
+	return false
 }

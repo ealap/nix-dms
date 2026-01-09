@@ -26,6 +26,7 @@ type Plugin struct {
 	Compositors  []string `json:"compositors"`
 	Distro       []string `json:"distro"`
 	Screenshot   string   `json:"screenshot,omitempty"`
+	RequiresDMS  string   `json:"requires_dms,omitempty"`
 }
 
 type GitClient interface {

@@ -81,44 +81,24 @@ func (b *NetworkManagerBackend) startSignalPump() error {
 		return err
 	}
 
-	if b.wifiDevice != nil {
-		dev := b.wifiDevice.(gonetworkmanager.Device)
+	for _, info := range b.wifiDevices {
 		if err := conn.AddMatchSignal(
-			dbus.WithMatchObjectPath(dbus.ObjectPath(dev.GetPath())),
+			dbus.WithMatchObjectPath(dbus.ObjectPath(info.device.GetPath())),
 			dbus.WithMatchInterface(dbusPropsInterface),
 			dbus.WithMatchMember("PropertiesChanged"),
 		); err != nil {
-			conn.RemoveMatchSignal(
-				dbus.WithMatchObjectPath(dbus.ObjectPath(dbusNMPath)),
-				dbus.WithMatchInterface(dbusPropsInterface),
-				dbus.WithMatchMember("PropertiesChanged"),
-			)
 			conn.RemoveSignal(signals)
 			conn.Close()
 			return err
 		}
 	}
 
-	if b.ethernetDevice != nil {
-		dev := b.ethernetDevice.(gonetworkmanager.Device)
+	for _, info := range b.ethernetDevices {
 		if err := conn.AddMatchSignal(
-			dbus.WithMatchObjectPath(dbus.ObjectPath(dev.GetPath())),
+			dbus.WithMatchObjectPath(dbus.ObjectPath(info.device.GetPath())),
 			dbus.WithMatchInterface(dbusPropsInterface),
 			dbus.WithMatchMember("PropertiesChanged"),
 		); err != nil {
-			conn.RemoveMatchSignal(
-				dbus.WithMatchObjectPath(dbus.ObjectPath(dbusNMPath)),
-				dbus.WithMatchInterface(dbusPropsInterface),
-				dbus.WithMatchMember("PropertiesChanged"),
-			)
-			if b.wifiDevice != nil {
-				dev := b.wifiDevice.(gonetworkmanager.Device)
-				conn.RemoveMatchSignal(
-					dbus.WithMatchObjectPath(dbus.ObjectPath(dev.GetPath())),
-					dbus.WithMatchInterface(dbusPropsInterface),
-					dbus.WithMatchMember("PropertiesChanged"),
-				)
-			}
 			conn.RemoveSignal(signals)
 			conn.Close()
 			return err
@@ -157,19 +137,17 @@ func (b *NetworkManagerBackend) stopSignalPump() {
 		dbus.WithMatchMember("PropertiesChanged"),
 	)
 
-	if b.wifiDevice != nil {
-		dev := b.wifiDevice.(gonetworkmanager.Device)
+	for _, info := range b.wifiDevices {
 		b.dbusConn.RemoveMatchSignal(
-			dbus.WithMatchObjectPath(dbus.ObjectPath(dev.GetPath())),
+			dbus.WithMatchObjectPath(dbus.ObjectPath(info.device.GetPath())),
 			dbus.WithMatchInterface(dbusPropsInterface),
 			dbus.WithMatchMember("PropertiesChanged"),
 		)
 	}
 
-	if b.ethernetDevice != nil {
-		dev := b.ethernetDevice.(gonetworkmanager.Device)
+	for _, info := range b.ethernetDevices {
 		b.dbusConn.RemoveMatchSignal(
-			dbus.WithMatchObjectPath(dbus.ObjectPath(dev.GetPath())),
+			dbus.WithMatchObjectPath(dbus.ObjectPath(info.device.GetPath())),
 			dbus.WithMatchInterface(dbusPropsInterface),
 			dbus.WithMatchMember("PropertiesChanged"),
 		)
@@ -232,7 +210,10 @@ func (b *NetworkManagerBackend) handleDBusSignal(sig *dbus.Signal) {
 		b.handleNetworkManagerChange(changes)
 
 	case dbusNMDeviceInterface:
-		b.handleDeviceChange(changes)
+		b.handleDeviceChange(sig.Path, changes)
+
+	case dbusNMWiredInterface:
+		b.handleWiredChange(changes)
 
 	case dbusNMWirelessInterface:
 		b.handleWiFiChange(changes)
@@ -278,9 +259,10 @@ func (b *NetworkManagerBackend) handleNetworkManagerChange(changes map[string]db
 	}
 }
 
-func (b *NetworkManagerBackend) handleDeviceChange(changes map[string]dbus.Variant) {
+func (b *NetworkManagerBackend) handleDeviceChange(devicePath dbus.ObjectPath, changes map[string]dbus.Variant) {
 	var needsUpdate bool
 	var stateChanged bool
+	var managedChanged bool
 
 	for key := range changes {
 		switch key {
@@ -289,20 +271,60 @@ func (b *NetworkManagerBackend) handleDeviceChange(changes map[string]dbus.Varia
 			needsUpdate = true
 		case "Ip4Config":
 			needsUpdate = true
+		case "Managed":
+			managedChanged = true
 		default:
 			continue
 		}
 	}
 
-	if needsUpdate {
-		b.updateEthernetState()
-		b.updateWiFiState()
-		if stateChanged {
-			b.updatePrimaryConnection()
+	if managedChanged {
+		if managedVariant, ok := changes["Managed"]; ok {
+			if managed, ok := managedVariant.Value().(bool); ok && managed {
+				b.handleDeviceAdded(devicePath)
+				return
+			}
 		}
-		if b.onStateChange != nil {
-			b.onStateChange()
+	}
+
+	if !needsUpdate {
+		return
+	}
+
+	b.updateAllEthernetDevices()
+	b.updateEthernetState()
+	b.updateAllWiFiDevices()
+	b.updateWiFiState()
+	if stateChanged {
+		b.listEthernetConnections()
+		b.updatePrimaryConnection()
+	}
+	if b.onStateChange != nil {
+		b.onStateChange()
+	}
+}
+
+func (b *NetworkManagerBackend) handleWiredChange(changes map[string]dbus.Variant) {
+	var needsUpdate bool
+
+	for key := range changes {
+		switch key {
+		case "Carrier", "Speed", "HwAddress":
+			needsUpdate = true
+		default:
+			continue
 		}
+	}
+
+	if !needsUpdate {
+		return
+	}
+
+	b.updateAllEthernetDevices()
+	b.updateEthernetState()
+	b.updatePrimaryConnection()
+	if b.onStateChange != nil {
+		b.onStateChange()
 	}
 }
 
@@ -369,6 +391,18 @@ func (b *NetworkManagerBackend) handleDeviceAdded(devicePath dbus.ObjectPath) {
 		return
 	}
 
+	if devType != gonetworkmanager.NmDeviceTypeEthernet && devType != gonetworkmanager.NmDeviceTypeWifi {
+		return
+	}
+
+	if b.dbusConn != nil {
+		b.dbusConn.AddMatchSignal(
+			dbus.WithMatchObjectPath(devicePath),
+			dbus.WithMatchInterface(dbusPropsInterface),
+			dbus.WithMatchMember("PropertiesChanged"),
+		)
+	}
+
 	managed, _ := dev.GetPropertyManaged()
 	if !managed {
 		return
@@ -398,14 +432,6 @@ func (b *NetworkManagerBackend) handleDeviceAdded(devicePath dbus.ObjectPath) {
 			b.ethernetDevice = dev
 		}
 
-		if b.dbusConn != nil {
-			b.dbusConn.AddMatchSignal(
-				dbus.WithMatchObjectPath(devicePath),
-				dbus.WithMatchInterface(dbusPropsInterface),
-				dbus.WithMatchMember("PropertiesChanged"),
-			)
-		}
-
 		b.updateAllEthernetDevices()
 		b.updateEthernetState()
 		b.listEthernetConnections()
@@ -428,14 +454,6 @@ func (b *NetworkManagerBackend) handleDeviceAdded(devicePath dbus.ObjectPath) {
 		if b.wifiDevice == nil {
 			b.wifiDevice = dev
 			b.wifiDev = w
-		}
-
-		if b.dbusConn != nil {
-			b.dbusConn.AddMatchSignal(
-				dbus.WithMatchObjectPath(devicePath),
-				dbus.WithMatchInterface(dbusPropsInterface),
-				dbus.WithMatchMember("PropertiesChanged"),
-			)
 		}
 
 		b.updateAllWiFiDevices()

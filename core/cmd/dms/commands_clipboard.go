@@ -1,16 +1,28 @@
 package main
 
 import (
+	"bytes"
 	"context"
+	"encoding/base64"
+	"encoding/binary"
 	"encoding/json"
 	"fmt"
+	"image"
+	_ "image/gif"
+	_ "image/jpeg"
+	_ "image/png"
 	"io"
 	"os"
 	"os/exec"
 	"os/signal"
+	"path/filepath"
 	"strconv"
 	"syscall"
 	"time"
+
+	bolt "go.etcd.io/bbolt"
+	_ "golang.org/x/image/bmp"
+	_ "golang.org/x/image/tiff"
 
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/clipboard"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/log"
@@ -144,6 +156,30 @@ var (
 	clipConfigEnabled        bool
 )
 
+var clipExportCmd = &cobra.Command{
+	Use:   "export [file]",
+	Short: "Export clipboard history to JSON",
+	Long:  "Export clipboard history to JSON file. If no file specified, writes to stdout.",
+	Run:   runClipExport,
+}
+
+var clipImportCmd = &cobra.Command{
+	Use:   "import <file>",
+	Short: "Import clipboard history from JSON",
+	Long:  "Import clipboard history from JSON file exported by 'dms cl export'.",
+	Args:  cobra.ExactArgs(1),
+	Run:   runClipImport,
+}
+
+var clipMigrateCmd = &cobra.Command{
+	Use:   "cliphist-migrate [db-path]",
+	Short: "Migrate from cliphist",
+	Long:  "Migrate clipboard history from cliphist. Uses default cliphist path if not specified.",
+	Run:   runClipMigrate,
+}
+
+var clipMigrateDelete bool
+
 func init() {
 	clipCopyCmd.Flags().BoolVarP(&clipCopyForeground, "foreground", "f", false, "Stay in foreground instead of forking")
 	clipCopyCmd.Flags().BoolVarP(&clipCopyPasteOnce, "paste-once", "o", false, "Exit after first paste")
@@ -170,8 +206,10 @@ func init() {
 
 	clipWatchCmd.Flags().BoolVarP(&clipWatchStore, "store", "s", false, "Store clipboard changes to history (no server required)")
 
+	clipMigrateCmd.Flags().BoolVar(&clipMigrateDelete, "delete", false, "Delete cliphist db after successful migration")
+
 	clipConfigCmd.AddCommand(clipConfigGetCmd, clipConfigSetCmd)
-	clipboardCmd.AddCommand(clipCopyCmd, clipPasteCmd, clipWatchCmd, clipHistoryCmd, clipGetCmd, clipDeleteCmd, clipClearCmd, clipSearchCmd, clipConfigCmd)
+	clipboardCmd.AddCommand(clipCopyCmd, clipPasteCmd, clipWatchCmd, clipHistoryCmd, clipGetCmd, clipDeleteCmd, clipClearCmd, clipSearchCmd, clipConfigCmd, clipExportCmd, clipImportCmd, clipMigrateCmd)
 }
 
 func runClipCopy(cmd *cobra.Command, args []string) {
@@ -605,4 +643,155 @@ func runClipConfigSet(cmd *cobra.Command, args []string) {
 	}
 
 	fmt.Println("Config updated")
+}
+
+func runClipExport(cmd *cobra.Command, args []string) {
+	req := models.Request{
+		ID:     1,
+		Method: "clipboard.getHistory",
+	}
+
+	resp, err := sendServerRequest(req)
+	if err != nil {
+		log.Fatalf("Failed to get clipboard history: %v", err)
+	}
+	if resp.Error != "" {
+		log.Fatalf("Error: %s", resp.Error)
+	}
+	if resp.Result == nil {
+		log.Fatal("No clipboard history")
+	}
+
+	out, err := json.MarshalIndent(resp.Result, "", "  ")
+	if err != nil {
+		log.Fatalf("Failed to marshal: %v", err)
+	}
+
+	if len(args) == 0 {
+		fmt.Println(string(out))
+		return
+	}
+
+	if err := os.WriteFile(args[0], out, 0644); err != nil {
+		log.Fatalf("Failed to write file: %v", err)
+	}
+	fmt.Printf("Exported to %s\n", args[0])
+}
+
+func runClipImport(cmd *cobra.Command, args []string) {
+	data, err := os.ReadFile(args[0])
+	if err != nil {
+		log.Fatalf("Failed to read file: %v", err)
+	}
+
+	var entries []map[string]any
+	if err := json.Unmarshal(data, &entries); err != nil {
+		log.Fatalf("Failed to parse JSON: %v", err)
+	}
+
+	var imported int
+	for _, entry := range entries {
+		dataStr, ok := entry["data"].(string)
+		if !ok {
+			continue
+		}
+		mimeType, _ := entry["mimeType"].(string)
+		if mimeType == "" {
+			mimeType = "text/plain"
+		}
+
+		var entryData []byte
+		if decoded, err := base64.StdEncoding.DecodeString(dataStr); err == nil {
+			entryData = decoded
+		} else {
+			entryData = []byte(dataStr)
+		}
+
+		if err := clipboard.Store(entryData, mimeType); err != nil {
+			log.Errorf("Failed to store entry: %v", err)
+			continue
+		}
+		imported++
+	}
+
+	fmt.Printf("Imported %d entries\n", imported)
+}
+
+func runClipMigrate(cmd *cobra.Command, args []string) {
+	dbPath := getCliphistPath()
+	if len(args) > 0 {
+		dbPath = args[0]
+	}
+
+	if _, err := os.Stat(dbPath); err != nil {
+		log.Fatalf("Cliphist db not found: %s", dbPath)
+	}
+
+	db, err := bolt.Open(dbPath, 0644, &bolt.Options{
+		ReadOnly: true,
+		Timeout:  1 * time.Second,
+	})
+	if err != nil {
+		log.Fatalf("Failed to open cliphist db: %v", err)
+	}
+	defer db.Close()
+
+	var migrated int
+	err = db.View(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("b"))
+		if b == nil {
+			return fmt.Errorf("cliphist bucket not found")
+		}
+
+		c := b.Cursor()
+		for k, v := c.First(); k != nil; k, v = c.Next() {
+			if len(v) == 0 {
+				continue
+			}
+
+			mimeType := detectMimeType(v)
+			if err := clipboard.Store(v, mimeType); err != nil {
+				log.Errorf("Failed to store entry %d: %v", btoi(k), err)
+				continue
+			}
+			migrated++
+		}
+		return nil
+	})
+	if err != nil {
+		log.Fatalf("Migration failed: %v", err)
+	}
+
+	fmt.Printf("Migrated %d entries from cliphist\n", migrated)
+
+	if !clipMigrateDelete {
+		return
+	}
+
+	db.Close()
+	if err := os.Remove(dbPath); err != nil {
+		log.Errorf("Failed to delete cliphist db: %v", err)
+		return
+	}
+	os.Remove(filepath.Dir(dbPath))
+	fmt.Println("Deleted cliphist db")
+}
+
+func getCliphistPath() string {
+	cacheDir, err := os.UserCacheDir()
+	if err != nil {
+		return filepath.Join(os.Getenv("HOME"), ".cache", "cliphist", "db")
+	}
+	return filepath.Join(cacheDir, "cliphist", "db")
+}
+
+func detectMimeType(data []byte) string {
+	if _, _, err := image.DecodeConfig(bytes.NewReader(data)); err == nil {
+		return "image/png"
+	}
+	return "text/plain"
+}
+
+func btoi(v []byte) uint64 {
+	return binary.BigEndian.Uint64(v)
 }

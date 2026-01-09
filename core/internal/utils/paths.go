@@ -10,9 +10,32 @@ func XDGStateHome() string {
 	if dir := os.Getenv("XDG_STATE_HOME"); dir != "" {
 		return dir
 	}
-
 	home, _ := os.UserHomeDir()
-	return filepath.Join(append([]string{home}, ".local", "state")...)
+	return filepath.Join(home, ".local", "state")
+}
+
+func XDGDataHome() string {
+	if dir := os.Getenv("XDG_DATA_HOME"); dir != "" {
+		return dir
+	}
+	home, _ := os.UserHomeDir()
+	return filepath.Join(home, ".local", "share")
+}
+
+func XDGCacheHome() string {
+	if dir, err := os.UserCacheDir(); err == nil {
+		return dir
+	}
+	home, _ := os.UserHomeDir()
+	return filepath.Join(home, ".cache")
+}
+
+func XDGConfigHome() string {
+	if dir, err := os.UserConfigDir(); err == nil {
+		return dir
+	}
+	home, _ := os.UserHomeDir()
+	return filepath.Join(home, ".config")
 }
 
 func ExpandPath(path string) (string, error) {

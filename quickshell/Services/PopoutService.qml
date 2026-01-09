@@ -23,6 +23,7 @@ Singleton {
     property var spotlightModal: null
     property var powerMenuModal: null
     property var processListModal: null
+    property var processListModalLoader: null
     property var colorPickerModal: null
     property var notificationModal: null
     property var wifiPasswordModal: null
@@ -201,6 +202,7 @@ Singleton {
     property bool _settingsWantsToggle: false
 
     property string _settingsPendingTab: ""
+    property int _settingsPendingTabIndex: -1
 
     function openSettings() {
         if (settingsModal) {
@@ -219,6 +221,19 @@ Singleton {
         }
         if (settingsModalLoader) {
             _settingsPendingTab = tabName;
+            _settingsWantsOpen = true;
+            _settingsWantsToggle = false;
+            settingsModalLoader.activeAsync = true;
+        }
+    }
+
+    function openSettingsWithTabIndex(tabIndex: int) {
+        if (settingsModal) {
+            settingsModal.showWithTab(tabIndex);
+            return;
+        }
+        if (settingsModalLoader) {
+            _settingsPendingTabIndex = tabIndex;
             _settingsWantsOpen = true;
             _settingsWantsToggle = false;
             settingsModalLoader.activeAsync = true;
@@ -302,7 +317,10 @@ Singleton {
     function _onSettingsModalLoaded() {
         if (_settingsWantsOpen) {
             _settingsWantsOpen = false;
-            if (_settingsPendingTab) {
+            if (_settingsPendingTabIndex >= 0) {
+                settingsModal?.showWithTab(_settingsPendingTabIndex);
+                _settingsPendingTabIndex = -1;
+            } else if (_settingsPendingTab) {
                 settingsModal?.showWithTabName(_settingsPendingTab);
                 _settingsPendingTab = "";
             } else {
@@ -312,7 +330,10 @@ Singleton {
         }
         if (_settingsWantsToggle) {
             _settingsWantsToggle = false;
-            if (_settingsPendingTab) {
+            if (_settingsPendingTabIndex >= 0) {
+                settingsModal.currentTabIndex = _settingsPendingTabIndex;
+                _settingsPendingTabIndex = -1;
+            } else if (_settingsPendingTab) {
                 var idx = settingsModal?.resolveTabIndex(_settingsPendingTab) ?? -1;
                 if (idx >= 0)
                     settingsModal.currentTabIndex = idx;
@@ -357,7 +378,12 @@ Singleton {
     }
 
     function showProcessListModal() {
-        processListModal?.show();
+        if (processListModal) {
+            processListModal.show();
+        } else if (processListModalLoader) {
+            processListModalLoader.active = true;
+            Qt.callLater(() => processListModal?.show());
+        }
     }
 
     function hideProcessListModal() {
@@ -365,7 +391,12 @@ Singleton {
     }
 
     function toggleProcessListModal() {
-        processListModal?.toggle();
+        if (processListModal) {
+            processListModal.toggle();
+        } else if (processListModalLoader) {
+            processListModalLoader.active = true;
+            Qt.callLater(() => processListModal?.show());
+        }
     }
 
     function showColorPicker() {
@@ -384,8 +415,12 @@ Singleton {
         notificationModal?.close();
     }
 
-    function showWifiPasswordModal() {
-        wifiPasswordModal?.show();
+    function showWifiPasswordModal(ssid) {
+        wifiPasswordModal?.show(ssid);
+    }
+
+    function showHiddenNetworkModal() {
+        wifiPasswordModal?.showHidden();
     }
 
     function hideWifiPasswordModal() {

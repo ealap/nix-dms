@@ -172,7 +172,7 @@ func TestMangoWCGetKeybindAtLine(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			parser := NewMangoWCParser()
+			parser := NewMangoWCParser("")
 			parser.contentLines = []string{tt.line}
 			result := parser.getKeybindAtLine(0)
 
@@ -283,7 +283,7 @@ func TestMangoWCReadContentMultipleFiles(t *testing.T) {
 		t.Fatalf("Failed to write file2: %v", err)
 	}
 
-	parser := NewMangoWCParser()
+	parser := NewMangoWCParser("")
 	if err := parser.ReadContent(tmpDir); err != nil {
 		t.Fatalf("ReadContent failed: %v", err)
 	}
@@ -304,7 +304,7 @@ func TestMangoWCReadContentSingleFile(t *testing.T) {
 		t.Fatalf("Failed to write config: %v", err)
 	}
 
-	parser := NewMangoWCParser()
+	parser := NewMangoWCParser("")
 	if err := parser.ReadContent(configFile); err != nil {
 		t.Fatalf("ReadContent failed: %v", err)
 	}
@@ -362,7 +362,7 @@ func TestMangoWCReadContentWithTildeExpansion(t *testing.T) {
 		t.Skip("Cannot create relative path")
 	}
 
-	parser := NewMangoWCParser()
+	parser := NewMangoWCParser("")
 	tildePathMatch := "~/" + relPath
 	err = parser.ReadContent(tildePathMatch)
 
@@ -419,7 +419,7 @@ func TestMangoWCInvalidBindLines(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			parser := NewMangoWCParser()
+			parser := NewMangoWCParser("")
 			parser.contentLines = []string{tt.line}
 			result := parser.getKeybindAtLine(0)
 

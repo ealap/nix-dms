@@ -55,7 +55,7 @@ func StoreWithConfig(data []byte, mimeType string, cfg StoreConfig) error {
 		return fmt.Errorf("data too large: %d > %d", len(data), cfg.MaxEntrySize)
 	}
 
-	dbPath, err := getDBPath()
+	dbPath, err := GetDBPath()
 	if err != nil {
 		return fmt.Errorf("get db path: %w", err)
 	}
@@ -111,7 +111,7 @@ func StoreWithConfig(data []byte, mimeType string, cfg StoreConfig) error {
 	})
 }
 
-func getDBPath() (string, error) {
+func GetDBPath() (string, error) {
 	cacheDir, err := os.UserCacheDir()
 	if err != nil {
 		homeDir, err := os.UserHomeDir()
@@ -121,12 +121,31 @@ func getDBPath() (string, error) {
 		cacheDir = filepath.Join(homeDir, ".cache")
 	}
 
-	dbDir := filepath.Join(cacheDir, "dms-clipboard")
-	if err := os.MkdirAll(dbDir, 0700); err != nil {
-		return "", err
+	newDir := filepath.Join(cacheDir, "DankMaterialShell", "clipboard")
+	newPath := filepath.Join(newDir, "db")
+
+	if _, err := os.Stat(newPath); err == nil {
+		return newPath, nil
 	}
 
-	return filepath.Join(dbDir, "db"), nil
+	oldDir := filepath.Join(cacheDir, "dms-clipboard")
+	oldPath := filepath.Join(oldDir, "db")
+
+	if _, err := os.Stat(oldPath); err == nil {
+		if err := os.MkdirAll(newDir, 0700); err != nil {
+			return "", err
+		}
+		if err := os.Rename(oldPath, newPath); err != nil {
+			return "", err
+		}
+		os.Remove(oldDir)
+		return newPath, nil
+	}
+
+	if err := os.MkdirAll(newDir, 0700); err != nil {
+		return "", err
+	}
+	return newPath, nil
 }
 
 func deduplicateInTx(b *bolt.Bucket, hash uint64) error {

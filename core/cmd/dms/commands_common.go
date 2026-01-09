@@ -514,5 +514,6 @@ func getCommonCommands() []*cobra.Command {
 		matugenCmd,
 		clipboardCmd,
 		doctorCmd,
+		configCmd,
 	}
 }

@@ -93,7 +93,7 @@ Item {
                 elide: Text.ElideRight
                 width: parent.width
                 visible: root.text !== ""
-                anchors.left: parent.left
+                horizontalAlignment: Text.AlignLeft
             }
 
             StyledText {
@@ -103,7 +103,7 @@ Item {
                 wrapMode: Text.WordWrap
                 width: parent.width
                 visible: root.description !== ""
-                anchors.left: parent.left
+                horizontalAlignment: Text.AlignLeft
             }
         }
 

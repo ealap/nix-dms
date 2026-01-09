@@ -1,11 +1,12 @@
 import QtQuick
-import QtQuick.Controls
-import Quickshell
 import qs.Common
 import qs.Widgets
 
 Rectangle {
     id: root
+
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
 
     property string iconName: ""
     property color iconColor: Theme.surfaceText

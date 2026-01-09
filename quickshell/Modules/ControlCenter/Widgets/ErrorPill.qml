@@ -5,6 +5,9 @@ import qs.Widgets
 StyledRect {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property string primaryMessage: ""
     property string secondaryMessage: ""
 
@@ -37,6 +40,7 @@ StyledRect {
                 color: Theme.warning
                 font.weight: Font.Medium
                 wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignLeft
             }
 
             StyledText {
@@ -45,6 +49,7 @@ StyledRect {
                 font.pixelSize: Theme.fontSizeSmall
                 color: Theme.warning
                 visible: text.length > 0
+                horizontalAlignment: Text.AlignLeft
             }
         }
     }

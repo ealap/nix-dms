@@ -6,6 +6,9 @@ import qs.Widgets
 Rectangle {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     required property var profile
     property bool isExpanded: false
 
@@ -125,6 +128,7 @@ Rectangle {
                     elide: Text.ElideRight
                     wrapMode: Text.NoWrap
                     width: parent.width
+                    horizontalAlignment: Text.AlignLeft
                 }
 
                 StyledText {
@@ -134,6 +138,7 @@ Rectangle {
                     wrapMode: Text.NoWrap
                     width: parent.width
                     elide: Text.ElideRight
+                    horizontalAlignment: Text.AlignLeft
                 }
             }
 

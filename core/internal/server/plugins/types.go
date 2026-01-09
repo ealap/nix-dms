@@ -15,6 +15,7 @@ type PluginInfo struct {
 	FirstParty   bool     `json:"firstParty,omitempty"`
 	Note         string   `json:"note,omitempty"`
 	HasUpdate    bool     `json:"hasUpdate,omitempty"`
+	RequiresDMS  string   `json:"requires_dms,omitempty"`
 }
 
 type SuccessResult struct {

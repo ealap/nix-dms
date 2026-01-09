@@ -13,6 +13,7 @@ const (
 	dbusNMPath                 = "/org/freedesktop/NetworkManager"
 	dbusNMInterface            = "org.freedesktop.NetworkManager"
 	dbusNMDeviceInterface      = "org.freedesktop.NetworkManager.Device"
+	dbusNMWiredInterface       = "org.freedesktop.NetworkManager.Device.Wired"
 	dbusNMWirelessInterface    = "org.freedesktop.NetworkManager.Device.Wireless"
 	dbusNMAccessPointInterface = "org.freedesktop.NetworkManager.AccessPoint"
 	dbusPropsInterface         = "org.freedesktop.DBus.Properties"

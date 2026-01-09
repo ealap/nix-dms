@@ -20,8 +20,17 @@
   "%1 display(s)": {
     "%1 display(s)": "%1 pantalla(s)"
   },
+  "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": {
+    "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": ""
+  },
+  "%1 is now included in config": {
+    "%1 is now included in config": ""
+  },
   "%1 job(s)": {
     "%1 job(s)": "%1 trabajo(s)"
+  },
+  "%1 notifications": {
+    "%1 notifications": ""
   },
   "%1 printer(s)": {
     "%1 printer(s)": "%1 impresora(s)"
@@ -38,6 +47,9 @@
   "(Unnamed)": {
     "(Unnamed)": "(Sin nombre)"
   },
+  "+ %1 more": {
+    "+ %1 more": ""
+  },
   "0 = square corners": {
     "0 = square corners": "0 = esquinas cuadradas"
   },
@@ -49,6 +61,9 @@
   },
   "1 minute": {
     "1 minute": "1 minuto"
+  },
+  "1 notification": {
+    "1 notification": ""
   },
   "1 second": {
     "1 second": "1 segundo"
@@ -128,6 +143,9 @@
   "About": {
     "About": "Información"
   },
+  "Accent Color": {
+    "Accent Color": ""
+  },
   "Accept Jobs": {
     "Accept Jobs": "Aceptar trabajos"
   },
@@ -151,6 +169,9 @@
   },
   "Activate": {
     "Activate": "Activar"
+  },
+  "Activation": {
+    "Activation": ""
   },
   "Active": {
     "Active": "Activo"
@@ -220,6 +241,9 @@
   },
   "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": {
     "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": "Alt+←/Backspace: Atrás • F1/I: Información del archivo • F10: Ayuda • Esc: Cerrar+"
+  },
+  "Always Active": {
+    "Always Active": ""
   },
   "Always Show Percentage": {
     "Always Show Percentage": "Mostrar siempre el porcentaje"
@@ -353,6 +377,9 @@
   "Auto-Clear After": {
     "Auto-Clear After": "Limpiar automáticamente despues"
   },
+  "Auto-Hide Timeout": {
+    "Auto-Hide Timeout": ""
+  },
   "Auto-close Niri overview when launching apps.": {
     "Auto-close Niri overview when launching apps.": "Cierre automático de la vista general de Niri al iniciar aplicaciones."
   },
@@ -412,6 +439,9 @@
   },
   "Available Screens (%1)": {
     "Available Screens (%1)": "Pantallas disponibles (%1)"
+  },
+  "Available in Detailed and Forecast view modes": {
+    "Available in Detailed and Forecast view modes": ""
   },
   "BSSID": {
     "BSSID": "BSSID"
@@ -499,6 +529,9 @@
   },
   "Border Opacity": {
     "Border Opacity": "Opacidad del borde"
+  },
+  "Border Size": {
+    "Border Size": ""
   },
   "Border Thickness": {
     "Border Thickness": "Grosor del borde"
@@ -626,6 +659,9 @@
   "Choose colors from palette": {
     "Choose colors from palette": "Escoje colores de la paleta"
   },
+  "Choose how the weather widget is displayed": {
+    "Choose how the weather widget is displayed": ""
+  },
   "Choose icon": {
     "Choose icon": "Elegir icono"
   },
@@ -671,6 +707,12 @@
   "Clear at Startup": {
     "Clear at Startup": "Limpiar al inicio"
   },
+  "Click 'Setup' to create %1 and add include to config.": {
+    "Click 'Setup' to create %1 and add include to config.": ""
+  },
+  "Click 'Setup' to create cursor config and add include to your compositor config.": {
+    "Click 'Setup' to create cursor config and add include to your compositor config.": ""
+  },
   "Click 'Setup' to create dms/binds.kdl and add include to config.kdl.": {
     "Click 'Setup' to create dms/binds.kdl and add include to config.kdl.": "Haz clic en \"Configurar\" para crear dms/binds.kdl y añadir include a config.kdl."
   },
@@ -679,6 +721,9 @@
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "Clic en importar para añadir un archivo .ovpn o .conf"
+  },
+  "Click any shortcut to edit. Changes save to %1": {
+    "Click any shortcut to edit. Changes save to %1": ""
   },
   "Click any shortcut to edit. Changes save to dms/binds.kdl": {
     "Click any shortcut to edit. Changes save to dms/binds.kdl": "Haz clic en cualquier acceso directo para editarlo. Los cambios se guardan en dms/binds.kdl"
@@ -755,6 +800,9 @@
   "Communication": {
     "Communication": "Comunicación"
   },
+  "Compact": {
+    "Compact": ""
+  },
   "Compact Mode": {
     "Compact Mode": "Modo compacto"
   },
@@ -812,6 +860,9 @@
   "Connect": {
     "Connect": "Conectar"
   },
+  "Connect to Hidden Network": {
+    "Connect to Hidden Network": ""
+  },
   "Connect to VPN": {
     "Connect to VPN": "Conectar a una VPN"
   },
@@ -853,6 +904,9 @@
   },
   "Copied!": {
     "Copied!": "¡Copiado!"
+  },
+  "Copy": {
+    "Copy": ""
   },
   "Copy PID": {
     "Copy PID": "Copiar ID del Proceso"
@@ -908,8 +962,23 @@
   "Current: %1": {
     "Current: %1": "Actual: %1"
   },
+  "Cursor Config Not Configured": {
+    "Cursor Config Not Configured": ""
+  },
+  "Cursor Include Missing": {
+    "Cursor Include Missing": ""
+  },
+  "Cursor Size": {
+    "Cursor Size": ""
+  },
+  "Cursor Theme": {
+    "Cursor Theme": ""
+  },
   "Custom": {
     "Custom": "Personal"
+  },
+  "Custom Color": {
+    "Custom Color": ""
   },
   "Custom Duration": {
     "Custom Duration": "Duracion personalizada"
@@ -1073,6 +1142,9 @@
   "Desktop clock widget name": {
     "Desktop Clock": "Reloj de escritorio"
   },
+  "Detailed": {
+    "Detailed": ""
+  },
   "Development": {
     "Development": "Desarrollo"
   },
@@ -1159,6 +1231,9 @@
   },
   "Display currently focused application title": {
     "Display currently focused application title": "Mostrar título de la aplicación enfocada"
+  },
+  "Display hourly weather predictions": {
+    "Display hourly weather predictions": ""
   },
   "Display only workspaces that contain windows": {
     "Display only workspaces that contain windows": "Mostrar solo los espacios que contengan ventanas"
@@ -1342,6 +1417,9 @@
   },
   "Enter launch prefix (e.g., 'uwsm-app')": {
     "Enter launch prefix (e.g., 'uwsm-app')": "Introduce prefijo de lanzamiento (e.j.,'uwsm-app')"
+  },
+  "Enter network name and password": {
+    "Enter network name and password": ""
   },
   "Enter passkey for ": {
     "Enter passkey for ": "Ingresar clave para "
@@ -1535,6 +1613,9 @@
   "Failed to write temp file for validation": {
     "Failed to write temp file for validation": "Fallo al escribir archivo temporal para la validacion"
   },
+  "Feels": {
+    "Feels": ""
+  },
   "Feels Like": {
     "Feels Like": "Temperatura"
   },
@@ -1570,6 +1651,9 @@
   },
   "Fixing...": {
     "Fixing...": "Arreglando..."
+  },
+  "Flags": {
+    "Flags": ""
   },
   "Flipped": {
     "Flipped": "Voltear"
@@ -1615,6 +1699,12 @@
   },
   "Force terminal applications to always use dark color schemes": {
     "Force terminal applications to always use dark color schemes": "Forzar que las aplicaciones de terminal usen esquemas de colores oscuros"
+  },
+  "Forecast": {
+    "Forecast": ""
+  },
+  "Forecast Days": {
+    "Forecast Days": ""
   },
   "Forecast Not Available": {
     "Forecast Not Available": "No hay previsión del tiempo disponible"
@@ -1727,11 +1817,32 @@
   "Hibernate": {
     "Hibernate": "Hibernar"
   },
+  "Hidden": {
+    "Hidden": ""
+  },
+  "Hidden Network": {
+    "Hidden Network": ""
+  },
   "Hide Delay": {
     "Hide Delay": "Ocultar Retardo"
   },
+  "Hide When Typing": {
+    "Hide When Typing": ""
+  },
   "Hide When Windows Open": {
     "Hide When Windows Open": "Ocultar opciones cuando hay ventanas abiertas"
+  },
+  "Hide cursor after inactivity (0 = disabled)": {
+    "Hide cursor after inactivity (0 = disabled)": ""
+  },
+  "Hide cursor when pressing keyboard keys": {
+    "Hide cursor when pressing keyboard keys": ""
+  },
+  "Hide cursor when using touch input": {
+    "Hide cursor when using touch input": ""
+  },
+  "Hide on Touch": {
+    "Hide on Touch": ""
   },
   "Hide the dock when not in use and reveal it when hovering near the dock area": {
     "Hide the dock when not in use and reveal it when hovering near the dock area": "Ocultar el dock cuando no esté en uso y mostrarlo cuando se pasé el ratón cerca del área de este"
@@ -1769,11 +1880,17 @@
   "Hourly Forecast": {
     "Hourly Forecast": "Previsión horaria"
   },
+  "Hourly Forecast Count": {
+    "Hourly Forecast Count": ""
+  },
   "How often to change wallpaper": {
     "How often to change wallpaper": "Con qué frecuencia cambiar el fondo de pantalla"
   },
   "Humidity": {
     "Humidity": "Humedad"
+  },
+  "Hyprland Layout Overrides": {
+    "Hyprland Layout Overrides": ""
   },
   "I Understand": {
     "I Understand": "Lo entiendo"
@@ -1888,6 +2005,15 @@
   },
   "Key": {
     "Key": "Tecla"
+  },
+  "Keybind Sources": {
+    "Keybind Sources": ""
+  },
+  "Keybinds Search Settings": {
+    "Keybinds Search Settings": ""
+  },
+  "Keybinds shown alongside regular search results": {
+    "Keybinds shown alongside regular search results": ""
   },
   "Keyboard Layout Name": {
     "Keyboard Layout Name": "Distribución de teclado"
@@ -2012,6 +2138,9 @@
   "Lock fade grace period": {
     "Lock fade grace period": ""
   },
+  "Locked": {
+    "Locked": ""
+  },
   "Log Out": {
     "Log Out": "Cerrar sesión"
   },
@@ -2020,6 +2149,9 @@
   },
   "Long Text": {
     "Long Text": "Texto largo"
+  },
+  "Long press": {
+    "Long press": ""
   },
   "Longitude": {
     "Longitude": "Longitud"
@@ -2041,6 +2173,9 @@
   },
   "Management": {
     "Management": "Gestión"
+  },
+  "MangoWC Layout Overrides": {
+    "MangoWC Layout Overrides": ""
   },
   "Manual Coordinates": {
     "Manual Coordinates": "Coordenadas manuales"
@@ -2204,6 +2339,12 @@
   "Mount": {
     "Mount": "Montar"
   },
+  "Mouse pointer appearance": {
+    "Mouse pointer appearance": ""
+  },
+  "Mouse pointer size in pixels": {
+    "Mouse pointer size in pixels": ""
+  },
   "Move Widget": {
     "Move Widget": "Mover widget"
   },
@@ -2236,6 +2377,9 @@
   },
   "Network Information": {
     "Network Information": "Información de red"
+  },
+  "Network Name (SSID)": {
+    "Network Name (SSID)": ""
   },
   "Network Speed Monitor": {
     "Network Speed Monitor": "Monitor de velocidad de red"
@@ -2305,6 +2449,9 @@
   },
   "No VPN profiles": {
     "No VPN profiles": "Sin perfiles VPN"
+  },
+  "No Weather Data": {
+    "No Weather Data": ""
   },
   "No Weather Data Available": {
     "No Weather Data Available": "No hay datos meteorológicos disponibles"
@@ -2395,6 +2542,9 @@
   },
   "Not connected": {
     "Not connected": "No conectado"
+  },
+  "Not detected": {
+    "Not detected": ""
   },
   "Note: this only changes the percentage, it does not actually limit charging.": {
     "Note: this only changes the percentage, it does not actually limit charging.": "Nota: esto sólo cambia el porcentaje, no limita realmente la carga."
@@ -2509,6 +2659,9 @@
   },
   "Override": {
     "Override": "Sobrescribir"
+  },
+  "Override Border Size": {
+    "Override Border Size": ""
   },
   "Override Corner Radius": {
     "Override Corner Radius": "Anular radio de esquina"
@@ -2684,6 +2837,9 @@
   "Power source": {
     "Power source": "Fuente de energia"
   },
+  "Precip": {
+    "Precip": ""
+  },
   "Precipitation Chance": {
     "Precipitation Chance": "Probabilidad de lluvia"
   },
@@ -2801,6 +2957,9 @@
   "Reject Jobs": {
     "Reject Jobs": "Rechazar trabajos"
   },
+  "Release": {
+    "Release": ""
+  },
   "Reload Plugin": {
     "Reload Plugin": "Reiniciar complemento"
   },
@@ -2809,6 +2968,9 @@
   },
   "Remove gaps and border when windows are maximized": {
     "Remove gaps and border when windows are maximized": "Eliminar espacios y bordes cuando las ventanas estan maximizadas"
+  },
+  "Repeat": {
+    "Repeat": ""
   },
   "Report": {
     "Report": "Reporte"
@@ -2884,6 +3046,12 @@
   },
   "Rounded corners for windows": {
     "Rounded corners for windows": "Esquinas redondeadas para ventanas"
+  },
+  "Rounded corners for windows (border_radius)": {
+    "Rounded corners for windows (border_radius)": ""
+  },
+  "Rounded corners for windows (decoration.rounding)": {
+    "Rounded corners for windows (decoration.rounding)": ""
   },
   "Run DMS Templates": {
     "Run DMS Templates": "Ejecutar plantillas de DMS"
@@ -2969,6 +3137,9 @@
   "Scrolling": {
     "Scrolling": "Desplazamiento"
   },
+  "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
+    "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": ""
+  },
   "Search file contents": {
     "Search file contents": "Buscar dentro de los archivos"
   },
@@ -2980,6 +3151,9 @@
   },
   "Search keybinds...": {
     "Search keybinds...": "Buscar combinaciones de tecla"
+  },
+  "Search keyboard shortcuts from your compositor and applications": {
+    "Search keyboard shortcuts from your compositor and applications": ""
   },
   "Search plugins...": {
     "Search plugins...": "Buscar complementos..."
@@ -3023,6 +3197,9 @@
   "Select an image file...": {
     "Select an image file...": "Selecciona un archivo de imagen..."
   },
+  "Select at least one provider": {
+    "Select at least one provider": ""
+  },
   "Select device...": {
     "Select device...": "Elegir dispositivo..."
   },
@@ -3046,6 +3223,9 @@
   },
   "Select the palette algorithm used for wallpaper-based colors": {
     "Select the palette algorithm used for wallpaper-based colors": "Selecciona el algoritmo de colores del fondo de pantalla"
+  },
+  "Select which keybind providers to include": {
+    "Select which keybind providers to include": ""
   },
   "Select which transitions to include in randomization": {
     "Select which transitions to include in randomization": "Seleccionar transiciones para aplicar de forma aleatoria"
@@ -3113,6 +3293,12 @@
   "Show Dock": {
     "Show Dock": "Mostrar dock"
   },
+  "Show Feels Like Temperature": {
+    "Show Feels Like Temperature": ""
+  },
+  "Show Forecast": {
+    "Show Forecast": ""
+  },
   "Show GPU Temperature": {
     "Show GPU Temperature": "Mostrar temperatura de la GPU"
   },
@@ -3125,8 +3311,17 @@
   "Show Hour Numbers": {
     "Show Hour Numbers": "Mostrar números de horas"
   },
+  "Show Hourly Forecast": {
+    "Show Hourly Forecast": ""
+  },
+  "Show Humidity": {
+    "Show Humidity": ""
+  },
   "Show Line Numbers": {
     "Show Line Numbers": "Mostrar números de líneas"
+  },
+  "Show Location": {
+    "Show Location": ""
   },
   "Show Lock": {
     "Show Lock": "Mostrar Bloquear"
@@ -3152,6 +3347,12 @@
   "Show Power Off": {
     "Show Power Off": "Mostrar Apagar"
   },
+  "Show Precipitation Probability": {
+    "Show Precipitation Probability": ""
+  },
+  "Show Pressure": {
+    "Show Pressure": ""
+  },
   "Show Reboot": {
     "Show Reboot": "Mostrar Reiniciar"
   },
@@ -3161,11 +3362,23 @@
   "Show Seconds": {
     "Show Seconds": "Mostrar segundos"
   },
+  "Show Sunrise/Sunset": {
+    "Show Sunrise/Sunset": ""
+  },
   "Show Suspend": {
     "Show Suspend": "Mostrar Suspender"
   },
   "Show Top Processes": {
     "Show Top Processes": "Mostrar procesos principales"
+  },
+  "Show Weather Condition": {
+    "Show Weather Condition": ""
+  },
+  "Show Welcome": {
+    "Show Welcome": ""
+  },
+  "Show Wind Speed": {
+    "Show Wind Speed": ""
   },
   "Show Workspace Apps": {
     "Show Workspace Apps": "Mostrar aplicaciones en el espacio de trabajo"
@@ -3190,6 +3403,9 @@
   },
   "Show on Overview": {
     "Show on Overview": "Mostrar en vista general"
+  },
+  "Show on Overview Only": {
+    "Show on Overview Only": ""
   },
   "Show on all connected displays": {
     "Show on all connected displays": "Mostrar en todas las pantallas conectadas"
@@ -3296,6 +3512,12 @@
   "Space between windows": {
     "Space between windows": "Espacio entre ventanas"
   },
+  "Space between windows (gappih/gappiv/gappoh/gappov)": {
+    "Space between windows (gappih/gappiv/gappoh/gappov)": ""
+  },
+  "Space between windows (gaps_in and gaps_out)": {
+    "Space between windows (gaps_in and gaps_out)": ""
+  },
   "Spacer": {
     "Spacer": "Espaciador"
   },
@@ -3316,6 +3538,9 @@
   },
   "Stacked": {
     "Stacked": "Apilado"
+  },
+  "Standard": {
+    "Standard": ""
   },
   "Start": {
     "Start": "Empezar"
@@ -3539,6 +3764,9 @@
   "Toner Low": {
     "Toner Low": "Tóner bajo"
   },
+  "Tools": {
+    "Tools": ""
+  },
   "Top": {
     "Top": "Arriba"
   },
@@ -3569,11 +3797,20 @@
   "Transparency": {
     "Transparency": "Transparencia"
   },
+  "Trigger": {
+    "Trigger": ""
+  },
+  "Trigger Prefix": {
+    "Trigger Prefix": ""
+  },
   "Turn off monitors after": {
     "Turn off monitors after": "Apagar monitores después de"
   },
   "Type": {
     "Type": "Tipo"
+  },
+  "Type this prefix to search keybinds": {
+    "Type this prefix to search keybinds": ""
   },
   "Typography": {
     "Typography": "Tipografía"
@@ -3602,6 +3839,9 @@
   "Unknown Network": {
     "Unknown Network": "Red desconocida"
   },
+  "Unpin": {
+    "Unpin": ""
+  },
   "Unpin from Dock": {
     "Unpin from Dock": "Desfijar del dock"
   },
@@ -3622,6 +3862,9 @@
   },
   "Update Plugin": {
     "Update Plugin": "Actualizar complemento"
+  },
+  "Usage Tips": {
+    "Usage Tips": ""
   },
   "Use 24-hour time format instead of 12-hour AM/PM": {
     "Use 24-hour time format instead of 12-hour AM/PM": "Usar formato de 24 horas en lugar de 12 horas AM/PM"
@@ -3650,6 +3893,12 @@
   "Use animated wave progress bars for media playback": {
     "Use animated wave progress bars for media playback": "Utilizar barras de progreso con efecto de ola para la reproducción de medios"
   },
+  "Use custom border size": {
+    "Use custom border size": ""
+  },
+  "Use custom border/focus-ring width": {
+    "Use custom border/focus-ring width": ""
+  },
   "Use custom command for update your system": {
     "Use custom command for update your system": "Utilizar un comando personalizado para actualizar el sistema"
   },
@@ -3658,6 +3907,9 @@
   },
   "Use custom window radius instead of theme radius": {
     "Use custom window radius instead of theme radius": "Usar radio de ventana personalizado en lugar del radio del tema"
+  },
+  "Use custom window rounding instead of theme radius": {
+    "Use custom window rounding instead of theme radius": ""
   },
   "Use fingerprint reader for lock screen authentication (requires enrolled fingerprints)": {
     "Use fingerprint reader for lock screen authentication (requires enrolled fingerprints)": "Usar el lector de huellas dactilares para desbloquear la pantalla de bloqueo (requiere haber registrado huellas previamente)"
@@ -3668,11 +3920,17 @@
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "Usar tema de sonidos del sistema"
   },
+  "Use trigger prefix to activate": {
+    "Use trigger prefix to activate": ""
+  },
   "Use%": {
     "Use%": "Usar%"
   },
   "Used": {
     "Used": "Usado"
+  },
+  "Used when accent color is set to Custom": {
+    "Used when accent color is set to Custom": ""
   },
   "User": {
     "User": "Usuario"
@@ -3748,6 +4006,9 @@
   },
   "Vibrant palette with playful saturation.": {
     "Vibrant palette with playful saturation.": "Paleta vibrante y juguetona."
+  },
+  "View Mode": {
+    "View Mode": ""
   },
   "Visibility": {
     "Visibility": "Visibilidad"
@@ -3865,6 +4126,15 @@
   "Widget removed": {
     "Widget removed": "Widget eliminado"
   },
+  "Width of window border (borderpx)": {
+    "Width of window border (borderpx)": ""
+  },
+  "Width of window border (general.border_size)": {
+    "Width of window border (general.border_size)": ""
+  },
+  "Width of window border and focus ring": {
+    "Width of window border and focus ring": ""
+  },
   "Wind": {
     "Wind": "Viento"
   },
@@ -3879,6 +4149,9 @@
   },
   "Window Gaps (px)": {
     "Window Gaps (px)": "Separacion de ventanas (px)"
+  },
+  "Window Rounding": {
+    "Window Rounding": ""
   },
   "Workspace": {
     "Workspace": "Espacio de trabajo"
@@ -3931,6 +4204,9 @@
   "author attribution": {
     "by %1": "por %1"
   },
+  "bar shadow settings card": {
+    "Shadow": ""
+  },
   "browse themes button | theme browser header | theme browser window title": {
     "Browse Themes": "Busqueda de temas"
   },
@@ -3963,6 +4239,9 @@
   },
   "dms/binds.kdl is now included in config.kdl": {
     "dms/binds.kdl is now included in config.kdl": "dms/binds.kdl esta ahora incluido en config.kdl"
+  },
+  "dms/cursor config exists but is not included. Cursor settings won't apply.": {
+    "dms/cursor config exists but is not included. Cursor settings won't apply.": ""
   },
   "dms/outputs config exists but is not included in your compositor config. Display changes won't persist.": {
     "dms/outputs config exists but is not included in your compositor config. Display changes won't persist.": "La configuración dms/outputs existe pero no está incluida en la configuración del compositor. Los cambios de visualización no persistirán."
@@ -4000,6 +4279,149 @@
   "generic theme description": {
     "Material Design inspired color themes": "Temas de color inspirados en Material Design"
   },
+  "greeter back button": {
+    "Back": ""
+  },
+  "greeter completion page subtitle": {
+    "DankMaterialShell is ready to use": ""
+  },
+  "greeter completion page title": {
+    "You're All Set!": ""
+  },
+  "greeter configure keybinds link": {
+    "Configure Keybinds": ""
+  },
+  "greeter dankbar description": {
+    "Widgets, layout, style": ""
+  },
+  "greeter displays description": {
+    "Resolution, position, scale": ""
+  },
+  "greeter dock description": {
+    "Position, pinned apps": ""
+  },
+  "greeter doctor page button": {
+    "Run Again": ""
+  },
+  "greeter doctor page empty state": {
+    "No checks passed": "",
+    "No errors": "",
+    "No info items": "",
+    "No warnings": ""
+  },
+  "greeter doctor page error count": {
+    "%1 issue(s) found": ""
+  },
+  "greeter doctor page loading text": {
+    "Analyzing configuration...": ""
+  },
+  "greeter doctor page status card": {
+    "Errors": "",
+    "Info": "",
+    "OK": "",
+    "Warnings": ""
+  },
+  "greeter doctor page success": {
+    "All checks passed": ""
+  },
+  "greeter doctor page title": {
+    "System Check": ""
+  },
+  "greeter documentation link": {
+    "Docs": ""
+  },
+  "greeter explore section header": {
+    "Explore": ""
+  },
+  "greeter feature card description": {
+    "Background app icons": "",
+    "Colors from wallpaper": "",
+    "Community themes": "",
+    "Extensible architecture": "",
+    "GTK, Qt, IDEs, more": "",
+    "Modular widget bar": "",
+    "Night mode & gamma": "",
+    "Per-screen config": "",
+    "Quick system toggles": "",
+    "Security & privacy": ""
+  },
+  "greeter feature card title": {
+    "App Theming": "",
+    "Control Center": "",
+    "Display Control": "",
+    "Dynamic Theming": "",
+    "Multi-Monitor": "",
+    "System Tray": "",
+    "Theme Registry": ""
+  },
+  "greeter feature card title | greeter plugins link": {
+    "Plugins": ""
+  },
+  "greeter feature card title | greeter settings link": {
+    "DankBar": ""
+  },
+  "greeter feature card title | lock screen notifications settings card": {
+    "Lock Screen": ""
+  },
+  "greeter finish button": {
+    "Finish": ""
+  },
+  "greeter first page button": {
+    "Get Started": ""
+  },
+  "greeter keybinds niri description": {
+    "niri shortcuts config": ""
+  },
+  "greeter keybinds section header": {
+    "DMS Shortcuts": ""
+  },
+  "greeter modal window title": {
+    "Welcome": ""
+  },
+  "greeter next button": {
+    "Next": ""
+  },
+  "greeter no keybinds message": {
+    "No DMS shortcuts configured": ""
+  },
+  "greeter notifications description": {
+    "Popup behavior, position": ""
+  },
+  "greeter settings link": {
+    "Displays": "",
+    "Dock": "",
+    "Keybinds": "",
+    "Notifications": "",
+    "Theme & Colors": "",
+    "Wallpaper": ""
+  },
+  "greeter settings section header": {
+    "Configure": ""
+  },
+  "greeter skip button": {
+    "Skip": ""
+  },
+  "greeter skip button tooltip": {
+    "Skip setup": ""
+  },
+  "greeter theme description": {
+    "Dynamic colors, presets": ""
+  },
+  "greeter themes link": {
+    "Themes": ""
+  },
+  "greeter wallpaper description": {
+    "Background image": ""
+  },
+  "greeter welcome page section header": {
+    "Features": ""
+  },
+  "greeter welcome page tagline": {
+    "A modern desktop shell for Wayland compositors": ""
+  },
+  "greeter welcome page title": {
+    "Welcome to DankMaterialShell": ""
+  },
   "install action button": {
     "Install": "Instalar"
   },
@@ -4020,6 +4442,19 @@
   },
   "loading indicator": {
     "Loading...": "Cargando..."
+  },
+  "lock screen notification mode option": {
+    "App Names": "",
+    "Count Only": "",
+    "Disabled": "",
+    "Full Content": ""
+  },
+  "lock screen notification privacy setting": {
+    "Control what notification information is shown on the lock screen": "",
+    "Notification Display": ""
+  },
+  "lock screen notifications settings card": {
+    "Lock Screen": ""
   },
   "loginctl not available - lock integration requires DMS socket connection": {
     "loginctl not available - lock integration requires DMS socket connection": "loginctl no disponible - integración requiere conexión al socket DMS"
@@ -4128,6 +4563,13 @@
   "settings_displays": {
     "Widgets": "Widgets"
   },
+  "shadow color option": {
+    "Surface": "",
+    "Text": ""
+  },
+  "shadow intensity slider": {
+    "Intensity": ""
+  },
   "source code link": {
     "source": "fuente"
   },
@@ -4163,6 +4605,9 @@
   },
   "update dms for NM integration.": {
     "update dms for NM integration.": "Actualizar dms para integración con NM."
+  },
+  "version requirement": {
+    "Requires %1": ""
   },
   "wallpaper directory file browser title": {
     "Select Wallpaper Directory": "Elegir carpeta de fondos de pantalla"

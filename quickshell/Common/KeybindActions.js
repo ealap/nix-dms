@@ -103,7 +103,7 @@ const DMS_ACTIONS = [
     { id: "spawn dms ipc call wallpaper prev", label: "Wallpaper: Previous" }
 ];
 
-const COMPOSITOR_ACTIONS = {
+const NIRI_ACTIONS = {
     "Window": [
         { id: "close-window", label: "Close Window" },
         { id: "fullscreen-window", label: "Fullscreen" },
@@ -179,9 +179,246 @@ const COMPOSITOR_ACTIONS = {
     ]
 };
 
-const CATEGORY_ORDER = ["DMS", "Execute", "Workspace", "Window", "Monitor", "Screenshot", "System", "Overview", "Alt-Tab", "Other"];
+const MANGOWC_ACTIONS = {
+    "Window": [
+        { id: "killclient", label: "Close Window" },
+        { id: "focuslast", label: "Focus Last Window" },
+        { id: "focusstack next", label: "Focus Next in Stack" },
+        { id: "focusstack prev", label: "Focus Previous in Stack" },
+        { id: "focusdir left", label: "Focus Left" },
+        { id: "focusdir right", label: "Focus Right" },
+        { id: "focusdir up", label: "Focus Up" },
+        { id: "focusdir down", label: "Focus Down" },
+        { id: "exchange_client left", label: "Swap Left" },
+        { id: "exchange_client right", label: "Swap Right" },
+        { id: "exchange_client up", label: "Swap Up" },
+        { id: "exchange_client down", label: "Swap Down" },
+        { id: "exchange_stack_client next", label: "Swap Next in Stack" },
+        { id: "exchange_stack_client prev", label: "Swap Previous in Stack" },
+        { id: "togglefloating", label: "Toggle Floating" },
+        { id: "togglefullscreen", label: "Toggle Fullscreen" },
+        { id: "togglefakefullscreen", label: "Toggle Fake Fullscreen" },
+        { id: "togglemaximizescreen", label: "Toggle Maximize" },
+        { id: "toggleglobal", label: "Toggle Global (Sticky)" },
+        { id: "toggleoverlay", label: "Toggle Overlay" },
+        { id: "minimized", label: "Minimize Window" },
+        { id: "restore_minimized", label: "Restore Minimized" },
+        { id: "toggle_render_border", label: "Toggle Border" },
+        { id: "centerwin", label: "Center Window" },
+        { id: "zoom", label: "Swap with Master" }
+    ],
+    "Move/Resize": [
+        { id: "smartmovewin left", label: "Smart Move Left" },
+        { id: "smartmovewin right", label: "Smart Move Right" },
+        { id: "smartmovewin up", label: "Smart Move Up" },
+        { id: "smartmovewin down", label: "Smart Move Down" },
+        { id: "smartresizewin left", label: "Smart Resize Left" },
+        { id: "smartresizewin right", label: "Smart Resize Right" },
+        { id: "smartresizewin up", label: "Smart Resize Up" },
+        { id: "smartresizewin down", label: "Smart Resize Down" },
+        { id: "movewin", label: "Move Window (x,y)" },
+        { id: "resizewin", label: "Resize Window (w,h)" }
+    ],
+    "Tags": [
+        { id: "view", label: "View Tag" },
+        { id: "viewtoleft", label: "View Left Tag" },
+        { id: "viewtoright", label: "View Right Tag" },
+        { id: "viewtoleft_have_client", label: "View Left (with client)" },
+        { id: "viewtoright_have_client", label: "View Right (with client)" },
+        { id: "viewcrossmon", label: "View Cross-Monitor" },
+        { id: "tag", label: "Move to Tag" },
+        { id: "tagsilent", label: "Move to Tag (silent)" },
+        { id: "tagtoleft", label: "Move to Left Tag" },
+        { id: "tagtoright", label: "Move to Right Tag" },
+        { id: "tagcrossmon", label: "Move Cross-Monitor" },
+        { id: "toggletag", label: "Toggle Tag on Window" },
+        { id: "toggleview", label: "Toggle Tag View" },
+        { id: "comboview", label: "Combo View Tags" }
+    ],
+    "Layout": [
+        { id: "setlayout", label: "Set Layout" },
+        { id: "switch_layout", label: "Cycle Layouts" },
+        { id: "set_proportion", label: "Set Proportion" },
+        { id: "switch_proportion_preset", label: "Cycle Proportion Presets" },
+        { id: "incnmaster +1", label: "Increase Masters" },
+        { id: "incnmaster -1", label: "Decrease Masters" },
+        { id: "setmfact", label: "Set Master Factor" },
+        { id: "incgaps", label: "Adjust Gaps" },
+        { id: "togglegaps", label: "Toggle Gaps" }
+    ],
+    "Monitor": [
+        { id: "focusmon left", label: "Focus Monitor Left" },
+        { id: "focusmon right", label: "Focus Monitor Right" },
+        { id: "focusmon up", label: "Focus Monitor Up" },
+        { id: "focusmon down", label: "Focus Monitor Down" },
+        { id: "tagmon left", label: "Move to Monitor Left" },
+        { id: "tagmon right", label: "Move to Monitor Right" },
+        { id: "tagmon up", label: "Move to Monitor Up" },
+        { id: "tagmon down", label: "Move to Monitor Down" },
+        { id: "disable_monitor", label: "Disable Monitor" },
+        { id: "enable_monitor", label: "Enable Monitor" },
+        { id: "toggle_monitor", label: "Toggle Monitor" },
+        { id: "create_virtual_output", label: "Create Virtual Output" },
+        { id: "destroy_all_virtual_output", label: "Destroy Virtual Outputs" }
+    ],
+    "Scratchpad": [
+        { id: "toggle_scratchpad", label: "Toggle Scratchpad" },
+        { id: "toggle_name_scratchpad", label: "Toggle Named Scratchpad" }
+    ],
+    "Overview": [
+        { id: "toggleoverview", label: "Toggle Overview" }
+    ],
+    "System": [
+        { id: "reload_config", label: "Reload Config" },
+        { id: "quit", label: "Quit MangoWC" },
+        { id: "setkeymode", label: "Set Keymode" },
+        { id: "switch_keyboard_layout", label: "Switch Keyboard Layout" },
+        { id: "setoption", label: "Set Option" },
+        { id: "toggle_trackpad_enable", label: "Toggle Trackpad" }
+    ]
+};
 
-const ACTION_ARGS = {
+const HYPRLAND_ACTIONS = {
+    "Window": [
+        { id: "killactive", label: "Close Window" },
+        { id: "forcekillactive", label: "Force Kill Window" },
+        { id: "closewindow", label: "Close Window (by selector)" },
+        { id: "killwindow", label: "Kill Window (by selector)" },
+        { id: "togglefloating", label: "Toggle Floating" },
+        { id: "setfloating", label: "Set Floating" },
+        { id: "settiled", label: "Set Tiled" },
+        { id: "fullscreen", label: "Toggle Fullscreen" },
+        { id: "fullscreenstate", label: "Set Fullscreen State" },
+        { id: "pin", label: "Pin Window" },
+        { id: "centerwindow", label: "Center Window" },
+        { id: "resizeactive", label: "Resize Active Window" },
+        { id: "moveactive", label: "Move Active Window" },
+        { id: "resizewindowpixel", label: "Resize Window (pixels)" },
+        { id: "movewindowpixel", label: "Move Window (pixels)" },
+        { id: "alterzorder", label: "Change Z-Order" },
+        { id: "bringactivetotop", label: "Bring to Top" },
+        { id: "setprop", label: "Set Window Property" },
+        { id: "toggleswallow", label: "Toggle Swallow" }
+    ],
+    "Focus": [
+        { id: "movefocus l", label: "Focus Left" },
+        { id: "movefocus r", label: "Focus Right" },
+        { id: "movefocus u", label: "Focus Up" },
+        { id: "movefocus d", label: "Focus Down" },
+        { id: "movefocus", label: "Move Focus (direction)" },
+        { id: "cyclenext", label: "Cycle Next Window" },
+        { id: "cyclenext prev", label: "Cycle Previous Window" },
+        { id: "focuswindow", label: "Focus Window (by selector)" },
+        { id: "focuscurrentorlast", label: "Focus Current or Last" },
+        { id: "focusurgentorlast", label: "Focus Urgent or Last" }
+    ],
+    "Move": [
+        { id: "movewindow l", label: "Move Window Left" },
+        { id: "movewindow r", label: "Move Window Right" },
+        { id: "movewindow u", label: "Move Window Up" },
+        { id: "movewindow d", label: "Move Window Down" },
+        { id: "movewindow", label: "Move Window (direction)" },
+        { id: "swapwindow l", label: "Swap Left" },
+        { id: "swapwindow r", label: "Swap Right" },
+        { id: "swapwindow u", label: "Swap Up" },
+        { id: "swapwindow d", label: "Swap Down" },
+        { id: "swapwindow", label: "Swap Window (direction)" },
+        { id: "swapnext", label: "Swap with Next" },
+        { id: "swapnext prev", label: "Swap with Previous" },
+        { id: "movecursortocorner", label: "Move Cursor to Corner" },
+        { id: "movecursor", label: "Move Cursor (x,y)" }
+    ],
+    "Workspace": [
+        { id: "workspace", label: "Focus Workspace" },
+        { id: "workspace +1", label: "Next Workspace" },
+        { id: "workspace -1", label: "Previous Workspace" },
+        { id: "workspace e+1", label: "Next Open Workspace" },
+        { id: "workspace e-1", label: "Previous Open Workspace" },
+        { id: "workspace previous", label: "Previous Visited Workspace" },
+        { id: "workspace previous_per_monitor", label: "Previous on Monitor" },
+        { id: "workspace empty", label: "First Empty Workspace" },
+        { id: "movetoworkspace", label: "Move to Workspace" },
+        { id: "movetoworkspace +1", label: "Move to Next Workspace" },
+        { id: "movetoworkspace -1", label: "Move to Previous Workspace" },
+        { id: "movetoworkspacesilent", label: "Move to Workspace (silent)" },
+        { id: "movetoworkspacesilent +1", label: "Move to Next (silent)" },
+        { id: "movetoworkspacesilent -1", label: "Move to Previous (silent)" },
+        { id: "togglespecialworkspace", label: "Toggle Special Workspace" },
+        { id: "focusworkspaceoncurrentmonitor", label: "Focus Workspace on Current Monitor" },
+        { id: "renameworkspace", label: "Rename Workspace" }
+    ],
+    "Monitor": [
+        { id: "focusmonitor l", label: "Focus Monitor Left" },
+        { id: "focusmonitor r", label: "Focus Monitor Right" },
+        { id: "focusmonitor u", label: "Focus Monitor Up" },
+        { id: "focusmonitor d", label: "Focus Monitor Down" },
+        { id: "focusmonitor +1", label: "Focus Next Monitor" },
+        { id: "focusmonitor -1", label: "Focus Previous Monitor" },
+        { id: "focusmonitor", label: "Focus Monitor (by selector)" },
+        { id: "movecurrentworkspacetomonitor", label: "Move Workspace to Monitor" },
+        { id: "moveworkspacetomonitor", label: "Move Specific Workspace to Monitor" },
+        { id: "swapactiveworkspaces", label: "Swap Active Workspaces" }
+    ],
+    "Groups": [
+        { id: "togglegroup", label: "Toggle Group" },
+        { id: "changegroupactive f", label: "Next in Group" },
+        { id: "changegroupactive b", label: "Previous in Group" },
+        { id: "changegroupactive", label: "Change Active in Group" },
+        { id: "moveintogroup l", label: "Move into Group Left" },
+        { id: "moveintogroup r", label: "Move into Group Right" },
+        { id: "moveintogroup u", label: "Move into Group Up" },
+        { id: "moveintogroup d", label: "Move into Group Down" },
+        { id: "moveoutofgroup", label: "Move out of Group" },
+        { id: "movewindoworgroup l", label: "Move Window/Group Left" },
+        { id: "movewindoworgroup r", label: "Move Window/Group Right" },
+        { id: "movewindoworgroup u", label: "Move Window/Group Up" },
+        { id: "movewindoworgroup d", label: "Move Window/Group Down" },
+        { id: "movegroupwindow f", label: "Swap Forward in Group" },
+        { id: "movegroupwindow b", label: "Swap Backward in Group" },
+        { id: "lockgroups lock", label: "Lock All Groups" },
+        { id: "lockgroups unlock", label: "Unlock All Groups" },
+        { id: "lockgroups toggle", label: "Toggle Groups Lock" },
+        { id: "lockactivegroup lock", label: "Lock Active Group" },
+        { id: "lockactivegroup unlock", label: "Unlock Active Group" },
+        { id: "lockactivegroup toggle", label: "Toggle Active Group Lock" },
+        { id: "denywindowfromgroup on", label: "Deny Window from Group" },
+        { id: "denywindowfromgroup off", label: "Allow Window in Group" },
+        { id: "denywindowfromgroup toggle", label: "Toggle Deny from Group" },
+        { id: "setignoregrouplock on", label: "Ignore Group Lock" },
+        { id: "setignoregrouplock off", label: "Respect Group Lock" },
+        { id: "setignoregrouplock toggle", label: "Toggle Ignore Group Lock" }
+    ],
+    "Layout": [
+        { id: "splitratio", label: "Adjust Split Ratio" }
+    ],
+    "System": [
+        { id: "exit", label: "Exit Hyprland" },
+        { id: "forcerendererreload", label: "Force Renderer Reload" },
+        { id: "dpms on", label: "DPMS On" },
+        { id: "dpms off", label: "DPMS Off" },
+        { id: "dpms toggle", label: "DPMS Toggle" },
+        { id: "forceidle", label: "Force Idle" },
+        { id: "submap", label: "Enter Submap" },
+        { id: "submap reset", label: "Reset Submap" },
+        { id: "global", label: "Global Shortcut" },
+        { id: "event", label: "Emit Custom Event" }
+    ],
+    "Pass-through": [
+        { id: "pass", label: "Pass Key to Window" },
+        { id: "sendshortcut", label: "Send Shortcut to Window" },
+        { id: "sendkeystate", label: "Send Key State" }
+    ]
+};
+
+const COMPOSITOR_ACTIONS = {
+    niri: NIRI_ACTIONS,
+    mangowc: MANGOWC_ACTIONS,
+    hyprland: HYPRLAND_ACTIONS
+};
+
+const CATEGORY_ORDER = ["DMS", "Execute", "Workspace", "Tags", "Window", "Move/Resize", "Focus", "Move", "Layout", "Groups", "Monitor", "Scratchpad", "Screenshot", "System", "Pass-through", "Overview", "Alt-Tab", "Other"];
+
+const NIRI_ACTION_ARGS = {
     "set-column-width": {
         args: [{ name: "value", type: "text", label: "Width", placeholder: "+10%, -10%, 50%" }]
     },
@@ -218,6 +455,253 @@ const ACTION_ARGS = {
             { name: "write-to-disk", type: "bool", label: "Save to disk" }
         ]
     }
+};
+
+const MANGOWC_ACTION_ARGS = {
+    "view": {
+        args: [
+            { name: "tag", type: "number", label: "Tag", placeholder: "1-9" },
+            { name: "monitor", type: "number", label: "Monitor", placeholder: "0", default: "0" }
+        ]
+    },
+    "tag": {
+        args: [
+            { name: "tag", type: "number", label: "Tag", placeholder: "1-9" },
+            { name: "monitor", type: "number", label: "Monitor", placeholder: "0", default: "0" }
+        ]
+    },
+    "tagsilent": {
+        args: [
+            { name: "tag", type: "number", label: "Tag", placeholder: "1-9" },
+            { name: "monitor", type: "number", label: "Monitor", placeholder: "0", default: "0" }
+        ]
+    },
+    "toggletag": {
+        args: [
+            { name: "tag", type: "number", label: "Tag", placeholder: "1-9" },
+            { name: "monitor", type: "number", label: "Monitor", placeholder: "0", default: "0" }
+        ]
+    },
+    "toggleview": {
+        args: [
+            { name: "tag", type: "number", label: "Tag", placeholder: "1-9" },
+            { name: "monitor", type: "number", label: "Monitor", placeholder: "0", default: "0" }
+        ]
+    },
+    "comboview": {
+        args: [{ name: "tags", type: "text", label: "Tags", placeholder: "1,2,3" }]
+    },
+    "setlayout": {
+        args: [{ name: "layout", type: "text", label: "Layout", placeholder: "tile, monocle, grid, deck" }]
+    },
+    "set_proportion": {
+        args: [{ name: "value", type: "text", label: "Proportion", placeholder: "0.5, +0.1, -0.1" }]
+    },
+    "setmfact": {
+        args: [{ name: "value", type: "text", label: "Factor", placeholder: "+0.05, -0.05" }]
+    },
+    "incgaps": {
+        args: [{ name: "value", type: "number", label: "Amount", placeholder: "+5, -5" }]
+    },
+    "movewin": {
+        args: [{ name: "value", type: "text", label: "Position", placeholder: "x,y or +10,+10" }]
+    },
+    "resizewin": {
+        args: [{ name: "value", type: "text", label: "Size", placeholder: "w,h or +10,+10" }]
+    },
+    "setkeymode": {
+        args: [{ name: "mode", type: "text", label: "Mode", placeholder: "default, custom" }]
+    },
+    "setoption": {
+        args: [{ name: "option", type: "text", label: "Option", placeholder: "option_name value" }]
+    },
+    "toggle_name_scratchpad": {
+        args: [{ name: "name", type: "text", label: "Name", placeholder: "scratchpad name" }]
+    },
+    "incnmaster": {
+        args: [{ name: "value", type: "number", label: "Amount", placeholder: "+1, -1" }]
+    }
+};
+
+const HYPRLAND_ACTION_ARGS = {
+    "workspace": {
+        args: [{ name: "value", type: "text", label: "Workspace", placeholder: "1, +1, -1, name:..." }]
+    },
+    "movetoworkspace": {
+        args: [
+            { name: "workspace", type: "text", label: "Workspace", placeholder: "1, +1, special:name" },
+            { name: "window", type: "text", label: "Window (optional)", placeholder: "class:^(app)$" }
+        ]
+    },
+    "movetoworkspacesilent": {
+        args: [
+            { name: "workspace", type: "text", label: "Workspace", placeholder: "1, +1, special:name" },
+            { name: "window", type: "text", label: "Window (optional)", placeholder: "class:^(app)$" }
+        ]
+    },
+    "focusworkspaceoncurrentmonitor": {
+        args: [{ name: "value", type: "text", label: "Workspace", placeholder: "1, +1, name:..." }]
+    },
+    "togglespecialworkspace": {
+        args: [{ name: "name", type: "text", label: "Name (optional)", placeholder: "scratchpad" }]
+    },
+    "focusmonitor": {
+        args: [{ name: "value", type: "text", label: "Monitor", placeholder: "l, r, +1, DP-1" }]
+    },
+    "movecurrentworkspacetomonitor": {
+        args: [{ name: "monitor", type: "text", label: "Monitor", placeholder: "l, r, DP-1" }]
+    },
+    "moveworkspacetomonitor": {
+        args: [
+            { name: "workspace", type: "text", label: "Workspace", placeholder: "1, name:..." },
+            { name: "monitor", type: "text", label: "Monitor", placeholder: "DP-1" }
+        ]
+    },
+    "swapactiveworkspaces": {
+        args: [
+            { name: "monitor1", type: "text", label: "Monitor 1", placeholder: "DP-1" },
+            { name: "monitor2", type: "text", label: "Monitor 2", placeholder: "DP-2" }
+        ]
+    },
+    "renameworkspace": {
+        args: [
+            { name: "id", type: "number", label: "Workspace ID", placeholder: "1" },
+            { name: "name", type: "text", label: "New Name", placeholder: "work" }
+        ]
+    },
+    "fullscreen": {
+        args: [{ name: "mode", type: "text", label: "Mode", placeholder: "0=full, 1=max, 2=fake" }]
+    },
+    "fullscreenstate": {
+        args: [
+            { name: "internal", type: "text", label: "Internal", placeholder: "-1, 0, 1, 2, 3" },
+            { name: "client", type: "text", label: "Client", placeholder: "-1, 0, 1, 2, 3" }
+        ]
+    },
+    "resizeactive": {
+        args: [{ name: "value", type: "text", label: "Size", placeholder: "10 -10, 20% 0" }]
+    },
+    "moveactive": {
+        args: [{ name: "value", type: "text", label: "Position", placeholder: "10 -10, exact 100 100" }]
+    },
+    "resizewindowpixel": {
+        args: [
+            { name: "size", type: "text", label: "Size", placeholder: "100 100" },
+            { name: "window", type: "text", label: "Window", placeholder: "class:^(app)$" }
+        ]
+    },
+    "movewindowpixel": {
+        args: [
+            { name: "position", type: "text", label: "Position", placeholder: "100 100" },
+            { name: "window", type: "text", label: "Window", placeholder: "class:^(app)$" }
+        ]
+    },
+    "splitratio": {
+        args: [{ name: "value", type: "text", label: "Ratio", placeholder: "+0.1, -0.1, exact 0.5" }]
+    },
+    "closewindow": {
+        args: [{ name: "window", type: "text", label: "Window", placeholder: "class:^(app)$" }]
+    },
+    "killwindow": {
+        args: [{ name: "window", type: "text", label: "Window", placeholder: "class:^(app)$" }]
+    },
+    "focuswindow": {
+        args: [{ name: "window", type: "text", label: "Window", placeholder: "class:^(app)$" }]
+    },
+    "tagwindow": {
+        args: [
+            { name: "tag", type: "text", label: "Tag", placeholder: "+mytag, -mytag" },
+            { name: "window", type: "text", label: "Window (optional)", placeholder: "class:^(app)$" }
+        ]
+    },
+    "alterzorder": {
+        args: [
+            { name: "zheight", type: "text", label: "Z-Height", placeholder: "top, bottom" },
+            { name: "window", type: "text", label: "Window (optional)", placeholder: "class:^(app)$" }
+        ]
+    },
+    "setprop": {
+        args: [
+            { name: "window", type: "text", label: "Window", placeholder: "class:^(app)$" },
+            { name: "property", type: "text", label: "Property", placeholder: "opaque, alpha..." },
+            { name: "value", type: "text", label: "Value", placeholder: "1, toggle" }
+        ]
+    },
+    "signal": {
+        args: [{ name: "signal", type: "number", label: "Signal", placeholder: "9" }]
+    },
+    "signalwindow": {
+        args: [
+            { name: "window", type: "text", label: "Window", placeholder: "class:^(app)$" },
+            { name: "signal", type: "number", label: "Signal", placeholder: "9" }
+        ]
+    },
+    "submap": {
+        args: [{ name: "name", type: "text", label: "Submap Name", placeholder: "resize, reset" }]
+    },
+    "global": {
+        args: [{ name: "name", type: "text", label: "Shortcut Name", placeholder: "app:action" }]
+    },
+    "event": {
+        args: [{ name: "data", type: "text", label: "Event Data", placeholder: "custom data" }]
+    },
+    "pass": {
+        args: [{ name: "window", type: "text", label: "Window", placeholder: "class:^(app)$" }]
+    },
+    "sendshortcut": {
+        args: [
+            { name: "mod", type: "text", label: "Modifier", placeholder: "SUPER, ALT" },
+            { name: "key", type: "text", label: "Key", placeholder: "F4" },
+            { name: "window", type: "text", label: "Window (optional)", placeholder: "class:^(app)$" }
+        ]
+    },
+    "sendkeystate": {
+        args: [
+            { name: "mod", type: "text", label: "Modifier", placeholder: "SUPER" },
+            { name: "key", type: "text", label: "Key", placeholder: "a" },
+            { name: "state", type: "text", label: "State", placeholder: "down, repeat, up" },
+            { name: "window", type: "text", label: "Window", placeholder: "class:^(app)$" }
+        ]
+    },
+    "forceidle": {
+        args: [{ name: "seconds", type: "number", label: "Seconds", placeholder: "300" }]
+    },
+    "movecursortocorner": {
+        args: [{ name: "corner", type: "number", label: "Corner", placeholder: "0-3 (BL, BR, TR, TL)" }]
+    },
+    "movecursor": {
+        args: [
+            { name: "x", type: "number", label: "X", placeholder: "100" },
+            { name: "y", type: "number", label: "Y", placeholder: "100" }
+        ]
+    },
+    "changegroupactive": {
+        args: [{ name: "direction", type: "text", label: "Direction/Index", placeholder: "f, b, or index" }]
+    },
+    "movefocus": {
+        args: [{ name: "direction", type: "text", label: "Direction", placeholder: "l, r, u, d" }]
+    },
+    "movewindow": {
+        args: [{ name: "direction", type: "text", label: "Direction/Monitor", placeholder: "l, r, mon:DP-1" }]
+    },
+    "swapwindow": {
+        args: [{ name: "direction", type: "text", label: "Direction", placeholder: "l, r, u, d" }]
+    },
+    "moveintogroup": {
+        args: [{ name: "direction", type: "text", label: "Direction", placeholder: "l, r, u, d" }]
+    },
+    "movewindoworgroup": {
+        args: [{ name: "direction", type: "text", label: "Direction", placeholder: "l, r, u, d" }]
+    },
+    "cyclenext": {
+        args: [{ name: "options", type: "text", label: "Options", placeholder: "prev, tiled, floating" }]
+    }
+};
+
+const ACTION_ARGS = {
+    niri: NIRI_ACTION_ARGS,
+    mangowc: MANGOWC_ACTION_ARGS,
+    hyprland: HYPRLAND_ACTION_ARGS
 };
 
 const DMS_ACTION_ARGS = {
@@ -287,12 +771,18 @@ function getDmsActions(isNiri, isHyprland) {
     return result;
 }
 
-function getCompositorCategories() {
-    return Object.keys(COMPOSITOR_ACTIONS);
+function getCompositorCategories(compositor) {
+    var actions = COMPOSITOR_ACTIONS[compositor];
+    if (!actions)
+        return [];
+    return Object.keys(actions);
 }
 
-function getCompositorActions(category) {
-    return COMPOSITOR_ACTIONS[category] || [];
+function getCompositorActions(compositor, category) {
+    var actions = COMPOSITOR_ACTIONS[compositor];
+    if (!actions)
+        return [];
+    return actions[category] || [];
 }
 
 function getCategoryOrder() {
@@ -307,9 +797,12 @@ function findDmsAction(actionId) {
     return null;
 }
 
-function findCompositorAction(actionId) {
-    for (const cat in COMPOSITOR_ACTIONS) {
-        const acts = COMPOSITOR_ACTIONS[cat];
+function findCompositorAction(compositor, actionId) {
+    var actions = COMPOSITOR_ACTIONS[compositor];
+    if (!actions)
+        return null;
+    for (const cat in actions) {
+        const acts = actions[cat];
         for (let i = 0; i < acts.length; i++) {
             if (acts[i].id === actionId)
                 return acts[i];
@@ -318,7 +811,7 @@ function findCompositorAction(actionId) {
     return null;
 }
 
-function getActionLabel(action) {
+function getActionLabel(action, compositor) {
     if (!action)
         return "";
 
@@ -326,10 +819,15 @@ function getActionLabel(action) {
     if (dmsAct)
         return dmsAct.label;
 
-    var base = action.split(" ")[0];
-    var compAct = findCompositorAction(base);
-    if (compAct)
-        return compAct.label;
+    if (compositor) {
+        var compAct = findCompositorAction(compositor, action);
+        if (compAct)
+            return compAct.label;
+        var base = action.split(" ")[0];
+        compAct = findCompositorAction(compositor, base);
+        if (compAct)
+            return compAct.label;
+    }
 
     if (action.startsWith("spawn sh -c "))
         return action.slice(12).replace(/^["']|["']$/g, "");
@@ -343,7 +841,7 @@ function getActionType(action) {
         return "compositor";
     if (action.startsWith("spawn dms ipc call "))
         return "dms";
-    if (action.startsWith("spawn sh -c ") || action.startsWith("spawn bash -c "))
+    if (action.startsWith("spawn sh -c ") || action.startsWith("spawn bash -c ") || action.startsWith("spawn_shell "))
         return "shell";
     if (action.startsWith("spawn "))
         return "spawn";
@@ -364,16 +862,21 @@ function isValidAction(action) {
     case "spawn ":
     case "spawn sh -c \"\"":
     case "spawn sh -c ''":
+    case "spawn_shell":
+    case "spawn_shell ":
         return false;
     }
     return true;
 }
 
-function isKnownCompositorAction(action) {
-    if (!action)
+function isKnownCompositorAction(compositor, action) {
+    if (!action || !compositor)
         return false;
+    var found = findCompositorAction(compositor, action);
+    if (found)
+        return true;
     var base = action.split(" ")[0];
-    return findCompositorAction(base) !== null;
+    return findCompositorAction(compositor, base) !== null;
 }
 
 function buildSpawnAction(command, args) {
@@ -385,9 +888,11 @@ function buildSpawnAction(command, args) {
     return "spawn " + parts.join(" ");
 }
 
-function buildShellAction(shellCmd) {
+function buildShellAction(compositor, shellCmd) {
     if (!shellCmd)
         return "";
+    if (compositor === "mangowc")
+        return "spawn_shell " + shellCmd;
     return "spawn sh -c \"" + shellCmd.replace(/"/g, "\\\"") + "\"";
 }
 
@@ -405,21 +910,25 @@ function parseSpawnCommand(action) {
 function parseShellCommand(action) {
     if (!action)
         return "";
-    if (!action.startsWith("spawn sh -c "))
-        return "";
-    var content = action.slice(12);
-    if ((content.startsWith('"') && content.endsWith('"')) || (content.startsWith("'") && content.endsWith("'")))
-        content = content.slice(1, -1);
-    return content.replace(/\\"/g, "\"");
+    if (action.startsWith("spawn sh -c ")) {
+        var content = action.slice(12);
+        if ((content.startsWith('"') && content.endsWith('"')) || (content.startsWith("'") && content.endsWith("'")))
+            content = content.slice(1, -1);
+        return content.replace(/\\"/g, "\"");
+    }
+    if (action.startsWith("spawn_shell "))
+        return action.slice(12);
+    return "";
 }
 
-function getActionArgConfig(action) {
+function getActionArgConfig(compositor, action) {
     if (!action)
         return null;
 
     var baseAction = action.split(" ")[0];
-    if (ACTION_ARGS[baseAction])
-        return { type: "compositor", base: baseAction, config: ACTION_ARGS[baseAction] };
+    var compositorArgs = ACTION_ARGS[compositor];
+    if (compositorArgs && compositorArgs[baseAction])
+        return { type: "compositor", base: baseAction, config: compositorArgs[baseAction] };
 
     for (var key in DMS_ACTION_ARGS) {
         if (action.startsWith(DMS_ACTION_ARGS[key].base))
@@ -429,7 +938,7 @@ function getActionArgConfig(action) {
     return null;
 }
 
-function parseCompositorActionArgs(action) {
+function parseCompositorActionArgs(compositor, action) {
     if (!action)
         return { base: "", args: {} };
 
@@ -437,44 +946,144 @@ function parseCompositorActionArgs(action) {
     var base = parts[0];
     var args = {};
 
-    if (!ACTION_ARGS[base])
+    var compositorArgs = ACTION_ARGS[compositor];
+    if (!compositorArgs || !compositorArgs[base])
         return { base: action, args: {} };
 
+    var argConfig = compositorArgs[base];
     var argParts = parts.slice(1);
 
-    switch (base) {
-    case "move-column-to-workspace":
-        for (var i = 0; i < argParts.length; i++) {
-            if (argParts[i] === "focus=true" || argParts[i] === "focus=false") {
-                args.focus = argParts[i] === "focus=true";
-            } else if (!args.index) {
-                args.index = argParts[i];
+    switch (compositor) {
+    case "niri":
+        switch (base) {
+        case "move-column-to-workspace":
+            for (var i = 0; i < argParts.length; i++) {
+                if (argParts[i] === "focus=true" || argParts[i] === "focus=false") {
+                    args.focus = argParts[i] === "focus=true";
+                } else if (!args.index) {
+                    args.index = argParts[i];
+                }
+            }
+            break;
+        case "move-column-to-workspace-down":
+        case "move-column-to-workspace-up":
+            for (var k = 0; k < argParts.length; k++) {
+                if (argParts[k] === "focus=true" || argParts[k] === "focus=false")
+                    args.focus = argParts[k] === "focus=true";
+            }
+            break;
+        default:
+            if (base.startsWith("screenshot")) {
+                for (var j = 0; j < argParts.length; j++) {
+                    var kv = argParts[j].split("=");
+                    if (kv.length === 2)
+                        args[kv[0]] = kv[1] === "true";
+                }
+            } else if (argParts.length > 0) {
+                args.value = argParts.join(" ");
             }
         }
         break;
-    case "move-column-to-workspace-down":
-    case "move-column-to-workspace-up":
-        for (var k = 0; k < argParts.length; k++) {
-            if (argParts[k] === "focus=true" || argParts[k] === "focus=false")
-                args.focus = argParts[k] === "focus=true";
+    case "mangowc":
+        if (argConfig.args && argConfig.args.length > 0 && argParts.length > 0) {
+            var paramStr = argParts.join(" ");
+            var paramValues = paramStr.split(",");
+            for (var m = 0; m < argConfig.args.length && m < paramValues.length; m++) {
+                args[argConfig.args[m].name] = paramValues[m];
+            }
+        }
+        break;
+    case "hyprland":
+        if (argConfig.args && argConfig.args.length > 0) {
+            switch (base) {
+            case "resizewindowpixel":
+            case "movewindowpixel":
+                var commaIdx = argParts.join(" ").indexOf(",");
+                if (commaIdx !== -1) {
+                    var fullStr = argParts.join(" ");
+                    args[argConfig.args[0].name] = fullStr.substring(0, commaIdx);
+                    args[argConfig.args[1].name] = fullStr.substring(commaIdx + 1);
+                } else if (argParts.length > 0) {
+                    args[argConfig.args[0].name] = argParts.join(" ");
+                }
+                break;
+            case "movetoworkspace":
+            case "movetoworkspacesilent":
+            case "tagwindow":
+            case "alterzorder":
+                if (argParts.length >= 2) {
+                    args[argConfig.args[0].name] = argParts[0];
+                    args[argConfig.args[1].name] = argParts.slice(1).join(" ");
+                } else if (argParts.length === 1) {
+                    args[argConfig.args[0].name] = argParts[0];
+                }
+                break;
+            case "moveworkspacetomonitor":
+            case "swapactiveworkspaces":
+            case "renameworkspace":
+            case "fullscreenstate":
+            case "movecursor":
+                if (argParts.length >= 2) {
+                    args[argConfig.args[0].name] = argParts[0];
+                    args[argConfig.args[1].name] = argParts[1];
+                } else if (argParts.length === 1) {
+                    args[argConfig.args[0].name] = argParts[0];
+                }
+                break;
+            case "setprop":
+                if (argParts.length >= 3) {
+                    args.window = argParts[0];
+                    args.property = argParts[1];
+                    args.value = argParts.slice(2).join(" ");
+                } else if (argParts.length === 2) {
+                    args.window = argParts[0];
+                    args.property = argParts[1];
+                }
+                break;
+            case "sendshortcut":
+                if (argParts.length >= 3) {
+                    args.mod = argParts[0];
+                    args.key = argParts[1];
+                    args.window = argParts.slice(2).join(" ");
+                } else if (argParts.length >= 2) {
+                    args.mod = argParts[0];
+                    args.key = argParts[1];
+                }
+                break;
+            case "sendkeystate":
+                if (argParts.length >= 4) {
+                    args.mod = argParts[0];
+                    args.key = argParts[1];
+                    args.state = argParts[2];
+                    args.window = argParts.slice(3).join(" ");
+                }
+                break;
+            case "signalwindow":
+                if (argParts.length >= 2) {
+                    args.window = argParts[0];
+                    args.signal = argParts[1];
+                }
+                break;
+            default:
+                if (argParts.length > 0) {
+                    if (argConfig.args.length === 1) {
+                        args[argConfig.args[0].name] = argParts.join(" ");
+                    } else {
+                        args.value = argParts.join(" ");
+                    }
+                }
+            }
         }
         break;
     default:
-        if (base.startsWith("screenshot")) {
-            for (var j = 0; j < argParts.length; j++) {
-                var kv = argParts[j].split("=");
-                if (kv.length === 2)
-                    args[kv[0]] = kv[1] === "true";
-            }
-        } else if (argParts.length > 0) {
+        if (argParts.length > 0)
             args.value = argParts.join(" ");
-        }
     }
 
     return { base: base, args: args };
 }
 
-function buildCompositorAction(base, args) {
+function buildCompositorAction(compositor, base, args) {
     if (!base)
         return "";
 
@@ -483,29 +1092,111 @@ function buildCompositorAction(base, args) {
     if (!args || Object.keys(args).length === 0)
         return base;
 
-    switch (base) {
-    case "move-column-to-workspace":
-        if (args.index)
-            parts.push(args.index);
-        if (args.focus === false)
-            parts.push("focus=false");
+    switch (compositor) {
+    case "niri":
+        switch (base) {
+        case "move-column-to-workspace":
+            if (args.index)
+                parts.push(args.index);
+            if (args.focus === false)
+                parts.push("focus=false");
+            break;
+        case "move-column-to-workspace-down":
+        case "move-column-to-workspace-up":
+            if (args.focus === false)
+                parts.push("focus=false");
+            break;
+        default:
+            if (base.startsWith("screenshot")) {
+                if (args["show-pointer"] === true)
+                    parts.push("show-pointer=true");
+                if (args["write-to-disk"] === true)
+                    parts.push("write-to-disk=true");
+            } else if (args.value) {
+                parts.push(args.value);
+            } else if (args.index) {
+                parts.push(args.index);
+            }
+        }
         break;
-    case "move-column-to-workspace-down":
-    case "move-column-to-workspace-up":
-        if (args.focus === false)
-            parts.push("focus=false");
-        break;
-    default:
-        if (base.startsWith("screenshot")) {
-            if (args["show-pointer"] === true)
-                parts.push("show-pointer=true");
-            if (args["write-to-disk"] === true)
-                parts.push("write-to-disk=true");
+    case "mangowc":
+        var compositorArgs = ACTION_ARGS.mangowc;
+        if (compositorArgs && compositorArgs[base] && compositorArgs[base].args) {
+            var argConfig = compositorArgs[base].args;
+            var argValues = [];
+            for (var i = 0; i < argConfig.length; i++) {
+                var argDef = argConfig[i];
+                var val = args[argDef.name];
+                if (val === undefined || val === "")
+                    val = argDef.default || "";
+                if (val === "" && argValues.length === 0)
+                    continue;
+                argValues.push(val);
+            }
+            if (argValues.length > 0)
+                parts.push(argValues.join(","));
         } else if (args.value) {
             parts.push(args.value);
-        } else if (args.index) {
-            parts.push(args.index);
         }
+        break;
+    case "hyprland":
+        var hyprArgs = ACTION_ARGS.hyprland;
+        if (hyprArgs && hyprArgs[base] && hyprArgs[base].args) {
+            var hyprConfig = hyprArgs[base].args;
+            switch (base) {
+            case "resizewindowpixel":
+            case "movewindowpixel":
+                if (args[hyprConfig[0].name])
+                    parts.push(args[hyprConfig[0].name]);
+                if (args[hyprConfig[1].name])
+                    parts[parts.length - 1] += "," + args[hyprConfig[1].name];
+                break;
+            case "setprop":
+                if (args.window)
+                    parts.push(args.window);
+                if (args.property)
+                    parts.push(args.property);
+                if (args.value)
+                    parts.push(args.value);
+                break;
+            case "sendshortcut":
+                if (args.mod)
+                    parts.push(args.mod);
+                if (args.key)
+                    parts.push(args.key);
+                if (args.window)
+                    parts.push(args.window);
+                break;
+            case "sendkeystate":
+                if (args.mod)
+                    parts.push(args.mod);
+                if (args.key)
+                    parts.push(args.key);
+                if (args.state)
+                    parts.push(args.state);
+                if (args.window)
+                    parts.push(args.window);
+                break;
+            case "signalwindow":
+                if (args.window)
+                    parts.push(args.window);
+                if (args.signal)
+                    parts.push(args.signal);
+                break;
+            default:
+                for (var j = 0; j < hyprConfig.length; j++) {
+                    var hVal = args[hyprConfig[j].name];
+                    if (hVal !== undefined && hVal !== "")
+                        parts.push(hVal);
+                }
+            }
+        } else if (args.value) {
+            parts.push(args.value);
+        }
+        break;
+    default:
+        if (args.value)
+            parts.push(args.value);
     }
 
     return parts.join(" ");

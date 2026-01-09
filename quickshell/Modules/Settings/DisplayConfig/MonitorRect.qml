@@ -83,6 +83,7 @@ Rectangle {
             font.pixelSize: Math.max(10, Math.min(14, root.width * 0.12))
             font.weight: Font.Medium
             color: root.isConnected ? Theme.surfaceText : Theme.surfaceVariantText
+            horizontalAlignment: Text.AlignHCenter
             anchors.horizontalCenter: parent.horizontalCenter
             elide: Text.ElideMiddle
             width: Math.min(implicitWidth, root.width - 8)

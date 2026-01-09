@@ -49,7 +49,35 @@
     "comment": ""
   },
   {
+    "term": "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "%1 is now included in config",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "%1 issue(s) found",
+    "translation": "",
+    "context": "greeter doctor page error count",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "%1 job(s)",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "%1 notifications",
     "translation": "",
     "context": "",
     "reference": "",
@@ -91,6 +119,13 @@
     "comment": ""
   },
   {
+    "term": "+ %1 more",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "0 = square corners",
     "translation": "",
     "context": "",
@@ -113,6 +148,13 @@
   },
   {
     "term": "1 minute",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "1 notification",
     "translation": "",
     "context": "",
     "reference": "",
@@ -280,6 +322,13 @@
     "comment": ""
   },
   {
+    "term": "A modern desktop shell for Wayland compositors",
+    "translation": "",
+    "context": "greeter welcome page tagline",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "API",
     "translation": "",
     "context": "",
@@ -295,6 +344,13 @@
   },
   {
     "term": "About",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Accent Color",
     "translation": "",
     "context": "",
     "reference": "",
@@ -351,6 +407,13 @@
   },
   {
     "term": "Activate",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Activation",
     "translation": "",
     "context": "",
     "reference": "",
@@ -497,6 +560,13 @@
     "comment": ""
   },
   {
+    "term": "All checks passed",
+    "translation": "",
+    "context": "greeter doctor page success",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "All day",
     "translation": "",
     "context": "",
@@ -512,6 +582,13 @@
   },
   {
     "term": "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Always Active",
     "translation": "",
     "context": "",
     "reference": "",
@@ -574,6 +651,13 @@
     "comment": ""
   },
   {
+    "term": "Analyzing configuration...",
+    "translation": "",
+    "context": "greeter doctor page loading text",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Animation Speed",
     "translation": "",
     "context": "",
@@ -598,6 +682,20 @@
     "term": "App Launcher",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "App Names",
+    "translation": "",
+    "context": "lock screen notification mode option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "App Theming",
+    "translation": "",
+    "context": "greeter feature card title",
     "reference": "",
     "comment": ""
   },
@@ -833,6 +931,13 @@
     "comment": ""
   },
   {
+    "term": "Auto-Hide Timeout",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Auto-close Niri overview when launching apps.",
     "translation": "",
     "context": "",
@@ -980,6 +1085,13 @@
     "comment": ""
   },
   {
+    "term": "Available in Detailed and Forecast view modes",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "BSSID",
     "translation": "",
     "context": "",
@@ -989,7 +1101,7 @@
   {
     "term": "Back",
     "translation": "",
-    "context": "",
+    "context": "greeter back button",
     "reference": "",
     "comment": ""
   },
@@ -1004,6 +1116,13 @@
     "term": "Background Opacity",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Background image",
+    "translation": "",
+    "context": "greeter wallpaper description",
     "reference": "",
     "comment": ""
   },
@@ -1177,6 +1296,13 @@
   },
   {
     "term": "Border Opacity",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Border Size",
     "translation": "",
     "context": "",
     "reference": "",
@@ -1491,6 +1617,13 @@
     "comment": ""
   },
   {
+    "term": "Choose how the weather widget is displayed",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Choose icon",
     "translation": "",
     "context": "",
@@ -1596,7 +1729,14 @@
     "comment": ""
   },
   {
-    "term": "Click 'Setup' to create dms/binds.kdl and add include to config.kdl.",
+    "term": "Click 'Setup' to create %1 and add include to config.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Click 'Setup' to create cursor config and add include to your compositor config.",
     "translation": "",
     "context": "",
     "reference": "",
@@ -1617,7 +1757,7 @@
     "comment": ""
   },
   {
-    "term": "Click any shortcut to edit. Changes save to dms/binds.kdl",
+    "term": "Click any shortcut to edit. Changes save to %1",
     "translation": "",
     "context": "",
     "reference": "",
@@ -1785,6 +1925,13 @@
     "comment": ""
   },
   {
+    "term": "Colors from wallpaper",
+    "translation": "",
+    "context": "greeter feature card description",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Column",
     "translation": "",
     "context": "",
@@ -1800,6 +1947,20 @@
   },
   {
     "term": "Communication",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Community themes",
+    "translation": "",
+    "context": "greeter feature card description",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Compact",
     "translation": "",
     "context": "",
     "reference": "",
@@ -1876,6 +2037,20 @@
     "comment": ""
   },
   {
+    "term": "Configure",
+    "translation": "",
+    "context": "greeter settings section header",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Configure Keybinds",
+    "translation": "",
+    "context": "greeter configure keybinds link",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Configure a new printer",
     "translation": "",
     "context": "",
@@ -1939,6 +2114,13 @@
     "comment": ""
   },
   {
+    "term": "Connect to Hidden Network",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Connect to VPN",
     "translation": "",
     "context": "",
@@ -1990,7 +2172,7 @@
   {
     "term": "Control Center",
     "translation": "",
-    "context": "",
+    "context": "greeter feature card title",
     "reference": "",
     "comment": ""
   },
@@ -1998,6 +2180,13 @@
     "term": "Control currently playing media",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Control what notification information is shown on the lock screen",
+    "translation": "",
+    "context": "lock screen notification privacy setting",
     "reference": "",
     "comment": ""
   },
@@ -2037,6 +2226,13 @@
     "comment": ""
   },
   {
+    "term": "Copy",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Copy PID",
     "translation": "",
     "context": "",
@@ -2068,6 +2264,13 @@
     "term": "Corners & Background",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Count Only",
+    "translation": "",
+    "context": "lock screen notification mode option",
     "reference": "",
     "comment": ""
   },
@@ -2177,7 +2380,42 @@
     "comment": ""
   },
   {
+    "term": "Cursor Config Not Configured",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Cursor Include Missing",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Cursor Size",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Cursor Theme",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Custom",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Custom Color",
     "translation": "",
     "context": "",
     "reference": "",
@@ -2310,6 +2548,13 @@
     "comment": ""
   },
   {
+    "term": "DMS Shortcuts",
+    "translation": "",
+    "context": "greeter keybinds section header",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "DMS out of date",
     "translation": "",
     "context": "",
@@ -2369,6 +2614,20 @@
     "term": "Dank Bar",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "DankBar",
+    "translation": "",
+    "context": "greeter feature card title | greeter settings link",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "DankMaterialShell is ready to use",
+    "translation": "",
+    "context": "greeter completion page subtitle",
     "reference": "",
     "comment": ""
   },
@@ -2555,6 +2814,13 @@
     "comment": ""
   },
   {
+    "term": "Detailed",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Development",
     "translation": "",
     "context": "",
@@ -2620,7 +2886,7 @@
   {
     "term": "Disabled",
     "translation": "",
-    "context": "",
+    "context": "lock screen notification mode option",
     "reference": "",
     "comment": ""
   },
@@ -2688,6 +2954,13 @@
     "comment": ""
   },
   {
+    "term": "Display Control",
+    "translation": "",
+    "context": "greeter feature card title",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Display Name Format",
     "translation": "",
     "context": "",
@@ -2751,6 +3024,13 @@
     "comment": ""
   },
   {
+    "term": "Display hourly weather predictions",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Display only workspaces that contain windows",
     "translation": "",
     "context": "",
@@ -2788,7 +3068,7 @@
   {
     "term": "Displays",
     "translation": "",
-    "context": "",
+    "context": "greeter settings link",
     "reference": "",
     "comment": ""
   },
@@ -2816,7 +3096,7 @@
   {
     "term": "Dock",
     "translation": "",
-    "context": "",
+    "context": "greeter settings link",
     "reference": "",
     "comment": ""
   },
@@ -2851,7 +3131,7 @@
   {
     "term": "Docs",
     "translation": "",
-    "context": "",
+    "context": "greeter documentation link",
     "reference": "",
     "comment": ""
   },
@@ -2940,9 +3220,23 @@
     "comment": ""
   },
   {
+    "term": "Dynamic Theming",
+    "translation": "",
+    "context": "greeter feature card title",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Dynamic colors from wallpaper",
     "translation": "",
     "context": "dynamic colors description",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Dynamic colors, presets",
+    "translation": "",
+    "context": "greeter theme description",
     "reference": "",
     "comment": ""
   },
@@ -3143,6 +3437,13 @@
     "comment": ""
   },
   {
+    "term": "Enter network name and password",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Enter passkey for ",
     "translation": "",
     "context": "",
@@ -3178,6 +3479,13 @@
     "comment": ""
   },
   {
+    "term": "Errors",
+    "translation": "",
+    "context": "greeter doctor page status card",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Ethernet",
     "translation": "",
     "context": "",
@@ -3199,9 +3507,23 @@
     "comment": ""
   },
   {
+    "term": "Explore",
+    "translation": "",
+    "context": "greeter explore section header",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Exponential",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Extensible architecture",
+    "translation": "",
+    "context": "greeter feature card description",
     "reference": "",
     "comment": ""
   },
@@ -3591,6 +3913,20 @@
     "comment": ""
   },
   {
+    "term": "Features",
+    "translation": "",
+    "context": "greeter welcome page section header",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Feels",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Feels Like",
     "translation": "",
     "context": "",
@@ -3654,6 +3990,13 @@
     "comment": ""
   },
   {
+    "term": "Finish",
+    "translation": "",
+    "context": "greeter finish button",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "First Time Setup",
     "translation": "",
     "context": "",
@@ -3669,6 +4012,13 @@
   },
   {
     "term": "Fixing...",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Flags",
     "translation": "",
     "context": "",
     "reference": "",
@@ -3780,6 +4130,20 @@
     "comment": ""
   },
   {
+    "term": "Forecast",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Forecast Days",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Forecast Not Available",
     "translation": "",
     "context": "",
@@ -3836,6 +4200,13 @@
     "comment": ""
   },
   {
+    "term": "Full Content",
+    "translation": "",
+    "context": "lock screen notification mode option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Fun",
     "translation": "",
     "context": "",
@@ -3864,6 +4235,13 @@
     "comment": ""
   },
   {
+    "term": "GTK, Qt, IDEs, more",
+    "translation": "",
+    "context": "greeter feature card description",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Games",
     "translation": "",
     "context": "",
@@ -3881,6 +4259,13 @@
     "term": "Gamma control not available. Requires DMS API v6+.",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Get Started",
+    "translation": "",
+    "context": "greeter first page button",
     "reference": "",
     "comment": ""
   },
@@ -4067,6 +4452,20 @@
     "comment": ""
   },
   {
+    "term": "Hidden",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Hidden Network",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Hide Delay",
     "translation": "",
     "context": "",
@@ -4081,7 +4480,42 @@
     "comment": ""
   },
   {
+    "term": "Hide When Typing",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Hide When Windows Open",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Hide cursor after inactivity (0 = disabled)",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Hide cursor when pressing keyboard keys",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Hide cursor when using touch input",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Hide on Touch",
     "translation": "",
     "context": "",
     "reference": "",
@@ -4186,6 +4620,13 @@
     "comment": ""
   },
   {
+    "term": "Hourly Forecast Count",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "How often to change wallpaper",
     "translation": "",
     "context": "",
@@ -4194,6 +4635,13 @@
   },
   {
     "term": "Humidity",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Hyprland Layout Overrides",
     "translation": "",
     "context": "",
     "reference": "",
@@ -4347,6 +4795,13 @@
     "comment": ""
   },
   {
+    "term": "Info",
+    "translation": "",
+    "context": "greeter doctor page status card",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Inherit",
     "translation": "",
     "context": "",
@@ -4452,6 +4907,13 @@
     "comment": ""
   },
   {
+    "term": "Intensity",
+    "translation": "",
+    "context": "shadow intensity slider",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Interface:",
     "translation": "",
     "context": "",
@@ -4537,6 +4999,34 @@
   },
   {
     "term": "Key",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Keybind Sources",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Keybinds",
+    "translation": "",
+    "context": "greeter settings link",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Keybinds Search Settings",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Keybinds shown alongside regular search results",
     "translation": "",
     "context": "",
     "reference": "",
@@ -4783,7 +5273,7 @@
   {
     "term": "Lock Screen",
     "translation": "",
-    "context": "",
+    "context": "greeter feature card title | lock screen notifications settings card",
     "reference": "",
     "comment": ""
   },
@@ -4830,6 +5320,13 @@
     "comment": ""
   },
   {
+    "term": "Locked",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Log Out",
     "translation": "",
     "context": "",
@@ -4845,6 +5342,13 @@
   },
   {
     "term": "Long Text",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Long press",
     "translation": "",
     "context": "",
     "reference": "",
@@ -4894,6 +5398,13 @@
   },
   {
     "term": "Management",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "MangoWC Layout Overrides",
     "translation": "",
     "context": "",
     "reference": "",
@@ -5257,6 +5768,13 @@
     "comment": ""
   },
   {
+    "term": "Modular widget bar",
+    "translation": "",
+    "context": "greeter feature card description",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Monitor Configuration",
     "translation": "",
     "context": "",
@@ -5306,6 +5824,20 @@
     "comment": ""
   },
   {
+    "term": "Mouse pointer appearance",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Mouse pointer size in pixels",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Move Widget",
     "translation": "",
     "context": "",
@@ -5316,6 +5848,13 @@
     "term": "Moving to Paused",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Multi-Monitor",
+    "translation": "",
+    "context": "greeter feature card title",
     "reference": "",
     "comment": ""
   },
@@ -5377,6 +5916,13 @@
   },
   {
     "term": "Network Information",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Network Name (SSID)",
     "translation": "",
     "context": "",
     "reference": "",
@@ -5446,6 +5992,13 @@
     "comment": ""
   },
   {
+    "term": "Next",
+    "translation": "",
+    "context": "greeter next button",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Next Transition",
     "translation": "",
     "context": "",
@@ -5470,6 +6023,13 @@
     "term": "Night Temperature",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Night mode & gamma",
+    "translation": "",
+    "context": "greeter feature card description",
     "reference": "",
     "comment": ""
   },
@@ -5523,6 +6083,13 @@
     "comment": ""
   },
   {
+    "term": "No DMS shortcuts configured",
+    "translation": "",
+    "context": "greeter no keybinds message",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No GPU detected",
     "translation": "",
     "context": "",
@@ -5538,6 +6105,13 @@
   },
   {
     "term": "No VPN profiles",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No Weather Data",
     "translation": "",
     "context": "",
     "reference": "",
@@ -5586,6 +6160,13 @@
     "comment": ""
   },
   {
+    "term": "No checks passed",
+    "translation": "",
+    "context": "greeter doctor page empty state",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No clipboard entries found",
     "translation": "",
     "context": "",
@@ -5628,6 +6209,13 @@
     "comment": ""
   },
   {
+    "term": "No errors",
+    "translation": "",
+    "context": "greeter doctor page empty state",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No features enabled",
     "translation": "",
     "context": "",
@@ -5638,6 +6226,13 @@
     "term": "No files found",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No info items",
+    "translation": "",
+    "context": "greeter doctor page empty state",
     "reference": "",
     "comment": ""
   },
@@ -5719,6 +6314,13 @@
     "comment": ""
   },
   {
+    "term": "No warnings",
+    "translation": "",
+    "context": "greeter doctor page empty state",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No widgets available",
     "translation": "",
     "context": "",
@@ -5775,6 +6377,13 @@
     "comment": ""
   },
   {
+    "term": "Not detected",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Note: this only changes the percentage, it does not actually limit charging.",
     "translation": "",
     "context": "",
@@ -5784,7 +6393,7 @@
   {
     "term": "Notepad",
     "translation": "",
-    "context": "",
+    "context": "Notepad",
     "reference": "",
     "comment": ""
   },
@@ -5813,6 +6422,13 @@
     "term": "Notification Center",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Notification Display",
+    "translation": "",
+    "context": "lock screen notification privacy setting",
     "reference": "",
     "comment": ""
   },
@@ -5854,7 +6470,7 @@
   {
     "term": "Notifications",
     "translation": "",
-    "context": "",
+    "context": "greeter settings link",
     "reference": "",
     "comment": ""
   },
@@ -5862,6 +6478,13 @@
     "term": "Numbers",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "OK",
+    "translation": "",
+    "context": "greeter doctor page status card",
     "reference": "",
     "comment": ""
   },
@@ -6048,6 +6671,13 @@
     "comment": ""
   },
   {
+    "term": "Override Border Size",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Override Corner Radius",
     "translation": "",
     "context": "",
@@ -6202,6 +6832,13 @@
     "comment": ""
   },
   {
+    "term": "Per-screen config",
+    "translation": "",
+    "context": "greeter feature card description",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Percentage",
     "translation": "",
     "context": "",
@@ -6337,7 +6974,7 @@
   {
     "term": "Plugins",
     "translation": "",
-    "context": "",
+    "context": "greeter feature card title | greeter plugins link",
     "reference": "",
     "comment": ""
   },
@@ -6363,9 +7000,23 @@
     "comment": ""
   },
   {
+    "term": "Popup behavior, position",
+    "translation": "",
+    "context": "greeter notifications description",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Position",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Position, pinned apps",
+    "translation": "",
+    "context": "greeter dock description",
     "reference": "",
     "comment": ""
   },
@@ -6448,6 +7099,13 @@
   },
   {
     "term": "Power source",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Precip",
     "translation": "",
     "context": "",
     "reference": "",
@@ -6650,6 +7308,13 @@
     "comment": ""
   },
   {
+    "term": "Quick system toggles",
+    "translation": "",
+    "context": "greeter feature card description",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "RGB",
     "translation": "",
     "context": "",
@@ -6727,6 +7392,13 @@
     "comment": ""
   },
   {
+    "term": "Release",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Reload Plugin",
     "translation": "",
     "context": "",
@@ -6748,6 +7420,13 @@
     "comment": ""
   },
   {
+    "term": "Repeat",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Report",
     "translation": "",
     "context": "",
@@ -6758,6 +7437,13 @@
     "term": "Require holding button/key to confirm power off, restart, suspend, hibernate and logout",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Requires %1",
+    "translation": "",
+    "context": "version requirement",
     "reference": "",
     "comment": ""
   },
@@ -6821,6 +7507,13 @@
     "term": "Resolution & Refresh",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Resolution, position, scale",
+    "translation": "",
+    "context": "greeter displays description",
     "reference": "",
     "comment": ""
   },
@@ -6919,6 +7612,27 @@
     "term": "Rounded corners for windows",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Rounded corners for windows (border_radius)",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Rounded corners for windows (decoration.rounding)",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Run Again",
+    "translation": "",
+    "context": "greeter doctor page button",
     "reference": "",
     "comment": ""
   },
@@ -7140,6 +7854,13 @@
     "comment": ""
   },
   {
+    "term": "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Search file contents",
     "translation": "",
     "context": "",
@@ -7162,6 +7883,13 @@
   },
   {
     "term": "Search keybinds...",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Search keyboard shortcuts from your compositor and applications",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7220,6 +7948,13 @@
     "term": "Security",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Security & privacy",
+    "translation": "",
+    "context": "greeter feature card description",
     "reference": "",
     "comment": ""
   },
@@ -7301,6 +8036,13 @@
     "comment": ""
   },
   {
+    "term": "Select at least one provider",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Select device...",
     "translation": "",
     "context": "",
@@ -7351,6 +8093,13 @@
   },
   {
     "term": "Select the palette algorithm used for wallpaper-based colors",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Select which keybind providers to include",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7430,6 +8179,13 @@
     "term": "Setup",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Shadow",
+    "translation": "",
+    "context": "bar shadow settings card",
     "reference": "",
     "comment": ""
   },
@@ -7525,6 +8281,20 @@
     "comment": ""
   },
   {
+    "term": "Show Feels Like Temperature",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show Forecast",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Show GPU Temperature",
     "translation": "",
     "context": "",
@@ -7553,7 +8323,28 @@
     "comment": ""
   },
   {
+    "term": "Show Hourly Forecast",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show Humidity",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Show Line Numbers",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show Location",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7630,6 +8421,20 @@
     "comment": ""
   },
   {
+    "term": "Show Precipitation Probability",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show Pressure",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Show Profile Image",
     "translation": "",
     "context": "Enable profile image display on the lock screen window",
@@ -7652,6 +8457,13 @@
   },
   {
     "term": "Show Seconds",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show Sunrise/Sunset",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7687,6 +8499,27 @@
   },
   {
     "term": "Show Top Processes",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show Weather Condition",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show Welcome",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show Wind Speed",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7743,6 +8576,13 @@
   },
   {
     "term": "Show on Overview",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show on Overview Only",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7931,6 +8771,20 @@
     "comment": ""
   },
   {
+    "term": "Skip",
+    "translation": "",
+    "context": "greeter skip button",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Skip setup",
+    "translation": "",
+    "context": "greeter skip button tooltip",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Smartcard Authentication",
     "translation": "",
     "context": "",
@@ -7994,6 +8848,20 @@
     "comment": ""
   },
   {
+    "term": "Space between windows (gappih/gappiv/gappoh/gappov)",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Space between windows (gaps_in and gaps_out)",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Spacer",
     "translation": "",
     "context": "",
@@ -8037,6 +8905,13 @@
   },
   {
     "term": "Stacked",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Standard",
     "translation": "",
     "context": "",
     "reference": "",
@@ -8122,7 +8997,7 @@
   {
     "term": "Surface",
     "translation": "",
-    "context": "",
+    "context": "shadow color option",
     "reference": "",
     "comment": ""
   },
@@ -8193,6 +9068,13 @@
     "term": "System App Theming",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "System Check",
+    "translation": "",
+    "context": "greeter doctor page title",
     "reference": "",
     "comment": ""
   },
@@ -8325,7 +9207,7 @@
   {
     "term": "Text",
     "translation": "",
-    "context": "",
+    "context": "shadow color option",
     "reference": "",
     "comment": ""
   },
@@ -8360,7 +9242,7 @@
   {
     "term": "Theme & Colors",
     "translation": "",
-    "context": "",
+    "context": "greeter settings link",
     "reference": "",
     "comment": ""
   },
@@ -8368,6 +9250,20 @@
     "term": "Theme Color",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Theme Registry",
+    "translation": "",
+    "context": "greeter feature card title",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Themes",
+    "translation": "",
+    "context": "greeter themes link",
     "reference": "",
     "comment": ""
   },
@@ -8554,6 +9450,13 @@
     "comment": ""
   },
   {
+    "term": "Tools",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Top",
     "translation": "",
     "context": "",
@@ -8624,6 +9527,20 @@
     "comment": ""
   },
   {
+    "term": "Trigger",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Trigger Prefix",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Turn off monitors after",
     "translation": "",
     "context": "",
@@ -8632,6 +9549,13 @@
   },
   {
     "term": "Type",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Type this prefix to search keybinds",
     "translation": "",
     "context": "",
     "reference": "",
@@ -8729,6 +9653,13 @@
     "comment": ""
   },
   {
+    "term": "Unpin",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Unpin from Dock",
     "translation": "",
     "context": "",
@@ -8772,6 +9703,13 @@
   },
   {
     "term": "Update Plugin",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Usage Tips",
     "translation": "",
     "context": "",
     "reference": "",
@@ -8848,6 +9786,20 @@
     "comment": ""
   },
   {
+    "term": "Use custom border size",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Use custom border/focus-ring width",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Use custom command for update your system",
     "translation": "",
     "context": "",
@@ -8863,6 +9815,13 @@
   },
   {
     "term": "Use custom window radius instead of theme radius",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Use custom window rounding instead of theme radius",
     "translation": "",
     "context": "",
     "reference": "",
@@ -8890,6 +9849,13 @@
     "comment": ""
   },
   {
+    "term": "Use trigger prefix to activate",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Use%",
     "translation": "",
     "context": "",
@@ -8898,6 +9864,13 @@
   },
   {
     "term": "Used",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Used when accent color is set to Custom",
     "translation": "",
     "context": "",
     "reference": "",
@@ -9065,6 +10038,13 @@
     "comment": ""
   },
   {
+    "term": "View Mode",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Visibility",
     "translation": "",
     "context": "",
@@ -9123,7 +10103,7 @@
   {
     "term": "Wallpaper",
     "translation": "",
-    "context": "",
+    "context": "greeter settings link",
     "reference": "",
     "comment": ""
   },
@@ -9177,6 +10157,13 @@
     "comment": ""
   },
   {
+    "term": "Warnings",
+    "translation": "",
+    "context": "greeter doctor page status card",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Wave Progress Bars",
     "translation": "",
     "context": "",
@@ -9194,6 +10181,20 @@
     "term": "Weather Widget",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Welcome",
+    "translation": "",
+    "context": "greeter modal window title",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Welcome to DankMaterialShell",
+    "translation": "",
+    "context": "greeter welcome page title",
     "reference": "",
     "comment": ""
   },
@@ -9338,6 +10339,34 @@
     "comment": ""
   },
   {
+    "term": "Widgets, layout, style",
+    "translation": "",
+    "context": "greeter dankbar description",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Width of window border (borderpx)",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Width of window border (general.border_size)",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Width of window border and focus ring",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Wind",
     "translation": "",
     "context": "",
@@ -9367,6 +10396,13 @@
   },
   {
     "term": "Window Gaps (px)",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Window Rounding",
     "translation": "",
     "context": "",
     "reference": "",
@@ -9485,6 +10521,13 @@
     "comment": ""
   },
   {
+    "term": "You're All Set!",
+    "translation": "",
+    "context": "greeter completion page title",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "apps",
     "translation": "",
     "context": "",
@@ -9513,14 +10556,7 @@
     "comment": ""
   },
   {
-    "term": "dms/binds.kdl exists but is not included in config.kdl. Custom keybinds will not work until this is fixed.",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
-    "term": "dms/binds.kdl is now included in config.kdl",
+    "term": "dms/cursor config exists but is not included. Cursor settings won't apply.",
     "translation": "",
     "context": "",
     "reference": "",
@@ -9600,6 +10636,13 @@
     "term": "ms",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "niri shortcuts config",
+    "translation": "",
+    "context": "greeter keybinds niri description",
     "reference": "",
     "comment": ""
   },

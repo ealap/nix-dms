@@ -15,8 +15,17 @@ func TestMangoWCProviderName(t *testing.T) {
 
 func TestMangoWCProviderDefaultPath(t *testing.T) {
 	provider := NewMangoWCProvider("")
-	if provider.configPath != "$HOME/.config/mango" {
-		t.Errorf("configPath = %q, want %q", provider.configPath, "$HOME/.config/mango")
+	configDir, err := os.UserConfigDir()
+	if err != nil {
+		// Fall back to testing for non-empty path
+		if provider.configPath == "" {
+			t.Error("configPath should not be empty")
+		}
+		return
+	}
+	expected := filepath.Join(configDir, "mango")
+	if provider.configPath != expected {
+		t.Errorf("configPath = %q, want %q", provider.configPath, expected)
 	}
 }
 
@@ -174,7 +183,7 @@ func TestMangoWCConvertKeybind(t *testing.T) {
 	provider := NewMangoWCProvider("")
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := provider.convertKeybind(tt.keybind)
+			result := provider.convertKeybind(tt.keybind, nil)
 			if result.Key != tt.wantKey {
 				t.Errorf("convertKeybind().Key = %q, want %q", result.Key, tt.wantKey)
 			}

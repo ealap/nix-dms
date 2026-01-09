@@ -1,8 +1,4 @@
 import QtQuick
-import QtQuick.Controls
-import Quickshell
-import qs.Common
-import qs.Widgets
 
 Rectangle {
     id: root
@@ -24,6 +20,4 @@ Rectangle {
         sourceComponent: root.content
         asynchronous: true
     }
-
-
 }

@@ -14,6 +14,7 @@ Item {
     property bool toggling: false
     property string text: ""
     property string description: ""
+    property color descriptionColor: Theme.surfaceVariantText
     property bool hideText: false
 
     signal clicked
@@ -79,9 +80,9 @@ Item {
             StyledText {
                 text: toggle.description
                 font.pixelSize: Appearance.fontSize.small
-                color: Theme.surfaceVariantText
+                color: toggle.descriptionColor
                 wrapMode: Text.WordWrap
-                width: Math.min(implicitWidth, toggle.width - 120)
+                width: parent.width
                 visible: toggle.description.length > 0
                 horizontalAlignment: Text.AlignLeft
             }

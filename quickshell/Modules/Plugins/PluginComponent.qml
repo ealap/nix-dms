@@ -1,4 +1,5 @@
 import QtQuick
+import Quickshell.Io
 import qs.Common
 
 Item {
@@ -15,6 +16,20 @@ Item {
     property var barConfig: null
     property string pluginId: ""
     property var pluginService: null
+
+    property string visibilityCommand: ""
+    property int visibilityInterval: 0
+    property bool conditionVisible: true
+    property bool _visibilityOverride: false
+    property bool _visibilityOverrideValue: true
+
+    readonly property bool effectiveVisible: {
+        if (_visibilityOverride)
+            return _visibilityOverrideValue;
+        if (!visibilityCommand)
+            return true;
+        return conditionVisible;
+    }
 
     property Component horizontalBarPill: null
     property Component verticalBarPill: null
@@ -49,6 +64,8 @@ Item {
 
     Component.onCompleted: {
         loadPluginData();
+        if (visibilityCommand)
+            Qt.callLater(checkVisibility);
     }
 
     onPluginServiceChanged: {
@@ -78,6 +95,57 @@ Item {
         variants = pluginService.getPluginVariants(pluginId);
     }
 
+    function checkVisibility() {
+        if (!visibilityCommand) {
+            conditionVisible = true;
+            return;
+        }
+        visibilityProcess.running = true;
+    }
+
+    function setVisibilityOverride(visible) {
+        _visibilityOverride = true;
+        _visibilityOverrideValue = visible;
+    }
+
+    function clearVisibilityOverride() {
+        _visibilityOverride = false;
+        if (visibilityCommand)
+            checkVisibility();
+    }
+
+    onVisibilityCommandChanged: {
+        if (visibilityCommand)
+            Qt.callLater(checkVisibility);
+        else
+            conditionVisible = true;
+    }
+
+    onVisibilityIntervalChanged: {
+        if (visibilityInterval > 0 && visibilityCommand) {
+            visibilityTimer.restart();
+        } else {
+            visibilityTimer.stop();
+        }
+    }
+
+    Timer {
+        id: visibilityTimer
+        interval: root.visibilityInterval * 1000
+        repeat: true
+        running: root.visibilityInterval > 0 && root.visibilityCommand !== ""
+        onTriggered: root.checkVisibility()
+    }
+
+    Process {
+        id: visibilityProcess
+        command: ["sh", "-c", root.visibilityCommand]
+        running: false
+        onExited: (exitCode, exitStatus) => {
+            root.conditionVisible = (exitCode === 0);
+        }
+    }
+
     function createVariant(variantName, variantConfig) {
         if (!pluginService || !pluginId) {
             return null;
@@ -105,6 +173,7 @@ Item {
     BasePill {
         id: horizontalPill
         visible: !isVertical && hasHorizontalPill
+        opacity: root.effectiveVisible ? 1 : 0
         axis: root.axis
         section: root.section
         popoutTarget: hasPopout ? pluginPopout : null
@@ -114,6 +183,24 @@ Item {
         barSpacing: root.barSpacing
         barConfig: root.barConfig
         content: root.horizontalBarPill
+
+        states: State {
+            name: "hidden"
+            when: !root.effectiveVisible
+            PropertyChanges {
+                target: horizontalPill
+                width: 0
+            }
+        }
+
+        transitions: Transition {
+            NumberAnimation {
+                properties: "width,opacity"
+                duration: Theme.shortDuration
+                easing.type: Theme.standardEasing
+            }
+        }
+
         onClicked: {
             if (pillClickAction) {
                 if (pillClickAction.length === 0) {
@@ -145,6 +232,7 @@ Item {
     BasePill {
         id: verticalPill
         visible: isVertical && hasVerticalPill
+        opacity: root.effectiveVisible ? 1 : 0
         axis: root.axis
         section: root.section
         popoutTarget: hasPopout ? pluginPopout : null
@@ -155,6 +243,24 @@ Item {
         barConfig: root.barConfig
         content: root.verticalBarPill
         isVerticalOrientation: true
+
+        states: State {
+            name: "hidden"
+            when: !root.effectiveVisible
+            PropertyChanges {
+                target: verticalPill
+                height: 0
+            }
+        }
+
+        transitions: Transition {
+            NumberAnimation {
+                properties: "height,opacity"
+                duration: Theme.shortDuration
+                easing.type: Theme.standardEasing
+            }
+        }
+
         onClicked: {
             if (pillClickAction) {
                 if (pillClickAction.length === 0) {

@@ -99,6 +99,8 @@ Item {
         } else if (CompositorService.isSway || CompositorService.isScroll) {
             const focusedWs = I3.workspaces?.values?.find(ws => ws.focused === true);
             focusedScreenName = focusedWs?.monitor?.name || "";
+        } else if (CompositorService.isDwl && DwlService.activeOutput) {
+            focusedScreenName = DwlService.activeOutput;
         }
 
         if (!focusedScreenName && barVariants.instances.length > 0) {
@@ -126,6 +128,8 @@ Item {
         } else if (CompositorService.isSway || CompositorService.isScroll) {
             const focusedWs = I3.workspaces?.values?.find(ws => ws.focused === true);
             focusedScreenName = focusedWs?.monitor?.name || "";
+        } else if (CompositorService.isDwl && DwlService.activeOutput) {
+            focusedScreenName = DwlService.activeOutput;
         }
 
         if (!focusedScreenName && barVariants.instances.length > 0) {

@@ -161,7 +161,8 @@ layout {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result, err := cd.mergeNiriOutputSections(tt.newConfig, tt.existingConfig)
+			tmpDir := t.TempDir()
+			result, err := cd.mergeNiriOutputSections(tt.newConfig, tt.existingConfig, tmpDir)
 
 			if tt.wantError {
 				assert.Error(t, err)
@@ -362,7 +363,8 @@ input {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result, err := cd.mergeHyprlandMonitorSections(tt.newConfig, tt.existingConfig)
+			tmpDir := t.TempDir()
+			result, err := cd.mergeHyprlandMonitorSections(tt.newConfig, tt.existingConfig, tmpDir)
 
 			if tt.wantError {
 				assert.Error(t, err)
@@ -406,7 +408,7 @@ func TestHyprlandConfigDeployment(t *testing.T) {
 		content, err := os.ReadFile(result.Path)
 		require.NoError(t, err)
 		assert.Contains(t, string(content), "# MONITOR CONFIG")
-		assert.Contains(t, string(content), "bind = $mod, T, exec, ghostty")
+		assert.Contains(t, string(content), "source = ./dms/binds.conf")
 		assert.Contains(t, string(content), "exec-once = ")
 	})
 
@@ -442,7 +444,7 @@ general {
 		require.NoError(t, err)
 		assert.Contains(t, string(newContent), "monitor = DP-1, 1920x1080@144")
 		assert.Contains(t, string(newContent), "monitor = HDMI-A-1, 3840x2160@60")
-		assert.Contains(t, string(newContent), "bind = $mod, T, exec, kitty")
+		assert.Contains(t, string(newContent), "source = ./dms/binds.conf")
 		assert.NotContains(t, string(newContent), "monitor = eDP-2")
 	})
 }
@@ -459,10 +461,7 @@ func TestHyprlandConfigStructure(t *testing.T) {
 	assert.Contains(t, HyprlandConfig, "# MONITOR CONFIG")
 	assert.Contains(t, HyprlandConfig, "# STARTUP APPS")
 	assert.Contains(t, HyprlandConfig, "# INPUT CONFIG")
-	assert.Contains(t, HyprlandConfig, "# KEYBINDINGS")
-	assert.Contains(t, HyprlandConfig, "bind = $mod, T, exec, {{TERMINAL_COMMAND}}")
-	assert.Contains(t, HyprlandConfig, "bind = $mod, space, exec, dms ipc call spotlight toggle")
-	assert.Contains(t, HyprlandConfig, "windowrule = border_size 0, match:class ^(com\\.mitchellh\\.ghostty)$")
+	assert.Contains(t, HyprlandConfig, "source = ./dms/binds.conf")
 }
 
 func TestGhosttyConfigStructure(t *testing.T) {

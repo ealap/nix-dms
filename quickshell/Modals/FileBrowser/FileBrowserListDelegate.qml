@@ -20,97 +20,97 @@ StyledRect {
     signal itemSelected(int index, string path, string name, bool isDir)
 
     function getFileExtension(fileName) {
-        const parts = fileName.split('.')
+        const parts = fileName.split('.');
         if (parts.length > 1) {
-            return parts[parts.length - 1].toLowerCase()
+            return parts[parts.length - 1].toLowerCase();
         }
-        return ""
+        return "";
     }
 
     function determineFileType(fileName) {
-        const ext = getFileExtension(fileName)
+        const ext = getFileExtension(fileName);
 
-        const imageExts = ["png", "jpg", "jpeg", "gif", "bmp", "webp", "svg", "ico"]
+        const imageExts = ["png", "jpg", "jpeg", "gif", "bmp", "webp", "svg", "ico"];
         if (imageExts.includes(ext)) {
-            return "image"
+            return "image";
         }
 
-        const videoExts = ["mp4", "mkv", "avi", "mov", "webm", "flv", "wmv", "m4v"]
+        const videoExts = ["mp4", "mkv", "avi", "mov", "webm", "flv", "wmv", "m4v"];
         if (videoExts.includes(ext)) {
-            return "video"
+            return "video";
         }
 
-        const audioExts = ["mp3", "wav", "flac", "ogg", "m4a", "aac", "wma"]
+        const audioExts = ["mp3", "wav", "flac", "ogg", "m4a", "aac", "wma"];
         if (audioExts.includes(ext)) {
-            return "audio"
+            return "audio";
         }
 
-        const codeExts = ["js", "ts", "jsx", "tsx", "py", "go", "rs", "c", "cpp", "h", "java", "kt", "swift", "rb", "php", "html", "css", "scss", "json", "xml", "yaml", "yml", "toml", "sh", "bash", "zsh", "fish", "qml", "vue", "svelte"]
+        const codeExts = ["js", "ts", "jsx", "tsx", "py", "go", "rs", "c", "cpp", "h", "java", "kt", "swift", "rb", "php", "html", "css", "scss", "json", "xml", "yaml", "yml", "toml", "sh", "bash", "zsh", "fish", "qml", "vue", "svelte"];
         if (codeExts.includes(ext)) {
-            return "code"
+            return "code";
         }
 
-        const docExts = ["txt", "md", "pdf", "doc", "docx", "odt", "rtf"]
+        const docExts = ["txt", "md", "pdf", "doc", "docx", "odt", "rtf"];
         if (docExts.includes(ext)) {
-            return "document"
+            return "document";
         }
 
-        const archiveExts = ["zip", "tar", "gz", "bz2", "xz", "7z", "rar"]
+        const archiveExts = ["zip", "tar", "gz", "bz2", "xz", "7z", "rar"];
         if (archiveExts.includes(ext)) {
-            return "archive"
+            return "archive";
         }
 
         if (!ext || fileName.indexOf('.') === -1) {
-            return "binary"
+            return "binary";
         }
 
-        return "file"
+        return "file";
     }
 
     function isImageFile(fileName) {
         if (!fileName) {
-            return false
+            return false;
         }
-        return determineFileType(fileName) === "image"
+        return determineFileType(fileName) === "image";
     }
 
     function getIconForFile(fileName) {
-        const lowerName = fileName.toLowerCase()
+        const lowerName = fileName.toLowerCase();
         if (lowerName.startsWith("dockerfile")) {
-            return "docker"
+            return "docker";
         }
-        const ext = fileName.split('.').pop()
-        return ext || ""
+        const ext = fileName.split('.').pop();
+        return ext || "";
     }
 
     function formatFileSize(size) {
         if (size < 1024)
-            return size + " B"
+            return size + " B";
         if (size < 1024 * 1024)
-            return (size / 1024).toFixed(1) + " KB"
+            return (size / 1024).toFixed(1) + " KB";
         if (size < 1024 * 1024 * 1024)
-            return (size / (1024 * 1024)).toFixed(1) + " MB"
-        return (size / (1024 * 1024 * 1024)).toFixed(1) + " GB"
+            return (size / (1024 * 1024)).toFixed(1) + " MB";
+        return (size / (1024 * 1024 * 1024)).toFixed(1) + " GB";
     }
 
     height: 44
     radius: Theme.cornerRadius
     color: {
         if (keyboardNavigationActive && listDelegateRoot.index === selectedIndex)
-            return Theme.surfacePressed
-        return listMouseArea.containsMouse ? Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency) : "transparent"
+            return Theme.surfacePressed;
+        return listMouseArea.containsMouse ? Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency) : "transparent";
     }
     border.color: keyboardNavigationActive && listDelegateRoot.index === selectedIndex ? Theme.primary : "transparent"
     border.width: (keyboardNavigationActive && listDelegateRoot.index === selectedIndex) ? 2 : 0
 
     Component.onCompleted: {
         if (keyboardNavigationActive && listDelegateRoot.index === selectedIndex)
-            itemSelected(listDelegateRoot.index, listDelegateRoot.filePath, listDelegateRoot.fileName, listDelegateRoot.fileIsDir)
+            itemSelected(listDelegateRoot.index, listDelegateRoot.filePath, listDelegateRoot.fileName, listDelegateRoot.fileIsDir);
     }
 
     onSelectedIndexChanged: {
         if (keyboardNavigationActive && selectedIndex === listDelegateRoot.index)
-            itemSelected(listDelegateRoot.index, listDelegateRoot.filePath, listDelegateRoot.fileName, listDelegateRoot.fileIsDir)
+            itemSelected(listDelegateRoot.index, listDelegateRoot.filePath, listDelegateRoot.fileName, listDelegateRoot.fileIsDir);
     }
 
     Row {
@@ -124,12 +124,15 @@ StyledRect {
             height: 28
             anchors.verticalCenter: parent.verticalCenter
 
-            CachingImage {
+            Image {
                 id: listPreviewImage
                 anchors.fill: parent
-                source: (!listDelegateRoot.fileIsDir && isImageFile(listDelegateRoot.fileName)) ? ("file://" + listDelegateRoot.filePath) : ""
+                property string imagePath: (!listDelegateRoot.fileIsDir && isImageFile(listDelegateRoot.fileName)) ? listDelegateRoot.filePath : ""
+                source: imagePath ? "file://" + imagePath.split('/').map(s => encodeURIComponent(s)).join('/') : ""
                 fillMode: Image.PreserveAspectCrop
-                maxCacheSize: 32
+                sourceSize.width: 32
+                sourceSize.height: 32
+                asynchronous: true
                 visible: false
             }
 
@@ -203,7 +206,7 @@ StyledRect {
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
         onClicked: {
-            itemClicked(listDelegateRoot.index, listDelegateRoot.filePath, listDelegateRoot.fileName, listDelegateRoot.fileIsDir)
+            itemClicked(listDelegateRoot.index, listDelegateRoot.filePath, listDelegateRoot.fileName, listDelegateRoot.fileIsDir);
         }
     }
 }

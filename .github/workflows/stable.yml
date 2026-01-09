@@ -5,15 +5,27 @@ on:
     tags:
       - "v*"
 
+permissions:
+  contents: write
+
 jobs:
   update-stable:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Create GitHub App token
+        id: app_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ steps.app_token.outputs.token }}
 
       - name: Push to stable branch
-        run: git push origin HEAD:refs/heads/stable --force
+        env:
+          GH_TOKEN: ${{ steps.app_token.outputs.token }}
+        run: git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git HEAD:refs/heads/stable --force

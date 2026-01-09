@@ -9,6 +9,9 @@ import qs.Widgets
 Item {
     id: keybindsTab
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property var parentModal: null
     property string selectedCategory: ""
     property string searchQuery: ""
@@ -136,12 +139,12 @@ Item {
         }
     }
 
-    function _ensureNiriProvider() {
+    function _ensureCurrentProvider() {
         if (!KeybindsService.available)
             return;
         const cachedProvider = KeybindsService.keybinds?.provider;
-        if (cachedProvider !== "niri" || KeybindsService._dataVersion === 0) {
-            KeybindsService.currentProvider = "niri";
+        const targetProvider = KeybindsService.currentProvider;
+        if (cachedProvider !== targetProvider || KeybindsService._dataVersion === 0) {
             KeybindsService.loadBinds();
             return;
         }
@@ -152,13 +155,13 @@ Item {
         }
     }
 
-    Component.onCompleted: _ensureNiriProvider()
+    Component.onCompleted: _ensureCurrentProvider()
 
     onVisibleChanged: {
         if (!visible)
             return;
         Qt.callLater(scrollToTop);
-        _ensureNiriProvider();
+        _ensureCurrentProvider();
     }
 
     DankFlickable {
@@ -210,14 +213,18 @@ Item {
                                 font.pixelSize: Theme.fontSizeLarge
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
-                                text: I18n.tr("Click any shortcut to edit. Changes save to dms/binds.kdl")
+                                readonly property string bindsFile: KeybindsService.currentProvider === "niri" ? "dms/binds.kdl" : "dms/binds.conf"
+                                text: I18n.tr("Click any shortcut to edit. Changes save to %1").arg(bindsFile)
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Theme.surfaceVariantText
                                 wrapMode: Text.WordWrap
                                 width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
                     }
@@ -310,11 +317,12 @@ Item {
                             }
 
                             StyledText {
+                                readonly property string bindsFile: KeybindsService.currentProvider === "niri" ? "dms/binds.kdl" : "dms/binds.conf"
                                 text: {
                                     if (warningBox.showSetup)
-                                        return I18n.tr("Click 'Setup' to create dms/binds.kdl and add include to config.kdl.");
+                                        return I18n.tr("Click 'Setup' to create %1 and add include to config.").arg(bindsFile);
                                     if (warningBox.showError)
-                                        return I18n.tr("dms/binds.kdl exists but is not included in config.kdl. Custom keybinds will not work until this is fixed.");
+                                        return I18n.tr("%1 exists but is not included in config. Custom keybinds will not work until this is fixed.").arg(bindsFile);
                                     if (warningBox.showWarning) {
                                         const count = warningBox.status.overriddenBy;
                                         return I18n.tr("%1 DMS bind(s) may be overridden by config binds that come after the include.").arg(count);
@@ -325,6 +333,7 @@ Item {
                                 color: Theme.surfaceVariantText
                                 wrapMode: Text.WordWrap
                                 width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
 

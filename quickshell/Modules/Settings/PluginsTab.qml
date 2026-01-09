@@ -6,6 +6,9 @@ import qs.Widgets
 FocusScope {
     id: pluginsTab
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property string expandedPluginId: ""
     property bool isRefreshingPlugins: false
     property var parentModal: null
@@ -61,18 +64,23 @@ FocusScope {
                         Column {
                             anchors.verticalCenter: parent.verticalCenter
                             spacing: Theme.spacingXS
+                            width: parent.width - Theme.iconSize - Theme.spacingM
 
                             StyledText {
                                 text: I18n.tr("Plugin Management")
                                 font.pixelSize: Theme.fontSizeLarge
                                 color: Theme.surfaceText
                                 font.weight: Font.Medium
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
                                 text: I18n.tr("Manage and configure plugins for extending DMS functionality")
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Theme.surfaceVariantText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
                     }
@@ -117,6 +125,7 @@ FocusScope {
                                 color: Theme.surfaceVariantText
                                 wrapMode: Text.WordWrap
                                 width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
                     }
@@ -169,6 +178,7 @@ FocusScope {
                                 color: Theme.surfaceVariantText
                                 wrapMode: Text.WordWrap
                                 width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
 
@@ -247,6 +257,8 @@ FocusScope {
                         font.pixelSize: Theme.fontSizeLarge
                         color: Theme.surfaceText
                         font.weight: Font.Medium
+                        width: parent.width
+                        horizontalAlignment: Text.AlignLeft
                     }
 
                     StyledText {
@@ -254,6 +266,8 @@ FocusScope {
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.surfaceVariantText
                         font.family: "monospace"
+                        width: parent.width
+                        horizontalAlignment: Text.AlignLeft
                     }
 
                     StyledText {
@@ -262,6 +276,7 @@ FocusScope {
                         color: Theme.surfaceVariantText
                         wrapMode: Text.WordWrap
                         width: parent.width
+                        horizontalAlignment: Text.AlignLeft
                     }
                 }
             }
@@ -285,6 +300,8 @@ FocusScope {
                         font.pixelSize: Theme.fontSizeLarge
                         color: Theme.surfaceText
                         font.weight: Font.Medium
+                        width: parent.width
+                        horizontalAlignment: Text.AlignLeft
                     }
 
                     Column {
@@ -351,6 +368,14 @@ FocusScope {
                 DMSService.listInstalled();
             }
             refreshPluginList();
+        }
+        function onPluginDataChanged(pluginId) {
+            var plugin = PluginService.availablePlugins[pluginId];
+            if (!plugin || !PluginService.isPluginLoaded(pluginId))
+                return;
+            var isLauncher = plugin.type === "launcher" || (plugin.capabilities && plugin.capabilities.includes("launcher"));
+            if (isLauncher)
+                PluginService.reloadPlugin(pluginId);
         }
     }
 

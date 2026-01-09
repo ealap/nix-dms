@@ -622,9 +622,9 @@ Rectangle {
         anchors.rightMargin: 16
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 8
-        width: clearText.width + 16
-        height: clearText.height + 8
-        radius: 6
+        width: Math.max(clearText.implicitWidth + 12, 50)
+        height: 24
+        radius: 4
         color: isHovered ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.1) : "transparent"
 
         StyledText {

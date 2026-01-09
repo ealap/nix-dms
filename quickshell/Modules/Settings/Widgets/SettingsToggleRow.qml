@@ -8,6 +8,9 @@ import qs.Widgets
 DankToggle {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property string tab: ""
     property var tags: []
     property string settingKey: ""

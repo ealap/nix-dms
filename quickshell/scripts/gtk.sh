@@ -45,8 +45,12 @@ apply_gtk4_colors() {
         exit 1
     fi
 
-    if [ -f "$gtk_css" ]; then
-        sed -i '/^@import url.*dank-colors\.css.*);$/d' "$gtk_css"
+    if [ -f "$gtk_css" ] && grep -q '^@import url.*dank-colors\.css.*);$' "$gtk_css"; then
+        echo "GTK4 import already exists"
+        return
+    fi
+
+    if [ -f "$gtk_css" ] && [ -s "$gtk_css" ]; then
         sed -i "1i\\$gtk4_import" "$gtk_css"
     else
         echo "$gtk4_import" >"$gtk_css"

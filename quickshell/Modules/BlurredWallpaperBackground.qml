@@ -40,6 +40,12 @@ Variants {
             id: root
             anchors.fill: parent
 
+            function encodeFileUrl(path) {
+                if (!path)
+                    return "";
+                return "file://" + path.split('/').map(s => encodeURIComponent(s)).join('/');
+            }
+
             property string source: SessionData.getMonitorWallpaper(modelData.name) || ""
             property bool isColorSource: source.startsWith("#")
 
@@ -83,7 +89,7 @@ Variants {
                     isInitialized = true;
                     return;
                 }
-                const formattedSource = source.startsWith("file://") ? source : "file://" + source;
+                const formattedSource = source.startsWith("file://") ? source : encodeFileUrl(source);
                 setWallpaperImmediate(formattedSource);
                 isInitialized = true;
             }
@@ -100,7 +106,7 @@ Variants {
                     return;
                 }
 
-                const formattedSource = source.startsWith("file://") ? source : "file://" + source;
+                const formattedSource = source.startsWith("file://") ? source : encodeFileUrl(source);
 
                 if (!isInitialized || !currentWallpaper.source) {
                     setWallpaperImmediate(formattedSource);

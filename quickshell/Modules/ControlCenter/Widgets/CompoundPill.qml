@@ -5,6 +5,9 @@ import qs.Widgets
 Rectangle {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property string iconName: ""
     property color iconColor: Theme.surfaceText
     property string primaryText: ""
@@ -137,6 +140,7 @@ Rectangle {
                     font.weight: Font.Medium
                     elide: Text.ElideRight
                     wrapMode: Text.NoWrap
+                    horizontalAlignment: Text.AlignLeft
                 }
                 StyledText {
                     width: parent.width
@@ -146,6 +150,7 @@ Rectangle {
                     visible: text.length > 0
                     elide: Text.ElideRight
                     wrapMode: Text.NoWrap
+                    horizontalAlignment: Text.AlignLeft
                 }
             }
 

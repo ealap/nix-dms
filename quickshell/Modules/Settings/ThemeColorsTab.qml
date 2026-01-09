@@ -1,6 +1,8 @@
+import QtCore
 import QtQuick
 import QtQuick.Effects
 import Quickshell
+import Quickshell.Io
 import qs.Common
 import qs.Modals.FileBrowser
 import qs.Services
@@ -11,15 +13,149 @@ Item {
     id: themeColorsTab
 
     property var cachedIconThemes: SettingsData.availableIconThemes
+    property var cachedCursorThemes: SettingsData.availableCursorThemes
     property var cachedMatugenSchemes: Theme.availableMatugenSchemes.map(option => option.label)
     property var installedRegistryThemes: []
+    property var templateDetection: ({})
+
+    property var cursorIncludeStatus: ({
+            "exists": false,
+            "included": false
+        })
+    property bool checkingCursorInclude: false
+    property bool fixingCursorInclude: false
+
+    function getCursorConfigPaths() {
+        const configDir = Paths.strip(StandardPaths.writableLocation(StandardPaths.ConfigLocation));
+        switch (CompositorService.compositor) {
+        case "niri":
+            return {
+                "configFile": configDir + "/niri/config.kdl",
+                "cursorFile": configDir + "/niri/dms/cursor.kdl",
+                "grepPattern": 'include.*"dms/cursor.kdl"',
+                "includeLine": 'include "dms/cursor.kdl"'
+            };
+        case "hyprland":
+            return {
+                "configFile": configDir + "/hypr/hyprland.conf",
+                "cursorFile": configDir + "/hypr/dms/cursor.conf",
+                "grepPattern": 'source.*dms/cursor.conf',
+                "includeLine": "source = ./dms/cursor.conf"
+            };
+        case "dwl":
+            return {
+                "configFile": configDir + "/mango/config.conf",
+                "cursorFile": configDir + "/mango/dms/cursor.conf",
+                "grepPattern": 'source.*dms/cursor.conf',
+                "includeLine": "source=./dms/cursor.conf"
+            };
+        default:
+            return null;
+        }
+    }
+
+    function checkCursorIncludeStatus() {
+        const compositor = CompositorService.compositor;
+        if (compositor !== "niri" && compositor !== "hyprland" && compositor !== "dwl") {
+            cursorIncludeStatus = {
+                "exists": false,
+                "included": false
+            };
+            return;
+        }
+
+        const filename = (compositor === "niri") ? "cursor.kdl" : "cursor.conf";
+        const compositorArg = (compositor === "dwl") ? "mangowc" : compositor;
+
+        checkingCursorInclude = true;
+        Proc.runCommand("check-cursor-include", ["dms", "config", "resolve-include", compositorArg, filename], (output, exitCode) => {
+            checkingCursorInclude = false;
+            if (exitCode !== 0) {
+                cursorIncludeStatus = {
+                    "exists": false,
+                    "included": false
+                };
+                return;
+            }
+            try {
+                cursorIncludeStatus = JSON.parse(output.trim());
+            } catch (e) {
+                cursorIncludeStatus = {
+                    "exists": false,
+                    "included": false
+                };
+            }
+        });
+    }
+
+    function fixCursorInclude() {
+        const paths = getCursorConfigPaths();
+        if (!paths)
+            return;
+        fixingCursorInclude = true;
+        const cursorDir = paths.cursorFile.substring(0, paths.cursorFile.lastIndexOf("/"));
+        const unixTime = Math.floor(Date.now() / 1000);
+        const backupFile = paths.configFile + ".backup" + unixTime;
+        Proc.runCommand("fix-cursor-include", ["sh", "-c", `cp "${paths.configFile}" "${backupFile}" 2>/dev/null; ` + `mkdir -p "${cursorDir}" && ` + `touch "${paths.cursorFile}" && ` + `if ! grep -v '^[[:space:]]*\\(//\\|#\\)' "${paths.configFile}" 2>/dev/null | grep -q '${paths.grepPattern}'; then ` + `echo '' >> "${paths.configFile}" && ` + `echo '${paths.includeLine}' >> "${paths.configFile}"; fi`], (output, exitCode) => {
+            fixingCursorInclude = false;
+            if (exitCode !== 0)
+                return;
+            checkCursorIncludeStatus();
+            SettingsData.updateCompositorCursor();
+        });
+    }
+
+    function isTemplateDetected(templateId) {
+        if (!templateDetection || Object.keys(templateDetection).length === 0)
+            return true;
+        return templateDetection[templateId] !== false;
+    }
+
+    function getTemplateDescription(templateId, baseDescription) {
+        if (isTemplateDetected(templateId))
+            return baseDescription;
+        if (baseDescription)
+            return baseDescription + " · " + I18n.tr("Not detected");
+        return I18n.tr("Not detected");
+    }
+
+    function getTemplateDescriptionColor(templateId) {
+        if (isTemplateDetected(templateId))
+            return Theme.surfaceVariantText;
+        return Theme.warning;
+    }
 
     Component.onCompleted: {
         SettingsData.detectAvailableIconThemes();
+        SettingsData.detectAvailableCursorThemes();
         if (DMSService.dmsAvailable)
             DMSService.listInstalledThemes();
         if (PopoutService.pendingThemeInstall)
             Qt.callLater(() => themeBrowser.show());
+        templateCheckProcess.running = true;
+        if (CompositorService.isNiri || CompositorService.isHyprland || CompositorService.isDwl)
+            checkCursorIncludeStatus();
+    }
+
+    Process {
+        id: templateCheckProcess
+        command: ["dms", "matugen", "check"]
+        running: false
+
+        stdout: StdioCollector {
+            onStreamFinished: {
+                try {
+                    const results = JSON.parse(text);
+                    const detection = {};
+                    for (const item of results) {
+                        detection[item.id] = item.detected;
+                    }
+                    themeColorsTab.templateDetection = detection;
+                } catch (e) {
+                    console.warn("ThemeColorsTab: Failed to parse template check:", e);
+                }
+            }
+        }
     }
 
     Connections {
@@ -253,7 +389,7 @@ Item {
                                 CachingImage {
                                     anchors.fill: parent
                                     anchors.margins: 1
-                                    source: Theme.wallpaperPath ? "file://" + Theme.wallpaperPath : ""
+                                    imagePath: (Theme.wallpaperPath && !Theme.wallpaperPath.startsWith("#")) ? Theme.wallpaperPath : ""
                                     fillMode: Image.PreserveAspectCrop
                                     visible: Theme.wallpaperPath && !Theme.wallpaperPath.startsWith("#")
                                     layer.enabled: true
@@ -918,8 +1054,8 @@ Item {
 
             SettingsCard {
                 tab: "theme"
-                tags: ["niri", "layout", "gaps", "radius", "window"]
-                title: I18n.tr("Niri Layout Overrides")
+                tags: ["niri", "layout", "gaps", "radius", "window", "border"]
+                title: I18n.tr("Niri Layout Overrides").replace("Niri", "niri")
                 settingKey: "niriLayout"
                 iconName: "crop_square"
                 visible: CompositorService.isNiri
@@ -986,6 +1122,243 @@ Item {
                     defaultValue: SettingsData.cornerRadius
                     onSliderValueChanged: newValue => SettingsData.set("niriLayoutRadiusOverride", newValue)
                 }
+
+                SettingsToggleRow {
+                    tab: "theme"
+                    tags: ["niri", "border", "override"]
+                    settingKey: "niriLayoutBorderSizeEnabled"
+                    text: I18n.tr("Override Border Size")
+                    description: I18n.tr("Use custom border/focus-ring width")
+                    checked: SettingsData.niriLayoutBorderSize >= 0
+                    onToggled: checked => {
+                        if (checked) {
+                            SettingsData.set("niriLayoutBorderSize", 2);
+                            return;
+                        }
+                        SettingsData.set("niriLayoutBorderSize", -1);
+                    }
+                }
+
+                SettingsSliderRow {
+                    tab: "theme"
+                    tags: ["niri", "border", "override"]
+                    settingKey: "niriLayoutBorderSize"
+                    text: I18n.tr("Border Size")
+                    description: I18n.tr("Width of window border and focus ring")
+                    visible: SettingsData.niriLayoutBorderSize >= 0
+                    value: Math.max(0, SettingsData.niriLayoutBorderSize)
+                    minimum: 0
+                    maximum: 10
+                    unit: "px"
+                    defaultValue: 2
+                    onSliderValueChanged: newValue => SettingsData.set("niriLayoutBorderSize", newValue)
+                }
+            }
+
+            SettingsCard {
+                tab: "theme"
+                tags: ["hyprland", "layout", "gaps", "radius", "window", "border", "rounding"]
+                title: I18n.tr("Hyprland Layout Overrides")
+                settingKey: "hyprlandLayout"
+                iconName: "crop_square"
+                visible: CompositorService.isHyprland
+
+                SettingsToggleRow {
+                    tab: "theme"
+                    tags: ["hyprland", "gaps", "override"]
+                    settingKey: "hyprlandLayoutGapsOverrideEnabled"
+                    text: I18n.tr("Override Gaps")
+                    description: I18n.tr("Use custom gaps instead of bar spacing")
+                    checked: SettingsData.hyprlandLayoutGapsOverride >= 0
+                    onToggled: checked => {
+                        if (checked) {
+                            const currentGaps = Math.max(4, (SettingsData.barConfigs[0]?.spacing ?? 4));
+                            SettingsData.set("hyprlandLayoutGapsOverride", currentGaps);
+                            return;
+                        }
+                        SettingsData.set("hyprlandLayoutGapsOverride", -1);
+                    }
+                }
+
+                SettingsSliderRow {
+                    tab: "theme"
+                    tags: ["hyprland", "gaps", "override"]
+                    settingKey: "hyprlandLayoutGapsOverride"
+                    text: I18n.tr("Window Gaps")
+                    description: I18n.tr("Space between windows (gaps_in and gaps_out)")
+                    visible: SettingsData.hyprlandLayoutGapsOverride >= 0
+                    value: Math.max(0, SettingsData.hyprlandLayoutGapsOverride)
+                    minimum: 0
+                    maximum: 50
+                    unit: "px"
+                    defaultValue: Math.max(4, (SettingsData.barConfigs[0]?.spacing ?? 4))
+                    onSliderValueChanged: newValue => SettingsData.set("hyprlandLayoutGapsOverride", newValue)
+                }
+
+                SettingsToggleRow {
+                    tab: "theme"
+                    tags: ["hyprland", "radius", "override", "rounding"]
+                    settingKey: "hyprlandLayoutRadiusOverrideEnabled"
+                    text: I18n.tr("Override Corner Radius")
+                    description: I18n.tr("Use custom window rounding instead of theme radius")
+                    checked: SettingsData.hyprlandLayoutRadiusOverride >= 0
+                    onToggled: checked => {
+                        if (checked) {
+                            SettingsData.set("hyprlandLayoutRadiusOverride", SettingsData.cornerRadius);
+                            return;
+                        }
+                        SettingsData.set("hyprlandLayoutRadiusOverride", -1);
+                    }
+                }
+
+                SettingsSliderRow {
+                    tab: "theme"
+                    tags: ["hyprland", "radius", "override", "rounding"]
+                    settingKey: "hyprlandLayoutRadiusOverride"
+                    text: I18n.tr("Window Rounding")
+                    description: I18n.tr("Rounded corners for windows (decoration.rounding)")
+                    visible: SettingsData.hyprlandLayoutRadiusOverride >= 0
+                    value: Math.max(0, SettingsData.hyprlandLayoutRadiusOverride)
+                    minimum: 0
+                    maximum: 100
+                    unit: "px"
+                    defaultValue: SettingsData.cornerRadius
+                    onSliderValueChanged: newValue => SettingsData.set("hyprlandLayoutRadiusOverride", newValue)
+                }
+
+                SettingsToggleRow {
+                    tab: "theme"
+                    tags: ["hyprland", "border", "override"]
+                    settingKey: "hyprlandLayoutBorderSizeEnabled"
+                    text: I18n.tr("Override Border Size")
+                    description: I18n.tr("Use custom border size")
+                    checked: SettingsData.hyprlandLayoutBorderSize >= 0
+                    onToggled: checked => {
+                        if (checked) {
+                            SettingsData.set("hyprlandLayoutBorderSize", 2);
+                            return;
+                        }
+                        SettingsData.set("hyprlandLayoutBorderSize", -1);
+                    }
+                }
+
+                SettingsSliderRow {
+                    tab: "theme"
+                    tags: ["hyprland", "border", "override"]
+                    settingKey: "hyprlandLayoutBorderSize"
+                    text: I18n.tr("Border Size")
+                    description: I18n.tr("Width of window border (general.border_size)")
+                    visible: SettingsData.hyprlandLayoutBorderSize >= 0
+                    value: Math.max(0, SettingsData.hyprlandLayoutBorderSize)
+                    minimum: 0
+                    maximum: 10
+                    unit: "px"
+                    defaultValue: 2
+                    onSliderValueChanged: newValue => SettingsData.set("hyprlandLayoutBorderSize", newValue)
+                }
+            }
+
+            SettingsCard {
+                tab: "theme"
+                tags: ["mangowc", "mango", "dwl", "layout", "gaps", "radius", "window", "border"]
+                title: I18n.tr("MangoWC Layout Overrides")
+                settingKey: "mangoLayout"
+                iconName: "crop_square"
+                visible: CompositorService.isDwl
+
+                SettingsToggleRow {
+                    tab: "theme"
+                    tags: ["mangowc", "mango", "gaps", "override"]
+                    settingKey: "mangoLayoutGapsOverrideEnabled"
+                    text: I18n.tr("Override Gaps")
+                    description: I18n.tr("Use custom gaps instead of bar spacing")
+                    checked: SettingsData.mangoLayoutGapsOverride >= 0
+                    onToggled: checked => {
+                        if (checked) {
+                            const currentGaps = Math.max(4, (SettingsData.barConfigs[0]?.spacing ?? 4));
+                            SettingsData.set("mangoLayoutGapsOverride", currentGaps);
+                            return;
+                        }
+                        SettingsData.set("mangoLayoutGapsOverride", -1);
+                    }
+                }
+
+                SettingsSliderRow {
+                    tab: "theme"
+                    tags: ["mangowc", "mango", "gaps", "override"]
+                    settingKey: "mangoLayoutGapsOverride"
+                    text: I18n.tr("Window Gaps")
+                    description: I18n.tr("Space between windows (gappih/gappiv/gappoh/gappov)")
+                    visible: SettingsData.mangoLayoutGapsOverride >= 0
+                    value: Math.max(0, SettingsData.mangoLayoutGapsOverride)
+                    minimum: 0
+                    maximum: 50
+                    unit: "px"
+                    defaultValue: Math.max(4, (SettingsData.barConfigs[0]?.spacing ?? 4))
+                    onSliderValueChanged: newValue => SettingsData.set("mangoLayoutGapsOverride", newValue)
+                }
+
+                SettingsToggleRow {
+                    tab: "theme"
+                    tags: ["mangowc", "mango", "radius", "override"]
+                    settingKey: "mangoLayoutRadiusOverrideEnabled"
+                    text: I18n.tr("Override Corner Radius")
+                    description: I18n.tr("Use custom window radius instead of theme radius")
+                    checked: SettingsData.mangoLayoutRadiusOverride >= 0
+                    onToggled: checked => {
+                        if (checked) {
+                            SettingsData.set("mangoLayoutRadiusOverride", SettingsData.cornerRadius);
+                            return;
+                        }
+                        SettingsData.set("mangoLayoutRadiusOverride", -1);
+                    }
+                }
+
+                SettingsSliderRow {
+                    tab: "theme"
+                    tags: ["mangowc", "mango", "radius", "override"]
+                    settingKey: "mangoLayoutRadiusOverride"
+                    text: I18n.tr("Window Corner Radius")
+                    description: I18n.tr("Rounded corners for windows (border_radius)")
+                    visible: SettingsData.mangoLayoutRadiusOverride >= 0
+                    value: Math.max(0, SettingsData.mangoLayoutRadiusOverride)
+                    minimum: 0
+                    maximum: 100
+                    unit: "px"
+                    defaultValue: SettingsData.cornerRadius
+                    onSliderValueChanged: newValue => SettingsData.set("mangoLayoutRadiusOverride", newValue)
+                }
+
+                SettingsToggleRow {
+                    tab: "theme"
+                    tags: ["mangowc", "mango", "border", "override"]
+                    settingKey: "mangoLayoutBorderSizeEnabled"
+                    text: I18n.tr("Override Border Size")
+                    description: I18n.tr("Use custom border size")
+                    checked: SettingsData.mangoLayoutBorderSize >= 0
+                    onToggled: checked => {
+                        if (checked) {
+                            SettingsData.set("mangoLayoutBorderSize", 2);
+                            return;
+                        }
+                        SettingsData.set("mangoLayoutBorderSize", -1);
+                    }
+                }
+
+                SettingsSliderRow {
+                    tab: "theme"
+                    tags: ["mangowc", "mango", "border", "override"]
+                    settingKey: "mangoLayoutBorderSize"
+                    text: I18n.tr("Border Size")
+                    description: I18n.tr("Width of window border (borderpx)")
+                    visible: SettingsData.mangoLayoutBorderSize >= 0
+                    value: Math.max(0, SettingsData.mangoLayoutBorderSize)
+                    minimum: 0
+                    maximum: 10
+                    unit: "px"
+                    defaultValue: 2
+                    onSliderValueChanged: newValue => SettingsData.set("mangoLayoutBorderSize", newValue)
+                }
             }
 
             SettingsCard {
@@ -1035,6 +1408,195 @@ Item {
 
             SettingsCard {
                 tab: "theme"
+                tags: ["cursor", "mouse", "pointer", "theme", "size"]
+                title: I18n.tr("Cursor Theme")
+                settingKey: "cursorTheme"
+                iconName: "mouse"
+                visible: CompositorService.isNiri || CompositorService.isHyprland || CompositorService.isDwl
+
+                Column {
+                    width: parent.width
+                    spacing: Theme.spacingM
+
+                    StyledRect {
+                        id: cursorWarningBox
+                        width: parent.width
+                        height: cursorWarningContent.implicitHeight + Theme.spacingM * 2
+                        radius: Theme.cornerRadius
+
+                        readonly property bool showError: themeColorsTab.cursorIncludeStatus.exists && !themeColorsTab.cursorIncludeStatus.included
+                        readonly property bool showSetup: !themeColorsTab.cursorIncludeStatus.exists && !themeColorsTab.cursorIncludeStatus.included
+
+                        color: (showError || showSetup) ? Theme.withAlpha(Theme.warning, 0.15) : "transparent"
+                        border.color: (showError || showSetup) ? Theme.withAlpha(Theme.warning, 0.3) : "transparent"
+                        border.width: 1
+                        visible: (showError || showSetup) && !themeColorsTab.checkingCursorInclude
+
+                        Row {
+                            id: cursorWarningContent
+                            anchors.fill: parent
+                            anchors.margins: Theme.spacingM
+                            spacing: Theme.spacingM
+
+                            DankIcon {
+                                name: "warning"
+                                size: Theme.iconSize
+                                color: Theme.warning
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+                            Column {
+                                width: parent.width - Theme.iconSize - (cursorFixButton.visible ? cursorFixButton.width + Theme.spacingM : 0) - Theme.spacingM
+                                spacing: Theme.spacingXS
+                                anchors.verticalCenter: parent.verticalCenter
+
+                                StyledText {
+                                    text: cursorWarningBox.showSetup ? I18n.tr("Cursor Config Not Configured") : I18n.tr("Cursor Include Missing")
+                                    font.pixelSize: Theme.fontSizeMedium
+                                    font.weight: Font.Medium
+                                    color: Theme.warning
+                                }
+
+                                StyledText {
+                                    text: cursorWarningBox.showSetup ? I18n.tr("Click 'Setup' to create cursor config and add include to your compositor config.") : I18n.tr("dms/cursor config exists but is not included. Cursor settings won't apply.")
+                                    font.pixelSize: Theme.fontSizeSmall
+                                    color: Theme.surfaceVariantText
+                                    wrapMode: Text.WordWrap
+                                    width: parent.width
+                                }
+                            }
+
+                            DankButton {
+                                id: cursorFixButton
+                                visible: cursorWarningBox.showError || cursorWarningBox.showSetup
+                                text: themeColorsTab.fixingCursorInclude ? I18n.tr("Fixing...") : (cursorWarningBox.showSetup ? I18n.tr("Setup") : I18n.tr("Fix Now"))
+                                backgroundColor: Theme.warning
+                                textColor: Theme.background
+                                enabled: !themeColorsTab.fixingCursorInclude
+                                anchors.verticalCenter: parent.verticalCenter
+                                onClicked: themeColorsTab.fixCursorInclude()
+                            }
+                        }
+                    }
+
+                    SettingsDropdownRow {
+                        tab: "theme"
+                        tags: ["cursor", "mouse", "pointer", "theme"]
+                        settingKey: "cursorTheme"
+                        text: I18n.tr("Cursor Theme")
+                        description: I18n.tr("Mouse pointer appearance")
+                        currentValue: SettingsData.cursorSettings.theme
+                        enableFuzzySearch: true
+                        popupWidthOffset: 100
+                        maxPopupHeight: 236
+                        options: cachedCursorThemes
+                        onValueChanged: value => {
+                            SettingsData.setCursorTheme(value);
+                        }
+                    }
+
+                    SettingsSliderRow {
+                        tab: "theme"
+                        tags: ["cursor", "mouse", "pointer", "size"]
+                        settingKey: "cursorSize"
+                        text: I18n.tr("Cursor Size")
+                        description: I18n.tr("Mouse pointer size in pixels")
+                        value: SettingsData.cursorSettings.size
+                        minimum: 12
+                        maximum: 128
+                        unit: "px"
+                        defaultValue: 24
+                        onSliderValueChanged: newValue => SettingsData.setCursorSize(newValue)
+                    }
+
+                    SettingsToggleRow {
+                        tab: "theme"
+                        tags: ["cursor", "hide", "typing"]
+                        settingKey: "cursorHideWhenTyping"
+                        text: I18n.tr("Hide When Typing")
+                        description: I18n.tr("Hide cursor when pressing keyboard keys")
+                        visible: CompositorService.isNiri || CompositorService.isHyprland
+                        checked: {
+                            if (CompositorService.isNiri)
+                                return SettingsData.cursorSettings.niri?.hideWhenTyping || false;
+                            if (CompositorService.isHyprland)
+                                return SettingsData.cursorSettings.hyprland?.hideOnKeyPress || false;
+                            return false;
+                        }
+                        onToggled: checked => {
+                            const updated = JSON.parse(JSON.stringify(SettingsData.cursorSettings));
+                            if (CompositorService.isNiri) {
+                                if (!updated.niri)
+                                    updated.niri = {};
+                                updated.niri.hideWhenTyping = checked;
+                            } else if (CompositorService.isHyprland) {
+                                if (!updated.hyprland)
+                                    updated.hyprland = {};
+                                updated.hyprland.hideOnKeyPress = checked;
+                            }
+                            SettingsData.set("cursorSettings", updated);
+                        }
+                    }
+
+                    SettingsToggleRow {
+                        tab: "theme"
+                        tags: ["cursor", "hide", "touch"]
+                        settingKey: "cursorHideOnTouch"
+                        text: I18n.tr("Hide on Touch")
+                        description: I18n.tr("Hide cursor when using touch input")
+                        visible: CompositorService.isHyprland
+                        checked: SettingsData.cursorSettings.hyprland?.hideOnTouch || false
+                        onToggled: checked => {
+                            const updated = JSON.parse(JSON.stringify(SettingsData.cursorSettings));
+                            if (!updated.hyprland)
+                                updated.hyprland = {};
+                            updated.hyprland.hideOnTouch = checked;
+                            SettingsData.set("cursorSettings", updated);
+                        }
+                    }
+
+                    SettingsSliderRow {
+                        tab: "theme"
+                        tags: ["cursor", "hide", "timeout", "inactive"]
+                        settingKey: "cursorHideAfterInactive"
+                        text: I18n.tr("Auto-Hide Timeout")
+                        description: I18n.tr("Hide cursor after inactivity (0 = disabled)")
+                        value: {
+                            if (CompositorService.isNiri)
+                                return SettingsData.cursorSettings.niri?.hideAfterInactiveMs || 0;
+                            if (CompositorService.isHyprland)
+                                return SettingsData.cursorSettings.hyprland?.inactiveTimeout || 0;
+                            if (CompositorService.isDwl)
+                                return SettingsData.cursorSettings.dwl?.cursorHideTimeout || 0;
+                            return 0;
+                        }
+                        minimum: 0
+                        maximum: CompositorService.isNiri ? 5000 : 10
+                        unit: CompositorService.isNiri ? "ms" : "s"
+                        defaultValue: 0
+                        onSliderValueChanged: newValue => {
+                            const updated = JSON.parse(JSON.stringify(SettingsData.cursorSettings));
+                            if (CompositorService.isNiri) {
+                                if (!updated.niri)
+                                    updated.niri = {};
+                                updated.niri.hideAfterInactiveMs = newValue;
+                            } else if (CompositorService.isHyprland) {
+                                if (!updated.hyprland)
+                                    updated.hyprland = {};
+                                updated.hyprland.inactiveTimeout = newValue;
+                            } else if (CompositorService.isDwl) {
+                                if (!updated.dwl)
+                                    updated.dwl = {};
+                                updated.dwl.cursorHideTimeout = newValue;
+                            }
+                            SettingsData.set("cursorSettings", updated);
+                        }
+                    }
+                }
+            }
+
+            SettingsCard {
+                tab: "theme"
                 tags: ["matugen", "templates", "theming"]
                 title: I18n.tr("Matugen Templates")
                 settingKey: "matugenTemplates"
@@ -1066,7 +1628,8 @@ Item {
                     tags: ["matugen", "gtk", "template"]
                     settingKey: "matugenTemplateGtk"
                     text: "GTK"
-                    description: ""
+                    description: getTemplateDescription("gtk", "")
+                    descriptionColor: getTemplateDescriptionColor("gtk")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateGtk
                     onToggled: checked => SettingsData.set("matugenTemplateGtk", checked)
@@ -1077,7 +1640,8 @@ Item {
                     tags: ["matugen", "niri", "template"]
                     settingKey: "matugenTemplateNiri"
                     text: "niri"
-                    description: ""
+                    description: getTemplateDescription("niri", "")
+                    descriptionColor: getTemplateDescriptionColor("niri")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateNiri
                     onToggled: checked => SettingsData.set("matugenTemplateNiri", checked)
@@ -1085,10 +1649,35 @@ Item {
 
                 SettingsToggleRow {
                     tab: "theme"
+                    tags: ["matugen", "hyprland", "template"]
+                    settingKey: "matugenTemplateHyprland"
+                    text: "Hyprland"
+                    description: getTemplateDescription("hyprland", "")
+                    descriptionColor: getTemplateDescriptionColor("hyprland")
+                    visible: SettingsData.runDmsMatugenTemplates
+                    checked: SettingsData.matugenTemplateHyprland
+                    onToggled: checked => SettingsData.set("matugenTemplateHyprland", checked)
+                }
+
+                SettingsToggleRow {
+                    tab: "theme"
+                    tags: ["matugen", "mangowc", "template"]
+                    settingKey: "matugenTemplateMangowc"
+                    text: "mangowc"
+                    description: getTemplateDescription("mangowc", "")
+                    descriptionColor: getTemplateDescriptionColor("mangowc")
+                    visible: SettingsData.runDmsMatugenTemplates
+                    checked: SettingsData.matugenTemplateMangowc
+                    onToggled: checked => SettingsData.set("matugenTemplateMangowc", checked)
+                }
+
+                SettingsToggleRow {
+                    tab: "theme"
                     tags: ["matugen", "qt5ct", "template"]
                     settingKey: "matugenTemplateQt5ct"
                     text: "qt5ct"
-                    description: ""
+                    description: getTemplateDescription("qt5ct", "")
+                    descriptionColor: getTemplateDescriptionColor("qt5ct")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateQt5ct
                     onToggled: checked => SettingsData.set("matugenTemplateQt5ct", checked)
@@ -1099,7 +1688,8 @@ Item {
                     tags: ["matugen", "qt6ct", "template"]
                     settingKey: "matugenTemplateQt6ct"
                     text: "qt6ct"
-                    description: ""
+                    description: getTemplateDescription("qt6ct", "")
+                    descriptionColor: getTemplateDescriptionColor("qt6ct")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateQt6ct
                     onToggled: checked => SettingsData.set("matugenTemplateQt6ct", checked)
@@ -1110,7 +1700,8 @@ Item {
                     tags: ["matugen", "firefox", "template"]
                     settingKey: "matugenTemplateFirefox"
                     text: "Firefox"
-                    description: ""
+                    description: getTemplateDescription("firefox", "")
+                    descriptionColor: getTemplateDescriptionColor("firefox")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateFirefox
                     onToggled: checked => SettingsData.set("matugenTemplateFirefox", checked)
@@ -1121,7 +1712,8 @@ Item {
                     tags: ["matugen", "pywalfox", "template"]
                     settingKey: "matugenTemplatePywalfox"
                     text: "pywalfox"
-                    description: ""
+                    description: getTemplateDescription("pywalfox", "")
+                    descriptionColor: getTemplateDescriptionColor("pywalfox")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplatePywalfox
                     onToggled: checked => SettingsData.set("matugenTemplatePywalfox", checked)
@@ -1132,7 +1724,8 @@ Item {
                     tags: ["matugen", "zenbrowser", "template"]
                     settingKey: "matugenTemplateZenBrowser"
                     text: "zenbrowser"
-                    description: ""
+                    description: getTemplateDescription("zenbrowser", "")
+                    descriptionColor: getTemplateDescriptionColor("zenbrowser")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateZenBrowser
                     onToggled: checked => SettingsData.set("matugenTemplateZenBrowser", checked)
@@ -1143,7 +1736,8 @@ Item {
                     tags: ["matugen", "vesktop", "discord", "template"]
                     settingKey: "matugenTemplateVesktop"
                     text: "vesktop"
-                    description: ""
+                    description: getTemplateDescription("vesktop", "")
+                    descriptionColor: getTemplateDescriptionColor("vesktop")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateVesktop
                     onToggled: checked => SettingsData.set("matugenTemplateVesktop", checked)
@@ -1154,7 +1748,8 @@ Item {
                     tags: ["matugen", "equibop", "discord", "template"]
                     settingKey: "matugenTemplateEquibop"
                     text: "equibop"
-                    description: ""
+                    description: getTemplateDescription("equibop", "")
+                    descriptionColor: getTemplateDescriptionColor("equibop")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateEquibop
                     onToggled: checked => SettingsData.set("matugenTemplateEquibop", checked)
@@ -1165,7 +1760,8 @@ Item {
                     tags: ["matugen", "ghostty", "terminal", "template"]
                     settingKey: "matugenTemplateGhostty"
                     text: "Ghostty"
-                    description: ""
+                    description: getTemplateDescription("ghostty", "")
+                    descriptionColor: getTemplateDescriptionColor("ghostty")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateGhostty
                     onToggled: checked => SettingsData.set("matugenTemplateGhostty", checked)
@@ -1176,7 +1772,8 @@ Item {
                     tags: ["matugen", "kitty", "terminal", "template"]
                     settingKey: "matugenTemplateKitty"
                     text: "kitty"
-                    description: ""
+                    description: getTemplateDescription("kitty", "")
+                    descriptionColor: getTemplateDescriptionColor("kitty")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateKitty
                     onToggled: checked => SettingsData.set("matugenTemplateKitty", checked)
@@ -1187,17 +1784,20 @@ Item {
                     tags: ["matugen", "foot", "terminal", "template"]
                     settingKey: "matugenTemplateFoot"
                     text: "foot"
-                    description: ""
+                    description: getTemplateDescription("foot", "")
+                    descriptionColor: getTemplateDescriptionColor("foot")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateFoot
                     onToggled: checked => SettingsData.set("matugenTemplateFoot", checked)
                 }
+
                 SettingsToggleRow {
                     tab: "theme"
                     tags: ["matugen", "neovim", "terminal", "template"]
                     settingKey: "matugenTemplateNeovim"
                     text: "neovim"
-                    description: "Requires lazy plugin manager"
+                    description: getTemplateDescription("nvim", "Requires lazy plugin manager")
+                    descriptionColor: getTemplateDescriptionColor("nvim")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateNeovim
                     onToggled: checked => SettingsData.set("matugenTemplateNeovim", checked)
@@ -1208,7 +1808,8 @@ Item {
                     tags: ["matugen", "alacritty", "terminal", "template"]
                     settingKey: "matugenTemplateAlacritty"
                     text: "Alacritty"
-                    description: ""
+                    description: getTemplateDescription("alacritty", "")
+                    descriptionColor: getTemplateDescriptionColor("alacritty")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateAlacritty
                     onToggled: checked => SettingsData.set("matugenTemplateAlacritty", checked)
@@ -1219,7 +1820,8 @@ Item {
                     tags: ["matugen", "wezterm", "terminal", "template"]
                     settingKey: "matugenTemplateWezterm"
                     text: "WezTerm"
-                    description: ""
+                    description: getTemplateDescription("wezterm", "")
+                    descriptionColor: getTemplateDescriptionColor("wezterm")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateWezterm
                     onToggled: checked => SettingsData.set("matugenTemplateWezterm", checked)
@@ -1230,7 +1832,8 @@ Item {
                     tags: ["matugen", "dgop", "template"]
                     settingKey: "matugenTemplateDgop"
                     text: "dgop"
-                    description: ""
+                    description: getTemplateDescription("dgop", "")
+                    descriptionColor: getTemplateDescriptionColor("dgop")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateDgop
                     onToggled: checked => SettingsData.set("matugenTemplateDgop", checked)
@@ -1241,7 +1844,8 @@ Item {
                     tags: ["matugen", "kcolorscheme", "kde", "template"]
                     settingKey: "matugenTemplateKcolorscheme"
                     text: "KColorScheme"
-                    description: ""
+                    description: getTemplateDescription("kcolorscheme", "")
+                    descriptionColor: getTemplateDescriptionColor("kcolorscheme")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateKcolorscheme
                     onToggled: checked => SettingsData.set("matugenTemplateKcolorscheme", checked)
@@ -1252,7 +1856,8 @@ Item {
                     tags: ["matugen", "vscode", "code", "template"]
                     settingKey: "matugenTemplateVscode"
                     text: "VS Code"
-                    description: ""
+                    description: getTemplateDescription("vscode", "")
+                    descriptionColor: getTemplateDescriptionColor("vscode")
                     visible: SettingsData.runDmsMatugenTemplates
                     checked: SettingsData.matugenTemplateVscode
                     onToggled: checked => SettingsData.set("matugenTemplateVscode", checked)

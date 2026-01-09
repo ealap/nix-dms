@@ -24,9 +24,21 @@ Item {
 
     readonly property bool isMaterial: iconValue.startsWith("material:")
     readonly property bool isUnicode: iconValue.startsWith("unicode:")
+    readonly property bool isSvgCorner: iconValue.startsWith("svg+corner:")
+    readonly property bool isSvg: !isSvgCorner && iconValue.startsWith("svg:")
     readonly property string materialName: isMaterial ? iconValue.substring(9) : ""
     readonly property string unicodeChar: isUnicode ? iconValue.substring(8) : ""
-    readonly property string iconPath: isMaterial || isUnicode ? "" : Quickshell.iconPath(iconValue, true) || DesktopService.resolveIconPath(iconValue)
+    readonly property string svgSource: {
+        if (isSvgCorner) {
+            const parts = iconValue.substring(11).split("|");
+            return parts[0] || "";
+        }
+        if (isSvg)
+            return iconValue.substring(4);
+        return "";
+    }
+    readonly property string svgCornerIcon: isSvgCorner ? (iconValue.substring(11).split("|")[1] || "") : ""
+    readonly property string iconPath: isMaterial || isUnicode || isSvg || isSvgCorner ? "" : Quickshell.iconPath(iconValue, true) || DesktopService.resolveIconPath(iconValue)
 
     visible: iconValue !== undefined && iconValue !== ""
 
@@ -46,6 +58,14 @@ Item {
         visible: root.isUnicode
     }
 
+    DankSVGIcon {
+        anchors.centerIn: parent
+        source: root.svgSource
+        size: root.iconSize
+        cornerIcon: root.svgCornerIcon
+        visible: root.isSvg || root.isSvgCorner
+    }
+
     IconImage {
         id: iconImg
 
@@ -53,7 +73,7 @@ Item {
         source: root.iconPath
         smooth: true
         asynchronous: true
-        visible: !root.isMaterial && !root.isUnicode && root.iconPath !== "" && status === Image.Ready
+        visible: !root.isMaterial && !root.isUnicode && !root.isSvg && !root.isSvgCorner && root.iconPath !== "" && status === Image.Ready
     }
 
     Rectangle {
@@ -64,7 +84,7 @@ Item {
         anchors.rightMargin: root.fallbackRightMargin
         anchors.topMargin: root.fallbackTopMargin
         anchors.bottomMargin: root.fallbackBottomMargin
-        visible: !root.isMaterial && !root.isUnicode && (root.iconPath === "" || iconImg.status !== Image.Ready)
+        visible: !root.isMaterial && !root.isUnicode && !root.isSvg && !root.isSvgCorner && (root.iconPath === "" || iconImg.status !== Image.Ready)
         color: root.fallbackBackgroundColor
         radius: Theme.cornerRadius
         border.width: 0
