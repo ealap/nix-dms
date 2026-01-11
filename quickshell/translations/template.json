@@ -4060,7 +4060,28 @@
     "comment": ""
   },
   {
+    "term": "Focused Border",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Focused Color",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Focused Window",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Follow Monitor Focus",
     "translation": "",
     "context": "",
     "reference": "",
@@ -6825,13 +6846,6 @@
     "comment": ""
   },
   {
-    "term": "Per-Monitor Workspaces",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
     "term": "Per-screen config",
     "translation": "",
     "context": "greeter feature card description",
@@ -8540,6 +8554,13 @@
     "comment": ""
   },
   {
+    "term": "Show an outline ring around the focused workspace indicator",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Show cava audio visualizer in media widget",
     "translation": "",
     "context": "",
@@ -8666,13 +8687,6 @@
     "comment": ""
   },
   {
-    "term": "Show only workspaces belonging to each specific monitor.",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
     "term": "Show password",
     "translation": "",
     "context": "",
@@ -8695,6 +8709,13 @@
   },
   {
     "term": "Show workspace name on horizontal bars, and first letter on vertical bars",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show workspaces of the currently focused monitor",
     "translation": "",
     "context": "",
     "reference": "",
@@ -9583,6 +9604,13 @@
     "comment": ""
   },
   {
+    "term": "Unfocused Color",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Uninstall",
     "translation": "",
     "context": "uninstall action button",
@@ -9703,6 +9731,13 @@
   },
   {
     "term": "Update Plugin",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Urgent Color",
     "translation": "",
     "context": "",
     "reference": "",
@@ -10410,6 +10445,13 @@
   },
   {
     "term": "Workspace",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Workspace Appearance",
     "translation": "",
     "context": "",
     "reference": "",

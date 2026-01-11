@@ -861,7 +861,7 @@
     "Connect": "连接"
   },
   "Connect to Hidden Network": {
-    "Connect to Hidden Network": ""
+    "Connect to Hidden Network": "连接到隐藏的网络"
   },
   "Connect to VPN": {
     "Connect to VPN": "连接到 VPN"
@@ -1419,7 +1419,7 @@
     "Enter launch prefix (e.g., 'uwsm-app')": "输入启动前缀（例如 uwsm-app）"
   },
   "Enter network name and password": {
-    "Enter network name and password": ""
+    "Enter network name and password": "输入网络名称与密码"
   },
   "Enter passkey for ": {
     "Enter passkey for ": "输入密钥 "
@@ -1670,8 +1670,17 @@
   "Focus at Startup": {
     "Focus at Startup": "启动时聚焦"
   },
+  "Focused Border": {
+    "Focused Border": ""
+  },
+  "Focused Color": {
+    "Focused Color": ""
+  },
   "Focused Window": {
     "Focused Window": "当前窗口"
+  },
+  "Follow Monitor Focus": {
+    "Follow Monitor Focus": ""
   },
   "Follow focus": {
     "Follow focus": "跟随焦点"
@@ -1821,7 +1830,7 @@
     "Hidden": ""
   },
   "Hidden Network": {
-    "Hidden Network": ""
+    "Hidden Network": "隐藏的网络"
   },
   "Hide Delay": {
     "Hide Delay": "隐藏延迟"
@@ -2379,7 +2388,7 @@
     "Network Information": "网络信息"
   },
   "Network Name (SSID)": {
-    "Network Name (SSID)": ""
+    "Network Name (SSID)": "网络名称 (SSID)"
   },
   "Network Speed Monitor": {
     "Network Speed Monitor": "实时网速显示"
@@ -3386,6 +3395,9 @@
   "Show all 9 tags instead of only occupied tags (DWL only)": {
     "Show all 9 tags instead of only occupied tags (DWL only)": "显示所有 9 个标签，而非仅占用的标签（仅限 DWL）"
   },
+  "Show an outline ring around the focused workspace indicator": {
+    "Show an outline ring around the focused workspace indicator": ""
+  },
   "Show cava audio visualizer in media widget": {
     "Show cava audio visualizer in media widget": "在多媒体部件中显示cava音频可视化"
   },
@@ -3454,6 +3466,9 @@
   },
   "Show workspace name on horizontal bars, and first letter on vertical bars": {
     "Show workspace name on horizontal bars, and first letter on vertical bars": "在水平状态栏上显示工作区名称，而在垂直状态栏上显示首字母。"
+  },
+  "Show workspaces of the currently focused monitor": {
+    "Show workspaces of the currently focused monitor": ""
   },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "显示所有正在运行应用程序，并标记焦点所在"
@@ -3821,6 +3836,9 @@
   "Unavailable": {
     "Unavailable": "不可用"
   },
+  "Unfocused Color": {
+    "Unfocused Color": ""
+  },
   "Uninstall Plugin": {
     "Uninstall Plugin": "卸载插件"
   },
@@ -3862,6 +3880,9 @@
   },
   "Update Plugin": {
     "Update Plugin": "更新插件"
+  },
+  "Urgent Color": {
+    "Urgent Color": ""
   },
   "Usage Tips": {
     "Usage Tips": "使用提示"
@@ -4156,6 +4177,9 @@
   "Workspace": {
     "Workspace": "工作区"
   },
+  "Workspace Appearance": {
+    "Workspace Appearance": ""
+  },
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "工作区序号"
   },
@@ -4361,7 +4385,7 @@
     "DankBar": "DankBar"
   },
   "greeter feature card title | lock screen notifications settings card": {
-    "Lock Screen": ""
+    "Lock Screen": "锁屏"
   },
   "greeter finish button": {
     "Finish": "完成"

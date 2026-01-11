@@ -96,7 +96,7 @@ Item {
         setBarContext(pos, bottomGap);
     }
 
-    readonly property bool useBackgroundWindow: true
+    readonly property bool useBackgroundWindow: !CompositorService.isHyprland || CompositorService.useHyprlandFocusGrab
 
     function open() {
         if (!screen)
@@ -304,20 +304,37 @@ Item {
         anchors {
             left: true
             top: true
+            right: !useBackgroundWindow
+            bottom: !useBackgroundWindow
         }
 
         WlrLayershell.margins {
-            left: root.alignedX - shadowBuffer
-            top: root.alignedY - shadowBuffer
+            left: useBackgroundWindow ? (root.alignedX - shadowBuffer) : 0
+            top: useBackgroundWindow ? (root.alignedY - shadowBuffer) : 0
         }
 
-        implicitWidth: root.alignedWidth + (shadowBuffer * 2)
-        implicitHeight: root.alignedHeight + (shadowBuffer * 2)
+        implicitWidth: useBackgroundWindow ? (root.alignedWidth + (shadowBuffer * 2)) : 0
+        implicitHeight: useBackgroundWindow ? (root.alignedHeight + (shadowBuffer * 2)) : 0
+
+        MouseArea {
+            anchors.fill: parent
+            enabled: !useBackgroundWindow && shouldBeVisible && backgroundInteractive
+            acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+            z: -1
+            onClicked: mouse => {
+                const clickX = mouse.x;
+                const clickY = mouse.y;
+                const outsideContent = clickX < root.alignedX || clickX > root.alignedX + root.alignedWidth || clickY < root.alignedY || clickY > root.alignedY + root.alignedHeight;
+                if (!outsideContent)
+                    return;
+                backgroundClicked();
+            }
+        }
 
         Item {
             id: contentContainer
-            x: shadowBuffer
-            y: shadowBuffer
+            x: useBackgroundWindow ? shadowBuffer : root.alignedX
+            y: useBackgroundWindow ? shadowBuffer : root.alignedY
             width: root.alignedWidth
             height: root.alignedHeight
 

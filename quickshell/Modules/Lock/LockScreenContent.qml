@@ -34,6 +34,13 @@ Item {
 
     signal unlockRequested
 
+    function resetLockState() {
+        lockerReadySent = false;
+        lockerReadyArmed = true;
+        unlocking = false;
+        pamState = "";
+    }
+
     function pickRandomFact() {
         randomFact = Facts.getRandomFact();
     }

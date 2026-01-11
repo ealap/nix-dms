@@ -49,6 +49,13 @@ Item {
             updateDesktopEntry();
         }
     }
+
+    Connections {
+        target: SettingsData
+        function onAppIdSubstitutionsChanged() {
+            updateDesktopEntry();
+        }
+    }
     property bool isWindowFocused: {
         if (!appData) {
             return false;
@@ -389,20 +396,6 @@ Item {
                 saturation: 0
                 colorization: 1
                 colorizationColor: Theme.primary
-            }
-        }
-
-        DankIcon {
-            anchors.centerIn: parent
-            size: actualIconSize
-            name: "sports_esports"
-            color: Theme.surfaceText
-            visible: {
-                if (!appData || !appData.appId || appData.appId === "__SEPARATOR__") {
-                    return false;
-                }
-                const moddedId = Paths.moddedAppId(appData.appId);
-                return moddedId.toLowerCase().includes("steam_app");
             }
         }
 

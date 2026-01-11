@@ -2,7 +2,7 @@
   {
     "term": "%1 DMS bind(s) may be overridden by config binds that come after the include.",
     "context": "%1 DMS bind(s) may be overridden by config binds that come after the include.",
-    "reference": "Modules/Settings/KeybindsTab.qml:322",
+    "reference": "Modules/Settings/KeybindsTab.qml:328",
     "comment": ""
   },
   {
@@ -44,7 +44,7 @@
   {
     "term": "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.",
     "context": "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.",
-    "reference": "Modules/Settings/KeybindsTab.qml:319",
+    "reference": "Modules/Settings/KeybindsTab.qml:325",
     "comment": ""
   },
   {
@@ -68,7 +68,7 @@
   {
     "term": "%1 notifications",
     "context": "%1 notifications",
-    "reference": "Modules/Lock/LockScreenContent.qml:446",
+    "reference": "Modules/Lock/LockScreenContent.qml:453",
     "comment": ""
   },
   {
@@ -104,7 +104,7 @@
   {
     "term": "+ %1 more",
     "context": "+ %1 more",
-    "reference": "Modules/Lock/LockScreenContent.qml:526, Modules/Lock/LockScreenContent.qml:641",
+    "reference": "Modules/Lock/LockScreenContent.qml:533, Modules/Lock/LockScreenContent.qml:648",
     "comment": ""
   },
   {
@@ -134,7 +134,7 @@
   {
     "term": "1 notification",
     "context": "1 notification",
-    "reference": "Modules/Lock/LockScreenContent.qml:446",
+    "reference": "Modules/Lock/LockScreenContent.qml:453",
     "comment": ""
   },
   {
@@ -338,7 +338,7 @@
   {
     "term": "Action",
     "context": "Action",
-    "reference": "Widgets/KeybindItem.qml:889, Widgets/KeybindItem.qml:1084",
+    "reference": "Widgets/KeybindItem.qml:895, Widgets/KeybindItem.qml:1090",
     "comment": ""
   },
   {
@@ -398,7 +398,7 @@
   {
     "term": "Add",
     "context": "Add",
-    "reference": "Widgets/KeybindItem.qml:1677, Modules/Plugins/ListSettingWithInput.qml:126",
+    "reference": "Widgets/KeybindItem.qml:1683, Modules/Plugins/ListSettingWithInput.qml:126",
     "comment": ""
   },
   {
@@ -422,7 +422,7 @@
   {
     "term": "Add Widget",
     "context": "Add Widget",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:767, Modules/Settings/WidgetSelectionPopup.qml:92, Modules/Settings/DesktopWidgetsTab.qml:65, Modules/ControlCenter/Components/EditControls.qml:61, Modules/ControlCenter/Components/EditControls.qml:164",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:767, Modules/Settings/WidgetSelectionPopup.qml:92, Modules/Settings/DesktopWidgetsTab.qml:69, Modules/ControlCenter/Components/EditControls.qml:61, Modules/ControlCenter/Components/EditControls.qml:164",
     "comment": ""
   },
   {
@@ -446,7 +446,7 @@
   {
     "term": "Add and configure widgets that appear on your desktop",
     "context": "Add and configure widgets that appear on your desktop",
-    "reference": "Modules/Settings/DesktopWidgetsTab.qml:55",
+    "reference": "Modules/Settings/DesktopWidgetsTab.qml:58",
     "comment": ""
   },
   {
@@ -470,7 +470,7 @@
   {
     "term": "All",
     "context": "notification history filter",
-    "reference": "Services/AppSearchService.qml:514, Services/AppSearchService.qml:528, Modules/AppDrawer/CategorySelector.qml:11, Modules/AppDrawer/AppLauncher.qml:14, Modules/AppDrawer/AppLauncher.qml:47, Modules/AppDrawer/AppLauncher.qml:48, Modules/AppDrawer/AppLauncher.qml:90, Modules/AppDrawer/AppLauncher.qml:295, Modules/AppDrawer/AppDrawerPopout.qml:58, Modules/Settings/KeybindsTab.qml:380, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:94, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:97, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:109, Modules/Notifications/Center/HistoryNotificationList.qml:86",
+    "reference": "Services/AppSearchService.qml:514, Services/AppSearchService.qml:528, Modules/AppDrawer/CategorySelector.qml:11, Modules/AppDrawer/AppLauncher.qml:14, Modules/AppDrawer/AppLauncher.qml:47, Modules/AppDrawer/AppLauncher.qml:48, Modules/AppDrawer/AppLauncher.qml:90, Modules/AppDrawer/AppLauncher.qml:295, Modules/AppDrawer/AppDrawerPopout.qml:58, Modules/Settings/KeybindsTab.qml:387, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:94, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:97, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:109, Modules/Notifications/Center/HistoryNotificationList.qml:86",
     "comment": ""
   },
   {
@@ -494,7 +494,7 @@
   {
     "term": "All displays",
     "context": "All displays",
-    "reference": "Modules/Plugins/PluginSettings.qml:237, Modules/Settings/DisplayWidgetsTab.qml:386, Modules/Settings/DankBarTab.qml:403, Modules/Settings/DankBarTab.qml:522, Modules/Settings/Widgets/SettingsDisplayPicker.qml:43",
+    "reference": "Modules/Plugins/PluginSettings.qml:237, Modules/Settings/DisplayWidgetsTab.qml:400, Modules/Settings/DankBarTab.qml:403, Modules/Settings/DankBarTab.qml:522, Modules/Settings/Widgets/SettingsDisplayPicker.qml:43",
     "comment": ""
   },
   {
@@ -536,13 +536,13 @@
   {
     "term": "Always show when there's only one connected display",
     "context": "Always show when there's only one connected display",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:408",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:422",
     "comment": ""
   },
   {
     "term": "Amount",
     "context": "Amount",
-    "reference": "Widgets/KeybindItem.qml:933",
+    "reference": "Widgets/KeybindItem.qml:939",
     "comment": ""
   },
   {
@@ -602,7 +602,7 @@
   {
     "term": "Application Dock",
     "context": "Application Dock",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:28",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:31",
     "comment": ""
   },
   {
@@ -920,13 +920,13 @@
   {
     "term": "Available Plugins",
     "context": "Available Plugins",
-    "reference": "Modules/Settings/PluginsTab.qml:284",
+    "reference": "Modules/Settings/PluginsTab.qml:299",
     "comment": ""
   },
   {
     "term": "Available Screens (%1)",
     "context": "Available Screens (%1)",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:193",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:199",
     "comment": ""
   },
   {
@@ -1028,7 +1028,7 @@
   {
     "term": "Binds Include Missing",
     "context": "Binds Include Missing",
-    "reference": "Modules/Settings/KeybindsTab.qml:303",
+    "reference": "Modules/Settings/KeybindsTab.qml:309",
     "comment": ""
   },
   {
@@ -1106,7 +1106,7 @@
   {
     "term": "Border Color",
     "context": "Border Color",
-    "reference": "Modules/Settings/DockTab.qml:224",
+    "reference": "Modules/Settings/DockTab.qml:224, Modules/Settings/WorkspacesTab.qml:294",
     "comment": ""
   },
   {
@@ -1154,7 +1154,7 @@
   {
     "term": "Bottom dock for pinned and running applications",
     "context": "Bottom dock for pinned and running applications",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:29",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:32",
     "comment": ""
   },
   {
@@ -1184,13 +1184,13 @@
   {
     "term": "Browse",
     "context": "Browse",
-    "reference": "Modules/Settings/PluginsTab.qml:198",
+    "reference": "Modules/Settings/PluginsTab.qml:208",
     "comment": ""
   },
   {
     "term": "Browse Plugins",
     "context": "plugin browser header | plugin browser window title",
-    "reference": "Modules/Settings/PluginBrowser.qml:138, Modules/Settings/PluginBrowser.qml:248, Modules/Settings/DesktopWidgetsTab.qml:71",
+    "reference": "Modules/Settings/PluginBrowser.qml:138, Modules/Settings/PluginBrowser.qml:248, Modules/Settings/DesktopWidgetsTab.qml:75",
     "comment": ""
   },
   {
@@ -1274,7 +1274,7 @@
   {
     "term": "Cancel",
     "context": "Cancel",
-    "reference": "Modals/BluetoothPairingModal.qml:272, Modals/PolkitAuthModal.qml:292, Modals/WifiPasswordModal.qml:736, Widgets/KeybindItem.qml:1661, Modals/FileBrowser/FileBrowserOverwriteDialog.qml:83, Modules/Settings/PluginBrowser.qml:113, Modules/Settings/PluginBrowser.qml:772, Modules/Settings/ThemeBrowser.qml:120",
+    "reference": "Modals/BluetoothPairingModal.qml:272, Modals/PolkitAuthModal.qml:292, Modals/WifiPasswordModal.qml:736, Widgets/KeybindItem.qml:1667, Modals/FileBrowser/FileBrowserOverwriteDialog.qml:83, Modules/Settings/PluginBrowser.qml:113, Modules/Settings/PluginBrowser.qml:772, Modules/Settings/ThemeBrowser.qml:120",
     "comment": ""
   },
   {
@@ -1484,7 +1484,7 @@
   {
     "term": "Click 'Setup' to create %1 and add include to config.",
     "context": "Click 'Setup' to create %1 and add include to config.",
-    "reference": "Modules/Settings/KeybindsTab.qml:317",
+    "reference": "Modules/Settings/KeybindsTab.qml:323",
     "comment": ""
   },
   {
@@ -1508,13 +1508,13 @@
   {
     "term": "Click any shortcut to edit. Changes save to %1",
     "context": "Click any shortcut to edit. Changes save to %1",
-    "reference": "Modules/Settings/KeybindsTab.qml:217",
+    "reference": "Modules/Settings/KeybindsTab.qml:222",
     "comment": ""
   },
   {
     "term": "Click to capture",
     "context": "Click to capture",
-    "reference": "Widgets/KeybindItem.qml:611",
+    "reference": "Widgets/KeybindItem.qml:616",
     "comment": ""
   },
   {
@@ -1664,7 +1664,7 @@
   {
     "term": "Command",
     "context": "Command",
-    "reference": "Widgets/KeybindItem.qml:1390, Modules/Settings/DesktopWidgetInstanceCard.qml:280",
+    "reference": "Widgets/KeybindItem.qml:1396, Modules/Settings/DesktopWidgetInstanceCard.qml:281",
     "comment": ""
   },
   {
@@ -1718,7 +1718,7 @@
   {
     "term": "Config action: %1",
     "context": "Config action: %1",
-    "reference": "Widgets/KeybindItem.qml:460",
+    "reference": "Widgets/KeybindItem.qml:465",
     "comment": ""
   },
   {
@@ -1766,13 +1766,13 @@
   {
     "term": "Configure icons for named workspaces. Icons take priority over numbers when both are enabled.",
     "context": "Configure icons for named workspaces. Icons take priority over numbers when both are enabled.",
-    "reference": "Modules/Settings/WorkspacesTab.qml:165",
+    "reference": "Modules/Settings/WorkspacesTab.qml:349",
     "comment": ""
   },
   {
     "term": "Configure which displays show shell components",
     "context": "Configure which displays show shell components",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:171",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:176",
     "comment": ""
   },
   {
@@ -1802,7 +1802,7 @@
   {
     "term": "Conflicts with: %1",
     "context": "Conflicts with: %1",
-    "reference": "Widgets/KeybindItem.qml:769",
+    "reference": "Widgets/KeybindItem.qml:774",
     "comment": ""
   },
   {
@@ -1838,7 +1838,7 @@
   {
     "term": "Connected Displays",
     "context": "Connected Displays",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:164",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:167",
     "comment": ""
   },
   {
@@ -1892,13 +1892,13 @@
   {
     "term": "Cooldown",
     "context": "Cooldown",
-    "reference": "Widgets/KeybindItem.qml:1582",
+    "reference": "Widgets/KeybindItem.qml:1588",
     "comment": ""
   },
   {
     "term": "Copied to clipboard",
     "context": "Copied to clipboard",
-    "reference": "dms-plugins/DankLauncherKeys/DankLauncherKeys.qml:154, Modals/Settings/SettingsModal.qml:286, Modals/Settings/SettingsModal.qml:303, Modals/Clipboard/ClipboardHistoryModal.qml:150, Modules/Settings/DesktopWidgetInstanceCard.qml:318",
+    "reference": "dms-plugins/DankLauncherKeys/DankLauncherKeys.qml:154, Modals/Settings/SettingsModal.qml:286, Modals/Settings/SettingsModal.qml:303, Modals/Clipboard/ClipboardHistoryModal.qml:150, Modules/Settings/DesktopWidgetInstanceCard.qml:321",
     "comment": ""
   },
   {
@@ -1958,7 +1958,7 @@
   {
     "term": "Create Dir",
     "context": "Create Dir",
-    "reference": "Modules/Settings/PluginsTab.qml:220",
+    "reference": "Modules/Settings/PluginsTab.qml:230",
     "comment": ""
   },
   {
@@ -2066,7 +2066,7 @@
   {
     "term": "Custom",
     "context": "Custom",
-    "reference": "Widgets/KeybindItem.qml:1327, dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:47, Modules/Settings/TypographyMotionTab.qml:225, Modules/Settings/LauncherTab.qml:73, Modules/Settings/LauncherTab.qml:179, Modules/Settings/Widgets/SettingsColorPicker.qml:52",
+    "reference": "Widgets/KeybindItem.qml:1333, dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:47, Modules/Settings/TypographyMotionTab.qml:225, Modules/Settings/LauncherTab.qml:73, Modules/Settings/LauncherTab.qml:179, Modules/Settings/Widgets/SettingsColorPicker.qml:52",
     "comment": ""
   },
   {
@@ -2174,13 +2174,13 @@
   {
     "term": "DEMO MODE - Click anywhere to exit",
     "context": "DEMO MODE - Click anywhere to exit",
-    "reference": "Modules/Lock/LockScreenContent.qml:1098",
+    "reference": "Modules/Lock/LockScreenContent.qml:1105",
     "comment": ""
   },
   {
     "term": "DMS Plugin Manager Unavailable",
     "context": "DMS Plugin Manager Unavailable",
-    "reference": "Modules/Settings/PluginsTab.qml:106",
+    "reference": "Modules/Settings/PluginsTab.qml:114",
     "comment": ""
   },
   {
@@ -2204,7 +2204,7 @@
   {
     "term": "DMS shell actions (launcher, clipboard, etc.)",
     "context": "DMS shell actions (launcher, clipboard, etc.)",
-    "reference": "Widgets/KeybindItem.qml:802",
+    "reference": "Widgets/KeybindItem.qml:808",
     "comment": ""
   },
   {
@@ -2396,19 +2396,19 @@
   {
     "term": "Desktop Widget",
     "context": "Desktop Widget",
-    "reference": "Modules/Settings/PluginListItem.qml:158",
+    "reference": "Modules/Settings/PluginListItem.qml:161",
     "comment": ""
   },
   {
     "term": "Desktop Widgets",
     "context": "Desktop Widgets",
-    "reference": "Modals/Settings/SettingsSidebar.qml:167, Modules/Settings/DesktopWidgetsTab.qml:46",
+    "reference": "Modals/Settings/SettingsSidebar.qml:167, Modules/Settings/DesktopWidgetsTab.qml:49",
     "comment": ""
   },
   {
     "term": "Desktop background images",
     "context": "Desktop background images",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:41",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:44",
     "comment": ""
   },
   {
@@ -2426,7 +2426,7 @@
   {
     "term": "Device",
     "context": "Device",
-    "reference": "Widgets/KeybindItem.qml:980, Modules/ProcessList/SystemTab.qml:420, Modules/Settings/PrinterTab.qml:279",
+    "reference": "Widgets/KeybindItem.qml:986, Modules/ProcessList/SystemTab.qml:420, Modules/Settings/PrinterTab.qml:279",
     "comment": ""
   },
   {
@@ -2540,7 +2540,7 @@
   {
     "term": "Display Name Format",
     "context": "Display Name Format",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:210",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:217",
     "comment": ""
   },
   {
@@ -2600,7 +2600,7 @@
   {
     "term": "Display only workspaces that contain windows",
     "context": "Display only workspaces that contain windows",
-    "reference": "Modules/Settings/WorkspacesTab.qml:129",
+    "reference": "Modules/Settings/WorkspacesTab.qml:130",
     "comment": ""
   },
   {
@@ -3206,7 +3206,7 @@
   {
     "term": "Failed to parse plugin_settings.json",
     "context": "Failed to parse plugin_settings.json",
-    "reference": "Common/SettingsData.qml:946",
+    "reference": "Common/SettingsData.qml:952",
     "comment": ""
   },
   {
@@ -3218,7 +3218,7 @@
   {
     "term": "Failed to parse settings.json",
     "context": "Failed to parse settings.json",
-    "reference": "Common/SettingsData.qml:883, Common/SettingsData.qml:2071",
+    "reference": "Common/SettingsData.qml:889, Common/SettingsData.qml:2077",
     "comment": ""
   },
   {
@@ -3428,25 +3428,25 @@
   {
     "term": "First Time Setup",
     "context": "First Time Setup",
-    "reference": "Modules/Settings/KeybindsTab.qml:301, Modules/Settings/DisplayConfig/IncludeWarningBox.qml:45",
+    "reference": "Modules/Settings/KeybindsTab.qml:307, Modules/Settings/DisplayConfig/IncludeWarningBox.qml:45",
     "comment": ""
   },
   {
     "term": "Fix Now",
     "context": "Fix Now",
-    "reference": "Modules/Settings/ThemeColorsTab.qml:1472, Modules/Settings/KeybindsTab.qml:341, Modules/Settings/DisplayConfig/IncludeWarningBox.qml:78",
+    "reference": "Modules/Settings/ThemeColorsTab.qml:1472, Modules/Settings/KeybindsTab.qml:348, Modules/Settings/DisplayConfig/IncludeWarningBox.qml:78",
     "comment": ""
   },
   {
     "term": "Fixing...",
     "context": "Fixing...",
-    "reference": "Modules/Settings/ThemeColorsTab.qml:1472, Modules/Settings/KeybindsTab.qml:338, Modules/Settings/DisplayConfig/IncludeWarningBox.qml:75",
+    "reference": "Modules/Settings/ThemeColorsTab.qml:1472, Modules/Settings/KeybindsTab.qml:345, Modules/Settings/DisplayConfig/IncludeWarningBox.qml:75",
     "comment": ""
   },
   {
     "term": "Flags",
     "context": "Flags",
-    "reference": "Widgets/KeybindItem.qml:1475",
+    "reference": "Widgets/KeybindItem.qml:1481",
     "comment": ""
   },
   {
@@ -3480,15 +3480,33 @@
     "comment": ""
   },
   {
+    "term": "Focused Border",
+    "context": "Focused Border",
+    "reference": "Modules/Settings/WorkspacesTab.qml:280",
+    "comment": ""
+  },
+  {
+    "term": "Focused Color",
+    "context": "Focused Color",
+    "reference": "Modules/Settings/WorkspacesTab.qml:164",
+    "comment": ""
+  },
+  {
     "term": "Focused Window",
     "context": "Focused Window",
     "reference": "Modules/Settings/WidgetsTab.qml:58",
     "comment": ""
   },
   {
+    "term": "Follow Monitor Focus",
+    "context": "Follow Monitor Focus",
+    "reference": "Modules/Settings/WorkspacesTab.qml:119",
+    "comment": ""
+  },
+  {
     "term": "Follow focus",
     "context": "Follow focus",
-    "reference": "Widgets/KeybindItem.qml:1259",
+    "reference": "Widgets/KeybindItem.qml:1265",
     "comment": ""
   },
   {
@@ -3800,7 +3818,7 @@
   {
     "term": "Help",
     "context": "Help",
-    "reference": "Modules/Settings/DesktopWidgetsTab.qml:138",
+    "reference": "Modules/Settings/DesktopWidgetsTab.qml:142",
     "comment": ""
   },
   {
@@ -3944,7 +3962,7 @@
   {
     "term": "Hotkey overlay title (optional)",
     "context": "Hotkey overlay title (optional)",
-    "reference": "Widgets/KeybindItem.qml:1461",
+    "reference": "Widgets/KeybindItem.qml:1467",
     "comment": ""
   },
   {
@@ -4082,7 +4100,7 @@
   {
     "term": "Incompatible Plugins Loaded",
     "context": "Incompatible Plugins Loaded",
-    "reference": "Modules/Settings/PluginsTab.qml:158",
+    "reference": "Modules/Settings/PluginsTab.qml:167",
     "comment": ""
   },
   {
@@ -4106,7 +4124,7 @@
   {
     "term": "Individual bar configuration",
     "context": "Individual bar configuration",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:16",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:19",
     "comment": ""
   },
   {
@@ -4286,7 +4304,7 @@
   {
     "term": "Key",
     "context": "Key",
-    "reference": "Widgets/KeybindItem.qml:570",
+    "reference": "Widgets/KeybindItem.qml:575",
     "comment": ""
   },
   {
@@ -4322,13 +4340,13 @@
   {
     "term": "Keyboard Shortcuts",
     "context": "Keyboard Shortcuts",
-    "reference": "Modals/Settings/SettingsSidebar.qml:195, Modules/Settings/KeybindsTab.qml:209",
+    "reference": "Modals/Settings/SettingsSidebar.qml:195, Modules/Settings/KeybindsTab.qml:212",
     "comment": ""
   },
   {
     "term": "Keys",
     "context": "Keys",
-    "reference": "Widgets/KeybindItem.qml:483",
+    "reference": "Widgets/KeybindItem.qml:488",
     "comment": ""
   },
   {
@@ -4484,7 +4502,7 @@
   {
     "term": "Loading keybinds...",
     "context": "Loading keybinds...",
-    "reference": "Modules/Settings/KeybindsTab.qml:545",
+    "reference": "Modules/Settings/KeybindsTab.qml:552",
     "comment": ""
   },
   {
@@ -4562,7 +4580,7 @@
   {
     "term": "Locked",
     "context": "Locked",
-    "reference": "Widgets/KeybindItem.qml:1524",
+    "reference": "Widgets/KeybindItem.qml:1530",
     "comment": ""
   },
   {
@@ -4586,7 +4604,7 @@
   {
     "term": "Long press",
     "context": "Long press",
-    "reference": "Widgets/KeybindItem.qml:1568",
+    "reference": "Widgets/KeybindItem.qml:1574",
     "comment": ""
   },
   {
@@ -4616,7 +4634,7 @@
   {
     "term": "Manage and configure plugins for extending DMS functionality",
     "context": "Manage and configure plugins for extending DMS functionality",
-    "reference": "Modules/Settings/PluginsTab.qml:73",
+    "reference": "Modules/Settings/PluginsTab.qml:79",
     "comment": ""
   },
   {
@@ -4772,7 +4790,7 @@
   {
     "term": "Media",
     "context": "Media",
-    "reference": "Services/AppSearchService.qml:452, Services/AppSearchService.qml:453, Services/AppSearchService.qml:454, Widgets/DankIconPicker.qml:40, Widgets/KeybindItem.qml:1043, Widgets/KeybindItem.qml:1052, Widgets/KeybindItem.qml:1058, Modules/DankDash/DankDashPopout.qml:276",
+    "reference": "Services/AppSearchService.qml:452, Services/AppSearchService.qml:453, Services/AppSearchService.qml:454, Widgets/DankIconPicker.qml:40, Widgets/KeybindItem.qml:1049, Widgets/KeybindItem.qml:1058, Widgets/KeybindItem.qml:1064, Modules/DankDash/DankDashPopout.qml:276",
     "comment": ""
   },
   {
@@ -4934,7 +4952,7 @@
   {
     "term": "Model",
     "context": "Model",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:218, Modules/Settings/PrinterTab.qml:812, Modules/Settings/DisplayConfigTab.qml:103, Modules/Settings/DisplayConfig/DisplayConfigState.qml:845",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:225, Modules/Settings/PrinterTab.qml:812, Modules/Settings/DisplayConfigTab.qml:103, Modules/Settings/DisplayConfig/DisplayConfigState.qml:845",
     "comment": ""
   },
   {
@@ -5006,7 +5024,7 @@
   {
     "term": "Move Widget",
     "context": "Move Widget",
-    "reference": "Modules/Settings/DesktopWidgetsTab.qml:167",
+    "reference": "Modules/Settings/DesktopWidgetsTab.qml:172",
     "comment": ""
   },
   {
@@ -5036,13 +5054,13 @@
   {
     "term": "Name",
     "context": "Name",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:218, Modules/Settings/DesktopWidgetInstanceCard.qml:197, Modules/Settings/PrinterTab.qml:414, Modules/Settings/DisplayConfigTab.qml:103, Modules/Settings/DisplayConfig/DisplayConfigState.qml:845, Modules/Settings/Widgets/SystemMonitorVariantCard.qml:144",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:225, Modules/Settings/DesktopWidgetInstanceCard.qml:197, Modules/Settings/PrinterTab.qml:414, Modules/Settings/DisplayConfigTab.qml:103, Modules/Settings/DisplayConfig/DisplayConfigState.qml:845, Modules/Settings/Widgets/SystemMonitorVariantCard.qml:144",
     "comment": ""
   },
   {
     "term": "Named Workspace Icons",
     "context": "Named Workspace Icons",
-    "reference": "Modules/Settings/WorkspacesTab.qml:159",
+    "reference": "Modules/Settings/WorkspacesTab.qml:343",
     "comment": ""
   },
   {
@@ -5114,13 +5132,13 @@
   {
     "term": "New Key",
     "context": "New Key",
-    "reference": "Widgets/KeybindItem.qml:570",
+    "reference": "Widgets/KeybindItem.qml:575",
     "comment": ""
   },
   {
     "term": "New Keybind",
     "context": "New Keybind",
-    "reference": "Modules/Settings/KeybindsTab.qml:459",
+    "reference": "Modules/Settings/KeybindsTab.qml:466",
     "comment": ""
   },
   {
@@ -5186,7 +5204,7 @@
   {
     "term": "Niri compositor actions (focus, move, etc.)",
     "context": "Niri compositor actions (focus, move, etc.)",
-    "reference": "Widgets/KeybindItem.qml:803",
+    "reference": "Widgets/KeybindItem.qml:809",
     "comment": ""
   },
   {
@@ -5252,7 +5270,7 @@
   {
     "term": "No action",
     "context": "No action",
-    "reference": "Widgets/KeybindItem.qml:323",
+    "reference": "Widgets/KeybindItem.qml:326",
     "comment": ""
   },
   {
@@ -5276,7 +5294,7 @@
   {
     "term": "No changes",
     "context": "No changes",
-    "reference": "Widgets/KeybindItem.qml:1654",
+    "reference": "Widgets/KeybindItem.qml:1660",
     "comment": ""
   },
   {
@@ -5354,7 +5372,7 @@
   {
     "term": "No keybinds found",
     "context": "No keybinds found",
-    "reference": "Modules/Settings/KeybindsTab.qml:553",
+    "reference": "Modules/Settings/KeybindsTab.qml:560",
     "comment": ""
   },
   {
@@ -5372,7 +5390,7 @@
   {
     "term": "No plugins found.",
     "context": "No plugins found.",
-    "reference": "Modules/Settings/PluginsTab.qml:319",
+    "reference": "Modules/Settings/PluginsTab.qml:336",
     "comment": ""
   },
   {
@@ -5492,7 +5510,7 @@
   {
     "term": "Notepad Slideout",
     "context": "Notepad Slideout",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:58",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:61",
     "comment": ""
   },
   {
@@ -5522,7 +5540,7 @@
   {
     "term": "Notification Popups",
     "context": "Notification Popups",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:34, Modules/Settings/NotificationsTab.qml:92",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:37, Modules/Settings/NotificationsTab.qml:92",
     "comment": ""
   },
   {
@@ -5540,7 +5558,7 @@
   {
     "term": "Notification toast popups",
     "context": "Notification toast popups",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:35",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:38",
     "comment": ""
   },
   {
@@ -5600,7 +5618,7 @@
   {
     "term": "On-Screen Displays",
     "context": "On-Screen Displays",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:46",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:49",
     "comment": ""
   },
   {
@@ -5672,7 +5690,7 @@
   {
     "term": "Options",
     "context": "Options",
-    "reference": "Widgets/KeybindItem.qml:1170",
+    "reference": "Widgets/KeybindItem.qml:1176",
     "comment": ""
   },
   {
@@ -5708,13 +5726,13 @@
   {
     "term": "Overridden by config",
     "context": "Overridden by config",
-    "reference": "Widgets/KeybindItem.qml:364",
+    "reference": "Widgets/KeybindItem.qml:368",
     "comment": ""
   },
   {
     "term": "Override",
     "context": "Override",
-    "reference": "Widgets/KeybindItem.qml:350",
+    "reference": "Widgets/KeybindItem.qml:354",
     "comment": ""
   },
   {
@@ -5744,13 +5762,13 @@
   {
     "term": "Overrides",
     "context": "Overrides",
-    "reference": "Modules/Settings/KeybindsTab.qml:73",
+    "reference": "Modules/Settings/KeybindsTab.qml:76",
     "comment": ""
   },
   {
     "term": "Overview",
     "context": "Overview",
-    "reference": "Widgets/KeybindItem.qml:1049, Widgets/KeybindItem.qml:1052, Modules/DankDash/DankDashPopout.qml:272",
+    "reference": "Widgets/KeybindItem.qml:1055, Widgets/KeybindItem.qml:1058, Modules/DankDash/DankDashPopout.qml:272",
     "comment": ""
   },
   {
@@ -5850,12 +5868,6 @@
     "comment": ""
   },
   {
-    "term": "Per-Monitor Workspaces",
-    "context": "Per-Monitor Workspaces",
-    "reference": "Modules/Settings/WorkspacesTab.qml:119",
-    "comment": ""
-  },
-  {
     "term": "Per-screen config",
     "context": "greeter feature card description",
     "reference": "Modals/Greeter/GreeterWelcomePage.qml:131",
@@ -5900,13 +5912,13 @@
   {
     "term": "Place plugin directories here. Each plugin should have a plugin.json manifest file.",
     "context": "Place plugin directories here. Each plugin should have a plugin.json manifest file.",
-    "reference": "Modules/Settings/PluginsTab.qml:260",
+    "reference": "Modules/Settings/PluginsTab.qml:274",
     "comment": ""
   },
   {
     "term": "Place plugins in %1",
     "context": "Place plugins in %1",
-    "reference": "Modules/Settings/PluginsTab.qml:319",
+    "reference": "Modules/Settings/PluginsTab.qml:336",
     "comment": ""
   },
   {
@@ -5960,13 +5972,13 @@
   {
     "term": "Plugin Directory",
     "context": "Plugin Directory",
-    "reference": "Modules/Settings/PluginsTab.qml:246",
+    "reference": "Modules/Settings/PluginsTab.qml:256",
     "comment": ""
   },
   {
     "term": "Plugin Management",
     "context": "Plugin Management",
-    "reference": "Modules/Settings/PluginsTab.qml:66",
+    "reference": "Modules/Settings/PluginsTab.qml:70",
     "comment": ""
   },
   {
@@ -5984,7 +5996,7 @@
   {
     "term": "Pointer",
     "context": "Pointer",
-    "reference": "Widgets/KeybindItem.qml:1287",
+    "reference": "Widgets/KeybindItem.qml:1293",
     "comment": ""
   },
   {
@@ -6020,7 +6032,7 @@
   {
     "term": "Possible Override Conflicts",
     "context": "Possible Override Conflicts",
-    "reference": "Modules/Settings/KeybindsTab.qml:305",
+    "reference": "Modules/Settings/KeybindsTab.qml:311",
     "comment": ""
   },
   {
@@ -6116,7 +6128,7 @@
   {
     "term": "Press key...",
     "context": "Press key...",
-    "reference": "Widgets/KeybindItem.qml:611",
+    "reference": "Widgets/KeybindItem.qml:616",
     "comment": ""
   },
   {
@@ -6134,7 +6146,7 @@
   {
     "term": "Primary",
     "context": "Primary",
-    "reference": "dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:39, Modules/Settings/LauncherTab.qml:179, Modules/Settings/NetworkTab.qml:174, Modules/Settings/Widgets/SettingsColorPicker.qml:42",
+    "reference": "dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:39, Modules/Settings/LauncherTab.qml:179, Modules/Settings/WorkspacesTab.qml:295, Modules/Settings/NetworkTab.qml:174, Modules/Settings/Widgets/SettingsColorPicker.qml:42",
     "comment": ""
   },
   {
@@ -6260,7 +6272,7 @@
   {
     "term": "Quick note-taking slideout panel",
     "context": "Quick note-taking slideout panel",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:59",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:62",
     "comment": ""
   },
   {
@@ -6338,13 +6350,13 @@
   {
     "term": "Release",
     "context": "Release",
-    "reference": "Widgets/KeybindItem.qml:1546",
+    "reference": "Widgets/KeybindItem.qml:1552",
     "comment": ""
   },
   {
     "term": "Reload Plugin",
     "context": "Reload Plugin",
-    "reference": "Modules/Settings/PluginListItem.qml:297",
+    "reference": "Modules/Settings/PluginListItem.qml:301",
     "comment": ""
   },
   {
@@ -6362,7 +6374,7 @@
   {
     "term": "Repeat",
     "context": "Repeat",
-    "reference": "Widgets/KeybindItem.qml:1502",
+    "reference": "Widgets/KeybindItem.qml:1508",
     "comment": ""
   },
   {
@@ -6392,7 +6404,7 @@
   {
     "term": "Requires DMS %1",
     "context": "Requires DMS %1",
-    "reference": "Modules/Settings/PluginListItem.qml:130",
+    "reference": "Modules/Settings/PluginListItem.qml:133",
     "comment": ""
   },
   {
@@ -6428,7 +6440,7 @@
   {
     "term": "Resize Widget",
     "context": "Resize Widget",
-    "reference": "Modules/Settings/DesktopWidgetsTab.qml:203",
+    "reference": "Modules/Settings/DesktopWidgetsTab.qml:213",
     "comment": ""
   },
   {
@@ -6464,13 +6476,13 @@
   {
     "term": "Reverse Scrolling Direction",
     "context": "Reverse Scrolling Direction",
-    "reference": "Modules/Settings/WorkspacesTab.qml:138",
+    "reference": "Modules/Settings/WorkspacesTab.qml:139",
     "comment": ""
   },
   {
     "term": "Reverse workspace switch direction when scrolling over the bar",
     "context": "Reverse workspace switch direction when scrolling over the bar",
-    "reference": "Modules/Settings/WorkspacesTab.qml:139",
+    "reference": "Modules/Settings/WorkspacesTab.qml:140",
     "comment": ""
   },
   {
@@ -6500,13 +6512,13 @@
   {
     "term": "Right-click and drag anywhere on the widget",
     "context": "Right-click and drag anywhere on the widget",
-    "reference": "Modules/Settings/DesktopWidgetsTab.qml:174",
+    "reference": "Modules/Settings/DesktopWidgetsTab.qml:181",
     "comment": ""
   },
   {
     "term": "Right-click and drag the bottom-right corner",
     "context": "Right-click and drag the bottom-right corner",
-    "reference": "Modules/Settings/DesktopWidgetsTab.qml:210",
+    "reference": "Modules/Settings/DesktopWidgetsTab.qml:222",
     "comment": ""
   },
   {
@@ -6560,13 +6572,13 @@
   {
     "term": "Run a program (e.g., firefox, kitty)",
     "context": "Run a program (e.g., firefox, kitty)",
-    "reference": "Widgets/KeybindItem.qml:804",
+    "reference": "Widgets/KeybindItem.qml:810",
     "comment": ""
   },
   {
     "term": "Run a shell command (e.g., notify-send)",
     "context": "Run a shell command (e.g., notify-send)",
-    "reference": "Widgets/KeybindItem.qml:805",
+    "reference": "Widgets/KeybindItem.qml:811",
     "comment": ""
   },
   {
@@ -6602,7 +6614,7 @@
   {
     "term": "Save",
     "context": "Save",
-    "reference": "Modals/DankColorPickerModal.qml:704, Widgets/KeybindItem.qml:1312, Widgets/KeybindItem.qml:1677, Modals/FileBrowser/FileBrowserSaveRow.qml:55, Modules/Notepad/NotepadTextEditor.qml:511, Modules/Notepad/Notepad.qml:461",
+    "reference": "Modals/DankColorPickerModal.qml:704, Widgets/KeybindItem.qml:1318, Widgets/KeybindItem.qml:1683, Modals/FileBrowser/FileBrowserSaveRow.qml:55, Modules/Notepad/NotepadTextEditor.qml:511, Modules/Notepad/Notepad.qml:461",
     "comment": ""
   },
   {
@@ -6674,7 +6686,7 @@
   {
     "term": "Scan",
     "context": "Scan",
-    "reference": "Modules/Settings/PluginsTab.qml:207, Modules/ControlCenter/Details/BluetoothDetail.qml:119",
+    "reference": "Modules/Settings/PluginsTab.qml:217, Modules/ControlCenter/Details/BluetoothDetail.qml:119",
     "comment": ""
   },
   {
@@ -6758,7 +6770,7 @@
   {
     "term": "Search keybinds...",
     "context": "Search keybinds...",
-    "reference": "Modules/Settings/KeybindsTab.qml:234",
+    "reference": "Modules/Settings/KeybindsTab.qml:240",
     "comment": ""
   },
   {
@@ -6800,7 +6812,7 @@
   {
     "term": "Secondary",
     "context": "Secondary",
-    "reference": "dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:43, Modules/Settings/Widgets/SettingsColorPicker.qml:47",
+    "reference": "dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:43, Modules/Settings/WorkspacesTab.qml:295, Modules/Settings/Widgets/SettingsColorPicker.qml:47",
     "comment": ""
   },
   {
@@ -6956,7 +6968,7 @@
   {
     "term": "Select...",
     "context": "Select...",
-    "reference": "Widgets/KeybindItem.qml:899, Widgets/KeybindItem.qml:1113, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:95, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:97, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:114",
+    "reference": "Widgets/KeybindItem.qml:905, Widgets/KeybindItem.qml:1119, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:95, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:97, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:114",
     "comment": ""
   },
   {
@@ -6992,7 +7004,7 @@
   {
     "term": "Set key and action to save",
     "context": "Set key and action to save",
-    "reference": "Widgets/KeybindItem.qml:1654",
+    "reference": "Widgets/KeybindItem.qml:1660",
     "comment": ""
   },
   {
@@ -7010,7 +7022,7 @@
   {
     "term": "Setup",
     "context": "Setup",
-    "reference": "Modules/Settings/ThemeColorsTab.qml:1472, Modules/Settings/KeybindsTab.qml:340, Modules/Settings/DisplayConfig/IncludeWarningBox.qml:77",
+    "reference": "Modules/Settings/ThemeColorsTab.qml:1472, Modules/Settings/KeybindsTab.qml:347, Modules/Settings/DisplayConfig/IncludeWarningBox.qml:77",
     "comment": ""
   },
   {
@@ -7022,7 +7034,7 @@
   {
     "term": "Shell",
     "context": "Shell",
-    "reference": "Widgets/KeybindItem.qml:1422",
+    "reference": "Widgets/KeybindItem.qml:1428",
     "comment": ""
   },
   {
@@ -7046,19 +7058,19 @@
   {
     "term": "Shortcuts",
     "context": "Shortcuts",
-    "reference": "Modules/Settings/KeybindsTab.qml:515",
+    "reference": "Modules/Settings/KeybindsTab.qml:522",
     "comment": ""
   },
   {
     "term": "Shortcuts (%1)",
     "context": "Shortcuts (%1)",
-    "reference": "Modules/Settings/KeybindsTab.qml:515",
+    "reference": "Modules/Settings/KeybindsTab.qml:522",
     "comment": ""
   },
   {
     "term": "Show All Tags",
     "context": "Show All Tags",
-    "reference": "Modules/Settings/WorkspacesTab.qml:148",
+    "reference": "Modules/Settings/WorkspacesTab.qml:149",
     "comment": ""
   },
   {
@@ -7196,7 +7208,7 @@
   {
     "term": "Show Occupied Workspaces Only",
     "context": "Show Occupied Workspaces Only",
-    "reference": "Modules/Settings/WorkspacesTab.qml:128",
+    "reference": "Modules/Settings/WorkspacesTab.qml:129",
     "comment": ""
   },
   {
@@ -7316,7 +7328,13 @@
   {
     "term": "Show all 9 tags instead of only occupied tags (DWL only)",
     "context": "Show all 9 tags instead of only occupied tags (DWL only)",
-    "reference": "Modules/Settings/WorkspacesTab.qml:149",
+    "reference": "Modules/Settings/WorkspacesTab.qml:150",
+    "comment": ""
+  },
+  {
+    "term": "Show an outline ring around the focused workspace indicator",
+    "context": "Show an outline ring around the focused workspace indicator",
+    "reference": "Modules/Settings/WorkspacesTab.qml:281",
     "comment": ""
   },
   {
@@ -7340,37 +7358,37 @@
   {
     "term": "Show on Last Display",
     "context": "Show on Last Display",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:407, Modules/Settings/DankBarTab.qml:534",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:421, Modules/Settings/DankBarTab.qml:534",
     "comment": ""
   },
   {
     "term": "Show on Overlay",
     "context": "Show on Overlay",
-    "reference": "Modules/Settings/DesktopWidgetInstanceCard.qml:221",
+    "reference": "Modules/Settings/DesktopWidgetInstanceCard.qml:222",
     "comment": ""
   },
   {
     "term": "Show on Overview",
     "context": "Show on Overview",
-    "reference": "Modules/Settings/DockTab.qml:95, Modules/Settings/DesktopWidgetInstanceCard.qml:238, Modules/Settings/DankBarTab.qml:758",
+    "reference": "Modules/Settings/DockTab.qml:95, Modules/Settings/DesktopWidgetInstanceCard.qml:239, Modules/Settings/DankBarTab.qml:758",
     "comment": ""
   },
   {
     "term": "Show on Overview Only",
     "context": "Show on Overview Only",
-    "reference": "Modules/Settings/DesktopWidgetInstanceCard.qml:255",
+    "reference": "Modules/Settings/DesktopWidgetInstanceCard.qml:256",
     "comment": ""
   },
   {
     "term": "Show on all connected displays",
     "context": "Show on all connected displays",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:387",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:401",
     "comment": ""
   },
   {
     "term": "Show on screens:",
     "context": "Show on screens:",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:372",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:384",
     "comment": ""
   },
   {
@@ -7428,12 +7446,6 @@
     "comment": ""
   },
   {
-    "term": "Show only workspaces belonging to each specific monitor.",
-    "context": "Show only workspaces belonging to each specific monitor.",
-    "reference": "Modules/Settings/WorkspacesTab.qml:120",
-    "comment": ""
-  },
-  {
     "term": "Show password",
     "context": "Show password",
     "reference": "Modals/WifiPasswordModal.qml:668",
@@ -7455,6 +7467,12 @@
     "term": "Show workspace name on horizontal bars, and first letter on vertical bars",
     "context": "Show workspace name on horizontal bars, and first letter on vertical bars",
     "reference": "Modules/Settings/WorkspacesTab.qml:42",
+    "comment": ""
+  },
+  {
+    "term": "Show workspaces of the currently focused monitor",
+    "context": "Show workspaces of the currently focused monitor",
+    "reference": "Modules/Settings/WorkspacesTab.qml:120",
     "comment": ""
   },
   {
@@ -7544,7 +7562,7 @@
   {
     "term": "Some plugins require a newer version of DMS:",
     "context": "Some plugins require a newer version of DMS:",
-    "reference": "Modules/Settings/PluginsTab.qml:167",
+    "reference": "Modules/Settings/PluginsTab.qml:176",
     "comment": ""
   },
   {
@@ -7712,7 +7730,7 @@
   {
     "term": "Surface",
     "context": "shadow color option",
-    "reference": "Modules/Settings/LauncherTab.qml:179, Modules/Settings/DankBarTab.qml:1112",
+    "reference": "Modules/Settings/LauncherTab.qml:179, Modules/Settings/WorkspacesTab.qml:295, Modules/Settings/DankBarTab.qml:1112",
     "comment": ""
   },
   {
@@ -7844,7 +7862,7 @@
   {
     "term": "System toast notifications",
     "context": "System toast notifications",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:53",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:56",
     "comment": ""
   },
   {
@@ -7856,7 +7874,7 @@
   {
     "term": "Tab",
     "context": "Tab",
-    "reference": "Widgets/KeybindItem.qml:1026",
+    "reference": "Widgets/KeybindItem.qml:1032",
     "comment": ""
   },
   {
@@ -7904,7 +7922,7 @@
   {
     "term": "The DMS_SOCKET environment variable is not set or the socket is unavailable. Automated plugin management requires the DMS_SOCKET.",
     "context": "The DMS_SOCKET environment variable is not set or the socket is unavailable. Automated plugin management requires the DMS_SOCKET.",
-    "reference": "Modules/Settings/PluginsTab.qml:115",
+    "reference": "Modules/Settings/PluginsTab.qml:123",
     "comment": ""
   },
   {
@@ -7946,7 +7964,7 @@
   {
     "term": "Thickness",
     "context": "Thickness",
-    "reference": "Modules/Settings/DankBarTab.qml:1249, Modules/Settings/DankBarTab.qml:1337",
+    "reference": "Modules/Settings/WorkspacesTab.qml:329, Modules/Settings/DankBarTab.qml:1249, Modules/Settings/DankBarTab.qml:1337",
     "comment": ""
   },
   {
@@ -7964,7 +7982,7 @@
   {
     "term": "This bind is overridden by config.kdl",
     "context": "This bind is overridden by config.kdl",
-    "reference": "Widgets/KeybindItem.qml:451",
+    "reference": "Widgets/KeybindItem.qml:455",
     "comment": ""
   },
   {
@@ -8036,7 +8054,7 @@
   {
     "term": "Title",
     "context": "Title",
-    "reference": "Widgets/KeybindItem.qml:1450",
+    "reference": "Widgets/KeybindItem.qml:1456",
     "comment": ""
   },
   {
@@ -8054,13 +8072,13 @@
   {
     "term": "To use this DMS bind, remove or change the keybind in your config.kdl",
     "context": "To use this DMS bind, remove or change the keybind in your config.kdl",
-    "reference": "Widgets/KeybindItem.qml:468",
+    "reference": "Widgets/KeybindItem.qml:473",
     "comment": ""
   },
   {
     "term": "Toast Messages",
     "context": "Toast Messages",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:52",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:55",
     "comment": ""
   },
   {
@@ -8186,7 +8204,7 @@
   {
     "term": "Type",
     "context": "Type",
-    "reference": "Widgets/KeybindItem.qml:782",
+    "reference": "Widgets/KeybindItem.qml:788",
     "comment": ""
   },
   {
@@ -8214,6 +8232,12 @@
     "comment": ""
   },
   {
+    "term": "Unfocused Color",
+    "context": "Unfocused Color",
+    "reference": "Modules/Settings/WorkspacesTab.qml:202",
+    "comment": ""
+  },
+  {
     "term": "Uninstall",
     "context": "uninstall action button",
     "reference": "Modules/Settings/ThemeBrowser.qml:649",
@@ -8222,7 +8246,7 @@
   {
     "term": "Uninstall Plugin",
     "context": "Uninstall Plugin",
-    "reference": "Modules/Settings/PluginListItem.qml:256",
+    "reference": "Modules/Settings/PluginListItem.qml:260",
     "comment": ""
   },
   {
@@ -8246,7 +8270,7 @@
   {
     "term": "Unknown",
     "context": "unknown author",
-    "reference": "Modules/Lock/LockScreenContent.qml:376, Modules/Lock/LockScreenContent.qml:496, Modules/Lock/LockScreenContent.qml:592, Modules/Settings/PluginBrowser.qml:493, Modules/Settings/PrinterTab.qml:1285, Modules/Settings/ThemeBrowser.qml:526, Modules/Settings/NetworkTab.qml:122, Modules/Settings/NetworkTab.qml:164, Modules/Settings/NetworkTab.qml:370, Modules/Settings/NetworkTab.qml:391, Modules/Settings/NetworkTab.qml:539, Modules/Settings/NetworkTab.qml:682, Modules/Settings/NetworkTab.qml:1098, Modules/ControlCenter/Details/BatteryDetail.qml:183, Modules/ControlCenter/Components/HeaderPane.qml:63",
+    "reference": "Modules/Lock/LockScreenContent.qml:383, Modules/Lock/LockScreenContent.qml:503, Modules/Lock/LockScreenContent.qml:599, Modules/Settings/PluginBrowser.qml:493, Modules/Settings/PrinterTab.qml:1285, Modules/Settings/ThemeBrowser.qml:526, Modules/Settings/NetworkTab.qml:122, Modules/Settings/NetworkTab.qml:164, Modules/Settings/NetworkTab.qml:370, Modules/Settings/NetworkTab.qml:391, Modules/Settings/NetworkTab.qml:539, Modules/Settings/NetworkTab.qml:682, Modules/Settings/NetworkTab.qml:1098, Modules/ControlCenter/Details/BatteryDetail.qml:183, Modules/ControlCenter/Components/HeaderPane.qml:63",
     "comment": ""
   },
   {
@@ -8294,7 +8318,7 @@
   {
     "term": "Unsaved changes",
     "context": "Unsaved changes",
-    "reference": "Widgets/KeybindItem.qml:1654, Modules/Notepad/NotepadTextEditor.qml:588",
+    "reference": "Widgets/KeybindItem.qml:1660, Modules/Notepad/NotepadTextEditor.qml:588",
     "comment": ""
   },
   {
@@ -8318,7 +8342,13 @@
   {
     "term": "Update Plugin",
     "context": "Update Plugin",
-    "reference": "Modules/Settings/PluginListItem.qml:213",
+    "reference": "Modules/Settings/PluginListItem.qml:217",
+    "comment": ""
+  },
+  {
+    "term": "Urgent Color",
+    "context": "Urgent Color",
+    "reference": "Modules/Settings/WorkspacesTab.qml:239",
     "comment": ""
   },
   {
@@ -8648,7 +8678,7 @@
   {
     "term": "Volume, brightness, and other system OSDs",
     "context": "Volume, brightness, and other system OSDs",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:47",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:50",
     "comment": ""
   },
   {
@@ -8660,7 +8690,7 @@
   {
     "term": "Wallpaper",
     "context": "greeter settings link",
-    "reference": "Widgets/KeybindItem.qml:1045, Widgets/KeybindItem.qml:1052, Widgets/KeybindItem.qml:1061, Modals/Greeter/GreeterCompletePage.qml:381, Modals/Settings/SettingsSidebar.qml:72, Modules/Settings/DisplayWidgetsTab.qml:40, Modules/Settings/WallpaperTab.qml:43",
+    "reference": "Widgets/KeybindItem.qml:1051, Widgets/KeybindItem.qml:1058, Widgets/KeybindItem.qml:1067, Modals/Greeter/GreeterCompletePage.qml:381, Modals/Settings/SettingsSidebar.qml:72, Modules/Settings/DisplayWidgetsTab.qml:43, Modules/Settings/WallpaperTab.qml:43",
     "comment": ""
   },
   {
@@ -8720,7 +8750,7 @@
   {
     "term": "Weather",
     "context": "Weather",
-    "reference": "Widgets/KeybindItem.qml:1047, Widgets/KeybindItem.qml:1052, Widgets/KeybindItem.qml:1064, Modules/DankDash/DankDashPopout.qml:287, Modules/Settings/TimeWeatherTab.qml:330",
+    "reference": "Widgets/KeybindItem.qml:1053, Widgets/KeybindItem.qml:1058, Widgets/KeybindItem.qml:1070, Modules/DankDash/DankDashPopout.qml:287, Modules/Settings/TimeWeatherTab.qml:330",
     "comment": ""
   },
   {
@@ -8846,13 +8876,13 @@
   {
     "term": "Widget added",
     "context": "Widget added",
-    "reference": "Modules/Settings/DesktopWidgetsTab.qml:20",
+    "reference": "Modules/Settings/DesktopWidgetsTab.qml:23",
     "comment": ""
   },
   {
     "term": "Widget removed",
     "context": "Widget removed",
-    "reference": "Modules/Settings/DesktopWidgetsTab.qml:119",
+    "reference": "Modules/Settings/DesktopWidgetsTab.qml:123",
     "comment": ""
   },
   {
@@ -8925,6 +8955,12 @@
     "term": "Workspace",
     "context": "Workspace",
     "reference": "Widgets/DankIconPicker.qml:28, Modules/Settings/DankBarTab.qml:792, Modules/Settings/DankBarTab.qml:792, Modules/Settings/DankBarTab.qml:829",
+    "comment": ""
+  },
+  {
+    "term": "Workspace Appearance",
+    "context": "Workspace Appearance",
+    "reference": "Modules/Settings/WorkspacesTab.qml:160",
     "comment": ""
   },
   {
@@ -9062,19 +9098,19 @@
   {
     "term": "e.g., firefox, kitty --title foo",
     "context": "e.g., firefox, kitty --title foo",
-    "reference": "Widgets/KeybindItem.qml:1401",
+    "reference": "Widgets/KeybindItem.qml:1407",
     "comment": ""
   },
   {
     "term": "e.g., focus-workspace 3, resize-column -10",
     "context": "e.g., focus-workspace 3, resize-column -10",
-    "reference": "Widgets/KeybindItem.qml:1338",
+    "reference": "Widgets/KeybindItem.qml:1344",
     "comment": ""
   },
   {
     "term": "e.g., notify-send 'Hello' && sleep 1",
     "context": "e.g., notify-send 'Hello' && sleep 1",
-    "reference": "Widgets/KeybindItem.qml:1433",
+    "reference": "Widgets/KeybindItem.qml:1439",
     "comment": ""
   },
   {
@@ -9092,7 +9128,7 @@
   {
     "term": "leave empty for default",
     "context": "leave empty for default",
-    "reference": "Widgets/KeybindItem.qml:993",
+    "reference": "Widgets/KeybindItem.qml:999",
     "comment": ""
   },
   {
@@ -9116,7 +9152,7 @@
   {
     "term": "ms",
     "context": "ms",
-    "reference": "Widgets/KeybindItem.qml:1618",
+    "reference": "Widgets/KeybindItem.qml:1624",
     "comment": ""
   },
   {

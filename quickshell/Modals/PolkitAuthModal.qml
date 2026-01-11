@@ -11,7 +11,6 @@ FloatingWindow {
     property var currentFlow: PolkitService.agent?.flow
     property bool isLoading: false
     readonly property int inputFieldHeight: Theme.fontSizeMedium + Theme.spacingL * 2
-    property int calculatedHeight: Math.max(240, headerRow.implicitHeight + mainColumn.implicitHeight + Theme.spacingM * 3)
 
     function focusPasswordField() {
         passwordField.forceActiveFocus();
@@ -37,15 +36,19 @@ FloatingWindow {
     }
 
     function cancelAuth() {
-        if (!currentFlow || isLoading)
+        if (isLoading)
             return;
-        currentFlow.cancelAuthenticationRequest();
+        if (currentFlow) {
+            currentFlow.cancelAuthenticationRequest();
+            return;
+        }
+        hide();
     }
 
     objectName: "polkitAuthModal"
     title: I18n.tr("Authentication")
-    minimumSize: Qt.size(420, calculatedHeight)
-    maximumSize: Qt.size(420, calculatedHeight)
+    minimumSize: Qt.size(460, 220)
+    maximumSize: Qt.size(460, 220)
     color: Theme.surfaceContainer
     visible: false
 
@@ -108,29 +111,24 @@ FloatingWindow {
             event.accepted = true;
         }
 
-        MouseArea {
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.top: parent.top
-            height: headerRow.height + Theme.spacingM
-            onPressed: windowControls.tryStartMove()
-            onDoubleClicked: windowControls.tryToggleMaximize()
-        }
-
         Item {
-            id: headerRow
+            id: headerSection
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
-            anchors.leftMargin: Theme.spacingM
-            anchors.rightMargin: Theme.spacingM
-            anchors.topMargin: Theme.spacingM
-            height: Math.max(titleColumn.height, buttonRow.height)
+            anchors.margins: Theme.spacingM
+            height: Math.max(titleColumn.implicitHeight, windowButtonRow.implicitHeight)
+
+            MouseArea {
+                anchors.fill: parent
+                onPressed: windowControls.tryStartMove()
+                onDoubleClicked: windowControls.tryToggleMaximize()
+            }
 
             Column {
                 id: titleColumn
                 anchors.left: parent.left
-                anchors.right: buttonRow.left
+                anchors.right: windowButtonRow.left
                 anchors.rightMargin: Theme.spacingM
                 spacing: Theme.spacingXS
 
@@ -141,33 +139,34 @@ FloatingWindow {
                     font.weight: Font.Medium
                 }
 
-                Column {
+                StyledText {
+                    text: currentFlow?.message ?? ""
+                    font.pixelSize: Theme.fontSizeMedium
+                    color: Theme.surfaceTextMedium
                     width: parent.width
-                    spacing: Theme.spacingXS
+                    wrapMode: Text.Wrap
+                    maximumLineCount: 2
+                    elide: Text.ElideRight
+                    visible: text !== ""
+                }
 
-                    StyledText {
-                        text: currentFlow?.message ?? ""
-                        font.pixelSize: Theme.fontSizeMedium
-                        color: Theme.surfaceTextMedium
-                        width: parent.width
-                        wrapMode: Text.Wrap
-                    }
-
-                    StyledText {
-                        visible: (currentFlow?.supplementaryMessage ?? "") !== ""
-                        text: currentFlow?.supplementaryMessage ?? ""
-                        font.pixelSize: Theme.fontSizeSmall
-                        color: (currentFlow?.supplementaryIsError ?? false) ? Theme.error : Theme.surfaceTextMedium
-                        width: parent.width
-                        wrapMode: Text.Wrap
-                        opacity: (currentFlow?.supplementaryIsError ?? false) ? 1 : 0.8
-                    }
+                StyledText {
+                    text: currentFlow?.supplementaryMessage ?? ""
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: (currentFlow?.supplementaryIsError ?? false) ? Theme.error : Theme.surfaceTextMedium
+                    width: parent.width
+                    wrapMode: Text.Wrap
+                    maximumLineCount: 2
+                    elide: Text.ElideRight
+                    opacity: (currentFlow?.supplementaryIsError ?? false) ? 1 : 0.8
+                    visible: text !== ""
                 }
             }
 
             Row {
-                id: buttonRow
+                id: windowButtonRow
                 anchors.right: parent.right
+                anchors.top: parent.top
                 spacing: Theme.spacingXS
 
                 DankActionButton {
@@ -190,21 +189,19 @@ FloatingWindow {
         }
 
         Column {
-            id: mainColumn
+            id: bottomSection
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom
-            anchors.leftMargin: Theme.spacingM
-            anchors.rightMargin: Theme.spacingM
-            anchors.bottomMargin: Theme.spacingM
-            spacing: Theme.spacingM
+            anchors.margins: Theme.spacingM
+            spacing: Theme.spacingS
 
             StyledText {
                 text: currentFlow?.inputPrompt ?? ""
                 font.pixelSize: Theme.fontSizeMedium
                 color: Theme.surfaceText
                 width: parent.width
-                visible: (currentFlow?.inputPrompt ?? "") !== ""
+                visible: text !== ""
             }
 
             Rectangle {
@@ -229,7 +226,8 @@ FloatingWindow {
                     font.pixelSize: Theme.fontSizeMedium
                     textColor: Theme.surfaceText
                     text: passwordInput
-                    echoMode: (currentFlow?.responseVisible ?? false) ? TextInput.Normal : TextInput.Password
+                    showPasswordToggle: !(currentFlow?.responseVisible ?? false)
+                    echoMode: (currentFlow?.responseVisible ?? false) || passwordVisible ? TextInput.Normal : TextInput.Password
                     placeholderText: ""
                     backgroundColor: "transparent"
                     enabled: !isLoading
@@ -238,38 +236,17 @@ FloatingWindow {
                 }
             }
 
-            Item {
+            StyledText {
+                text: I18n.tr("Authentication failed, please try again")
+                font.pixelSize: Theme.fontSizeSmall
+                color: Theme.error
                 width: parent.width
-                height: (currentFlow?.failed ?? false) ? failedText.implicitHeight : 0
-                visible: height > 0
-
-                StyledText {
-                    id: failedText
-                    text: I18n.tr("Authentication failed, please try again")
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: Theme.error
-                    width: parent.width
-                    opacity: (currentFlow?.failed ?? false) ? 1 : 0
-
-                    Behavior on opacity {
-                        NumberAnimation {
-                            duration: Theme.shortDuration
-                            easing.type: Theme.standardEasing
-                        }
-                    }
-                }
-
-                Behavior on height {
-                    NumberAnimation {
-                        duration: Theme.shortDuration
-                        easing.type: Theme.standardEasing
-                    }
-                }
+                visible: currentFlow?.failed ?? false
             }
 
             Item {
                 width: parent.width
-                height: 40
+                height: 36
 
                 Row {
                     anchors.right: parent.right

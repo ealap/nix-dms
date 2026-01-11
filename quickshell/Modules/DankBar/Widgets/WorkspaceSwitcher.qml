@@ -24,6 +24,26 @@ Item {
         return CompositorService.filterCurrentWorkspace(CompositorService.sortedToplevels, screenName);
     }
 
+    readonly property string effectiveScreenName: {
+        if (!SettingsData.workspaceFollowFocus)
+            return root.screenName;
+
+        switch (CompositorService.compositor) {
+        case "niri":
+            return NiriService.currentOutput || root.screenName;
+        case "hyprland":
+            return Hyprland.focusedWorkspace?.monitor?.name || root.screenName;
+        case "dwl":
+            return DwlService.activeOutput || root.screenName;
+        case "sway":
+        case "scroll":
+            const focusedWs = I3.workspaces?.values?.find(ws => ws.focused === true);
+            return focusedWs?.monitor?.name || root.screenName;
+        default:
+            return root.screenName;
+        }
+    }
+
     readonly property bool useExtWorkspace: DMSService.forceExtWorkspace || (!CompositorService.isNiri && !CompositorService.isHyprland && !CompositorService.isDwl && !CompositorService.isSway && !CompositorService.isScroll && ExtWorkspaceService.extWorkspaceAvailable)
 
     Connections {
@@ -94,7 +114,7 @@ Item {
                 }
             ];
 
-        if (!root.screenName || !SettingsData.workspacesPerMonitor) {
+        if (!root.screenName || SettingsData.workspaceFollowFocus) {
             return workspaces.slice().sort((a, b) => a.num - b.num);
         }
 
@@ -107,7 +127,7 @@ Item {
     }
 
     function getSwayActiveWorkspace() {
-        if (!root.screenName || !SettingsData.workspacesPerMonitor) {
+        if (!root.screenName || SettingsData.workspaceFollowFocus) {
             const focusedWs = I3.workspaces?.values?.find(ws => ws.focused === true);
             return focusedWs ? focusedWs.num : 1;
         }
@@ -137,7 +157,7 @@ Item {
             ];
         }
 
-        if (!root.screenName || !SettingsData.workspacesPerMonitor) {
+        if (!root.screenName || SettingsData.workspaceFollowFocus) {
             filtered = filtered.slice().sort((a, b) => a.id - b.id);
         } else {
             const monitorWorkspaces = filtered.filter(ws => ws.monitor?.name === root.screenName);
@@ -163,7 +183,7 @@ Item {
     }
 
     function getHyprlandActiveWorkspace() {
-        if (!root.screenName || !SettingsData.workspacesPerMonitor) {
+        if (!root.screenName || SettingsData.workspaceFollowFocus) {
             return Hyprland.focusedWorkspace?.id || 1;
         }
 
@@ -183,7 +203,7 @@ Item {
             if (wsNumber <= 0) {
                 return [];
             }
-            const workspace = NiriService.allWorkspaces.find(w => w.idx + 1 === wsNumber && w.output === root.screenName);
+            const workspace = NiriService.allWorkspaces.find(w => w.idx + 1 === wsNumber && w.output === root.effectiveScreenName);
             if (!workspace) {
                 return [];
             }
@@ -211,7 +231,7 @@ Item {
             const focusedWs = I3.workspaces?.values?.find(ws => ws.focused === true);
             isActiveWs = focusedWs ? (focusedWs.num === targetWorkspaceId) : false;
         } else if (CompositorService.isDwl) {
-            const output = DwlService.getOutputState(root.screenName);
+            const output = DwlService.getOutputState(root.effectiveScreenName);
             if (output && output.tags) {
                 const tag = output.tags.find(t => t.tag === targetWorkspaceId);
                 isActiveWs = tag ? (tag.state === 1) : false;
@@ -244,15 +264,13 @@ Item {
             const key = isActiveWs || !SettingsData.groupWorkspaceApps ? `${keyBase}_${i}` : keyBase;
 
             if (!byApp[key]) {
-                const moddedId = Paths.moddedAppId(keyBase);
-                const isSteamApp = moddedId.toLowerCase().includes("steam_app");
                 const isQuickshell = keyBase === "org.quickshell";
-                const desktopEntry = DesktopEntries.heuristicLookup(keyBase);
-                const icon = isSteamApp ? "" : Paths.getAppIcon(keyBase, desktopEntry);
+                const moddedId = Paths.moddedAppId(keyBase);
+                const desktopEntry = DesktopEntries.heuristicLookup(moddedId);
+                const icon = Paths.getAppIcon(keyBase, desktopEntry);
                 byApp[key] = {
                     "type": "icon",
                     "icon": icon,
-                    "isSteamApp": isSteamApp,
                     "isQuickshell": isQuickshell,
                     "active": !!((w.activated || w.is_focused) || (CompositorService.isNiri && w.is_focused)),
                     "count": 1,
@@ -308,7 +326,7 @@ Item {
         }
 
         let workspaces;
-        if (!root.screenName || !SettingsData.workspacesPerMonitor) {
+        if (!root.screenName || SettingsData.workspaceFollowFocus) {
             workspaces = NiriService.getCurrentOutputWorkspaceNumbers();
         } else {
             const displayWorkspaces = NiriService.allWorkspaces.filter(ws => ws.output === root.screenName).map(ws => ws.idx + 1);
@@ -320,7 +338,7 @@ Item {
         }
 
         return workspaces.filter(wsNum => {
-            const workspace = NiriService.allWorkspaces.find(w => w.idx + 1 === wsNum && w.output === root.screenName);
+            const workspace = NiriService.allWorkspaces.find(w => w.idx + 1 === wsNum && w.output === root.effectiveScreenName);
             if (!workspace)
                 return false;
             if (workspace.is_active)
@@ -334,7 +352,7 @@ Item {
             return 1;
         }
 
-        if (!root.screenName || !SettingsData.workspacesPerMonitor) {
+        if (!root.screenName || SettingsData.workspaceFollowFocus) {
             return NiriService.getCurrentWorkspaceNumber();
         }
 
@@ -343,14 +361,13 @@ Item {
     }
 
     function getDwlTags() {
-        if (!DwlService.dwlAvailable) {
+        if (!DwlService.dwlAvailable)
             return [];
-        }
 
-        const output = DwlService.getOutputState(root.screenName);
-        if (!output || !output.tags || output.tags.length === 0) {
+        const targetScreen = root.effectiveScreenName;
+        const output = DwlService.getOutputState(targetScreen);
+        if (!output || !output.tags || output.tags.length === 0)
             return [];
-        }
 
         if (SettingsData.dwlShowAllTags) {
             return output.tags.map(tag => ({
@@ -361,7 +378,7 @@ Item {
                     }));
         }
 
-        const visibleTagIndices = DwlService.getVisibleTags(root.screenName);
+        const visibleTagIndices = DwlService.getVisibleTags(targetScreen);
         return visibleTagIndices.map(tagIndex => {
             const tagData = output.tags.find(t => t.tag === tagIndex);
             return {
@@ -374,12 +391,10 @@ Item {
     }
 
     function getDwlActiveTags() {
-        if (!DwlService.dwlAvailable) {
+        if (!DwlService.dwlAvailable)
             return [];
-        }
 
-        const activeTags = DwlService.getActiveTags(root.screenName);
-        return activeTags;
+        return DwlService.getActiveTags(root.effectiveScreenName);
     }
 
     function getExtWorkspaceWorkspaces() {
@@ -790,6 +805,68 @@ Item {
                 readonly property real visualWidth: baseWidth + iconsExtraWidth
                 readonly property real visualHeight: baseHeight + iconsExtraHeight
 
+                readonly property color unfocusedColor: {
+                    switch (SettingsData.workspaceUnfocusedColorMode) {
+                    case "s":
+                        return Theme.surface;
+                    case "sc":
+                        return Theme.surfaceContainer;
+                    case "sch":
+                        return Theme.surfaceContainerHigh;
+                    default:
+                        return Theme.surfaceTextAlpha;
+                    }
+                }
+
+                readonly property color activeColor: {
+                    switch (SettingsData.workspaceColorMode) {
+                    case "s":
+                        return Theme.surface;
+                    case "sc":
+                        return Theme.surfaceContainer;
+                    case "sch":
+                        return Theme.surfaceContainerHigh;
+                    case "none":
+                        return unfocusedColor;
+                    default:
+                        return Theme.primary;
+                    }
+                }
+
+                readonly property color urgentColor: {
+                    switch (SettingsData.workspaceUrgentColorMode) {
+                    case "primary":
+                        return Theme.primary;
+                    case "secondary":
+                        return Theme.secondary;
+                    case "s":
+                        return Theme.surface;
+                    case "sc":
+                        return Theme.surfaceContainer;
+                    default:
+                        return Theme.error;
+                    }
+                }
+
+                readonly property color focusedBorderColor: {
+                    switch (SettingsData.workspaceFocusedBorderColor) {
+                    case "surfaceText":
+                        return Theme.surfaceText;
+                    case "secondary":
+                        return Theme.secondary;
+                    default:
+                        return Theme.primary;
+                    }
+                }
+
+                function getContrastingIconColor(bgColor) {
+                    const luminance = 0.299 * bgColor.r + 0.587 * bgColor.g + 0.114 * bgColor.b;
+                    return luminance > 0.4 ? Qt.rgba(0.15, 0.15, 0.15, 1) : Qt.rgba(0.8, 0.8, 0.8, 1);
+                }
+
+                readonly property color quickshellIconActiveColor: getContrastingIconColor(activeColor)
+                readonly property color quickshellIconInactiveColor: getContrastingIconColor(unfocusedColor)
+
                 MouseArea {
                     id: mouseArea
                     anchors.fill: parent
@@ -850,7 +927,7 @@ Item {
                         if (root.useExtWorkspace) {
                             wsData = modelData;
                         } else if (CompositorService.isNiri) {
-                            wsData = NiriService.allWorkspaces.find(ws => ws.idx + 1 === modelData && ws.output === root.screenName) || null;
+                            wsData = NiriService.allWorkspaces.find(ws => ws.idx + 1 === modelData && ws.output === root.effectiveScreenName) || null;
                         } else if (CompositorService.isHyprland) {
                             wsData = modelData;
                         } else if (CompositorService.isDwl) {
@@ -893,15 +970,60 @@ Item {
                 height: root.isVertical ? visualHeight : root.barThickness
 
                 Rectangle {
+                    id: focusedBorderRing
+                    anchors.centerIn: parent
+                    width: {
+                        const borderWidth = (SettingsData.workspaceFocusedBorderEnabled && isActive && !isPlaceholder) ? SettingsData.workspaceFocusedBorderThickness : 0;
+                        return delegateRoot.visualWidth + borderWidth * 2;
+                    }
+                    height: {
+                        const borderWidth = (SettingsData.workspaceFocusedBorderEnabled && isActive && !isPlaceholder) ? SettingsData.workspaceFocusedBorderThickness : 0;
+                        return delegateRoot.visualHeight + borderWidth * 2;
+                    }
+                    radius: Theme.cornerRadius
+                    color: "transparent"
+                    border.width: (SettingsData.workspaceFocusedBorderEnabled && isActive && !isPlaceholder) ? SettingsData.workspaceFocusedBorderThickness : 0
+                    border.color: (SettingsData.workspaceFocusedBorderEnabled && isActive && !isPlaceholder) ? focusedBorderColor : "transparent"
+
+                    Behavior on width {
+                        NumberAnimation {
+                            duration: Theme.mediumDuration
+                            easing.type: Theme.emphasizedEasing
+                        }
+                    }
+
+                    Behavior on height {
+                        NumberAnimation {
+                            duration: Theme.mediumDuration
+                            easing.type: Theme.emphasizedEasing
+                        }
+                    }
+
+                    Behavior on border.width {
+                        NumberAnimation {
+                            duration: Theme.mediumDuration
+                            easing.type: Theme.emphasizedEasing
+                        }
+                    }
+
+                    Behavior on border.color {
+                        ColorAnimation {
+                            duration: Theme.mediumDuration
+                            easing.type: Theme.emphasizedEasing
+                        }
+                    }
+                }
+
+                Rectangle {
                     id: visualContent
                     width: delegateRoot.visualWidth
                     height: delegateRoot.visualHeight
                     anchors.centerIn: parent
                     radius: Theme.cornerRadius
-                    color: isActive ? Theme.primary : isUrgent ? Theme.error : isPlaceholder ? Theme.surfaceTextLight : isHovered ? Theme.withAlpha(Theme.surfaceText, 0.45) : Theme.surfaceTextAlpha
+                    color: isActive ? activeColor : isUrgent ? urgentColor : isPlaceholder ? Theme.surfaceTextLight : isHovered ? Theme.withAlpha(unfocusedColor, 0.7) : unfocusedColor
 
                     border.width: isUrgent ? 2 : 0
-                    border.color: isUrgent ? Theme.error : Theme.withAlpha(Theme.error, 0)
+                    border.color: isUrgent ? urgentColor : "transparent"
 
                     Behavior on width {
                         NumberAnimation {
@@ -1013,7 +1135,7 @@ Item {
                                                 anchors.fill: parent
                                                 source: modelData.icon
                                                 opacity: modelData.active ? 1.0 : rowAppMouseArea.containsMouse ? 0.8 : 0.6
-                                                visible: !modelData.isSteamApp && !modelData.isQuickshell
+                                                visible: !modelData.isQuickshell
                                             }
 
                                             IconImage {
@@ -1025,17 +1147,8 @@ Item {
                                                 layer.effect: MultiEffect {
                                                     saturation: 0
                                                     colorization: 1
-                                                    colorizationColor: isActive ? Theme.primaryContainer : Theme.primary
+                                                    colorizationColor: isActive ? quickshellIconActiveColor : quickshellIconInactiveColor
                                                 }
-                                            }
-
-                                            DankIcon {
-                                                anchors.centerIn: parent
-                                                size: root.appIconSize
-                                                name: "sports_esports"
-                                                color: Theme.widgetTextColor
-                                                opacity: modelData.active ? 1.0 : rowAppMouseArea.containsMouse ? 0.8 : 0.6
-                                                visible: modelData.isSteamApp
                                             }
 
                                             MouseArea {
@@ -1116,7 +1229,7 @@ Item {
                                                 anchors.fill: parent
                                                 source: modelData.icon
                                                 opacity: modelData.active ? 1.0 : colAppMouseArea.containsMouse ? 0.8 : 0.6
-                                                visible: !modelData.isSteamApp && !modelData.isQuickshell
+                                                visible: !modelData.isQuickshell
                                             }
 
                                             IconImage {
@@ -1128,17 +1241,8 @@ Item {
                                                 layer.effect: MultiEffect {
                                                     saturation: 0
                                                     colorization: 1
-                                                    colorizationColor: isActive ? Theme.primaryContainer : Theme.primary
+                                                    colorizationColor: isActive ? quickshellIconActiveColor : quickshellIconInactiveColor
                                                 }
-                                            }
-
-                                            DankIcon {
-                                                anchors.centerIn: parent
-                                                size: root.appIconSize
-                                                name: "sports_esports"
-                                                color: Theme.widgetTextColor
-                                                opacity: modelData.active ? 1.0 : colAppMouseArea.containsMouse ? 0.8 : 0.6
-                                                visible: modelData.isSteamApp
                                             }
 
                                             MouseArea {
@@ -1262,6 +1366,9 @@ Item {
                         delegateRoot.updateAllData();
                     }
                     function onWorkspaceNameIconsChanged() {
+                        delegateRoot.updateAllData();
+                    }
+                    function onAppIdSubstitutionsChanged() {
                         delegateRoot.updateAllData();
                     }
                 }

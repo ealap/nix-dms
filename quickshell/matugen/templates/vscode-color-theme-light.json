@@ -4,7 +4,7 @@
   "semanticHighlighting": true,
   "colors": {
     "foreground": "{{colors.on_surface.light.hex}}",
-    "selection.background": "{{colors.primary_container.light.hex}}66",
+    "selection.background": "{{colors.primary_container.light.hex}}99",
     "errorForeground": "{{colors.error.light.hex}}",
     "focusBorder": "{{colors.primary.light.hex}}",
     "editor.background": "{{colors.background.light.hex}}",
@@ -135,6 +135,7 @@
     "terminal.ansiBrightMagenta": "{{dank16.color13.light.hex}}",
     "terminal.ansiBrightCyan": "{{dank16.color14.light.hex}}",
     "terminal.ansiBrightWhite": "{{dank16.color15.light.hex}}",
+    "terminal.selectionBackground": "{{colors.primary_container.light.hex}}99",
     "gitDecoration.modifiedResourceForeground": "{{colors.primary.light.hex}}",
     "gitDecoration.addedResourceForeground": "{{colors.secondary.light.hex}}",
     "gitDecoration.stageModifiedResourceForeground": "{{colors.primary.light.hex}}",

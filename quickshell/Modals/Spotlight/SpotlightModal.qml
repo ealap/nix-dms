@@ -38,11 +38,10 @@ DankModal {
         isClosing = false;
         resetContent();
         spotlightOpen = true;
-        if (spotlightContent?.appLauncher)
-            spotlightContent.appLauncher.ensureInitialized();
         open();
-
         Qt.callLater(() => {
+            if (spotlightContent?.appLauncher)
+                spotlightContent.appLauncher.ensureInitialized();
             if (spotlightContent?.searchField)
                 spotlightContent.searchField.forceActiveFocus();
         });
@@ -53,15 +52,14 @@ DankModal {
         isClosing = false;
         resetContent();
         spotlightOpen = true;
-        if (spotlightContent?.appLauncher) {
-            spotlightContent.appLauncher.ensureInitialized();
-            spotlightContent.appLauncher.searchQuery = query;
-        }
         if (spotlightContent?.searchField)
             spotlightContent.searchField.text = query;
         open();
-
         Qt.callLater(() => {
+            if (spotlightContent?.appLauncher) {
+                spotlightContent.appLauncher.ensureInitialized();
+                spotlightContent.appLauncher.searchQuery = query;
+            }
             if (spotlightContent?.searchField)
                 spotlightContent.searchField.forceActiveFocus();
         });

@@ -32,8 +32,10 @@ Rectangle {
     }
 
     onIsLockedChanged: {
-        if (!isLocked) {
-            lockContent.unlocking = false;
+        if (isLocked) {
+            lockContent.resetLockState();
+            return;
         }
+        lockContent.unlocking = false;
     }
 }

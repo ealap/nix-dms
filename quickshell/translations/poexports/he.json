@@ -1670,8 +1670,17 @@
   "Focus at Startup": {
     "Focus at Startup": ""
   },
+  "Focused Border": {
+    "Focused Border": ""
+  },
+  "Focused Color": {
+    "Focused Color": ""
+  },
   "Focused Window": {
     "Focused Window": "חלון ממוקד"
+  },
+  "Follow Monitor Focus": {
+    "Follow Monitor Focus": ""
   },
   "Follow focus": {
     "Follow focus": ""
@@ -3386,6 +3395,9 @@
   "Show all 9 tags instead of only occupied tags (DWL only)": {
     "Show all 9 tags instead of only occupied tags (DWL only)": "הצג/י את כל 9 התגים במקום רק את התגים הפעילים (DWL בלבד)"
   },
+  "Show an outline ring around the focused workspace indicator": {
+    "Show an outline ring around the focused workspace indicator": ""
+  },
   "Show cava audio visualizer in media widget": {
     "Show cava audio visualizer in media widget": ""
   },
@@ -3454,6 +3466,9 @@
   },
   "Show workspace name on horizontal bars, and first letter on vertical bars": {
     "Show workspace name on horizontal bars, and first letter on vertical bars": ""
+  },
+  "Show workspaces of the currently focused monitor": {
+    "Show workspaces of the currently focused monitor": ""
   },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "מציג את כל האפליקציות הפעילות עם סימון למיקוד"
@@ -3821,6 +3836,9 @@
   "Unavailable": {
     "Unavailable": "לא זמין"
   },
+  "Unfocused Color": {
+    "Unfocused Color": ""
+  },
   "Uninstall Plugin": {
     "Uninstall Plugin": "הסר/י תוסף"
   },
@@ -3862,6 +3880,9 @@
   },
   "Update Plugin": {
     "Update Plugin": "עדכן/י תוסף"
+  },
+  "Urgent Color": {
+    "Urgent Color": ""
   },
   "Usage Tips": {
     "Usage Tips": ""
@@ -4155,6 +4176,9 @@
   },
   "Workspace": {
     "Workspace": "סביבת עבודה"
+  },
+  "Workspace Appearance": {
+    "Workspace Appearance": ""
   },
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "מספרי אינדקס של סביבות העבודה"

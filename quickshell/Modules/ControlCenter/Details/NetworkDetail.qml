@@ -37,6 +37,10 @@ Rectangle {
         NetworkService.removeRef();
     }
 
+    property bool hasEthernetAvailable: (NetworkService.ethernetDevices?.length ?? 0) > 0
+    property bool hasWifiAvailable: (NetworkService.wifiDevices?.length ?? 0) > 0
+    property bool hasBothConnectionTypes: hasEthernetAvailable && hasWifiAvailable
+
     property int currentPreferenceIndex: {
         if (DMSService.apiVersion < 5) {
             return 1;
@@ -46,19 +50,24 @@ Rectangle {
             return 1;
         }
 
-        const pref = NetworkService.userPreference;
-        const status = NetworkService.networkStatus;
-        let index = 1;
-
-        if (pref === "ethernet") {
-            index = 0;
-        } else if (pref === "wifi") {
-            index = 1;
-        } else {
-            index = status === "ethernet" ? 0 : 1;
+        if (!hasEthernetAvailable) {
+            return 1;
         }
 
-        return index;
+        if (!hasWifiAvailable) {
+            return 0;
+        }
+
+        const pref = NetworkService.userPreference;
+        const status = NetworkService.networkStatus;
+
+        if (pref === "ethernet") {
+            return 0;
+        }
+        if (pref === "wifi") {
+            return 1;
+        }
+        return status === "ethernet" ? 0 : 1;
     }
 
     Row {
@@ -117,7 +126,7 @@ Rectangle {
             DankButtonGroup {
                 id: preferenceControls
                 anchors.verticalCenter: parent.verticalCenter
-                visible: NetworkService.backend === "networkmanager" && DMSService.apiVersion > 10
+                visible: hasBothConnectionTypes && NetworkService.backend === "networkmanager" && DMSService.apiVersion > 10
                 buttonHeight: 28
                 textSize: Theme.fontSizeSmall
 

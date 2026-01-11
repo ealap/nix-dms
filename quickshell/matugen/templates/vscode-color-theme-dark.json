@@ -23,7 +23,7 @@
     // Focus + active indicators
     //
     "focusBorder": "{{colors.primary.dark.hex}}",
-    "selection.background": "{{colors.primary_container.dark.hex}}66",
+    "selection.background": "{{colors.primary_container.dark.hex}}99",
     //
     // Title bar, activity bar, sidebar
     //
@@ -127,7 +127,7 @@
     "editor.lineHighlightBackground": "{{colors.surface_container.dark.hex}}66",
     "editor.wordHighlightBackground": "{{colors.secondary.dark.hex}}22",
     "editor.wordHighlightStrongBackground": "{{colors.tertiary.dark.hex}}22",
-    "editor.selectionBackground": "{{colors.primary_container.dark.hex}}66",
+    "editor.selectionBackground": "{{colors.primary_container.dark.hex}}99",
     "editor.inactiveSelectionBackground": "{{colors.primary_container.dark.hex}}33",
     "editorWhitespace.foreground": "{{colors.outline.dark.hex}}66",
     "editorIndentGuide.background1": "{{colors.outline.dark.hex}}33",
@@ -186,7 +186,8 @@
     "terminal.ansiBrightBlue": "{{dank16.color12.dark.hex}}",
     "terminal.ansiBrightMagenta": "{{dank16.color13.dark.hex}}",
     "terminal.ansiBrightCyan": "{{dank16.color14.dark.hex}}",
-    "terminal.ansiBrightWhite": "{{dank16.color15.dark.hex}}"
+    "terminal.ansiBrightWhite": "{{dank16.color15.dark.hex}}",
+    "terminal.selectionBackground": "{{colors.primary_container.dark.hex}}99"
   },
   //
   // Token colors

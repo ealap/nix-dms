@@ -1,5 +1,5 @@
 pragma Singleton
-pragma ComponentBehavior
+pragma ComponentBehavior: Bound
 
 import QtCore
 import QtQuick
@@ -200,10 +200,16 @@ Singleton {
     property bool showWorkspaceApps: false
     property bool groupWorkspaceApps: true
     property int maxWorkspaceIcons: 3
-    property bool workspacesPerMonitor: true
+    property bool workspaceFollowFocus: false
     property bool showOccupiedWorkspacesOnly: false
     property bool reverseScrolling: false
     property bool dwlShowAllTags: false
+    property string workspaceColorMode: "default"
+    property string workspaceUnfocusedColorMode: "default"
+    property string workspaceUrgentColorMode: "default"
+    property bool workspaceFocusedBorderEnabled: false
+    property string workspaceFocusedBorderColor: "primary"
+    property int workspaceFocusedBorderThickness: 2
     property var workspaceNameIcons: ({})
     property bool waveProgressEnabled: true
     property bool scrollTitleEnabled: true
@@ -215,6 +221,7 @@ Singleton {
     property bool keyboardLayoutNameCompactMode: false
     property bool runningAppsCurrentWorkspace: false
     property bool runningAppsGroupByApp: false
+    property var appIdSubstitutions: []
     property string centeringMode: "index"
     property string clockDateFormat: ""
     property string lockDateFormat: ""
@@ -1834,6 +1841,40 @@ Singleton {
 
     function getWorkspaceNameIcon(workspaceName) {
         return workspaceNameIcons[workspaceName] || null;
+    }
+
+    function addAppIdSubstitution(pattern, replacement, type) {
+        var subs = JSON.parse(JSON.stringify(appIdSubstitutions));
+        subs.push({ pattern: pattern, replacement: replacement, type: type });
+        appIdSubstitutions = subs;
+        saveSettings();
+    }
+
+    function updateAppIdSubstitution(index, pattern, replacement, type) {
+        var subs = JSON.parse(JSON.stringify(appIdSubstitutions));
+        if (index < 0 || index >= subs.length)
+            return;
+        subs[index] = { pattern: pattern, replacement: replacement, type: type };
+        appIdSubstitutions = subs;
+        saveSettings();
+    }
+
+    function removeAppIdSubstitution(index) {
+        var subs = JSON.parse(JSON.stringify(appIdSubstitutions));
+        if (index < 0 || index >= subs.length)
+            return;
+        subs.splice(index, 1);
+        appIdSubstitutions = subs;
+        saveSettings();
+    }
+
+    function getDefaultAppIdSubstitutions() {
+        return Spec.SPEC.appIdSubstitutions.def;
+    }
+
+    function resetAppIdSubstitutions() {
+        appIdSubstitutions = JSON.parse(JSON.stringify(Spec.SPEC.appIdSubstitutions.def));
+        saveSettings();
     }
 
     function getRegistryThemeVariant(themeId, defaultVariant) {

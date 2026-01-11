@@ -1670,8 +1670,17 @@
   "Focus at Startup": {
     "Focus at Startup": "Aktywuj przy starcie"
   },
+  "Focused Border": {
+    "Focused Border": ""
+  },
+  "Focused Color": {
+    "Focused Color": ""
+  },
   "Focused Window": {
     "Focused Window": "Aktywne okno"
+  },
+  "Follow Monitor Focus": {
+    "Follow Monitor Focus": ""
   },
   "Follow focus": {
     "Follow focus": "Podążaj za kursorem"
@@ -3386,6 +3395,9 @@
   "Show all 9 tags instead of only occupied tags (DWL only)": {
     "Show all 9 tags instead of only occupied tags (DWL only)": "Pokaż wszystkie 9 tagów zamiast tylko zajętych (tylko DWL)"
   },
+  "Show an outline ring around the focused workspace indicator": {
+    "Show an outline ring around the focused workspace indicator": ""
+  },
   "Show cava audio visualizer in media widget": {
     "Show cava audio visualizer in media widget": "Pokaż wizualizację audio cava w widżecie multimediów"
   },
@@ -3454,6 +3466,9 @@
   },
   "Show workspace name on horizontal bars, and first letter on vertical bars": {
     "Show workspace name on horizontal bars, and first letter on vertical bars": ""
+  },
+  "Show workspaces of the currently focused monitor": {
+    "Show workspaces of the currently focused monitor": ""
   },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "Pokazuje wszystkie uruchomione aplikacje ze wskaźnikiem fokusu"
@@ -3821,6 +3836,9 @@
   "Unavailable": {
     "Unavailable": "Niedostępny"
   },
+  "Unfocused Color": {
+    "Unfocused Color": ""
+  },
   "Uninstall Plugin": {
     "Uninstall Plugin": "Odinstaluj wtyczkę"
   },
@@ -3862,6 +3880,9 @@
   },
   "Update Plugin": {
     "Update Plugin": "Zaktualizuj wtyczkę"
+  },
+  "Urgent Color": {
+    "Urgent Color": ""
   },
   "Usage Tips": {
     "Usage Tips": ""
@@ -4155,6 +4176,9 @@
   },
   "Workspace": {
     "Workspace": "Obszar roboczy"
+  },
+  "Workspace Appearance": {
+    "Workspace Appearance": ""
   },
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "Numery indeksów obszarów roboczych"

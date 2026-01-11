@@ -14,7 +14,7 @@ Scope {
     property bool isClosing: false
     property bool releaseKeyboard: false
     readonly property bool spotlightModalOpen: PopoutService.spotlightModal?.spotlightOpen ?? false
-    property bool overlayActive: (NiriService.inOverview && !spotlightModalOpen) || searchActive
+    property bool overlayActive: NiriService.inOverview || searchActive
 
     function showSpotlight(screenName) {
         isClosing = false;

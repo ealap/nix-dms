@@ -32,6 +32,8 @@ StyledRect {
     property color leftIconColor: Theme.surfaceVariantText
     property color leftIconFocusedColor: Theme.primary
     property bool showClearButton: false
+    property bool showPasswordToggle: false
+    property bool passwordVisible: false
     property color backgroundColor: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
     property color focusedBorderColor: Theme.primary
     property color normalBorderColor: Theme.outlineMedium
@@ -40,7 +42,14 @@ StyledRect {
     property int focusedBorderWidth: 2
     property real cornerRadius: Theme.cornerRadius
     readonly property real leftPadding: Theme.spacingM + (leftIconName ? leftIconSize + Theme.spacingM : 0)
-    readonly property real rightPadding: Theme.spacingM + (showClearButton && text.length > 0 ? 24 + Theme.spacingM : 0)
+    readonly property real rightPadding: {
+        let p = Theme.spacingM;
+        if (showPasswordToggle)
+            p += 24 + Theme.spacingS;
+        if (showClearButton && text.length > 0)
+            p += 24 + Theme.spacingS;
+        return p;
+    }
     property real topPadding: Theme.spacingM
     property real bottomPadding: Theme.spacingM
     property bool ignoreLeftRightKeys: false
@@ -97,8 +106,8 @@ StyledRect {
 
         anchors.left: leftIcon.visible ? leftIcon.right : parent.left
         anchors.leftMargin: Theme.spacingM
-        anchors.right: clearButton.visible ? clearButton.left : parent.right
-        anchors.rightMargin: Theme.spacingM
+        anchors.right: rightButtonsRow.left
+        anchors.rightMargin: rightButtonsRow.visible ? Theme.spacingS : Theme.spacingM
         anchors.top: parent.top
         anchors.topMargin: root.topPadding
         anchors.bottom: parent.bottom
@@ -151,33 +160,64 @@ StyledRect {
         }
     }
 
-    StyledRect {
-        id: clearButton
+    Row {
+        id: rightButtonsRow
 
-        width: 24
-        height: 24
-        radius: 12
-        color: clearArea.containsMouse ? Theme.outlineStrong : "transparent"
         anchors.right: parent.right
         anchors.rightMargin: Theme.spacingM
         anchors.verticalCenter: parent.verticalCenter
-        visible: showClearButton && text.length > 0
+        spacing: Theme.spacingXS
+        visible: showPasswordToggle || (showClearButton && text.length > 0)
 
-        DankIcon {
-            anchors.centerIn: parent
-            name: "close"
-            size: 16
-            color: clearArea.containsMouse ? Theme.outline : Theme.surfaceVariantText
+        StyledRect {
+            id: passwordToggleButton
+
+            width: 24
+            height: 24
+            radius: 12
+            color: passwordToggleArea.containsMouse ? Theme.outlineStrong : "transparent"
+            visible: showPasswordToggle
+
+            DankIcon {
+                anchors.centerIn: parent
+                name: passwordVisible ? "visibility_off" : "visibility"
+                size: 16
+                color: passwordToggleArea.containsMouse ? Theme.outline : Theme.surfaceVariantText
+            }
+
+            MouseArea {
+                id: passwordToggleArea
+
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: passwordVisible = !passwordVisible
+            }
         }
 
-        MouseArea {
-            id: clearArea
+        StyledRect {
+            id: clearButton
 
-            anchors.fill: parent
-            hoverEnabled: true
-            cursorShape: Qt.PointingHandCursor
-            onClicked: {
-                textInput.text = "";
+            width: 24
+            height: 24
+            radius: 12
+            color: clearArea.containsMouse ? Theme.outlineStrong : "transparent"
+            visible: showClearButton && text.length > 0
+
+            DankIcon {
+                anchors.centerIn: parent
+                name: "close"
+                size: 16
+                color: clearArea.containsMouse ? Theme.outline : Theme.surfaceVariantText
+            }
+
+            MouseArea {
+                id: clearArea
+
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: textInput.text = ""
             }
         }
     }

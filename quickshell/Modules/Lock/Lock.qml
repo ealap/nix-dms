@@ -12,37 +12,54 @@ Scope {
 
     property string sharedPasswordBuffer: ""
     property bool shouldLock: false
-    property bool processingExternalEvent: false
+    property bool lockInitiatedLocally: false
+    property bool pendingLock: false
 
     Component.onCompleted: {
         IdleService.lockComponent = this;
     }
 
+    function notifyLoginctl(lockAction: bool) {
+        if (!SettingsData.loginctlLockIntegration || !DMSService.isConnected)
+            return;
+        if (lockAction)
+            DMSService.lockSession(() => {});
+        else
+            DMSService.unlockSession(() => {});
+    }
+
     function lock() {
-        if (SettingsData.customPowerActionLock && SettingsData.customPowerActionLock.length > 0) {
+        if (SettingsData.customPowerActionLock?.length > 0) {
             Quickshell.execDetached(["sh", "-c", SettingsData.customPowerActionLock]);
             return;
         }
-        shouldLock = true;
-        if (!processingExternalEvent && SettingsData.loginctlLockIntegration && DMSService.isConnected) {
-            DMSService.lockSession(response => {
-                if (response.error)
-                    console.warn("Lock: loginctl.lock failed:", response.error);
-            });
+        if (shouldLock || pendingLock)
+            return;
+
+        lockInitiatedLocally = true;
+
+        if (!SessionService.active && SessionService.loginctlAvailable) {
+            pendingLock = true;
+            notifyLoginctl(true);
+            return;
         }
+
+        shouldLock = true;
+        notifyLoginctl(true);
     }
 
     function unlock() {
-        if (!processingExternalEvent && SettingsData.loginctlLockIntegration && DMSService.isConnected) {
-            DMSService.unlockSession(response => {
-                if (response.error) {
-                    console.warn("Lock: Failed to call loginctl.unlock:", response.error);
-                    shouldLock = false;
-                }
-            });
-        } else {
-            shouldLock = false;
-        }
+        if (!shouldLock)
+            return;
+        lockInitiatedLocally = false;
+        notifyLoginctl(false);
+        shouldLock = false;
+    }
+
+    function forceReset() {
+        lockInitiatedLocally = false;
+        pendingLock = false;
+        shouldLock = false;
     }
 
     function activate() {
@@ -53,15 +70,39 @@ Scope {
         target: SessionService
 
         function onSessionLocked() {
-            processingExternalEvent = true;
+            if (shouldLock || pendingLock)
+                return;
+            if (!SessionService.active && SessionService.loginctlAvailable) {
+                pendingLock = true;
+                lockInitiatedLocally = false;
+                return;
+            }
+            lockInitiatedLocally = false;
             shouldLock = true;
-            processingExternalEvent = false;
         }
 
         function onSessionUnlocked() {
-            processingExternalEvent = true;
+            if (pendingLock) {
+                pendingLock = false;
+                lockInitiatedLocally = false;
+                return;
+            }
+            if (!shouldLock || lockInitiatedLocally)
+                return;
             shouldLock = false;
-            processingExternalEvent = false;
+        }
+
+        function onLoginctlStateChanged() {
+            if (SessionService.active && pendingLock) {
+                pendingLock = false;
+                lockInitiatedLocally = true;
+                shouldLock = true;
+                return;
+            }
+            if (SessionService.locked && !shouldLock && !pendingLock) {
+                lockInitiatedLocally = false;
+                shouldLock = true;
+            }
         }
     }
 
@@ -79,8 +120,10 @@ Scope {
         locked: shouldLock
 
         onLockedChanged: {
-            if (locked)
+            if (locked) {
+                pendingLock = false;
                 dpmsReapplyTimer.start();
+            }
         }
 
         WlSessionLockSurface {
@@ -104,9 +147,7 @@ Scope {
                 sharedPasswordBuffer: root.sharedPasswordBuffer
                 screenName: lockSurface.currentScreenName
                 isLocked: shouldLock
-                onUnlockRequested: {
-                    root.unlock();
-                }
+                onUnlockRequested: root.unlock()
                 onPasswordChanged: newPassword => {
                     root.sharedPasswordBuffer = newPassword;
                 }
@@ -122,13 +163,15 @@ Scope {
         target: "lock"
 
         function lock() {
-            root.shouldLock = true;
-            if (SettingsData.loginctlLockIntegration && DMSService.isConnected) {
-                DMSService.lockSession(response => {
-                    if (response.error)
-                        console.warn("Lock: loginctl.lock failed:", response.error);
-                });
-            }
+            root.lock();
+        }
+
+        function unlock() {
+            root.unlock();
+        }
+
+        function forceReset() {
+            root.forceReset();
         }
 
         function demo() {
@@ -137,6 +180,17 @@ Scope {
 
         function isLocked(): bool {
             return sessionLock.locked;
+        }
+
+        function status(): string {
+            return JSON.stringify({
+                shouldLock: root.shouldLock,
+                sessionLockLocked: sessionLock.locked,
+                lockInitiatedLocally: root.lockInitiatedLocally,
+                pendingLock: root.pendingLock,
+                loginctlLocked: SessionService.locked,
+                loginctlActive: SessionService.active
+            });
         }
     }
 

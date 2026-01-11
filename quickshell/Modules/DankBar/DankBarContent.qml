@@ -39,7 +39,7 @@ Item {
 
     function getRealWorkspaces() {
         if (CompositorService.isNiri) {
-            if (!barWindow.screenName || !SettingsData.workspacesPerMonitor) {
+            if (!barWindow.screenName || SettingsData.workspaceFollowFocus) {
                 return NiriService.getCurrentOutputWorkspaceNumbers();
             }
             const workspaces = NiriService.allWorkspaces.filter(ws => ws.output === barWindow.screenName).map(ws => ws.idx + 1);
@@ -47,7 +47,7 @@ Item {
         } else if (CompositorService.isHyprland) {
             const workspaces = Hyprland.workspaces?.values || [];
 
-            if (!barWindow.screenName || !SettingsData.workspacesPerMonitor) {
+            if (!barWindow.screenName || SettingsData.workspaceFollowFocus) {
                 const sorted = workspaces.slice().sort((a, b) => a.id - b.id);
                 const filtered = sorted.filter(ws => ws.id > -1);
                 return filtered.length > 0 ? filtered : [
@@ -91,7 +91,7 @@ Item {
                     }
                 ];
 
-            if (!barWindow.screenName || !SettingsData.workspacesPerMonitor) {
+            if (!barWindow.screenName || SettingsData.workspaceFollowFocus) {
                 return workspaces.slice().sort((a, b) => a.num - b.num);
             }
 
@@ -107,7 +107,7 @@ Item {
 
     function getCurrentWorkspace() {
         if (CompositorService.isNiri) {
-            if (!barWindow.screenName || !SettingsData.workspacesPerMonitor) {
+            if (!barWindow.screenName || SettingsData.workspaceFollowFocus) {
                 return NiriService.getCurrentWorkspaceNumber();
             }
             const activeWs = NiriService.allWorkspaces.find(ws => ws.output === barWindow.screenName && ws.is_active);
@@ -125,7 +125,7 @@ Item {
             const activeTags = DwlService.getActiveTags(barWindow.screenName);
             return activeTags.length > 0 ? activeTags[0] : 0;
         } else if (CompositorService.isSway || CompositorService.isScroll) {
-            if (!barWindow.screenName || !SettingsData.workspacesPerMonitor) {
+            if (!barWindow.screenName || SettingsData.workspaceFollowFocus) {
                 const focusedWs = I3.workspaces?.values?.find(ws => ws.focused === true);
                 return focusedWs ? focusedWs.num : 1;
             }

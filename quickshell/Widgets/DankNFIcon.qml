@@ -26,6 +26,8 @@ Item {
             "endeavouros": "\u{f322}",
             "manjaro": "\u{f160a}",
             "opensuse": "\u{f314}",
+            "artix": "\u{f31f}",
+            "void": "\u{f32e}",
 
             // --- special types ---
             "folder": "\u{F024B}",

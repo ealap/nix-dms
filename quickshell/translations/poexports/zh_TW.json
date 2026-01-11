@@ -21,10 +21,10 @@
     "%1 display(s)": "%1 個螢幕"
   },
   "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": {
-    "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": ""
+    "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": "%1 存在但未包含在設定中。自訂快捷鍵在修正此問題前將無法運作。"
   },
   "%1 is now included in config": {
-    "%1 is now included in config": ""
+    "%1 is now included in config": "%1 現已包含在設定中"
   },
   "%1 job(s)": {
     "%1 job(s)": "%1 個工作"
@@ -420,7 +420,7 @@
     "Automatically determine your location using your IP address": "使用您的 IP 位址自動確定您的位置"
   },
   "Automatically lock after": {
-    "Automatically lock after": "自動鎖定後"
+    "Automatically lock after": "指定時間後自動鎖定"
   },
   "Automatically lock the screen when the system prepares to suspend": {
     "Automatically lock the screen when the system prepares to suspend": "睡眠時自動鎖定螢幕"
@@ -708,7 +708,7 @@
     "Clear at Startup": "啟動時清除"
   },
   "Click 'Setup' to create %1 and add include to config.": {
-    "Click 'Setup' to create %1 and add include to config.": ""
+    "Click 'Setup' to create %1 and add include to config.": "點擊「設定」以建立 %1 並新增到設定中。"
   },
   "Click 'Setup' to create cursor config and add include to your compositor config.": {
     "Click 'Setup' to create cursor config and add include to your compositor config.": "點擊「設定」以建立游標設定檔，並將其包含至您的合成器設定中。"
@@ -723,7 +723,7 @@
     "Click Import to add a .ovpn or .conf": "點擊匯入以新增 .ovpn 或 .conf"
   },
   "Click any shortcut to edit. Changes save to %1": {
-    "Click any shortcut to edit. Changes save to %1": ""
+    "Click any shortcut to edit. Changes save to %1": "點擊任一快捷鍵進行編輯。變更會儲存到 %1"
   },
   "Click any shortcut to edit. Changes save to dms/binds.kdl": {
     "Click any shortcut to edit. Changes save to dms/binds.kdl": "點擊任何快捷方式進行編輯。更改將保存到 dms/binds.kdl"
@@ -861,7 +861,7 @@
     "Connect": "連線"
   },
   "Connect to Hidden Network": {
-    "Connect to Hidden Network": ""
+    "Connect to Hidden Network": "連線到隱藏網路"
   },
   "Connect to VPN": {
     "Connect to VPN": "連線到 VPN"
@@ -1419,7 +1419,7 @@
     "Enter launch prefix (e.g., 'uwsm-app')": "輸入啟動前綴（例如：「uwsm-app」）"
   },
   "Enter network name and password": {
-    "Enter network name and password": ""
+    "Enter network name and password": "輸入網路名稱和密碼"
   },
   "Enter passkey for ": {
     "Enter passkey for ": "請輸入密碼給 "
@@ -1653,7 +1653,7 @@
     "Fixing...": "正在修復..."
   },
   "Flags": {
-    "Flags": ""
+    "Flags": "標幟"
   },
   "Flipped": {
     "Flipped": "翻轉"
@@ -1670,8 +1670,17 @@
   "Focus at Startup": {
     "Focus at Startup": "啟動時聚焦"
   },
+  "Focused Border": {
+    "Focused Border": ""
+  },
+  "Focused Color": {
+    "Focused Color": ""
+  },
   "Focused Window": {
     "Focused Window": "視窗對焦"
+  },
+  "Follow Monitor Focus": {
+    "Follow Monitor Focus": ""
   },
   "Follow focus": {
     "Follow focus": "跟隨焦點"
@@ -1818,10 +1827,10 @@
     "Hibernate": "休眠"
   },
   "Hidden": {
-    "Hidden": ""
+    "Hidden": "隱藏的"
   },
   "Hidden Network": {
-    "Hidden Network": ""
+    "Hidden Network": "隱藏網路"
   },
   "Hide Delay": {
     "Hide Delay": "隱藏延遲"
@@ -2139,7 +2148,7 @@
     "Lock fade grace period": "鎖定淡出緩衝期"
   },
   "Locked": {
-    "Locked": ""
+    "Locked": "已鎖定"
   },
   "Log Out": {
     "Log Out": "登出"
@@ -2151,7 +2160,7 @@
     "Long Text": "長文字"
   },
   "Long press": {
-    "Long press": ""
+    "Long press": "長按"
   },
   "Longitude": {
     "Longitude": "經度"
@@ -2379,7 +2388,7 @@
     "Network Information": "網路資訊"
   },
   "Network Name (SSID)": {
-    "Network Name (SSID)": ""
+    "Network Name (SSID)": "網路名稱 (SSID)"
   },
   "Network Speed Monitor": {
     "Network Speed Monitor": "網速監視"
@@ -2958,7 +2967,7 @@
     "Reject Jobs": "拒絕工作"
   },
   "Release": {
-    "Release": ""
+    "Release": "放開"
   },
   "Reload Plugin": {
     "Reload Plugin": "重新載入插件"
@@ -2970,7 +2979,7 @@
     "Remove gaps and border when windows are maximized": "視窗最大化時移除間距與邊框"
   },
   "Repeat": {
-    "Repeat": ""
+    "Repeat": "重複"
   },
   "Report": {
     "Report": "報告"
@@ -3386,6 +3395,9 @@
   "Show all 9 tags instead of only occupied tags (DWL only)": {
     "Show all 9 tags instead of only occupied tags (DWL only)": "顯示所有 9 個標籤，而非僅顯示已佔用的標籤 (僅限 DWL)"
   },
+  "Show an outline ring around the focused workspace indicator": {
+    "Show an outline ring around the focused workspace indicator": ""
+  },
   "Show cava audio visualizer in media widget": {
     "Show cava audio visualizer in media widget": "在媒體小工具中顯示 cava 音訊視覺化工具"
   },
@@ -3454,6 +3466,9 @@
   },
   "Show workspace name on horizontal bars, and first letter on vertical bars": {
     "Show workspace name on horizontal bars, and first letter on vertical bars": "在水平列顯示工作區名稱，垂直列顯示首字母"
+  },
+  "Show workspaces of the currently focused monitor": {
+    "Show workspaces of the currently focused monitor": ""
   },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "顯示所有正在運行的應用程式並帶有焦點指示"
@@ -3585,7 +3600,7 @@
     "Suspend behavior": "睡眠行為"
   },
   "Suspend system after": {
-    "Suspend system after": "系統睡眠後"
+    "Suspend system after": "指定時間後系統睡眠"
   },
   "Swap": {
     "Swap": "交換區"
@@ -3804,7 +3819,7 @@
     "Trigger Prefix": "觸發前綴"
   },
   "Turn off monitors after": {
-    "Turn off monitors after": "關閉螢幕之後"
+    "Turn off monitors after": "指定時間後關閉螢幕"
   },
   "Type": {
     "Type": "類型"
@@ -3820,6 +3835,9 @@
   },
   "Unavailable": {
     "Unavailable": "不可用"
+  },
+  "Unfocused Color": {
+    "Unfocused Color": ""
   },
   "Uninstall Plugin": {
     "Uninstall Plugin": "解除安裝插件"
@@ -3862,6 +3880,9 @@
   },
   "Update Plugin": {
     "Update Plugin": "更新插件"
+  },
+  "Urgent Color": {
+    "Urgent Color": ""
   },
   "Usage Tips": {
     "Usage Tips": "使用提示"
@@ -4156,6 +4177,9 @@
   "Workspace": {
     "Workspace": "工作區"
   },
+  "Workspace Appearance": {
+    "Workspace Appearance": ""
+  },
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "工作區編號"
   },
@@ -4343,7 +4367,7 @@
     "Night mode & gamma": "夜間模式與伽瑪",
     "Per-screen config": "依螢幕設定",
     "Quick system toggles": "快速系統切換",
-    "Security & privacy": ""
+    "Security & privacy": "安全與隱私"
   },
   "greeter feature card title": {
     "App Theming": "應用程式主題",
@@ -4361,7 +4385,7 @@
     "DankBar": "DankBar"
   },
   "greeter feature card title | lock screen notifications settings card": {
-    "Lock Screen": ""
+    "Lock Screen": "鎖定螢幕"
   },
   "greeter finish button": {
     "Finish": "完成"
@@ -4607,7 +4631,7 @@
     "update dms for NM integration.": "更新 dms 以進行 NM 整合。"
   },
   "version requirement": {
-    "Requires %1": ""
+    "Requires %1": "需要 %1"
   },
   "wallpaper directory file browser title": {
     "Select Wallpaper Directory": "選擇桌布目錄"

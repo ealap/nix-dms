@@ -49,7 +49,7 @@ Item {
     readonly property alias clickCatcher: clickCatcher
     readonly property bool useHyprlandFocusGrab: CompositorService.useHyprlandFocusGrab
     readonly property bool useBackground: showBackground && SettingsData.modalDarkenBackground
-    readonly property bool useSingleWindow: useHyprlandFocusGrab || useBackground
+    readonly property bool useSingleWindow: CompositorService.isHyprland || useBackground
 
     signal opened
     signal dialogClosed
@@ -58,7 +58,6 @@ Item {
     property bool animationsEnabled: true
 
     function open() {
-        ModalManager.openModal(root);
         closeTimer.stop();
         const focusedScreen = CompositorService.getFocusedScreen();
         if (focusedScreen) {
@@ -66,6 +65,7 @@ Item {
             if (!useSingleWindow)
                 clickCatcher.screen = focusedScreen;
         }
+        ModalManager.openModal(root);
         shouldBeVisible = true;
         if (!useSingleWindow)
             clickCatcher.visible = true;
@@ -302,7 +302,7 @@ Item {
 
             MouseArea {
                 anchors.fill: parent
-                enabled: root.useSingleWindow
+                enabled: root.useSingleWindow && root.shouldBeVisible
                 hoverEnabled: false
                 acceptedButtons: Qt.AllButtons
                 onPressed: mouse.accepted = true

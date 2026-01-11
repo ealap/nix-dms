@@ -13,17 +13,16 @@ Singleton {
     property var currentModalsByScreen: ({})
 
     function openModal(modal) {
-        if (!modal.allowStacking) {
-            closeAllModalsExcept(modal);
-        }
-        if (!modal.keepPopoutsOpen) {
-            PopoutManager.closeAllPopouts();
-        }
-        TrayMenuManager.closeAllMenus();
-
         const screenName = modal.effectiveScreen?.name ?? "unknown";
         currentModalsByScreen[screenName] = modal;
         modalChanged();
+        Qt.callLater(() => {
+            if (!modal.allowStacking)
+                closeAllModalsExcept(modal);
+            if (!modal.keepPopoutsOpen)
+                PopoutManager.closeAllPopouts();
+            TrayMenuManager.closeAllMenus();
+        });
     }
 
     function closeModal(modal) {

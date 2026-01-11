@@ -147,6 +147,7 @@ Item {
                     spacing: Theme.spacingM
 
                     Row {
+                        width: parent.width
                         spacing: Theme.spacingM
 
                         Rectangle {
@@ -188,6 +189,7 @@ Item {
                     }
 
                     Row {
+                        width: parent.width
                         spacing: Theme.spacingM
 
                         Rectangle {

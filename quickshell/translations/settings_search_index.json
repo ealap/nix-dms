@@ -709,6 +709,51 @@
     "icon": "visibility_off"
   },
   {
+    "section": "workspaceFocusedBorderEnabled",
+    "label": "Focused Border",
+    "tabIndex": 4,
+    "category": "Workspaces",
+    "keywords": [
+      "around",
+      "border",
+      "desktop",
+      "focused",
+      "indicator",
+      "outline",
+      "ring",
+      "show",
+      "spaces",
+      "virtual",
+      "virtual desktops",
+      "workspace",
+      "workspaces"
+    ],
+    "description": "Show an outline ring around the focused workspace indicator"
+  },
+  {
+    "section": "workspaceFollowFocus",
+    "label": "Follow Monitor Focus",
+    "tabIndex": 4,
+    "category": "Workspaces",
+    "keywords": [
+      "currently",
+      "desktop",
+      "desktops",
+      "focus",
+      "focused",
+      "follow",
+      "monitor",
+      "show",
+      "spaces",
+      "virtual",
+      "virtual desktops",
+      "workspace",
+      "workspaces"
+    ],
+    "description": "Show workspaces of the currently focused monitor",
+    "conditionKey": "isNiri"
+  },
+  {
     "section": "groupWorkspaceApps",
     "label": "Group Workspace Apps",
     "tabIndex": 4,
@@ -750,29 +795,6 @@
       "workspaces"
     ],
     "icon": "label"
-  },
-  {
-    "section": "workspacesPerMonitor",
-    "label": "Per-Monitor Workspaces",
-    "tabIndex": 4,
-    "category": "Workspaces",
-    "keywords": [
-      "belonging",
-      "desktop",
-      "desktops",
-      "monitor",
-      "multi-monitor",
-      "per",
-      "per-monitor",
-      "show",
-      "spaces",
-      "specific",
-      "virtual",
-      "virtual desktops",
-      "workspace",
-      "workspaces"
-    ],
-    "description": "Show only workspaces belonging to each specific monitor."
   },
   {
     "section": "reverseScrolling",
@@ -871,6 +893,31 @@
       "workspaces"
     ],
     "description": "Display application icons in workspace indicators",
+    "conditionKey": "isNiri"
+  },
+  {
+    "section": "workspaceAppearance",
+    "label": "Workspace Appearance",
+    "tabIndex": 4,
+    "category": "Workspaces",
+    "keywords": [
+      "appearance",
+      "around",
+      "border",
+      "desktop",
+      "focused",
+      "indicator",
+      "outline",
+      "ring",
+      "show",
+      "spaces",
+      "virtual",
+      "virtual desktops",
+      "workspace",
+      "workspaces"
+    ],
+    "icon": "palette",
+    "description": "Show an outline ring around the focused workspace indicator",
     "conditionKey": "isNiri"
   },
   {
@@ -3107,33 +3154,6 @@
     "description": "If the field is hidden, it will appear as soon as a key is pressed."
   },
   {
-    "section": "lockScreenNotificationMode",
-    "label": "Notification Display",
-    "tabIndex": 11,
-    "category": "Lock Screen",
-    "keywords": [
-      "alert",
-      "control",
-      "display",
-      "information",
-      "lock",
-      "lockscreen",
-      "login",
-      "monitor",
-      "notif",
-      "notification",
-      "notifications",
-      "output",
-      "password",
-      "privacy",
-      "screen",
-      "security",
-      "shown",
-      "what"
-    ],
-    "description": "Control what notification information is shown on the lock screen"
-  },
-  {
     "section": "lockScreenShowPasswordField",
     "label": "Show Password Field",
     "tabIndex": 11,
@@ -3869,6 +3889,35 @@
     "description": "Timeout for normal priority notifications"
   },
   {
+    "section": "lockScreenNotificationMode",
+    "label": "Notification Display",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alert",
+      "alerts",
+      "control",
+      "display",
+      "information",
+      "lock",
+      "lockscreen",
+      "login",
+      "messages",
+      "monitor",
+      "notif",
+      "notification",
+      "notifications",
+      "output",
+      "privacy",
+      "screen",
+      "security",
+      "shown",
+      "toast",
+      "what"
+    ],
+    "description": "Control what notification information is shown on the lock screen"
+  },
+  {
     "section": "notificationOverlayEnabled",
     "label": "Notification Overlay",
     "tabIndex": 17,
@@ -3988,6 +4037,29 @@
     ],
     "icon": "tune",
     "description": "Choose where on-screen displays appear on screen"
+  },
+  {
+    "section": "appIdSubstitutions",
+    "label": "App ID Substitutions",
+    "tabIndex": 19,
+    "category": "Running Apps",
+    "keywords": [
+      "active",
+      "app",
+      "apps",
+      "class",
+      "icon",
+      "pattern",
+      "regex",
+      "replacement",
+      "running",
+      "substitution",
+      "substitutions",
+      "tasks",
+      "window",
+      "windows"
+    ],
+    "icon": "find_replace"
   },
   {
     "section": "runningApps",
