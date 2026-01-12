@@ -10,9 +10,17 @@ Rectangle {
     required property var historyItem
     property bool isSelected: false
     property bool keyboardNavigationActive: false
+    property bool descriptionExpanded: NotificationService.expandedMessages[historyItem?.id ? (historyItem.id + "_hist") : ""] || false
+
+    readonly property bool compactMode: SettingsData.notificationCompactMode
+    readonly property real cardPadding: compactMode ? Theme.spacingS : Theme.spacingM
+    readonly property real iconSize: compactMode ? 48 : 63
+    readonly property real contentSpacing: compactMode ? Theme.spacingXS : Theme.spacingS
+    readonly property real collapsedContentHeight: iconSize + cardPadding
+    readonly property real baseCardHeight: cardPadding * 2 + collapsedContentHeight
 
     width: parent ? parent.width : 400
-    height: 116
+    height: baseCardHeight + contentItem.extraHeight
     radius: Theme.cornerRadius
     clip: true
 
@@ -65,23 +73,28 @@ Rectangle {
     }
 
     Item {
+        id: contentItem
+
+        readonly property real expandedTextHeight: descriptionText.contentHeight
+        readonly property real twoLineHeight: descriptionText.font.pixelSize * 1.2 * 2
+        readonly property real extraHeight: (descriptionExpanded && expandedTextHeight > twoLineHeight + 2) ? (expandedTextHeight - twoLineHeight) : 0
+
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.topMargin: 12
-        anchors.leftMargin: 16
-        anchors.rightMargin: 56
-        height: 92
+        anchors.topMargin: cardPadding
+        anchors.leftMargin: Theme.spacingL
+        anchors.rightMargin: Theme.spacingL + (compactMode ? 32 : 40)
+        height: collapsedContentHeight + extraHeight
 
         DankCircularImage {
             id: iconContainer
             readonly property bool hasNotificationImage: historyItem.image && historyItem.image !== ""
 
-            width: 63
-            height: 63
+            width: iconSize
+            height: iconSize
             anchors.left: parent.left
             anchors.top: parent.top
-            anchors.topMargin: 14
 
             imageSource: {
                 if (hasNotificationImage)
@@ -116,60 +129,79 @@ Rectangle {
 
         Rectangle {
             anchors.left: iconContainer.right
-            anchors.leftMargin: 12
+            anchors.leftMargin: Theme.spacingM
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 8
+            anchors.bottomMargin: contentSpacing
             color: "transparent"
 
-            Item {
+            Column {
                 width: parent.width
-                height: parent.height
                 anchors.top: parent.top
-                anchors.topMargin: -2
+                spacing: compactMode ? 1 : 2
 
-                Column {
+                StyledText {
                     width: parent.width
-                    spacing: 2
+                    text: {
+                        const timeStr = NotificationService.formatHistoryTime(historyItem.timestamp);
+                        const appName = historyItem.appName || "";
+                        return timeStr.length > 0 ? `${appName} • ${timeStr}` : appName;
+                    }
+                    color: Theme.surfaceVariantText
+                    font.pixelSize: Theme.fontSizeSmall
+                    font.weight: Font.Medium
+                    elide: Text.ElideRight
+                    maximumLineCount: 1
+                    visible: text.length > 0
+                }
 
-                    StyledText {
-                        width: parent.width
-                        text: {
-                            const timeStr = NotificationService.formatHistoryTime(historyItem.timestamp);
-                            const appName = historyItem.appName || "";
-                            return timeStr.length > 0 ? `${appName} • ${timeStr}` : appName;
+                StyledText {
+                    text: historyItem.summary || ""
+                    color: Theme.surfaceText
+                    font.pixelSize: Theme.fontSizeMedium
+                    font.weight: Font.Medium
+                    width: parent.width
+                    elide: Text.ElideRight
+                    maximumLineCount: 1
+                    visible: text.length > 0
+                }
+
+                StyledText {
+                    id: descriptionText
+                    property bool hasMoreText: truncated
+
+                    text: historyItem.htmlBody || historyItem.body || ""
+                    color: Theme.surfaceVariantText
+                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width
+                    elide: descriptionExpanded ? Text.ElideNone : Text.ElideRight
+                    maximumLineCount: descriptionExpanded ? -1 : (compactMode ? 1 : 2)
+                    wrapMode: Text.WordWrap
+                    visible: text.length > 0
+                    linkColor: Theme.primary
+                    onLinkActivated: link => Qt.openUrlExternally(link)
+
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : (parent.hasMoreText || descriptionExpanded) ? Qt.PointingHandCursor : Qt.ArrowCursor
+
+                        onClicked: mouse => {
+                            if (!parent.hoveredLink && (parent.hasMoreText || descriptionExpanded)) {
+                                const messageId = historyItem?.id ? (historyItem.id + "_hist") : "";
+                                NotificationService.toggleMessageExpansion(messageId);
+                            }
                         }
-                        color: Theme.surfaceVariantText
-                        font.pixelSize: Theme.fontSizeSmall
-                        font.weight: Font.Medium
-                        elide: Text.ElideRight
-                        maximumLineCount: 1
-                    }
 
-                    StyledText {
-                        text: historyItem.summary || ""
-                        color: Theme.surfaceText
-                        font.pixelSize: Theme.fontSizeMedium
-                        font.weight: Font.Medium
-                        width: parent.width
-                        elide: Text.ElideRight
-                        maximumLineCount: 1
-                        visible: text.length > 0
-                    }
-
-                    StyledText {
-                        id: descriptionText
-                        text: historyItem.htmlBody || historyItem.body || ""
-                        color: Theme.surfaceVariantText
-                        font.pixelSize: Theme.fontSizeSmall
-                        width: parent.width
-                        elide: Text.ElideRight
-                        maximumLineCount: 2
-                        wrapMode: Text.WordWrap
-                        visible: text.length > 0
-                        linkColor: Theme.primary
-                        onLinkActivated: link => Qt.openUrlExternally(link)
+                        propagateComposedEvents: true
+                        onPressed: mouse => {
+                            if (parent.hoveredLink)
+                                mouse.accepted = false;
+                        }
+                        onReleased: mouse => {
+                            if (parent.hoveredLink)
+                                mouse.accepted = false;
+                        }
                     }
                 }
             }
@@ -179,11 +211,11 @@ Rectangle {
     DankActionButton {
         anchors.top: parent.top
         anchors.right: parent.right
-        anchors.topMargin: 12
-        anchors.rightMargin: 16
+        anchors.topMargin: cardPadding
+        anchors.rightMargin: Theme.spacingL
         iconName: "close"
-        iconSize: 18
-        buttonSize: 28
+        iconSize: compactMode ? 16 : 18
+        buttonSize: compactMode ? 24 : 28
         onClicked: NotificationService.removeFromHistory(historyItem.id)
     }
 }

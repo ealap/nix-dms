@@ -144,6 +144,15 @@ Item {
                     checked: SettingsData.notificationOverlayEnabled
                     onToggled: checked => SettingsData.set("notificationOverlayEnabled", checked)
                 }
+
+                SettingsToggleRow {
+                    settingKey: "notificationCompactMode"
+                    tags: ["notification", "compact", "size", "display", "mode"]
+                    text: I18n.tr("Compact")
+                    description: I18n.tr("Use smaller notification cards")
+                    checked: SettingsData.notificationCompactMode
+                    onToggled: checked => SettingsData.set("notificationCompactMode", checked)
+                }
             }
 
             SettingsCard {

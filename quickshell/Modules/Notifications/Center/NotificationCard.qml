@@ -18,17 +18,17 @@ Rectangle {
     property int selectedNotificationIndex: -1
     property bool keyboardNavigationActive: false
 
+    readonly property bool compactMode: SettingsData.notificationCompactMode
+    readonly property real cardPadding: compactMode ? Theme.spacingS : Theme.spacingM
+    readonly property real iconSize: compactMode ? 48 : 63
+    readonly property real contentSpacing: compactMode ? Theme.spacingXS : Theme.spacingS
+    readonly property real badgeSize: compactMode ? 16 : 18
+    readonly property real actionButtonHeight: compactMode ? 20 : 24
+    readonly property real collapsedContentHeight: iconSize
+    readonly property real baseCardHeight: cardPadding * 2 + collapsedContentHeight + actionButtonHeight + contentSpacing
+
     width: parent ? parent.width : 400
-    height: {
-        if (expanded) {
-            return expandedContent.height + 28;
-        }
-        const baseHeight = 116;
-        if (descriptionExpanded) {
-            return baseHeight + descriptionText.contentHeight - (descriptionText.font.pixelSize * 1.2 * 2);
-        }
-        return baseHeight;
-    }
+    height: expanded ? (expandedContent.height + cardPadding * 2) : (baseCardHeight + collapsedContent.extraHeight)
     radius: Theme.cornerRadius
 
     Behavior on border.color {
@@ -97,24 +97,28 @@ Rectangle {
 
     Item {
         id: collapsedContent
+
+        readonly property real expandedTextHeight: descriptionText.contentHeight
+        readonly property real twoLineHeight: descriptionText.font.pixelSize * 1.2 * 2
+        readonly property real extraHeight: (descriptionExpanded && expandedTextHeight > twoLineHeight + 2) ? (expandedTextHeight - twoLineHeight) : 0
+
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.topMargin: 12
-        anchors.leftMargin: 16
-        anchors.rightMargin: 56
-        height: 92
+        anchors.topMargin: cardPadding
+        anchors.leftMargin: Theme.spacingL
+        anchors.rightMargin: Theme.spacingL + (compactMode ? 32 : 40)
+        height: collapsedContentHeight + extraHeight
         visible: !expanded
 
         DankCircularImage {
             id: iconContainer
             readonly property bool hasNotificationImage: notificationGroup?.latestNotification?.image && notificationGroup.latestNotification.image !== ""
 
-            width: 63
-            height: 63
+            width: iconSize
+            height: iconSize
             anchors.left: parent.left
             anchors.top: parent.top
-            anchors.topMargin: 14
 
             imageSource: {
                 if (hasNotificationImage)
@@ -147,9 +151,9 @@ Rectangle {
             }
 
             Rectangle {
-                width: 18
-                height: 18
-                radius: 9
+                width: badgeSize
+                height: badgeSize
+                radius: badgeSize / 2
                 color: Theme.primary
                 anchors.top: parent.top
                 anchors.right: parent.right
@@ -161,7 +165,7 @@ Rectangle {
                     anchors.centerIn: parent
                     text: (notificationGroup?.count || 0) > 99 ? "99+" : (notificationGroup?.count || 0).toString()
                     color: Theme.primaryText
-                    font.pixelSize: 9
+                    font.pixelSize: compactMode ? 8 : 9
                     font.weight: Font.Bold
                 }
             }
@@ -171,87 +175,79 @@ Rectangle {
             id: textContainer
 
             anchors.left: iconContainer.right
-            anchors.leftMargin: 12
+            anchors.leftMargin: Theme.spacingM
             anchors.right: parent.right
-            anchors.rightMargin: 0
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 8
+            anchors.bottomMargin: contentSpacing
             color: "transparent"
 
-            Item {
+            Column {
                 width: parent.width
-                height: parent.height
                 anchors.top: parent.top
-                anchors.topMargin: -2
+                spacing: compactMode ? 1 : 2
 
-                Column {
+                StyledText {
                     width: parent.width
-                    spacing: 2
+                    text: {
+                        const timeStr = (notificationGroup && notificationGroup.latestNotification && notificationGroup.latestNotification.timeStr) || "";
+                        const appName = (notificationGroup && notificationGroup.appName) || "";
+                        return timeStr.length > 0 ? `${appName} • ${timeStr}` : appName;
+                    }
+                    color: Theme.surfaceVariantText
+                    font.pixelSize: Theme.fontSizeSmall
+                    font.weight: Font.Medium
+                    elide: Text.ElideRight
+                    maximumLineCount: 1
+                    visible: text.length > 0
+                }
 
-                    StyledText {
-                        width: parent.width
-                        text: {
-                            const timeStr = (notificationGroup && notificationGroup.latestNotification && notificationGroup.latestNotification.timeStr) || "";
-                            const appName = (notificationGroup && notificationGroup.appName) || "";
-                            return timeStr.length > 0 ? `${appName} • ${timeStr}` : appName;
+                StyledText {
+                    text: (notificationGroup && notificationGroup.latestNotification && notificationGroup.latestNotification.summary) || ""
+                    color: Theme.surfaceText
+                    font.pixelSize: Theme.fontSizeMedium
+                    font.weight: Font.Medium
+                    width: parent.width
+                    elide: Text.ElideRight
+                    maximumLineCount: 1
+                    visible: text.length > 0
+                }
+
+                StyledText {
+                    id: descriptionText
+                    property string fullText: (notificationGroup && notificationGroup.latestNotification && notificationGroup.latestNotification.htmlBody) || ""
+                    property bool hasMoreText: truncated
+
+                    text: fullText
+                    color: Theme.surfaceVariantText
+                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width
+                    elide: Text.ElideRight
+                    maximumLineCount: descriptionExpanded ? -1 : (compactMode ? 1 : 2)
+                    wrapMode: Text.WordWrap
+                    visible: text.length > 0
+                    linkColor: Theme.primary
+                    onLinkActivated: link => Qt.openUrlExternally(link)
+
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : (parent.hasMoreText || descriptionExpanded) ? Qt.PointingHandCursor : Qt.ArrowCursor
+
+                        onClicked: mouse => {
+                            if (!parent.hoveredLink && (parent.hasMoreText || descriptionExpanded)) {
+                                const messageId = (notificationGroup && notificationGroup.latestNotification && notificationGroup.latestNotification.notification && notificationGroup.latestNotification.notification.id) ? (notificationGroup.latestNotification.notification.id + "_desc") : "";
+                                NotificationService.toggleMessageExpansion(messageId);
+                            }
                         }
-                        color: Theme.surfaceVariantText
-                        font.pixelSize: Theme.fontSizeSmall
-                        font.weight: Font.Medium
-                        elide: Text.ElideRight
-                        maximumLineCount: 1
-                    }
 
-                    StyledText {
-                        text: (notificationGroup && notificationGroup.latestNotification && notificationGroup.latestNotification.summary) || ""
-                        color: Theme.surfaceText
-                        font.pixelSize: Theme.fontSizeMedium
-                        font.weight: Font.Medium
-                        width: parent.width
-                        elide: Text.ElideRight
-                        maximumLineCount: 1
-                        visible: text.length > 0
-                    }
-
-                    StyledText {
-                        id: descriptionText
-                        property string fullText: (notificationGroup && notificationGroup.latestNotification && notificationGroup.latestNotification.htmlBody) || ""
-                        property bool hasMoreText: truncated
-
-                        text: fullText
-                        color: Theme.surfaceVariantText
-                        font.pixelSize: Theme.fontSizeSmall
-                        width: parent.width
-                        elide: Text.ElideRight
-                        maximumLineCount: descriptionExpanded ? -1 : 2
-                        wrapMode: Text.WordWrap
-                        visible: text.length > 0
-                        linkColor: Theme.primary
-                        onLinkActivated: link => Qt.openUrlExternally(link)
-
-                        MouseArea {
-                            anchors.fill: parent
-                            cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : (parent.hasMoreText || descriptionExpanded) ? Qt.PointingHandCursor : Qt.ArrowCursor
-
-                            onClicked: mouse => {
-                                if (!parent.hoveredLink && (parent.hasMoreText || descriptionExpanded)) {
-                                    const messageId = (notificationGroup && notificationGroup.latestNotification && notificationGroup.latestNotification.notification && notificationGroup.latestNotification.notification.id) ? (notificationGroup.latestNotification.notification.id + "_desc") : "";
-                                    NotificationService.toggleMessageExpansion(messageId);
-                                }
-                            }
-
-                            propagateComposedEvents: true
-                            onPressed: mouse => {
-                                if (parent.hoveredLink) {
-                                    mouse.accepted = false;
-                                }
-                            }
-                            onReleased: mouse => {
-                                if (parent.hoveredLink) {
-                                    mouse.accepted = false;
-                                }
-                            }
+                        propagateComposedEvents: true
+                        onPressed: mouse => {
+                            if (parent.hoveredLink)
+                                mouse.accepted = false;
+                        }
+                        onReleased: mouse => {
+                            if (parent.hoveredLink)
+                                mouse.accepted = false;
                         }
                     }
                 }
@@ -265,21 +261,20 @@ Rectangle {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.topMargin: 14
-        anchors.bottomMargin: 14
+        anchors.topMargin: cardPadding
         anchors.leftMargin: Theme.spacingL
         anchors.rightMargin: Theme.spacingL
-        spacing: -1
+        spacing: compactMode ? Theme.spacingXS : Theme.spacingS
         visible: expanded
 
         Item {
             width: parent.width
-            height: 40
+            height: compactMode ? 32 : 40
 
             Row {
                 anchors.left: parent.left
                 anchors.right: parent.right
-                anchors.rightMargin: 56
+                anchors.rightMargin: Theme.spacingL + (compactMode ? 32 : 40)
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: Theme.spacingS
 
@@ -294,9 +289,9 @@ Rectangle {
                 }
 
                 Rectangle {
-                    width: 18
-                    height: 18
-                    radius: 9
+                    width: badgeSize
+                    height: badgeSize
+                    radius: badgeSize / 2
                     color: Theme.primary
                     visible: (notificationGroup?.count || 0) > 1
                     anchors.verticalCenter: parent.verticalCenter
@@ -305,7 +300,7 @@ Rectangle {
                         anchors.centerIn: parent
                         text: (notificationGroup?.count || 0) > 99 ? "99+" : (notificationGroup?.count || 0).toString()
                         color: Theme.primaryText
-                        font.pixelSize: 9
+                        font.pixelSize: compactMode ? 8 : 9
                         font.weight: Font.Bold
                     }
                 }
@@ -314,7 +309,7 @@ Rectangle {
 
         Column {
             width: parent.width
-            spacing: 16
+            spacing: compactMode ? Theme.spacingS : Theme.spacingL
 
             Repeater {
                 id: notificationRepeater
@@ -328,23 +323,23 @@ Rectangle {
                     required property int index
                     readonly property bool messageExpanded: NotificationService.expandedMessages[modelData?.notification?.id] || false
                     readonly property bool isSelected: root.selectedNotificationIndex === index
+                    readonly property real expandedIconSize: compactMode ? 40 : 48
+                    readonly property real expandedItemPadding: compactMode ? Theme.spacingS : Theme.spacingM
+                    readonly property real expandedBaseHeight: expandedItemPadding * 2 + expandedIconSize + actionButtonHeight + contentSpacing * 2
 
                     width: parent.width
                     height: {
-                        const baseHeight = 120;
-                        if (messageExpanded) {
-                            const twoLineHeight = bodyText.font.pixelSize * 1.2 * 2;
-                            if (bodyText.implicitHeight > twoLineHeight + 2) {
-                                const extraHeight = bodyText.implicitHeight - twoLineHeight;
-                                return baseHeight + extraHeight;
-                            }
-                        }
-                        return baseHeight;
+                        if (!messageExpanded)
+                            return expandedBaseHeight;
+                        const twoLineHeight = bodyText.font.pixelSize * 1.2 * 2;
+                        if (bodyText.implicitHeight > twoLineHeight + 2)
+                            return expandedBaseHeight + bodyText.implicitHeight - twoLineHeight;
+                        return expandedBaseHeight;
                     }
                     radius: Theme.cornerRadius
                     color: isSelected ? Theme.primaryPressed : Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
                     border.color: isSelected ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.4) : Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.05)
-                    border.width: isSelected ? 1 : 1
+                    border.width: 1
 
                     Behavior on border.color {
                         ColorAnimation {
@@ -359,19 +354,19 @@ Rectangle {
 
                     Item {
                         anchors.fill: parent
-                        anchors.margins: 12
-                        anchors.bottomMargin: 8
+                        anchors.margins: compactMode ? Theme.spacingS : Theme.spacingM
+                        anchors.bottomMargin: contentSpacing
 
                         DankCircularImage {
                             id: messageIcon
 
                             readonly property bool hasNotificationImage: modelData?.image && modelData.image !== ""
 
-                            width: 48
-                            height: 48
+                            width: expandedIconSize
+                            height: expandedIconSize
                             anchors.left: parent.left
                             anchors.top: parent.top
-                            anchors.topMargin: 32
+                            anchors.topMargin: compactMode ? Theme.spacingM : Theme.spacingXL
 
                             imageSource: {
                                 if (hasNotificationImage)
@@ -397,9 +392,9 @@ Rectangle {
 
                         Item {
                             anchors.left: messageIcon.right
-                            anchors.leftMargin: 12
+                            anchors.leftMargin: Theme.spacingM
                             anchors.right: parent.right
-                            anchors.rightMargin: 12
+                            anchors.rightMargin: Theme.spacingM
                             anchors.top: parent.top
                             anchors.bottom: parent.bottom
 
@@ -408,8 +403,8 @@ Rectangle {
                                 anchors.right: parent.right
                                 anchors.top: parent.top
                                 anchors.bottom: buttonArea.top
-                                anchors.bottomMargin: 4
-                                spacing: 2
+                                anchors.bottomMargin: contentSpacing
+                                spacing: compactMode ? 1 : 2
 
                                 StyledText {
                                     width: parent.width
@@ -477,12 +472,12 @@ Rectangle {
                                 anchors.left: parent.left
                                 anchors.right: parent.right
                                 anchors.bottom: parent.bottom
-                                height: 30
+                                height: actionButtonHeight + contentSpacing
 
                                 Row {
                                     anchors.right: parent.right
                                     anchors.bottom: parent.bottom
-                                    spacing: 8
+                                    spacing: contentSpacing
 
                                     Repeater {
                                         model: modelData?.actions || []
@@ -490,18 +485,17 @@ Rectangle {
                                         Rectangle {
                                             property bool isHovered: false
 
-                                            width: Math.max(actionText.implicitWidth + 12, 50)
-                                            height: 24
-                                            radius: 4
+                                            width: Math.max(actionText.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
+                                            height: actionButtonHeight
+                                            radius: Theme.spacingXS
                                             color: isHovered ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.1) : "transparent"
 
                                             StyledText {
                                                 id: actionText
                                                 text: {
                                                     const baseText = modelData.text || "View";
-                                                    if (keyboardNavigationActive && (isGroupSelected || selectedNotificationIndex >= 0)) {
+                                                    if (keyboardNavigationActive && (isGroupSelected || selectedNotificationIndex >= 0))
                                                         return `${baseText} (${index + 1})`;
-                                                    }
                                                     return baseText;
                                                 }
                                                 color: parent.isHovered ? Theme.primary : Theme.surfaceVariantText
@@ -518,9 +512,8 @@ Rectangle {
                                                 onEntered: parent.isHovered = true
                                                 onExited: parent.isHovered = false
                                                 onClicked: {
-                                                    if (modelData && modelData.invoke) {
+                                                    if (modelData && modelData.invoke)
                                                         modelData.invoke();
-                                                    }
                                                 }
                                             }
                                         }
@@ -529,9 +522,9 @@ Rectangle {
                                     Rectangle {
                                         property bool isHovered: false
 
-                                        width: Math.max(clearText.implicitWidth + 12, 50)
-                                        height: 24
-                                        radius: 4
+                                        width: Math.max(clearText.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
+                                        height: actionButtonHeight
+                                        radius: Theme.spacingXS
                                         color: isHovered ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.1) : "transparent"
 
                                         StyledText {
@@ -563,11 +556,11 @@ Rectangle {
 
     Row {
         visible: !expanded
-        anchors.right: clearButton.left
-        anchors.rightMargin: 8
+        anchors.right: clearButton.visible ? clearButton.left : parent.right
+        anchors.rightMargin: clearButton.visible ? contentSpacing : Theme.spacingL
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 8
-        spacing: 8
+        anchors.bottomMargin: contentSpacing
+        spacing: contentSpacing
 
         Repeater {
             model: notificationGroup?.latestNotification?.actions || []
@@ -575,9 +568,9 @@ Rectangle {
             Rectangle {
                 property bool isHovered: false
 
-                width: Math.max(actionText.implicitWidth + 12, 50)
-                height: 24
-                radius: 4
+                width: Math.max(actionText.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
+                height: actionButtonHeight
+                radius: Theme.spacingXS
                 color: isHovered ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.1) : "transparent"
 
                 StyledText {
@@ -616,15 +609,16 @@ Rectangle {
         id: clearButton
 
         property bool isHovered: false
+        readonly property int actionCount: (notificationGroup?.latestNotification?.actions || []).length
 
-        visible: !expanded
+        visible: !expanded && actionCount < 3
         anchors.right: parent.right
-        anchors.rightMargin: 16
+        anchors.rightMargin: Theme.spacingL
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 8
-        width: Math.max(clearText.implicitWidth + 12, 50)
-        height: 24
-        radius: 4
+        anchors.bottomMargin: contentSpacing
+        width: Math.max(clearText.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
+        height: actionButtonHeight
+        radius: Theme.spacingXS
         color: isHovered ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.1) : "transparent"
 
         StyledText {
@@ -660,18 +654,18 @@ Rectangle {
         id: fixedControls
         anchors.top: parent.top
         anchors.right: parent.right
-        anchors.topMargin: 12
-        anchors.rightMargin: 16
-        width: 60
-        height: 28
+        anchors.topMargin: cardPadding
+        anchors.rightMargin: Theme.spacingL
+        width: compactMode ? 52 : 60
+        height: compactMode ? 24 : 28
 
         DankActionButton {
             anchors.left: parent.left
             anchors.top: parent.top
             visible: (notificationGroup?.count || 0) > 1
             iconName: expanded ? "expand_less" : "expand_more"
-            iconSize: 18
-            buttonSize: 28
+            iconSize: compactMode ? 16 : 18
+            buttonSize: compactMode ? 24 : 28
             onClicked: {
                 root.userInitiatedExpansion = true;
                 NotificationService.toggleGroupExpansion(notificationGroup?.key || "");
@@ -682,8 +676,8 @@ Rectangle {
             anchors.right: parent.right
             anchors.top: parent.top
             iconName: "close"
-            iconSize: 18
-            buttonSize: 28
+            iconSize: compactMode ? 16 : 18
+            buttonSize: compactMode ? 24 : 28
             onClicked: NotificationService.dismissGroup(notificationGroup?.key || "")
         }
     }

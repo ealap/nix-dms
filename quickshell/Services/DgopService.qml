@@ -316,15 +316,16 @@ Singleton {
             const totalKB = mem.total || 0;
             const availableKB = mem.available || 0;
             const freeKB = mem.free || 0;
+            const usedKB = mem.used !== undefined ? mem.used : (totalKB - availableKB);
 
             totalMemoryMB = totalKB / 1024;
             availableMemoryMB = availableKB / 1024;
             freeMemoryMB = freeKB / 1024;
-            usedMemoryMB = totalMemoryMB - availableMemoryMB;
-            memoryUsage = totalKB > 0 ? ((totalKB - availableKB) / totalKB) * 100 : 0;
+            usedMemoryMB = usedKB / 1024;
+            memoryUsage = mem.usedPercent !== undefined ? mem.usedPercent : (totalKB > 0 ? ((totalKB - availableKB) / totalKB) * 100 : 0);
 
             totalMemoryKB = totalKB;
-            usedMemoryKB = totalKB - availableKB;
+            usedMemoryKB = usedKB;
             totalSwapKB = mem.swaptotal || 0;
             usedSwapKB = (mem.swaptotal || 0) - (mem.swapfree || 0);
 

@@ -15,6 +15,8 @@ Rectangle {
 
     property int currentIndex: 0
     property var parentModal: null
+
+    signal tabChangeRequested(int tabIndex)
     property var expandedCategories: ({})
     property var autoExpandedCategories: ({})
     property bool searchActive: searchField.text.length > 0
@@ -55,8 +57,9 @@ Rectangle {
         if (keyboardHighlightIndex < 0)
             return;
         var oldIndex = currentIndex;
-        currentIndex = keyboardHighlightIndex;
-        autoCollapseIfNeeded(oldIndex, currentIndex);
+        var newIndex = keyboardHighlightIndex;
+        tabChangeRequested(newIndex);
+        autoCollapseIfNeeded(oldIndex, newIndex);
         keyboardHighlightIndex = -1;
         Qt.callLater(searchField.forceActiveFocus);
     }
@@ -398,28 +401,32 @@ Rectangle {
         var flatItems = getFlatNavigableItems();
         var currentPos = flatItems.findIndex(item => item.tabIndex === currentIndex);
         var oldIndex = currentIndex;
+        var newIndex;
         if (currentPos === -1) {
-            currentIndex = flatItems[0]?.tabIndex ?? 0;
+            newIndex = flatItems[0]?.tabIndex ?? 0;
         } else {
             var nextPos = (currentPos + 1) % flatItems.length;
-            currentIndex = flatItems[nextPos].tabIndex;
+            newIndex = flatItems[nextPos].tabIndex;
         }
-        autoCollapseIfNeeded(oldIndex, currentIndex);
-        autoExpandForTab(currentIndex);
+        tabChangeRequested(newIndex);
+        autoCollapseIfNeeded(oldIndex, newIndex);
+        autoExpandForTab(newIndex);
     }
 
     function navigatePrevious() {
         var flatItems = getFlatNavigableItems();
         var currentPos = flatItems.findIndex(item => item.tabIndex === currentIndex);
         var oldIndex = currentIndex;
+        var newIndex;
         if (currentPos === -1) {
-            currentIndex = flatItems[0]?.tabIndex ?? 0;
+            newIndex = flatItems[0]?.tabIndex ?? 0;
         } else {
             var prevPos = (currentPos - 1 + flatItems.length) % flatItems.length;
-            currentIndex = flatItems[prevPos].tabIndex;
+            newIndex = flatItems[prevPos].tabIndex;
         }
-        autoCollapseIfNeeded(oldIndex, currentIndex);
-        autoExpandForTab(currentIndex);
+        tabChangeRequested(newIndex);
+        autoCollapseIfNeeded(oldIndex, newIndex);
+        autoExpandForTab(newIndex);
     }
 
     function getFlatNavigableItems() {
@@ -488,7 +495,7 @@ Rectangle {
             SettingsSearchService.navigateToSection(result.section);
         }
         var oldIndex = root.currentIndex;
-        root.currentIndex = result.tabIndex;
+        tabChangeRequested(result.tabIndex);
         autoCollapseIfNeeded(oldIndex, result.tabIndex);
         autoExpandForTab(result.tabIndex);
         searchField.text = "";
@@ -807,7 +814,7 @@ Rectangle {
                                 if (categoryDelegate.modelData.children) {
                                     root.toggleCategory(categoryDelegate.modelData.id);
                                 } else if (categoryDelegate.modelData.tabIndex !== undefined) {
-                                    root.currentIndex = categoryDelegate.modelData.tabIndex;
+                                    root.tabChangeRequested(categoryDelegate.modelData.tabIndex);
                                 }
                                 Qt.callLater(searchField.forceActiveFocus);
                             }
@@ -882,7 +889,7 @@ Rectangle {
                                     cursorShape: Qt.PointingHandCursor
                                     onClicked: {
                                         root.keyboardHighlightIndex = -1;
-                                        root.currentIndex = childDelegate.modelData.tabIndex;
+                                        root.tabChangeRequested(childDelegate.modelData.tabIndex);
                                         Qt.callLater(searchField.forceActiveFocus);
                                     }
                                 }

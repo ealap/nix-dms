@@ -307,7 +307,7 @@ Item {
 
                     Item {
                         width: parent.width
-                        height: genericColorGrid.implicitHeight
+                        height: genericColorGrid.implicitHeight + Math.ceil(genericColorGrid.dotSize * 0.05)
                         visible: Theme.currentThemeCategory === "generic" && Theme.currentTheme !== Theme.dynamic && Theme.currentThemeName !== "custom"
 
                         Grid {

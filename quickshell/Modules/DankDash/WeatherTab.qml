@@ -4,7 +4,6 @@ import QtQuick.Shapes
 import qs.Common
 import qs.Services
 import qs.Widgets
-import qs.Modules.DankBar.Widgets
 
 Item {
     id: root
@@ -261,7 +260,17 @@ Item {
 
                             StyledText {
                                 id: sunriseText
-                                text: WeatherService.weather.sunrise || ""
+                                text: {
+                                    if (!WeatherService.weather.rawSunrise)
+                                        return WeatherService.weather.sunrise || "";
+                                    try {
+                                        const date = new Date(WeatherService.weather.rawSunrise);
+                                        const format = SettingsData.use24HourClock ? "HH:mm" : "h:mm AP";
+                                        return date.toLocaleTimeString(Qt.locale(), format);
+                                    } catch (e) {
+                                        return WeatherService.weather.sunrise || "";
+                                    }
+                                }
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.6)
                                 anchors.left: sunriseIcon.right
@@ -285,7 +294,17 @@ Item {
 
                             StyledText {
                                 id: sunsetText
-                                text: WeatherService.weather.sunset || ""
+                                text: {
+                                    if (!WeatherService.weather.rawSunset)
+                                        return WeatherService.weather.sunset || "";
+                                    try {
+                                        const date = new Date(WeatherService.weather.rawSunset);
+                                        const format = SettingsData.use24HourClock ? "HH:mm" : "h:mm AP";
+                                        return date.toLocaleTimeString(Qt.locale(), format);
+                                    } catch (e) {
+                                        return WeatherService.weather.sunset || "";
+                                    }
+                                }
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.6)
                                 anchors.left: sunsetIcon.right
@@ -324,14 +343,14 @@ Item {
                             break;
                         }
                     }
-                    readonly property var splitDate: Qt.formatDateTime(dateStepper.currentDate, "yyyy.MM.dd.hh.mm.AP").split('.')
+                    readonly property var splitDate: Qt.formatDateTime(dateStepper.currentDate, SettingsData.use24HourClock ? "yyyy.MM.dd.HH.mm" : "yyyy.MM.dd.hh.mm.AP").split('.')
 
                     Item {
                         id: dateStepperInner
                         anchors.fill: parent
                         anchors.verticalCenter: parent.verticalCenter
                         readonly property var space: Theme.spacingXS
-                        width: yearStepper.width + monthStepper.width + dayStepper.width + hourStepper.width + minuteStepper.width + suffix.width + 10.5 * space + 2 * dateStepperInnerPadding.width
+                        width: yearStepper.width + monthStepper.width + dayStepper.width + hourStepper.width + minuteStepper.width + (suffix.visible ? suffix.width : 0) + 10.5 * space + 2 * dateStepperInnerPadding.width
 
                         Item {
                             id: dateStepperInnerPadding
@@ -420,13 +439,14 @@ Item {
                         }
                         Rectangle {
                             id: suffix
+                            visible: !SettingsData.use24HourClock
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.left: minuteStepper.right
                             anchors.leftMargin: 2 * parent.space
                             StyledText {
                                 isMonospace: true
                                 anchors.horizontalCenter: parent.horizontalCenter
-                                text: dateStepper.splitDate[5]
+                                text: dateStepper.splitDate[5] ?? ""
                                 font.pixelSize: Theme.fontSizeSmall
                                 x: -Theme.fontSizeSmall / 2
                                 y: -Theme.fontSizeSmall / 2

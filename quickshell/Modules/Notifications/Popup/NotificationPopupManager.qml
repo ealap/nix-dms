@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Common
 import qs.Services
 
 QtObject {
@@ -6,7 +7,11 @@ QtObject {
 
     property var modelData
     property int topMargin: 0
-    property int baseNotificationHeight: 120
+    readonly property bool compactMode: SettingsData.notificationCompactMode
+    readonly property real cardPadding: compactMode ? Theme.spacingS : Theme.spacingM
+    readonly property real popupIconSize: compactMode ? 48 : 63
+    readonly property real popupSpacing: Theme.spacingS
+    readonly property int baseNotificationHeight: cardPadding * 3 + popupIconSize + popupSpacing
     property int maxTargetNotifications: 4
     property var popupWindows: [] // strong refs to windows (live until exitFinished)
     property var destroyingWindows: new Set()

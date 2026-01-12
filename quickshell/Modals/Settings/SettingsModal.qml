@@ -319,8 +319,8 @@ FloatingWindow {
                     visible: settingsModal.isCompactMode ? settingsModal.menuVisible : true
                     parentModal: settingsModal
                     currentIndex: settingsModal.currentTabIndex
-                    onCurrentIndexChanged: {
-                        settingsModal.currentTabIndex = currentIndex;
+                    onTabChangeRequested: tabIndex => {
+                        settingsModal.currentTabIndex = tabIndex;
                         if (settingsModal.isCompactMode) {
                             settingsModal.enableAnimations = true;
                             settingsModal.menuVisible = false;

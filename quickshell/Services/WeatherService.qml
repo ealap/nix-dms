@@ -745,6 +745,7 @@ Singleton {
 
                             hourly_forecast.push({
                                 "time": formatTime(hourly.time[i]),
+                                "rawTime": hourly.time[i],
                                 "temp": Math.round(tempC),
                                 "tempF": Math.round(tempF),
                                 "feelsLike": Math.round(feelsLikeC),
@@ -778,7 +779,9 @@ Singleton {
                                 "tempMaxF": Math.round(tempMaxF),
                                 "precipitationProbability": Math.round(daily.precipitation_probability_max?.[i] || 0),
                                 "sunrise": daily.sunrise?.[i] ? formatTime(daily.sunrise[i]) : "",
-                                "sunset": daily.sunset?.[i] ? formatTime(daily.sunset[i]) : ""
+                                "sunset": daily.sunset?.[i] ? formatTime(daily.sunset[i]) : "",
+                                "rawSunrise": daily.sunrise?.[i] || "",
+                                "rawSunset": daily.sunset?.[i] || ""
                             });
                         }
                     }
@@ -805,6 +808,8 @@ Singleton {
                         "wind": Math.round(current.wind_speed_10m || 0) + " " + (currentUnits.wind_speed_10m || 'm/s'),
                         "sunrise": formatTime(daily.sunrise?.[0]) || "06:00",
                         "sunset": formatTime(daily.sunset?.[0]) || "18:00",
+                        "rawSunrise": daily.sunrise?.[0] || "",
+                        "rawSunset": daily.sunset?.[0] || "",
                         "uv": 0,
                         "pressure": Math.round(current.surface_pressure || 0),
                         "precipitationProbability": Math.round(daily.precipitation_probability_max?.[0] || 0),

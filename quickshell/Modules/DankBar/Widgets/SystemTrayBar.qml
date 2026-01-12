@@ -1208,7 +1208,7 @@ Item {
                             visible: entryStack.count === 0
                             width: parent.width
                             height: 28
-                            radius: 0
+                            radius: Theme.cornerRadius
                             color: visibilityToggleArea.containsMouse ? Theme.widgetBaseHoverColor : Theme.withAlpha(Theme.surfaceContainer, 0)
 
                             StyledText {
@@ -1261,7 +1261,7 @@ Item {
                             visible: entryStack.count > 0
                             width: parent.width
                             height: 28
-                            radius: 0
+                            radius: Theme.cornerRadius
                             color: backArea.containsMouse ? Theme.widgetBaseHoverColor : Theme.withAlpha(Theme.surfaceContainer, 0)
 
                             Row {
@@ -1309,11 +1309,10 @@ Item {
 
                                 width: menuColumn.width
                                 height: menuEntry?.isSeparator ? 1 : 28
-                                radius: 0
+                                radius: menuEntry?.isSeparator ? 0 : Theme.cornerRadius
                                 color: {
-                                    if (menuEntry?.isSeparator) {
+                                    if (menuEntry?.isSeparator)
                                         return Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.2);
-                                    }
                                     return itemArea.containsMouse ? Theme.widgetBaseHoverColor : Theme.withAlpha(Theme.surfaceContainer, 0);
                                 }
 

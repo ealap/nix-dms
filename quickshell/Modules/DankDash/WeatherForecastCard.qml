@@ -20,7 +20,19 @@ Rectangle {
         }
     }
 
-    readonly property string dateText: (daily ? root.forecastData?.day : root.forecastData?.time) ?? "--"
+    readonly property string dateText: {
+        if (daily)
+            return root.forecastData?.day ?? "--";
+        if (!root.forecastData?.rawTime)
+            return root.forecastData?.time ?? "--";
+        try {
+            const date = new Date(root.forecastData.rawTime);
+            const format = SettingsData.use24HourClock ? "HH:mm" : "h:mm AP";
+            return date.toLocaleTimeString(Qt.locale(), format);
+        } catch (e) {
+            return root.forecastData?.time ?? "--";
+        }
+    }
 
     readonly property var minTemp: WeatherService.formatTemp(root.forecastData?.tempMin)
     readonly property var maxTemp: WeatherService.formatTemp(root.forecastData?.tempMax)

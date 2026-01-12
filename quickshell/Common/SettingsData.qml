@@ -404,6 +404,7 @@ Singleton {
     property int notificationTimeoutLow: 5000
     property int notificationTimeoutNormal: 5000
     property int notificationTimeoutCritical: 0
+    property bool notificationCompactMode: false
     property int notificationPopupPosition: SettingsData.Position.Top
     property bool notificationHistoryEnabled: true
     property int notificationHistoryMaxCount: 50
@@ -1845,7 +1846,11 @@ Singleton {
 
     function addAppIdSubstitution(pattern, replacement, type) {
         var subs = JSON.parse(JSON.stringify(appIdSubstitutions));
-        subs.push({ pattern: pattern, replacement: replacement, type: type });
+        subs.push({
+            pattern: pattern,
+            replacement: replacement,
+            type: type
+        });
         appIdSubstitutions = subs;
         saveSettings();
     }
@@ -1854,7 +1859,11 @@ Singleton {
         var subs = JSON.parse(JSON.stringify(appIdSubstitutions));
         if (index < 0 || index >= subs.length)
             return;
-        subs[index] = { pattern: pattern, replacement: replacement, type: type };
+        subs[index] = {
+            pattern: pattern,
+            replacement: replacement,
+            type: type
+        };
         appIdSubstitutions = subs;
         saveSettings();
     }
