@@ -32,7 +32,6 @@ Singleton {
     property int maxIngressPerSecond: 20
     property double _lastIngressSec: 0
     property int _ingressCountThisSec: 0
-    property int maxStoredNotifications: SettingsData.notificationHistoryMaxCount
 
     property var _dismissQueue: []
     property int _dismissBatchSize: 8
@@ -340,30 +339,6 @@ Singleton {
         historyFileView.writeAdapter();
     }
 
-    function _trimStored() {
-        if (notifications.length > maxStoredNotifications) {
-            const overflow = notifications.length - maxStoredNotifications;
-            const toDrop = [];
-            for (var i = notifications.length - 1; i >= 0 && toDrop.length < overflow; --i) {
-                const w = notifications[i];
-                if (w && w.notification && w.urgency !== NotificationUrgency.Critical) {
-                    toDrop.push(w);
-                }
-            }
-            for (var i = notifications.length - 1; i >= 0 && toDrop.length < overflow; --i) {
-                const w = notifications[i];
-                if (w && w.notification && toDrop.indexOf(w) === -1) {
-                    toDrop.push(w);
-                }
-            }
-            for (const w of toDrop) {
-                try {
-                    w.notification.dismiss();
-                } catch (e) {}
-            }
-        }
-    }
-
     function onOverlayOpen() {
         popupsDisabled = true;
         addGate.stop();
@@ -493,7 +468,6 @@ Singleton {
                 root.allWrappers.push(wrapper);
                 if (!isTransient) {
                     root.notifications.push(wrapper);
-                    _trimStored();
                     if (_shouldSaveToHistory(notif.urgency)) {
                         root.addToHistory(wrapper);
                     }
@@ -529,10 +503,8 @@ Singleton {
 
         readonly property Timer timer: Timer {
             interval: {
-                if (!wrapper.notification) {
+                if (!wrapper.notification)
                     return 5000;
-                }
-
                 switch (wrapper.notification.urgency) {
                 case NotificationUrgency.Low:
                     return SettingsData.notificationTimeoutLow;
@@ -601,37 +573,38 @@ Singleton {
         }
 
         required property Notification notification
-        readonly property string summary: notification.summary
-        readonly property string body: notification.body
+        readonly property string summary: notification?.summary ?? ""
+        readonly property string body: notification?.body ?? ""
         readonly property string htmlBody: {
-            if (body && (body.includes('<') && body.includes('>'))) {
+            if (!body)
+                return "";
+            if (body.includes('<') && body.includes('>'))
                 return body;
-            }
             return Markdown2Html.markdownToHtml(body);
         }
-        readonly property string appIcon: notification.appIcon
+        readonly property string appIcon: notification?.appIcon ?? ""
         readonly property string appName: {
+            if (!notification)
+                return "app";
             if (notification.appName == "") {
                 const entry = DesktopEntries.heuristicLookup(notification.desktopEntry);
-                if (entry && entry.name) {
+                if (entry && entry.name)
                     return entry.name.toLowerCase();
-                }
             }
             return notification.appName || "app";
         }
-        readonly property string desktopEntry: notification.desktopEntry
-        readonly property string image: notification.image
+        readonly property string desktopEntry: notification?.desktopEntry ?? ""
+        readonly property string image: notification?.image ?? ""
         readonly property string cleanImage: {
-            if (!image) {
+            if (!image)
                 return "";
-            }
             return Paths.strip(image);
         }
-        readonly property int urgency: notification.urgency
-        readonly property list<NotificationAction> actions: notification.actions
+        readonly property int urgency: notification?.urgency ?? 1
+        readonly property list<NotificationAction> actions: notification?.actions ?? []
 
         readonly property Connections conn: Connections {
-            target: wrapper.notification.Retainable
+            target: wrapper.notification?.Retainable ?? null
 
             function onDropped(): void {
                 root.allWrappers = root.allWrappers.filter(w => w !== wrapper);
@@ -743,6 +716,8 @@ Singleton {
         }
 
         const next = notificationQueue.shift();
+        if (!next)
+            return;
 
         next.seq = ++seqCounter;
         visibleNotifications = [...visibleNotifications, next];
@@ -805,7 +780,7 @@ Singleton {
         const groups = {};
 
         for (const notif of notifications) {
-            if (!notif)
+            if (!notif || !notif.notification)
                 continue;
             const groupKey = getGroupKey(notif);
             if (!groups[groupKey]) {
@@ -823,14 +798,15 @@ Singleton {
             groups[groupKey].latestNotification = groups[groupKey].notifications[0];
             groups[groupKey].count = groups[groupKey].notifications.length;
 
-            if (notif.notification.hasInlineReply) {
+            if (notif.notification?.hasInlineReply)
                 groups[groupKey].hasInlineReply = true;
-            }
         }
 
         return Object.values(groups).sort((a, b) => {
-            const aUrgency = a.latestNotification.urgency || NotificationUrgency.Low;
-            const bUrgency = b.latestNotification.urgency || NotificationUrgency.Low;
+            if (!a.latestNotification || !b.latestNotification)
+                return 0;
+            const aUrgency = a.latestNotification.urgency ?? NotificationUrgency.Low;
+            const bUrgency = b.latestNotification.urgency ?? NotificationUrgency.Low;
             if (aUrgency !== bUrgency) {
                 return bUrgency - aUrgency;
             }
@@ -842,7 +818,7 @@ Singleton {
         const groups = {};
 
         for (const notif of popups) {
-            if (!notif)
+            if (!notif || !notif.notification)
                 continue;
             const groupKey = getGroupKey(notif);
             if (!groups[groupKey]) {
@@ -860,12 +836,13 @@ Singleton {
             groups[groupKey].latestNotification = groups[groupKey].notifications[0];
             groups[groupKey].count = groups[groupKey].notifications.length;
 
-            if (notif.notification.hasInlineReply) {
+            if (notif.notification?.hasInlineReply)
                 groups[groupKey].hasInlineReply = true;
-            }
         }
 
         return Object.values(groups).sort((a, b) => {
+            if (!a.latestNotification || !b.latestNotification)
+                return 0;
             return b.latestNotification.time.getTime() - a.latestNotification.time.getTime();
         });
     }

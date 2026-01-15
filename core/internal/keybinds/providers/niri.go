@@ -325,24 +325,30 @@ func (n *NiriProvider) buildActionFromNode(bindNode *document.Node) string {
 	}
 
 	actionNode := bindNode.Children[0]
-
-	kdlStr := strings.TrimSpace(actionNode.String())
-	if kdlStr == "" {
+	actionName := actionNode.Name.String()
+	if actionName == "" {
 		return ""
 	}
 
-	return n.kdlActionToInternal(kdlStr)
-}
-
-func (n *NiriProvider) kdlActionToInternal(kdlAction string) string {
-	parts := n.parseActionParts(kdlAction)
-	if len(parts) == 0 {
-		return kdlAction
+	parts := []string{actionName}
+	for _, arg := range actionNode.Arguments {
+		val := arg.ValueString()
+		if val == "" {
+			parts = append(parts, `""`)
+		} else {
+			parts = append(parts, val)
+		}
 	}
 
-	for i, part := range parts {
-		if part == "" {
-			parts[i] = `""`
+	if actionNode.Properties != nil {
+		if val, ok := actionNode.Properties.Get("focus"); ok {
+			parts = append(parts, "focus="+val.String())
+		}
+		if val, ok := actionNode.Properties.Get("show-pointer"); ok {
+			parts = append(parts, "show-pointer="+val.String())
+		}
+		if val, ok := actionNode.Properties.Get("write-to-disk"); ok {
+			parts = append(parts, "write-to-disk="+val.String())
 		}
 	}
 

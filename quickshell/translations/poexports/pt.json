@@ -231,13 +231,16 @@
     "All": "Todos"
   },
   "All Monitors": {
-    "All Monitors": ""
+    "All Monitors": "Todos os Monitores"
   },
   "All day": {
     "All day": "O dia todo"
   },
   "All displays": {
     "All displays": "Todos as Telas"
+  },
+  "Allow clicks to pass through the widget": {
+    "Allow clicks to pass through the widget": ""
   },
   "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": {
     "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": "Alt+←/Backspace: Voltar • F1/I: Informações de Arquivo • F10: Ajuda • Esc: Fechar"
@@ -274,6 +277,9 @@
   },
   "Anonymous Identity (optional)": {
     "Anonymous Identity (optional)": "Identidade Anônima (opcional)"
+  },
+  "App ID Substitutions": {
+    "App ID Substitutions": ""
   },
   "App Launcher": {
     "App Launcher": "Lançador de Apps"
@@ -722,6 +728,9 @@
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "Clique em Importar para adicionar um arquivo .ovpn ou .conf"
   },
+  "Click Through": {
+    "Click Through": ""
+  },
   "Click any shortcut to edit. Changes save to %1": {
     "Click any shortcut to edit. Changes save to %1": ""
   },
@@ -819,7 +828,7 @@
     "Config Format": ""
   },
   "Config action: %1": {
-    "Config action: %1": ""
+    "Config action: %1": "Configurar ação: %1"
   },
   "Config validation failed": {
     "Config validation failed": ""
@@ -981,10 +990,10 @@
     "Custom Color": ""
   },
   "Custom Duration": {
-    "Custom Duration": ""
+    "Custom Duration": "Duração Personalizada"
   },
   "Custom Hibernate Command": {
-    "Custom Hibernate Command": ""
+    "Custom Hibernate Command": "Comando Personalizado Para Hibernar"
   },
   "Custom Location": {
     "Custom Location": "Customizar Localização"
@@ -993,19 +1002,19 @@
     "Custom Lock Command": ""
   },
   "Custom Logout Command": {
-    "Custom Logout Command": ""
+    "Custom Logout Command": "Comando Personalizado Para Sair"
   },
   "Custom Power Actions": {
     "Custom Power Actions": "Ações de Energia Customizadas"
   },
   "Custom Power Off Command": {
-    "Custom Power Off Command": ""
+    "Custom Power Off Command": "Comando Personalizado Para Desligar"
   },
   "Custom Reboot Command": {
-    "Custom Reboot Command": ""
+    "Custom Reboot Command": "Comando Personalizado Para Reiniciar"
   },
   "Custom Suspend Command": {
-    "Custom Suspend Command": ""
+    "Custom Suspend Command": "Comando Personalizado Para Suspender"
   },
   "Custom Transparency": {
     "Custom Transparency": "Transparência Customizada"
@@ -1212,7 +1221,7 @@
     "Display Settings": ""
   },
   "Display a dock with pinned and running applications": {
-    "Display a dock with pinned and running applications": ""
+    "Display a dock with pinned and running applications": "Exibir um dock com aplicativos fixados e abertos"
   },
   "Display all priorities over fullscreen apps": {
     "Display all priorities over fullscreen apps": "Exibir todas as prioridades em aplicativos de tela cheia"
@@ -1242,13 +1251,13 @@
     "Display power menu actions in a grid instead of a list": "Mostra as ações do menu de energia em uma grade ao invés de uma lista"
   },
   "Display seconds in the clock": {
-    "Display seconds in the clock": ""
+    "Display seconds in the clock": "Exibir segundos no relógio"
   },
   "Display the power system menu": {
     "Display the power system menu": "Mostra o menu de energia do sistema"
   },
   "Display volume and brightness percentage values in OSD popups": {
-    "Display volume and brightness percentage values in OSD popups": ""
+    "Display volume and brightness percentage values in OSD popups": "Exibir porcentagem de volume e brilho nos pop-ups OSD"
   },
   "Displays": {
     "Displays": "Telas"
@@ -1266,7 +1275,7 @@
     "Dock": "Dock"
   },
   "Dock & Launcher": {
-    "Dock & Launcher": ""
+    "Dock & Launcher": "Dock & Lançador"
   },
   "Dock Position": {
     "Dock Position": "Posição da Dock"
@@ -1275,7 +1284,7 @@
     "Dock Transparency": "Transparência da Dock"
   },
   "Dock Visibility": {
-    "Dock Visibility": ""
+    "Dock Visibility": "Visibilidade do Dock"
   },
   "Docs": {
     "Docs": ""
@@ -1335,7 +1344,7 @@
     "Enable Desktop Clock": ""
   },
   "Enable Do Not Disturb": {
-    "Enable Do Not Disturb": ""
+    "Enable Do Not Disturb": "Habilitar Não Perturbe"
   },
   "Enable GPU Temperature": {
     "Enable GPU Temperature": "Habilitar Temperatura da GPU"
@@ -1629,7 +1638,7 @@
     "File Information": "Informação do Arquivo"
   },
   "Files": {
-    "Files": ""
+    "Files": "Arquivos"
   },
   "Filesystem usage monitoring": {
     "Filesystem usage monitoring": ""
@@ -1644,7 +1653,7 @@
     "Fine-tune animation timing in milliseconds": ""
   },
   "First Time Setup": {
-    "First Time Setup": ""
+    "First Time Setup": "Configuração Inicial"
   },
   "Fix Now": {
     "Fix Now": "Consertar Agora"
@@ -1787,6 +1796,9 @@
   "Grid Columns": {
     "Grid Columns": "Colunas da Grade"
   },
+  "Group": {
+    "Group": ""
+  },
   "Group Workspace Apps": {
     "Group Workspace Apps": ""
   },
@@ -1796,8 +1808,14 @@
   "Group multiple windows of the same app together with a window count indicator": {
     "Group multiple windows of the same app together with a window count indicator": "Agrupar múltiplas janelas do mesmo app com um indicador de número de janelas"
   },
+  "Group removed": {
+    "Group removed": ""
+  },
   "Group repeated application icons in unfocused workspaces": {
     "Group repeated application icons in unfocused workspaces": ""
+  },
+  "Groups": {
+    "Groups": ""
   },
   "HDR (EDID)": {
     "HDR (EDID)": ""
@@ -1836,7 +1854,7 @@
     "Hide Delay": ""
   },
   "Hide When Typing": {
-    "Hide When Typing": ""
+    "Hide When Typing": "Ocultar ao Digitar"
   },
   "Hide When Windows Open": {
     "Hide When Windows Open": ""
@@ -1944,7 +1962,7 @@
     "Import VPN": "Importar VPN"
   },
   "Inactive Monitor Color": {
-    "Inactive Monitor Color": ""
+    "Inactive Monitor Color": "Cor do Monitor Inativo"
   },
   "Include Transitions": {
     "Include Transitions": "Incluir Transições"
@@ -2195,6 +2213,9 @@
   "Manual Show/Hide": {
     "Manual Show/Hide": "Mostrar/Esconder Manualmente"
   },
+  "Map window class names to icon names for proper icon display": {
+    "Map window class names to icon names for proper icon display": ""
+  },
   "Margin": {
     "Margin": "Margem"
   },
@@ -2416,6 +2437,9 @@
   },
   "New York, NY": {
     "New York, NY": "Nova York, NY"
+  },
+  "New group name...": {
+    "New group name...": ""
   },
   "Next Transition": {
     "Next Transition": "Próxima Transição"
@@ -2648,6 +2672,9 @@
   "Options": {
     "Options": "Opções"
   },
+  "Organize widgets into collapsible groups": {
+    "Organize widgets into collapsible groups": ""
+  },
   "Other": {
     "Other": "Outro"
   },
@@ -2720,6 +2747,9 @@
   "Password": {
     "Password": "Senha"
   },
+  "Pattern": {
+    "Pattern": ""
+  },
   "Pause": {
     "Pause": "Pausar"
   },
@@ -2748,13 +2778,13 @@
     "Personalization": "Personalização"
   },
   "Pin": {
-    "Pin": ""
+    "Pin": "Fixar"
   },
   "Pin to Dock": {
     "Pin to Dock": "Fixar ao Dock"
   },
   "Pinned": {
-    "Pinned": ""
+    "Pinned": "Fixado"
   },
   "Place plugin directories here. Each plugin should have a plugin.json manifest file.": {
     "Place plugin directories here. Each plugin should have a plugin.json manifest file.": "Use este local para os diretórios de plugin. Cada plugin deve ter um arquivo de manifesto plugin.json."
@@ -2980,6 +3010,9 @@
   },
   "Repeat": {
     "Repeat": ""
+  },
+  "Replacement": {
+    "Replacement": ""
   },
   "Report": {
     "Report": "Relatório"
@@ -3369,7 +3402,7 @@
     "Show Restart DMS": "Mostrar Reiniciar DMS"
   },
   "Show Seconds": {
-    "Show Seconds": ""
+    "Show Seconds": "Mostrar Segundos"
   },
   "Show Sunrise/Sunset": {
     "Show Sunrise/Sunset": ""
@@ -3614,6 +3647,9 @@
   "Sync Mode with Portal": {
     "Sync Mode with Portal": "Sincronizar Modo Com Portal"
   },
+  "Sync Position Across Screens": {
+    "Sync Position Across Screens": ""
+  },
   "Sync dark mode with settings portals for system-wide theme hints": {
     "Sync dark mode with settings portals for system-wide theme hints": "Sincronize o modo escuro com os portais de configurações para ter indicações de temas em todo o sistema"
   },
@@ -3839,6 +3875,9 @@
   "Unfocused Color": {
     "Unfocused Color": ""
   },
+  "Ungrouped": {
+    "Ungrouped": ""
+  },
   "Uninstall Plugin": {
     "Uninstall Plugin": "Desinstalar Plugin"
   },
@@ -3858,7 +3897,7 @@
     "Unknown Network": ""
   },
   "Unpin": {
-    "Unpin": ""
+    "Unpin": "Desafixar"
   },
   "Unpin from Dock": {
     "Unpin from Dock": "Desafixar do Dock"
@@ -3938,8 +3977,14 @@
   "Use light theme instead of dark theme": {
     "Use light theme instead of dark theme": "Usar tema claro em vez de escuro"
   },
+  "Use smaller notification cards": {
+    "Use smaller notification cards": ""
+  },
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "Usar tema de som das configurações do sistema"
+  },
+  "Use the same position and size on all displays": {
+    "Use the same position and size on all displays": ""
   },
   "Use trigger prefix to activate": {
     "Use trigger prefix to activate": ""
@@ -4649,10 +4694,10 @@
     "Use an external wallpaper manager like swww, hyprpaper, or swaybg.": ""
   },
   "wallpaper settings disable toggle": {
-    "Disable Built-in Wallpapers": ""
+    "Disable Built-in Wallpapers": "Desabilitar Papéis de Parede Embutidos"
   },
   "wallpaper settings external management": {
-    "External Wallpaper Management": ""
+    "External Wallpaper Management": "Gerenciamento Externo de Papéis de Parede"
   },
   "wtype not available - install wtype for paste support": {
     "wtype not available - install wtype for paste support": ""

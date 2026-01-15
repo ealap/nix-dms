@@ -37,7 +37,27 @@ Singleton {
     Component.onCompleted: {
         if (!changelogEnabled)
             return;
-        changelogCheckProcess.running = true;
+        if (FirstLaunchService.checkComplete)
+            handleFirstLaunchResult();
+    }
+
+    function handleFirstLaunchResult() {
+        if (FirstLaunchService.isFirstLaunch) {
+            checkComplete = true;
+            changelogDismissed = true;
+            touchMarkerProcess.running = true;
+        } else {
+            changelogCheckProcess.running = true;
+        }
+    }
+
+    Connections {
+        target: FirstLaunchService
+
+        function onCheckCompleteChanged() {
+            if (FirstLaunchService.checkComplete && root.changelogEnabled && !root.checkComplete)
+                root.handleFirstLaunchResult();
+        }
     }
 
     function showChangelog() {
@@ -66,9 +86,7 @@ Singleton {
                     root.changelogDismissed = true;
                     break;
                 case "show":
-                    if (typeof FirstLaunchService === "undefined" || !FirstLaunchService.isFirstLaunch) {
-                        root.changelogRequested();
-                    }
+                    root.changelogRequested();
                     break;
                 }
             }

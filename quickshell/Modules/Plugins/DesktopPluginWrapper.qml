@@ -26,6 +26,8 @@ Item {
     readonly property bool showOnOverview: instanceData?.config?.showOnOverview ?? false
     readonly property bool showOnOverviewOnly: instanceData?.config?.showOnOverviewOnly ?? false
     readonly property bool overviewActive: CompositorService.isNiri && NiriService.inOverview
+    readonly property bool clickThrough: instanceData?.config?.clickThrough ?? false
+    readonly property bool syncPositionAcrossScreens: instanceData?.config?.syncPositionAcrossScreens ?? false
 
     Connections {
         target: PluginService
@@ -83,6 +85,7 @@ Item {
         }
     }
     readonly property string screenKey: SettingsData.getScreenDisplayName(screen)
+    readonly property string positionKey: syncPositionAcrossScreens ? "_synced" : screenKey
 
     readonly property int screenWidth: screen?.width ?? 1920
     readonly property int screenHeight: screen?.height ?? 1080
@@ -96,53 +99,114 @@ Item {
 
     readonly property bool hasSavedPosition: {
         if (isInstance)
-            return instanceData?.positions?.[screenKey]?.x !== undefined;
+            return instanceData?.positions?.[positionKey]?.x !== undefined;
         if (usePluginService)
-            return pluginService.loadPluginData(pluginId, "desktopX_" + screenKey, null) !== null;
-        return SettingsData.getDesktopWidgetPosition(pluginId, screenKey, "x", null) !== null;
+            return pluginService.loadPluginData(pluginId, "desktopX_" + positionKey, null) !== null;
+        return SettingsData.getDesktopWidgetPosition(pluginId, positionKey, "x", null) !== null;
     }
 
     readonly property bool hasSavedSize: {
         if (isInstance)
-            return instanceData?.positions?.[screenKey]?.width !== undefined;
+            return instanceData?.positions?.[positionKey]?.width !== undefined;
         if (usePluginService)
-            return pluginService.loadPluginData(pluginId, "desktopWidth_" + screenKey, null) !== null;
-        return SettingsData.getDesktopWidgetPosition(pluginId, screenKey, "width", null) !== null;
+            return pluginService.loadPluginData(pluginId, "desktopWidth_" + positionKey, null) !== null;
+        return SettingsData.getDesktopWidgetPosition(pluginId, positionKey, "width", null) !== null;
     }
 
     property real savedX: {
-        if (isInstance)
-            return instanceData?.positions?.[screenKey]?.x ?? (screenWidth / 2 - savedWidth / 2);
-        if (usePluginService)
-            return pluginService.loadPluginData(pluginId, "desktopX_" + screenKey, screenWidth / 2 - savedWidth / 2);
-        return SettingsData.getDesktopWidgetPosition(pluginId, screenKey, "x", screenWidth / 2 - savedWidth / 2);
+        if (isInstance) {
+            const val = instanceData?.positions?.[positionKey]?.x;
+            if (val === undefined)
+                return screenWidth / 2 - savedWidth / 2;
+            return syncPositionAcrossScreens ? val * screenWidth : val;
+        }
+        if (usePluginService) {
+            const val = pluginService.loadPluginData(pluginId, "desktopX_" + positionKey, null);
+            if (val === null)
+                return screenWidth / 2 - savedWidth / 2;
+            return syncPositionAcrossScreens ? val * screenWidth : val;
+        }
+        const val = SettingsData.getDesktopWidgetPosition(pluginId, positionKey, "x", null);
+        if (val === null)
+            return screenWidth / 2 - savedWidth / 2;
+        return syncPositionAcrossScreens ? val * screenWidth : val;
     }
     property real savedY: {
-        if (isInstance)
-            return instanceData?.positions?.[screenKey]?.y ?? (screenHeight / 2 - savedHeight / 2);
-        if (usePluginService)
-            return pluginService.loadPluginData(pluginId, "desktopY_" + screenKey, screenHeight / 2 - savedHeight / 2);
-        return SettingsData.getDesktopWidgetPosition(pluginId, screenKey, "y", screenHeight / 2 - savedHeight / 2);
+        if (isInstance) {
+            const val = instanceData?.positions?.[positionKey]?.y;
+            if (val === undefined)
+                return screenHeight / 2 - savedHeight / 2;
+            return syncPositionAcrossScreens ? val * screenHeight : val;
+        }
+        if (usePluginService) {
+            const val = pluginService.loadPluginData(pluginId, "desktopY_" + positionKey, null);
+            if (val === null)
+                return screenHeight / 2 - savedHeight / 2;
+            return syncPositionAcrossScreens ? val * screenHeight : val;
+        }
+        const val = SettingsData.getDesktopWidgetPosition(pluginId, positionKey, "y", null);
+        if (val === null)
+            return screenHeight / 2 - savedHeight / 2;
+        return syncPositionAcrossScreens ? val * screenHeight : val;
     }
     property real savedWidth: {
-        if (isInstance)
-            return instanceData?.positions?.[screenKey]?.width ?? 280;
-        if (usePluginService)
-            return pluginService.loadPluginData(pluginId, "desktopWidth_" + screenKey, 200);
-        return SettingsData.getDesktopWidgetPosition(pluginId, screenKey, "width", 280);
+        if (isInstance) {
+            const val = instanceData?.positions?.[positionKey]?.width;
+            if (val === undefined)
+                return 280;
+            return val;
+        }
+        if (usePluginService) {
+            const val = pluginService.loadPluginData(pluginId, "desktopWidth_" + positionKey, null);
+            if (val === null)
+                return 200;
+            return val;
+        }
+        const val = SettingsData.getDesktopWidgetPosition(pluginId, positionKey, "width", null);
+        if (val === null)
+            return 280;
+        return val;
     }
     property real savedHeight: {
-        if (isInstance)
-            return instanceData?.positions?.[screenKey]?.height ?? 180;
-        if (usePluginService)
-            return pluginService.loadPluginData(pluginId, "desktopHeight_" + screenKey, 200);
-        return SettingsData.getDesktopWidgetPosition(pluginId, screenKey, "height", 180);
+        if (isInstance) {
+            const val = instanceData?.positions?.[positionKey]?.height;
+            if (val === undefined)
+                return forceSquare ? savedWidth : 180;
+            return forceSquare ? savedWidth : val;
+        }
+        if (usePluginService) {
+            const val = pluginService.loadPluginData(pluginId, "desktopHeight_" + positionKey, null);
+            if (val === null)
+                return forceSquare ? savedWidth : 200;
+            return forceSquare ? savedWidth : val;
+        }
+        const val = SettingsData.getDesktopWidgetPosition(pluginId, positionKey, "height", null);
+        if (val === null)
+            return forceSquare ? savedWidth : 180;
+        return forceSquare ? savedWidth : val;
     }
 
-    property real widgetX: Math.max(0, Math.min(savedX, screenWidth - widgetWidth))
-    property real widgetY: Math.max(0, Math.min(savedY, screenHeight - widgetHeight))
-    property real widgetWidth: Math.max(minWidth, Math.min(savedWidth, screenWidth))
-    property real widgetHeight: Math.max(minHeight, Math.min(savedHeight, screenHeight))
+    property real dragOverrideX: -1
+    property real dragOverrideY: -1
+    property real dragOverrideW: -1
+    property real dragOverrideH: -1
+
+    readonly property real effectiveX: dragOverrideX >= 0 ? dragOverrideX : savedX
+    readonly property real effectiveY: dragOverrideY >= 0 ? dragOverrideY : savedY
+    readonly property real effectiveW: dragOverrideW >= 0 ? dragOverrideW : savedWidth
+    readonly property real effectiveH: dragOverrideH >= 0 ? dragOverrideH : savedHeight
+
+    readonly property real widgetX: Math.max(0, Math.min(effectiveX, screenWidth - widgetWidth))
+    readonly property real widgetY: Math.max(0, Math.min(effectiveY, screenHeight - widgetHeight))
+    readonly property real widgetWidth: Math.max(minWidth, Math.min(effectiveW, screenWidth))
+    readonly property real widgetHeight: Math.max(minHeight, Math.min(effectiveH, screenHeight))
+
+    function clearDragOverrides() {
+        dragOverrideX = -1;
+        dragOverrideY = -1;
+        dragOverrideW = -1;
+        dragOverrideH = -1;
+    }
 
     property real minWidth: contentLoader.item?.minWidth ?? 100
     property real minHeight: contentLoader.item?.minHeight ?? 100
@@ -163,41 +227,45 @@ Item {
         return Math.round(value / gridSize) * gridSize;
     }
 
-    function savePosition() {
+    function savePosition(finalX, finalY) {
+        const xVal = syncPositionAcrossScreens ? finalX / screenWidth : finalX;
+        const yVal = syncPositionAcrossScreens ? finalY / screenHeight : finalY;
         if (isInstance && instanceData) {
-            SettingsData.updateDesktopWidgetInstancePosition(instanceId, screenKey, {
-                x: root.widgetX,
-                y: root.widgetY
+            SettingsData.updateDesktopWidgetInstancePosition(instanceId, positionKey, {
+                x: xVal,
+                y: yVal
             });
             return;
         }
         if (usePluginService) {
-            pluginService.savePluginData(pluginId, "desktopX_" + screenKey, root.widgetX);
-            pluginService.savePluginData(pluginId, "desktopY_" + screenKey, root.widgetY);
+            pluginService.savePluginData(pluginId, "desktopX_" + positionKey, xVal);
+            pluginService.savePluginData(pluginId, "desktopY_" + positionKey, yVal);
             return;
         }
-        SettingsData.updateDesktopWidgetPosition(pluginId, screenKey, {
-            x: root.widgetX,
-            y: root.widgetY
+        SettingsData.updateDesktopWidgetPosition(pluginId, positionKey, {
+            x: xVal,
+            y: yVal
         });
     }
 
-    function saveSize() {
+    function saveSize(finalW, finalH) {
+        const sizeVal = forceSquare ? Math.max(finalW, finalH) : finalW;
+        const heightVal = forceSquare ? sizeVal : finalH;
         if (isInstance && instanceData) {
-            SettingsData.updateDesktopWidgetInstancePosition(instanceId, screenKey, {
-                width: root.widgetWidth,
-                height: root.widgetHeight
+            SettingsData.updateDesktopWidgetInstancePosition(instanceId, positionKey, {
+                width: sizeVal,
+                height: heightVal
             });
             return;
         }
         if (usePluginService) {
-            pluginService.savePluginData(pluginId, "desktopWidth_" + screenKey, root.widgetWidth);
-            pluginService.savePluginData(pluginId, "desktopHeight_" + screenKey, root.widgetHeight);
+            pluginService.savePluginData(pluginId, "desktopWidth_" + positionKey, sizeVal);
+            pluginService.savePluginData(pluginId, "desktopHeight_" + positionKey, heightVal);
             return;
         }
-        SettingsData.updateDesktopWidgetPosition(pluginId, screenKey, {
-            width: root.widgetWidth,
-            height: root.widgetHeight
+        SettingsData.updateDesktopWidgetPosition(pluginId, positionKey, {
+            width: sizeVal,
+            height: heightVal
         });
     }
 
@@ -212,6 +280,12 @@ Item {
             return true;
         }
         color: "transparent"
+
+        Region {
+            id: emptyMask
+        }
+
+        mask: root.clickThrough ? emptyMask : null
 
         WlrLayershell.namespace: "quickshell:desktop-widget:" + root.pluginId + (root.instanceId ? ":" + root.instanceId : "")
         WlrLayershell.layer: {
@@ -315,12 +389,14 @@ Item {
                 if (!root.hasSavedSize) {
                     const defW = item.defaultWidth ?? item.widgetWidth ?? 280;
                     const defH = item.defaultHeight ?? item.widgetHeight ?? 180;
-                    root.widgetWidth = Math.max(root.minWidth, Math.min(defW, root.screenWidth));
-                    root.widgetHeight = Math.max(root.minHeight, Math.min(defH, root.screenHeight));
+                    const finalW = Math.max(root.minWidth, Math.min(defW, root.screenWidth));
+                    const finalH = Math.max(root.minHeight, Math.min(defH, root.screenHeight));
+                    root.saveSize(finalW, finalH);
                 }
                 if (!root.hasSavedPosition) {
-                    root.widgetX = Math.max(0, Math.min(root.screenWidth / 2 - root.widgetWidth / 2, root.screenWidth - root.widgetWidth));
-                    root.widgetY = Math.max(0, Math.min(root.screenHeight / 2 - root.widgetHeight / 2, root.screenHeight - root.widgetHeight));
+                    const finalX = Math.max(0, Math.min(root.screenWidth / 2 - root.widgetWidth / 2, root.screenWidth - root.widgetWidth));
+                    const finalY = Math.max(0, Math.min(root.screenHeight / 2 - root.widgetHeight / 2, root.screenHeight - root.widgetHeight));
+                    root.savePosition(finalX, finalY);
                 }
                 if (item.widgetWidth !== undefined)
                     item.widgetWidth = Qt.binding(() => contentLoader.width);
@@ -355,6 +431,7 @@ Item {
             id: dragArea
             anchors.fill: parent
             acceptedButtons: Qt.RightButton
+            enabled: !root.clickThrough
             cursorShape: pressed ? Qt.ClosedHandCursor : Qt.ArrowCursor
 
             property point startPos
@@ -367,6 +444,8 @@ Item {
                 startY = root.widgetY;
                 root.previewX = root.widgetX;
                 root.previewY = root.widgetY;
+                root.dragOverrideX = root.widgetX;
+                root.dragOverrideY = root.widgetY;
             }
 
             onPositionChanged: mouse => {
@@ -384,16 +463,15 @@ Item {
                     root.previewY = newY;
                     return;
                 }
-                root.widgetX = newX;
-                root.widgetY = newY;
+                root.dragOverrideX = newX;
+                root.dragOverrideY = newY;
             }
 
             onReleased: {
-                if (root.useGhostPreview) {
-                    root.widgetX = root.previewX;
-                    root.widgetY = root.previewY;
-                }
-                root.savePosition();
+                const finalX = root.useGhostPreview ? root.previewX : root.dragOverrideX;
+                const finalY = root.useGhostPreview ? root.previewY : root.dragOverrideY;
+                root.savePosition(finalX, finalY);
+                root.clearDragOverrides();
             }
         }
 
@@ -404,6 +482,7 @@ Item {
             anchors.right: parent.right
             anchors.bottom: parent.bottom
             acceptedButtons: Qt.RightButton
+            enabled: !root.clickThrough
             cursorShape: pressed ? Qt.SizeFDiagCursor : Qt.ArrowCursor
 
             property point startPos
@@ -416,6 +495,8 @@ Item {
                 startHeight = root.widgetHeight;
                 root.previewWidth = root.widgetWidth;
                 root.previewHeight = root.widgetHeight;
+                root.dragOverrideW = root.widgetWidth;
+                root.dragOverrideH = root.widgetHeight;
             }
 
             onPositionChanged: mouse => {
@@ -438,16 +519,15 @@ Item {
                     root.previewHeight = newH;
                     return;
                 }
-                root.widgetWidth = newW;
-                root.widgetHeight = newH;
+                root.dragOverrideW = newW;
+                root.dragOverrideH = newH;
             }
 
             onReleased: {
-                if (root.useGhostPreview) {
-                    root.widgetWidth = root.previewWidth;
-                    root.widgetHeight = root.previewHeight;
-                }
-                root.saveSize();
+                const finalW = root.useGhostPreview ? root.previewWidth : root.dragOverrideW;
+                const finalH = root.useGhostPreview ? root.previewHeight : root.dragOverrideH;
+                root.saveSize(finalW, finalH);
+                root.clearDragOverrides();
             }
         }
     }

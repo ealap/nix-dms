@@ -63,7 +63,13 @@ SettingsCard {
         DankActionButton {
             id: menuButton
             iconName: "more_vert"
-            onClicked: actionsMenu.open()
+            onClicked: {
+                if (actionsMenu.opened) {
+                    actionsMenu.close();
+                    return;
+                }
+                actionsMenu.open();
+            }
 
             Popup {
                 id: actionsMenu
@@ -71,7 +77,7 @@ SettingsCard {
                 y: parent.height + Theme.spacingXS
                 width: 160
                 padding: Theme.spacingXS
-                modal: true
+                modal: false
                 focus: true
                 closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
@@ -218,6 +224,73 @@ SettingsCard {
 
         SettingsDivider {}
 
+        Item {
+            width: parent.width
+            height: groupRow.height + Theme.spacingM * 2
+            visible: (SettingsData.desktopWidgetGroups || []).length > 0
+
+            Row {
+                id: groupRow
+                x: Theme.spacingM
+                anchors.verticalCenter: parent.verticalCenter
+                spacing: Theme.spacingM
+                width: parent.width - Theme.spacingM * 2
+
+                StyledText {
+                    text: I18n.tr("Group")
+                    font.pixelSize: Theme.fontSizeMedium
+                    color: Theme.surfaceText
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: 80
+                    horizontalAlignment: Text.AlignLeft
+                }
+
+                DankDropdown {
+                    id: groupDropdown
+                    width: parent.width - 80 - Theme.spacingM
+                    compactMode: true
+
+                    property var groupsData: {
+                        const groups = SettingsData.desktopWidgetGroups || [];
+                        const items = [
+                            {
+                                value: "",
+                                label: I18n.tr("None")
+                            }
+                        ];
+                        for (const g of groups) {
+                            items.push({
+                                value: g.id,
+                                label: g.name
+                            });
+                        }
+                        return items;
+                    }
+
+                    options: groupsData.map(g => g.label)
+                    currentValue: {
+                        const currentGroup = root.instanceData?.group ?? "";
+                        const item = groupsData.find(g => g.value === currentGroup);
+                        return item?.label ?? I18n.tr("None");
+                    }
+
+                    onValueChanged: value => {
+                        if (!root.instanceId)
+                            return;
+                        const item = groupsData.find(g => g.label === value);
+                        const groupId = item?.value ?? "";
+                        SettingsData.updateDesktopWidgetInstance(root.instanceId, {
+                            group: groupId || null
+                        });
+                    }
+                }
+            }
+        }
+
+        SettingsDivider {
+            visible: (SettingsData.desktopWidgetGroups || []).length > 0
+        }
+
         SettingsToggleRow {
             text: I18n.tr("Show on Overlay")
             checked: instanceData?.config?.showOnOverlay ?? false
@@ -260,6 +333,38 @@ SettingsCard {
                     return;
                 SettingsData.updateDesktopWidgetInstanceConfig(root.instanceId, {
                     showOnOverviewOnly: isChecked
+                });
+            }
+        }
+
+        SettingsDivider {}
+
+        SettingsToggleRow {
+            text: I18n.tr("Click Through")
+            description: I18n.tr("Allow clicks to pass through the widget")
+            checked: instanceData?.config?.clickThrough ?? false
+            onToggled: isChecked => {
+                if (!root.instanceId)
+                    return;
+                SettingsData.updateDesktopWidgetInstanceConfig(root.instanceId, {
+                    clickThrough: isChecked
+                });
+            }
+        }
+
+        SettingsDivider {}
+
+        SettingsToggleRow {
+            text: I18n.tr("Sync Position Across Screens")
+            description: I18n.tr("Use the same position and size on all displays")
+            checked: instanceData?.config?.syncPositionAcrossScreens ?? false
+            onToggled: isChecked => {
+                if (!root.instanceId)
+                    return;
+                if (isChecked)
+                    SettingsData.syncDesktopWidgetPositionToAllScreens(root.instanceId);
+                SettingsData.updateDesktopWidgetInstanceConfig(root.instanceId, {
+                    syncPositionAcrossScreens: isChecked
                 });
             }
         }

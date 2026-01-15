@@ -239,6 +239,9 @@
   "All displays": {
     "All displays": "Tutti gli schermi"
   },
+  "Allow clicks to pass through the widget": {
+    "Allow clicks to pass through the widget": "Consenti il passaggio dei clic attraverso il widget"
+  },
   "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": {
     "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": "Alt+←/Backspace: Indietro • F1/I: File Info • F10: Aiuto • Esc: Chiudi"
   },
@@ -275,6 +278,9 @@
   "Anonymous Identity (optional)": {
     "Anonymous Identity (optional)": "Identità anonima (facoltativa)"
   },
+  "App ID Substitutions": {
+    "App ID Substitutions": "Sostituzioni App ID"
+  },
   "App Launcher": {
     "App Launcher": "App Launcher"
   },
@@ -303,7 +309,7 @@
     "Apps are ordered by usage frequency, then last used, then alphabetically.": "Le applicazioni sono ordinate per frequenza d'uso, poi per ultimo utilizzo, e infine in ordine alfabetico."
   },
   "Arrange displays and configure resolution, refresh rate, and VRR": {
-    "Arrange displays and configure resolution, refresh rate, and VRR": "Disponi gli schermi e configurare risoluzione, frequenza di aggiornamento e VRR"
+    "Arrange displays and configure resolution, refresh rate, and VRR": "Disponi gli schermi e configura risoluzione, frequenza di aggiornamento e VRR"
   },
   "Audio": {
     "Audio": "Audio"
@@ -621,7 +627,7 @@
     "Caps Lock": "Blocco Maiuscole"
   },
   "Caps Lock Indicator": {
-    "Caps Lock Indicator": "Indicatore Maiuscolo"
+    "Caps Lock Indicator": "Indicatore Blocco Maiuscole"
   },
   "Center Section": {
     "Center Section": "Sezione Centrale"
@@ -721,6 +727,9 @@
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "Clicca su Importa per aggiungere un file .ovpn o .conf"
+  },
+  "Click Through": {
+    "Click Through": "Clic passanti"
   },
   "Click any shortcut to edit. Changes save to %1": {
     "Click any shortcut to edit. Changes save to %1": "Clicca su qualsiasi scorciatoia per modificare. Le modifiche vengono salvate in %1"
@@ -993,7 +1002,7 @@
     "Custom Lock Command": "Comando Personalizzato per Blocco"
   },
   "Custom Logout Command": {
-    "Custom Logout Command": "Comando Personalizzato per il Termina Sessione"
+    "Custom Logout Command": "Comando Personalizzato di Termine Sessione"
   },
   "Custom Power Actions": {
     "Custom Power Actions": "Azioni Alimentazione Personalizzate"
@@ -1317,7 +1326,7 @@
     "Edge Spacing": "Spaziatura del Bordo"
   },
   "Education": {
-    "Education": "Educazione"
+    "Education": "Istruzione"
   },
   "Empty": {
     "Empty": "Vuoto"
@@ -1530,7 +1539,7 @@
     "Failed to import VPN": "Impossibile importare la VPN"
   },
   "Failed to load VPN config": {
-    "Failed to load VPN config": "Impossibile importare la configurazione VPN"
+    "Failed to load VPN config": "Impossibile caricare la configurazione VPN"
   },
   "Failed to load clipboard configuration.": {
     "Failed to load clipboard configuration.": "Impossibile caricare la configurazione degli appunti"
@@ -1656,31 +1665,31 @@
     "Flags": "Flag"
   },
   "Flipped": {
-    "Flipped": "Ruotato"
+    "Flipped": "Specchiato"
   },
   "Flipped 180°": {
-    "Flipped 180°": "Ruotato di 180°"
+    "Flipped 180°": "Specchiato di 180°"
   },
   "Flipped 270°": {
-    "Flipped 270°": "Ruotato di 270°"
+    "Flipped 270°": "Specchiato di 270°"
   },
   "Flipped 90°": {
-    "Flipped 90°": "Ruotato di 90°"
+    "Flipped 90°": "Specchiato di 90°"
   },
   "Focus at Startup": {
     "Focus at Startup": "Attiva all'Avvio"
   },
   "Focused Border": {
-    "Focused Border": ""
+    "Focused Border": "Bordo Attivo"
   },
   "Focused Color": {
-    "Focused Color": ""
+    "Focused Color": "Colore Attivo"
   },
   "Focused Window": {
     "Focused Window": "Finestra Attiva"
   },
   "Follow Monitor Focus": {
-    "Follow Monitor Focus": ""
+    "Follow Monitor Focus": "Segui il Monitor Attivo"
   },
   "Follow focus": {
     "Follow focus": "Segui il focus"
@@ -1787,6 +1796,9 @@
   "Grid Columns": {
     "Grid Columns": "Colonne Griglia"
   },
+  "Group": {
+    "Group": "Gruppo"
+  },
   "Group Workspace Apps": {
     "Group Workspace Apps": "Raggruppa App per Spazio di Lavoro"
   },
@@ -1796,8 +1808,14 @@
   "Group multiple windows of the same app together with a window count indicator": {
     "Group multiple windows of the same app together with a window count indicator": "Raggruppa molteplici finestre della stessa app con un indicatore del numero di finestre"
   },
+  "Group removed": {
+    "Group removed": "Gruppo rimosso"
+  },
   "Group repeated application icons in unfocused workspaces": {
     "Group repeated application icons in unfocused workspaces": "Raggruppa le icone delle applicazioni duplicate negli spazi di lavoro non attivi"
+  },
+  "Groups": {
+    "Groups": "Gruppi"
   },
   "HDR (EDID)": {
     "HDR (EDID)": "HDR (EDID)"
@@ -1842,7 +1860,7 @@
     "Hide When Windows Open": "Nascondi Quando le Finestre Sono Aperte"
   },
   "Hide cursor after inactivity (0 = disabled)": {
-    "Hide cursor after inactivity (0 = disabled)": "Nascondi il cursore dopo inattività (0 = disabilitato)"
+    "Hide cursor after inactivity (0 = disabled)": "Nascondi il cursore dopo un periodo di inattività (0 = disabilitato)"
   },
   "Hide cursor when pressing keyboard keys": {
     "Hide cursor when pressing keyboard keys": "Nascondi il cursore quando si premono i tasti della tastiera"
@@ -1917,7 +1935,7 @@
     "Icon Theme": "Tema Icona"
   },
   "Idle": {
-    "Idle": "Inattività"
+    "Idle": "In Attesa"
   },
   "Idle Inhibitor": {
     "Idle Inhibitor": "Blocco Sospensione"
@@ -2043,19 +2061,19 @@
     "LED device": "Dispositivo LED"
   },
   "Last launched %1": {
-    "Last launched %1": "Ultimo avviato %1"
+    "Last launched %1": "Ultimo avvio %1"
   },
   "Last launched %1 day%2 ago": {
-    "Last launched %1 day%2 ago": "Ultimo avviato %1 giorno%2 fa"
+    "Last launched %1 day%2 ago": "Ultimo avvio %1 giorno%2 fa"
   },
   "Last launched %1 hour%2 ago": {
-    "Last launched %1 hour%2 ago": "Ultimo avviato %1 ora%2 fa"
+    "Last launched %1 hour%2 ago": "Ultimo avvio %1 ora%2 fa"
   },
   "Last launched %1 minute%2 ago": {
-    "Last launched %1 minute%2 ago": "Ultimo avviato %1 minuto%2 fa"
+    "Last launched %1 minute%2 ago": "Ultimo avvio %1 minuto%2 fa"
   },
   "Last launched just now": {
-    "Last launched just now": "Ultimo avviato ora"
+    "Last launched just now": "Ultimo avvio ora"
   },
   "Latitude": {
     "Latitude": "Latitudine"
@@ -2194,6 +2212,9 @@
   },
   "Manual Show/Hide": {
     "Manual Show/Hide": "Mostra/Nascondi Manuale"
+  },
+  "Map window class names to icon names for proper icon display": {
+    "Map window class names to icon names for proper icon display": "Associa i nomi delle classi delle finestre ai nomi delle icone per una corretta visualizzazione"
   },
   "Margin": {
     "Margin": "Margini"
@@ -2417,6 +2438,9 @@
   "New York, NY": {
     "New York, NY": "New York, NY"
   },
+  "New group name...": {
+    "New group name...": "Nome del nuovo gruppo..."
+  },
   "Next Transition": {
     "Next Transition": "Prossima Transizione"
   },
@@ -2616,7 +2640,7 @@
     "On-screen Displays": "Indicatori a Schermo"
   },
   "Only adjust gamma based on time or location rules.": {
-    "Only adjust gamma based on time or location rules.": "Regolare gamma solo in base alle regole di tempo o di posizione."
+    "Only adjust gamma based on time or location rules.": "Regola la gamma solo in base alle regole di tempo o di posizione."
   },
   "Only show windows from the current monitor on each dock": {
     "Only show windows from the current monitor on each dock": "Mostra solo le finestre del monitor corrente su ogni dock"
@@ -2647,6 +2671,9 @@
   },
   "Options": {
     "Options": "Opzioni"
+  },
+  "Organize widgets into collapsible groups": {
+    "Organize widgets into collapsible groups": "Organizza i widget in gruppi comprimibili"
   },
   "Other": {
     "Other": "Altro"
@@ -2719,6 +2746,9 @@
   },
   "Password": {
     "Password": "Password"
+  },
+  "Pattern": {
+    "Pattern": "Pattern"
   },
   "Pause": {
     "Pause": "Pausa"
@@ -2980,6 +3010,9 @@
   },
   "Repeat": {
     "Repeat": "Ripetizione"
+  },
+  "Replacement": {
+    "Replacement": "Sostituzione"
   },
   "Report": {
     "Report": "Riepilogo"
@@ -3396,7 +3429,7 @@
     "Show all 9 tags instead of only occupied tags (DWL only)": "Mostra tutti i 9 tag invece di quelli occupati (solo DWL)"
   },
   "Show an outline ring around the focused workspace indicator": {
-    "Show an outline ring around the focused workspace indicator": ""
+    "Show an outline ring around the focused workspace indicator": "Mostra un contorno attorno all’indicatore dello spazio di lavoro attivo"
   },
   "Show cava audio visualizer in media widget": {
     "Show cava audio visualizer in media widget": "Mostra il visualizzatore audio cava nel widget multimediale"
@@ -3429,7 +3462,7 @@
     "Show on-screen display when brightness changes": "Visualizza un messaggio a schermo quando la luminosità cambia"
   },
   "Show on-screen display when caps lock state changes": {
-    "Show on-screen display when caps lock state changes": "Visualizza un messaggio a schermo quando lo stato del maiuscolo cambia"
+    "Show on-screen display when caps lock state changes": "Visualizza un messaggio a schermo quando lo stato del blocco maiuscole cambia"
   },
   "Show on-screen display when cycling audio output devices": {
     "Show on-screen display when cycling audio output devices": "Mostra un avviso sullo schermo quando si scorre tra i dispositivi di uscita audio"
@@ -3468,7 +3501,7 @@
     "Show workspace name on horizontal bars, and first letter on vertical bars": "Mostra il nome dello spazio di lavoro nelle barre orizzontali e la prima lettera in quelle verticali"
   },
   "Show workspaces of the currently focused monitor": {
-    "Show workspaces of the currently focused monitor": ""
+    "Show workspaces of the currently focused monitor": "Mostra gli spazi di lavoro del monitor attualmente attivo"
   },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "Mostra tutte le applicazioni in esecuzione con indicazione focus"
@@ -3477,7 +3510,7 @@
     "Shows current workspace and allows switching": "Visualizza lo spazio di lavoro attuale e consente di passare ad un altro"
   },
   "Shows when caps lock is active": {
-    "Shows when caps lock is active": "Indica quando il maiuscolo è attivo"
+    "Shows when caps lock is active": "Indica quando il blocco maiuscole è attivo"
   },
   "Shows when microphone, camera, or screen sharing is active": {
     "Shows when microphone, camera, or screen sharing is active": "Mostra quando microfono, videocamera, o condivisione schermo sono attivi"
@@ -3614,6 +3647,9 @@
   "Sync Mode with Portal": {
     "Sync Mode with Portal": "Modalità Sync con Portale"
   },
+  "Sync Position Across Screens": {
+    "Sync Position Across Screens": "Sincronizza la posizione tra gli schermi"
+  },
   "Sync dark mode with settings portals for system-wide theme hints": {
     "Sync dark mode with settings portals for system-wide theme hints": "Sincronizza tema scuro con impostazioni di sistema"
   },
@@ -3636,7 +3672,7 @@
     "System Update": "Aggiornamento Sistema"
   },
   "System Updater": {
-    "System Updater": "Updater Sistema"
+    "System Updater": "Aggiornamento Sistema"
   },
   "System Updates": {
     "System Updates": "Aggiornamenti Sistema"
@@ -3705,10 +3741,10 @@
     "Thickness": "Spessore"
   },
   "Third-Party Plugin Warning": {
-    "Third-Party Plugin Warning": "Avviso Plugin Terze-Parti"
+    "Third-Party Plugin Warning": "Avviso Plugin di Terze Parti"
   },
   "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": {
-    "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": "I plugin di terze parti sono creati dalla community e non sono ufficialmente supportati da DankMaterialShell.\\n\\nQuesti plugin possono comportare rischi per la sicurezza e la privacy - installa a proprio rischio."
+    "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": "I plugin di terze parti sono creati dalla community e non sono ufficialmente supportati da DankMaterialShell.\\n\\nQuesti plugin possono comportare rischi per la sicurezza e la privacy - l'installazione è a proprio rischio."
   },
   "This bind is overridden by config.kdl": {
     "This bind is overridden by config.kdl": "Questa associazione di tasti è stata sovrascritta da config.kdl"
@@ -3837,7 +3873,10 @@
     "Unavailable": "Non disponibile"
   },
   "Unfocused Color": {
-    "Unfocused Color": ""
+    "Unfocused Color": "Colore Inattivo"
+  },
+  "Ungrouped": {
+    "Ungrouped": "Non Raggruppato"
   },
   "Uninstall Plugin": {
     "Uninstall Plugin": "Disinstalla Plugin"
@@ -3882,7 +3921,7 @@
     "Update Plugin": "Aggiorna Plugin"
   },
   "Urgent Color": {
-    "Urgent Color": ""
+    "Urgent Color": "Colore Urgente"
   },
   "Usage Tips": {
     "Usage Tips": "Suggerimenti d'Uso"
@@ -3938,8 +3977,14 @@
   "Use light theme instead of dark theme": {
     "Use light theme instead of dark theme": "Usa tema chiaro invece del tema scuro"
   },
+  "Use smaller notification cards": {
+    "Use smaller notification cards": "Usa schede di notifica più piccole"
+  },
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "Usa tema di suoni dalle impostazioni di sistema"
+  },
+  "Use the same position and size on all displays": {
+    "Use the same position and size on all displays": "Usa la stessa posizione e dimensione su tutti gli schermi"
   },
   "Use trigger prefix to activate": {
     "Use trigger prefix to activate": "Usa il prefisso attivatore per attivare"
@@ -4178,7 +4223,7 @@
     "Workspace": "Spazio di Lavoro"
   },
   "Workspace Appearance": {
-    "Workspace Appearance": ""
+    "Workspace Appearance": "Aspetto degli Spazi di Lavoro"
   },
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "Numeri Indice Spazi di Lavoro"
@@ -4508,7 +4553,7 @@
     "No wallpaper selected": "Nessuno sfondo selezionato"
   },
   "notification center tab": {
-    "Current": "Attuale",
+    "Current": "Attuali",
     "History": "Cronologia"
   },
   "notification history filter": {

@@ -21,10 +21,10 @@
     "%1 display(s)": "%1 显示"
   },
   "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": {
-    "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": ""
+    "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": "%1存在但并未被包含至配置文件。在此问题修复前，自定义快捷键绑定将不会生效。"
   },
   "%1 is now included in config": {
-    "%1 is now included in config": ""
+    "%1 is now included in config": "%1现在已被包含至配置文件"
   },
   "%1 job(s)": {
     "%1 job(s)": "%1 个任务"
@@ -239,6 +239,9 @@
   "All displays": {
     "All displays": "所有显示器"
   },
+  "Allow clicks to pass through the widget": {
+    "Allow clicks to pass through the widget": "允许鼠标穿透部件"
+  },
   "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": {
     "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": "Alt+←/退格: 返回 • F1/I: 文件信息 • F10: 帮助 • Esc: 关闭"
   },
@@ -274,6 +277,9 @@
   },
   "Anonymous Identity (optional)": {
     "Anonymous Identity (optional)": "匿名身份（可选）"
+  },
+  "App ID Substitutions": {
+    "App ID Substitutions": "应用ID替换"
   },
   "App Launcher": {
     "App Launcher": "启动器"
@@ -708,7 +714,7 @@
     "Clear at Startup": "启动时清除"
   },
   "Click 'Setup' to create %1 and add include to config.": {
-    "Click 'Setup' to create %1 and add include to config.": ""
+    "Click 'Setup' to create %1 and add include to config.": "点击设置以创建%1并将其包含至配置文件。"
   },
   "Click 'Setup' to create cursor config and add include to your compositor config.": {
     "Click 'Setup' to create cursor config and add include to your compositor config.": "点击设置以创建光标配置，并导入至合成器配置文件。"
@@ -722,8 +728,11 @@
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "点击导入添加 .ovpn 或 .conf 文件"
   },
+  "Click Through": {
+    "Click Through": "鼠标穿透"
+  },
   "Click any shortcut to edit. Changes save to %1": {
-    "Click any shortcut to edit. Changes save to %1": ""
+    "Click any shortcut to edit. Changes save to %1": "点击任意快捷方式以编辑。更改将保存至%1。"
   },
   "Click any shortcut to edit. Changes save to dms/binds.kdl": {
     "Click any shortcut to edit. Changes save to dms/binds.kdl": "点击任意快捷方式进行编辑。更改将保存到 dms/binds.kdl"
@@ -1653,7 +1662,7 @@
     "Fixing...": "正在修复..."
   },
   "Flags": {
-    "Flags": ""
+    "Flags": "标签"
   },
   "Flipped": {
     "Flipped": "翻转"
@@ -1671,16 +1680,16 @@
     "Focus at Startup": "启动时聚焦"
   },
   "Focused Border": {
-    "Focused Border": ""
+    "Focused Border": "聚焦边框"
   },
   "Focused Color": {
-    "Focused Color": ""
+    "Focused Color": "聚焦颜色"
   },
   "Focused Window": {
     "Focused Window": "当前窗口"
   },
   "Follow Monitor Focus": {
-    "Follow Monitor Focus": ""
+    "Follow Monitor Focus": "遵守显示器聚焦"
   },
   "Follow focus": {
     "Follow focus": "跟随焦点"
@@ -1787,6 +1796,9 @@
   "Grid Columns": {
     "Grid Columns": "网格列"
   },
+  "Group": {
+    "Group": "分组"
+  },
   "Group Workspace Apps": {
     "Group Workspace Apps": "分组工作区应用"
   },
@@ -1796,8 +1808,14 @@
   "Group multiple windows of the same app together with a window count indicator": {
     "Group multiple windows of the same app together with a window count indicator": "将同一应用的多个窗口合并显示，并标注窗口数量"
   },
+  "Group removed": {
+    "Group removed": "分组已移除"
+  },
   "Group repeated application icons in unfocused workspaces": {
     "Group repeated application icons in unfocused workspaces": "在不聚焦的工作区中将重复应用图标分组"
+  },
+  "Groups": {
+    "Groups": "分组"
   },
   "HDR (EDID)": {
     "HDR (EDID)": "HDR（EDID）"
@@ -1827,7 +1845,7 @@
     "Hibernate": "休眠"
   },
   "Hidden": {
-    "Hidden": ""
+    "Hidden": "已隐藏"
   },
   "Hidden Network": {
     "Hidden Network": "隐藏的网络"
@@ -2148,7 +2166,7 @@
     "Lock fade grace period": "锁定淡出时间"
   },
   "Locked": {
-    "Locked": ""
+    "Locked": "已锁定"
   },
   "Log Out": {
     "Log Out": "注销"
@@ -2160,7 +2178,7 @@
     "Long Text": "长文本"
   },
   "Long press": {
-    "Long press": ""
+    "Long press": "长按"
   },
   "Longitude": {
     "Longitude": "经度"
@@ -2194,6 +2212,9 @@
   },
   "Manual Show/Hide": {
     "Manual Show/Hide": "手动显示/隐藏"
+  },
+  "Map window class names to icon names for proper icon display": {
+    "Map window class names to icon names for proper icon display": "将窗口类名称映射到图标名称以实现正确的图标显示"
   },
   "Margin": {
     "Margin": "边距"
@@ -2416,6 +2437,9 @@
   },
   "New York, NY": {
     "New York, NY": "纽约，美国纽约州"
+  },
+  "New group name...": {
+    "New group name...": "新分组名..."
   },
   "Next Transition": {
     "Next Transition": "下一过渡"
@@ -2648,6 +2672,9 @@
   "Options": {
     "Options": "选项"
   },
+  "Organize widgets into collapsible groups": {
+    "Organize widgets into collapsible groups": "将部件组织成可折叠分组"
+  },
   "Other": {
     "Other": "其他"
   },
@@ -2719,6 +2746,9 @@
   },
   "Password": {
     "Password": "密码"
+  },
+  "Pattern": {
+    "Pattern": "模式"
   },
   "Pause": {
     "Pause": "暂停"
@@ -2967,7 +2997,7 @@
     "Reject Jobs": "拒绝任务"
   },
   "Release": {
-    "Release": ""
+    "Release": "松开"
   },
   "Reload Plugin": {
     "Reload Plugin": "重载插件"
@@ -2979,7 +3009,10 @@
     "Remove gaps and border when windows are maximized": "当窗口最大化时移除间距和边框"
   },
   "Repeat": {
-    "Repeat": ""
+    "Repeat": "重复"
+  },
+  "Replacement": {
+    "Replacement": "替换"
   },
   "Report": {
     "Report": "报告"
@@ -3396,7 +3429,7 @@
     "Show all 9 tags instead of only occupied tags (DWL only)": "显示所有 9 个标签，而非仅占用的标签（仅限 DWL）"
   },
   "Show an outline ring around the focused workspace indicator": {
-    "Show an outline ring around the focused workspace indicator": ""
+    "Show an outline ring around the focused workspace indicator": "在聚焦工作区指示器周围显示一个轮廓环"
   },
   "Show cava audio visualizer in media widget": {
     "Show cava audio visualizer in media widget": "在多媒体部件中显示cava音频可视化"
@@ -3468,7 +3501,7 @@
     "Show workspace name on horizontal bars, and first letter on vertical bars": "在水平状态栏上显示工作区名称，而在垂直状态栏上显示首字母。"
   },
   "Show workspaces of the currently focused monitor": {
-    "Show workspaces of the currently focused monitor": ""
+    "Show workspaces of the currently focused monitor": "显示当前聚焦显示器的工作区"
   },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "显示所有正在运行应用程序，并标记焦点所在"
@@ -3613,6 +3646,9 @@
   },
   "Sync Mode with Portal": {
     "Sync Mode with Portal": "同步系统深色模式"
+  },
+  "Sync Position Across Screens": {
+    "Sync Position Across Screens": "在显示器间同步位置"
   },
   "Sync dark mode with settings portals for system-wide theme hints": {
     "Sync dark mode with settings portals for system-wide theme hints": "随系统设置开启深色模式，以适配全局主题"
@@ -3837,7 +3873,10 @@
     "Unavailable": "不可用"
   },
   "Unfocused Color": {
-    "Unfocused Color": ""
+    "Unfocused Color": "未聚焦颜色"
+  },
+  "Ungrouped": {
+    "Ungrouped": "已解除分组"
   },
   "Uninstall Plugin": {
     "Uninstall Plugin": "卸载插件"
@@ -3882,7 +3921,7 @@
     "Update Plugin": "更新插件"
   },
   "Urgent Color": {
-    "Urgent Color": ""
+    "Urgent Color": "高亮颜色"
   },
   "Usage Tips": {
     "Usage Tips": "使用提示"
@@ -3938,8 +3977,14 @@
   "Use light theme instead of dark theme": {
     "Use light theme instead of dark theme": "使用浅色主题替代深色主题"
   },
+  "Use smaller notification cards": {
+    "Use smaller notification cards": "使用更小的通知卡"
+  },
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "使用系统设置中的声音主题"
+  },
+  "Use the same position and size on all displays": {
+    "Use the same position and size on all displays": "在所有显示器上使用同样的位置与大小"
   },
   "Use trigger prefix to activate": {
     "Use trigger prefix to activate": "使用触发前缀以激活"
@@ -4178,7 +4223,7 @@
     "Workspace": "工作区"
   },
   "Workspace Appearance": {
-    "Workspace Appearance": ""
+    "Workspace Appearance": "工作区外观"
   },
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "工作区序号"
@@ -4367,7 +4412,7 @@
     "Night mode & gamma": "夜间模式与伽玛",
     "Per-screen config": "按屏幕区分设置",
     "Quick system toggles": "快速系统切换",
-    "Security & privacy": ""
+    "Security & privacy": "安全与隐私"
   },
   "greeter feature card title": {
     "App Theming": "应用主题",
@@ -4631,7 +4676,7 @@
     "update dms for NM integration.": "更新 DMS 以集成 NM"
   },
   "version requirement": {
-    "Requires %1": ""
+    "Requires %1": "需要%1"
   },
   "wallpaper directory file browser title": {
     "Select Wallpaper Directory": "选择壁纸位置"

@@ -19,6 +19,7 @@ StyledRect {
     property string iconName: ""
     property bool collapsible: false
     property bool expanded: true
+    property real headerLeftPadding: 0
 
     default property alias content: contentColumn.children
     property alias headerActions: headerActionsRow.children
@@ -115,6 +116,7 @@ StyledRect {
 
             Row {
                 anchors.left: parent.left
+                anchors.leftMargin: root.headerLeftPadding
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: Theme.spacingM
 

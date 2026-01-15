@@ -70,6 +70,7 @@ var SPEC = {
     controlCenterShowMicPercent: { def: false },
     controlCenterShowBatteryIcon: { def: false },
     controlCenterShowPrinterIcon: { def: false },
+    controlCenterShowScreenSharingIcon: { def: true },
 
     showPrivacyButton: { def: true },
     privacyShowMicIcon: { def: false },
@@ -401,6 +402,8 @@ var SPEC = {
     desktopWidgetGridSettings: { def: {} },
 
     desktopWidgetInstances: { def: [] },
+
+    desktopWidgetGroups: { def: [] },
 
     builtInPluginSettings: { def: {} }
 };

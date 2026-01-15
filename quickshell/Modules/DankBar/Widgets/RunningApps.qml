@@ -493,8 +493,10 @@ Item {
                                         const globalPos = delegateItem.mapToGlobal(delegateItem.width / 2, 0);
                                         const screenX = root.parentScreen ? root.parentScreen.x : 0;
                                         const relativeX = globalPos.x - screenX;
-                                        const yPos = root.barThickness + root.barSpacing - 7;
-                                        windowContextMenuLoader.item.showAt(relativeX, yPos, false, "top");
+                                        const screenHeight = root.parentScreen ? root.parentScreen.height : Screen.height;
+                                        const isBottom = root.axis?.edge === "bottom";
+                                        const yPos = isBottom ? (screenHeight - root.barThickness - root.barSpacing - 32 - Theme.spacingXS) : (root.barThickness + root.barSpacing + Theme.spacingXS);
+                                        windowContextMenuLoader.item.showAt(relativeX, yPos, false, root.axis?.edge);
                                     }
                                 }
                             } else if (mouse.button === Qt.MiddleButton) {
@@ -726,8 +728,10 @@ Item {
                                         const globalPos = delegateItem.mapToGlobal(delegateItem.width / 2, 0);
                                         const screenX = root.parentScreen ? root.parentScreen.x : 0;
                                         const relativeX = globalPos.x - screenX;
-                                        const yPos = root.barThickness + root.barSpacing - 7;
-                                        windowContextMenuLoader.item.showAt(relativeX, yPos, false, "top");
+                                        const screenHeight = root.parentScreen ? root.parentScreen.height : Screen.height;
+                                        const isBottom = root.axis?.edge === "bottom";
+                                        const yPos = isBottom ? (screenHeight - root.barThickness - root.barSpacing - 32 - Theme.spacingXS) : (root.barThickness + root.barSpacing + Theme.spacingXS);
+                                        windowContextMenuLoader.item.showAt(relativeX, yPos, false, root.axis?.edge);
                                     }
                                 }
                             }

@@ -94,10 +94,10 @@ Flow {
             border.color: "transparent"
             border.width: 0
 
-            topLeftRadius: (visualFirst || selected) ? Theme.cornerRadius : 4
-            bottomLeftRadius: (visualFirst || selected) ? Theme.cornerRadius : 4
-            topRightRadius: (visualLast || selected) ? Theme.cornerRadius : 4
-            bottomRightRadius: (visualLast || selected) ? Theme.cornerRadius : 4
+            topLeftRadius: (visualFirst || selected) ? Theme.cornerRadius : Math.min(4, Theme.cornerRadius)
+            bottomLeftRadius: (visualFirst || selected) ? Theme.cornerRadius : Math.min(4, Theme.cornerRadius)
+            topRightRadius: (visualLast || selected) ? Theme.cornerRadius : Math.min(4, Theme.cornerRadius)
+            bottomRightRadius: (visualLast || selected) ? Theme.cornerRadius : Math.min(4, Theme.cornerRadius)
 
             Behavior on width {
                 enabled: root.userInteracted

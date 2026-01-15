@@ -581,6 +581,13 @@
     "comment": ""
   },
   {
+    "term": "Allow clicks to pass through the widget",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close",
     "translation": "",
     "context": "",
@@ -673,6 +680,13 @@
   },
   {
     "term": "Anonymous Identity (optional)",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "App ID Substitutions",
     "translation": "",
     "context": "",
     "reference": "",
@@ -1751,6 +1765,13 @@
   },
   {
     "term": "Click Import to add a .ovpn or .conf",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Click Through",
     "translation": "",
     "context": "",
     "reference": "",
@@ -4382,6 +4403,13 @@
     "comment": ""
   },
   {
+    "term": "Group",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Group Workspace Apps",
     "translation": "",
     "context": "",
@@ -4403,7 +4431,21 @@
     "comment": ""
   },
   {
+    "term": "Group removed",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Group repeated application icons in unfocused workspaces",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Groups",
     "translation": "",
     "context": "",
     "reference": "",
@@ -5453,6 +5495,13 @@
     "comment": ""
   },
   {
+    "term": "Map window class names to icon names for proper icon display",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Margin",
     "translation": "",
     "context": "",
@@ -6007,6 +6056,13 @@
   },
   {
     "term": "New York, NY",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "New group name...",
     "translation": "",
     "context": "",
     "reference": "",
@@ -6643,6 +6699,13 @@
     "comment": ""
   },
   {
+    "term": "Organize widgets into collapsible groups",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Other",
     "translation": "",
     "context": "",
@@ -6805,6 +6868,13 @@
   },
   {
     "term": "Password",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Pattern",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7435,6 +7505,13 @@
   },
   {
     "term": "Repeat",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Replacement",
     "translation": "",
     "context": "",
     "reference": "",
@@ -8687,13 +8764,6 @@
     "comment": ""
   },
   {
-    "term": "Show password",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
     "term": "Show weather information in top bar and control center",
     "translation": "",
     "context": "",
@@ -9066,6 +9136,13 @@
   },
   {
     "term": "Sync Mode with Portal",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Sync Position Across Screens",
     "translation": "",
     "context": "",
     "reference": "",
@@ -9611,6 +9688,13 @@
     "comment": ""
   },
   {
+    "term": "Ungrouped",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Uninstall",
     "translation": "",
     "context": "uninstall action button",
@@ -9877,7 +9961,21 @@
     "comment": ""
   },
   {
+    "term": "Use smaller notification cards",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Use sound theme from system settings",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Use the same position and size on all displays",
     "translation": "",
     "context": "",
     "reference": "",

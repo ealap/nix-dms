@@ -450,10 +450,7 @@ const NIRI_ACTION_ARGS = {
         ]
     },
     "screenshot-window": {
-        args: [
-            { name: "show-pointer", type: "bool", label: "Show pointer" },
-            { name: "write-to-disk", type: "bool", label: "Save to disk" }
-        ]
+        args: [{ name: "write-to-disk", type: "bool", label: "Save to disk" }]
     }
 };
 
@@ -841,7 +838,7 @@ function getActionType(action) {
         return "compositor";
     if (action.startsWith("spawn dms ipc call "))
         return "dms";
-    if (action.startsWith("spawn sh -c ") || action.startsWith("spawn bash -c ") || action.startsWith("spawn_shell "))
+    if (/^spawn \w+ -c /.test(action) || action.startsWith("spawn_shell "))
         return "shell";
     if (action.startsWith("spawn "))
         return "spawn";
@@ -888,12 +885,13 @@ function buildSpawnAction(command, args) {
     return "spawn " + parts.join(" ");
 }
 
-function buildShellAction(compositor, shellCmd) {
+function buildShellAction(compositor, shellCmd, shell) {
     if (!shellCmd)
         return "";
     if (compositor === "mangowc")
         return "spawn_shell " + shellCmd;
-    return "spawn sh -c \"" + shellCmd.replace(/"/g, "\\\"") + "\"";
+    var shellBin = shell || "sh";
+    return "spawn " + shellBin + " -c \"" + shellCmd.replace(/"/g, "\\\"") + "\"";
 }
 
 function parseSpawnCommand(action) {
@@ -910,8 +908,9 @@ function parseSpawnCommand(action) {
 function parseShellCommand(action) {
     if (!action)
         return "";
-    if (action.startsWith("spawn sh -c ")) {
-        var content = action.slice(12);
+    var match = action.match(/^spawn (\w+) -c (.+)$/);
+    if (match) {
+        var content = match[2];
         if ((content.startsWith('"') && content.endsWith('"')) || (content.startsWith("'") && content.endsWith("'")))
             content = content.slice(1, -1);
         return content.replace(/\\"/g, "\"");
@@ -919,6 +918,13 @@ function parseShellCommand(action) {
     if (action.startsWith("spawn_shell "))
         return action.slice(12);
     return "";
+}
+
+function getShellFromAction(action) {
+    if (!action)
+        return "sh";
+    var match = action.match(/^spawn (\w+) -c /);
+    return match ? match[1] : "sh";
 }
 
 function getActionArgConfig(compositor, action) {
@@ -1107,12 +1113,27 @@ function buildCompositorAction(compositor, base, args) {
                 parts.push("focus=false");
             break;
         default:
-            if (base.startsWith("screenshot")) {
+            switch (base) {
+            case "screenshot":
                 if (args["show-pointer"] === true)
                     parts.push("show-pointer=true");
+                else if (args["show-pointer"] === false)
+                    parts.push("show-pointer=false");
+                break;
+            case "screenshot-screen":
+                if (args["show-pointer"] === true)
+                    parts.push("show-pointer=true");
+                else if (args["show-pointer"] === false)
+                    parts.push("show-pointer=false");
                 if (args["write-to-disk"] === true)
                     parts.push("write-to-disk=true");
-            } else if (args.value) {
+                break;
+            case "screenshot-window":
+                if (args["write-to-disk"] === true)
+                    parts.push("write-to-disk=true");
+                break;
+            }
+            if (args.value) {
                 parts.push(args.value);
             } else if (args.index) {
                 parts.push(args.index);

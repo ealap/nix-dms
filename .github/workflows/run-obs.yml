@@ -4,13 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       package:
-        description: "Package to update (dms, dms-git, or all)"
-        required: false
-        default: "all"
-      tag_version:
-        description: "Specific tag version for dms stable (e.g., v1.0.2). Leave empty to auto-detect latest release."
-        required: false
-        default: ""
+        description: "Package to update"
+        required: true
+        type: choice
+        options:
+          - dms
+          - dms-git
+          - all
+        default: "dms"
       rebuild_release:
         description: "Release number for rebuilds (e.g., 2, 3, 4 to increment spec Release)"
         required: false
@@ -56,8 +57,9 @@ jobs:
           }
 
           # Helper function to check dms stable tag
+          # Sets LATEST_TAG variable in parent scope if update needed
           check_dms_stable() {
-            local LATEST_TAG=$(curl -s https://api.github.com/repos/AvengeMedia/DankMaterialShell/releases/latest | grep '"tag_name"' | sed 's/.*"tag_name": "v\?\([^"]*\)".*/\1/' || echo "")
+            LATEST_TAG=$(curl -s https://api.github.com/repos/AvengeMedia/DankMaterialShell/releases/latest | grep '"tag_name"' | sed 's/.*"tag_name": "\([^"]*\)".*/\1/' || echo "")
             local OBS_SPEC=$(curl -s -u "$OBS_USERNAME:$OBS_PASSWORD" "https://api.opensuse.org/source/home:AvengeMedia:dms/dms/dms.spec" 2>/dev/null || echo "")
             local OBS_VERSION=$(echo "$OBS_SPEC" | grep "^Version:" | awk '{print $2}' | xargs || echo "")
 
@@ -73,8 +75,8 @@ jobs:
           # Main logic
           REBUILD="${{ github.event.inputs.rebuild_release }}"
 
-          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" =~ ^refs/tags/ ]]; then
-            # Tag push - always update stable package
+          if [[ "${{ github.ref }}" =~ ^refs/tags/ ]]; then
+            # Tag selected or pushed - always update stable package
             echo "packages=dms" >> $GITHUB_OUTPUT
             VERSION="${GITHUB_REF#refs/tags/}"
             echo "version=$VERSION" >> $GITHUB_OUTPUT
@@ -104,7 +106,12 @@ jobs:
               # Check each package and build list of those needing updates
               PACKAGES_TO_UPDATE=()
               check_dms_git && PACKAGES_TO_UPDATE+=("dms-git")
-              check_dms_stable && PACKAGES_TO_UPDATE+=("dms")
+              if check_dms_stable; then
+                PACKAGES_TO_UPDATE+=("dms")
+                if [[ -n "$LATEST_TAG" ]]; then
+                  echo "version=$LATEST_TAG" >> $GITHUB_OUTPUT
+                fi
+              fi
 
               if [[ ${#PACKAGES_TO_UPDATE[@]} -gt 0 ]]; then
                 echo "packages=${PACKAGES_TO_UPDATE[*]}" >> $GITHUB_OUTPUT
@@ -129,6 +136,9 @@ jobs:
               if check_dms_stable; then
                 echo "packages=$PKG" >> $GITHUB_OUTPUT
                 echo "has_updates=true" >> $GITHUB_OUTPUT
+                if [[ -n "$LATEST_TAG" ]]; then
+                  echo "version=$LATEST_TAG" >> $GITHUB_OUTPUT
+                fi
               else
                 echo "packages=" >> $GITHUB_OUTPUT
                 echo "has_updates=false" >> $GITHUB_OUTPUT
@@ -161,12 +171,19 @@ jobs:
       - name: Determine packages to update
         id: packages
         run: |
-          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" =~ ^refs/tags/ ]]; then
-            # Tag push event - use the pushed tag
+          # Check if GITHUB_REF points to a tag (works for both push events and workflow_dispatch with tag selected)
+          if [[ "${{ github.ref }}" =~ ^refs/tags/ ]]; then
+            # Tag selected or pushed - use the tag from GITHUB_REF
             echo "packages=dms" >> $GITHUB_OUTPUT
             VERSION="${GITHUB_REF#refs/tags/}"
             echo "version=$VERSION" >> $GITHUB_OUTPUT
-            echo "Triggered by tag: $VERSION"
+            echo "Using tag from GITHUB_REF: $VERSION"
+          # Check if check-updates already determined a version (from auto-detection)
+          elif [[ -n "${{ needs.check-updates.outputs.version }}" ]]; then
+            # Use version from check-updates job
+            echo "packages=${{ needs.check-updates.outputs.packages }}" >> $GITHUB_OUTPUT
+            echo "version=${{ needs.check-updates.outputs.version }}" >> $GITHUB_OUTPUT
+            echo "Using version from check-updates: ${{ needs.check-updates.outputs.version }}"
           elif [[ "${{ github.event_name }}" == "schedule" ]]; then
             # Scheduled run - dms-git only
             echo "packages=${{ needs.check-updates.outputs.packages }}" >> $GITHUB_OUTPUT
@@ -176,22 +193,28 @@ jobs:
 
             # Determine version for dms stable
             if [[ "${{ github.event.inputs.package }}" == "dms" ]]; then
-              # For explicit dms selection, require tag_version
-              if [[ -n "${{ github.event.inputs.tag_version }}" ]]; then
-                VERSION="${{ github.event.inputs.tag_version }}"
+              # Use github.ref if tag selected, otherwise auto-detect latest
+              if [[ "${{ github.ref }}" =~ ^refs/tags/ ]]; then
+                VERSION="${GITHUB_REF#refs/tags/}"
                 echo "version=$VERSION" >> $GITHUB_OUTPUT
-                echo "Using specified tag: $VERSION"
+                echo "Using tag from GITHUB_REF: $VERSION"
               else
-                echo "ERROR: tag_version is required when package=dms"
-                echo "Please specify a tag version (e.g., v1.0.2) or use package=all for auto-detection"
-                exit 1
+                # Auto-detect latest release for dms
+                LATEST_TAG=$(curl -s https://api.github.com/repos/AvengeMedia/DankMaterialShell/releases/latest | grep '"tag_name"' | sed 's/.*"tag_name": "\([^"]*\)".*/\1/' || echo "")
+                if [[ -n "$LATEST_TAG" ]]; then
+                  echo "version=$LATEST_TAG" >> $GITHUB_OUTPUT
+                  echo "Auto-detected latest release: $LATEST_TAG"
+                else
+                  echo "ERROR: Could not auto-detect latest release"
+                  exit 1
+                fi
               fi
             elif [[ "${{ github.event.inputs.package }}" == "all" ]]; then
-              # For "all", auto-detect if tag_version not specified
-              if [[ -n "${{ github.event.inputs.tag_version }}" ]]; then
-                VERSION="${{ github.event.inputs.tag_version }}"
+              # Use github.ref if tag selected, otherwise auto-detect latest
+              if [[ "${{ github.ref }}" =~ ^refs/tags/ ]]; then
+                VERSION="${GITHUB_REF#refs/tags/}"
                 echo "version=$VERSION" >> $GITHUB_OUTPUT
-                echo "Using specified tag: $VERSION"
+                echo "Using tag from GITHUB_REF: $VERSION"
               else
                 # Auto-detect latest release for "all"
                 LATEST_TAG=$(curl -s https://api.github.com/repos/AvengeMedia/DankMaterialShell/releases/latest | grep '"tag_name"' | sed 's/.*"tag_name": "\([^"]*\)".*/\1/' || echo "")
@@ -206,7 +229,7 @@ jobs:
             fi
 
             # Use filtered packages from check-updates when package="all" and no rebuild/tag specified
-            if [[ "${{ github.event.inputs.package }}" == "all" ]] && [[ -z "${{ github.event.inputs.rebuild_release }}" ]] && [[ -z "${{ github.event.inputs.tag_version }}" ]]; then
+            if [[ "${{ github.event.inputs.package }}" == "all" ]] && [[ -z "${{ github.event.inputs.rebuild_release }}" ]] && [[ ! "${{ github.ref }}" =~ ^refs/tags/ ]]; then
               echo "packages=${{ needs.check-updates.outputs.packages }}" >> $GITHUB_OUTPUT
               echo "Manual trigger: all (filtered to: ${{ needs.check-updates.outputs.packages }})"
             else
@@ -215,6 +238,9 @@ jobs:
             fi
           else
             echo "packages=${{ needs.check-updates.outputs.packages }}" >> $GITHUB_OUTPUT
+            if [[ -n "${{ needs.check-updates.outputs.version }}" ]]; then
+              echo "version=${{ needs.check-updates.outputs.version }}" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Update dms-git spec version

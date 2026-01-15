@@ -501,8 +501,12 @@ Singleton {
         return Actions.buildSpawnAction(command, args);
     }
 
-    function buildShellAction(shellCmd) {
-        return Actions.buildShellAction(currentProvider, shellCmd);
+    function buildShellAction(shellCmd, shell) {
+        return Actions.buildShellAction(currentProvider, shellCmd, shell);
+    }
+
+    function getShellFromAction(action) {
+        return Actions.getShellFromAction(action);
     }
 
     function parseSpawnCommand(action) {

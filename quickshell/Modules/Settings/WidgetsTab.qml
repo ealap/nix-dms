@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 import qs.Common
 import qs.Services
 import qs.Widgets
@@ -382,6 +383,7 @@ Item {
             widgetObj.showMicPercent = SettingsData.controlCenterShowMicPercent;
             widgetObj.showBatteryIcon = SettingsData.controlCenterShowBatteryIcon;
             widgetObj.showPrinterIcon = SettingsData.controlCenterShowPrinterIcon;
+            widgetObj.showScreenSharingIcon = SettingsData.controlCenterShowScreenSharingIcon;
         }
         if (widgetId === "diskUsage")
             widgetObj.mountPath = "/";
@@ -442,6 +444,7 @@ Item {
                 newWidget.showMicPercent = widget.showMicPercent ?? SettingsData.controlCenterShowMicPercent;
                 newWidget.showBatteryIcon = widget.showBatteryIcon ?? SettingsData.controlCenterShowBatteryIcon;
                 newWidget.showPrinterIcon = widget.showPrinterIcon ?? SettingsData.controlCenterShowPrinterIcon;
+                newWidget.showScreenSharingIcon = widget.showScreenSharingIcon ?? SettingsData.controlCenterShowScreenSharingIcon;
             }
             widgets[i] = newWidget;
             break;
@@ -498,6 +501,7 @@ Item {
             newWidget.showMicPercent = widget.showMicPercent ?? SettingsData.controlCenterShowMicPercent;
             newWidget.showBatteryIcon = widget.showBatteryIcon ?? SettingsData.controlCenterShowBatteryIcon;
             newWidget.showPrinterIcon = widget.showPrinterIcon ?? SettingsData.controlCenterShowPrinterIcon;
+            newWidget.showScreenSharingIcon = widget.showScreenSharingIcon ?? SettingsData.controlCenterShowScreenSharingIcon;
         }
         widgets[widgetIndex] = newWidget;
         setWidgetsForSection(sectionId, widgets);
@@ -576,6 +580,7 @@ Item {
             newWidget.showMicPercent = widget.showMicPercent ?? SettingsData.controlCenterShowMicPercent;
             newWidget.showBatteryIcon = widget.showBatteryIcon ?? SettingsData.controlCenterShowBatteryIcon;
             newWidget.showPrinterIcon = widget.showPrinterIcon ?? SettingsData.controlCenterShowPrinterIcon;
+            newWidget.showScreenSharingIcon = widget.showScreenSharingIcon ?? SettingsData.controlCenterShowScreenSharingIcon;
         }
         widgets[widgetIndex] = newWidget;
         setWidgetsForSection(sectionId, widgets);
@@ -607,7 +612,8 @@ Item {
             "showMicIcon": widget.showMicIcon ?? SettingsData.controlCenterShowMicIcon,
             "showMicPercent": widget.showMicPercent ?? SettingsData.controlCenterShowMicPercent,
             "showBatteryIcon": widget.showBatteryIcon ?? SettingsData.controlCenterShowBatteryIcon,
-            "showPrinterIcon": widget.showPrinterIcon ?? SettingsData.controlCenterShowPrinterIcon
+            "showPrinterIcon": widget.showPrinterIcon ?? SettingsData.controlCenterShowPrinterIcon,
+            "showScreenSharingIcon": widget.showScreenSharingIcon ?? SettingsData.controlCenterShowScreenSharingIcon
         };
         newWidget[settingName] = value;
 
@@ -674,6 +680,7 @@ Item {
             newWidget.showMicPercent = widget.showMicPercent ?? SettingsData.controlCenterShowMicPercent;
             newWidget.showBatteryIcon = widget.showBatteryIcon ?? SettingsData.controlCenterShowBatteryIcon;
             newWidget.showPrinterIcon = widget.showPrinterIcon ?? SettingsData.controlCenterShowPrinterIcon;
+            newWidget.showScreenSharingIcon = widget.showScreenSharingIcon ?? SettingsData.controlCenterShowScreenSharingIcon;
         }
         widgets[widgetIndex] = newWidget;
         setWidgetsForSection(sectionId, widgets);
@@ -734,6 +741,7 @@ Item {
             newWidget.showMicPercent = widget.showMicPercent ?? SettingsData.controlCenterShowMicPercent;
             newWidget.showBatteryIcon = widget.showBatteryIcon ?? SettingsData.controlCenterShowBatteryIcon;
             newWidget.showPrinterIcon = widget.showPrinterIcon ?? SettingsData.controlCenterShowPrinterIcon;
+            newWidget.showScreenSharingIcon = widget.showScreenSharingIcon ?? SettingsData.controlCenterShowScreenSharingIcon;
         }
         widgets[widgetIndex] = newWidget;
         setWidgetsForSection(sectionId, widgets);
@@ -794,6 +802,7 @@ Item {
                     newWidget.showMicPercent = widget.showMicPercent ?? SettingsData.controlCenterShowMicPercent;
                     newWidget.showBatteryIcon = widget.showBatteryIcon ?? SettingsData.controlCenterShowBatteryIcon;
                     newWidget.showPrinterIcon = widget.showPrinterIcon ?? SettingsData.controlCenterShowPrinterIcon;
+                    newWidget.showScreenSharingIcon = widget.showScreenSharingIcon ?? SettingsData.controlCenterShowScreenSharingIcon;
                 }
                 widgets[i] = newWidget;
                 widget = newWidget;
@@ -866,6 +875,8 @@ Item {
                     item.showBatteryIcon = widget.showBatteryIcon;
                 if (widget.showPrinterIcon !== undefined)
                     item.showPrinterIcon = widget.showPrinterIcon;
+                if (widget.showScreenSharingIcon !== undefined)
+                    item.showScreenSharingIcon = widget.showScreenSharingIcon;
                 if (widget.minimumWidth !== undefined)
                     item.minimumWidth = widget.minimumWidth;
                 if (widget.showSwap !== undefined)
@@ -916,12 +927,26 @@ Item {
         });
     }
 
-    WidgetSelectionPopup {
-        id: widgetSelectionPopup
-        parentModal: widgetsTab.parentModal
-        onWidgetSelected: (widgetId, targetSection) => {
-            widgetsTab.addWidgetToSection(widgetId, targetSection);
+    LazyLoader {
+        id: widgetSelectionPopupLoader
+        active: false
+
+        WidgetSelectionPopup {
+            id: widgetSelectionPopupItem
+            parentModal: widgetsTab.parentModal
+            onWidgetSelected: (widgetId, targetSection) => {
+                widgetsTab.addWidgetToSection(widgetId, targetSection);
+            }
         }
+    }
+
+    function showWidgetSelectionPopup(sectionId) {
+        widgetSelectionPopupLoader.active = true;
+        if (!widgetSelectionPopupLoader.item)
+            return;
+        widgetSelectionPopupLoader.item.targetSection = sectionId;
+        widgetSelectionPopupLoader.item.allWidgets = widgetsTab.getWidgetsForPopup();
+        widgetSelectionPopupLoader.item.show();
     }
 
     DankFlickable {
@@ -1113,9 +1138,7 @@ Item {
                             widgetsTab.handleItemOrderChanged(sectionId, newOrder);
                         }
                         onAddWidget: sectionId => {
-                            widgetSelectionPopup.targetSection = sectionId;
-                            widgetSelectionPopup.allWidgets = widgetsTab.getWidgetsForPopup();
-                            widgetSelectionPopup.show();
+                            showWidgetSelectionPopup(sectionId);
                         }
                         onRemoveWidget: (sectionId, index) => {
                             widgetsTab.removeWidgetFromSection(sectionId, index);
@@ -1170,9 +1193,7 @@ Item {
                             widgetsTab.handleItemOrderChanged(sectionId, newOrder);
                         }
                         onAddWidget: sectionId => {
-                            widgetSelectionPopup.targetSection = sectionId;
-                            widgetSelectionPopup.allWidgets = widgetsTab.getWidgetsForPopup();
-                            widgetSelectionPopup.show();
+                            showWidgetSelectionPopup(sectionId);
                         }
                         onRemoveWidget: (sectionId, index) => {
                             widgetsTab.removeWidgetFromSection(sectionId, index);
@@ -1227,9 +1248,7 @@ Item {
                             widgetsTab.handleItemOrderChanged(sectionId, newOrder);
                         }
                         onAddWidget: sectionId => {
-                            widgetSelectionPopup.targetSection = sectionId;
-                            widgetSelectionPopup.allWidgets = widgetsTab.getWidgetsForPopup();
-                            widgetSelectionPopup.show();
+                            showWidgetSelectionPopup(sectionId);
                         }
                         onRemoveWidget: (sectionId, index) => {
                             widgetsTab.removeWidgetFromSection(sectionId, index);

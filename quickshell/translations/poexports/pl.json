@@ -239,6 +239,9 @@
   "All displays": {
     "All displays": "Wszystkie ekrany"
   },
+  "Allow clicks to pass through the widget": {
+    "Allow clicks to pass through the widget": ""
+  },
   "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": {
     "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": "Alt+←/Backspace: Wstecz • F1/I: Informacje o pliku • F10: Pomoc • Esc: Zamknij"
   },
@@ -274,6 +277,9 @@
   },
   "Anonymous Identity (optional)": {
     "Anonymous Identity (optional)": "Tożsamość anonimowa (opcjonalnie)"
+  },
+  "App ID Substitutions": {
+    "App ID Substitutions": ""
   },
   "App Launcher": {
     "App Launcher": "Program Uruchamiający"
@@ -721,6 +727,9 @@
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "Kliknij Importuj, aby dodać plik .ovpn lub .conf"
+  },
+  "Click Through": {
+    "Click Through": ""
   },
   "Click any shortcut to edit. Changes save to %1": {
     "Click any shortcut to edit. Changes save to %1": ""
@@ -1787,6 +1796,9 @@
   "Grid Columns": {
     "Grid Columns": "Kolumny siatki"
   },
+  "Group": {
+    "Group": ""
+  },
   "Group Workspace Apps": {
     "Group Workspace Apps": ""
   },
@@ -1796,8 +1808,14 @@
   "Group multiple windows of the same app together with a window count indicator": {
     "Group multiple windows of the same app together with a window count indicator": "Grupuj wiele okien tej samej aplikacji ze wskaźnikiem liczby okien"
   },
+  "Group removed": {
+    "Group removed": ""
+  },
   "Group repeated application icons in unfocused workspaces": {
     "Group repeated application icons in unfocused workspaces": ""
+  },
+  "Groups": {
+    "Groups": ""
   },
   "HDR (EDID)": {
     "HDR (EDID)": "HDR (EDID)"
@@ -2195,6 +2213,9 @@
   "Manual Show/Hide": {
     "Manual Show/Hide": "Ręczne pokazywanie/ukrywanie"
   },
+  "Map window class names to icon names for proper icon display": {
+    "Map window class names to icon names for proper icon display": ""
+  },
   "Margin": {
     "Margin": "Margines"
   },
@@ -2416,6 +2437,9 @@
   },
   "New York, NY": {
     "New York, NY": "Nowy Jork, NY"
+  },
+  "New group name...": {
+    "New group name...": ""
   },
   "Next Transition": {
     "Next Transition": "Następne Przejście"
@@ -2648,6 +2672,9 @@
   "Options": {
     "Options": "Opcje"
   },
+  "Organize widgets into collapsible groups": {
+    "Organize widgets into collapsible groups": ""
+  },
   "Other": {
     "Other": "Inne"
   },
@@ -2719,6 +2746,9 @@
   },
   "Password": {
     "Password": "Hasło"
+  },
+  "Pattern": {
+    "Pattern": ""
   },
   "Pause": {
     "Pause": "Wstrzymaj"
@@ -2980,6 +3010,9 @@
   },
   "Repeat": {
     "Repeat": ""
+  },
+  "Replacement": {
+    "Replacement": ""
   },
   "Report": {
     "Report": "Raport"
@@ -3614,6 +3647,9 @@
   "Sync Mode with Portal": {
     "Sync Mode with Portal": "Tryb synchronizacji z portalem"
   },
+  "Sync Position Across Screens": {
+    "Sync Position Across Screens": ""
+  },
   "Sync dark mode with settings portals for system-wide theme hints": {
     "Sync dark mode with settings portals for system-wide theme hints": "Synchronizuj ciemny motyw z systemem"
   },
@@ -3839,6 +3875,9 @@
   "Unfocused Color": {
     "Unfocused Color": ""
   },
+  "Ungrouped": {
+    "Ungrouped": ""
+  },
   "Uninstall Plugin": {
     "Uninstall Plugin": "Odinstaluj wtyczkę"
   },
@@ -3938,8 +3977,14 @@
   "Use light theme instead of dark theme": {
     "Use light theme instead of dark theme": "Użyj jasnego motywu zamiast ciemnego"
   },
+  "Use smaller notification cards": {
+    "Use smaller notification cards": ""
+  },
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "Użyj motywu dźwiękowego z ustawień systemowych"
+  },
+  "Use the same position and size on all displays": {
+    "Use the same position and size on all displays": ""
   },
   "Use trigger prefix to activate": {
     "Use trigger prefix to activate": ""

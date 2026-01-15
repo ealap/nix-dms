@@ -239,6 +239,9 @@
   "All displays": {
     "All displays": "所有螢幕"
   },
+  "Allow clicks to pass through the widget": {
+    "Allow clicks to pass through the widget": ""
+  },
   "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": {
     "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": "Alt+←/Backspace: 返回 • F1/I: 檔案資訊 • F10: 幫助 • Esc: 關閉"
   },
@@ -274,6 +277,9 @@
   },
   "Anonymous Identity (optional)": {
     "Anonymous Identity (optional)": "匿名身分 (可選)"
+  },
+  "App ID Substitutions": {
+    "App ID Substitutions": ""
   },
   "App Launcher": {
     "App Launcher": "應用程式啟動器"
@@ -721,6 +727,9 @@
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "點擊匯入以新增 .ovpn 或 .conf"
+  },
+  "Click Through": {
+    "Click Through": ""
   },
   "Click any shortcut to edit. Changes save to %1": {
     "Click any shortcut to edit. Changes save to %1": "點擊任一快捷鍵進行編輯。變更會儲存到 %1"
@@ -1787,6 +1796,9 @@
   "Grid Columns": {
     "Grid Columns": "網格欄數"
   },
+  "Group": {
+    "Group": ""
+  },
   "Group Workspace Apps": {
     "Group Workspace Apps": "群組工作區應用程式"
   },
@@ -1796,8 +1808,14 @@
   "Group multiple windows of the same app together with a window count indicator": {
     "Group multiple windows of the same app together with a window count indicator": "將同一應用程式的多個視窗匯集在一起，並附帶視窗數量指示器"
   },
+  "Group removed": {
+    "Group removed": ""
+  },
   "Group repeated application icons in unfocused workspaces": {
     "Group repeated application icons in unfocused workspaces": "群組非作用中工作區的重複應用程式圖示"
+  },
+  "Groups": {
+    "Groups": ""
   },
   "HDR (EDID)": {
     "HDR (EDID)": "HDR (EDID)"
@@ -2195,6 +2213,9 @@
   "Manual Show/Hide": {
     "Manual Show/Hide": "手動顯示/隱藏"
   },
+  "Map window class names to icon names for proper icon display": {
+    "Map window class names to icon names for proper icon display": ""
+  },
   "Margin": {
     "Margin": "邊距"
   },
@@ -2416,6 +2437,9 @@
   },
   "New York, NY": {
     "New York, NY": "紐約"
+  },
+  "New group name...": {
+    "New group name...": ""
   },
   "Next Transition": {
     "Next Transition": "下一個轉場"
@@ -2648,6 +2672,9 @@
   "Options": {
     "Options": "選項"
   },
+  "Organize widgets into collapsible groups": {
+    "Organize widgets into collapsible groups": ""
+  },
   "Other": {
     "Other": "其他"
   },
@@ -2719,6 +2746,9 @@
   },
   "Password": {
     "Password": "密碼"
+  },
+  "Pattern": {
+    "Pattern": ""
   },
   "Pause": {
     "Pause": "暫停"
@@ -2980,6 +3010,9 @@
   },
   "Repeat": {
     "Repeat": "重複"
+  },
+  "Replacement": {
+    "Replacement": ""
   },
   "Report": {
     "Report": "報告"
@@ -3614,6 +3647,9 @@
   "Sync Mode with Portal": {
     "Sync Mode with Portal": "透過 Portal 同步主題模式"
   },
+  "Sync Position Across Screens": {
+    "Sync Position Across Screens": ""
+  },
   "Sync dark mode with settings portals for system-wide theme hints": {
     "Sync dark mode with settings portals for system-wide theme hints": "將暗模式與設定入口網站同步以取得系統範圍的主題提示"
   },
@@ -3839,6 +3875,9 @@
   "Unfocused Color": {
     "Unfocused Color": ""
   },
+  "Ungrouped": {
+    "Ungrouped": ""
+  },
   "Uninstall Plugin": {
     "Uninstall Plugin": "解除安裝插件"
   },
@@ -3938,8 +3977,14 @@
   "Use light theme instead of dark theme": {
     "Use light theme instead of dark theme": "使用淺色主題而不是深色主題"
   },
+  "Use smaller notification cards": {
+    "Use smaller notification cards": ""
+  },
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "使用系統設定中的音效主題"
+  },
+  "Use the same position and size on all displays": {
+    "Use the same position and size on all displays": ""
   },
   "Use trigger prefix to activate": {
     "Use trigger prefix to activate": "使用觸發前綴啟用"

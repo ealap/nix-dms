@@ -34,7 +34,10 @@ Image {
             return;
         }
         Paths.mkdir(Paths.imagecache);
-        source = cachePath || encodedImagePath;
+        const hash = djb2Hash(imagePath);
+        const cPath = hash ? `${Paths.stringify(Paths.imagecache)}/${hash}@${maxCacheSize}x${maxCacheSize}.png` : "";
+        const encoded = "file://" + imagePath.split('/').map(s => encodeURIComponent(s)).join('/');
+        source = cPath || encoded;
     }
 
     onStatusChanged: {

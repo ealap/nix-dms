@@ -19,7 +19,7 @@ BasePill {
                 anchors.centerIn: parent
                 name: SessionData.doNotDisturb ? "notifications_off" : "notifications"
                 size: Theme.barIconSize(root.barThickness, -4)
-                color: SessionData.doNotDisturb ? Theme.error : (root.isActive ? Theme.primary : Theme.widgetIconColor)
+                color: SessionData.doNotDisturb ? Theme.primary : (root.isActive ? Theme.primary : Theme.widgetIconColor)
             }
 
             Rectangle {
@@ -35,6 +35,6 @@ BasePill {
     }
 
     onRightClicked: {
-        SessionData.setDoNotDisturb(!SessionData.doNotDisturb)
+        SessionData.setDoNotDisturb(!SessionData.doNotDisturb);
     }
 }

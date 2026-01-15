@@ -1273,6 +1273,7 @@ Item {
                             spacing: Theme.spacingM
 
                             RowLayout {
+                                visible: optionsRow.argConfig?.base !== "screenshot-window"
                                 spacing: Theme.spacingXS
 
                                 DankToggle {
@@ -1441,8 +1442,9 @@ Item {
                         onTextChanged: {
                             if (root._actionType !== "shell")
                                 return;
+                            var shell = Actions.getShellFromAction(root.editAction);
                             root.updateEdit({
-                                "action": Actions.buildShellAction(KeybindsService.currentProvider, text)
+                                "action": Actions.buildShellAction(KeybindsService.currentProvider, text, shell)
                             });
                         }
                     }

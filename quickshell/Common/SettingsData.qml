@@ -145,6 +145,7 @@ Singleton {
     property bool controlCenterShowMicPercent: true
     property bool controlCenterShowBatteryIcon: false
     property bool controlCenterShowPrinterIcon: false
+    property bool controlCenterShowScreenSharingIcon: true
     property bool showPrivacyButton: true
     property bool privacyShowMicIcon: false
     property bool privacyShowCameraIcon: false
@@ -538,6 +539,7 @@ Singleton {
     property var desktopWidgetPositions: ({})
     property var desktopWidgetGridSettings: ({})
     property var desktopWidgetInstances: []
+    property var desktopWidgetGroups: []
 
     function getDesktopWidgetGridSetting(screenKey, property, defaultValue) {
         const val = desktopWidgetGridSettings?.[screenKey]?.[property];
@@ -689,6 +691,38 @@ Singleton {
         saveSettings();
     }
 
+    function syncDesktopWidgetPositionToAllScreens(instanceId) {
+        const instances = JSON.parse(JSON.stringify(desktopWidgetInstances || []));
+        const idx = instances.findIndex(inst => inst.id === instanceId);
+        if (idx === -1)
+            return;
+        const positions = instances[idx].positions || {};
+        const screenKeys = Object.keys(positions).filter(k => k !== "_synced");
+        if (screenKeys.length === 0)
+            return;
+        const sourceKey = screenKeys[0];
+        const sourcePos = positions[sourceKey];
+        if (!sourcePos)
+            return;
+        const screen = Array.from(Quickshell.screens.values()).find(s => getScreenDisplayName(s) === sourceKey);
+        if (!screen)
+            return;
+        const screenW = screen.width;
+        const screenH = screen.height;
+        const synced = {};
+        if (sourcePos.x !== undefined)
+            synced.x = sourcePos.x / screenW;
+        if (sourcePos.y !== undefined)
+            synced.y = sourcePos.y / screenH;
+        if (sourcePos.width !== undefined)
+            synced.width = sourcePos.width;
+        if (sourcePos.height !== undefined)
+            synced.height = sourcePos.height;
+        instances[idx].positions["_synced"] = synced;
+        desktopWidgetInstances = instances;
+        saveSettings();
+    }
+
     function duplicateDesktopWidgetInstance(instanceId) {
         const source = getDesktopWidgetInstance(instanceId);
         if (!source)
@@ -719,6 +753,110 @@ Singleton {
 
     function getEnabledDesktopWidgetInstances() {
         return (desktopWidgetInstances || []).filter(inst => inst.enabled);
+    }
+
+    function moveDesktopWidgetInstance(instanceId, direction) {
+        const instances = JSON.parse(JSON.stringify(desktopWidgetInstances || []));
+        const idx = instances.findIndex(inst => inst.id === instanceId);
+        if (idx === -1)
+            return false;
+        const targetIdx = direction === "up" ? idx - 1 : idx + 1;
+        if (targetIdx < 0 || targetIdx >= instances.length)
+            return false;
+        const temp = instances[idx];
+        instances[idx] = instances[targetIdx];
+        instances[targetIdx] = temp;
+        desktopWidgetInstances = instances;
+        saveSettings();
+        return true;
+    }
+
+    function reorderDesktopWidgetInstance(instanceId, newIndex) {
+        const instances = JSON.parse(JSON.stringify(desktopWidgetInstances || []));
+        const idx = instances.findIndex(inst => inst.id === instanceId);
+        if (idx === -1 || newIndex < 0 || newIndex >= instances.length)
+            return false;
+        const [item] = instances.splice(idx, 1);
+        instances.splice(newIndex, 0, item);
+        desktopWidgetInstances = instances;
+        saveSettings();
+        return true;
+    }
+
+    function reorderDesktopWidgetInstanceInGroup(instanceId, groupId, newIndexInGroup) {
+        const instances = JSON.parse(JSON.stringify(desktopWidgetInstances || []));
+        const groups = desktopWidgetGroups || [];
+        const groupMatches = inst => {
+            if (groupId === null)
+                return !inst.group || !groups.some(g => g.id === inst.group);
+            return inst.group === groupId;
+        };
+        const groupInstances = instances.filter(groupMatches);
+        const currentGroupIdx = groupInstances.findIndex(inst => inst.id === instanceId);
+        if (currentGroupIdx === -1 || currentGroupIdx === newIndexInGroup)
+            return false;
+        if (newIndexInGroup < 0 || newIndexInGroup >= groupInstances.length)
+            return false;
+        const globalIdx = instances.findIndex(inst => inst.id === instanceId);
+        if (globalIdx === -1)
+            return false;
+        const [item] = instances.splice(globalIdx, 1);
+        const targetInstance = groupInstances[newIndexInGroup];
+        let targetGlobalIdx = instances.findIndex(inst => inst.id === targetInstance.id);
+        if (newIndexInGroup > currentGroupIdx)
+            targetGlobalIdx++;
+        instances.splice(targetGlobalIdx, 0, item);
+        desktopWidgetInstances = instances;
+        saveSettings();
+        return true;
+    }
+
+    function createDesktopWidgetGroup(name) {
+        const id = "dwg_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
+        const group = {
+            id: id,
+            name: name,
+            collapsed: false
+        };
+        const groups = JSON.parse(JSON.stringify(desktopWidgetGroups || []));
+        groups.push(group);
+        desktopWidgetGroups = groups;
+        saveSettings();
+        return group;
+    }
+
+    function updateDesktopWidgetGroup(groupId, updates) {
+        const groups = JSON.parse(JSON.stringify(desktopWidgetGroups || []));
+        const idx = groups.findIndex(g => g.id === groupId);
+        if (idx === -1)
+            return;
+        Object.assign(groups[idx], updates);
+        desktopWidgetGroups = groups;
+        saveSettings();
+    }
+
+    function removeDesktopWidgetGroup(groupId) {
+        const instances = JSON.parse(JSON.stringify(desktopWidgetInstances || []));
+        for (let i = 0; i < instances.length; i++) {
+            if (instances[i].group === groupId)
+                instances[i].group = null;
+        }
+        desktopWidgetInstances = instances;
+        const groups = (desktopWidgetGroups || []).filter(g => g.id !== groupId);
+        desktopWidgetGroups = groups;
+        saveSettings();
+    }
+
+    function getDesktopWidgetGroup(groupId) {
+        return (desktopWidgetGroups || []).find(g => g.id === groupId) || null;
+    }
+
+    function getDesktopWidgetInstancesByGroup(groupId) {
+        return (desktopWidgetInstances || []).filter(inst => inst.group === groupId);
+    }
+
+    function getUngroupedDesktopWidgetInstances() {
+        return (desktopWidgetInstances || []).filter(inst => !inst.group);
     }
 
     signal forceDankBarLayoutRefresh

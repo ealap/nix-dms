@@ -74,12 +74,10 @@ Singleton {
         stdout: SplitParser {
             onRead: data => {
                 const result = data.trim();
-                root.checkComplete = true;
 
                 if (result === "first") {
                     root.isFirstLaunch = true;
                     console.info("FirstLaunchService: First launch detected, greeter will be shown");
-                    root.greeterRequested();
                 } else if (result === "existing_user") {
                     root.isFirstLaunch = false;
                     console.info("FirstLaunchService: Existing user detected, silently creating marker");
@@ -87,6 +85,11 @@ Singleton {
                 } else {
                     root.isFirstLaunch = false;
                 }
+
+                root.checkComplete = true;
+
+                if (root.isFirstLaunch)
+                    root.greeterRequested();
             }
         }
     }

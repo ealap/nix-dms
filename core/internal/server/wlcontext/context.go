@@ -124,25 +124,21 @@ func (sc *SharedContext) eventDispatcher() {
 	}
 
 	for {
+		sc.drainCmdQueue()
+
 		select {
 		case <-sc.stopChan:
 			return
 		default:
 		}
 
-		sc.drainCmdQueue()
-
-		n, err := unix.Poll(pollFds, 50)
-		if err != nil {
-			if err == unix.EINTR {
-				continue
-			}
+		_, err := unix.Poll(pollFds, -1)
+		switch {
+		case err == unix.EINTR:
+			continue
+		case err != nil:
 			log.Errorf("Poll error: %v", err)
 			return
-		}
-
-		if n == 0 {
-			continue
 		}
 
 		if pollFds[1].Revents&unix.POLLIN != 0 {
@@ -152,13 +148,13 @@ func (sc *SharedContext) eventDispatcher() {
 			}
 		}
 
-		if pollFds[0].Revents&unix.POLLIN != 0 {
-			if err := ctx.Dispatch(); err != nil {
-				if !os.IsTimeout(err) {
-					log.Errorf("Wayland connection error: %v", err)
-					return
-				}
-			}
+		if pollFds[0].Revents&unix.POLLIN == 0 {
+			continue
+		}
+
+		if err := ctx.Dispatch(); err != nil && !os.IsTimeout(err) {
+			log.Errorf("Wayland connection error: %v", err)
+			return
 		}
 	}
 }
@@ -176,12 +172,16 @@ func (sc *SharedContext) drainCmdQueue() {
 
 func (sc *SharedContext) Close() {
 	close(sc.stopChan)
+	if _, err := unix.Write(sc.wakeW, []byte{1}); err != nil && err != unix.EAGAIN {
+		log.Errorf("wake pipe write error on close: %v", err)
+	}
 	sc.wg.Wait()
 
 	unix.Close(sc.wakeR)
 	unix.Close(sc.wakeW)
 
-	if sc.display != nil {
-		sc.display.Context().Close()
+	if sc.display == nil {
+		return
 	}
+	sc.display.Context().Close()
 }

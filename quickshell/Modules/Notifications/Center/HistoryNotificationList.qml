@@ -83,23 +83,54 @@ Item {
     }
 
     readonly property var allFilters: [
-        { label: I18n.tr("All", "notification history filter"), key: "all", maxDays: 0 },
-        { label: I18n.tr("Last hour", "notification history filter"), key: "1h", maxDays: 1 },
-        { label: I18n.tr("Today", "notification history filter"), key: "today", maxDays: 1 },
-        { label: I18n.tr("Yesterday", "notification history filter"), key: "yesterday", maxDays: 2 },
-        { label: I18n.tr("7 days", "notification history filter"), key: "7d", maxDays: 7 },
-        { label: I18n.tr("30 days", "notification history filter"), key: "30d", maxDays: 30 },
-        { label: I18n.tr("Older", "notification history filter for content older than other filters"), key: "older", maxDays: 0 }
+        {
+            label: I18n.tr("All", "notification history filter"),
+            key: "all",
+            maxDays: 0
+        },
+        {
+            label: I18n.tr("Last hour", "notification history filter"),
+            key: "1h",
+            maxDays: 1
+        },
+        {
+            label: I18n.tr("Today", "notification history filter"),
+            key: "today",
+            maxDays: 1
+        },
+        {
+            label: I18n.tr("Yesterday", "notification history filter"),
+            key: "yesterday",
+            maxDays: 2
+        },
+        {
+            label: I18n.tr("7 days", "notification history filter"),
+            key: "7d",
+            maxDays: 7
+        },
+        {
+            label: I18n.tr("30 days", "notification history filter"),
+            key: "30d",
+            maxDays: 30
+        },
+        {
+            label: I18n.tr("Older", "notification history filter for content older than other filters"),
+            key: "older",
+            maxDays: 0
+        }
     ]
 
     function filterRelevantForRetention(filter) {
         const retention = SettingsData.notificationHistoryMaxAgeDays;
         if (filter.key === "older") {
-            if (retention === 0) return true;
+            if (retention === 0)
+                return true;
             return retention > 2 && retention < 7 || retention > 30;
         }
-        if (retention === 0) return true;
-        if (filter.maxDays === 0) return true;
+        if (retention === 0)
+            return true;
+        if (filter.maxDays === 0)
+            return true;
         return filter.maxDays <= retention;
     }
 
@@ -119,10 +150,15 @@ Item {
         const retention = SettingsData.notificationHistoryMaxAgeDays;
         for (let i = 0; i < allFilters.length; i++) {
             const f = allFilters[i];
-            if (!filterRelevantForRetention(f)) continue;
+            if (!filterRelevantForRetention(f))
+                continue;
             const count = countForFilter(f.key);
             if (f.key === "all" || count > 0) {
-                result.push({ label: f.label, key: f.key, count: count });
+                result.push({
+                    label: f.label,
+                    key: f.key,
+                    count: count
+                });
             }
         }
         return result;
@@ -165,6 +201,14 @@ Item {
     function enableAutoScroll() {
     }
 
+    function removeWithScrollPreserve(itemId) {
+        historyListView.savedY = historyListView.contentY;
+        NotificationService.removeFromHistory(itemId);
+        Qt.callLater(() => {
+            historyListView.forceLayout();
+        });
+    }
+
     Column {
         anchors.fill: parent
         spacing: Theme.spacingS
@@ -201,14 +245,66 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 
-            delegate: HistoryNotificationCard {
+            delegate: Item {
+                id: delegateRoot
                 required property var modelData
                 required property int index
 
+                property real swipeOffset: 0
+                property bool isDismissing: false
+                readonly property real dismissThreshold: width * 0.35
+
                 width: ListView.view.width
-                historyItem: modelData
-                isSelected: root.keyboardActive && root.selectedIndex === index
-                keyboardNavigationActive: root.keyboardActive
+                height: historyCard.height
+                clip: true
+
+                HistoryNotificationCard {
+                    id: historyCard
+                    width: parent.width
+                    x: delegateRoot.swipeOffset
+                    historyItem: modelData
+                    isSelected: root.keyboardActive && root.selectedIndex === index
+                    keyboardNavigationActive: root.keyboardActive
+                    opacity: 1 - Math.abs(delegateRoot.swipeOffset) / (delegateRoot.width * 0.5)
+
+                    Behavior on x {
+                        enabled: !swipeDragHandler.active
+                        NumberAnimation {
+                            duration: Theme.shortDuration
+                            easing.type: Theme.standardEasing
+                        }
+                    }
+
+                    Behavior on opacity {
+                        NumberAnimation {
+                            duration: Theme.shortDuration
+                        }
+                    }
+                }
+
+                DragHandler {
+                    id: swipeDragHandler
+                    target: null
+                    yAxis.enabled: false
+                    xAxis.enabled: true
+
+                    onActiveChanged: {
+                        if (active || delegateRoot.isDismissing)
+                            return;
+                        if (Math.abs(delegateRoot.swipeOffset) > delegateRoot.dismissThreshold) {
+                            delegateRoot.isDismissing = true;
+                            root.removeWithScrollPreserve(delegateRoot.modelData?.id || "");
+                        } else {
+                            delegateRoot.swipeOffset = 0;
+                        }
+                    }
+
+                    onTranslationChanged: {
+                        if (delegateRoot.isDismissing)
+                            return;
+                        delegateRoot.swipeOffset = translation.x;
+                    }
+                }
             }
         }
     }

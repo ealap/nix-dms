@@ -239,6 +239,9 @@
   "All displays": {
     "All displays": "Todas las pantallas"
   },
+  "Allow clicks to pass through the widget": {
+    "Allow clicks to pass through the widget": ""
+  },
   "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": {
     "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": "Alt+←/Backspace: Atrás • F1/I: Información del archivo • F10: Ayuda • Esc: Cerrar+"
   },
@@ -274,6 +277,9 @@
   },
   "Anonymous Identity (optional)": {
     "Anonymous Identity (optional)": "Identidad anónima (opcional)"
+  },
+  "App ID Substitutions": {
+    "App ID Substitutions": ""
   },
   "App Launcher": {
     "App Launcher": "Lanzador de aplicaciones"
@@ -721,6 +727,9 @@
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "Clic en importar para añadir un archivo .ovpn o .conf"
+  },
+  "Click Through": {
+    "Click Through": ""
   },
   "Click any shortcut to edit. Changes save to %1": {
     "Click any shortcut to edit. Changes save to %1": ""
@@ -1787,6 +1796,9 @@
   "Grid Columns": {
     "Grid Columns": "Columnas de cuadrícula"
   },
+  "Group": {
+    "Group": ""
+  },
   "Group Workspace Apps": {
     "Group Workspace Apps": "Aplicaciones del espacio de trabajo en grupo"
   },
@@ -1796,8 +1808,14 @@
   "Group multiple windows of the same app together with a window count indicator": {
     "Group multiple windows of the same app together with a window count indicator": "Mostrar número de ventanas agrupadas en el icono de la aplicación"
   },
+  "Group removed": {
+    "Group removed": ""
+  },
   "Group repeated application icons in unfocused workspaces": {
     "Group repeated application icons in unfocused workspaces": "Agrupar iconos de aplicaciones repetidos en espacios de trabajo desenfocados"
+  },
+  "Groups": {
+    "Groups": ""
   },
   "HDR (EDID)": {
     "HDR (EDID)": "HDR (EDID)"
@@ -2195,6 +2213,9 @@
   "Manual Show/Hide": {
     "Manual Show/Hide": "Mostrar/Ocultar manualmente"
   },
+  "Map window class names to icon names for proper icon display": {
+    "Map window class names to icon names for proper icon display": ""
+  },
   "Margin": {
     "Margin": "Margen"
   },
@@ -2416,6 +2437,9 @@
   },
   "New York, NY": {
     "New York, NY": "New York, NY"
+  },
+  "New group name...": {
+    "New group name...": ""
   },
   "Next Transition": {
     "Next Transition": "Siguiente transicion"
@@ -2648,6 +2672,9 @@
   "Options": {
     "Options": "Opciones"
   },
+  "Organize widgets into collapsible groups": {
+    "Organize widgets into collapsible groups": ""
+  },
   "Other": {
     "Other": "Otro"
   },
@@ -2719,6 +2746,9 @@
   },
   "Password": {
     "Password": "Contraseña"
+  },
+  "Pattern": {
+    "Pattern": ""
   },
   "Pause": {
     "Pause": "Pausar"
@@ -2980,6 +3010,9 @@
   },
   "Repeat": {
     "Repeat": ""
+  },
+  "Replacement": {
+    "Replacement": ""
   },
   "Report": {
     "Report": "Reporte"
@@ -3614,6 +3647,9 @@
   "Sync Mode with Portal": {
     "Sync Mode with Portal": "Sincronizar modo con los portales"
   },
+  "Sync Position Across Screens": {
+    "Sync Position Across Screens": ""
+  },
   "Sync dark mode with settings portals for system-wide theme hints": {
     "Sync dark mode with settings portals for system-wide theme hints": "Sincronizar el tema oscuro con las preferencias globales del sistema"
   },
@@ -3839,6 +3875,9 @@
   "Unfocused Color": {
     "Unfocused Color": ""
   },
+  "Ungrouped": {
+    "Ungrouped": ""
+  },
   "Uninstall Plugin": {
     "Uninstall Plugin": "Desinstalar complemento"
   },
@@ -3938,8 +3977,14 @@
   "Use light theme instead of dark theme": {
     "Use light theme instead of dark theme": "Usar tema claro en lugar del tema oscuro"
   },
+  "Use smaller notification cards": {
+    "Use smaller notification cards": ""
+  },
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "Usar tema de sonidos del sistema"
+  },
+  "Use the same position and size on all displays": {
+    "Use the same position and size on all displays": ""
   },
   "Use trigger prefix to activate": {
     "Use trigger prefix to activate": ""
