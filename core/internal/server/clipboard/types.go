@@ -19,6 +19,7 @@ type Config struct {
 	AutoClearDays  int   `json:"autoClearDays"`
 	ClearAtStartup bool  `json:"clearAtStartup"`
 	Disabled       bool  `json:"disabled"`
+	MaxPinned      int   `json:"maxPinned"`
 }
 
 func DefaultConfig() Config {
@@ -27,6 +28,7 @@ func DefaultConfig() Config {
 		MaxEntrySize:   5 * 1024 * 1024,
 		AutoClearDays:  0,
 		ClearAtStartup: false,
+		MaxPinned:      25,
 	}
 }
 
@@ -100,6 +102,7 @@ type Entry struct {
 	Timestamp time.Time `json:"timestamp"`
 	IsImage   bool      `json:"isImage"`
 	Hash      uint64    `json:"hash,omitempty"`
+	Pinned    bool      `json:"pinned"`
 }
 
 type State struct {

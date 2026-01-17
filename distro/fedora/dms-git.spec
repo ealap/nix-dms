@@ -33,7 +33,6 @@ Recommends:     cava
 Recommends:     danksearch
 Recommends:     matugen
 Recommends:     quickshell-git
-Recommends:     wl-clipboard
 
 # Recommended system packages
 Recommends:     NetworkManager

@@ -199,31 +199,6 @@ func labToHex(L, a, b float64) string {
 	return fmt.Sprintf("#%02x%02x%02x", r, g, b2)
 }
 
-// Adjust brightness while keeping the same hue
-func retoneToL(hex string, Ltarget float64) string {
-	rgb := HexToRGB(hex)
-	col := colorful.Color{R: rgb.R, G: rgb.G, B: rgb.B}
-	L, a, b := col.Lab()
-	L100 := L * 100.0
-
-	scale := 1.0
-	if L100 != 0 {
-		scale = Ltarget / L100
-	}
-
-	a2, b2 := a*scale, b*scale
-
-	// Don't let it get too saturated
-	maxChroma := 0.4
-	if math.Hypot(a2, b2) > maxChroma {
-		k := maxChroma / math.Hypot(a2, b2)
-		a2 *= k
-		b2 *= k
-	}
-
-	return labToHex(Ltarget, a2, b2)
-}
-
 func DeltaPhiStar(hexFg, hexBg string, negativePolarity bool) float64 {
 	Lf := getLstar(hexFg)
 	Lb := getLstar(hexBg)
@@ -356,6 +331,59 @@ func EnsureContrastDPSLstar(hexColor, hexBg string, minLc float64, isLightMode b
 	return hexColor
 }
 
+// Bidirectional contrast - tries both lighter and darker, picks closest to original
+func EnsureContrastDPSBidirectional(hexColor, hexBg string, minLc float64, isLightMode bool) string {
+	current := DeltaPhiStarContrast(hexColor, hexBg, isLightMode)
+	if current >= minLc {
+		return hexColor
+	}
+
+	fg := HexToRGB(hexColor)
+	cf := colorful.Color{R: fg.R, G: fg.G, B: fg.B}
+	origL, af, bf := cf.Lab()
+
+	var darkerResult, lighterResult string
+	darkerL, lighterL := origL, origL
+	darkerFound, lighterFound := false, false
+
+	step := 0.5
+	for i := range 120 {
+		if !darkerFound {
+			darkerL = math.Max(0, origL-float64(i)*step)
+			cand := labToHex(darkerL, af, bf)
+			if DeltaPhiStarContrast(cand, hexBg, isLightMode) >= minLc {
+				darkerResult = cand
+				darkerFound = true
+			}
+		}
+		if !lighterFound {
+			lighterL = math.Min(100, origL+float64(i)*step)
+			cand := labToHex(lighterL, af, bf)
+			if DeltaPhiStarContrast(cand, hexBg, isLightMode) >= minLc {
+				lighterResult = cand
+				lighterFound = true
+			}
+		}
+		if darkerFound && lighterFound {
+			break
+		}
+	}
+
+	if darkerFound && lighterFound {
+		if math.Abs(darkerL-origL) <= math.Abs(lighterL-origL) {
+			return darkerResult
+		}
+		return lighterResult
+	}
+	if darkerFound {
+		return darkerResult
+	}
+	if lighterFound {
+		return lighterResult
+	}
+	return hexColor
+}
+
 type PaletteOptions struct {
 	IsLight    bool
 	Background string
@@ -367,6 +395,29 @@ func ensureContrastAuto(hexColor, hexBg string, target float64, opts PaletteOpti
 		return EnsureContrastDPSLstar(hexColor, hexBg, target, opts.IsLight)
 	}
 	return EnsureContrast(hexColor, hexBg, target, opts.IsLight)
+}
+
+func ensureContrastBidirectional(hexColor, hexBg string, target float64, opts PaletteOptions) string {
+	if opts.UseDPS {
+		return EnsureContrastDPSBidirectional(hexColor, hexBg, target, opts.IsLight)
+	}
+	return EnsureContrast(hexColor, hexBg, target, opts.IsLight)
+}
+
+func blendHue(base, target, factor float64) float64 {
+	diff := target - base
+	if diff > 0.5 {
+		diff -= 1.0
+	} else if diff < -0.5 {
+		diff += 1.0
+	}
+	result := base + diff*factor
+	if result < 0 {
+		result += 1.0
+	} else if result >= 1.0 {
+		result -= 1.0
+	}
+	return result
 }
 
 func DeriveContainer(primary string, isLight bool) string {
@@ -389,6 +440,9 @@ func GeneratePalette(primaryColor string, opts PaletteOptions) Palette {
 	rgb := HexToRGB(baseColor)
 	hsv := RGBToHSV(rgb)
 
+	pr := HexToRGB(primaryColor)
+	ph := RGBToHSV(pr)
+
 	var palette Palette
 
 	var normalTextTarget, secondaryTarget float64
@@ -410,115 +464,136 @@ func GeneratePalette(primaryColor string, opts PaletteOptions) Palette {
 	}
 	palette.Color0 = NewColorInfo(bgColor)
 
-	hueShift := (hsv.H - 0.6) * 0.12
-	satBoost := 1.15
+	baseSat := math.Max(ph.S, 0.5)
+	baseVal := math.Max(ph.V, 0.5)
 
-	redH := math.Mod(0.0+hueShift+1.0, 1.0)
-	var redColor string
-	if opts.IsLight {
-		redColor = RGBToHex(HSVToRGB(HSV{H: redH, S: math.Min(0.80*satBoost, 1.0), V: 0.55}))
-		palette.Color1 = NewColorInfo(ensureContrastAuto(redColor, bgColor, normalTextTarget, opts))
-	} else {
-		redColor = RGBToHex(HSVToRGB(HSV{H: redH, S: math.Min(0.65*satBoost, 1.0), V: 0.80}))
-		palette.Color1 = NewColorInfo(ensureContrastAuto(redColor, bgColor, normalTextTarget, opts))
-	}
+	redH := blendHue(0.0, ph.H, 0.12)
+	greenH := blendHue(0.33, ph.H, 0.10)
+	yellowH := blendHue(0.14, ph.H, 0.04)
 
-	greenH := math.Mod(0.33+hueShift+1.0, 1.0)
-	var greenColor string
-	if opts.IsLight {
-		greenColor = RGBToHex(HSVToRGB(HSV{H: greenH, S: math.Min(math.Max(hsv.S*0.9, 0.80)*satBoost, 1.0), V: 0.45}))
-		palette.Color2 = NewColorInfo(ensureContrastAuto(greenColor, bgColor, normalTextTarget, opts))
-	} else {
-		greenColor = RGBToHex(HSVToRGB(HSV{H: greenH, S: math.Min(0.42*satBoost, 1.0), V: 0.84}))
-		palette.Color2 = NewColorInfo(ensureContrastAuto(greenColor, bgColor, normalTextTarget, opts))
-	}
-
-	yellowH := math.Mod(0.15+hueShift+1.0, 1.0)
-	var yellowColor string
-	if opts.IsLight {
-		yellowColor = RGBToHex(HSVToRGB(HSV{H: yellowH, S: math.Min(0.75*satBoost, 1.0), V: 0.50}))
-		palette.Color3 = NewColorInfo(ensureContrastAuto(yellowColor, bgColor, normalTextTarget, opts))
-	} else {
-		yellowColor = RGBToHex(HSVToRGB(HSV{H: yellowH, S: math.Min(0.38*satBoost, 1.0), V: 0.86}))
-		palette.Color3 = NewColorInfo(ensureContrastAuto(yellowColor, bgColor, normalTextTarget, opts))
-	}
-
-	var blueColor string
-	if opts.IsLight {
-		blueColor = RGBToHex(HSVToRGB(HSV{H: hsv.H, S: math.Max(hsv.S*0.9, 0.7), V: hsv.V * 1.1}))
-		palette.Color4 = NewColorInfo(ensureContrastAuto(blueColor, bgColor, normalTextTarget, opts))
-	} else {
-		blueColor = RGBToHex(HSVToRGB(HSV{H: hsv.H, S: math.Max(hsv.S*0.8, 0.6), V: math.Min(hsv.V*1.6, 1.0)}))
-		palette.Color4 = NewColorInfo(ensureContrastAuto(blueColor, bgColor, normalTextTarget, opts))
-	}
-
-	magH := hsv.H - 0.03
-	if magH < 0 {
-		magH += 1.0
-	}
-	var magColor string
-	hr := HexToRGB(primaryColor)
-	hh := RGBToHSV(hr)
-	if opts.IsLight {
-		magColor = RGBToHex(HSVToRGB(HSV{H: hh.H, S: math.Max(hh.S*0.9, 0.7), V: hh.V * 0.85}))
-		palette.Color5 = NewColorInfo(ensureContrastAuto(magColor, bgColor, normalTextTarget, opts))
-	} else {
-		magColor = RGBToHex(HSVToRGB(HSV{H: hh.H, S: hh.S * 0.8, V: hh.V * 0.75}))
-		palette.Color5 = NewColorInfo(ensureContrastAuto(magColor, bgColor, normalTextTarget, opts))
-	}
-
-	cyanH := hsv.H + 0.08
-	if cyanH > 1.0 {
-		cyanH -= 1.0
-	}
-	palette.Color6 = NewColorInfo(ensureContrastAuto(primaryColor, bgColor, normalTextTarget, opts))
+	accentTarget := secondaryTarget * 0.7
 
 	if opts.IsLight {
-		palette.Color7 = NewColorInfo("#1a1a1a")
-		palette.Color8 = NewColorInfo("#2e2e2e")
-	} else {
-		palette.Color7 = NewColorInfo("#abb2bf")
-		palette.Color8 = NewColorInfo("#5c6370")
-	}
+		redS := math.Min(baseSat*1.2, 1.0)
+		redV := baseVal * 0.95
+		palette.Color1 = NewColorInfo(ensureContrastAuto(RGBToHex(HSVToRGB(HSV{H: redH, S: redS, V: redV})), bgColor, normalTextTarget, opts))
 
-	if opts.IsLight {
-		brightRed := RGBToHex(HSVToRGB(HSV{H: redH, S: math.Min(0.70*satBoost, 1.0), V: 0.65}))
-		palette.Color9 = NewColorInfo(ensureContrastAuto(brightRed, bgColor, secondaryTarget, opts))
-		brightGreen := RGBToHex(HSVToRGB(HSV{H: greenH, S: math.Min(math.Max(hsv.S*0.85, 0.75)*satBoost, 1.0), V: 0.55}))
-		palette.Color10 = NewColorInfo(ensureContrastAuto(brightGreen, bgColor, secondaryTarget, opts))
-		brightYellow := RGBToHex(HSVToRGB(HSV{H: yellowH, S: math.Min(0.68*satBoost, 1.0), V: 0.60}))
-		palette.Color11 = NewColorInfo(ensureContrastAuto(brightYellow, bgColor, secondaryTarget, opts))
-		hr := HexToRGB(primaryColor)
-		hh := RGBToHSV(hr)
-		brightBlue := RGBToHex(HSVToRGB(HSV{H: hh.H, S: math.Min(hh.S*1.1, 1.0), V: math.Min(hh.V*1.2, 1.0)}))
-		palette.Color12 = NewColorInfo(ensureContrastAuto(brightBlue, bgColor, secondaryTarget, opts))
-		brightMag := RGBToHex(HSVToRGB(HSV{H: magH, S: math.Max(hsv.S*0.9, 0.75), V: math.Min(hsv.V*1.25, 1.0)}))
-		palette.Color13 = NewColorInfo(ensureContrastAuto(brightMag, bgColor, secondaryTarget, opts))
-		brightCyan := RGBToHex(HSVToRGB(HSV{H: cyanH, S: math.Max(hsv.S*0.75, 0.65), V: math.Min(hsv.V*1.25, 1.0)}))
-		palette.Color14 = NewColorInfo(ensureContrastAuto(brightCyan, bgColor, secondaryTarget, opts))
-	} else {
-		brightRed := RGBToHex(HSVToRGB(HSV{H: redH, S: math.Min(0.50*satBoost, 1.0), V: 0.88}))
-		palette.Color9 = NewColorInfo(ensureContrastAuto(brightRed, bgColor, secondaryTarget, opts))
-		brightGreen := RGBToHex(HSVToRGB(HSV{H: greenH, S: math.Min(0.35*satBoost, 1.0), V: 0.88}))
-		palette.Color10 = NewColorInfo(ensureContrastAuto(brightGreen, bgColor, secondaryTarget, opts))
-		brightYellow := RGBToHex(HSVToRGB(HSV{H: yellowH, S: math.Min(0.30*satBoost, 1.0), V: 0.91}))
-		palette.Color11 = NewColorInfo(ensureContrastAuto(brightYellow, bgColor, secondaryTarget, opts))
-		brightBlue := retoneToL(primaryColor, 85.0)
-		palette.Color12 = NewColorInfo(brightBlue)
-		brightMag := RGBToHex(HSVToRGB(HSV{H: magH, S: math.Max(hsv.S*0.7, 0.6), V: math.Min(hsv.V*1.3, 0.9)}))
-		palette.Color13 = NewColorInfo(ensureContrastAuto(brightMag, bgColor, secondaryTarget, opts))
-		brightCyanH := hsv.H + 0.02
-		if brightCyanH > 1.0 {
-			brightCyanH -= 1.0
-		}
-		brightCyan := RGBToHex(HSVToRGB(HSV{H: brightCyanH, S: math.Max(hsv.S*0.6, 0.5), V: math.Min(hsv.V*1.2, 0.85)}))
-		palette.Color14 = NewColorInfo(ensureContrastAuto(brightCyan, bgColor, secondaryTarget, opts))
-	}
+		greenS := math.Min(baseSat*1.3, 1.0)
+		greenV := baseVal * 0.75
+		palette.Color2 = NewColorInfo(ensureContrastAuto(RGBToHex(HSVToRGB(HSV{H: greenH, S: greenS, V: greenV})), bgColor, normalTextTarget, opts))
 
-	if opts.IsLight {
-		palette.Color15 = NewColorInfo("#1a1a1a")
+		yellowS := math.Min(baseSat*1.5, 1.0)
+		yellowV := math.Min(baseVal*1.2, 1.0)
+		palette.Color3 = NewColorInfo(ensureContrastBidirectional(RGBToHex(HSVToRGB(HSV{H: yellowH, S: yellowS, V: yellowV})), bgColor, accentTarget, opts))
+
+		blueS := math.Min(ph.S*1.05, 1.0)
+		blueV := math.Min(ph.V*1.05, 1.0)
+		palette.Color4 = NewColorInfo(ensureContrastAuto(RGBToHex(HSVToRGB(HSV{H: ph.H, S: blueS, V: blueV})), bgColor, normalTextTarget, opts))
+
+		// Color5 matches primary_container exactly (light container in light mode)
+		container5 := DeriveContainer(primaryColor, true)
+		palette.Color5 = NewColorInfo(container5)
+
+		palette.Color6 = NewColorInfo(primaryColor)
+
+		gray7S := baseSat * 0.08
+		gray7V := baseVal * 0.28
+		palette.Color7 = NewColorInfo(ensureContrastAuto(RGBToHex(HSVToRGB(HSV{H: hsv.H, S: gray7S, V: gray7V})), bgColor, normalTextTarget, opts))
+
+		gray8S := baseSat * 0.05
+		gray8V := baseVal * 0.85
+		dimTarget := secondaryTarget * 0.5
+		palette.Color8 = NewColorInfo(ensureContrastBidirectional(RGBToHex(HSVToRGB(HSV{H: hsv.H, S: gray8S, V: gray8V})), bgColor, dimTarget, opts))
+
+		brightRedS := math.Min(baseSat*1.0, 1.0)
+		brightRedV := math.Min(baseVal*1.2, 1.0)
+		palette.Color9 = NewColorInfo(ensureContrastBidirectional(RGBToHex(HSVToRGB(HSV{H: redH, S: brightRedS, V: brightRedV})), bgColor, accentTarget, opts))
+
+		brightGreenS := math.Min(baseSat*1.1, 1.0)
+		brightGreenV := math.Min(baseVal*1.1, 1.0)
+		palette.Color10 = NewColorInfo(ensureContrastBidirectional(RGBToHex(HSVToRGB(HSV{H: greenH, S: brightGreenS, V: brightGreenV})), bgColor, accentTarget, opts))
+
+		brightYellowS := math.Min(baseSat*1.4, 1.0)
+		brightYellowV := math.Min(baseVal*1.3, 1.0)
+		palette.Color11 = NewColorInfo(ensureContrastBidirectional(RGBToHex(HSVToRGB(HSV{H: yellowH, S: brightYellowS, V: brightYellowV})), bgColor, accentTarget, opts))
+
+		brightBlueS := math.Min(ph.S*1.1, 1.0)
+		brightBlueV := math.Min(ph.V*1.15, 1.0)
+		palette.Color12 = NewColorInfo(ensureContrastBidirectional(RGBToHex(HSVToRGB(HSV{H: ph.H, S: brightBlueS, V: brightBlueV})), bgColor, accentTarget, opts))
+
+		lightContainer := DeriveContainer(primaryColor, true)
+		palette.Color13 = NewColorInfo(lightContainer)
+
+		brightCyanS := ph.S * 0.5
+		brightCyanV := math.Min(ph.V*1.3, 1.0)
+		palette.Color14 = NewColorInfo(RGBToHex(HSVToRGB(HSV{H: ph.H, S: brightCyanS, V: brightCyanV})))
+
+		white15S := baseSat * 0.04
+		white15V := math.Min(baseVal*1.5, 1.0)
+		palette.Color15 = NewColorInfo(RGBToHex(HSVToRGB(HSV{H: hsv.H, S: white15S, V: white15V})))
 	} else {
-		palette.Color15 = NewColorInfo("#ffffff")
+		redS := math.Min(baseSat*1.1, 1.0)
+		redV := math.Min(baseVal*1.15, 1.0)
+		palette.Color1 = NewColorInfo(ensureContrastAuto(RGBToHex(HSVToRGB(HSV{H: redH, S: redS, V: redV})), bgColor, normalTextTarget, opts))
+
+		greenS := math.Min(baseSat*1.0, 1.0)
+		greenV := math.Min(baseVal*1.0, 1.0)
+		palette.Color2 = NewColorInfo(ensureContrastAuto(RGBToHex(HSVToRGB(HSV{H: greenH, S: greenS, V: greenV})), bgColor, normalTextTarget, opts))
+
+		yellowS := math.Min(baseSat*1.1, 1.0)
+		yellowV := math.Min(baseVal*1.25, 1.0)
+		palette.Color3 = NewColorInfo(ensureContrastAuto(RGBToHex(HSVToRGB(HSV{H: yellowH, S: yellowS, V: yellowV})), bgColor, normalTextTarget, opts))
+
+		// Slightly more saturated variant of primary
+		blueS := math.Min(ph.S*1.2, 1.0)
+		blueV := ph.V * 0.95
+		palette.Color4 = NewColorInfo(ensureContrastAuto(RGBToHex(HSVToRGB(HSV{H: ph.H, S: blueS, V: blueV})), bgColor, normalTextTarget, opts))
+
+		// Color5 matches primary_container exactly (dark container in dark mode)
+		darkContainer := DeriveContainer(primaryColor, false)
+		palette.Color5 = NewColorInfo(darkContainer)
+
+		palette.Color6 = NewColorInfo(primaryColor)
+
+		gray7S := baseSat * 0.12
+		gray7V := math.Min(baseVal*1.05, 1.0)
+		palette.Color7 = NewColorInfo(ensureContrastAuto(RGBToHex(HSVToRGB(HSV{H: hsv.H, S: gray7S, V: gray7V})), bgColor, normalTextTarget, opts))
+
+		gray8S := baseSat * 0.15
+		gray8V := baseVal * 0.65
+		palette.Color8 = NewColorInfo(ensureContrastAuto(RGBToHex(HSVToRGB(HSV{H: hsv.H, S: gray8S, V: gray8V})), bgColor, secondaryTarget, opts))
+
+		brightRedS := math.Min(baseSat*0.75, 1.0)
+		brightRedV := math.Min(baseVal*1.35, 1.0)
+		palette.Color9 = NewColorInfo(ensureContrastBidirectional(RGBToHex(HSVToRGB(HSV{H: redH, S: brightRedS, V: brightRedV})), bgColor, accentTarget, opts))
+
+		brightGreenS := math.Min(baseSat*0.7, 1.0)
+		brightGreenV := math.Min(baseVal*1.2, 1.0)
+		palette.Color10 = NewColorInfo(ensureContrastBidirectional(RGBToHex(HSVToRGB(HSV{H: greenH, S: brightGreenS, V: brightGreenV})), bgColor, accentTarget, opts))
+
+		brightYellowS := math.Min(baseSat*0.7, 1.0)
+		brightYellowV := math.Min(baseVal*1.5, 1.0)
+		palette.Color11 = NewColorInfo(ensureContrastBidirectional(RGBToHex(HSVToRGB(HSV{H: yellowH, S: brightYellowS, V: brightYellowV})), bgColor, accentTarget, opts))
+
+		// Create a gradient of primary variants: Color12 -> Color13 -> Color14 -> Color15 (near white)
+		// Color12: Start of the lighter gradient - slightly desaturated
+		brightBlueS := ph.S * 0.85
+		brightBlueV := math.Min(ph.V*1.1, 1.0)
+		palette.Color12 = NewColorInfo(ensureContrastBidirectional(RGBToHex(HSVToRGB(HSV{H: ph.H, S: brightBlueS, V: brightBlueV})), bgColor, accentTarget, opts))
+
+		// Medium-high saturation pastel primary
+		color13S := ph.S * 0.7
+		color13V := math.Min(ph.V*1.3, 1.0)
+		palette.Color13 = NewColorInfo(RGBToHex(HSVToRGB(HSV{H: ph.H, S: color13S, V: color13V})))
+
+		// Lower saturation, lighter variant
+		color14S := ph.S * 0.45
+		color14V := math.Min(ph.V*1.4, 1.0)
+		palette.Color14 = NewColorInfo(RGBToHex(HSVToRGB(HSV{H: ph.H, S: color14S, V: color14V})))
+
+		white15S := baseSat * 0.05
+		white15V := math.Min(baseVal*1.45, 1.0)
+		palette.Color15 = NewColorInfo(ensureContrastAuto(RGBToHex(HSVToRGB(HSV{H: hsv.H, S: white15S, V: white15V})), bgColor, normalTextTarget, opts))
 	}
 
 	return palette

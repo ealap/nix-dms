@@ -125,6 +125,33 @@ Item {
         }
     ]
 
+    readonly property var maxPinnedOptions: [
+        {
+            text: "5",
+            value: 5
+        },
+        {
+            text: "10",
+            value: 10
+        },
+        {
+            text: "15",
+            value: 15
+        },
+        {
+            text: "25",
+            value: 25
+        },
+        {
+            text: "50",
+            value: 50
+        },
+        {
+            text: "100",
+            value: 100
+        }
+    ]
+
     function getMaxHistoryText(value) {
         if (value <= 0)
             return "∞";
@@ -150,6 +177,14 @@ Item {
                 return opt.text;
         }
         return value + " " + I18n.tr("days");
+    }
+
+    function getMaxPinnedText(value) {
+        for (let opt of maxPinnedOptions) {
+            if (opt.value === value)
+                return opt.text;
+        }
+        return value.toString();
     }
 
     function loadConfig() {
@@ -290,6 +325,24 @@ Item {
                         for (let opt of root.autoClearOptions) {
                             if (opt.text === value) {
                                 root.saveConfig("autoClearDays", opt.value);
+                                return;
+                            }
+                        }
+                    }
+                }
+
+                SettingsDropdownRow {
+                    tab: "clipboard"
+                    tags: ["clipboard", "pinned", "max", "limit"]
+                    settingKey: "maxPinned"
+                    text: I18n.tr("Maximum Pinned Entries")
+                    description: I18n.tr("Maximum number of entries that can be saved")
+                    currentValue: root.getMaxPinnedText(root.config.maxPinned ?? 25)
+                    options: root.maxPinnedOptions.map(opt => opt.text)
+                    onValueChanged: value => {
+                        for (let opt of root.maxPinnedOptions) {
+                            if (opt.text === value) {
+                                root.saveConfig("maxPinned", opt.value);
                                 return;
                             }
                         }

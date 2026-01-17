@@ -202,7 +202,7 @@
     {
       "scope": ["keyword"],
       "settings": {
-        "foreground": "{{dank16.color5.dark.hex}}"
+        "foreground": "{{dank16.color6.dark.hex}}"
       }
     },
     {
@@ -320,7 +320,7 @@
       "foreground": "{{dank16.color12.dark.hex}}"
     },
     "keyword": {
-      "foreground": "{{dank16.color5.dark.hex}}"
+      "foreground": "{{dank16.color6.dark.hex}}"
     },
     "comment": {
       "foreground": "{{dank16.color8.dark.hex}}"

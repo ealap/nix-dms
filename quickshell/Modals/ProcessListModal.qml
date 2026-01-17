@@ -11,7 +11,8 @@ FloatingWindow {
     id: processListModal
 
     property int currentTab: 0
-    property var tabNames: ["Processes", "Performance", "System"]
+    property string searchText: ""
+    property string expandedPid: ""
     property bool shouldHaveFocus: visible
     property alias shouldBeVisible: processListModal.visible
 
@@ -27,9 +28,8 @@ FloatingWindow {
 
     function hide() {
         visible = false;
-        if (processContextMenu.visible) {
+        if (processContextMenu.visible)
             processContextMenu.close();
-        }
     }
 
     function toggle() {
@@ -61,44 +61,37 @@ FloatingWindow {
         show();
     }
 
+    function formatBytes(bytes) {
+        if (bytes < 1024)
+            return bytes.toFixed(0) + " B/s";
+        if (bytes < 1024 * 1024)
+            return (bytes / 1024).toFixed(1) + " KB/s";
+        if (bytes < 1024 * 1024 * 1024)
+            return (bytes / (1024 * 1024)).toFixed(1) + " MB/s";
+        return (bytes / (1024 * 1024 * 1024)).toFixed(2) + " GB/s";
+    }
+
     objectName: "processListModal"
     title: I18n.tr("System Monitor", "sysmon window title")
-    minimumSize: Qt.size(650, 400)
-    implicitWidth: 900
-    implicitHeight: 680
+    minimumSize: Qt.size(750, 550)
+    implicitWidth: 1000
+    implicitHeight: 720
     color: Theme.surfaceContainer
     visible: false
 
     onVisibleChanged: {
         if (!visible) {
             closingModal();
+            searchText = "";
+            expandedPid = "";
+            DgopService.removeRef(["cpu", "memory", "network", "disk", "system"]);
         } else {
+            DgopService.addRef(["cpu", "memory", "network", "disk", "system"]);
             Qt.callLater(() => {
-                if (contentFocusScope) {
+                if (contentFocusScope)
                     contentFocusScope.forceActiveFocus();
-                }
             });
         }
-    }
-
-    Component {
-        id: processesTabComponent
-
-        ProcessesTab {
-            contextMenu: processContextMenu
-        }
-    }
-
-    Component {
-        id: performanceTabComponent
-
-        PerformanceTab {}
-    }
-
-    Component {
-        id: systemTabComponent
-
-        SystemTab {}
     }
 
     ProcessContextMenu {
@@ -128,6 +121,26 @@ FloatingWindow {
                 currentTab = 2;
                 event.accepted = true;
                 return;
+            case Qt.Key_4:
+                currentTab = 3;
+                event.accepted = true;
+                return;
+            case Qt.Key_Escape:
+                if (searchText.length > 0) {
+                    searchText = "";
+                    event.accepted = true;
+                    return;
+                }
+                hide();
+                event.accepted = true;
+                return;
+            case Qt.Key_F:
+                if (event.modifiers & Qt.ControlModifier) {
+                    searchField.forceActiveFocus();
+                    event.accepted = true;
+                    return;
+                }
+                break;
             }
         }
 
@@ -161,7 +174,7 @@ FloatingWindow {
                 }
 
                 StyledText {
-                    text: I18n.tr("The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.")
+                    text: I18n.tr("The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.", "dgop unavailable error message")
                     font.pixelSize: Theme.fontSizeMedium
                     color: Theme.surfaceText
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -171,14 +184,14 @@ FloatingWindow {
             }
         }
 
-        Column {
+        ColumnLayout {
             anchors.fill: parent
             spacing: 0
             visible: DgopService.dgopAvailable
 
             Item {
-                width: parent.width
-                height: 48
+                Layout.fillWidth: true
+                Layout.preferredHeight: 48
 
                 MouseArea {
                     anchors.fill: parent
@@ -233,166 +246,276 @@ FloatingWindow {
                 }
             }
 
-            Item {
-                width: parent.width
-                height: parent.height - 48
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 52
+                Layout.leftMargin: Theme.spacingL
+                Layout.rightMargin: Theme.spacingL
+                spacing: Theme.spacingL
 
-                ColumnLayout {
-                    anchors.fill: parent
-                    anchors.leftMargin: Theme.spacingL
-                    anchors.rightMargin: Theme.spacingL
-                    anchors.bottomMargin: Theme.spacingL
-                    anchors.topMargin: 0
-                    spacing: Theme.spacingL
+                Row {
+                    spacing: 2
 
-                    Rectangle {
-                        Layout.fillWidth: true
-                        height: 52
-                        color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
-                        radius: Theme.cornerRadius
-                        border.color: Theme.outlineLight
-                        border.width: 1
+                    Repeater {
+                        model: [
+                            {
+                                text: I18n.tr("Processes"),
+                                icon: "list_alt"
+                            },
+                            {
+                                text: I18n.tr("Performance"),
+                                icon: "analytics"
+                            },
+                            {
+                                text: I18n.tr("Disks"),
+                                icon: "storage"
+                            },
+                            {
+                                text: I18n.tr("System"),
+                                icon: "computer"
+                            }
+                        ]
 
-                        Row {
-                            anchors.fill: parent
-                            anchors.margins: 4
-                            spacing: 2
+                        Rectangle {
+                            width: 120
+                            height: 44
+                            radius: Theme.cornerRadius
+                            color: currentTab === index ? Theme.primaryPressed : (tabMouseArea.containsMouse ? Theme.primaryHoverLight : "transparent")
+                            border.color: currentTab === index ? Theme.primary : "transparent"
+                            border.width: currentTab === index ? 1 : 0
 
-                            Repeater {
-                                model: tabNames
+                            Row {
+                                anchors.centerIn: parent
+                                spacing: Theme.spacingXS
 
-                                Rectangle {
-                                    width: (parent.width - (tabNames.length - 1) * 2) / tabNames.length
-                                    height: 44
-                                    radius: Theme.cornerRadius
-                                    color: currentTab === index ? Theme.primaryPressed : (tabMouseArea.containsMouse ? Theme.primaryHoverLight : "transparent")
-                                    border.color: currentTab === index ? Theme.primary : "transparent"
-                                    border.width: currentTab === index ? 1 : 0
+                                DankIcon {
+                                    name: modelData.icon
+                                    size: Theme.iconSize - 2
+                                    color: currentTab === index ? Theme.primary : Theme.surfaceText
+                                    opacity: currentTab === index ? 1 : 0.7
+                                    anchors.verticalCenter: parent.verticalCenter
+                                }
 
-                                    Row {
-                                        anchors.centerIn: parent
-                                        spacing: Theme.spacingXS
+                                StyledText {
+                                    text: modelData.text
+                                    font.pixelSize: Theme.fontSizeMedium
+                                    font.weight: Font.Medium
+                                    color: currentTab === index ? Theme.primary : Theme.surfaceText
+                                    anchors.verticalCenter: parent.verticalCenter
+                                }
+                            }
 
-                                        DankIcon {
-                                            name: {
-                                                const tabIcons = ["list_alt", "analytics", "settings"];
-                                                return tabIcons[index] || "tab";
-                                            }
-                                            size: Theme.iconSize - 2
-                                            color: currentTab === index ? Theme.primary : Theme.surfaceText
-                                            opacity: currentTab === index ? 1 : 0.7
-                                            anchors.verticalCenter: parent.verticalCenter
+                            MouseArea {
+                                id: tabMouseArea
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: currentTab = index
+                            }
 
-                                            Behavior on color {
-                                                ColorAnimation {
-                                                    duration: Theme.shortDuration
-                                                }
-                                            }
-                                        }
-
-                                        StyledText {
-                                            text: modelData
-                                            font.pixelSize: Theme.fontSizeLarge
-                                            font.weight: Font.Medium
-                                            color: currentTab === index ? Theme.primary : Theme.surfaceText
-                                            anchors.verticalCenter: parent.verticalCenter
-                                            anchors.verticalCenterOffset: -1
-
-                                            Behavior on color {
-                                                ColorAnimation {
-                                                    duration: Theme.shortDuration
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    MouseArea {
-                                        id: tabMouseArea
-
-                                        anchors.fill: parent
-                                        hoverEnabled: true
-                                        cursorShape: Qt.PointingHandCursor
-                                        onClicked: () => {
-                                            currentTab = index;
-                                        }
-                                    }
-
-                                    Behavior on color {
-                                        ColorAnimation {
-                                            duration: Theme.shortDuration
-                                        }
-                                    }
-
-                                    Behavior on border.color {
-                                        ColorAnimation {
-                                            duration: Theme.shortDuration
-                                        }
-                                    }
+                            Behavior on color {
+                                ColorAnimation {
+                                    duration: Theme.shortDuration
                                 }
                             }
                         }
                     }
+                }
 
-                    Rectangle {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        radius: Theme.cornerRadius
-                        color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
-                        border.color: Theme.outlineLight
-                        border.width: 1
+                Item {
+                    Layout.fillWidth: true
+                }
 
-                        Loader {
-                            id: processesTab
+                DankTextField {
+                    id: searchField
+                    Layout.preferredWidth: 250
+                    Layout.preferredHeight: 40
+                    placeholderText: I18n.tr("Search processes...", "process search placeholder")
+                    leftIconName: "search"
+                    showClearButton: true
+                    text: searchText
+                    visible: currentTab === 0
+                    onTextChanged: searchText = text
+                }
+            }
 
-                            anchors.fill: parent
-                            anchors.margins: Theme.spacingS
-                            active: processListModal.visible && currentTab === 0
-                            visible: currentTab === 0
-                            opacity: currentTab === 0 ? 1 : 0
-                            sourceComponent: processesTabComponent
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.margins: Theme.spacingL
+                Layout.topMargin: Theme.spacingM
+                radius: Theme.cornerRadius
+                color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                border.color: Theme.outlineLight
+                border.width: 1
+                clip: true
 
-                            Behavior on opacity {
-                                NumberAnimation {
-                                    duration: Theme.mediumDuration
-                                    easing.type: Theme.emphasizedEasing
-                                }
-                            }
+                Loader {
+                    id: processesTabLoader
+                    anchors.fill: parent
+                    anchors.margins: Theme.spacingS
+                    active: processListModal.visible && currentTab === 0
+                    visible: currentTab === 0
+                    sourceComponent: ProcessesView {
+                        searchText: processListModal.searchText
+                        expandedPid: processListModal.expandedPid
+                        contextMenu: processContextMenu
+                        onExpandedPidChanged: processListModal.expandedPid = expandedPid
+                    }
+                }
+
+                Loader {
+                    id: performanceTabLoader
+                    anchors.fill: parent
+                    anchors.margins: Theme.spacingS
+                    active: processListModal.visible && currentTab === 1
+                    visible: currentTab === 1
+                    sourceComponent: PerformanceView {}
+                }
+
+                Loader {
+                    id: disksTabLoader
+                    anchors.fill: parent
+                    anchors.margins: Theme.spacingS
+                    active: processListModal.visible && currentTab === 2
+                    visible: currentTab === 2
+                    sourceComponent: DisksView {}
+                }
+
+                Loader {
+                    id: systemTabLoader
+                    anchors.fill: parent
+                    anchors.margins: Theme.spacingS
+                    active: processListModal.visible && currentTab === 3
+                    visible: currentTab === 3
+                    sourceComponent: SystemView {}
+                }
+            }
+
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 32
+                Layout.leftMargin: Theme.spacingL
+                Layout.rightMargin: Theme.spacingL
+                Layout.bottomMargin: Theme.spacingM
+                color: "transparent"
+
+                Row {
+                    anchors.left: parent.left
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: Theme.spacingL
+
+                    Row {
+                        spacing: Theme.spacingXS
+
+                        StyledText {
+                            text: I18n.tr("Processes:", "process count label in footer")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceVariantText
                         }
 
-                        Loader {
-                            id: performanceTab
+                        StyledText {
+                            text: DgopService.processCount.toString()
+                            font.pixelSize: Theme.fontSizeSmall
+                            font.weight: Font.Bold
+                            color: Theme.surfaceText
+                        }
+                    }
 
-                            anchors.fill: parent
-                            anchors.margins: Theme.spacingS
-                            active: processListModal.visible && currentTab === 1
-                            visible: currentTab === 1
-                            opacity: currentTab === 1 ? 1 : 0
-                            sourceComponent: performanceTabComponent
+                    Row {
+                        spacing: Theme.spacingXS
 
-                            Behavior on opacity {
-                                NumberAnimation {
-                                    duration: Theme.mediumDuration
-                                    easing.type: Theme.emphasizedEasing
-                                }
-                            }
+                        StyledText {
+                            text: I18n.tr("Uptime:", "uptime label in footer")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceVariantText
                         }
 
-                        Loader {
-                            id: systemTab
+                        StyledText {
+                            text: DgopService.shortUptime || "--"
+                            font.pixelSize: Theme.fontSizeSmall
+                            font.weight: Font.Bold
+                            color: Theme.surfaceText
+                        }
+                    }
+                }
 
-                            anchors.fill: parent
-                            anchors.margins: Theme.spacingS
-                            active: processListModal.visible && currentTab === 2
-                            visible: currentTab === 2
-                            opacity: currentTab === 2 ? 1 : 0
-                            sourceComponent: systemTabComponent
+                Row {
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: Theme.spacingL
 
-                            Behavior on opacity {
-                                NumberAnimation {
-                                    duration: Theme.mediumDuration
-                                    easing.type: Theme.emphasizedEasing
-                                }
-                            }
+                    Row {
+                        spacing: Theme.spacingXS
+
+                        DankIcon {
+                            name: "swap_horiz"
+                            size: 14
+                            color: Theme.info
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        StyledText {
+                            text: "↓" + formatBytes(DgopService.networkRxRate) + " ↑" + formatBytes(DgopService.networkTxRate)
+                            font.pixelSize: Theme.fontSizeSmall
+                            font.family: SettingsData.monoFontFamily
+                            color: Theme.surfaceText
+                        }
+                    }
+
+                    Row {
+                        spacing: Theme.spacingXS
+
+                        DankIcon {
+                            name: "storage"
+                            size: 14
+                            color: Theme.warning
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        StyledText {
+                            text: "↓" + formatBytes(DgopService.diskReadRate) + " ↑" + formatBytes(DgopService.diskWriteRate)
+                            font.pixelSize: Theme.fontSizeSmall
+                            font.family: SettingsData.monoFontFamily
+                            color: Theme.surfaceText
+                        }
+                    }
+
+                    Row {
+                        spacing: Theme.spacingXS
+
+                        DankIcon {
+                            name: "memory"
+                            size: 14
+                            color: Theme.primary
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        StyledText {
+                            text: DgopService.cpuUsage.toFixed(1) + "%"
+                            font.pixelSize: Theme.fontSizeSmall
+                            font.family: SettingsData.monoFontFamily
+                            font.weight: Font.Bold
+                            color: DgopService.cpuUsage > 80 ? Theme.error : Theme.surfaceText
+                        }
+                    }
+
+                    Row {
+                        spacing: Theme.spacingXS
+
+                        DankIcon {
+                            name: "sd_card"
+                            size: 14
+                            color: Theme.secondary
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        StyledText {
+                            text: DgopService.formatSystemMemory(DgopService.usedMemoryKB) + " / " + DgopService.formatSystemMemory(DgopService.totalMemoryKB)
+                            font.pixelSize: Theme.fontSizeSmall
+                            font.family: SettingsData.monoFontFamily
+                            font.weight: Font.Bold
+                            color: DgopService.memoryUsage > 90 ? Theme.error : Theme.surfaceText
                         }
                     }
                 }

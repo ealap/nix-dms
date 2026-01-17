@@ -14,6 +14,8 @@ Rectangle {
 
     signal copyRequested
     signal deleteRequested
+    signal pinRequested
+    signal unpinRequested
 
     readonly property string entryType: modal ? modal.getEntryType(entry) : "text"
     readonly property string entryPreview: modal ? modal.getEntryPreview(entry) : ""
@@ -50,7 +52,7 @@ Rectangle {
 
         Row {
             anchors.verticalCenter: parent.verticalCenter
-            width: parent.width - 68
+            width: parent.width - 110
             spacing: Theme.spacingM
 
             ClipboardThumbnail {
@@ -100,20 +102,32 @@ Rectangle {
         }
     }
 
-    DankActionButton {
+    Row {
         anchors.right: parent.right
         anchors.rightMargin: Theme.spacingM
         anchors.verticalCenter: parent.verticalCenter
-        iconName: "close"
-        iconSize: Theme.iconSize - 6
-        iconColor: Theme.surfaceText
-        onClicked: deleteRequested()
+        spacing: Theme.spacingXS
+
+        DankActionButton {
+            iconName: "push_pin"
+            iconSize: Theme.iconSize - 6
+            iconColor: entry.pinned ? Theme.primary : Theme.surfaceText
+            backgroundColor: entry.pinned ? Theme.primarySelected : "transparent"
+            onClicked: entry.pinned ? unpinRequested() : pinRequested()
+        }
+
+        DankActionButton {
+            iconName: "close"
+            iconSize: Theme.iconSize - 6
+            iconColor: Theme.surfaceText
+            onClicked: deleteRequested()
+        }
     }
 
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        anchors.rightMargin: 40
+        anchors.rightMargin: 80
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
         onClicked: copyRequested()

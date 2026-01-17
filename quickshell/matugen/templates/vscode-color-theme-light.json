@@ -190,7 +190,7 @@
         "storage.type"
       ],
       "settings": {
-        "foreground": "{{dank16.color5.light.hex}}"
+        "foreground": "{{dank16.color6.light.hex}}"
       }
     },
     {
@@ -444,7 +444,7 @@
       "foreground": "{{colors.outline.light.hex}}"
     },
     "keyword": {
-      "foreground": "{{dank16.color5.light.hex}}"
+      "foreground": "{{dank16.color6.light.hex}}"
     },
     "operator": {
       "foreground": "{{colors.on_surface.light.hex}}"

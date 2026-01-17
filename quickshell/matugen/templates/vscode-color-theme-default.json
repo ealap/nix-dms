@@ -148,7 +148,7 @@
     {
       "scope": ["keyword"],
       "settings": {
-        "foreground": "{{dank16.color5.default.hex}}"
+        "foreground": "{{dank16.color6.default.hex}}"
       }
     },
     {
@@ -272,7 +272,7 @@
       "foreground": "{{dank16.color12.default.hex}}"
     },
     "keyword": {
-      "foreground": "{{dank16.color5.default.hex}}"
+      "foreground": "{{dank16.color6.default.hex}}"
     },
     "comment": {
       "foreground": "{{colors.outline.default.hex}}"

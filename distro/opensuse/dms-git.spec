@@ -20,12 +20,9 @@ Requires:       accountsservice
 Requires:       dgop
 
 Recommends:     cava
-Recommends:     cliphist
 Recommends:     danksearch
 Recommends:     matugen
 Recommends:     quickshell-git
-Recommends:     wl-clipboard
-
 Recommends:     NetworkManager
 Recommends:     qt6-qtmultimedia
 Suggests:       qt6ct

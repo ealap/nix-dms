@@ -21,6 +21,7 @@ Singleton {
     property int processLimit: 20
     property string processSort: "cpu"
     property bool noCpu: false
+    property int dgopProcessPid: 0
 
     // Cursor data for accurate CPU calculations
     property string cpuCursor: ""
@@ -59,6 +60,7 @@ Singleton {
     property var processes: []
     property var allProcesses: []
     property string currentSort: "cpu"
+    property bool sortAscending: false
     property var availableGpus: []
 
     property string kernelVersion: ""
@@ -93,10 +95,8 @@ Singleton {
         if (modules) {
             const modulesToAdd = Array.isArray(modules) ? modules : [modules];
             for (const module of modulesToAdd) {
-                // Increment reference count for this module
                 const currentCount = moduleRefCounts[module] || 0;
                 moduleRefCounts[module] = currentCount + 1;
-                console.log("Adding ref for module:", module, "count:", moduleRefCounts[module]);
 
                 // Add to enabled modules if not already there
                 if (enabledModules.indexOf(module) === -1) {
@@ -126,17 +126,13 @@ Singleton {
             for (const module of modulesToRemove) {
                 const currentCount = moduleRefCounts[module] || 0;
                 if (currentCount > 1) {
-                    // Decrement reference count
                     moduleRefCounts[module] = currentCount - 1;
-                    console.log("Removing ref for module:", module, "count:", moduleRefCounts[module]);
                 } else if (currentCount === 1) {
-                    // Remove completely when count reaches 0
                     delete moduleRefCounts[module];
                     const index = enabledModules.indexOf(module);
                     if (index > -1) {
                         enabledModules.splice(index, 1);
                         modulesChanged = true;
-                        console.log("Disabling module:", module, "(no more refs)");
                     }
                 }
             }
@@ -171,17 +167,13 @@ Singleton {
             gpuPciIds = gpuPciIds.concat([pciId]);
         }
 
-        console.log("Adding GPU PCI ID ref:", pciId, "count:", gpuPciIdRefCounts[pciId]);
-        // Force property change notification
         gpuPciIdRefCounts = Object.assign({}, gpuPciIdRefCounts);
     }
 
     function removeGpuPciId(pciId) {
         const currentCount = gpuPciIdRefCounts[pciId] || 0;
         if (currentCount > 1) {
-            // Decrement reference count
             gpuPciIdRefCounts[pciId] = currentCount - 1;
-            console.log("Removing GPU PCI ID ref:", pciId, "count:", gpuPciIdRefCounts[pciId]);
         } else if (currentCount === 1) {
             // Remove completely when count reaches 0
             delete gpuPciIdRefCounts[pciId];
@@ -203,8 +195,6 @@ Singleton {
                 }
                 availableGpus = updatedGpus;
             }
-
-            console.log("Removing GPU PCI ID completely:", pciId);
         }
 
         // Force property change notification
@@ -389,8 +379,12 @@ Singleton {
         if (data.processes && Array.isArray(data.processes)) {
             const newProcesses = [];
             processSampleCount++;
+            const ourPid = dgopProcessPid;
 
             for (const proc of data.processes) {
+                if (ourPid > 0 && proc.pid === ourPid)
+                    continue;
+
                 const cpuUsage = processSampleCount >= 2 ? (proc.cpu || 0) : 0;
 
                 newProcesses.push({
@@ -577,39 +571,55 @@ Singleton {
     function setSortBy(newSortBy) {
         if (newSortBy !== currentSort) {
             currentSort = newSortBy;
+            sortAscending = false;
             applySorting();
         }
     }
 
-    function applySorting() {
-        if (!allProcesses || allProcesses.length === 0) {
-            return;
+    function toggleSort(column) {
+        if (column === currentSort) {
+            sortAscending = !sortAscending;
+        } else {
+            currentSort = column;
+            sortAscending = false;
         }
+        applySorting();
+    }
 
+    function applySorting() {
+        if (!allProcesses || allProcesses.length === 0)
+            return;
+
+        const asc = sortAscending;
         const sorted = allProcesses.slice();
         sorted.sort((a, b) => {
-            let valueA, valueB;
+            let valueA, valueB, result;
 
             switch (currentSort) {
             case "cpu":
                 valueA = a.cpu || 0;
                 valueB = b.cpu || 0;
-                return valueB - valueA;
+                result = valueB - valueA;
+                break;
             case "memory":
                 valueA = a.memoryKB || 0;
                 valueB = b.memoryKB || 0;
-                return valueB - valueA;
+                result = valueB - valueA;
+                break;
             case "name":
                 valueA = (a.command || "").toLowerCase();
                 valueB = (b.command || "").toLowerCase();
-                return valueA.localeCompare(valueB);
+                result = valueA.localeCompare(valueB);
+                break;
             case "pid":
                 valueA = a.pid || 0;
                 valueB = b.pid || 0;
-                return valueA - valueB;
+                result = valueA - valueB;
+                break;
             default:
                 return 0;
             }
+            return asc ? -result : result;
         });
 
         processes = sorted.slice(0, processLimit);
@@ -628,10 +638,7 @@ Singleton {
         id: dgopProcess
         command: root.buildDgopCommand()
         running: false
-        onCommandChanged:
-
-        //console.log("DgopService command:", JSON.stringify(command))
-        {}
+        onStarted: dgopProcessPid = processId ?? 0
         onExited: exitCode => {
             if (exitCode !== 0) {
                 console.warn("Dgop process failed with exit code:", exitCode);

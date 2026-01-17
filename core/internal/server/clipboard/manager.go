@@ -389,7 +389,11 @@ func (m *Manager) trimLengthInTx(b *bolt.Bucket) error {
 	}
 	c := b.Cursor()
 	var count int
-	for k, _ := c.Last(); k != nil; k, _ = c.Prev() {
+	for k, v := c.Last(); k != nil; k, v = c.Prev() {
+		entry, err := decodeEntry(v)
+		if err == nil && entry.Pinned {
+			continue
+		}
 		if count < m.config.MaxHistory {
 			count++
 			continue
@@ -419,6 +423,11 @@ func encodeEntry(e Entry) ([]byte, error) {
 		buf.WriteByte(0)
 	}
 	binary.Write(buf, binary.BigEndian, e.Hash)
+	if e.Pinned {
+		buf.WriteByte(1)
+	} else {
+		buf.WriteByte(0)
+	}
 
 	return buf.Bytes(), nil
 }
@@ -460,6 +469,12 @@ func decodeEntry(data []byte) (Entry, error) {
 
 	if buf.Len() >= 8 {
 		binary.Read(buf, binary.BigEndian, &e.Hash)
+	}
+
+	if buf.Len() >= 1 {
+		var pinnedByte byte
+		binary.Read(buf, binary.BigEndian, &pinnedByte)
+		e.Pinned = pinnedByte == 1
 	}
 
 	return e, nil
@@ -735,19 +750,54 @@ func (m *Manager) ClearHistory() {
 		return
 	}
 
+	// Delete only non-pinned entries
 	if err := m.db.Update(func(tx *bolt.Tx) error {
-		if err := tx.DeleteBucket([]byte("clipboard")); err != nil {
-			return err
+		b := tx.Bucket([]byte("clipboard"))
+		if b == nil {
+			return nil
 		}
-		_, err := tx.CreateBucket([]byte("clipboard"))
-		return err
+
+		var toDelete [][]byte
+		c := b.Cursor()
+		for k, v := c.First(); k != nil; k, v = c.Next() {
+			entry, err := decodeEntry(v)
+			if err != nil || !entry.Pinned {
+				toDelete = append(toDelete, k)
+			}
+		}
+
+		for _, k := range toDelete {
+			if err := b.Delete(k); err != nil {
+				return err
+			}
+		}
+		return nil
 	}); err != nil {
 		log.Errorf("Failed to clear clipboard history: %v", err)
 		return
 	}
 
-	if err := m.compactDB(); err != nil {
-		log.Errorf("Failed to compact database: %v", err)
+	pinnedCount := 0
+	if err := m.db.View(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("clipboard"))
+		if b != nil {
+			c := b.Cursor()
+			for k, v := c.First(); k != nil; k, v = c.Next() {
+				entry, _ := decodeEntry(v)
+				if entry.Pinned {
+					pinnedCount++
+				}
+			}
+		}
+		return nil
+	}); err != nil {
+		log.Errorf("Failed to count pinned entries: %v", err)
+	}
+
+	if pinnedCount == 0 {
+		if err := m.compactDB(); err != nil {
+			log.Errorf("Failed to compact database: %v", err)
+		}
 	}
 
 	m.updateState()
@@ -958,6 +1008,10 @@ func (m *Manager) clearOldEntries(days int) error {
 		for k, v := c.First(); k != nil; k, v = c.Next() {
 			entry, err := decodeEntry(v)
 			if err != nil {
+				continue
+			}
+			// Skip pinned entries
+			if entry.Pinned {
 				continue
 			}
 			if entry.Timestamp.Before(cutoff) {
@@ -1249,4 +1303,154 @@ func (m *Manager) StoreData(data []byte, mimeType string) error {
 	m.notifySubscribers()
 
 	return nil
+}
+
+func (m *Manager) PinEntry(id uint64) error {
+	if m.db == nil {
+		return fmt.Errorf("database not available")
+	}
+
+	// Check pinned count
+	cfg := m.getConfig()
+	pinnedCount := 0
+	if err := m.db.View(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("clipboard"))
+		if b == nil {
+			return nil
+		}
+		c := b.Cursor()
+		for k, v := c.First(); k != nil; k, v = c.Next() {
+			entry, err := decodeEntry(v)
+			if err == nil && entry.Pinned {
+				pinnedCount++
+			}
+		}
+		return nil
+	}); err != nil {
+		log.Errorf("Failed to count pinned entries: %v", err)
+	}
+
+	if pinnedCount >= cfg.MaxPinned {
+		return fmt.Errorf("maximum pinned entries reached (%d)", cfg.MaxPinned)
+	}
+
+	err := m.db.Update(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("clipboard"))
+		v := b.Get(itob(id))
+		if v == nil {
+			return fmt.Errorf("entry not found")
+		}
+
+		entry, err := decodeEntry(v)
+		if err != nil {
+			return err
+		}
+
+		entry.Pinned = true
+		encoded, err := encodeEntry(entry)
+		if err != nil {
+			return err
+		}
+
+		return b.Put(itob(id), encoded)
+	})
+
+	if err == nil {
+		m.updateState()
+		m.notifySubscribers()
+	}
+
+	return err
+}
+
+func (m *Manager) UnpinEntry(id uint64) error {
+	if m.db == nil {
+		return fmt.Errorf("database not available")
+	}
+
+	err := m.db.Update(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("clipboard"))
+		v := b.Get(itob(id))
+		if v == nil {
+			return fmt.Errorf("entry not found")
+		}
+
+		entry, err := decodeEntry(v)
+		if err != nil {
+			return err
+		}
+
+		entry.Pinned = false
+		encoded, err := encodeEntry(entry)
+		if err != nil {
+			return err
+		}
+
+		return b.Put(itob(id), encoded)
+	})
+
+	if err == nil {
+		m.updateState()
+		m.notifySubscribers()
+	}
+
+	return err
+}
+
+func (m *Manager) GetPinnedEntries() []Entry {
+	if m.db == nil {
+		return nil
+	}
+
+	var pinned []Entry
+	if err := m.db.View(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("clipboard"))
+		if b == nil {
+			return nil
+		}
+
+		c := b.Cursor()
+		for k, v := c.Last(); k != nil; k, v = c.Prev() {
+			entry, err := decodeEntry(v)
+			if err != nil {
+				continue
+			}
+			if entry.Pinned {
+				entry.Data = nil
+				pinned = append(pinned, entry)
+			}
+		}
+		return nil
+	}); err != nil {
+		log.Errorf("Failed to get pinned entries: %v", err)
+	}
+
+	return pinned
+}
+
+func (m *Manager) GetPinnedCount() int {
+	if m.db == nil {
+		return 0
+	}
+
+	count := 0
+	if err := m.db.View(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("clipboard"))
+		if b == nil {
+			return nil
+		}
+
+		c := b.Cursor()
+		for k, v := c.First(); k != nil; k, v = c.Next() {
+			entry, err := decodeEntry(v)
+			if err == nil && entry.Pinned {
+				count++
+			}
+		}
+		return nil
+	}); err != nil {
+		log.Errorf("Failed to count pinned entries: %v", err)
+	}
+
+	return count
 }

@@ -23,12 +23,10 @@ Requires:       dgop
 
 # Core utilities (Highly recommended for DMS functionality)
 Recommends:     cava
-Recommends:     cliphist
 Recommends:     danksearch
 Recommends:     matugen
 Recommends:     NetworkManager
 Recommends:     qt6-qtmultimedia
-Recommends:     wl-clipboard
 Suggests:       qt6ct
 
 %description
