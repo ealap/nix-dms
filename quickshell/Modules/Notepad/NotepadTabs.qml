@@ -52,20 +52,15 @@ Column {
 
                         readonly property bool isActive: NotepadStorageService.currentTabIndex === index
                         readonly property bool isHovered: tabMouseArea.containsMouse && !closeMouseArea.containsMouse
-                        readonly property real calculatedWidth: {
-                            const textWidth = tabText.paintedWidth || 100;
-                            const closeButtonWidth = NotepadStorageService.tabs.length > 1 ? 20 : 0;
-                            const spacing = Theme.spacingXS;
-                            const padding = Theme.spacingM * 2;
-                            return Math.max(120, Math.min(200, textWidth + closeButtonWidth + spacing + padding));
-                        }
+                        readonly property real tabWidth: 128
 
-                        width: calculatedWidth
+                        width: tabWidth
                         height: 32
                         radius: Theme.cornerRadius
                         color: isActive ? Theme.primaryPressed : isHovered ? Theme.primaryHoverLight : Theme.withAlpha(Theme.primaryPressed, 0)
                         border.width: isActive ? 0 : 1
                         border.color: Theme.outlineMedium
+                        clip: true
 
                         MouseArea {
                             id: tabMouseArea
@@ -79,11 +74,14 @@ Column {
 
                         Row {
                             id: tabContent
-                            anchors.centerIn: parent
+                            anchors.fill: parent
+                            anchors.leftMargin: Theme.spacingM
+                            anchors.rightMargin: Theme.spacingM
                             spacing: Theme.spacingXS
 
                             StyledText {
                                 id: tabText
+                                width: parent.width - (tabCloseButton.visible ? tabCloseButton.width + Theme.spacingXS : 0)
                                 text: {
                                     var prefix = "";
                                     if (hasUnsavedChangesForTab(modelData)) {
@@ -96,6 +94,7 @@ Column {
                                 font.weight: isActive ? Font.Medium : Font.Normal
                                 elide: Text.ElideMiddle
                                 maximumLineCount: 1
+                                wrapMode: Text.NoWrap
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 

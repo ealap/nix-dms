@@ -215,8 +215,8 @@ func (cd *ConfigDeployer) deployNiriDmsConfigs(dmsDir, terminalCommand string) e
 
 	for _, cfg := range configs {
 		path := filepath.Join(dmsDir, cfg.name)
-		// Skip if file already exists to preserve user modifications
-		if _, err := os.Stat(path); err == nil {
+		// Skip if file already exists and is not empty to preserve user modifications
+		if info, err := os.Stat(path); err == nil && info.Size() > 0 {
 			cd.log(fmt.Sprintf("Skipping %s (already exists)", cfg.name))
 			continue
 		}
@@ -567,7 +567,8 @@ func (cd *ConfigDeployer) deployHyprlandDmsConfigs(dmsDir string, terminalComman
 
 	for _, cfg := range configs {
 		path := filepath.Join(dmsDir, cfg.name)
-		if _, err := os.Stat(path); err == nil {
+		// Skip if file already exists and is not empty to preserve user modifications
+		if info, err := os.Stat(path); err == nil && info.Size() > 0 {
 			cd.log(fmt.Sprintf("Skipping %s (already exists)", cfg.name))
 			continue
 		}

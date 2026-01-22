@@ -27,12 +27,12 @@ body:
       placeholder: Your Linux distribution
     validations:
       required: false
-  - type: input
-    id: dms_version
+  - type: textarea
+    id: dms_doctor
     attributes:
-      label: dms version
-      description: Output of dms version command
-      placeholder: e.g., 1.2.3
+      label: dms doctor -v
+      description: Output of `dms doctor -v` command
+      placeholder: Paste the output of `dms doctor -v` here
     validations:
       required: false
   - type: textarea

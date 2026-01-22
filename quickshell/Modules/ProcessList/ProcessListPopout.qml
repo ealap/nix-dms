@@ -42,6 +42,8 @@ DankPopout {
         if (!shouldBeVisible) {
             searchText = "";
             expandedPid = "";
+            if (processesView)
+                processesView.reset();
         }
     }
 
@@ -69,13 +71,22 @@ DankPopout {
                 if (processListPopout.shouldBeVisible)
                     forceActiveFocus();
                 processContextMenu.parent = processListContent;
+                processContextMenu.parentFocusItem = processListContent;
             }
 
             Keys.onPressed: event => {
+                if (processContextMenu.visible)
+                    return;
+
                 switch (event.key) {
                 case Qt.Key_Escape:
                     if (processListPopout.searchText.length > 0) {
                         processListPopout.searchText = "";
+                        event.accepted = true;
+                        return;
+                    }
+                    if (processesView.keyboardNavigationActive) {
+                        processesView.reset();
                         event.accepted = true;
                         return;
                     }
@@ -90,14 +101,15 @@ DankPopout {
                     }
                     break;
                 }
+
+                processesView.handleKey(event);
             }
 
             Connections {
                 target: processListPopout
                 function onShouldBeVisibleChanged() {
-                    if (processListPopout.shouldBeVisible) {
+                    if (processListPopout.shouldBeVisible)
                         Qt.callLater(() => processListContent.forceActiveFocus());
-                    }
                 }
             }
 
@@ -142,6 +154,8 @@ DankPopout {
                         showClearButton: true
                         text: processListPopout.searchText
                         onTextChanged: processListPopout.searchText = text
+                        ignoreUpDownKeys: true
+                        keyForwardTargets: [processListContent]
                     }
                 }
 
@@ -314,6 +328,7 @@ DankPopout {
                     clip: true
 
                     ProcessesView {
+                        id: processesView
                         anchors.fill: parent
                         anchors.margins: Theme.spacingS
                         searchText: processListPopout.searchText

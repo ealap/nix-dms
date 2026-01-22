@@ -3,6 +3,7 @@ package loginctl
 import (
 	"time"
 
+	"github.com/AvengeMedia/DankMaterialShell/core/pkg/dbusutil"
 	"github.com/godbus/dbus/v5"
 )
 
@@ -117,31 +118,28 @@ func (m *Manager) handlePropertiesChanged(sig *dbus.Signal) {
 	for key, variant := range changes {
 		switch key {
 		case "Active":
-			if val, ok := variant.Value().(bool); ok {
+			if val, ok := dbusutil.As[bool](variant); ok {
 				m.stateMutex.Lock()
 				m.state.Active = val
 				m.stateMutex.Unlock()
 				needsUpdate = true
 			}
-
 		case "IdleHint":
-			if val, ok := variant.Value().(bool); ok {
+			if val, ok := dbusutil.As[bool](variant); ok {
 				m.stateMutex.Lock()
 				m.state.IdleHint = val
 				m.stateMutex.Unlock()
 				needsUpdate = true
 			}
-
 		case "IdleSinceHint":
-			if val, ok := variant.Value().(uint64); ok {
+			if val, ok := dbusutil.As[uint64](variant); ok {
 				m.stateMutex.Lock()
 				m.state.IdleSinceHint = val
 				m.stateMutex.Unlock()
 				needsUpdate = true
 			}
-
 		case "LockedHint":
-			if val, ok := variant.Value().(bool); ok {
+			if val, ok := dbusutil.As[bool](variant); ok {
 				m.stateMutex.Lock()
 				m.state.LockedHint = val
 				m.state.Locked = val

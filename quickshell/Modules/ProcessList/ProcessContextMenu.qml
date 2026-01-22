@@ -8,8 +8,61 @@ Popup {
     id: processContextMenu
 
     property var processData: null
+    property int selectedIndex: -1
+    property bool keyboardNavigation: false
+    property var parentFocusItem: null
 
-    function show(x, y) {
+    signal menuClosed
+    signal processKilled
+
+    readonly property var menuItems: [
+        {
+            text: I18n.tr("Copy PID"),
+            icon: "tag",
+            action: copyPid,
+            enabled: true
+        },
+        {
+            text: I18n.tr("Copy Name"),
+            icon: "content_copy",
+            action: copyName,
+            enabled: true
+        },
+        {
+            text: I18n.tr("Copy Full Command"),
+            icon: "code",
+            action: copyFullCommand,
+            enabled: true
+        },
+        {
+            type: "separator"
+        },
+        {
+            text: I18n.tr("Kill Process"),
+            icon: "close",
+            action: killProcess,
+            enabled: true,
+            dangerous: true
+        },
+        {
+            text: I18n.tr("Force Kill (SIGKILL)"),
+            icon: "dangerous",
+            action: forceKillProcess,
+            enabled: processData && processData.pid > 1000,
+            dangerous: true
+        }
+    ]
+
+    readonly property int visibleItemCount: {
+        let count = 0;
+        for (let i = 0; i < menuItems.length; i++) {
+            if (menuItems[i].type !== "separator")
+                count++;
+        }
+        return count;
+    }
+
+    function show(x, y, fromKeyboard) {
         let finalX = x;
         let finalY = y;
 
@@ -27,7 +80,76 @@ Popup {
 
         processContextMenu.x = finalX;
         processContextMenu.y = finalY;
+        keyboardNavigation = fromKeyboard || false;
+        selectedIndex = fromKeyboard ? 0 : -1;
         open();
+    }
+
+    function selectNext() {
+        if (visibleItemCount === 0)
+            return;
+        let current = selectedIndex;
+        let next = current;
+        do {
+            next = (next + 1) % menuItems.length;
+        } while (menuItems[next].type === "separator" && next !== current)
+        selectedIndex = next;
+    }
+
+    function selectPrevious() {
+        if (visibleItemCount === 0)
+            return;
+        let current = selectedIndex;
+        let prev = current;
+        do {
+            prev = (prev - 1 + menuItems.length) % menuItems.length;
+        } while (menuItems[prev].type === "separator" && prev !== current)
+        selectedIndex = prev;
+    }
+
+    function activateSelected() {
+        if (selectedIndex < 0 || selectedIndex >= menuItems.length)
+            return;
+        const item = menuItems[selectedIndex];
+        if (item.type === "separator" || !item.enabled)
+            return;
+        item.action();
+    }
+
+    function copyPid() {
+        if (processData)
+            Quickshell.execDetached(["dms", "cl", "copy", processData.pid.toString()]);
+        close();
+    }
+
+    function copyName() {
+        if (processData) {
+            const name = processData.command || "";
+            Quickshell.execDetached(["dms", "cl", "copy", name]);
+        }
+        close();
+    }
+
+    function copyFullCommand() {
+        if (processData) {
+            const fullCmd = processData.fullCommand || processData.command || "";
+            Quickshell.execDetached(["dms", "cl", "copy", fullCmd]);
+        }
+        close();
+    }
+
+    function killProcess() {
+        if (processData)
+            Quickshell.execDetached(["kill", processData.pid.toString()]);
+        processKilled();
+        close();
+    }
+
+    function forceKillProcess() {
+        if (processData)
+            Quickshell.execDetached(["kill", "-9", processData.pid.toString()]);
+        processKilled();
+        close();
     }
 
     width: 200
@@ -36,8 +158,20 @@ Popup {
     modal: false
     closePolicy: Popup.CloseOnEscape
 
-    onClosed: closePolicy = Popup.CloseOnEscape
-    onOpened: outsideClickTimer.start()
+    onClosed: {
+        closePolicy = Popup.CloseOnEscape;
+        keyboardNavigation = false;
+        selectedIndex = -1;
+        menuClosed();
+        if (parentFocusItem)
+            Qt.callLater(() => parentFocusItem.forceActiveFocus());
+    }
+
+    onOpened: {
+        outsideClickTimer.start();
+        if (keyboardNavigation)
+            Qt.callLater(() => keyboardHandler.forceActiveFocus());
+    }
 
     Timer {
         id: outsideClickTimer
@@ -55,142 +189,145 @@ Popup {
         border.color: Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.08)
         border.width: 1
 
+        Item {
+            id: keyboardHandler
+            anchors.fill: parent
+            focus: keyboardNavigation
+
+            Keys.onPressed: event => {
+                switch (event.key) {
+                case Qt.Key_Down:
+                case Qt.Key_J:
+                    keyboardNavigation = true;
+                    selectNext();
+                    event.accepted = true;
+                    return;
+                case Qt.Key_Up:
+                case Qt.Key_K:
+                    keyboardNavigation = true;
+                    selectPrevious();
+                    event.accepted = true;
+                    return;
+                case Qt.Key_Return:
+                case Qt.Key_Enter:
+                case Qt.Key_Space:
+                    activateSelected();
+                    event.accepted = true;
+                    return;
+                case Qt.Key_Escape:
+                case Qt.Key_Left:
+                case Qt.Key_H:
+                    close();
+                    event.accepted = true;
+                    return;
+                }
+            }
+        }
+
         Column {
             id: menuColumn
             anchors.fill: parent
             anchors.margins: Theme.spacingS
             spacing: 1
 
-            MenuItem {
-                text: I18n.tr("Copy PID")
-                iconName: "tag"
-                onClicked: {
-                    if (processContextMenu.processData)
-                        Quickshell.execDetached(["dms", "cl", "copy", processContextMenu.processData.pid.toString()]);
-                    processContextMenu.close();
-                }
-            }
+            Repeater {
+                model: menuItems
 
-            MenuItem {
-                text: I18n.tr("Copy Name")
-                iconName: "content_copy"
-                onClicked: {
-                    if (processContextMenu.processData) {
-                        const name = processContextMenu.processData.command || "";
-                        Quickshell.execDetached(["dms", "cl", "copy", name]);
+                Item {
+                    width: parent.width
+                    height: modelData.type === "separator" ? 5 : 32
+                    visible: modelData.type !== "separator" || index > 0
+
+                    property int itemVisibleIndex: {
+                        let count = 0;
+                        for (let i = 0; i < index; i++) {
+                            if (menuItems[i].type !== "separator")
+                                count++;
+                        }
+                        return count;
                     }
-                    processContextMenu.close();
-                }
-            }
 
-            MenuItem {
-                text: I18n.tr("Copy Full Command")
-                iconName: "code"
-                onClicked: {
-                    if (processContextMenu.processData) {
-                        const fullCmd = processContextMenu.processData.fullCommand || processContextMenu.processData.command || "";
-                        Quickshell.execDetached(["dms", "cl", "copy", fullCmd]);
+                    Rectangle {
+                        visible: modelData.type === "separator"
+                        width: parent.width - Theme.spacingS * 2
+                        height: 1
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.15)
                     }
-                    processContextMenu.close();
+
+                    Rectangle {
+                        id: menuItem
+                        visible: modelData.type !== "separator"
+                        width: parent.width
+                        height: 32
+                        radius: Theme.cornerRadius
+                        color: {
+                            if (!modelData.enabled)
+                                return "transparent";
+                            const isSelected = keyboardNavigation && selectedIndex === index;
+                            if (modelData.dangerous) {
+                                if (isSelected)
+                                    return Qt.rgba(Theme.error.r, Theme.error.g, Theme.error.b, 0.2);
+                                return menuItemArea.containsMouse ? Qt.rgba(Theme.error.r, Theme.error.g, Theme.error.b, 0.12) : "transparent";
+                            }
+                            if (isSelected)
+                                return Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.2);
+                            return menuItemArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : "transparent";
+                        }
+                        opacity: modelData.enabled ? 1 : 0.5
+
+                        Row {
+                            anchors.left: parent.left
+                            anchors.leftMargin: Theme.spacingS
+                            anchors.verticalCenter: parent.verticalCenter
+                            spacing: Theme.spacingS
+
+                            DankIcon {
+                                name: modelData.icon || ""
+                                size: 16
+                                color: {
+                                    if (!modelData.enabled)
+                                        return Theme.surfaceVariantText;
+                                    const isSelected = keyboardNavigation && selectedIndex === index;
+                                    if (modelData.dangerous && (menuItemArea.containsMouse || isSelected))
+                                        return Theme.error;
+                                    return Theme.surfaceText;
+                                }
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+                            StyledText {
+                                text: modelData.text || ""
+                                font.pixelSize: Theme.fontSizeSmall
+                                font.weight: Font.Normal
+                                color: {
+                                    if (!modelData.enabled)
+                                        return Theme.surfaceVariantText;
+                                    const isSelected = keyboardNavigation && selectedIndex === index;
+                                    if (modelData.dangerous && (menuItemArea.containsMouse || isSelected))
+                                        return Theme.error;
+                                    return Theme.surfaceText;
+                                }
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+                        }
+
+                        MouseArea {
+                            id: menuItemArea
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: modelData.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
+                            enabled: modelData.enabled ?? false
+                            onEntered: {
+                                keyboardNavigation = false;
+                                selectedIndex = index;
+                            }
+                            onClicked: modelData.action()
+                        }
+                    }
                 }
             }
-
-            Rectangle {
-                width: parent.width - Theme.spacingS * 2
-                height: 1
-                anchors.horizontalCenter: parent.horizontalCenter
-                color: Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.15)
-            }
-
-            MenuItem {
-                text: I18n.tr("Kill Process")
-                iconName: "close"
-                dangerous: true
-                enabled: processContextMenu.processData
-                onClicked: {
-                    if (processContextMenu.processData)
-                        Quickshell.execDetached(["kill", processContextMenu.processData.pid.toString()]);
-                    processContextMenu.close();
-                }
-            }
-
-            MenuItem {
-                text: I18n.tr("Force Kill (SIGKILL)")
-                iconName: "dangerous"
-                dangerous: true
-                enabled: processContextMenu.processData && processContextMenu.processData.pid > 1000
-                onClicked: {
-                    if (processContextMenu.processData)
-                        Quickshell.execDetached(["kill", "-9", processContextMenu.processData.pid.toString()]);
-                    processContextMenu.close();
-                }
-            }
-        }
-    }
-
-    component MenuItem: Rectangle {
-        id: menuItem
-
-        property string text: ""
-        property string iconName: ""
-        property bool dangerous: false
-        property bool enabled: true
-
-        signal clicked
-
-        width: parent.width
-        height: 32
-        radius: Theme.cornerRadius
-        color: {
-            if (!enabled)
-                return "transparent";
-            if (dangerous)
-                return menuItemArea.containsMouse ? Qt.rgba(Theme.error.r, Theme.error.g, Theme.error.b, 0.12) : "transparent";
-            return menuItemArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : "transparent";
-        }
-        opacity: enabled ? 1 : 0.5
-
-        Row {
-            anchors.left: parent.left
-            anchors.leftMargin: Theme.spacingS
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: Theme.spacingS
-
-            DankIcon {
-                name: menuItem.iconName
-                size: 16
-                color: {
-                    if (!menuItem.enabled)
-                        return Theme.surfaceVariantText;
-                    if (menuItem.dangerous && menuItemArea.containsMouse)
-                        return Theme.error;
-                    return Theme.surfaceText;
-                }
-                anchors.verticalCenter: parent.verticalCenter
-            }
-
-            StyledText {
-                text: menuItem.text
-                font.pixelSize: Theme.fontSizeSmall
-                font.weight: Font.Normal
-                color: {
-                    if (!menuItem.enabled)
-                        return Theme.surfaceVariantText;
-                    if (menuItem.dangerous && menuItemArea.containsMouse)
-                        return Theme.error;
-                    return Theme.surfaceText;
-                }
-                anchors.verticalCenter: parent.verticalCenter
-            }
-        }
-
-        MouseArea {
-            id: menuItemArea
-            anchors.fill: parent
-            hoverEnabled: true
-            cursorShape: menuItem.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
-            enabled: menuItem.enabled
-            onClicked: menuItem.clicked()
         }
     }
 }

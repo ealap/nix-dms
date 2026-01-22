@@ -59,7 +59,6 @@ Flow {
             animationTimer.restart();
         } else {
             const oldIndex = currentIndex;
-            currentIndex = index;
             selectionChanged(index, true);
             if (oldIndex !== index && oldIndex >= 0) {
                 selectionChanged(oldIndex, false);

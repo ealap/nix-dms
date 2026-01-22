@@ -69,7 +69,6 @@ Item {
                         DankTextField {
                             id: updaterCustomCommand
                             width: parent.width
-                            height: 48
                             placeholderText: "myPkgMngr --sysupdate"
                             backgroundColor: Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency)
                             normalBorderColor: Theme.outlineMedium
@@ -114,7 +113,6 @@ Item {
                         DankTextField {
                             id: updaterTerminalCustomClass
                             width: parent.width
-                            height: 48
                             placeholderText: "-T udpClass"
                             backgroundColor: Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency)
                             normalBorderColor: Theme.outlineMedium

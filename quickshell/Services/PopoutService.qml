@@ -20,7 +20,8 @@ Singleton {
     property var settingsModal: null
     property var settingsModalLoader: null
     property var clipboardHistoryModal: null
-    property var spotlightModal: null
+    property var dankLauncherV2Modal: null
+    property var dankLauncherV2ModalLoader: null
     property var powerMenuModal: null
     property var processListModal: null
     property var processListModalLoader: null
@@ -353,12 +354,91 @@ Singleton {
         clipboardHistoryModal?.close();
     }
 
-    function openSpotlight() {
-        spotlightModal?.show();
+    property bool _dankLauncherV2WantsOpen: false
+    property bool _dankLauncherV2WantsToggle: false
+    property string _dankLauncherV2PendingQuery: ""
+    property string _dankLauncherV2PendingMode: ""
+
+    function openDankLauncherV2() {
+        if (dankLauncherV2Modal) {
+            dankLauncherV2Modal.show();
+        } else if (dankLauncherV2ModalLoader) {
+            _dankLauncherV2WantsOpen = true;
+            _dankLauncherV2WantsToggle = false;
+            dankLauncherV2ModalLoader.active = true;
+        }
     }
 
-    function closeSpotlight() {
-        spotlightModal?.close();
+    function openDankLauncherV2WithQuery(query: string) {
+        if (dankLauncherV2Modal) {
+            dankLauncherV2Modal.showWithQuery(query);
+        } else if (dankLauncherV2ModalLoader) {
+            _dankLauncherV2PendingQuery = query;
+            _dankLauncherV2WantsOpen = true;
+            _dankLauncherV2WantsToggle = false;
+            dankLauncherV2ModalLoader.active = true;
+        }
+    }
+
+    function openDankLauncherV2WithMode(mode: string) {
+        if (dankLauncherV2Modal) {
+            dankLauncherV2Modal.showWithMode(mode);
+        } else if (dankLauncherV2ModalLoader) {
+            _dankLauncherV2PendingMode = mode;
+            _dankLauncherV2WantsOpen = true;
+            _dankLauncherV2WantsToggle = false;
+            dankLauncherV2ModalLoader.active = true;
+        }
+    }
+
+    function closeDankLauncherV2() {
+        dankLauncherV2Modal?.hide();
+    }
+
+    function toggleDankLauncherV2() {
+        if (dankLauncherV2Modal) {
+            dankLauncherV2Modal.toggle();
+        } else if (dankLauncherV2ModalLoader) {
+            _dankLauncherV2WantsToggle = true;
+            _dankLauncherV2WantsOpen = false;
+            dankLauncherV2ModalLoader.active = true;
+        }
+    }
+
+    function toggleDankLauncherV2WithMode(mode: string) {
+        if (dankLauncherV2Modal) {
+            dankLauncherV2Modal.toggleWithMode(mode);
+        } else if (dankLauncherV2ModalLoader) {
+            _dankLauncherV2PendingMode = mode;
+            _dankLauncherV2WantsToggle = true;
+            _dankLauncherV2WantsOpen = false;
+            dankLauncherV2ModalLoader.active = true;
+        }
+    }
+
+    function _onDankLauncherV2ModalLoaded() {
+        if (_dankLauncherV2WantsOpen) {
+            _dankLauncherV2WantsOpen = false;
+            if (_dankLauncherV2PendingQuery) {
+                dankLauncherV2Modal?.showWithQuery(_dankLauncherV2PendingQuery);
+                _dankLauncherV2PendingQuery = "";
+            } else if (_dankLauncherV2PendingMode) {
+                dankLauncherV2Modal?.showWithMode(_dankLauncherV2PendingMode);
+                _dankLauncherV2PendingMode = "";
+            } else {
+                dankLauncherV2Modal?.show();
+            }
+            return;
+        }
+        if (_dankLauncherV2WantsToggle) {
+            _dankLauncherV2WantsToggle = false;
+            if (_dankLauncherV2PendingMode) {
+                dankLauncherV2Modal?.toggleWithMode(_dankLauncherV2PendingMode);
+                _dankLauncherV2PendingMode = "";
+            } else {
+                dankLauncherV2Modal?.toggle();
+            }
+        }
     }
 
     function openPowerMenu() {

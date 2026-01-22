@@ -251,6 +251,9 @@
   "Always Show Percentage": {
     "Always Show Percentage": "Zawsze pokazuj procenty"
   },
+  "Always hide the dock and reveal it when hovering near the dock area": {
+    "Always hide the dock and reveal it when hovering near the dock area": ""
+  },
   "Always on icons": {
     "Always on icons": "Ikony zawsze włączone"
   },
@@ -707,6 +710,9 @@
   "Clear All Jobs": {
     "Clear All Jobs": "Wyczyść wszystkie zadania"
   },
+  "Clear History?": {
+    "Clear History?": ""
+  },
   "Clear all history when server starts": {
     "Clear all history when server starts": "Wyczyść historię gdy serwer startuje"
   },
@@ -917,6 +923,12 @@
   "Copy": {
     "Copy": ""
   },
+  "Copy Full Command": {
+    "Copy Full Command": ""
+  },
+  "Copy Name": {
+    "Copy Name": ""
+  },
   "Copy PID": {
     "Copy PID": "Kopiuj PID"
   },
@@ -1124,6 +1136,9 @@
   "Delete Printer": {
     "Delete Printer": "Usuń drukarkę"
   },
+  "Delete Saved Item?": {
+    "Delete Saved Item?": ""
+  },
   "Delete VPN": {
     "Delete VPN": "Usuń VPN"
   },
@@ -1207,6 +1222,9 @@
   },
   "Disk Usage": {
     "Disk Usage": "Użycie dysku"
+  },
+  "Disks": {
+    "Disks": ""
   },
   "Dismiss": {
     "Dismiss": "Odrzuć"
@@ -1442,6 +1460,12 @@
   "Enterprise": {
     "Enterprise": "Korporacyjny"
   },
+  "Entry pinned": {
+    "Entry pinned": ""
+  },
+  "Entry unpinned": {
+    "Entry unpinned": ""
+  },
   "Error": {
     "Error": "Błąd"
   },
@@ -1483,6 +1507,9 @@
   },
   "Failed to cancel selected job": {
     "Failed to cancel selected job": "Anulowanie wybranego zadania nie powiodło się"
+  },
+  "Failed to check pin limit": {
+    "Failed to check pin limit": ""
   },
   "Failed to connect VPN": {
     "Failed to connect VPN": "Nie udało się połączyć z VPN"
@@ -1559,6 +1586,9 @@
   "Failed to pause printer": {
     "Failed to pause printer": "Wstrzymanie drukarki nie powiodło się"
   },
+  "Failed to pin entry": {
+    "Failed to pin entry": ""
+  },
   "Failed to print test page": {
     "Failed to print test page": "Nie udało się wydrukować strony testowej"
   },
@@ -1603,6 +1633,9 @@
   },
   "Failed to start connection to %1": {
     "Failed to start connection to %1": "Rozpoczęcie połączenia do %1 nie powiodło się"
+  },
+  "Failed to unpin entry": {
+    "Failed to unpin entry": ""
   },
   "Failed to update VPN": {
     "Failed to update VPN": "Nie udało się zaktualizować VPN"
@@ -1709,6 +1742,9 @@
   "Force HDR": {
     "Force HDR": "Wymuś HDR"
   },
+  "Force Kill (SIGKILL)": {
+    "Force Kill (SIGKILL)": ""
+  },
   "Force Kill Process": {
     "Force Kill Process": "Wymuś zamknięcie procesu"
   },
@@ -1762,6 +1798,9 @@
   },
   "Gamma control not available. Requires DMS API v6+.": {
     "Gamma control not available. Requires DMS API v6+.": "Kontrola gamma niedostępna. Wymaga DMS API w wersji 6+."
+  },
+  "Generic device name | Generic device name fallback": {
+    "device": ""
   },
   "GitHub": {
     "GitHub": "GitHub"
@@ -1880,6 +1919,9 @@
   "History Settings": {
     "History Settings": "Ustawienia Historii"
   },
+  "History cleared. %1 pinned entries kept.": {
+    "History cleared. %1 pinned entries kept.": ""
+  },
   "Hold Duration": {
     "Hold Duration": "Czas przytrzymania"
   },
@@ -1994,6 +2036,9 @@
   "Install plugins from the DMS plugin registry": {
     "Install plugins from the DMS plugin registry": "Instaluj wtyczki z rejestru wtyczek DMS"
   },
+  "Intelligent Auto-hide": {
+    "Intelligent Auto-hide": ""
+  },
   "Interface:": {
     "Interface:": "Interfejs:"
   },
@@ -2020,6 +2065,166 @@
   },
   "Jobs: ": {
     "Jobs: ": "Zadania: "
+  },
+  "KDE Connect SMS action": {
+    "Opening SMS": "",
+    "Opening SMS app": ""
+  },
+  "KDE Connect SMS dialog title": {
+    "Send SMS": ""
+  },
+  "KDE Connect SMS message input placeholder": {
+    "Message": ""
+  },
+  "KDE Connect SMS phone input placeholder": {
+    "Phone number": ""
+  },
+  "KDE Connect SMS send button": {
+    "Send": ""
+  },
+  "KDE Connect SMS tooltip": {
+    "SMS": ""
+  },
+  "KDE Connect accept pairing button": {
+    "Accept": ""
+  },
+  "KDE Connect browse action": {
+    "Opening file browser": "",
+    "Opening files": ""
+  },
+  "KDE Connect browse tooltip": {
+    "Browse Files": ""
+  },
+  "KDE Connect clipboard action": {
+    "Clipboard sent": ""
+  },
+  "KDE Connect clipboard tooltip": {
+    "Send Clipboard": ""
+  },
+  "KDE Connect connected status": {
+    "Connected": ""
+  },
+  "KDE Connect daemon hint": {
+    "Start kdeconnectd to use this plugin": ""
+  },
+  "KDE Connect error": {
+    "Failed to accept pairing": "",
+    "Failed to browse device": "",
+    "Failed to launch SMS app": "",
+    "Failed to reject pairing": "",
+    "Failed to ring device": "",
+    "Failed to send clipboard": "",
+    "Failed to send ping": "",
+    "Failed to share": "",
+    "Pairing failed": "",
+    "Unpair failed": ""
+  },
+  "KDE Connect file share notification": {
+    "File received from": ""
+  },
+  "KDE Connect hint message": {
+    "Make sure KDE Connect is running on your other devices": ""
+  },
+  "KDE Connect no devices message": {
+    "No devices found": ""
+  },
+  "KDE Connect no devices status": {
+    "No devices": ""
+  },
+  "KDE Connect not paired status": {
+    "Not paired": ""
+  },
+  "KDE Connect offline status": {
+    "Offline": ""
+  },
+  "KDE Connect open SMS app button": {
+    "Open App": ""
+  },
+  "KDE Connect open app hint": {
+    "Open KDE Connect on your phone": ""
+  },
+  "KDE Connect pair button": {
+    "Pair": ""
+  },
+  "KDE Connect pairing action": {
+    "Device paired": "",
+    "Pairing request sent": ""
+  },
+  "KDE Connect pairing in progress status": {
+    "Pairing": ""
+  },
+  "KDE Connect pairing request notification": {
+    "Pairing request from": ""
+  },
+  "KDE Connect pairing requested status": {
+    "Pairing requested": ""
+  },
+  "KDE Connect pairing verification key label": {
+    "Verification": ""
+  },
+  "KDE Connect ping action": {
+    "Ping sent": "",
+    "Ping sent to": ""
+  },
+  "KDE Connect ping tooltip": {
+    "Ping": ""
+  },
+  "KDE Connect refresh button | KDE Connect refresh tooltip": {
+    "Refresh": ""
+  },
+  "KDE Connect reject pairing button": {
+    "Reject": ""
+  },
+  "KDE Connect request pairing button": {
+    "Request Pairing": ""
+  },
+  "KDE Connect ring action": {
+    "Ringing": ""
+  },
+  "KDE Connect ring tooltip": {
+    "Ring": ""
+  },
+  "KDE Connect service unavailable message": {
+    "KDE Connect unavailable": ""
+  },
+  "KDE Connect share URL button": {
+    "Share URL": ""
+  },
+  "KDE Connect share button | KDE Connect share dialog title | KDE Connect share tooltip": {
+    "Share": ""
+  },
+  "KDE Connect share input placeholder": {
+    "Enter URL or text to share": ""
+  },
+  "KDE Connect share success": {
+    "Shared": ""
+  },
+  "KDE Connect start daemon hint": {
+    "Start kdeconnectd to connect devices": ""
+  },
+  "KDE Connect status": {
+    "No devices connected": ""
+  },
+  "KDE Connect status multiple devices": {
+    "devices connected": ""
+  },
+  "KDE Connect status single device": {
+    "1 device connected": ""
+  },
+  "KDE Connect unavailable error title": {
+    "KDE Connect Not Available": ""
+  },
+  "KDE Connect unavailable status": {
+    "Unavailable": ""
+  },
+  "KDE Connect unknown device status | unknown author": {
+    "Unknown": ""
+  },
+  "KDE Connect unpair action": {
+    "Device unpaired": ""
+  },
+  "KDE Connect unpair tooltip": {
+    "Unpair": ""
   },
   "Keep Awake": {
     "Keep Awake": "Utrzymuj aktywność"
@@ -2255,8 +2460,17 @@
   "Maximum History": {
     "Maximum History": "Maksymalna historia"
   },
+  "Maximum Pinned Entries": {
+    "Maximum Pinned Entries": ""
+  },
   "Maximum number of clipboard entries to keep": {
     "Maximum number of clipboard entries to keep": "Maksymalna liczba wpisów schowka"
+  },
+  "Maximum number of entries that can be saved": {
+    "Maximum number of entries that can be saved": ""
+  },
+  "Maximum pinned entries reached": {
+    "Maximum pinned entries reached": ""
   },
   "Maximum size per clipboard entry": {
     "Maximum size per clipboard entry": "Maksymalny rozmiar per wpis schowka"
@@ -2549,6 +2763,12 @@
   "No printers found": {
     "No printers found": "Nie znaleziono drukarek"
   },
+  "No recent clipboard entries found": {
+    "No recent clipboard entries found": ""
+  },
+  "No saved clipboard entries": {
+    "No saved clipboard entries": ""
+  },
   "No variants created. Click Add to create a new monitor widget.": {
     "No variants created. Click Add to create a new monitor widget.": "Nie stworzono wariantów. Kliknij Dodaj by stworzyć nowy widżet monitora."
   },
@@ -2623,6 +2843,9 @@
   },
   "OSD Position": {
     "OSD Position": "Pozycja OSD"
+  },
+  "Occupied Color": {
+    "Occupied Color": ""
   },
   "Off": {
     "Off": "Wyłączony"
@@ -2771,6 +2994,9 @@
   "Percentage": {
     "Percentage": "Procent"
   },
+  "Performance": {
+    "Performance": ""
+  },
   "Permission denied to set profile image.": {
     "Permission denied to set profile image.": "Odmowa uprawnień do ustawienia zdjęcia profilowego."
   },
@@ -2870,6 +3096,9 @@
   "Power Profile Degradation": {
     "Power Profile Degradation": "Pogorszenie profilu zasilania"
   },
+  "Power off monitors on lock": {
+    "Power off monitors on lock": ""
+  },
   "Power profile management available": {
     "Power profile management available": "Zarządzanie profilami zasilania dostępne"
   },
@@ -2938,6 +3167,9 @@
   },
   "Process Count": {
     "Process Count": "Liczba procesów"
+  },
+  "Processes": {
+    "Processes": ""
   },
   "Processing": {
     "Processing": "Przetwarzanie"
@@ -3137,6 +3369,9 @@
   "Saved Configurations": {
     "Saved Configurations": "Zapisane konfiguracje"
   },
+  "Saved item deleted": {
+    "Saved item deleted": ""
+  },
   "Scale": {
     "Scale": "Skala"
   },
@@ -3157,6 +3392,9 @@
   },
   "Science": {
     "Science": "Nauka"
+  },
+  "Screen Sharing": {
+    "Screen Sharing": ""
   },
   "Screen sharing": {
     "Screen sharing": "Udostępnianie ekranu"
@@ -3436,6 +3674,9 @@
   },
   "Show darkened overlay behind modal dialogs": {
     "Show darkened overlay behind modal dialogs": "Pokaż przyciemnioną nakładkę za oknami modalnymi"
+  },
+  "Show dock when floating windows don't overlap its area": {
+    "Show dock when floating windows don't overlap its area": ""
   },
   "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": {
     "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": "Pokaż nakładkę launchera podczas pisania w przeglądzie Niri. Wyłączy by użyć innego launchera."
@@ -3752,8 +3993,14 @@
   "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": {
     "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": "Ten widżet zapobiega wyłączaniu zasilania GPU, co może znacznie wpłynąć na żywotność baterii w laptopach. Nie zaleca się używania go na laptopach z hybrydową grafiką."
   },
+  "This will delete all unpinned entries. %1 pinned entries will be kept.": {
+    "This will delete all unpinned entries. %1 pinned entries will be kept.": ""
+  },
   "This will permanently delete all clipboard history.": {
     "This will permanently delete all clipboard history.": "To trwale usunie całą historię schowka."
+  },
+  "This will permanently remove this saved clipboard item. This action cannot be undone.": {
+    "This will permanently remove this saved clipboard item. This action cannot be undone.": ""
   },
   "Tiling": {
     "Tiling": "Dekarstwo"
@@ -3854,6 +4101,9 @@
   "Trigger Prefix": {
     "Trigger Prefix": ""
   },
+  "Turn off all displays immediately when the lock screen activates": {
+    "Turn off all displays immediately when the lock screen activates": ""
+  },
   "Turn off monitors after": {
     "Turn off monitors after": "Wyłącz monitory po"
   },
@@ -3919,6 +4169,9 @@
   },
   "Update Plugin": {
     "Update Plugin": "Zaktualizuj wtyczkę"
+  },
+  "Uptime": {
+    "Uptime": ""
   },
   "Urgent Color": {
     "Urgent Color": ""
@@ -4303,6 +4556,18 @@
   "dgop not available": {
     "dgop not available": "dgop niedostępne"
   },
+  "dgop unavailable error message": {
+    "The 'dgop' tool is required for system monitoring.\\nPlease install dgop to use this feature.": ""
+  },
+  "disk io header in system monitor": {
+    "Disk I/O": ""
+  },
+  "disk read label": {
+    "Read:": ""
+  },
+  "disk write label": {
+    "Write:": ""
+  },
   "dms/binds.kdl exists but is not included in config.kdl. Custom keybinds will not work until this is fixed.": {
     "dms/binds.kdl exists but is not included in config.kdl. Custom keybinds will not work until this is fixed.": "Plik dms/binds.kdl istnieje, ale nie jest uwzględniony w pliku config.kdl. Niestandardowe skróty klawiszowe nie będą działać, dopóki ten problem nie zostanie rozwiązany."
   },
@@ -4336,17 +4601,32 @@
   "empty plugin list": {
     "No plugins found": "Nie znaleziono wtyczek"
   },
+  "empty state in disk mounts list": {
+    "No mount points found": ""
+  },
+  "empty state in gpu list": {
+    "No GPUs detected": ""
+  },
+  "empty state in process list": {
+    "No matching processes": ""
+  },
   "empty theme list": {
     "No themes found": "Nie znaleziono motywów"
   },
   "events": {
     "events": "wydarzenia"
   },
+  "fallback gpu name": {
+    "Unknown GPU": ""
+  },
   "files": {
     "files": "akta"
   },
   "generic theme description": {
     "Material Design inspired color themes": "Motywy inspirowane Material Design"
+  },
+  "gpu section header in system monitor": {
+    "GPU Monitoring": ""
   },
   "greeter back button": {
     "Back": ""
@@ -4540,6 +4820,9 @@
   "minutes": {
     "minutes": "protokół"
   },
+  "mount points header in system monitor": {
+    "Mount Points": ""
+  },
   "ms": {
     "ms": "ms"
   },
@@ -4614,6 +4897,15 @@
   "plugin search placeholder": {
     "Search plugins...": "Szukaj wtyczek..."
   },
+  "process count label in footer": {
+    "Processes:": ""
+  },
+  "process detail label": {
+    "Full Command:": ""
+  },
+  "process search placeholder": {
+    "Search processes...": ""
+  },
   "profile image file browser title": {
     "Select Profile Image": "Wybierz obraz profilowy"
   },
@@ -4639,11 +4931,24 @@
   "shadow intensity slider": {
     "Intensity": ""
   },
+  "short for processes": {
+    "procs": ""
+  },
   "source code link": {
     "source": "źródło"
   },
   "sysmon window title": {
     "System Monitor": "Monitor systemu"
+  },
+  "system info header in system monitor": {
+    "System Information": ""
+  },
+  "system info label": {
+    "Architecture": "",
+    "Distribution": "",
+    "Hostname": "",
+    "Kernel": "",
+    "Load Average": ""
   },
   "theme browser description": {
     "Install color themes from the DMS theme registry": "Zainstaluj motywy z rejestru DMS"
@@ -4674,6 +4979,9 @@
   },
   "update dms for NM integration.": {
     "update dms for NM integration.": "zaktualizuj dms dla integracji z NM."
+  },
+  "uptime label in footer": {
+    "Uptime:": ""
   },
   "version requirement": {
     "Requires %1": ""

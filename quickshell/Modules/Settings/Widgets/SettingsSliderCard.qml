@@ -61,6 +61,8 @@ StyledRect {
                     font.pixelSize: Theme.fontSizeLarge
                     font.weight: Font.Medium
                     color: Theme.surfaceText
+                    width: parent.width
+                    horizontalAlignment: Text.AlignLeft
                     visible: root.title !== ""
                 }
 

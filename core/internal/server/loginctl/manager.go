@@ -7,6 +7,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/AvengeMedia/DankMaterialShell/core/pkg/dbusutil"
 	"github.com/godbus/dbus/v5"
 )
 
@@ -132,37 +133,15 @@ func (m *Manager) updateSessionState() error {
 	m.stateMutex.Lock()
 	defer m.stateMutex.Unlock()
 
-	if v, ok := props["Active"]; ok {
-		if val, ok := v.Value().(bool); ok {
-			m.state.Active = val
-		}
+	m.state.Active = dbusutil.GetOr(props, "Active", m.state.Active)
+	m.state.IdleHint = dbusutil.GetOr(props, "IdleHint", m.state.IdleHint)
+	m.state.IdleSinceHint = dbusutil.GetOr(props, "IdleSinceHint", m.state.IdleSinceHint)
+	if lockedHint, ok := dbusutil.Get[bool](props, "LockedHint"); ok {
+		m.state.LockedHint = lockedHint
+		m.state.Locked = lockedHint
 	}
-	if v, ok := props["IdleHint"]; ok {
-		if val, ok := v.Value().(bool); ok {
-			m.state.IdleHint = val
-		}
-	}
-	if v, ok := props["IdleSinceHint"]; ok {
-		if val, ok := v.Value().(uint64); ok {
-			m.state.IdleSinceHint = val
-		}
-	}
-	if v, ok := props["LockedHint"]; ok {
-		if val, ok := v.Value().(bool); ok {
-			m.state.LockedHint = val
-			m.state.Locked = val
-		}
-	}
-	if v, ok := props["Type"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.SessionType = val
-		}
-	}
-	if v, ok := props["Class"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.SessionClass = val
-		}
-	}
+	m.state.SessionType = dbusutil.GetOr(props, "Type", m.state.SessionType)
+	m.state.SessionClass = dbusutil.GetOr(props, "Class", m.state.SessionClass)
 	if v, ok := props["User"]; ok {
 		if userArr, ok := v.Value().([]any); ok && len(userArr) >= 1 {
 			if uid, ok := userArr[0].(uint32); ok {
@@ -170,36 +149,12 @@ func (m *Manager) updateSessionState() error {
 			}
 		}
 	}
-	if v, ok := props["Name"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.UserName = val
-		}
-	}
-	if v, ok := props["RemoteHost"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.RemoteHost = val
-		}
-	}
-	if v, ok := props["Service"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.Service = val
-		}
-	}
-	if v, ok := props["TTY"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.TTY = val
-		}
-	}
-	if v, ok := props["Display"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.Display = val
-		}
-	}
-	if v, ok := props["Remote"]; ok {
-		if val, ok := v.Value().(bool); ok {
-			m.state.Remote = val
-		}
-	}
+	m.state.UserName = dbusutil.GetOr(props, "Name", m.state.UserName)
+	m.state.RemoteHost = dbusutil.GetOr(props, "RemoteHost", m.state.RemoteHost)
+	m.state.Service = dbusutil.GetOr(props, "Service", m.state.Service)
+	m.state.TTY = dbusutil.GetOr(props, "TTY", m.state.TTY)
+	m.state.Display = dbusutil.GetOr(props, "Display", m.state.Display)
+	m.state.Remote = dbusutil.GetOr(props, "Remote", m.state.Remote)
 	if v, ok := props["Seat"]; ok {
 		if seatArr, ok := v.Value().([]any); ok && len(seatArr) >= 1 {
 			if seatID, ok := seatArr[0].(string); ok {
@@ -207,11 +162,7 @@ func (m *Manager) updateSessionState() error {
 			}
 		}
 	}
-	if v, ok := props["VTNr"]; ok {
-		if val, ok := v.Value().(uint32); ok {
-			m.state.VTNr = val
-		}
-	}
+	m.state.VTNr = dbusutil.GetOr(props, "VTNr", m.state.VTNr)
 
 	return nil
 }

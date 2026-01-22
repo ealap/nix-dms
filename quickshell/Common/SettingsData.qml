@@ -79,6 +79,45 @@ Singleton {
         saveSettings();
     }
 
+    property var launcherPluginVisibility: ({})
+
+    function getPluginAllowWithoutTrigger(pluginId) {
+        if (!launcherPluginVisibility[pluginId])
+            return true;
+        return launcherPluginVisibility[pluginId].allowWithoutTrigger !== false;
+    }
+
+    function setPluginAllowWithoutTrigger(pluginId, allow) {
+        const updated = JSON.parse(JSON.stringify(launcherPluginVisibility));
+        if (!updated[pluginId])
+            updated[pluginId] = {};
+        updated[pluginId].allowWithoutTrigger = allow;
+        launcherPluginVisibility = updated;
+        saveSettings();
+    }
+
+    property var launcherPluginOrder: []
+    onLauncherPluginOrderChanged: saveSettings()
+
+    function setLauncherPluginOrder(order) {
+        launcherPluginOrder = order;
+    }
+
+    function getOrderedLauncherPlugins(allPlugins) {
+        if (!launcherPluginOrder || launcherPluginOrder.length === 0)
+            return allPlugins;
+        const orderMap = {};
+        for (let i = 0; i < launcherPluginOrder.length; i++)
+            orderMap[launcherPluginOrder[i]] = i;
+        return allPlugins.slice().sort((a, b) => {
+            const aOrder = orderMap[a.id] ?? 9999;
+            const bOrder = orderMap[b.id] ?? 9999;
+            if (aOrder !== bOrder)
+                return aOrder - bOrder;
+            return a.name.localeCompare(b.name);
+        });
+    }
+
     property alias dankBarLeftWidgetsModel: leftWidgetsModel
     property alias dankBarCenterWidgetsModel: centerWidgetsModel
     property alias dankBarRightWidgetsModel: rightWidgetsModel
@@ -206,6 +245,7 @@ Singleton {
     property bool reverseScrolling: false
     property bool dwlShowAllTags: false
     property string workspaceColorMode: "default"
+    property string workspaceOccupiedColorMode: "none"
     property string workspaceUnfocusedColorMode: "default"
     property string workspaceUrgentColorMode: "default"
     property bool workspaceFocusedBorderEnabled: false
@@ -235,7 +275,16 @@ Singleton {
     property bool sortAppsAlphabetically: false
     property int appLauncherGridColumns: 4
     property bool spotlightCloseNiriOverview: true
+    property var spotlightSectionViewModes: ({})
+    onSpotlightSectionViewModesChanged: saveSettings()
+    property var appDrawerSectionViewModes: ({})
+    onAppDrawerSectionViewModesChanged: saveSettings()
     property bool niriOverviewOverlayEnabled: true
+    property string dankLauncherV2Size: "compact"
+    property bool dankLauncherV2BorderEnabled: false
+    property int dankLauncherV2BorderThickness: 2
+    property string dankLauncherV2BorderColor: "primary"
+    property bool dankLauncherV2ShowFooter: true
 
     property string _legacyWeatherLocation: "New York, NY"
     property string _legacyWeatherCoordinates: "40.7128,-74.0060"
@@ -363,9 +412,11 @@ Singleton {
     property bool matugenTemplateDgop: true
     property bool matugenTemplateKcolorscheme: true
     property bool matugenTemplateVscode: true
+    property bool matugenTemplateEmacs: true
 
     property bool showDock: false
     property bool dockAutoHide: false
+    property bool dockSmartAutoHide: false
     property bool dockGroupByApp: false
     property bool dockOpenOnOverview: false
     property int dockPosition: SettingsData.Position.Bottom
@@ -393,6 +444,7 @@ Singleton {
     property bool lockScreenShowDate: true
     property bool lockScreenShowProfileImage: true
     property bool lockScreenShowPasswordField: true
+    property bool lockScreenPowerOffMonitorsOnLock: false
 
     property bool enableFprint: false
     property int maxFprintTries: 15
@@ -492,7 +544,8 @@ Singleton {
             "shadowIntensity": 0,
             "shadowOpacity": 60,
             "shadowColorMode": "text",
-            "shadowCustomColor": "#000000"
+            "shadowCustomColor": "#000000",
+            "clickThrough": false
         }
     ]
 

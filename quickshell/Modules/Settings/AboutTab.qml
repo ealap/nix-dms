@@ -7,6 +7,9 @@ import qs.Widgets
 Item {
     id: aboutTab
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property bool isHyprland: CompositorService.isHyprland
     property bool isNiri: CompositorService.isNiri
     property bool isSway: CompositorService.isSway
@@ -255,7 +258,7 @@ Item {
                         anchors.horizontalCenter: parent.horizontalCenter
                         spacing: Theme.spacingS
 
-                        property bool compactMode: parent.width < 400
+                        property bool compactMode: parent.width < 450
 
                         DankButton {
                             id: docsButton
@@ -628,6 +631,7 @@ Item {
                     }
 
                     Row {
+                        anchors.left: parent.left
                         spacing: Theme.spacingL
 
                         Column {
@@ -637,6 +641,7 @@ Item {
                                 text: I18n.tr("Version")
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Theme.surfaceVariantText
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
@@ -644,6 +649,7 @@ Item {
                                 font.pixelSize: Theme.fontSizeMedium
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
 
@@ -660,6 +666,7 @@ Item {
                                 text: I18n.tr("API")
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Theme.surfaceVariantText
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
@@ -667,6 +674,7 @@ Item {
                                 font.pixelSize: Theme.fontSizeMedium
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
 
@@ -683,6 +691,7 @@ Item {
                                 text: I18n.tr("Status")
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Theme.surfaceVariantText
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             Row {
@@ -701,6 +710,7 @@ Item {
                                     font.pixelSize: Theme.fontSizeMedium
                                     font.weight: Font.Medium
                                     color: Theme.surfaceText
+                                    horizontalAlignment: Text.AlignLeft
                                 }
                             }
                         }
@@ -715,6 +725,8 @@ Item {
                             text: I18n.tr("Capabilities")
                             font.pixelSize: Theme.fontSizeSmall
                             color: Theme.surfaceVariantText
+                            width: parent.width
+                            horizontalAlignment: Text.AlignLeft
                         }
 
                         Flow {
@@ -780,6 +792,7 @@ Item {
                     }
 
                     Row {
+                        anchors.left: parent.left
                         spacing: Theme.spacingS
 
                         DankButton {

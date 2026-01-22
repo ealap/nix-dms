@@ -100,6 +100,7 @@ var SPEC = {
     reverseScrolling: { def: false },
     dwlShowAllTags: { def: false },
     workspaceColorMode: { def: "default" },
+    workspaceOccupiedColorMode: { def: "none" },
     workspaceUnfocusedColorMode: { def: "default" },
     workspaceUrgentColorMode: { def: "default" },
     workspaceFocusedBorderEnabled: { def: false },
@@ -133,7 +134,14 @@ var SPEC = {
     sortAppsAlphabetically: { def: false },
     appLauncherGridColumns: { def: 4 },
     spotlightCloseNiriOverview: { def: true },
+    spotlightSectionViewModes: { def: {} },
+    appDrawerSectionViewModes: { def: {} },
     niriOverviewOverlayEnabled: { def: true },
+    dankLauncherV2Size: { def: "compact" },
+    dankLauncherV2BorderEnabled: { def: false },
+    dankLauncherV2BorderThickness: { def: 2 },
+    dankLauncherV2BorderColor: { def: "primary" },
+    dankLauncherV2ShowFooter: { def: true },
 
     useAutoLocation: { def: false },
     weatherEnabled: { def: true },
@@ -228,9 +236,11 @@ var SPEC = {
     matugenTemplateDgop: { def: true },
     matugenTemplateKcolorscheme: { def: true },
     matugenTemplateVscode: { def: true },
+    matugenTemplateEmacs: { def: true },
 
     showDock: { def: false },
     dockAutoHide: { def: false },
+    dockSmartAutoHide: { def: false },
     dockGroupByApp: { def: false },
     dockOpenOnOverview: { def: false },
     dockPosition: { def: 1 },
@@ -258,6 +268,7 @@ var SPEC = {
     lockScreenShowDate: { def: true },
     lockScreenShowProfileImage: { def: true },
     lockScreenShowPasswordField: { def: true },
+    lockScreenPowerOffMonitorsOnLock: { def: false },
     enableFprint: { def: false },
     maxFprintTries: { def: 15 },
     fprintdAvailable: { def: false, persist: false },
@@ -355,7 +366,8 @@ var SPEC = {
         shadowIntensity: 0,
         shadowOpacity: 60,
         shadowColorMode: "text",
-        shadowCustomColor: "#000000"
+        shadowCustomColor: "#000000",
+        clickThrough: false
     }], onChange: "updateBarConfigs" },
 
     desktopClockEnabled: { def: false },
@@ -405,7 +417,9 @@ var SPEC = {
 
     desktopWidgetGroups: { def: [] },
 
-    builtInPluginSettings: { def: {} }
+    builtInPluginSettings: { def: {} },
+    launcherPluginVisibility: { def: {} },
+    launcherPluginOrder: { def: [] }
 };
 
 function getValidKeys() {

@@ -1109,6 +1109,7 @@
     "tabIndex": 5,
     "category": "Dock",
     "keywords": [
+      "always",
       "area",
       "auto",
       "autohide",
@@ -1122,7 +1123,7 @@
       "reveal",
       "taskbar"
     ],
-    "description": "Hide the dock when not in use and reveal it when hovering near the dock area"
+    "description": "Always hide the dock and reveal it when hovering near the dock area"
   },
   {
     "section": "dockBehavior",
@@ -1277,6 +1278,29 @@
     ]
   },
   {
+    "section": "dockSmartAutoHide",
+    "label": "Intelligent Auto-hide",
+    "tabIndex": 5,
+    "category": "Dock",
+    "keywords": [
+      "auto",
+      "autohide",
+      "dock",
+      "floating",
+      "hide",
+      "intelligent",
+      "launcher bar",
+      "overlap",
+      "panel",
+      "show",
+      "smart",
+      "taskbar",
+      "windows"
+    ],
+    "description": "Show dock when floating windows don",
+    "conditionKey": "isNiri"
+  },
+  {
     "section": "dockIsolateDisplays",
     "label": "Isolate Displays",
     "tabIndex": 5,
@@ -1429,6 +1453,58 @@
     "conditionKey": "cupsAvailable"
   },
   {
+    "section": "appOverrides",
+    "label": "App Customizations",
+    "tabIndex": 9,
+    "category": "Launcher",
+    "keywords": [
+      "app",
+      "customizations",
+      "drawer",
+      "launcher",
+      "menu",
+      "start"
+    ],
+    "icon": "edit"
+  },
+  {
+    "section": "dankLauncherV2Appearance",
+    "label": "Appearance",
+    "tabIndex": 9,
+    "category": "Launcher",
+    "keywords": [
+      "appearance",
+      "bottom",
+      "drawer",
+      "footer",
+      "hints",
+      "keyboard",
+      "launcher",
+      "menu",
+      "mode",
+      "shortcuts",
+      "show",
+      "start",
+      "tabs"
+    ],
+    "icon": "tune",
+    "description": "Show mode tabs and keyboard hints at the bottom."
+  },
+  {
+    "section": "dankLauncherV2BorderEnabled",
+    "label": "Border",
+    "tabIndex": 9,
+    "category": "Launcher",
+    "keywords": [
+      "border",
+      "drawer",
+      "launcher",
+      "menu",
+      "outline",
+      "start"
+    ]
+  },
+  {
     "section": "launcherLogoBrightness",
     "label": "Brightness",
     "tabIndex": 9,
@@ -1519,6 +1595,21 @@
       "view"
     ],
     "description": "Adjust the number of columns in grid view mode."
+  },
+  {
+    "section": "hiddenApps",
+    "label": "Hidden Apps",
+    "tabIndex": 9,
+    "category": "Launcher",
+    "keywords": [
+      "apps",
+      "drawer",
+      "hidden",
+      "launcher",
+      "menu",
+      "start"
+    ],
+    "icon": "visibility_off"
   },
   {
     "section": "launcherLogoColorInvertOnMode",
@@ -1630,6 +1721,68 @@
     "icon": "history"
   },
   {
+    "section": "searchAppActions",
+    "label": "Search App Actions",
+    "tabIndex": 9,
+    "category": "Launcher",
+    "keywords": [
+      "actions",
+      "app",
+      "desktop",
+      "drawer",
+      "include",
+      "launcher",
+      "menu",
+      "results",
+      "search",
+      "shortcuts",
+      "start"
+    ],
+    "description": "Include desktop actions (shortcuts) in search results."
+  },
+  {
+    "section": "searchOptions",
+    "label": "Search Options",
+    "tabIndex": 9,
+    "category": "Launcher",
+    "keywords": [
+      "actions",
+      "desktop",
+      "drawer",
+      "include",
+      "launcher",
+      "menu",
+      "options",
+      "results",
+      "search",
+      "shortcuts",
+      "start"
+    ],
+    "icon": "search",
+    "description": "Include desktop actions (shortcuts) in search results."
+  },
+  {
+    "section": "dankLauncherV2ShowFooter",
+    "label": "Show Footer",
+    "tabIndex": 9,
+    "category": "Launcher",
+    "keywords": [
+      "bottom",
+      "drawer",
+      "footer",
+      "hints",
+      "keyboard",
+      "launcher",
+      "menu",
+      "mode",
+      "shortcuts",
+      "show",
+      "start",
+      "tabs"
+    ],
+    "description": "Show mode tabs and keyboard hints at the bottom."
+  },
+  {
     "section": "launcherLogoSizeOffset",
     "label": "Size Offset",
     "tabIndex": 9,
@@ -1691,6 +1844,20 @@
     ],
     "icon": "sort_by_alpha",
     "description": "When enabled, apps are sorted alphabetically. When disabled, apps are sorted by usage frequency."
+  },
+  {
+    "section": "dankLauncherV2BorderThickness",
+    "label": "Thickness",
+    "tabIndex": 9,
+    "category": "Launcher",
+    "keywords": [
+      "border",
+      "drawer",
+      "launcher",
+      "menu",
+      "start",
+      "thickness"
+    ]
   },
   {
     "section": "matugenTemplateAlacritty",
@@ -2767,6 +2934,23 @@
     ]
   },
   {
+    "section": "matugenTemplateEmacs",
+    "label": "Emacs",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "look",
+      "matugen",
+      "scheme",
+      "style",
+      "template",
+      "theme",
+      "emacs"
+    ]
+  },
+  {
     "section": "widgetBackgroundColor",
     "label": "Widget Background Color",
     "tabIndex": 10,
@@ -3368,6 +3552,40 @@
       "suspend"
     ],
     "icon": "security"
+  },
+  {
+    "section": "lockScreenPowerOffMonitorsOnLock",
+    "label": "Power off monitors on lock",
+    "tabIndex": 11,
+    "category": "Lock Screen",
+    "keywords": [
+      "activates",
+      "display",
+      "displays",
+      "dpms",
+      "hibernate",
+      "immediately",
+      "lock",
+      "lockscreen",
+      "login",
+      "monitor",
+      "monitors",
+      "off",
+      "output",
+      "outputs",
+      "password",
+      "power",
+      "reboot",
+      "restart",
+      "screen",
+      "screens",
+      "security",
+      "shutdown",
+      "sleep",
+      "suspend",
+      "turn"
+    ],
+    "description": "Turn off all displays immediately when the lock screen activates"
   },
   {
     "section": "lockScreenShowPasswordField",
@@ -5046,6 +5264,26 @@
       "system"
     ],
     "description": "Maximum size per clipboard entry"
+  },
+  {
+    "section": "maxPinned",
+    "label": "Maximum Pinned Entries",
+    "tabIndex": 23,
+    "category": "System",
+    "keywords": [
+      "clipboard",
+      "entries",
+      "limit",
+      "linux",
+      "max",
+      "maximum",
+      "number",
+      "os",
+      "pinned",
+      "saved",
+      "system"
+    ],
+    "description": "Maximum number of entries that can be saved"
   },
   {
     "section": "_tab_24",

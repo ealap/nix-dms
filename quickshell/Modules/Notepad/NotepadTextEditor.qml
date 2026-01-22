@@ -11,6 +11,12 @@ pragma ComponentBehavior: Bound
 Column {
     id: root
 
+    Component.onCompleted: {
+        if (PluginService.isPluginLoaded("dankNotepadModule")) {
+            pluginHighlightedHtml = SettingsData.getBuiltInPluginSetting("dankNotepadModule", "highlightedHtml", "")
+        }
+    }
+
     property alias text: textArea.text
     property alias textArea: textArea
     property bool contentLoaded: false
@@ -21,10 +27,15 @@ Column {
     property var searchMatches: []
     property int currentMatchIndex: -1
     property int matchCount: 0
+    property bool inlinePreviewVisible: false
+    property string previewMode: "split" // split | full
+    property string pluginHighlightedHtml: ""
+    property string lastPluginContent: ""
 
     signal saveRequested()
     signal openRequested()
     signal newRequested()
+    signal previewRequested()
     signal escapePressed()
     signal contentChanged()
     signal settingsRequested()
@@ -50,6 +61,7 @@ Column {
                 lastSavedContent = content
                 textArea.text = content
                 contentLoaded = true
+                syncContentToPlugin()
             }
         )
     }
@@ -164,6 +176,47 @@ Column {
         })
     }
 
+    function togglePreview() {
+        if (!inlinePreviewVisible) {
+            inlinePreviewVisible = true
+            previewMode = "split"
+        } else if (previewMode === "split") {
+            previewMode = "full"
+        } else {
+            inlinePreviewVisible = false
+            previewMode = "split"
+        }
+        syncContentToPlugin()
+    }
+
+    function renderPreviewHtml() {
+        if (!inlinePreviewVisible) return ""
+        return pluginHighlightedHtml.length > 0 ? pluginHighlightedHtml : "<p><i>Rendering preview…</i></p>"
+    }
+
+    function syncContentToPlugin() {
+        if (!PluginService.isPluginLoaded("dankNotepadModule"))
+            return
+
+        if (!currentTab)
+            return
+
+        const filePath = currentTab?.filePath || ""
+        const ext = filePath.split('.').pop().toLowerCase()
+        const content = textArea.text
+
+        if (content === lastPluginContent && SettingsData.getBuiltInPluginSetting("dankNotepadModule", "previewActive", false) === inlinePreviewVisible) {
+            return
+        }
+
+        lastPluginContent = content
+        SettingsData.setBuiltInPluginSetting("dankNotepadModule", "previewActive", inlinePreviewVisible)
+        SettingsData.setBuiltInPluginSetting("dankNotepadModule", "currentFilePath", filePath)
+        SettingsData.setBuiltInPluginSetting("dankNotepadModule", "currentFileExtension", ext)
+        SettingsData.setBuiltInPluginSetting("dankNotepadModule", "sourceContent", content)
+        SettingsData.setBuiltInPluginSetting("dankNotepadModule", "updatedAt", Date.now())
+    }
+
     function hideSearch() {
         searchVisible = false
         searchQuery = ""
@@ -172,6 +225,57 @@ Column {
         currentMatchIndex = -1
         textArea.select(0, 0)
         textArea.forceActiveFocus()
+    }
+
+    function copyPlainTextToClipboard() {
+        if (!inlinePreviewVisible || !textArea.text) return
+
+        const content = textArea.text
+        if (content.length > 0) {
+            const proc = Qt.createQmlObject(`
+                import QtQuick
+                import Quickshell.Io
+                Process {
+                    property string content: ""
+                    command: ["sh", "-c", "printf '%s' \\"$CONTENT\\" | dms clipboard copy"]
+                    environment: { "CONTENT": content }
+                    running: false
+                }`,
+                root,
+                "copyProc"
+            )
+            proc.content = content
+            proc.running = true
+            proc.exited.connect(() => {
+                ToastService.showInfo(I18n.tr("Copied to clipboard"))
+                proc.destroy()
+            })
+        }
+    }
+
+    function copyHtmlToClipboard() {
+        if (!inlinePreviewVisible || !pluginHighlightedHtml) return
+
+        if (pluginHighlightedHtml.length > 0) {
+            const proc = Qt.createQmlObject(`
+                import QtQuick
+                import Quickshell.Io
+                Process {
+                    property string content: ""
+                    command: ["sh", "-c", "printf '%s' \\"$CONTENT\\" | dms clipboard copy"]
+                    environment: { "CONTENT": content }
+                    running: false
+                }`,
+                root,
+                "copyProcHtml"
+            )
+            proc.content = pluginHighlightedHtml
+            proc.running = true
+            proc.exited.connect(() => {
+                ToastService.showInfo(I18n.tr("HTML copied to clipboard"))
+                proc.destroy()
+            })
+        }
     }
 
     spacing: Theme.spacingM
@@ -303,7 +407,6 @@ Column {
                 onClicked: root.findNext()
             }
 
-            // Close button
             DankActionButton {
                 id: closeSearchButton
                 Layout.alignment: Qt.AlignVCenter
@@ -323,161 +426,310 @@ Column {
         border.width: 1
         radius: Theme.cornerRadius
 
-        DankFlickable {
-            id: flickable
+        RowLayout {
+            id: editorPreviewRow
             anchors.fill: parent
             anchors.margins: 1
-            clip: true
-            contentWidth: width - 11
+            spacing: Theme.spacingM
 
-            Rectangle {
-                id: lineNumberArea
-                anchors.left: parent.left
-                anchors.top: parent.top
-                width: SettingsData.notepadShowLineNumbers ? Math.max(30, 32 + Theme.spacingXS) : 0
-                height: textArea.contentHeight + textArea.topPadding + textArea.bottomPadding
-                color: "transparent"
-                visible: SettingsData.notepadShowLineNumbers
+            Item {
+                id: editorPane
+                visible: !inlinePreviewVisible || previewMode === "split"
+                Layout.fillHeight: true
+                Layout.fillWidth: !inlinePreviewVisible || previewMode === "split"
+                Layout.preferredWidth: inlinePreviewVisible ? parent.width * 0.55 : parent.width
+                clip: true
 
-                ListView {
-                    id: lineNumberList
-                    anchors.top: parent.top
-                    anchors.topMargin: textArea.topPadding
-                    anchors.right: parent.right
-                    anchors.rightMargin: 2
-                    width: 32
-                    height: textArea.contentHeight
-                    model: SettingsData.notepadShowLineNumbers ? root.lineModel : []
-                    interactive: false
-                    spacing: 0
+                DankFlickable {
+                    id: flickable
+                    anchors.fill: parent
+                    clip: true
+                    contentWidth: width - 11
 
-                    delegate: Item {
-                        id: lineDelegate
-                        required property int index
-                        required property string modelData
-                        width: 32
-                        height: measuringText.contentHeight
+                    Rectangle {
+                        id: lineNumberArea
+                        anchors.left: parent.left
+                        anchors.top: parent.top
+                        width: SettingsData.notepadShowLineNumbers ? Math.max(30, 32 + Theme.spacingXS) : 0
+                        height: textArea.contentHeight + textArea.topPadding + textArea.bottomPadding
+                        color: "transparent"
+                        visible: SettingsData.notepadShowLineNumbers
 
-                        Text {
-                            id: measuringText
-                            width: textArea.width - textArea.leftPadding - textArea.rightPadding
-                            text: modelData || " "
-                            font: textArea.font
-                            wrapMode: Text.Wrap
-                            visible: false
-                        }
-
-                        StyledText {
-                            anchors.right: parent.right
-                            anchors.rightMargin: 4
+                        ListView {
+                            id: lineNumberList
                             anchors.top: parent.top
-                            text: index + 1
-                            font.family: textArea.font.family
-                            font.pixelSize: textArea.font.pixelSize
-                            color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.4)
-                            horizontalAlignment: Text.AlignRight
+                            anchors.topMargin: textArea.topPadding
+                            anchors.right: parent.right
+                            anchors.rightMargin: 2
+                            width: 32
+                            height: textArea.contentHeight
+                            model: SettingsData.notepadShowLineNumbers ? root.lineModel : []
+                            interactive: false
+                            spacing: 0
+
+                            delegate: Item {
+                                id: lineDelegate
+                                required property int index
+                                required property string modelData
+                                width: 32
+                                height: measuringText.contentHeight
+
+                                Text {
+                                    id: measuringText
+                                    width: textArea.width - textArea.leftPadding - textArea.rightPadding
+                                    text: modelData || " "
+                                    font: textArea.font
+                                    wrapMode: Text.Wrap
+                                    visible: false
+                                }
+
+                                StyledText {
+                                    anchors.right: parent.right
+                                    anchors.rightMargin: 4
+                                    anchors.top: parent.top
+                                    text: index + 1
+                                    font.family: textArea.font.family
+                                    font.pixelSize: textArea.font.pixelSize
+                                    color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.4)
+                                    horizontalAlignment: Text.AlignRight
+                                }
+                            }
                         }
+                    }
+
+                    TextArea.flickable: TextArea {
+                        id: textArea
+                        placeholderText: ""
+                        placeholderTextColor: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.5)
+                        font.family: SettingsData.notepadUseMonospace ? SettingsData.monoFontFamily : (SettingsData.notepadFontFamily || SettingsData.fontFamily)
+                        font.pixelSize: SettingsData.notepadFontSize * SettingsData.fontScale
+                        font.letterSpacing: 0
+                        color: Theme.surfaceText
+                        selectedTextColor: Theme.background
+                        selectionColor: Theme.primary
+                        selectByMouse: true
+                        selectByKeyboard: true
+                        wrapMode: TextArea.Wrap
+                        focus: true
+                        activeFocusOnTab: true
+                        textFormat: TextEdit.PlainText
+                        inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
+                        persistentSelection: true
+                        tabStopDistance: 40
+                        leftPadding: (SettingsData.notepadShowLineNumbers ? lineNumberArea.width + Theme.spacingXS : Theme.spacingM)
+                        topPadding: Theme.spacingM
+                        rightPadding: Theme.spacingM
+                        bottomPadding: Theme.spacingM
+                        cursorDelegate: Rectangle {
+                            width: 1.5
+                            radius: 1
+                            color: Theme.surfaceText
+                            x: textArea.cursorRectangle.x
+                            y: textArea.cursorRectangle.y
+                            height: textArea.cursorRectangle.height
+                            opacity: 1.0
+
+                            SequentialAnimation on opacity {
+                                running: textArea.activeFocus
+                                loops: Animation.Infinite
+                                PropertyAnimation { from: 1.0; to: 0.0; duration: 650; easing.type: Easing.InOutQuad }
+                                PropertyAnimation { from: 0.0; to: 1.0; duration: 650; easing.type: Easing.InOutQuad }
+                            }
+                        }
+
+                        Component.onCompleted: {
+                            loadCurrentTabContent()
+                            setTextDocumentLineHeight()
+                            root.updateLineModel()
+                            Qt.callLater(() => {
+                                textArea.forceActiveFocus()
+                            })
+                        }
+
+                        Connections {
+                            target: NotepadStorageService
+                            function onCurrentTabIndexChanged() {
+                                loadCurrentTabContent()
+                                Qt.callLater(() => {
+                                    textArea.forceActiveFocus()
+                                })
+                            }
+                            function onTabsChanged() {
+                                if (NotepadStorageService.tabs.length > 0 && !contentLoaded) {/* Lines 444-445 omitted */}
+                            }
+                        }
+
+                        Connections {
+                            target: SettingsData
+                            function onNotepadShowLineNumbersChanged() {
+                                root.updateLineModel()
+                            }
+                        }
+
+                        onTextChanged: {
+                            if (contentLoaded && text !== lastSavedContent) {
+                                autoSaveTimer.restart()
+                            }
+                            root.contentChanged()
+                            root.updateLineModel()
+                            pluginSyncTimer.restart()
+                        }
+
+                        Keys.onEscapePressed: (event) => {
+                            root.escapePressed()
+                            event.accepted = true
+                        }
+
+                        Keys.onPressed: (event) => {
+                            if (event.modifiers & Qt.ControlModifier) {
+                                switch (event.key) {
+                                case Qt.Key_S:
+                                    event.accepted = true
+                                    root.saveRequested()
+                                    break
+                                case Qt.Key_O:
+                                    event.accepted = true
+                                    root.openRequested()
+                                    break
+                                case Qt.Key_N:
+                                    event.accepted = true
+                                    root.newRequested()
+                                    break
+                                case Qt.Key_A:
+                                    event.accepted = true
+                                    textArea.selectAll()
+                                    break
+                                case Qt.Key_F:
+                                    event.accepted = true
+                                    root.showSearch()
+                                    break
+                                case Qt.Key_P:
+                                    if (PluginService.isPluginLoaded("dankNotepadModule")) {
+                                        event.accepted = true
+                                        root.previewRequested()
+                                    }
+                                    break
+                                }
+                            }
+                        }
+
+                        background: Rectangle {
+                            color: "transparent"
+                        }
+                    }
+
+                    StyledText {
+                        id: placeholderOverlay
+                        text: I18n.tr("Start typing your notes here...")
+                        color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.5)
+                        font.family: textArea.font.family
+                        font.pixelSize: textArea.font.pixelSize
+                        visible: textArea.text.length === 0
+                        anchors.left: textArea.left
+                        anchors.top: textArea.top
+                        anchors.leftMargin: textArea.leftPadding
+                        anchors.topMargin: textArea.topPadding
+                        z: textArea.z + 1
                     }
                 }
             }
 
-            TextArea.flickable: TextArea {
-                id: textArea
-                placeholderText: I18n.tr("Start typing your notes here...")
-                placeholderTextColor: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.5)
-                font.family: SettingsData.notepadUseMonospace ? SettingsData.monoFontFamily : (SettingsData.notepadFontFamily || SettingsData.fontFamily)
-                font.pixelSize: SettingsData.notepadFontSize * SettingsData.fontScale
-                font.letterSpacing: 0
-                color: Theme.surfaceText
-                selectedTextColor: Theme.background
-                selectionColor: Theme.primary
-                selectByMouse: true
-                selectByKeyboard: true
-                wrapMode: TextArea.Wrap
-                focus: true
-                activeFocusOnTab: true
-                textFormat: TextEdit.PlainText
-                inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
-                persistentSelection: true
-                tabStopDistance: 40
-                leftPadding: (SettingsData.notepadShowLineNumbers ? lineNumberArea.width + Theme.spacingXS : Theme.spacingM)
-                topPadding: Theme.spacingM
-                rightPadding: Theme.spacingM
-                bottomPadding: Theme.spacingM
+            Rectangle {
+                id: previewDivider
+                visible: inlinePreviewVisible && previewMode === "split"
+                Layout.fillHeight: true
+                Layout.preferredWidth: 1
+                color: Theme.outlineMedium
+            }
 
-                Component.onCompleted: {
-                    loadCurrentTabContent()
-                    setTextDocumentLineHeight()
-                    root.updateLineModel()
-                    Qt.callLater(() => {
-                        textArea.forceActiveFocus()
-                    })
-                }
+            Item {
+                id: previewPane
+                visible: inlinePreviewVisible
+                Layout.fillHeight: true
+                Layout.fillWidth: previewMode === "full"
+                Layout.preferredWidth: previewMode === "full" ? parent.width : parent.width * 0.45
+                clip: true
 
-                Connections {
-                    target: NotepadStorageService
-                    function onCurrentTabIndexChanged() {
-                        loadCurrentTabContent()
-                        Qt.callLater(() => {
-                            textArea.forceActiveFocus()
-                        })
-                    }
-                    function onTabsChanged() {
-                        if (NotepadStorageService.tabs.length > 0 && !contentLoaded) {
-                            loadCurrentTabContent()
+                // Preview header with copy buttons
+                Rectangle {
+                    id: previewHeader
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    height: 36
+                    color: Qt.rgba(Theme.surface.r, Theme.surface.g, Theme.surface.b, Theme.notepadTransparency)
+                    z: 2
+
+                    Row {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: Theme.spacingM
+                        spacing: Theme.spacingS
+
+                        // Copy plain text button
+                        DankActionButton {
+                            iconName: "content_copy"
+                            iconSize: Theme.iconSize - 4
+                            iconColor: Theme.surfaceTextMedium
+                            onClicked: copyPlainTextToClipboard()
+                        }
+
+                        StyledText {
+                            anchors.verticalCenter: parent.verticalCenter
+                            text: I18n.tr("Copy Text")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceTextMedium
+                        }
+
+                        Rectangle {
+                            width: 1
+                            height: 20
+                            color: Theme.outlineVariant
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        // Copy HTML button
+                        DankActionButton {
+                            iconName: "code"
+                            iconSize: Theme.iconSize - 4
+                            iconColor: Theme.surfaceTextMedium
+                            onClicked: copyHtmlToClipboard()
+                        }
+
+                        StyledText {
+                            anchors.verticalCenter: parent.verticalCenter
+                            text: I18n.tr("Copy HTML")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceTextMedium
                         }
                     }
                 }
 
-                Connections {
-                    target: SettingsData
-                    function onNotepadShowLineNumbersChanged() {
-                        root.updateLineModel()
+                DankFlickable {
+                    id: previewFlickable
+                    anchors.top: previewHeader.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    anchors.topMargin: Theme.spacingS
+                    clip: true
+                    contentWidth: width - 11
+                    contentHeight: previewText.paintedHeight + Theme.spacingM * 2
+
+                    Text {
+                        id: previewText
+                        width: parent.width - Theme.spacingM
+                        padding: Theme.spacingM
+                        wrapMode: Text.WordWrap
+                        textFormat: Text.RichText
+                        text: inlinePreviewVisible ? renderPreviewHtml() : ""
+                        color: Theme.surfaceText
+                        font.family: SettingsData.notepadFontFamily || SettingsData.fontFamily
+                        font.pixelSize: Theme.fontSizeMedium
+                        linkColor: Theme.primary
+
+                        onLinkActivated: url => Qt.openUrlExternally(url)
                     }
-                }
-
-                onTextChanged: {
-                    if (contentLoaded && text !== lastSavedContent) {
-                        autoSaveTimer.restart()
-                    }
-                    root.contentChanged()
-                    root.updateLineModel()
-                }
-
-                Keys.onEscapePressed: (event) => {
-                    root.escapePressed()
-                    event.accepted = true
-                }
-
-                Keys.onPressed: (event) => {
-                    if (event.modifiers & Qt.ControlModifier) {
-                        switch (event.key) {
-                        case Qt.Key_S:
-                            event.accepted = true
-                            root.saveRequested()
-                            break
-                        case Qt.Key_O:
-                            event.accepted = true
-                            root.openRequested()
-                            break
-                        case Qt.Key_N:
-                            event.accepted = true
-                            root.newRequested()
-                            break
-                        case Qt.Key_A:
-                            event.accepted = true
-                            selectAll()
-                            break
-                        case Qt.Key_F:
-                            event.accepted = true
-                            root.showSearch()
-                            break
-                        }
-                    }
-                }
-
-                background: Rectangle {
-                    color: "transparent"
                 }
             }
         }
@@ -541,6 +793,24 @@ Column {
                     StyledText {
                         anchors.verticalCenter: parent.verticalCenter
                         text: I18n.tr("New")
+                        font.pixelSize: Theme.fontSizeSmall
+                        color: Theme.surfaceTextMedium
+                    }
+                }
+
+                Row {
+                    spacing: Theme.spacingS
+                    visible: PluginService.isPluginLoaded("dankNotepadModule")
+                    DankActionButton {
+                        iconName: inlinePreviewVisible ? "visibility" : "visibility_off"
+                        iconSize: Theme.iconSize - 2
+                        iconColor: Theme.surfaceText
+                        enabled: textArea.text.length > 0
+                        onClicked: root.previewRequested()
+                    }
+                    StyledText {
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: I18n.tr("Preview")
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.surfaceTextMedium
                     }
@@ -614,6 +884,22 @@ Column {
         repeat: false
         onTriggered: {
             autoSaveToSession()
+        }
+    }
+
+    Timer {
+        id: pluginSyncTimer
+        interval: 350
+        repeat: false
+        onTriggered: syncContentToPlugin()
+    }
+
+    Connections {
+        target: SettingsData
+        function onBuiltInPluginSettingsChanged() {
+            if (PluginService.isPluginLoaded("dankNotepadModule")) {
+                pluginHighlightedHtml = SettingsData.getBuiltInPluginSetting("dankNotepadModule", "highlightedHtml", "")
+            }
         }
     }
 }

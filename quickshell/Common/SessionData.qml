@@ -21,6 +21,7 @@ Singleton {
     property bool _isReadOnly: false
     property bool _hasUnsavedChanges: false
     property var _loadedSessionSnapshot: null
+    readonly property var _hooks: ({})
     readonly property string _stateUrl: StandardPaths.writableLocation(StandardPaths.GenericStateLocation)
     readonly property string _stateDir: Paths.strip(_stateUrl)
 
@@ -101,6 +102,10 @@ Singleton {
 
     property string weatherLocation: "New York, NY"
     property string weatherCoordinates: "40.7128,-74.0060"
+
+    property var hiddenApps: []
+    property var appOverrides: ({})
+    property bool searchAppActions: true
 
     Component.onCompleted: {
         if (!isGreeterMode) {
@@ -259,6 +264,10 @@ Singleton {
         settingsFile.setText(getCurrentSessionJson());
         if (_isReadOnly)
             _checkSessionWritable();
+    }
+
+    function set(key, value) {
+        Spec.set(root, key, value, saveSettings, _hooks);
     }
 
     function migrateFromUndefinedToV1(settings) {
@@ -903,6 +912,61 @@ Singleton {
     function setWeatherLocation(displayName, coordinates) {
         weatherLocation = displayName;
         weatherCoordinates = coordinates;
+        saveSettings();
+    }
+
+    function hideApp(appId) {
+        if (!appId)
+            return;
+        const current = [...hiddenApps];
+        if (current.indexOf(appId) === -1) {
+            current.push(appId);
+            hiddenApps = current;
+            saveSettings();
+        }
+    }
+
+    function showApp(appId) {
+        if (!appId)
+            return;
+        hiddenApps = hiddenApps.filter(id => id !== appId);
+        saveSettings();
+    }
+
+    function isAppHidden(appId) {
+        return appId && hiddenApps.indexOf(appId) !== -1;
+    }
+
+    function setAppOverride(appId, overrides) {
+        if (!appId)
+            return;
+        const newOverrides = Object.assign({}, appOverrides);
+        if (!overrides || Object.keys(overrides).length === 0) {
+            delete newOverrides[appId];
+        } else {
+            newOverrides[appId] = overrides;
+        }
+        appOverrides = newOverrides;
+        saveSettings();
+    }
+
+    function getAppOverride(appId) {
+        if (!appId)
+            return null;
+        return appOverrides[appId] || null;
+    }
+
+    function clearAppOverride(appId) {
+        if (!appId)
+            return;
+        const newOverrides = Object.assign({}, appOverrides);
+        delete newOverrides[appId];
+        appOverrides = newOverrides;
+        saveSettings();
+    }
+
+    function setSearchAppActions(enabled) {
+        searchAppActions = enabled;
         saveSettings();
     }
 

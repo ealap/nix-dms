@@ -558,8 +558,8 @@ Rectangle {
         visible: !expanded
         anchors.right: clearButton.visible ? clearButton.left : parent.right
         anchors.rightMargin: clearButton.visible ? contentSpacing : Theme.spacingL
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: contentSpacing
+        anchors.top: collapsedContent.bottom
+        anchors.topMargin: contentSpacing
         spacing: contentSpacing
 
         Repeater {
@@ -614,8 +614,8 @@ Rectangle {
         visible: !expanded && actionCount < 3
         anchors.right: parent.right
         anchors.rightMargin: Theme.spacingL
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: contentSpacing
+        anchors.top: collapsedContent.bottom
+        anchors.topMargin: contentSpacing
         width: Math.max(clearText.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
         height: actionButtonHeight
         radius: Theme.spacingXS

@@ -10,6 +10,7 @@ import (
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/brightness"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/clipboard"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/cups"
+	serverDbus "github.com/AvengeMedia/DankMaterialShell/core/internal/server/dbus"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/dwl"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/evdev"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/extworkspace"
@@ -151,6 +152,15 @@ func RouteRequest(conn net.Conn, req models.Request) {
 			return
 		}
 		evdev.HandleRequest(conn, req, evdevManager)
+		return
+	}
+
+	if strings.HasPrefix(req.Method, "dbus.") {
+		if dbusManager == nil {
+			models.RespondError(conn, req.ID, "dbus manager not initialized")
+			return
+		}
+		serverDbus.HandleRequest(conn, req, dbusManager, dbusClientID)
 		return
 	}
 

@@ -3,7 +3,7 @@ import QtQuick.Controls
 import Quickshell
 import Quickshell.Wayland
 import qs.Common
-import qs.Modals.Spotlight
+import qs.Modals.DankLauncherV2
 import qs.Services
 
 Scope {
@@ -13,7 +13,7 @@ Scope {
     property string searchActiveScreen: ""
     property bool isClosing: false
     property bool releaseKeyboard: false
-    readonly property bool spotlightModalOpen: PopoutService.spotlightModal?.spotlightOpen ?? false
+    readonly property bool spotlightModalOpen: PopoutService.dankLauncherV2Modal?.spotlightOpen ?? false
     property bool overlayActive: NiriService.inOverview || searchActive
 
     function showSpotlight(screenName) {
@@ -67,229 +67,242 @@ Scope {
             hideSpotlight();
     }
 
-    Loader {
-        id: niriOverlayLoader
-        active: overlayActive || isClosing
-        asynchronous: false
+    Variants {
+        id: overlayVariants
+        model: Quickshell.screens
 
-        sourceComponent: Variants {
-            id: overlayVariants
-            model: Quickshell.screens
+        PanelWindow {
+            id: overlayWindow
+            required property var modelData
 
-            PanelWindow {
-                id: overlayWindow
-                required property var modelData
+            readonly property real dpr: CompositorService.getScreenScale(screen)
+            readonly property bool isActiveScreen: screen.name === NiriService.currentOutput
+            readonly property bool shouldShowSpotlight: niriOverviewScope.searchActive && screen.name === niriOverviewScope.searchActiveScreen && !niriOverviewScope.isClosing
+            readonly property bool isSpotlightScreen: screen.name === niriOverviewScope.searchActiveScreen
+            readonly property bool overlayVisible: NiriService.inOverview || niriOverviewScope.isClosing
+            property bool hasActivePopout: !!PopoutManager.currentPopoutsByScreen[screen.name]
+            property bool hasActiveModal: !!ModalManager.currentModalsByScreen[screen.name]
 
-                readonly property real dpr: CompositorService.getScreenScale(screen)
-                readonly property bool isActiveScreen: screen.name === NiriService.currentOutput
-                readonly property bool shouldShowSpotlight: niriOverviewScope.searchActive && screen.name === niriOverviewScope.searchActiveScreen && !niriOverviewScope.isClosing
-                readonly property bool isSpotlightScreen: screen.name === niriOverviewScope.searchActiveScreen
-                property bool hasActivePopout: !!PopoutManager.currentPopoutsByScreen[screen.name]
-                property bool hasActiveModal: !!ModalManager.currentModalsByScreen[screen.name]
+            Connections {
+                target: PopoutManager
+                function onPopoutChanged() {
+                    overlayWindow.hasActivePopout = !!PopoutManager.currentPopoutsByScreen[overlayWindow.screen.name];
+                }
+            }
 
-                Connections {
-                    target: PopoutManager
-                    function onPopoutChanged() {
-                        overlayWindow.hasActivePopout = !!PopoutManager.currentPopoutsByScreen[overlayWindow.screen.name];
+            Connections {
+                target: ModalManager
+                function onModalChanged() {
+                    overlayWindow.hasActiveModal = !!ModalManager.currentModalsByScreen[overlayWindow.screen.name];
+                }
+            }
+
+            screen: modelData
+            visible: true
+            color: "transparent"
+
+            WlrLayershell.namespace: "dms:niri-overview-spotlight"
+            WlrLayershell.layer: WlrLayer.Overlay
+            WlrLayershell.exclusiveZone: -1
+            WlrLayershell.keyboardFocus: {
+                if (!NiriService.inOverview)
+                    return WlrKeyboardFocus.None;
+                if (!isActiveScreen)
+                    return WlrKeyboardFocus.None;
+                if (niriOverviewScope.releaseKeyboard)
+                    return WlrKeyboardFocus.None;
+                if (hasActivePopout || hasActiveModal)
+                    return WlrKeyboardFocus.None;
+                return WlrKeyboardFocus.Exclusive;
+            }
+
+            mask: Region {
+                item: overlayVisible && spotlightContainer.visible ? spotlightContainer : null
+            }
+
+            onShouldShowSpotlightChanged: {
+                if (shouldShowSpotlight) {
+                    if (launcherContent?.controller) {
+                        launcherContent.controller.searchMode = "apps";
+                        launcherContent.controller.performSearch();
                     }
+                    return;
                 }
+                if (!isActiveScreen)
+                    return;
+                Qt.callLater(() => keyboardFocusScope.forceActiveFocus());
+            }
 
-                Connections {
-                    target: ModalManager
-                    function onModalChanged() {
-                        overlayWindow.hasActiveModal = !!ModalManager.currentModalsByScreen[overlayWindow.screen.name];
-                    }
-                }
+            anchors {
+                top: true
+                left: true
+                right: true
+                bottom: true
+            }
 
-                screen: modelData
-                visible: NiriService.inOverview || niriOverviewScope.isClosing
-                color: "transparent"
+            FocusScope {
+                id: keyboardFocusScope
+                anchors.fill: parent
+                focus: true
 
-                WlrLayershell.namespace: "dms:niri-overview-spotlight"
-                WlrLayershell.layer: WlrLayer.Overlay
-                WlrLayershell.exclusiveZone: -1
-                WlrLayershell.keyboardFocus: {
-                    if (!NiriService.inOverview)
-                        return WlrKeyboardFocus.None;
-                    if (!isActiveScreen)
-                        return WlrKeyboardFocus.None;
-                    if (niriOverviewScope.releaseKeyboard)
-                        return WlrKeyboardFocus.None;
-                    if (hasActivePopout || hasActiveModal)
-                        return WlrKeyboardFocus.None;
-                    return WlrKeyboardFocus.Exclusive;
-                }
-
-                mask: Region {
-                    item: spotlightContainer.visible ? spotlightContainer : null
-                }
-
-                onShouldShowSpotlightChanged: {
-                    if (shouldShowSpotlight) {
-                        if (spotlightContent?.appLauncher)
-                            spotlightContent.appLauncher.ensureInitialized();
+                Keys.onPressed: event => {
+                    if (overlayWindow.shouldShowSpotlight || niriOverviewScope.isClosing)
                         return;
-                    }
-                    if (!isActiveScreen)
-                        return;
-                    Qt.callLater(() => keyboardFocusScope.forceActiveFocus());
-                }
-
-                anchors {
-                    top: true
-                    left: true
-                    right: true
-                    bottom: true
-                }
-
-                FocusScope {
-                    id: keyboardFocusScope
-                    anchors.fill: parent
-                    focus: true
-
-                    Keys.onPressed: event => {
-                        if (overlayWindow.shouldShowSpotlight || niriOverviewScope.isClosing)
-                            return;
-                        if ([Qt.Key_Escape, Qt.Key_Return].includes(event.key)) {
-                            NiriService.toggleOverview();
-                            event.accepted = true;
-                            return;
-                        }
-
-                        if (event.key === Qt.Key_Left) {
-                            NiriService.moveColumnLeft();
-                            event.accepted = true;
-                            return;
-                        }
-
-                        if (event.key === Qt.Key_Right) {
-                            NiriService.moveColumnRight();
-                            event.accepted = true;
-                            return;
-                        }
-
-                        if (event.key === Qt.Key_Up) {
-                            NiriService.moveWorkspaceUp();
-                            event.accepted = true;
-                            return;
-                        }
-
-                        if (event.key === Qt.Key_Down) {
-                            NiriService.moveWorkspaceDown();
-                            event.accepted = true;
-                            return;
-                        }
-
-                        if (event.modifiers & (Qt.ControlModifier | Qt.MetaModifier) || [Qt.Key_Delete, Qt.Key_Backspace].includes(event.key)) {
-                            event.accepted = false;
-                            return;
-                        }
-
-                        if (event.isAutoRepeat || !event.text)
-                            return;
-                        if (!spotlightContent?.searchField)
-                            return;
-                        const trimmedText = event.text.trim();
-                        spotlightContent.searchField.text = trimmedText;
-                        if (spotlightContent.appLauncher) {
-                            spotlightContent.appLauncher.searchQuery = trimmedText;
-                        }
-                        niriOverviewScope.showSpotlight(overlayWindow.screen.name);
-                        Qt.callLater(() => spotlightContent.searchField.forceActiveFocus());
+                    if ([Qt.Key_Escape, Qt.Key_Return].includes(event.key)) {
+                        NiriService.toggleOverview();
                         event.accepted = true;
+                        return;
+                    }
+
+                    if (event.key === Qt.Key_Left) {
+                        NiriService.moveColumnLeft();
+                        event.accepted = true;
+                        return;
+                    }
+
+                    if (event.key === Qt.Key_Right) {
+                        NiriService.moveColumnRight();
+                        event.accepted = true;
+                        return;
+                    }
+
+                    if (event.key === Qt.Key_Up) {
+                        NiriService.moveWorkspaceUp();
+                        event.accepted = true;
+                        return;
+                    }
+
+                    if (event.key === Qt.Key_Down) {
+                        NiriService.moveWorkspaceDown();
+                        event.accepted = true;
+                        return;
+                    }
+
+                    if (event.modifiers & (Qt.ControlModifier | Qt.MetaModifier) || [Qt.Key_Delete, Qt.Key_Backspace].includes(event.key)) {
+                        event.accepted = false;
+                        return;
+                    }
+
+                    if (event.isAutoRepeat || !event.text)
+                        return;
+                    if (!launcherContent?.searchField)
+                        return;
+                    const trimmedText = event.text.trim();
+                    launcherContent.searchField.text = trimmedText;
+                    launcherContent.controller.setSearchQuery(trimmedText);
+                    niriOverviewScope.showSpotlight(overlayWindow.screen.name);
+                    Qt.callLater(() => launcherContent.searchField.forceActiveFocus());
+                    event.accepted = true;
+                }
+            }
+
+            Item {
+                id: spotlightContainer
+                x: Theme.snap((parent.width - width) / 2, overlayWindow.dpr)
+                y: Theme.snap((parent.height - height) / 2, overlayWindow.dpr)
+
+                readonly property int baseWidth: {
+                    switch (SettingsData.dankLauncherV2Size) {
+                    case "micro":
+                        return 500;
+                    case "medium":
+                        return 720;
+                    case "large":
+                        return 860;
+                    default:
+                        return 620;
+                    }
+                }
+                readonly property int baseHeight: {
+                    switch (SettingsData.dankLauncherV2Size) {
+                    case "micro":
+                        return 480;
+                    case "medium":
+                        return 720;
+                    case "large":
+                        return 860;
+                    default:
+                        return 600;
+                    }
+                }
+                width: Math.min(baseWidth, overlayWindow.screen.width - 100)
+                height: Math.min(baseHeight, overlayWindow.screen.height - 100)
+
+                readonly property bool animatingOut: niriOverviewScope.isClosing && overlayWindow.isSpotlightScreen
+
+                scale: overlayWindow.shouldShowSpotlight ? 1.0 : 0.96
+                opacity: overlayWindow.shouldShowSpotlight ? 1 : 0
+                visible: overlayWindow.shouldShowSpotlight || animatingOut
+                enabled: overlayWindow.shouldShowSpotlight
+
+                layer.enabled: true
+                layer.smooth: false
+                layer.textureSize: Qt.size(Math.round(width * overlayWindow.dpr), Math.round(height * overlayWindow.dpr))
+
+                Behavior on scale {
+                    id: scaleAnimation
+                    NumberAnimation {
+                        duration: Theme.expressiveDurations.fast
+                        easing.type: Easing.BezierSpline
+                        easing.bezierCurve: spotlightContainer.visible ? Theme.expressiveCurves.expressiveFastSpatial : Theme.expressiveCurves.standardAccel
+                        onRunningChanged: {
+                            if (running || !spotlightContainer.animatingOut)
+                                return;
+                            niriOverviewScope.resetState();
+                        }
                     }
                 }
 
-                Item {
-                    id: spotlightContainer
-                    x: Theme.snap((parent.width - width) / 2, overlayWindow.dpr)
-                    y: Theme.snap((parent.height - height) / 2, overlayWindow.dpr)
-                    width: Theme.px(500, overlayWindow.dpr)
-                    height: Theme.px(600, overlayWindow.dpr)
-
-                    readonly property bool animatingOut: niriOverviewScope.isClosing && overlayWindow.isSpotlightScreen
-
-                    scale: overlayWindow.shouldShowSpotlight ? 1.0 : 0.96
-                    opacity: overlayWindow.shouldShowSpotlight ? 1 : 0
-                    visible: overlayWindow.shouldShowSpotlight || animatingOut
-                    enabled: overlayWindow.shouldShowSpotlight
-
-                    layer.enabled: true
-                    layer.smooth: false
-                    layer.textureSize: Qt.size(Math.round(width * overlayWindow.dpr), Math.round(height * overlayWindow.dpr))
-
-                    Behavior on scale {
-                        id: scaleAnimation
-                        NumberAnimation {
-                            duration: Theme.expressiveDurations.expressiveDefaultSpatial
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: spotlightContainer.visible ? Theme.expressiveCurves.expressiveDefaultSpatial : Theme.expressiveCurves.emphasized
-                            onRunningChanged: {
-                                if (running || !spotlightContainer.animatingOut)
-                                    return;
-                                niriOverviewScope.resetState();
-                            }
-                        }
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: Theme.expressiveDurations.fast
+                        easing.type: Easing.BezierSpline
+                        easing.bezierCurve: spotlightContainer.visible ? Theme.expressiveCurves.expressiveFastSpatial : Theme.expressiveCurves.standardAccel
                     }
+                }
 
-                    Behavior on opacity {
-                        NumberAnimation {
-                            duration: Theme.expressiveDurations.expressiveDefaultSpatial
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: spotlightContainer.visible ? Theme.expressiveCurves.expressiveDefaultSpatial : Theme.expressiveCurves.emphasized
-                        }
-                    }
+                Rectangle {
+                    anchors.fill: parent
+                    color: Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
+                    radius: Theme.cornerRadius
+                    border.color: Theme.outlineMedium
+                    border.width: 1
+                }
 
-                    Rectangle {
-                        anchors.fill: parent
-                        color: Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
-                        radius: Theme.cornerRadius
-                        border.color: Theme.outlineMedium
-                        border.width: 1
-                    }
+                LauncherContent {
+                    id: launcherContent
+                    anchors.fill: parent
+                    anchors.margins: 0
 
-                    SpotlightContent {
-                        id: spotlightContent
-                        anchors.fill: parent
-                        anchors.margins: 0
-                        usePopupContextMenu: true
-
-                        property var fakeParentModal: QtObject {
-                            property bool spotlightOpen: spotlightContainer.visible
-                            function hide() {
-                                if (niriOverviewScope.searchActive) {
-                                    niriOverviewScope.hideAndReleaseKeyboard();
-                                    return;
-                                }
-                                NiriService.toggleOverview();
-                            }
-                        }
-
-                        Connections {
-                            target: spotlightContent.searchField
-                            function onTextChanged() {
-                                if (spotlightContent.searchField.text.length > 0 || !niriOverviewScope.searchActive)
-                                    return;
+                    property var fakeParentModal: QtObject {
+                        property bool spotlightOpen: spotlightContainer.visible
+                        property bool isClosing: niriOverviewScope.isClosing
+                        function hide() {
+                            if (niriOverviewScope.searchActive) {
                                 niriOverviewScope.hideSpotlight();
+                                return;
                             }
+                            NiriService.toggleOverview();
                         }
+                    }
 
-                        Component.onCompleted: {
-                            parentModal = fakeParentModal;
+                    Connections {
+                        target: launcherContent.searchField
+                        function onTextChanged() {
+                            if (launcherContent.searchField.text.length > 0 || !niriOverviewScope.searchActive)
+                                return;
+                            niriOverviewScope.hideSpotlight();
                         }
+                    }
 
-                        Connections {
-                            target: spotlightContent.appLauncher
-                            function onAppLaunched() {
-                                niriOverviewScope.releaseKeyboard = true;
-                            }
-                        }
+                    Component.onCompleted: {
+                        parentModal = fakeParentModal;
+                    }
 
-                        Connections {
-                            target: spotlightContent.fileSearchController
-                            function onFileOpened() {
-                                niriOverviewScope.releaseKeyboard = true;
-                            }
+                    Connections {
+                        target: launcherContent.controller
+                        function onItemExecuted() {
+                            niriOverviewScope.releaseKeyboard = true;
                         }
                     }
                 }

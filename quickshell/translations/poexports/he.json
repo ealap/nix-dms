@@ -251,6 +251,9 @@
   "Always Show Percentage": {
     "Always Show Percentage": "הצג/י תמיד אחוזים"
   },
+  "Always hide the dock and reveal it when hovering near the dock area": {
+    "Always hide the dock and reveal it when hovering near the dock area": ""
+  },
   "Always on icons": {
     "Always on icons": "סמלים דולקים תמיד"
   },
@@ -489,7 +492,7 @@
     "Behavior": "התנהגות"
   },
   "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": {
-    "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": "קשירת מסך הנעילה לאותות D-Bus מloginctl. יש להשבית אם משתמשים במסך נעילה חיצוני."
+    "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": "מקשר את מסך הנעילה לאותות D-Bus מloginctl. יש להשבית אם משתמשים במסך נעילה חיצוני."
   },
   "Binds Include Missing": {
     "Binds Include Missing": "קובץ includes של קיצורי מקלדת חסר"
@@ -707,6 +710,9 @@
   "Clear All Jobs": {
     "Clear All Jobs": "נקה/י את כל העבודות"
   },
+  "Clear History?": {
+    "Clear History?": ""
+  },
   "Clear all history when server starts": {
     "Clear all history when server starts": "נקה/י את כל ההיסטוריה כאשר השרת מופעל"
   },
@@ -753,7 +759,7 @@
     "Clipboard service not available": "שירות לוח ההעתקה אינו זמין"
   },
   "Clipboard works but nothing saved to disk": {
-    "Clipboard works but nothing saved to disk": "לוח ההעתקה עובד אך שום דבר לא נשמר לדיסק"
+    "Clipboard works but nothing saved to disk": "לוח ההעתקה יעבוד אך שום דבר לא יישמר לדיסק"
   },
   "Clock": {
     "Clock": "שעון"
@@ -916,6 +922,12 @@
   },
   "Copy": {
     "Copy": "העתק/י"
+  },
+  "Copy Full Command": {
+    "Copy Full Command": ""
+  },
+  "Copy Name": {
+    "Copy Name": ""
   },
   "Copy PID": {
     "Copy PID": "העתק/י PID"
@@ -1124,6 +1136,9 @@
   "Delete Printer": {
     "Delete Printer": "מחק/י מדפסת"
   },
+  "Delete Saved Item?": {
+    "Delete Saved Item?": ""
+  },
   "Delete VPN": {
     "Delete VPN": "מחק/י VPN"
   },
@@ -1208,6 +1223,9 @@
   "Disk Usage": {
     "Disk Usage": "שימוש בדיסק"
   },
+  "Disks": {
+    "Disks": ""
+  },
   "Dismiss": {
     "Dismiss": "סגירה"
   },
@@ -1221,10 +1239,10 @@
     "Display Settings": "הגדרות תצוגה"
   },
   "Display a dock with pinned and running applications": {
-    "Display a dock with pinned and running applications": "הצג/י Dock עם יישומים מוצמדים ופעילים"
+    "Display a dock with pinned and running applications": "הצג/י את הDock עם אפליקציות מוצמדות ופעילות"
   },
   "Display all priorities over fullscreen apps": {
-    "Display all priorities over fullscreen apps": "הצג/י את כל רמות העדיפות מעל אפליקציות במסך מלא"
+    "Display all priorities over fullscreen apps": "הצג/י את כל ההתראות מעל אפליקציות במסך מלא"
   },
   "Display and switch DWL layouts": {
     "Display and switch DWL layouts": "הצג/י והחלף/י פריסות DWL"
@@ -1371,7 +1389,7 @@
     "Enable fingerprint authentication": "הפעלת אימות באמצעות טביעת אצבע"
   },
   "Enable loginctl lock integration": {
-    "Enable loginctl lock integration": "הפעל/י שילוב נעילה עם loginctl"
+    "Enable loginctl lock integration": "הפעלת האינטגרציה עם loginctl"
   },
   "Enable password field display on the lock screen window": {
     "Show Password Field": "הצג/י שדה סיסמה"
@@ -1442,6 +1460,12 @@
   "Enterprise": {
     "Enterprise": "ארגוני"
   },
+  "Entry pinned": {
+    "Entry pinned": ""
+  },
+  "Entry unpinned": {
+    "Entry unpinned": ""
+  },
   "Error": {
     "Error": "שגיאה"
   },
@@ -1483,6 +1507,9 @@
   },
   "Failed to cancel selected job": {
     "Failed to cancel selected job": "ביטול העבודה שנבחרה נכשל"
+  },
+  "Failed to check pin limit": {
+    "Failed to check pin limit": ""
   },
   "Failed to connect VPN": {
     "Failed to connect VPN": "החיבור לVPN נכשל"
@@ -1559,6 +1586,9 @@
   "Failed to pause printer": {
     "Failed to pause printer": "השהיית המדפסת נכשלה"
   },
+  "Failed to pin entry": {
+    "Failed to pin entry": ""
+  },
   "Failed to print test page": {
     "Failed to print test page": "הדפסת דף בדיקה נכשלה"
   },
@@ -1603,6 +1633,9 @@
   },
   "Failed to start connection to %1": {
     "Failed to start connection to %1": "התחלת החיבור ל%1 נכשלה"
+  },
+  "Failed to unpin entry": {
+    "Failed to unpin entry": ""
   },
   "Failed to update VPN": {
     "Failed to update VPN": "עדכון הVPN נכשל"
@@ -1689,7 +1722,7 @@
     "Focused Window": "חלון ממוקד"
   },
   "Follow Monitor Focus": {
-    "Follow Monitor Focus": "עקוב/י אחר מיקוד צג"
+    "Follow Monitor Focus": "מעקב אחרי המסך הממוקד"
   },
   "Follow focus": {
     "Follow focus": "עקוב/י אחר מיקוד"
@@ -1708,6 +1741,9 @@
   },
   "Force HDR": {
     "Force HDR": "אלץ/י HDR"
+  },
+  "Force Kill (SIGKILL)": {
+    "Force Kill (SIGKILL)": ""
   },
   "Force Kill Process": {
     "Force Kill Process": "אילוץ סיום תהליך"
@@ -1763,6 +1799,9 @@
   "Gamma control not available. Requires DMS API v6+.": {
     "Gamma control not available. Requires DMS API v6+.": "בקרת גאמה אינה זמינה. נדרש API של DMS גרסה 6 ומעלה."
   },
+  "Generic device name | Generic device name fallback": {
+    "device": ""
+  },
   "GitHub": {
     "GitHub": "GitHub"
   },
@@ -1782,7 +1821,7 @@
     "Gradually fade the screen before locking with a configurable grace period": "הפעל/י דהייה הדרגתית של המסך לפני הנעילה עם תקופת חסד הניתנת להגדרה"
   },
   "Gradually fade the screen before turning off monitors with a configurable grace period": {
-    "Gradually fade the screen before turning off monitors with a configurable grace period": "דהייה הדרגתית של התצוגה לפני כיבוי מסכים עם תקופת חסד הניתנת להגדרה"
+    "Gradually fade the screen before turning off monitors with a configurable grace period": "הפעל/י דהייה הדרגתית של התצוגה לפני כיבוי המסכים עם תקופת חסד הניתנת להגדרה"
   },
   "Graph Time Range": {
     "Graph Time Range": "טווח זמן לגרף"
@@ -1800,7 +1839,7 @@
     "Group": "קבוצה"
   },
   "Group Workspace Apps": {
-    "Group Workspace Apps": "קיבוץ יישומי שולחן עבודה"
+    "Group Workspace Apps": "קיבוץ האפליקציות של סביבת העבודה"
   },
   "Group by App": {
     "Group by App": "קבץ/י לפי אפליקציה"
@@ -1879,6 +1918,9 @@
   },
   "History Settings": {
     "History Settings": "הגדרות היסטוריה"
+  },
+  "History cleared. %1 pinned entries kept.": {
+    "History cleared. %1 pinned entries kept.": ""
   },
   "Hold Duration": {
     "Hold Duration": "משך הלחיצה"
@@ -1994,6 +2036,9 @@
   "Install plugins from the DMS plugin registry": {
     "Install plugins from the DMS plugin registry": "התקן/י תוספים ממאגר התוספים של DMS"
   },
+  "Intelligent Auto-hide": {
+    "Intelligent Auto-hide": ""
+  },
   "Interface:": {
     "Interface:": "ממשק:"
   },
@@ -2020,6 +2065,166 @@
   },
   "Jobs: ": {
     "Jobs: ": "עבודות: "
+  },
+  "KDE Connect SMS action": {
+    "Opening SMS": "",
+    "Opening SMS app": ""
+  },
+  "KDE Connect SMS dialog title": {
+    "Send SMS": ""
+  },
+  "KDE Connect SMS message input placeholder": {
+    "Message": ""
+  },
+  "KDE Connect SMS phone input placeholder": {
+    "Phone number": ""
+  },
+  "KDE Connect SMS send button": {
+    "Send": ""
+  },
+  "KDE Connect SMS tooltip": {
+    "SMS": ""
+  },
+  "KDE Connect accept pairing button": {
+    "Accept": ""
+  },
+  "KDE Connect browse action": {
+    "Opening file browser": "",
+    "Opening files": ""
+  },
+  "KDE Connect browse tooltip": {
+    "Browse Files": ""
+  },
+  "KDE Connect clipboard action": {
+    "Clipboard sent": ""
+  },
+  "KDE Connect clipboard tooltip": {
+    "Send Clipboard": ""
+  },
+  "KDE Connect connected status": {
+    "Connected": ""
+  },
+  "KDE Connect daemon hint": {
+    "Start kdeconnectd to use this plugin": ""
+  },
+  "KDE Connect error": {
+    "Failed to accept pairing": "",
+    "Failed to browse device": "",
+    "Failed to launch SMS app": "",
+    "Failed to reject pairing": "",
+    "Failed to ring device": "",
+    "Failed to send clipboard": "",
+    "Failed to send ping": "",
+    "Failed to share": "",
+    "Pairing failed": "",
+    "Unpair failed": ""
+  },
+  "KDE Connect file share notification": {
+    "File received from": ""
+  },
+  "KDE Connect hint message": {
+    "Make sure KDE Connect is running on your other devices": ""
+  },
+  "KDE Connect no devices message": {
+    "No devices found": ""
+  },
+  "KDE Connect no devices status": {
+    "No devices": ""
+  },
+  "KDE Connect not paired status": {
+    "Not paired": ""
+  },
+  "KDE Connect offline status": {
+    "Offline": ""
+  },
+  "KDE Connect open SMS app button": {
+    "Open App": ""
+  },
+  "KDE Connect open app hint": {
+    "Open KDE Connect on your phone": ""
+  },
+  "KDE Connect pair button": {
+    "Pair": ""
+  },
+  "KDE Connect pairing action": {
+    "Device paired": "",
+    "Pairing request sent": ""
+  },
+  "KDE Connect pairing in progress status": {
+    "Pairing": ""
+  },
+  "KDE Connect pairing request notification": {
+    "Pairing request from": ""
+  },
+  "KDE Connect pairing requested status": {
+    "Pairing requested": ""
+  },
+  "KDE Connect pairing verification key label": {
+    "Verification": ""
+  },
+  "KDE Connect ping action": {
+    "Ping sent": "",
+    "Ping sent to": ""
+  },
+  "KDE Connect ping tooltip": {
+    "Ping": ""
+  },
+  "KDE Connect refresh button | KDE Connect refresh tooltip": {
+    "Refresh": ""
+  },
+  "KDE Connect reject pairing button": {
+    "Reject": ""
+  },
+  "KDE Connect request pairing button": {
+    "Request Pairing": ""
+  },
+  "KDE Connect ring action": {
+    "Ringing": ""
+  },
+  "KDE Connect ring tooltip": {
+    "Ring": ""
+  },
+  "KDE Connect service unavailable message": {
+    "KDE Connect unavailable": ""
+  },
+  "KDE Connect share URL button": {
+    "Share URL": ""
+  },
+  "KDE Connect share button | KDE Connect share dialog title | KDE Connect share tooltip": {
+    "Share": ""
+  },
+  "KDE Connect share input placeholder": {
+    "Enter URL or text to share": ""
+  },
+  "KDE Connect share success": {
+    "Shared": ""
+  },
+  "KDE Connect start daemon hint": {
+    "Start kdeconnectd to connect devices": ""
+  },
+  "KDE Connect status": {
+    "No devices connected": ""
+  },
+  "KDE Connect status multiple devices": {
+    "devices connected": ""
+  },
+  "KDE Connect status single device": {
+    "1 device connected": ""
+  },
+  "KDE Connect unavailable error title": {
+    "KDE Connect Not Available": ""
+  },
+  "KDE Connect unavailable status": {
+    "Unavailable": ""
+  },
+  "KDE Connect unknown device status | unknown author": {
+    "Unknown": ""
+  },
+  "KDE Connect unpair action": {
+    "Device unpaired": ""
+  },
+  "KDE Connect unpair tooltip": {
+    "Unpair": ""
   },
   "Keep Awake": {
     "Keep Awake": "השאר/י ער"
@@ -2255,8 +2460,17 @@
   "Maximum History": {
     "Maximum History": "היסטוריה מקסימלית"
   },
+  "Maximum Pinned Entries": {
+    "Maximum Pinned Entries": ""
+  },
   "Maximum number of clipboard entries to keep": {
     "Maximum number of clipboard entries to keep": "מספר מקסימלי של רשומות לוח ההעתקה לשמירה"
+  },
+  "Maximum number of entries that can be saved": {
+    "Maximum number of entries that can be saved": ""
+  },
+  "Maximum pinned entries reached": {
+    "Maximum pinned entries reached": ""
   },
   "Maximum size per clipboard entry": {
     "Maximum size per clipboard entry": "גודל מקסימלי לרשומת לוח ההעתקה"
@@ -2549,6 +2763,12 @@
   "No printers found": {
     "No printers found": "לא נמצאו מדפסות"
   },
+  "No recent clipboard entries found": {
+    "No recent clipboard entries found": ""
+  },
+  "No saved clipboard entries": {
+    "No saved clipboard entries": ""
+  },
   "No variants created. Click Add to create a new monitor widget.": {
     "No variants created. Click Add to create a new monitor widget.": "לא נוצרו גרסאות. לחץ/י על הוספה כדי ליצור ווידג׳ט תצוגה חדש."
   },
@@ -2623,6 +2843,9 @@
   },
   "OSD Position": {
     "OSD Position": "מיקום OSD"
+  },
+  "Occupied Color": {
+    "Occupied Color": ""
   },
   "Off": {
     "Off": "כבוי"
@@ -2771,6 +2994,9 @@
   "Percentage": {
     "Percentage": "אחוזים"
   },
+  "Performance": {
+    "Performance": ""
+  },
   "Permission denied to set profile image.": {
     "Permission denied to set profile image.": "ההרשאה להגדרת תמונת הפרופיל נדחתה."
   },
@@ -2870,6 +3096,9 @@
   "Power Profile Degradation": {
     "Power Profile Degradation": "ירידת ביצועים בפרופיל צריכת החשמל"
   },
+  "Power off monitors on lock": {
+    "Power off monitors on lock": ""
+  },
   "Power profile management available": {
     "Power profile management available": "ניהול פרופיל חשמל זמין"
   },
@@ -2938,6 +3167,9 @@
   },
   "Process Count": {
     "Process Count": "מספר תהליכים"
+  },
+  "Processes": {
+    "Processes": ""
   },
   "Processing": {
     "Processing": "מעבד"
@@ -3137,6 +3369,9 @@
   "Saved Configurations": {
     "Saved Configurations": "תצורות שמורות"
   },
+  "Saved item deleted": {
+    "Saved item deleted": ""
+  },
   "Scale": {
     "Scale": "קנה מידה"
   },
@@ -3158,11 +3393,14 @@
   "Science": {
     "Science": "מדע"
   },
+  "Screen Sharing": {
+    "Screen Sharing": ""
+  },
   "Screen sharing": {
     "Screen sharing": "שיתוף מסך"
   },
   "Scroll Wheel": {
-    "Scroll Wheel": "גלגל גלילה"
+    "Scroll Wheel": "גלגל הגלילה"
   },
   "Scroll on widget changes media volume": {
     "Scroll on widget changes media volume": "גלילה על הווידג׳ט משנה עוצמת מדיה"
@@ -3174,7 +3412,7 @@
     "Scroll title if it doesn't fit in widget": "גלילה של הכותרת אם היא לא נכנסת במלואה בווידג׳ט"
   },
   "Scroll wheel behavior on media widget": {
-    "Scroll wheel behavior on media widget": "התנהגות גלגל גלילה על ווידג׳ט מדיה"
+    "Scroll wheel behavior on media widget": "התנהגות גלגל הגלילה על ווידג׳ט המדיה"
   },
   "Scrolling": {
     "Scrolling": "גלילה"
@@ -3333,7 +3571,7 @@
     "Show Disk": "הצג/י דיסק"
   },
   "Show Dock": {
-    "Show Dock": "הצג/י Dock"
+    "Show Dock": "הצג/י את הDock"
   },
   "Show Feels Like Temperature": {
     "Show Feels Like Temperature": "הצג/י טמפרטורה מורגשת"
@@ -3384,7 +3622,7 @@
     "Show Network Graph": "הצג/י גרף רשת"
   },
   "Show Occupied Workspaces Only": {
-    "Show Occupied Workspaces Only": "הצג/י רק סביבות עבודה שתפוסות"
+    "Show Occupied Workspaces Only": "הצג/י רק סביבות עבודה שאינן ריקות"
   },
   "Show Power Off": {
     "Show Power Off": "הצג/י כיבוי"
@@ -3436,6 +3674,9 @@
   },
   "Show darkened overlay behind modal dialogs": {
     "Show darkened overlay behind modal dialogs": "הצג/י שכבה כהה מאחורי חלוניות שיח"
+  },
+  "Show dock when floating windows don't overlap its area": {
+    "Show dock when floating windows don't overlap its area": ""
   },
   "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": {
     "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": "הצג/י שכבת משגר בעת הקלדה בסקירה של Niri. השבת/י כדי להשתמש במשגר אחר."
@@ -3501,7 +3742,7 @@
     "Show workspace name on horizontal bars, and first letter on vertical bars": "הצג/י את השם של סביבת העבודה על סרגלים אופקיים, ואות ראשונה על סרגלים אנכיים"
   },
   "Show workspaces of the currently focused monitor": {
-    "Show workspaces of the currently focused monitor": "הצג/י סביבות עבודה שפעילות על המסך הממוקד שכרגע ממוקד"
+    "Show workspaces of the currently focused monitor": "הצג/י סביבות עבודה שפעילות על המסך שכרגע ממוקד"
   },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "מציג את כל האפליקציות הפעילות עם סימון למיקוד"
@@ -3657,7 +3898,7 @@
     "System": "מערכת"
   },
   "System App Theming": {
-    "System App Theming": "ערכת נושא ליישומי מערכת"
+    "System App Theming": "ערכת נושא לאפליקציות מערכת"
   },
   "System Monitor Unavailable": {
     "System Monitor Unavailable": "מנטר המערכת אינו זמין"
@@ -3752,8 +3993,14 @@
   "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": {
     "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": "ווידג׳ט זה מונע מהGPU לעבור למצב כבוי, דבר שעלול להשפיע משמעותית על חיי הסוללה במחשבים ניידים. לא מומלץ להשתמש בו במחשבים ניידים עם גרפיקה היברידית."
   },
+  "This will delete all unpinned entries. %1 pinned entries will be kept.": {
+    "This will delete all unpinned entries. %1 pinned entries will be kept.": ""
+  },
   "This will permanently delete all clipboard history.": {
     "This will permanently delete all clipboard history.": "פעולה זו תמחק לצמיתות את כל היסטוריית לוח ההעתקה."
+  },
+  "This will permanently remove this saved clipboard item. This action cannot be undone.": {
+    "This will permanently remove this saved clipboard item. This action cannot be undone.": ""
   },
   "Tiling": {
     "Tiling": "ריצוף"
@@ -3854,6 +4101,9 @@
   "Trigger Prefix": {
     "Trigger Prefix": "קידומת מפעיל"
   },
+  "Turn off all displays immediately when the lock screen activates": {
+    "Turn off all displays immediately when the lock screen activates": ""
+  },
   "Turn off monitors after": {
     "Turn off monitors after": "כבה/י את כל המסכים לאחר"
   },
@@ -3919,6 +4169,9 @@
   },
   "Update Plugin": {
     "Update Plugin": "עדכן/י תוסף"
+  },
+  "Uptime": {
+    "Uptime": ""
   },
   "Urgent Color": {
     "Urgent Color": "צבע דחוף"
@@ -4303,6 +4556,18 @@
   "dgop not available": {
     "dgop not available": "dgop אינו זמין"
   },
+  "dgop unavailable error message": {
+    "The 'dgop' tool is required for system monitoring.\\nPlease install dgop to use this feature.": ""
+  },
+  "disk io header in system monitor": {
+    "Disk I/O": ""
+  },
+  "disk read label": {
+    "Read:": ""
+  },
+  "disk write label": {
+    "Write:": ""
+  },
   "dms/binds.kdl exists but is not included in config.kdl. Custom keybinds will not work until this is fixed.": {
     "dms/binds.kdl exists but is not included in config.kdl. Custom keybinds will not work until this is fixed.": "dms/binds.kdl קיים אך אינו כלול בconfig.kdl. קיצורי מקלדת מותאמים אישית לא יעבדו עד שהבעיה תתוקן."
   },
@@ -4319,7 +4584,7 @@
     "Dynamic colors from wallpaper": "צבעים דינמיים מתמונת הרקע"
   },
   "dynamic theme description": {
-    "Material colors generated from wallpaper": "צבעי Material שנוצרו מטפט"
+    "Material colors generated from wallpaper": "צבעי Material שנוצרו מהרקע"
   },
   "dynamic theme name": {
     "Dynamic": "דינמי"
@@ -4336,17 +4601,32 @@
   "empty plugin list": {
     "No plugins found": "לא נמצאו תוספים"
   },
+  "empty state in disk mounts list": {
+    "No mount points found": ""
+  },
+  "empty state in gpu list": {
+    "No GPUs detected": ""
+  },
+  "empty state in process list": {
+    "No matching processes": ""
+  },
   "empty theme list": {
     "No themes found": "לא נמצאו ערכות נושא"
   },
   "events": {
     "events": "אירועים"
   },
+  "fallback gpu name": {
+    "Unknown GPU": ""
+  },
   "files": {
     "files": "קבצים"
   },
   "generic theme description": {
     "Material Design inspired color themes": "ערכות צבעים בהשראת Material Design"
+  },
+  "gpu section header in system monitor": {
+    "GPU Monitoring": ""
   },
   "greeter back button": {
     "Back": "חזרה"
@@ -4404,7 +4684,7 @@
   },
   "greeter feature card description": {
     "Background app icons": "סמלי אפליקציות ברקע",
-    "Colors from wallpaper": "צבעים מטפט",
+    "Colors from wallpaper": "צבעים מתמונת רקע",
     "Community themes": "ערכות נושא קהילתיות",
     "Extensible architecture": "ארכיטקטורה ניתנת להרחבה",
     "GTK, Qt, IDEs, more": "GTK, Qt, סביבות פיתוח, ועוד",
@@ -4427,7 +4707,7 @@
     "Plugins": "תוספים"
   },
   "greeter feature card title | greeter settings link": {
-    "DankBar": "DankBar"
+    "DankBar": "Dank Bar"
   },
   "greeter feature card title | lock screen notifications settings card": {
     "Lock Screen": "מסך הנעילה"
@@ -4526,7 +4806,7 @@
     "Lock Screen": "מסך הנעילה"
   },
   "loginctl not available - lock integration requires DMS socket connection": {
-    "loginctl not available - lock integration requires DMS socket connection": "loginctl אינו זמין, שילוב הנעילה דורש חיבור socket לDMS"
+    "loginctl not available - lock integration requires DMS socket connection": "loginctl אינו זמין, אינטגרציה של הנעילה דורשת חיבור socket לDMS"
   },
   "matugen error": {
     "matugen not found - install matugen package for dynamic theming": "matugen לא נמצא - התקן/י את החבילה של matugen כדי לאפשר עיצוב דינמי"
@@ -4539,6 +4819,9 @@
   },
   "minutes": {
     "minutes": "דקות"
+  },
+  "mount points header in system monitor": {
+    "Mount Points": ""
   },
   "ms": {
     "ms": "מילישניות"
@@ -4614,6 +4897,15 @@
   "plugin search placeholder": {
     "Search plugins...": "חפש/י תוספים..."
   },
+  "process count label in footer": {
+    "Processes:": ""
+  },
+  "process detail label": {
+    "Full Command:": ""
+  },
+  "process search placeholder": {
+    "Search processes...": ""
+  },
   "profile image file browser title": {
     "Select Profile Image": "בחר/י תמונת פרופיל"
   },
@@ -4639,11 +4931,24 @@
   "shadow intensity slider": {
     "Intensity": "עוצמה"
   },
+  "short for processes": {
+    "procs": ""
+  },
   "source code link": {
     "source": "קוד מקור"
   },
   "sysmon window title": {
     "System Monitor": "מנטר המערכת"
+  },
+  "system info header in system monitor": {
+    "System Information": ""
+  },
+  "system info label": {
+    "Architecture": "",
+    "Distribution": "",
+    "Hostname": "",
+    "Kernel": "",
+    "Load Average": ""
   },
   "theme browser description": {
     "Install color themes from the DMS theme registry": "התקן/י ערכות צבעים ממאגר ערכות הנושא של DMS"
@@ -4673,7 +4978,10 @@
     "Unknown": "לא ידוע"
   },
   "update dms for NM integration.": {
-    "update dms for NM integration.": "עדכן/י את dms עבור שילוב עם NM."
+    "update dms for NM integration.": "עדכן/י את DMS כדי לאפשר אינטגרציה עם NM."
+  },
+  "uptime label in footer": {
+    "Uptime:": ""
   },
   "version requirement": {
     "Requires %1": "גרסה %1 נדרשת"

@@ -28,20 +28,62 @@ PluginSettings {
         label: "Popout to Open"
         description: "Select which popout or modal opens when you click the widget"
         options: [
-            {label: "Control Center", value: "controlCenter"},
-            {label: "Notification Center", value: "notificationCenter"},
-            {label: "App Drawer", value: "appDrawer"},
-            {label: "Process List", value: "processList"},
-            {label: "DankDash", value: "dankDash"},
-            {label: "Battery Info", value: "battery"},
-            {label: "VPN", value: "vpn"},
-            {label: "System Update", value: "systemUpdate"},
-            {label: "Settings", value: "settings"},
-            {label: "Clipboard History", value: "clipboardHistory"},
-            {label: "Spotlight", value: "spotlight"},
-            {label: "Power Menu", value: "powerMenu"},
-            {label: "Color Picker", value: "colorPicker"},
-            {label: "Notepad", value: "notepad"}
+            {
+                label: "Control Center",
+                value: "controlCenter"
+            },
+            {
+                label: "Notification Center",
+                value: "notificationCenter"
+            },
+            {
+                label: "App Drawer",
+                value: "appDrawer"
+            },
+            {
+                label: "Process List",
+                value: "processList"
+            },
+            {
+                label: "DankDash",
+                value: "dankDash"
+            },
+            {
+                label: "Battery Info",
+                value: "battery"
+            },
+            {
+                label: "VPN",
+                value: "vpn"
+            },
+            {
+                label: "System Update",
+                value: "systemUpdate"
+            },
+            {
+                label: "Settings",
+                value: "settings"
+            },
+            {
+                label: "Clipboard History",
+                value: "clipboardHistory"
+            },
+            {
+                label: "Spotlight",
+                value: "spotlight"
+            },
+            {
+                label: "Power Menu",
+                value: "powerMenu"
+            },
+            {
+                label: "Color Picker",
+                value: "colorPicker"
+            },
+            {
+                label: "Notepad",
+                value: "notepad"
+            }
         ]
         defaultValue: "controlCenter"
     }

@@ -236,7 +236,6 @@ Item {
                         DankTextField {
                             id: searchField
                             width: parent.width - addButton.width - Theme.spacingM
-                            height: Math.round(Theme.fontSizeMedium * 3)
                             placeholderText: I18n.tr("Search keybinds...")
                             leftIconName: "search"
                             onTextChanged: {

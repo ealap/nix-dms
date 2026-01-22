@@ -9,6 +9,9 @@ import qs.Modules.Settings.Widgets
 Item {
     id: dankBarTab
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property var parentModal: null
     property string selectedBarId: "default"
 
@@ -366,14 +369,19 @@ Item {
                                         font.pixelSize: Theme.fontSizeMedium
                                         font.weight: Font.Medium
                                         color: Theme.surfaceText
+                                        width: parent.width
+                                        horizontalAlignment: Text.AlignLeft
                                     }
 
                                     Row {
+                                        width: parent.width
                                         spacing: Theme.spacingS
 
                                         StyledText {
                                             text: {
-                                                switch (barCard.modelData.position) {
+                                                SettingsData.barConfigs;
+                                                const cfg = SettingsData.getBarConfig(barCard.modelData.id);
+                                                switch (cfg?.position ?? SettingsData.Position.Top) {
                                                 case SettingsData.Position.Top:
                                                     return I18n.tr("Top");
                                                 case SettingsData.Position.Bottom:
@@ -388,54 +396,73 @@ Item {
                                             }
                                             font.pixelSize: Theme.fontSizeSmall
                                             color: Theme.surfaceVariantText
+                                            horizontalAlignment: Text.AlignLeft
                                         }
 
                                         StyledText {
                                             text: "•"
                                             font.pixelSize: Theme.fontSizeSmall
                                             color: Theme.surfaceVariantText
+                                            horizontalAlignment: Text.AlignLeft
                                         }
 
                                         StyledText {
                                             text: {
-                                                const prefs = barCard.modelData.screenPreferences || ["all"];
+                                                SettingsData.barConfigs;
+                                                const cfg = SettingsData.getBarConfig(barCard.modelData.id);
+                                                const prefs = cfg?.screenPreferences || ["all"];
                                                 if (prefs.includes("all") || (typeof prefs[0] === "string" && prefs[0] === "all"))
                                                     return I18n.tr("All displays");
                                                 return I18n.tr("%1 display(s)").replace("%1", prefs.length);
                                             }
                                             font.pixelSize: Theme.fontSizeSmall
                                             color: Theme.surfaceVariantText
+                                            horizontalAlignment: Text.AlignLeft
                                         }
 
                                         StyledText {
                                             text: "•"
                                             font.pixelSize: Theme.fontSizeSmall
                                             color: Theme.surfaceVariantText
+                                            horizontalAlignment: Text.AlignLeft
                                         }
 
                                         StyledText {
                                             text: {
-                                                const left = barCard.modelData.leftWidgets?.length || 0;
-                                                const center = barCard.modelData.centerWidgets?.length || 0;
-                                                const right = barCard.modelData.rightWidgets?.length || 0;
+                                                SettingsData.barConfigs;
+                                                const cfg = SettingsData.getBarConfig(barCard.modelData.id);
+                                                const left = cfg?.leftWidgets?.length || 0;
+                                                const center = cfg?.centerWidgets?.length || 0;
+                                                const right = cfg?.rightWidgets?.length || 0;
                                                 return I18n.tr("%1 widgets").replace("%1", left + center + right);
                                             }
                                             font.pixelSize: Theme.fontSizeSmall
                                             color: Theme.surfaceVariantText
+                                            horizontalAlignment: Text.AlignLeft
                                         }
 
                                         StyledText {
                                             text: "•"
                                             font.pixelSize: Theme.fontSizeSmall
                                             color: Theme.surfaceVariantText
-                                            visible: !barCard.modelData.enabled && barCard.modelData.id !== "default"
+                                            horizontalAlignment: Text.AlignLeft
+                                            visible: {
+                                                SettingsData.barConfigs;
+                                                const cfg = SettingsData.getBarConfig(barCard.modelData.id);
+                                                return !cfg?.enabled && barCard.modelData.id !== "default";
+                                            }
                                         }
 
                                         StyledText {
                                             text: I18n.tr("Disabled")
                                             font.pixelSize: Theme.fontSizeSmall
                                             color: Theme.error
-                                            visible: !barCard.modelData.enabled && barCard.modelData.id !== "default"
+                                            horizontalAlignment: Text.AlignLeft
+                                            visible: {
+                                                SettingsData.barConfigs;
+                                                const cfg = SettingsData.getBarConfig(barCard.modelData.id);
+                                                return !cfg?.enabled && barCard.modelData.id !== "default";
+                                            }
                                         }
                                     }
                                 }
@@ -506,6 +533,7 @@ Item {
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.surfaceVariantText
                     wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignLeft
                 }
 
                 Column {
@@ -743,6 +771,21 @@ Item {
                         });
                         notifyHorizontalBarChange();
                     }
+                }
+
+                Rectangle {
+                    width: parent.width
+                    height: 1
+                    color: Theme.outline
+                    opacity: 0.15
+                }
+
+                SettingsToggleRow {
+                    text: I18n.tr("Click Through")
+                    checked: selectedBarConfig?.clickThrough ?? false
+                    onToggled: toggled => SettingsData.updateBarConfig(selectedBarId, {
+                            clickThrough: toggled
+                        })
                 }
 
                 Rectangle {
@@ -1057,6 +1100,7 @@ Item {
             }
 
             SettingsCard {
+                id: shadowCard
                 iconName: "layers"
                 title: I18n.tr("Shadow", "bar shadow settings card")
                 visible: selectedBarConfig?.enabled
@@ -1076,7 +1120,7 @@ Item {
                 }
 
                 SettingsSliderRow {
-                    visible: parent.shadowActive
+                    visible: shadowCard.shadowActive
                     text: I18n.tr("Opacity")
                     minimum: 10
                     maximum: 100
@@ -1088,7 +1132,7 @@ Item {
                 }
 
                 Column {
-                    visible: parent.shadowActive
+                    visible: shadowCard.shadowActive
                     width: parent.width
                     spacing: Theme.spacingS
 
@@ -1096,7 +1140,9 @@ Item {
                         text: I18n.tr("Color")
                         font.pixelSize: Theme.fontSizeMedium
                         color: Theme.surfaceText
-                        x: Theme.spacingM
+                        horizontalAlignment: Text.AlignLeft
+                        anchors.left: parent.left
+                        anchors.leftMargin: Theme.spacingM
                     }
 
                     Item {

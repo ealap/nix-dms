@@ -82,14 +82,13 @@ DankModal {
             filtered = internalEntries;
         } else {
             const lowerQuery = query.toLowerCase();
-            filtered = internalEntries.filter(entry =>
-                entry.preview.toLowerCase().includes(lowerQuery)
-            );
+            filtered = internalEntries.filter(entry => entry.preview.toLowerCase().includes(lowerQuery));
         }
 
         // Sort: pinned first, then by ID descending
         filtered.sort((a, b) => {
-            if (a.pinned !== b.pinned) return b.pinned ? 1 : -1;
+            if (a.pinned !== b.pinned)
+                return b.pinned ? 1 : -1;
             return b.id - a.id;
         });
 
@@ -193,24 +192,19 @@ DankModal {
     }
 
     function deletePinnedEntry(entry) {
-        clearConfirmDialog.show(
-            I18n.tr("Delete Saved Item?"),
-            I18n.tr("This will permanently remove this saved clipboard item. This action cannot be undone."),
-            function () {
-                DMSService.sendRequest("clipboard.deleteEntry", {
-                    "id": entry.id
-                }, function (response) {
-                    if (response.error) {
-                        console.warn("ClipboardHistoryModal: Failed to delete entry:", response.error);
-                        return;
-                    }
-                    internalEntries = internalEntries.filter(e => e.id !== entry.id);
-                    updateFilteredModel();
-                    ToastService.showInfo(I18n.tr("Saved item deleted"));
-                });
-            },
-            function () {}
-        );
+        clearConfirmDialog.show(I18n.tr("Delete Saved Item?"), I18n.tr("This will permanently remove this saved clipboard item. This action cannot be undone."), function () {
+            DMSService.sendRequest("clipboard.deleteEntry", {
+                "id": entry.id
+            }, function (response) {
+                if (response.error) {
+                    console.warn("ClipboardHistoryModal: Failed to delete entry:", response.error);
+                    return;
+                }
+                internalEntries = internalEntries.filter(e => e.id !== entry.id);
+                updateFilteredModel();
+                ToastService.showInfo(I18n.tr("Saved item deleted"));
+            });
+        }, function () {});
     }
 
     function pinEntry(entry) {
@@ -226,7 +220,9 @@ DankModal {
                 return;
             }
 
-            DMSService.sendRequest("clipboard.pinEntry", { "id": entry.id }, function (response) {
+            DMSService.sendRequest("clipboard.pinEntry", {
+                "id": entry.id
+            }, function (response) {
                 if (response.error) {
                     ToastService.showError(I18n.tr("Failed to pin entry"));
                     return;
@@ -238,7 +234,9 @@ DankModal {
     }
 
     function unpinEntry(entry) {
-        DMSService.sendRequest("clipboard.unpinEntry", { "id": entry.id }, function (response) {
+        DMSService.sendRequest("clipboard.unpinEntry", {
+            "id": entry.id
+        }, function (response) {
             if (response.error) {
                 ToastService.showError(I18n.tr("Failed to unpin entry"));
                 return;
@@ -250,27 +248,20 @@ DankModal {
 
     function clearAll() {
         const hasPinned = pinnedCount > 0;
-        const message = hasPinned
-            ? I18n.tr("This will delete all unpinned entries. %1 pinned entries will be kept.").arg(pinnedCount)
-            : I18n.tr("This will permanently delete all clipboard history.");
+        const message = hasPinned ? I18n.tr("This will delete all unpinned entries. %1 pinned entries will be kept.").arg(pinnedCount) : I18n.tr("This will permanently delete all clipboard history.");
 
-        clearConfirmDialog.show(
-            I18n.tr("Clear History?"),
-            message,
-            function () {
-                DMSService.sendRequest("clipboard.clearHistory", null, function (response) {
-                    if (response.error) {
-                        console.warn("ClipboardHistoryModal: Failed to clear history:", response.error);
-                        return;
-                    }
-                    refreshClipboard();
-                    if (hasPinned) {
-                        ToastService.showInfo(I18n.tr("History cleared. %1 pinned entries kept.").arg(pinnedCount));
-                    }
-                });
-            },
-            function () {}
-        );
+        clearConfirmDialog.show(I18n.tr("Clear History?"), message, function () {
+            DMSService.sendRequest("clipboard.clearHistory", null, function (response) {
+                if (response.error) {
+                    console.warn("ClipboardHistoryModal: Failed to clear history:", response.error);
+                    return;
+                }
+                refreshClipboard();
+                if (hasPinned) {
+                    ToastService.showInfo(I18n.tr("History cleared. %1 pinned entries kept.").arg(pinnedCount));
+                }
+            });
+        }, function () {});
     }
 
     function getEntryPreview(entry) {

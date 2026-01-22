@@ -182,16 +182,43 @@ Singleton {
         return /[;&|<>()$`\\"']/.test(prefix);
     }
 
+    function parseEnvVars(envVarsStr) {
+        if (!envVarsStr || envVarsStr.trim().length === 0)
+            return {};
+        const envObj = {};
+        const pairs = envVarsStr.trim().split(/\s+/);
+        for (const pair of pairs) {
+            const eqIndex = pair.indexOf("=");
+            if (eqIndex > 0) {
+                const key = pair.substring(0, eqIndex);
+                const value = pair.substring(eqIndex + 1);
+                envObj[key] = value;
+            }
+        }
+        return envObj;
+    }
+
     function launchDesktopEntry(desktopEntry, useNvidia) {
         let cmd = desktopEntry.command;
         if (useNvidia && nvidiaCommand)
             cmd = [nvidiaCommand].concat(cmd);
+
+        const appId = desktopEntry.id || desktopEntry.execString || desktopEntry.exec || "";
+        const override = SessionData.getAppOverride(appId);
+
+        if (override?.extraFlags) {
+            const extraArgs = override.extraFlags.trim().split(/\s+/).filter(arg => arg.length > 0);
+            cmd = cmd.concat(extraArgs);
+        }
 
         const userPrefix = SettingsData.launchPrefix?.trim() || "";
         const defaultPrefix = Quickshell.env("DMS_DEFAULT_LAUNCH_PREFIX") || "";
         const prefix = userPrefix.length > 0 ? userPrefix : defaultPrefix;
         const workDir = desktopEntry.workingDirectory || Quickshell.env("HOME");
         const cursorEnv = typeof SettingsData.getCursorEnvironment === "function" ? SettingsData.getCursorEnvironment() : {};
+
+        const overrideEnv = override?.envVars ? parseEnvVars(override.envVars) : {};
+        const finalEnv = Object.assign({}, cursorEnv, overrideEnv);
 
         if (desktopEntry.runInTerminal) {
             const terminal = Quickshell.env("TERMINAL") || "xterm";
@@ -200,7 +227,7 @@ Singleton {
             Quickshell.execDetached({
                 command: [terminal, "-e", "sh", "-c", shellCmd],
                 workingDirectory: workDir,
-                environment: cursorEnv
+                environment: finalEnv
             });
             return;
         }
@@ -210,7 +237,7 @@ Singleton {
             Quickshell.execDetached({
                 command: ["sh", "-c", `${prefix} ${escapedCmd}`],
                 workingDirectory: workDir,
-                environment: cursorEnv
+                environment: finalEnv
             });
             return;
         }
@@ -221,7 +248,7 @@ Singleton {
         Quickshell.execDetached({
             command: cmd,
             workingDirectory: workDir,
-            environment: cursorEnv
+            environment: finalEnv
         });
     }
 

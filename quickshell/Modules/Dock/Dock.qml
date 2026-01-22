@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Shapes
 import Quickshell
+import Quickshell.Hyprland
 import Quickshell.Wayland
 import qs.Common
 import qs.Services
@@ -28,7 +29,7 @@ Variants {
         }
 
         property var modelData: item
-        property bool autoHide: SettingsData.dockAutoHide
+        property bool autoHide: SettingsData.dockAutoHide || SettingsData.dockSmartAutoHide
         property real backgroundTransparency: SettingsData.dockTransparency
         property bool groupByApp: SettingsData.dockGroupByApp
         readonly property int borderThickness: SettingsData.dockBorderEnabled ? SettingsData.dockBorderThickness : 0
@@ -111,6 +112,133 @@ Variants {
         property bool contextMenuOpen: (dockVariants.contextMenu && dockVariants.contextMenu.visible && dockVariants.contextMenu.screen === modelData)
         property bool revealSticky: false
 
+        readonly property bool shouldHideForWindows: {
+            if (!SettingsData.dockSmartAutoHide)
+                return false;
+            if (!CompositorService.isNiri && !CompositorService.isHyprland)
+                return false;
+
+            const screenName = dock.modelData?.name ?? "";
+            const dockThickness = effectiveBarHeight + SettingsData.dockSpacing + SettingsData.dockBottomGap + SettingsData.dockMargin;
+            const screenWidth = dock.screen?.width ?? 0;
+            const screenHeight = dock.screen?.height ?? 0;
+
+            if (CompositorService.isNiri) {
+                NiriService.windows;
+
+                let currentWorkspaceId = null;
+                for (let i = 0; i < NiriService.allWorkspaces.length; i++) {
+                    const ws = NiriService.allWorkspaces[i];
+                    if (ws.output === screenName && ws.is_active) {
+                        currentWorkspaceId = ws.id;
+                        break;
+                    }
+                }
+
+                if (currentWorkspaceId === null)
+                    return false;
+
+                for (let i = 0; i < NiriService.windows.length; i++) {
+                    const win = NiriService.windows[i];
+                    if (win.workspace_id !== currentWorkspaceId)
+                        continue;
+
+                    // Get window position and size from layout data
+                    const tilePos = win.layout?.tile_pos_in_workspace_view;
+                    const winSize = win.layout?.window_size || win.layout?.tile_size;
+
+                    if (tilePos && winSize) {
+                        const winX = tilePos[0];
+                        const winY = tilePos[1];
+                        const winW = winSize[0];
+                        const winH = winSize[1];
+
+                        switch (SettingsData.dockPosition) {
+                        case SettingsData.Position.Top:
+                            if (winY < dockThickness)
+                                return true;
+                            break;
+                        case SettingsData.Position.Bottom:
+                            if (winY + winH > screenHeight - dockThickness)
+                                return true;
+                            break;
+                        case SettingsData.Position.Left:
+                            if (winX < dockThickness)
+                                return true;
+                            break;
+                        case SettingsData.Position.Right:
+                            if (winX + winW > screenWidth - dockThickness)
+                                return true;
+                            break;
+                        }
+                    } else if (!win.is_floating) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+            // Hyprland implementation
+            const filtered = CompositorService.filterCurrentWorkspace(CompositorService.sortedToplevels, screenName);
+
+            if (filtered.length === 0)
+                return false;
+
+            for (let i = 0; i < filtered.length; i++) {
+                const toplevel = filtered[i];
+
+                let hyprToplevel = null;
+                if (Hyprland.toplevels) {
+                    const hyprToplevels = Array.from(Hyprland.toplevels.values);
+                    for (let j = 0; j < hyprToplevels.length; j++) {
+                        if (hyprToplevels[j].wayland === toplevel) {
+                            hyprToplevel = hyprToplevels[j];
+                            break;
+                        }
+                    }
+                }
+
+                if (!hyprToplevel?.lastIpcObject)
+                    continue;
+
+                const ipc = hyprToplevel.lastIpcObject;
+                const at = ipc.at;
+                const size = ipc.size;
+                if (!at || !size)
+                    continue;
+
+                const monX = hyprToplevel.monitor?.x ?? 0;
+                const monY = hyprToplevel.monitor?.y ?? 0;
+
+                const winX = at[0] - monX;
+                const winY = at[1] - monY;
+                const winW = size[0];
+                const winH = size[1];
+
+                switch (SettingsData.dockPosition) {
+                case SettingsData.Position.Top:
+                    if (winY < dockThickness)
+                        return true;
+                    break;
+                case SettingsData.Position.Bottom:
+                    if (winY + winH > screenHeight - dockThickness)
+                        return true;
+                    break;
+                case SettingsData.Position.Left:
+                    if (winX < dockThickness)
+                        return true;
+                    break;
+                case SettingsData.Position.Right:
+                    if (winX + winW > screenWidth - dockThickness)
+                        return true;
+                    break;
+                }
+            }
+
+            return false;
+        }
+
         Timer {
             id: revealHold
             interval: 250
@@ -122,6 +250,15 @@ Variants {
             if (CompositorService.isNiri && NiriService.inOverview && SettingsData.dockOpenOnOverview) {
                 return true;
             }
+
+            // Smart auto-hide: show dock when no windows overlap, hide when they do
+            if (SettingsData.dockSmartAutoHide) {
+                if (shouldHideForWindows)
+                    return dockMouseArea.containsMouse || dockApps.requestDockShow || contextMenuOpen || revealSticky;
+                return true;  // No overlapping windows - show dock
+            }
+
+            // Regular auto-hide: always hide unless hovering
             return !autoHide || dockMouseArea.containsMouse || dockApps.requestDockShow || contextMenuOpen || revealSticky;
         }
 

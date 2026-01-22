@@ -150,19 +150,11 @@ func (m *Manager) setConnectionPriority(connType string, autoconnectPriority int
 		}
 
 		if err := exec.Command("nmcli", "con", "mod", connName,
-			"connection.autoconnect-priority", fmt.Sprintf("%d", autoconnectPriority)).Run(); err != nil {
-			log.Warnf("Failed to set autoconnect-priority for %v: %v", connName, err)
-			continue
-		}
-
-		if err := exec.Command("nmcli", "con", "mod", connName,
-			"ipv4.route-metric", fmt.Sprintf("%d", routeMetric)).Run(); err != nil {
-			log.Warnf("Failed to set ipv4.route-metric for %v: %v", connName, err)
-		}
-
-		if err := exec.Command("nmcli", "con", "mod", connName,
+			"connection.autoconnect-priority", fmt.Sprintf("%d", autoconnectPriority),
+			"ipv4.route-metric", fmt.Sprintf("%d", routeMetric),
 			"ipv6.route-metric", fmt.Sprintf("%d", routeMetric)).Run(); err != nil {
-			log.Warnf("Failed to set ipv6.route-metric for %v: %v", connName, err)
+			log.Warnf("Failed to set priority for %s: %v", connName, err)
+			continue
 		}
 
 		log.Infof("Updated %v: autoconnect-priority=%d, route-metric=%d", connName, autoconnectPriority, routeMetric)

@@ -1,0 +1,362 @@
+package dbus
+
+import (
+	"crypto/rand"
+	"encoding/hex"
+	"fmt"
+	"strings"
+
+	"github.com/AvengeMedia/DankMaterialShell/core/internal/log"
+	"github.com/AvengeMedia/DankMaterialShell/core/pkg/dbusutil"
+	"github.com/godbus/dbus/v5"
+)
+
+func NewManager() (*Manager, error) {
+	systemConn, err := dbus.ConnectSystemBus()
+	if err != nil {
+		return nil, fmt.Errorf("failed to connect to system bus: %w", err)
+	}
+
+	sessionConn, err := dbus.ConnectSessionBus()
+	if err != nil {
+		systemConn.Close()
+		return nil, fmt.Errorf("failed to connect to session bus: %w", err)
+	}
+
+	m := &Manager{
+		systemConn:  systemConn,
+		sessionConn: sessionConn,
+	}
+
+	go m.processSystemSignals()
+	go m.processSessionSignals()
+
+	return m, nil
+}
+
+func (m *Manager) getConn(bus string) (*dbus.Conn, error) {
+	switch bus {
+	case "system":
+		if m.systemConn == nil {
+			return nil, fmt.Errorf("system bus not connected")
+		}
+		return m.systemConn, nil
+	case "session":
+		if m.sessionConn == nil {
+			return nil, fmt.Errorf("session bus not connected")
+		}
+		return m.sessionConn, nil
+	default:
+		return nil, fmt.Errorf("invalid bus: %s (must be 'system' or 'session')", bus)
+	}
+}
+
+func (m *Manager) Call(bus, dest, path, iface, method string, args []any) (*CallResult, error) {
+	conn, err := m.getConn(bus)
+	if err != nil {
+		return nil, err
+	}
+
+	obj := conn.Object(dest, dbus.ObjectPath(path))
+	fullMethod := iface + "." + method
+
+	call := obj.Call(fullMethod, 0, args...)
+	if call.Err != nil {
+		return nil, fmt.Errorf("dbus call failed: %w", call.Err)
+	}
+
+	return &CallResult{Values: call.Body}, nil
+}
+
+func (m *Manager) GetProperty(bus, dest, path, iface, property string) (*PropertyResult, error) {
+	conn, err := m.getConn(bus)
+	if err != nil {
+		return nil, err
+	}
+
+	obj := conn.Object(dest, dbus.ObjectPath(path))
+
+	var variant dbus.Variant
+	err = obj.Call("org.freedesktop.DBus.Properties.Get", 0, iface, property).Store(&variant)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get property: %w", err)
+	}
+
+	return &PropertyResult{Value: dbusutil.Normalize(variant.Value())}, nil
+}
+
+func (m *Manager) SetProperty(bus, dest, path, iface, property string, value any) error {
+	conn, err := m.getConn(bus)
+	if err != nil {
+		return err
+	}
+
+	obj := conn.Object(dest, dbus.ObjectPath(path))
+
+	call := obj.Call("org.freedesktop.DBus.Properties.Set", 0, iface, property, dbus.MakeVariant(value))
+	if call.Err != nil {
+		return fmt.Errorf("failed to set property: %w", call.Err)
+	}
+
+	return nil
+}
+
+func (m *Manager) GetAllProperties(bus, dest, path, iface string) (map[string]any, error) {
+	conn, err := m.getConn(bus)
+	if err != nil {
+		return nil, err
+	}
+
+	obj := conn.Object(dest, dbus.ObjectPath(path))
+
+	var props map[string]dbus.Variant
+	err = obj.Call("org.freedesktop.DBus.Properties.GetAll", 0, iface).Store(&props)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get properties: %w", err)
+	}
+
+	result := make(map[string]any)
+	for k, v := range props {
+		result[k] = dbusutil.Normalize(v.Value())
+	}
+
+	return result, nil
+}
+
+func (m *Manager) Introspect(bus, dest, path string) (*IntrospectResult, error) {
+	conn, err := m.getConn(bus)
+	if err != nil {
+		return nil, err
+	}
+
+	obj := conn.Object(dest, dbus.ObjectPath(path))
+
+	var xml string
+	err = obj.Call("org.freedesktop.DBus.Introspectable.Introspect", 0).Store(&xml)
+	if err != nil {
+		return nil, fmt.Errorf("failed to introspect: %w", err)
+	}
+
+	return &IntrospectResult{XML: xml}, nil
+}
+
+func (m *Manager) ListNames(bus string) (*ListNamesResult, error) {
+	conn, err := m.getConn(bus)
+	if err != nil {
+		return nil, err
+	}
+
+	var names []string
+	err = conn.BusObject().Call("org.freedesktop.DBus.ListNames", 0).Store(&names)
+	if err != nil {
+		return nil, fmt.Errorf("failed to list names: %w", err)
+	}
+
+	return &ListNamesResult{Names: names}, nil
+}
+
+func (m *Manager) Subscribe(clientID, bus, sender, path, iface, member string) (*SubscribeResult, error) {
+	conn, err := m.getConn(bus)
+	if err != nil {
+		return nil, err
+	}
+
+	subID := generateSubscriptionID()
+
+	parts := []string{"type='signal'"}
+	if sender != "" {
+		parts = append(parts, fmt.Sprintf("sender='%s'", sender))
+	}
+	if path != "" {
+		parts = append(parts, fmt.Sprintf("path='%s'", path))
+	}
+	if iface != "" {
+		parts = append(parts, fmt.Sprintf("interface='%s'", iface))
+	}
+	if member != "" {
+		parts = append(parts, fmt.Sprintf("member='%s'", member))
+	}
+	matchRule := strings.Join(parts, ",")
+
+	call := conn.BusObject().Call("org.freedesktop.DBus.AddMatch", 0, matchRule)
+	if call.Err != nil {
+		return nil, fmt.Errorf("failed to add match rule: %w", call.Err)
+	}
+
+	sub := &signalSubscription{
+		Bus:       bus,
+		Sender:    sender,
+		Path:      path,
+		Interface: iface,
+		Member:    member,
+		ClientID:  clientID,
+	}
+	m.subscriptions.Store(subID, sub)
+
+	log.Debugf("dbus: subscribed %s to %s", subID, matchRule)
+
+	return &SubscribeResult{SubscriptionID: subID}, nil
+}
+
+func (m *Manager) Unsubscribe(subID string) error {
+	sub, ok := m.subscriptions.LoadAndDelete(subID)
+	if !ok {
+		return fmt.Errorf("subscription not found: %s", subID)
+	}
+
+	conn, err := m.getConn(sub.Bus)
+	if err != nil {
+		return err
+	}
+
+	parts := []string{"type='signal'"}
+	if sub.Sender != "" {
+		parts = append(parts, fmt.Sprintf("sender='%s'", sub.Sender))
+	}
+	if sub.Path != "" {
+		parts = append(parts, fmt.Sprintf("path='%s'", sub.Path))
+	}
+	if sub.Interface != "" {
+		parts = append(parts, fmt.Sprintf("interface='%s'", sub.Interface))
+	}
+	if sub.Member != "" {
+		parts = append(parts, fmt.Sprintf("member='%s'", sub.Member))
+	}
+	matchRule := strings.Join(parts, ",")
+
+	call := conn.BusObject().Call("org.freedesktop.DBus.RemoveMatch", 0, matchRule)
+	if call.Err != nil {
+		log.Warnf("dbus: failed to remove match rule: %v", call.Err)
+	}
+
+	log.Debugf("dbus: unsubscribed %s", subID)
+
+	return nil
+}
+
+func (m *Manager) UnsubscribeClient(clientID string) {
+	var toDelete []string
+	m.subscriptions.Range(func(subID string, sub *signalSubscription) bool {
+		if sub.ClientID == clientID {
+			toDelete = append(toDelete, subID)
+		}
+		return true
+	})
+
+	for _, subID := range toDelete {
+		if err := m.Unsubscribe(subID); err != nil {
+			log.Warnf("dbus: failed to unsubscribe %s: %v", subID, err)
+		}
+	}
+}
+
+func (m *Manager) SubscribeSignals(clientID string) chan SignalEvent {
+	ch := make(chan SignalEvent, 64)
+	existing, loaded := m.signalSubscribers.LoadOrStore(clientID, ch)
+	if loaded {
+		return existing
+	}
+	return ch
+}
+
+func (m *Manager) UnsubscribeSignals(clientID string) {
+	if ch, ok := m.signalSubscribers.LoadAndDelete(clientID); ok {
+		close(ch)
+	}
+	m.UnsubscribeClient(clientID)
+}
+
+func (m *Manager) processSystemSignals() {
+	if m.systemConn == nil {
+		return
+	}
+	ch := make(chan *dbus.Signal, 256)
+	m.systemConn.Signal(ch)
+
+	for sig := range ch {
+		m.dispatchSignal("system", sig)
+	}
+}
+
+func (m *Manager) processSessionSignals() {
+	if m.sessionConn == nil {
+		return
+	}
+	ch := make(chan *dbus.Signal, 256)
+	m.sessionConn.Signal(ch)
+
+	for sig := range ch {
+		m.dispatchSignal("session", sig)
+	}
+}
+
+func (m *Manager) dispatchSignal(bus string, sig *dbus.Signal) {
+	path := string(sig.Path)
+	iface := ""
+	member := sig.Name
+
+	if idx := strings.LastIndex(sig.Name, "."); idx != -1 {
+		iface = sig.Name[:idx]
+		member = sig.Name[idx+1:]
+	}
+
+	m.subscriptions.Range(func(subID string, sub *signalSubscription) bool {
+		if sub.Bus != bus {
+			return true
+		}
+		if sub.Path != "" && sub.Path != path && !strings.HasPrefix(path, sub.Path) {
+			return true
+		}
+		if sub.Interface != "" && sub.Interface != iface {
+			return true
+		}
+		if sub.Member != "" && sub.Member != member {
+			return true
+		}
+
+		event := SignalEvent{
+			SubscriptionID: subID,
+			Sender:         sig.Sender,
+			Path:           path,
+			Interface:      iface,
+			Member:         member,
+			Body:           dbusutil.NormalizeSlice(sig.Body),
+		}
+
+		ch, ok := m.signalSubscribers.Load(sub.ClientID)
+		if !ok {
+			return true
+		}
+
+		select {
+		case ch <- event:
+		default:
+			log.Warnf("dbus: channel full for %s, dropping signal", subID)
+		}
+
+		return true
+	})
+}
+
+func (m *Manager) Close() {
+	m.signalSubscribers.Range(func(clientID string, ch chan SignalEvent) bool {
+		close(ch)
+		m.signalSubscribers.Delete(clientID)
+		return true
+	})
+
+	if m.systemConn != nil {
+		m.systemConn.Close()
+	}
+	if m.sessionConn != nil {
+		m.sessionConn.Close()
+	}
+}
+
+func generateSubscriptionID() string {
+	b := make([]byte, 8)
+	if _, err := rand.Read(b); err != nil {
+		log.Warnf("dbus: failed to generate random subscription ID: %v", err)
+	}
+	return hex.EncodeToString(b)
+}

@@ -500,8 +500,78 @@ PanelWindow {
         height: axis.isVertical ? parent.height : maskThickness
     }
 
+    readonly property bool clickThroughEnabled: barConfig?.clickThrough ?? false
+
+    readonly property var _leftSection: topBarContent ? (barWindow.isVertical ? topBarContent.vLeftSection : topBarContent.hLeftSection) : null
+    readonly property var _centerSection: topBarContent ? (barWindow.isVertical ? topBarContent.vCenterSection : topBarContent.hCenterSection) : null
+    readonly property var _rightSection: topBarContent ? (barWindow.isVertical ? topBarContent.vRightSection : topBarContent.hRightSection) : null
+
+    function sectionRect(section, isCenter) {
+        if (!section)
+            return {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0
+            };
+
+        const pos = section.mapToItem(barWindow.contentItem, 0, 0);
+        const implW = section.implicitWidth || 0;
+        const implH = section.implicitHeight || 0;
+
+        const offsetX = isCenter && !barWindow.isVertical ? (section.width - implW) / 2 : 0;
+        const offsetY = !barWindow.isVertical ? (section.height - implH) / 2 : (isCenter ? (section.height - implH) / 2 : 0);
+
+        const edgePad = 2;
+        return {
+            "x": pos.x + offsetX - edgePad,
+            "y": pos.y + offsetY - edgePad,
+            "w": implW + edgePad * 2,
+            "h": implH + edgePad * 2
+        };
+    }
+
     mask: Region {
-        item: inputMask
+        item: clickThroughEnabled ? null : inputMask
+
+        Region {
+            readonly property var r: barWindow.clickThroughEnabled ? barWindow.sectionRect(barWindow._leftSection, false) : {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0
+            }
+            x: r.x
+            y: r.y
+            width: r.w
+            height: r.h
+        }
+
+        Region {
+            readonly property var r: barWindow.clickThroughEnabled ? barWindow.sectionRect(barWindow._centerSection, true) : {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0
+            }
+            x: r.x
+            y: r.y
+            width: r.w
+            height: r.h
+        }
+
+        Region {
+            readonly property var r: barWindow.clickThroughEnabled ? barWindow.sectionRect(barWindow._rightSection, false) : {
+                "x": 0,
+                "y": 0,
+                "w": 0,
+                "h": 0
+            }
+            x: r.x
+            y: r.y
+            width: r.w
+            height: r.h
+        }
     }
 
     Item {

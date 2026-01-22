@@ -539,7 +539,7 @@ Rectangle {
 
             Item {
                 width: parent.width - parent.leftPadding - parent.rightPadding
-                height: Theme.spacingS
+                height: Theme.spacingXS
             }
 
             DankTextField {
@@ -717,7 +717,7 @@ Rectangle {
 
             Item {
                 width: parent.width - parent.leftPadding - parent.rightPadding
-                height: Theme.spacingS
+                height: Theme.spacingXS
                 visible: !root.searchActive
             }
 

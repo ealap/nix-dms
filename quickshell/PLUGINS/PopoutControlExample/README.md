@@ -84,10 +84,11 @@ popoutService.openClipboardHistory()
 popoutService.closeClipboardHistory()
 ```
 
-#### Spotlight Modal
+#### Launcher Modal
 ```qml
-popoutService.openSpotlight()
-popoutService.closeSpotlight()
+popoutService.openDankLauncherV2()
+popoutService.closeDankLauncherV2()
+popoutService.toggleDankLauncherV2()
 ```
 
 #### Power Menu Modal

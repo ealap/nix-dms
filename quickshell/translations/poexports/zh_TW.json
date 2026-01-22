@@ -251,6 +251,9 @@
   "Always Show Percentage": {
     "Always Show Percentage": "始終顯示百分比"
   },
+  "Always hide the dock and reveal it when hovering near the dock area": {
+    "Always hide the dock and reveal it when hovering near the dock area": ""
+  },
   "Always on icons": {
     "Always on icons": "始終顯示圖示"
   },
@@ -707,6 +710,9 @@
   "Clear All Jobs": {
     "Clear All Jobs": "清除所有工作"
   },
+  "Clear History?": {
+    "Clear History?": ""
+  },
   "Clear all history when server starts": {
     "Clear all history when server starts": "伺服器啟動時清除所有歷史紀錄"
   },
@@ -917,6 +923,12 @@
   "Copy": {
     "Copy": "複製"
   },
+  "Copy Full Command": {
+    "Copy Full Command": ""
+  },
+  "Copy Name": {
+    "Copy Name": ""
+  },
   "Copy PID": {
     "Copy PID": "複製 PID"
   },
@@ -1124,6 +1136,9 @@
   "Delete Printer": {
     "Delete Printer": "刪除印表機"
   },
+  "Delete Saved Item?": {
+    "Delete Saved Item?": ""
+  },
   "Delete VPN": {
     "Delete VPN": "刪除 VPN"
   },
@@ -1207,6 +1222,9 @@
   },
   "Disk Usage": {
     "Disk Usage": "硬碟使用率"
+  },
+  "Disks": {
+    "Disks": ""
   },
   "Dismiss": {
     "Dismiss": "忽略"
@@ -1442,6 +1460,12 @@
   "Enterprise": {
     "Enterprise": "企業"
   },
+  "Entry pinned": {
+    "Entry pinned": ""
+  },
+  "Entry unpinned": {
+    "Entry unpinned": ""
+  },
   "Error": {
     "Error": "錯誤"
   },
@@ -1483,6 +1507,9 @@
   },
   "Failed to cancel selected job": {
     "Failed to cancel selected job": "取消選定工作失敗"
+  },
+  "Failed to check pin limit": {
+    "Failed to check pin limit": ""
   },
   "Failed to connect VPN": {
     "Failed to connect VPN": "VPN 連線失敗"
@@ -1559,6 +1586,9 @@
   "Failed to pause printer": {
     "Failed to pause printer": "無法暫停印表機"
   },
+  "Failed to pin entry": {
+    "Failed to pin entry": ""
+  },
   "Failed to print test page": {
     "Failed to print test page": "無法列印測試頁"
   },
@@ -1603,6 +1633,9 @@
   },
   "Failed to start connection to %1": {
     "Failed to start connection to %1": "無法啟動連線至 %1"
+  },
+  "Failed to unpin entry": {
+    "Failed to unpin entry": ""
   },
   "Failed to update VPN": {
     "Failed to update VPN": "更新 VPN 失敗"
@@ -1709,6 +1742,9 @@
   "Force HDR": {
     "Force HDR": "強制 HDR"
   },
+  "Force Kill (SIGKILL)": {
+    "Force Kill (SIGKILL)": ""
+  },
   "Force Kill Process": {
     "Force Kill Process": "強制結束程序"
   },
@@ -1762,6 +1798,9 @@
   },
   "Gamma control not available. Requires DMS API v6+.": {
     "Gamma control not available. Requires DMS API v6+.": "Gamma 控制不可用。需要 DMS API v6+。"
+  },
+  "Generic device name | Generic device name fallback": {
+    "device": ""
   },
   "GitHub": {
     "GitHub": "GitHub"
@@ -1880,6 +1919,9 @@
   "History Settings": {
     "History Settings": "歷史紀錄設定"
   },
+  "History cleared. %1 pinned entries kept.": {
+    "History cleared. %1 pinned entries kept.": ""
+  },
   "Hold Duration": {
     "Hold Duration": "按住持續時間"
   },
@@ -1994,6 +2036,9 @@
   "Install plugins from the DMS plugin registry": {
     "Install plugins from the DMS plugin registry": "從 DMS 插件註冊表安裝插件"
   },
+  "Intelligent Auto-hide": {
+    "Intelligent Auto-hide": ""
+  },
   "Interface:": {
     "Interface:": "介面："
   },
@@ -2020,6 +2065,166 @@
   },
   "Jobs: ": {
     "Jobs: ": "工作: "
+  },
+  "KDE Connect SMS action": {
+    "Opening SMS": "",
+    "Opening SMS app": ""
+  },
+  "KDE Connect SMS dialog title": {
+    "Send SMS": ""
+  },
+  "KDE Connect SMS message input placeholder": {
+    "Message": ""
+  },
+  "KDE Connect SMS phone input placeholder": {
+    "Phone number": ""
+  },
+  "KDE Connect SMS send button": {
+    "Send": ""
+  },
+  "KDE Connect SMS tooltip": {
+    "SMS": ""
+  },
+  "KDE Connect accept pairing button": {
+    "Accept": ""
+  },
+  "KDE Connect browse action": {
+    "Opening file browser": "",
+    "Opening files": ""
+  },
+  "KDE Connect browse tooltip": {
+    "Browse Files": ""
+  },
+  "KDE Connect clipboard action": {
+    "Clipboard sent": ""
+  },
+  "KDE Connect clipboard tooltip": {
+    "Send Clipboard": ""
+  },
+  "KDE Connect connected status": {
+    "Connected": ""
+  },
+  "KDE Connect daemon hint": {
+    "Start kdeconnectd to use this plugin": ""
+  },
+  "KDE Connect error": {
+    "Failed to accept pairing": "",
+    "Failed to browse device": "",
+    "Failed to launch SMS app": "",
+    "Failed to reject pairing": "",
+    "Failed to ring device": "",
+    "Failed to send clipboard": "",
+    "Failed to send ping": "",
+    "Failed to share": "",
+    "Pairing failed": "",
+    "Unpair failed": ""
+  },
+  "KDE Connect file share notification": {
+    "File received from": ""
+  },
+  "KDE Connect hint message": {
+    "Make sure KDE Connect is running on your other devices": ""
+  },
+  "KDE Connect no devices message": {
+    "No devices found": ""
+  },
+  "KDE Connect no devices status": {
+    "No devices": ""
+  },
+  "KDE Connect not paired status": {
+    "Not paired": ""
+  },
+  "KDE Connect offline status": {
+    "Offline": ""
+  },
+  "KDE Connect open SMS app button": {
+    "Open App": ""
+  },
+  "KDE Connect open app hint": {
+    "Open KDE Connect on your phone": ""
+  },
+  "KDE Connect pair button": {
+    "Pair": ""
+  },
+  "KDE Connect pairing action": {
+    "Device paired": "",
+    "Pairing request sent": ""
+  },
+  "KDE Connect pairing in progress status": {
+    "Pairing": ""
+  },
+  "KDE Connect pairing request notification": {
+    "Pairing request from": ""
+  },
+  "KDE Connect pairing requested status": {
+    "Pairing requested": ""
+  },
+  "KDE Connect pairing verification key label": {
+    "Verification": ""
+  },
+  "KDE Connect ping action": {
+    "Ping sent": "",
+    "Ping sent to": ""
+  },
+  "KDE Connect ping tooltip": {
+    "Ping": ""
+  },
+  "KDE Connect refresh button | KDE Connect refresh tooltip": {
+    "Refresh": ""
+  },
+  "KDE Connect reject pairing button": {
+    "Reject": ""
+  },
+  "KDE Connect request pairing button": {
+    "Request Pairing": ""
+  },
+  "KDE Connect ring action": {
+    "Ringing": ""
+  },
+  "KDE Connect ring tooltip": {
+    "Ring": ""
+  },
+  "KDE Connect service unavailable message": {
+    "KDE Connect unavailable": ""
+  },
+  "KDE Connect share URL button": {
+    "Share URL": ""
+  },
+  "KDE Connect share button | KDE Connect share dialog title | KDE Connect share tooltip": {
+    "Share": ""
+  },
+  "KDE Connect share input placeholder": {
+    "Enter URL or text to share": ""
+  },
+  "KDE Connect share success": {
+    "Shared": ""
+  },
+  "KDE Connect start daemon hint": {
+    "Start kdeconnectd to connect devices": ""
+  },
+  "KDE Connect status": {
+    "No devices connected": ""
+  },
+  "KDE Connect status multiple devices": {
+    "devices connected": ""
+  },
+  "KDE Connect status single device": {
+    "1 device connected": ""
+  },
+  "KDE Connect unavailable error title": {
+    "KDE Connect Not Available": ""
+  },
+  "KDE Connect unavailable status": {
+    "Unavailable": ""
+  },
+  "KDE Connect unknown device status | unknown author": {
+    "Unknown": ""
+  },
+  "KDE Connect unpair action": {
+    "Device unpaired": ""
+  },
+  "KDE Connect unpair tooltip": {
+    "Unpair": ""
   },
   "Keep Awake": {
     "Keep Awake": "保持喚醒"
@@ -2255,8 +2460,17 @@
   "Maximum History": {
     "Maximum History": "歷史紀錄上限"
   },
+  "Maximum Pinned Entries": {
+    "Maximum Pinned Entries": ""
+  },
   "Maximum number of clipboard entries to keep": {
     "Maximum number of clipboard entries to keep": "剪貼簿項目保留數量上限"
+  },
+  "Maximum number of entries that can be saved": {
+    "Maximum number of entries that can be saved": ""
+  },
+  "Maximum pinned entries reached": {
+    "Maximum pinned entries reached": ""
   },
   "Maximum size per clipboard entry": {
     "Maximum size per clipboard entry": "每個剪貼簿項目的最大大小"
@@ -2549,6 +2763,12 @@
   "No printers found": {
     "No printers found": "找不到印表機"
   },
+  "No recent clipboard entries found": {
+    "No recent clipboard entries found": ""
+  },
+  "No saved clipboard entries": {
+    "No saved clipboard entries": ""
+  },
   "No variants created. Click Add to create a new monitor widget.": {
     "No variants created. Click Add to create a new monitor widget.": "尚未建立任何變體。按一下「新增」以建立新的顯示器小工具。"
   },
@@ -2623,6 +2843,9 @@
   },
   "OSD Position": {
     "OSD Position": "OSD 位置"
+  },
+  "Occupied Color": {
+    "Occupied Color": ""
   },
   "Off": {
     "Off": "關閉"
@@ -2771,6 +2994,9 @@
   "Percentage": {
     "Percentage": "百分比"
   },
+  "Performance": {
+    "Performance": ""
+  },
   "Permission denied to set profile image.": {
     "Permission denied to set profile image.": "權限不足，無法設定個人資料圖片。"
   },
@@ -2870,6 +3096,9 @@
   "Power Profile Degradation": {
     "Power Profile Degradation": "電源配置降級"
   },
+  "Power off monitors on lock": {
+    "Power off monitors on lock": ""
+  },
   "Power profile management available": {
     "Power profile management available": "電源設定檔管理功能可用"
   },
@@ -2938,6 +3167,9 @@
   },
   "Process Count": {
     "Process Count": "程序數量"
+  },
+  "Processes": {
+    "Processes": ""
   },
   "Processing": {
     "Processing": "正在處理"
@@ -3137,6 +3369,9 @@
   "Saved Configurations": {
     "Saved Configurations": "已儲存的設定"
   },
+  "Saved item deleted": {
+    "Saved item deleted": ""
+  },
   "Scale": {
     "Scale": "縮放"
   },
@@ -3157,6 +3392,9 @@
   },
   "Science": {
     "Science": "科學"
+  },
+  "Screen Sharing": {
+    "Screen Sharing": ""
   },
   "Screen sharing": {
     "Screen sharing": "螢幕分享"
@@ -3436,6 +3674,9 @@
   },
   "Show darkened overlay behind modal dialogs": {
     "Show darkened overlay behind modal dialogs": "在模態對話框後顯示暗化覆蓋層"
+  },
+  "Show dock when floating windows don't overlap its area": {
+    "Show dock when floating windows don't overlap its area": ""
   },
   "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": {
     "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": "在 Niri 總覽中輸入時顯示啟動器疊加。停用以使用其他啟動器。"
@@ -3752,8 +3993,14 @@
   "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": {
     "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": "此部件可防止 GPU 電源關閉，這會嚴重影響筆記型電腦的電池續航時間。不建議在配備混合顯示卡的筆記型電腦上使用此功能。"
   },
+  "This will delete all unpinned entries. %1 pinned entries will be kept.": {
+    "This will delete all unpinned entries. %1 pinned entries will be kept.": ""
+  },
   "This will permanently delete all clipboard history.": {
     "This will permanently delete all clipboard history.": "這將永久刪除所有剪貼簿歷史記錄。"
+  },
+  "This will permanently remove this saved clipboard item. This action cannot be undone.": {
+    "This will permanently remove this saved clipboard item. This action cannot be undone.": ""
   },
   "Tiling": {
     "Tiling": "平鋪"
@@ -3854,6 +4101,9 @@
   "Trigger Prefix": {
     "Trigger Prefix": "觸發前綴"
   },
+  "Turn off all displays immediately when the lock screen activates": {
+    "Turn off all displays immediately when the lock screen activates": ""
+  },
   "Turn off monitors after": {
     "Turn off monitors after": "指定時間後關閉螢幕"
   },
@@ -3919,6 +4169,9 @@
   },
   "Update Plugin": {
     "Update Plugin": "更新插件"
+  },
+  "Uptime": {
+    "Uptime": ""
   },
   "Urgent Color": {
     "Urgent Color": ""
@@ -4303,6 +4556,18 @@
   "dgop not available": {
     "dgop not available": "dgop 無法使用"
   },
+  "dgop unavailable error message": {
+    "The 'dgop' tool is required for system monitoring.\\nPlease install dgop to use this feature.": ""
+  },
+  "disk io header in system monitor": {
+    "Disk I/O": ""
+  },
+  "disk read label": {
+    "Read:": ""
+  },
+  "disk write label": {
+    "Write:": ""
+  },
   "dms/binds.kdl exists but is not included in config.kdl. Custom keybinds will not work until this is fixed.": {
     "dms/binds.kdl exists but is not included in config.kdl. Custom keybinds will not work until this is fixed.": "dms/binds.kdl 存在但未包含在 config.kdl 中。此問題解決前，自訂按鍵綁定將無法運作。"
   },
@@ -4336,17 +4601,32 @@
   "empty plugin list": {
     "No plugins found": "找不到任何外掛"
   },
+  "empty state in disk mounts list": {
+    "No mount points found": ""
+  },
+  "empty state in gpu list": {
+    "No GPUs detected": ""
+  },
+  "empty state in process list": {
+    "No matching processes": ""
+  },
   "empty theme list": {
     "No themes found": "找不到任何主題"
   },
   "events": {
     "events": "活動"
   },
+  "fallback gpu name": {
+    "Unknown GPU": ""
+  },
   "files": {
     "files": "檔案"
   },
   "generic theme description": {
     "Material Design inspired color themes": "受 Material Design 啟發的色彩主題"
+  },
+  "gpu section header in system monitor": {
+    "GPU Monitoring": ""
   },
   "greeter back button": {
     "Back": "返回"
@@ -4540,6 +4820,9 @@
   "minutes": {
     "minutes": "分鐘"
   },
+  "mount points header in system monitor": {
+    "Mount Points": ""
+  },
   "ms": {
     "ms": "毫秒"
   },
@@ -4614,6 +4897,15 @@
   "plugin search placeholder": {
     "Search plugins...": "搜尋外掛..."
   },
+  "process count label in footer": {
+    "Processes:": ""
+  },
+  "process detail label": {
+    "Full Command:": ""
+  },
+  "process search placeholder": {
+    "Search processes...": ""
+  },
   "profile image file browser title": {
     "Select Profile Image": "選擇個人資料圖片"
   },
@@ -4639,11 +4931,24 @@
   "shadow intensity slider": {
     "Intensity": "強度"
   },
+  "short for processes": {
+    "procs": ""
+  },
   "source code link": {
     "source": "來源"
   },
   "sysmon window title": {
     "System Monitor": "系統監視器"
+  },
+  "system info header in system monitor": {
+    "System Information": ""
+  },
+  "system info label": {
+    "Architecture": "",
+    "Distribution": "",
+    "Hostname": "",
+    "Kernel": "",
+    "Load Average": ""
   },
   "theme browser description": {
     "Install color themes from the DMS theme registry": "從 DMS 主題登錄檔安裝色彩主題"
@@ -4674,6 +4979,9 @@
   },
   "update dms for NM integration.": {
     "update dms for NM integration.": "更新 dms 以進行 NM 整合。"
+  },
+  "uptime label in footer": {
+    "Uptime:": ""
   },
   "version requirement": {
     "Requires %1": "需要 %1"

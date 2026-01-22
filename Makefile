@@ -43,7 +43,6 @@ install-shell:
 	@mkdir -p $(SHELL_INSTALL_DIR)
 	@cp -r $(SHELL_DIR)/* $(SHELL_INSTALL_DIR)/
 	@rm -rf $(SHELL_INSTALL_DIR)/.git* $(SHELL_INSTALL_DIR)/.github
-	@$(MAKE) --no-print-directory -C $(CORE_DIR) print-version > $(SHELL_INSTALL_DIR)/VERSION
 	@echo "Shell files installed"
 
 install-completions:

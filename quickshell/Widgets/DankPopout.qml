@@ -29,6 +29,7 @@ Item {
     property bool shouldBeVisible: false
     property var customKeyboardFocus: null
     property bool backgroundInteractive: true
+    property bool contentHandlesKeys: false
 
     property real storedBarThickness: Theme.barHeight - 4
     property real storedBarSpacing: 4
@@ -461,8 +462,12 @@ Item {
             id: focusHelper
             parent: contentContainer
             anchors.fill: parent
-            focus: true
+            visible: !root.contentHandlesKeys
+            enabled: !root.contentHandlesKeys
+            focus: !root.contentHandlesKeys
             Keys.onPressed: event => {
+                if (root.contentHandlesKeys)
+                    return;
                 if (event.key === Qt.Key_Escape) {
                     close();
                     event.accepted = true;

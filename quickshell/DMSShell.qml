@@ -6,7 +6,7 @@ import qs.Modals.Changelog
 import qs.Modals.Clipboard
 import qs.Modals.Greeter
 import qs.Modals.Settings
-import qs.Modals.Spotlight
+import qs.Modals.DankLauncherV2
 import qs.Modules
 import qs.Modules.AppDrawer
 import qs.Modules.DankDash
@@ -473,14 +473,16 @@ Item {
             PopoutService.settingsModalLoader = settingsModalLoader;
         }
 
+        onActiveChanged: {
+            if (active && item) {
+                PopoutService.settingsModal = item;
+                PopoutService._onSettingsModalLoaded();
+            }
+        }
+
         SettingsModal {
             id: settingsModal
             property bool wasShown: false
-
-            Component.onCompleted: {
-                PopoutService.settingsModal = settingsModal;
-                PopoutService._onSettingsModalLoaded();
-            }
 
             onVisibleChanged: {
                 if (visible) {
@@ -506,11 +508,22 @@ Item {
         }
     }
 
-    SpotlightModal {
-        id: spotlightModal
+    LazyLoader {
+        id: dankLauncherV2ModalLoader
+
+        active: false
 
         Component.onCompleted: {
-            PopoutService.spotlightModal = spotlightModal;
+            PopoutService.dankLauncherV2ModalLoader = dankLauncherV2ModalLoader;
+        }
+
+        DankLauncherV2Modal {
+            id: dankLauncherV2Modal
+
+            Component.onCompleted: {
+                PopoutService.dankLauncherV2Modal = dankLauncherV2Modal;
+                PopoutService._onDankLauncherV2ModalLoaded();
+            }
         }
     }
 

@@ -16,8 +16,8 @@ Item {
 
     Column {
         anchors.fill: parent
-        anchors.margins: Theme.spacingL
-        spacing: Theme.spacingL
+        anchors.margins: Theme.spacingM
+        spacing: Theme.spacingM
         focus: false
 
         ClipboardHeader {
@@ -195,7 +195,7 @@ Item {
         Item {
             id: keyboardHintsContainer
             width: parent.width
-            height: modal.showKeyboardHints ? ClipboardConstants.keyboardHintsHeight + Theme.spacingL : 0
+            height: modal.showKeyboardHints ? ClipboardConstants.keyboardHintsHeight + Theme.spacingM : 0
 
             Behavior on height {
                 NumberAnimation {
@@ -210,7 +210,7 @@ Item {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.margins: Theme.spacingL
+        anchors.margins: Theme.spacingM
         visible: modal.showKeyboardHints
         wtypeAvailable: modal.wtypeAvailable
     }

@@ -293,7 +293,6 @@ Singleton {
                 pluginDaemonComponents = newDaemons;
             } else if (isLauncher) {
                 const instance = comp.createObject(root, {
-                    "pluginId": pluginId,
                     "pluginService": root
                 });
                 if (!instance) {
@@ -556,6 +555,33 @@ Singleton {
         return loadPlugin(pluginId, true);
     }
 
+    function togglePlugin(pluginId) {
+        let instance = pluginInstances[pluginId];
+
+        // Lazy instantiate daemon plugins on first toggle
+        // This respects the daemon lifecycle (not instantiated on load)
+        // while supporting toggle functionality for slideout-capable daemons
+        if (!instance && pluginDaemonComponents[pluginId]) {
+            const comp = pluginDaemonComponents[pluginId];
+            const newInstance = comp.createObject(root, {
+                "pluginId": pluginId,
+                "pluginService": root
+            });
+            if (newInstance) {
+                const newInstances = Object.assign({}, pluginInstances);
+                newInstances[pluginId] = newInstance;
+                pluginInstances = newInstances;
+                instance = newInstance;
+            }
+        }
+
+        if (instance && typeof instance.toggle === "function") {
+            instance.toggle();
+            return true;
+        }
+        return false;
+    }
+
     function savePluginData(pluginId, key, value) {
         SettingsData.setPluginSetting(pluginId, key, value);
         pluginDataChanged(pluginId);
@@ -673,6 +699,17 @@ Singleton {
             }
         }
         return plugins;
+    }
+
+    function getPluginViewPreference(pluginId) {
+        const plugin = availablePlugins[pluginId];
+        if (!plugin)
+            return null;
+
+        return {
+            mode: plugin.viewMode || null,
+            enforced: plugin.viewModeEnforced === true
+        };
     }
 
     function getGlobalVar(pluginId, varName, defaultValue) {

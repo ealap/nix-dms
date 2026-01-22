@@ -41,7 +41,7 @@ property var popoutService: null
 | ------------------ | ------------------------- | ------------------------- | -------------------------------------------------- |
 | Settings           | `openSettings()`          | `closeSettings()`         | Full settings interface                            |
 | Clipboard History  | `openClipboardHistory()`  | `closeClipboardHistory()` | Clipboard integration                              |
-| Spotlight          | `openSpotlight()`         | `closeSpotlight()`        | Command launcher                                   |
+| Launcher           | `openDankLauncherV2()`       | `closeDankLauncherV2()`      | Command launcher, also has `toggleDankLauncherV2()`   |
 | Power Menu         | `openPowerMenu()`         | `closePowerMenu()`        | Also has `togglePowerMenu()`                       |
 | Process List Modal | `showProcessListModal()`  | `hideProcessListModal()`  | Fullscreen version, has `toggleProcessListModal()` |
 | Color Picker       | `showColorPicker()`       | `hideColorPicker()`       | Theme color selection                              |

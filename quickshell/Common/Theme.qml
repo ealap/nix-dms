@@ -752,9 +752,11 @@ Singleton {
         return (0.299 * c.r + 0.587 * c.g + 0.114 * c.b) < 0.5;
     }
 
-    function barIconSize(barThickness, offset) {
+    function barIconSize(barThickness, offset, noBackground) {
         const defaultOffset = offset !== undefined ? offset : -6;
-        return Math.round((barThickness / 48) * (iconSize + defaultOffset));
+        const size = (noBackground ?? false) ? iconSizeLarge : iconSize;
+
+        return Math.round((barThickness / 48) * (size + defaultOffset));
     }
 
     function barTextSize(barThickness, fontScale) {
@@ -904,7 +906,7 @@ Singleton {
         if (typeof SettingsData !== "undefined") {
             const skipTemplates = [];
             if (!SettingsData.runDmsMatugenTemplates) {
-                skipTemplates.push("gtk", "nvim", "niri", "qt5ct", "qt6ct", "firefox", "pywalfox", "zenbrowser", "vesktop", "equibop", "ghostty", "kitty", "foot", "alacritty", "wezterm", "dgop", "kcolorscheme", "vscode");
+                skipTemplates.push("gtk", "nvim", "niri", "qt5ct", "qt6ct", "firefox", "pywalfox", "zenbrowser", "vesktop", "equibop", "ghostty", "kitty", "foot", "alacritty", "wezterm", "dgop", "kcolorscheme", "vscode", "emacs");
             } else {
                 if (!SettingsData.matugenTemplateGtk)
                     skipTemplates.push("gtk");
@@ -946,6 +948,8 @@ Singleton {
                     skipTemplates.push("kcolorscheme");
                 if (!SettingsData.matugenTemplateVscode)
                     skipTemplates.push("vscode");
+		if (!SettingsData.matugenTemplateEmacs)
+                    skipTemplates.push("emacs");
             }
             if (skipTemplates.length > 0) {
                 args.push("--skip-templates", skipTemplates.join(","));

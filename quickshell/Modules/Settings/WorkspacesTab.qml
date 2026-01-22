@@ -200,6 +200,48 @@ Item {
                 }
 
                 SettingsButtonGroupRow {
+                    text: I18n.tr("Occupied Color")
+                    model: ["none", "sec", "s", "sc", "sch", "schh"]
+                    visible: CompositorService.isNiri || CompositorService.isHyprland || CompositorService.isDwl
+                    buttonHeight: 22
+                    minButtonWidth: 36
+                    buttonPadding: Theme.spacingS
+                    checkIconSize: Theme.iconSizeSmall - 2
+                    textSize: Theme.fontSizeSmall - 1
+                    spacing: 1
+                    currentIndex: {
+                        switch (SettingsData.workspaceOccupiedColorMode) {
+                        case "sec":
+                            return 1;
+                        case "s":
+                            return 2;
+                        case "sc":
+                            return 3;
+                        case "sch":
+                            return 4;
+                        case "schh":
+                            return 5;
+                        default:
+                            return 0;
+                        }
+                    }
+                    onSelectionChanged: (index, selected) => {
+                        if (!selected)
+                            return;
+                        const modes = ["none", "sec", "s", "sc", "sch", "schh"];
+                        SettingsData.set("workspaceOccupiedColorMode", modes[index]);
+                    }
+                }
+
+                Rectangle {
+                    width: parent.width
+                    height: 1
+                    color: Theme.outline
+                    opacity: 0.15
+                    visible: CompositorService.isNiri || CompositorService.isHyprland || CompositorService.isDwl
+                }
+
+                SettingsButtonGroupRow {
                     text: I18n.tr("Unfocused Color")
                     model: ["def", "s", "sc", "sch"]
                     buttonHeight: 22

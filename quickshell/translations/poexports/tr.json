@@ -15,7 +15,7 @@
     "%1 connected": "%1 bağlı"
   },
   "%1 days ago": {
-    "%1 days ago": ""
+    "%1 days ago": "%1 gün önce"
   },
   "%1 display(s)": {
     "%1 display(s)": "%1 ekran"
@@ -42,7 +42,7 @@
     "%1 widgets": "%1 widget"
   },
   "%1m ago": {
-    "%1m ago": ""
+    "%1m ago": "%1dk önce"
   },
   "(Unnamed)": {
     "(Unnamed)": "(İsimsiz)"
@@ -250,6 +250,9 @@
   },
   "Always Show Percentage": {
     "Always Show Percentage": "Yüzdeyi Her Zaman Göster"
+  },
+  "Always hide the dock and reveal it when hovering near the dock area": {
+    "Always hide the dock and reveal it when hovering near the dock area": ""
   },
   "Always on icons": {
     "Always on icons": "Her zaman açık simgeler"
@@ -707,6 +710,9 @@
   "Clear All Jobs": {
     "Clear All Jobs": "Tüm İşleri Temizle"
   },
+  "Clear History?": {
+    "Clear History?": ""
+  },
   "Clear all history when server starts": {
     "Clear all history when server starts": "Sunucu başladığında tüm geçmişi temizle"
   },
@@ -917,6 +923,12 @@
   "Copy": {
     "Copy": ""
   },
+  "Copy Full Command": {
+    "Copy Full Command": ""
+  },
+  "Copy Name": {
+    "Copy Name": ""
+  },
   "Copy PID": {
     "Copy PID": "PID'i Kopyala"
   },
@@ -1124,6 +1136,9 @@
   "Delete Printer": {
     "Delete Printer": "Yazıcı Sil"
   },
+  "Delete Saved Item?": {
+    "Delete Saved Item?": ""
+  },
   "Delete VPN": {
     "Delete VPN": "VPN'i Sil"
   },
@@ -1207,6 +1222,9 @@
   },
   "Disk Usage": {
     "Disk Usage": "Disk Kullanımı"
+  },
+  "Disks": {
+    "Disks": ""
   },
   "Dismiss": {
     "Dismiss": "Reddet"
@@ -1442,6 +1460,12 @@
   "Enterprise": {
     "Enterprise": "Kurumsal"
   },
+  "Entry pinned": {
+    "Entry pinned": ""
+  },
+  "Entry unpinned": {
+    "Entry unpinned": ""
+  },
   "Error": {
     "Error": "Hata"
   },
@@ -1483,6 +1507,9 @@
   },
   "Failed to cancel selected job": {
     "Failed to cancel selected job": "Seçilen işler iptal edemedi"
+  },
+  "Failed to check pin limit": {
+    "Failed to check pin limit": ""
   },
   "Failed to connect VPN": {
     "Failed to connect VPN": "VPN bağlantısı kurulamadı"
@@ -1559,6 +1586,9 @@
   "Failed to pause printer": {
     "Failed to pause printer": "Yazıcıyı duraklatma başarısız"
   },
+  "Failed to pin entry": {
+    "Failed to pin entry": ""
+  },
   "Failed to print test page": {
     "Failed to print test page": "Test sayfası yazdırılamadı"
   },
@@ -1603,6 +1633,9 @@
   },
   "Failed to start connection to %1": {
     "Failed to start connection to %1": "%1 bağlantı başlatılamadı"
+  },
+  "Failed to unpin entry": {
+    "Failed to unpin entry": ""
   },
   "Failed to update VPN": {
     "Failed to update VPN": "VPN güncellenemedi"
@@ -1709,6 +1742,9 @@
   "Force HDR": {
     "Force HDR": "Zorla HDR"
   },
+  "Force Kill (SIGKILL)": {
+    "Force Kill (SIGKILL)": ""
+  },
   "Force Kill Process": {
     "Force Kill Process": "Süreci Zorla Kapat"
   },
@@ -1762,6 +1798,9 @@
   },
   "Gamma control not available. Requires DMS API v6+.": {
     "Gamma control not available. Requires DMS API v6+.": "Gama kontrolü mevcut değil. DMS API V6+ gerekir."
+  },
+  "Generic device name | Generic device name fallback": {
+    "device": ""
   },
   "GitHub": {
     "GitHub": "GitHub"
@@ -1880,6 +1919,9 @@
   "History Settings": {
     "History Settings": "Geçmiş Ayarları"
   },
+  "History cleared. %1 pinned entries kept.": {
+    "History cleared. %1 pinned entries kept.": ""
+  },
   "Hold Duration": {
     "Hold Duration": "Tutma Süresi"
   },
@@ -1994,6 +2036,9 @@
   "Install plugins from the DMS plugin registry": {
     "Install plugins from the DMS plugin registry": "DMS eklenti defterinden eklentiler yükle"
   },
+  "Intelligent Auto-hide": {
+    "Intelligent Auto-hide": ""
+  },
   "Interface:": {
     "Interface:": "Arayüz:"
   },
@@ -2020,6 +2065,166 @@
   },
   "Jobs: ": {
     "Jobs: ": "İşler:"
+  },
+  "KDE Connect SMS action": {
+    "Opening SMS": "",
+    "Opening SMS app": ""
+  },
+  "KDE Connect SMS dialog title": {
+    "Send SMS": ""
+  },
+  "KDE Connect SMS message input placeholder": {
+    "Message": ""
+  },
+  "KDE Connect SMS phone input placeholder": {
+    "Phone number": ""
+  },
+  "KDE Connect SMS send button": {
+    "Send": ""
+  },
+  "KDE Connect SMS tooltip": {
+    "SMS": ""
+  },
+  "KDE Connect accept pairing button": {
+    "Accept": ""
+  },
+  "KDE Connect browse action": {
+    "Opening file browser": "",
+    "Opening files": ""
+  },
+  "KDE Connect browse tooltip": {
+    "Browse Files": ""
+  },
+  "KDE Connect clipboard action": {
+    "Clipboard sent": ""
+  },
+  "KDE Connect clipboard tooltip": {
+    "Send Clipboard": ""
+  },
+  "KDE Connect connected status": {
+    "Connected": ""
+  },
+  "KDE Connect daemon hint": {
+    "Start kdeconnectd to use this plugin": ""
+  },
+  "KDE Connect error": {
+    "Failed to accept pairing": "",
+    "Failed to browse device": "",
+    "Failed to launch SMS app": "",
+    "Failed to reject pairing": "",
+    "Failed to ring device": "",
+    "Failed to send clipboard": "",
+    "Failed to send ping": "",
+    "Failed to share": "",
+    "Pairing failed": "",
+    "Unpair failed": ""
+  },
+  "KDE Connect file share notification": {
+    "File received from": ""
+  },
+  "KDE Connect hint message": {
+    "Make sure KDE Connect is running on your other devices": ""
+  },
+  "KDE Connect no devices message": {
+    "No devices found": ""
+  },
+  "KDE Connect no devices status": {
+    "No devices": ""
+  },
+  "KDE Connect not paired status": {
+    "Not paired": ""
+  },
+  "KDE Connect offline status": {
+    "Offline": ""
+  },
+  "KDE Connect open SMS app button": {
+    "Open App": ""
+  },
+  "KDE Connect open app hint": {
+    "Open KDE Connect on your phone": ""
+  },
+  "KDE Connect pair button": {
+    "Pair": ""
+  },
+  "KDE Connect pairing action": {
+    "Device paired": "",
+    "Pairing request sent": ""
+  },
+  "KDE Connect pairing in progress status": {
+    "Pairing": ""
+  },
+  "KDE Connect pairing request notification": {
+    "Pairing request from": ""
+  },
+  "KDE Connect pairing requested status": {
+    "Pairing requested": ""
+  },
+  "KDE Connect pairing verification key label": {
+    "Verification": ""
+  },
+  "KDE Connect ping action": {
+    "Ping sent": "",
+    "Ping sent to": ""
+  },
+  "KDE Connect ping tooltip": {
+    "Ping": ""
+  },
+  "KDE Connect refresh button | KDE Connect refresh tooltip": {
+    "Refresh": ""
+  },
+  "KDE Connect reject pairing button": {
+    "Reject": ""
+  },
+  "KDE Connect request pairing button": {
+    "Request Pairing": ""
+  },
+  "KDE Connect ring action": {
+    "Ringing": ""
+  },
+  "KDE Connect ring tooltip": {
+    "Ring": ""
+  },
+  "KDE Connect service unavailable message": {
+    "KDE Connect unavailable": ""
+  },
+  "KDE Connect share URL button": {
+    "Share URL": ""
+  },
+  "KDE Connect share button | KDE Connect share dialog title | KDE Connect share tooltip": {
+    "Share": ""
+  },
+  "KDE Connect share input placeholder": {
+    "Enter URL or text to share": ""
+  },
+  "KDE Connect share success": {
+    "Shared": ""
+  },
+  "KDE Connect start daemon hint": {
+    "Start kdeconnectd to connect devices": ""
+  },
+  "KDE Connect status": {
+    "No devices connected": ""
+  },
+  "KDE Connect status multiple devices": {
+    "devices connected": ""
+  },
+  "KDE Connect status single device": {
+    "1 device connected": ""
+  },
+  "KDE Connect unavailable error title": {
+    "KDE Connect Not Available": ""
+  },
+  "KDE Connect unavailable status": {
+    "Unavailable": ""
+  },
+  "KDE Connect unknown device status | unknown author": {
+    "Unknown": ""
+  },
+  "KDE Connect unpair action": {
+    "Device unpaired": ""
+  },
+  "KDE Connect unpair tooltip": {
+    "Unpair": ""
   },
   "Keep Awake": {
     "Keep Awake": "Uyanık Tut"
@@ -2255,8 +2460,17 @@
   "Maximum History": {
     "Maximum History": "Maksimum Geçmiş"
   },
+  "Maximum Pinned Entries": {
+    "Maximum Pinned Entries": ""
+  },
   "Maximum number of clipboard entries to keep": {
     "Maximum number of clipboard entries to keep": "Saklanacak maksimum pano kaydı sayısı"
+  },
+  "Maximum number of entries that can be saved": {
+    "Maximum number of entries that can be saved": ""
+  },
+  "Maximum pinned entries reached": {
+    "Maximum pinned entries reached": ""
   },
   "Maximum size per clipboard entry": {
     "Maximum size per clipboard entry": "Pano kaydı başına maksimum boyut"
@@ -2549,6 +2763,12 @@
   "No printers found": {
     "No printers found": "Hiçbir yazıcı bulunmadı"
   },
+  "No recent clipboard entries found": {
+    "No recent clipboard entries found": ""
+  },
+  "No saved clipboard entries": {
+    "No saved clipboard entries": ""
+  },
   "No variants created. Click Add to create a new monitor widget.": {
     "No variants created. Click Add to create a new monitor widget.": "Hiçbir varyant oluşturulmadı. Yeni bir monitör widget'ı oluşturmak için Ekle'ye tıklayın."
   },
@@ -2577,7 +2797,7 @@
     "Not connected": "Bağlı değil"
   },
   "Not detected": {
-    "Not detected": ""
+    "Not detected": "Algılanmadı"
   },
   "Note: this only changes the percentage, it does not actually limit charging.": {
     "Note: this only changes the percentage, it does not actually limit charging.": "Not: Bu sadece yüzdeyi değiştirir, şarjı sınırlamaz."
@@ -2623,6 +2843,9 @@
   },
   "OSD Position": {
     "OSD Position": "OSD Pozisyonu"
+  },
+  "Occupied Color": {
+    "Occupied Color": ""
   },
   "Off": {
     "Off": "Kapalı"
@@ -2697,7 +2920,7 @@
     "Override": "Geçersiz Kıl"
   },
   "Override Border Size": {
-    "Override Border Size": ""
+    "Override Border Size": "Kenar boyutunu geçersiz kıl"
   },
   "Override Corner Radius": {
     "Override Corner Radius": "Köşe Yarıçapını Değiştir"
@@ -2770,6 +2993,9 @@
   },
   "Percentage": {
     "Percentage": "Yüzde"
+  },
+  "Performance": {
+    "Performance": ""
   },
   "Permission denied to set profile image.": {
     "Permission denied to set profile image.": "Profil resmi ayarlama izni reddedildi."
@@ -2870,6 +3096,9 @@
   "Power Profile Degradation": {
     "Power Profile Degradation": "Güç Profili Dejenerasyonu"
   },
+  "Power off monitors on lock": {
+    "Power off monitors on lock": ""
+  },
   "Power profile management available": {
     "Power profile management available": "Güç profili yönetimi mevcut"
   },
@@ -2938,6 +3167,9 @@
   },
   "Process Count": {
     "Process Count": "Süreç Sayısı"
+  },
+  "Processes": {
+    "Processes": ""
   },
   "Processing": {
     "Processing": "İşleniyor"
@@ -3137,6 +3369,9 @@
   "Saved Configurations": {
     "Saved Configurations": "Kaydedilen Yapılandırmalar"
   },
+  "Saved item deleted": {
+    "Saved item deleted": ""
+  },
   "Scale": {
     "Scale": "Ölçek"
   },
@@ -3157,6 +3392,9 @@
   },
   "Science": {
     "Science": "Bilim"
+  },
+  "Screen Sharing": {
+    "Screen Sharing": ""
   },
   "Screen sharing": {
     "Screen sharing": "Ekran paylaşımı"
@@ -3436,6 +3674,9 @@
   },
   "Show darkened overlay behind modal dialogs": {
     "Show darkened overlay behind modal dialogs": "Modal diyalogların arkasında karartılmış kaplama göster"
+  },
+  "Show dock when floating windows don't overlap its area": {
+    "Show dock when floating windows don't overlap its area": ""
   },
   "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": {
     "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": "Niri genel görünümde yazarken başlatıcı katmanını göster. Başka bir başlatıcı kullanmak için devre dışı bırakın."
@@ -3752,8 +3993,14 @@
   "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": {
     "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": "Bu widget, dizüstü bilgisayarlarda pil ömrünü önemli ölçüde etkileyebilen GPU güç kapatma durumlarını önler. Hibrit grafik kartına sahip dizüstü bilgisayarlarda kullanılması önerilmez."
   },
+  "This will delete all unpinned entries. %1 pinned entries will be kept.": {
+    "This will delete all unpinned entries. %1 pinned entries will be kept.": ""
+  },
   "This will permanently delete all clipboard history.": {
     "This will permanently delete all clipboard history.": "Bu, tüm pano geçmişini kalıcı olarak siler."
+  },
+  "This will permanently remove this saved clipboard item. This action cannot be undone.": {
+    "This will permanently remove this saved clipboard item. This action cannot be undone.": ""
   },
   "Tiling": {
     "Tiling": "Döşeme"
@@ -3854,6 +4101,9 @@
   "Trigger Prefix": {
     "Trigger Prefix": ""
   },
+  "Turn off all displays immediately when the lock screen activates": {
+    "Turn off all displays immediately when the lock screen activates": ""
+  },
   "Turn off monitors after": {
     "Turn off monitors after": "Şu zaman sonra monitörleri kapat"
   },
@@ -3919,6 +4169,9 @@
   },
   "Update Plugin": {
     "Update Plugin": "Eklentiyi Güncelle"
+  },
+  "Uptime": {
+    "Uptime": ""
   },
   "Urgent Color": {
     "Urgent Color": ""
@@ -4303,6 +4556,18 @@
   "dgop not available": {
     "dgop not available": "dgop mevcut değil"
   },
+  "dgop unavailable error message": {
+    "The 'dgop' tool is required for system monitoring.\\nPlease install dgop to use this feature.": ""
+  },
+  "disk io header in system monitor": {
+    "Disk I/O": ""
+  },
+  "disk read label": {
+    "Read:": ""
+  },
+  "disk write label": {
+    "Write:": ""
+  },
   "dms/binds.kdl exists but is not included in config.kdl. Custom keybinds will not work until this is fixed.": {
     "dms/binds.kdl exists but is not included in config.kdl. Custom keybinds will not work until this is fixed.": "dms/binds.kdl dosyası mevcut ancak config.kdl dosyasına dahil edilmemiştir. Bu sorun giderilene kadar özel tuş atamaları çalışmayacaktır."
   },
@@ -4336,17 +4601,32 @@
   "empty plugin list": {
     "No plugins found": "Eklenti bulunamadı"
   },
+  "empty state in disk mounts list": {
+    "No mount points found": ""
+  },
+  "empty state in gpu list": {
+    "No GPUs detected": ""
+  },
+  "empty state in process list": {
+    "No matching processes": ""
+  },
   "empty theme list": {
     "No themes found": "Tema bulunmadı"
   },
   "events": {
     "events": "etkinlikler"
   },
+  "fallback gpu name": {
+    "Unknown GPU": ""
+  },
   "files": {
     "files": "dosyalar"
   },
   "generic theme description": {
     "Material Design inspired color themes": "Malzeme Tasarımı'ndan ilham alan renk temaları"
+  },
+  "gpu section header in system monitor": {
+    "GPU Monitoring": ""
   },
   "greeter back button": {
     "Back": ""
@@ -4374,9 +4654,9 @@
   },
   "greeter doctor page empty state": {
     "No checks passed": "",
-    "No errors": "",
+    "No errors": "Sorun yok",
     "No info items": "",
-    "No warnings": ""
+    "No warnings": "Uyarı yok"
   },
   "greeter doctor page error count": {
     "%1 issue(s) found": ""
@@ -4385,9 +4665,9 @@
     "Analyzing configuration...": ""
   },
   "greeter doctor page status card": {
-    "Errors": "",
-    "Info": "",
-    "OK": "",
+    "Errors": "Hatalar",
+    "Info": "Bilgi",
+    "OK": "Tamam",
     "Warnings": ""
   },
   "greeter doctor page success": {
@@ -4409,7 +4689,7 @@
     "Extensible architecture": "",
     "GTK, Qt, IDEs, more": "",
     "Modular widget bar": "",
-    "Night mode & gamma": "",
+    "Night mode & gamma": "Gece modu & gamma",
     "Per-screen config": "",
     "Quick system toggles": "",
     "Security & privacy": ""
@@ -4424,7 +4704,7 @@
     "Theme Registry": ""
   },
   "greeter feature card title | greeter plugins link": {
-    "Plugins": ""
+    "Plugins": "Eklentiler"
   },
   "greeter feature card title | greeter settings link": {
     "DankBar": ""
@@ -4436,7 +4716,7 @@
     "Finish": ""
   },
   "greeter first page button": {
-    "Get Started": ""
+    "Get Started": "Başlarken"
   },
   "greeter keybinds niri description": {
     "niri shortcuts config": ""
@@ -4448,7 +4728,7 @@
     "Welcome": ""
   },
   "greeter next button": {
-    "Next": ""
+    "Next": "Devam et"
   },
   "greeter no keybinds message": {
     "No DMS shortcuts configured": ""
@@ -4459,8 +4739,8 @@
   "greeter settings link": {
     "Displays": "",
     "Dock": "",
-    "Keybinds": "",
-    "Notifications": "",
+    "Keybinds": "Kısayollar",
+    "Notifications": "Bildirimler",
     "Theme & Colors": "",
     "Wallpaper": ""
   },
@@ -4523,7 +4803,7 @@
     "Notification Display": ""
   },
   "lock screen notifications settings card": {
-    "Lock Screen": ""
+    "Lock Screen": "Kilit ekranı"
   },
   "loginctl not available - lock integration requires DMS socket connection": {
     "loginctl not available - lock integration requires DMS socket connection": "loginctl kullanılabilir değil - kilit entegrasyonu DMS soket bağlantısı gerektirir"
@@ -4540,6 +4820,9 @@
   "minutes": {
     "minutes": "dakika"
   },
+  "mount points header in system monitor": {
+    "Mount Points": ""
+  },
   "ms": {
     "ms": "ms"
   },
@@ -4553,11 +4836,11 @@
     "No wallpaper selected": "Duvar kağıdı seçilmedi"
   },
   "notification center tab": {
-    "Current": "",
+    "Current": "Şu an",
     "History": ""
   },
   "notification history filter": {
-    "All": "",
+    "All": "Tümü",
     "Last hour": "",
     "Today": "",
     "Yesterday": ""
@@ -4566,23 +4849,23 @@
     "Older": ""
   },
   "notification history filter | notification history retention option": {
-    "30 days": "",
-    "7 days": ""
+    "30 days": "30 günlük",
+    "7 days": "7 günlük"
   },
   "notification history limit": {
     "Maximum number of notifications to keep": ""
   },
   "notification history retention option": {
-    "1 day": "",
-    "14 days": "",
-    "3 days": "",
+    "1 day": "1 günlük",
+    "14 days": "14 günlük",
+    "3 days": "3 günlük",
     "Forever": ""
   },
   "notification history retention settings label": {
     "History Retention": ""
   },
   "notification history setting": {
-    "Auto-delete notifications older than this": "",
+    "Auto-delete notifications older than this": "Bildirimler şundan eskiyse otomatik sil",
     "Save critical priority notifications to history": "",
     "Save low priority notifications to history": "",
     "Save normal priority notifications to history": ""
@@ -4591,7 +4874,7 @@
     "Save dismissed notifications to history": ""
   },
   "notification history toggle label": {
-    "Enable History": ""
+    "Enable History": "Geçmişi Aç"
   },
   "now": {
     "now": ""
@@ -4613,6 +4896,15 @@
   },
   "plugin search placeholder": {
     "Search plugins...": "Eklenti ara..."
+  },
+  "process count label in footer": {
+    "Processes:": ""
+  },
+  "process detail label": {
+    "Full Command:": ""
+  },
+  "process search placeholder": {
+    "Search processes...": ""
   },
   "profile image file browser title": {
     "Select Profile Image": "Profil Resmi Seç"
@@ -4639,11 +4931,24 @@
   "shadow intensity slider": {
     "Intensity": ""
   },
+  "short for processes": {
+    "procs": ""
+  },
   "source code link": {
     "source": "kaynak"
   },
   "sysmon window title": {
     "System Monitor": "Sistem Monitörü"
+  },
+  "system info header in system monitor": {
+    "System Information": ""
+  },
+  "system info label": {
+    "Architecture": "",
+    "Distribution": "",
+    "Hostname": "",
+    "Kernel": "",
+    "Load Average": ""
   },
   "theme browser description": {
     "Install color themes from the DMS theme registry": "DMS tema kayıt defterinden renk temaları yükle"
@@ -4674,6 +4979,9 @@
   },
   "update dms for NM integration.": {
     "update dms for NM integration.": "NM entegrasyonu için dms'yi güncelle"
+  },
+  "uptime label in footer": {
+    "Uptime:": ""
   },
   "version requirement": {
     "Requires %1": ""

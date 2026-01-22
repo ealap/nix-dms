@@ -86,10 +86,30 @@ Item {
                     settingKey: "dockAutoHide"
                     tags: ["dock", "autohide", "hide", "hover"]
                     text: I18n.tr("Auto-hide Dock")
-                    description: I18n.tr("Hide the dock when not in use and reveal it when hovering near the dock area")
+                    description: I18n.tr("Always hide the dock and reveal it when hovering near the dock area")
                     checked: SettingsData.dockAutoHide
                     visible: SettingsData.showDock
-                    onToggled: checked => SettingsData.set("dockAutoHide", checked)
+                    onToggled: checked => {
+                        if (checked && SettingsData.dockSmartAutoHide) {
+                            SettingsData.set("dockSmartAutoHide", false);
+                        }
+                        SettingsData.set("dockAutoHide", checked);
+                    }
+                }
+
+                SettingsToggleRow {
+                    settingKey: "dockSmartAutoHide"
+                    tags: ["dock", "smart", "autohide", "windows", "overlap", "intelligent"]
+                    text: I18n.tr("Intelligent Auto-hide")
+                    description: I18n.tr("Show dock when floating windows don't overlap its area")
+                    checked: SettingsData.dockSmartAutoHide
+                    visible: SettingsData.showDock && (CompositorService.isNiri || CompositorService.isHyprland)
+                    onToggled: checked => {
+                        if (checked && SettingsData.dockAutoHide) {
+                            SettingsData.set("dockAutoHide", false);
+                        }
+                        SettingsData.set("dockSmartAutoHide", checked);
+                    }
                 }
 
                 SettingsToggleRow {

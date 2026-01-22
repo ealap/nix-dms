@@ -6,6 +6,7 @@ import (
 	"os"
 	"sync"
 
+	"github.com/AvengeMedia/DankMaterialShell/core/pkg/dbusutil"
 	"github.com/godbus/dbus/v5"
 )
 
@@ -110,61 +111,17 @@ func (m *Manager) updateAccountsState() error {
 	m.stateMutex.Lock()
 	defer m.stateMutex.Unlock()
 
-	if v, ok := props["IconFile"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.Accounts.IconFile = val
-		}
-	}
-	if v, ok := props["RealName"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.Accounts.RealName = val
-		}
-	}
-	if v, ok := props["UserName"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.Accounts.UserName = val
-		}
-	}
-	if v, ok := props["AccountType"]; ok {
-		if val, ok := v.Value().(int32); ok {
-			m.state.Accounts.AccountType = val
-		}
-	}
-	if v, ok := props["HomeDirectory"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.Accounts.HomeDirectory = val
-		}
-	}
-	if v, ok := props["Shell"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.Accounts.Shell = val
-		}
-	}
-	if v, ok := props["Email"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.Accounts.Email = val
-		}
-	}
-	if v, ok := props["Language"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.Accounts.Language = val
-		}
-	}
-	if v, ok := props["Location"]; ok {
-		if val, ok := v.Value().(string); ok {
-			m.state.Accounts.Location = val
-		}
-	}
-	if v, ok := props["Locked"]; ok {
-		if val, ok := v.Value().(bool); ok {
-			m.state.Accounts.Locked = val
-		}
-	}
-	if v, ok := props["PasswordMode"]; ok {
-		if val, ok := v.Value().(int32); ok {
-			m.state.Accounts.PasswordMode = val
-		}
-	}
+	m.state.Accounts.IconFile = dbusutil.GetOr(props, "IconFile", "")
+	m.state.Accounts.RealName = dbusutil.GetOr(props, "RealName", "")
+	m.state.Accounts.UserName = dbusutil.GetOr(props, "UserName", "")
+	m.state.Accounts.AccountType = dbusutil.GetOr(props, "AccountType", int32(0))
+	m.state.Accounts.HomeDirectory = dbusutil.GetOr(props, "HomeDirectory", "")
+	m.state.Accounts.Shell = dbusutil.GetOr(props, "Shell", "")
+	m.state.Accounts.Email = dbusutil.GetOr(props, "Email", "")
+	m.state.Accounts.Language = dbusutil.GetOr(props, "Language", "")
+	m.state.Accounts.Location = dbusutil.GetOr(props, "Location", "")
+	m.state.Accounts.Locked = dbusutil.GetOr(props, "Locked", false)
+	m.state.Accounts.PasswordMode = dbusutil.GetOr(props, "PasswordMode", int32(0))
 
 	return nil
 }
@@ -180,7 +137,7 @@ func (m *Manager) updateSettingsState() error {
 		return err
 	}
 
-	if colorScheme, ok := variant.Value().(uint32); ok {
+	if colorScheme, ok := dbusutil.As[uint32](variant); ok {
 		m.stateMutex.Lock()
 		m.state.Settings.ColorScheme = colorScheme
 		m.stateMutex.Unlock()

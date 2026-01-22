@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/log"
+	"github.com/AvengeMedia/DankMaterialShell/core/pkg/dbusutil"
 	"github.com/godbus/dbus/v5"
 )
 
@@ -110,17 +111,15 @@ func (m *Manager) updateAdapterState() error {
 	if err != nil {
 		return err
 	}
-	powered, _ := poweredVar.Value().(bool)
 
 	discoveringVar, err := obj.GetProperty(adapter1Iface + ".Discovering")
 	if err != nil {
 		return err
 	}
-	discovering, _ := discoveringVar.Value().(bool)
 
 	m.stateMutex.Lock()
-	m.state.Powered = powered
-	m.state.Discovering = discovering
+	m.state.Powered = dbusutil.AsOr(poweredVar, false)
+	m.state.Discovering = dbusutil.AsOr(discoveringVar, false)
 	m.stateMutex.Unlock()
 
 	return nil
@@ -169,65 +168,20 @@ func (m *Manager) updateDevices() error {
 }
 
 func (m *Manager) deviceFromProps(path string, props map[string]dbus.Variant) Device {
-	dev := Device{Path: path}
-
-	if v, ok := props["Address"]; ok {
-		if addr, ok := v.Value().(string); ok {
-			dev.Address = addr
-		}
+	return Device{
+		Path:          path,
+		Address:       dbusutil.GetOr(props, "Address", ""),
+		Name:          dbusutil.GetOr(props, "Name", ""),
+		Alias:         dbusutil.GetOr(props, "Alias", ""),
+		Paired:        dbusutil.GetOr(props, "Paired", false),
+		Trusted:       dbusutil.GetOr(props, "Trusted", false),
+		Blocked:       dbusutil.GetOr(props, "Blocked", false),
+		Connected:     dbusutil.GetOr(props, "Connected", false),
+		Class:         dbusutil.GetOr(props, "Class", uint32(0)),
+		Icon:          dbusutil.GetOr(props, "Icon", ""),
+		RSSI:          dbusutil.GetOr(props, "RSSI", int16(0)),
+		LegacyPairing: dbusutil.GetOr(props, "LegacyPairing", false),
 	}
-	if v, ok := props["Name"]; ok {
-		if name, ok := v.Value().(string); ok {
-			dev.Name = name
-		}
-	}
-	if v, ok := props["Alias"]; ok {
-		if alias, ok := v.Value().(string); ok {
-			dev.Alias = alias
-		}
-	}
-	if v, ok := props["Paired"]; ok {
-		if paired, ok := v.Value().(bool); ok {
-			dev.Paired = paired
-		}
-	}
-	if v, ok := props["Trusted"]; ok {
-		if trusted, ok := v.Value().(bool); ok {
-			dev.Trusted = trusted
-		}
-	}
-	if v, ok := props["Blocked"]; ok {
-		if blocked, ok := v.Value().(bool); ok {
-			dev.Blocked = blocked
-		}
-	}
-	if v, ok := props["Connected"]; ok {
-		if connected, ok := v.Value().(bool); ok {
-			dev.Connected = connected
-		}
-	}
-	if v, ok := props["Class"]; ok {
-		if class, ok := v.Value().(uint32); ok {
-			dev.Class = class
-		}
-	}
-	if v, ok := props["Icon"]; ok {
-		if icon, ok := v.Value().(string); ok {
-			dev.Icon = icon
-		}
-	}
-	if v, ok := props["RSSI"]; ok {
-		if rssi, ok := v.Value().(int16); ok {
-			dev.RSSI = rssi
-		}
-	}
-	if v, ok := props["LegacyPairing"]; ok {
-		if legacy, ok := v.Value().(bool); ok {
-			dev.LegacyPairing = legacy
-		}
-	}
-
-	return dev
 }
 
 func (m *Manager) startAgent() error {
@@ -328,17 +282,13 @@ func (m *Manager) handleAdapterPropertiesChanged(changed map[string]dbus.Variant
 	m.stateMutex.Lock()
 	dirty := false
 
-	if v, ok := changed["Powered"]; ok {
-		if powered, ok := v.Value().(bool); ok {
-			m.state.Powered = powered
-			dirty = true
-		}
+	if powered, ok := dbusutil.Get[bool](changed, "Powered"); ok {
+		m.state.Powered = powered
+		dirty = true
 	}
-	if v, ok := changed["Discovering"]; ok {
-		if discovering, ok := v.Value().(bool); ok {
-			m.state.Discovering = discovering
-			dirty = true
-		}
+	if discovering, ok := dbusutil.Get[bool](changed, "Discovering"); ok {
+		m.state.Discovering = discovering
+		dirty = true
 	}
 
 	m.stateMutex.Unlock()
@@ -349,31 +299,28 @@ func (m *Manager) handleAdapterPropertiesChanged(changed map[string]dbus.Variant
 }
 
 func (m *Manager) handleDevicePropertiesChanged(path dbus.ObjectPath, changed map[string]dbus.Variant) {
-	pairedVar, hasPaired := changed["Paired"]
+	paired, hasPaired := dbusutil.Get[bool](changed, "Paired")
 	_, hasConnected := changed["Connected"]
 	_, hasTrusted := changed["Trusted"]
 
 	if hasPaired {
 		devicePath := string(path)
-		if paired, ok := pairedVar.Value().(bool); ok {
-			if paired {
-				_, wasPending := m.pendingPairings.LoadAndDelete(devicePath)
-
-				if wasPending {
-					select {
-					case m.eventQueue <- func() {
-						time.Sleep(300 * time.Millisecond)
-						log.Infof("[Bluetooth] Auto-connecting newly paired device: %s", devicePath)
-						if err := m.ConnectDevice(devicePath); err != nil {
-							log.Warnf("[Bluetooth] Auto-connect failed: %v", err)
-						}
-					}:
-					default:
+		if paired {
+			_, wasPending := m.pendingPairings.LoadAndDelete(devicePath)
+			if wasPending {
+				select {
+				case m.eventQueue <- func() {
+					time.Sleep(300 * time.Millisecond)
+					log.Infof("[Bluetooth] Auto-connecting newly paired device: %s", devicePath)
+					if err := m.ConnectDevice(devicePath); err != nil {
+						log.Warnf("[Bluetooth] Auto-connect failed: %v", err)
 					}
+				}:
+				default:
 				}
-			} else {
-				m.pendingPairings.Delete(devicePath)
 			}
+		} else {
+			m.pendingPairings.Delete(devicePath)
 		}
 	}
 

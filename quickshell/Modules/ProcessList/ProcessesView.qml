@@ -11,18 +11,27 @@ Item {
     property string searchText: ""
     property string expandedPid: ""
     property var contextMenu: null
-    property bool hoveringExpandedItem: false
 
-    readonly property bool pauseUpdates: hoveringExpandedItem || (contextMenu?.visible ?? false)
+    property int selectedIndex: -1
+    property bool keyboardNavigationActive: false
+    property int forceRefreshCount: 0
+
+    readonly property bool pauseUpdates: (contextMenu?.visible ?? false) || expandedPid.length > 0
+    readonly property bool shouldUpdate: !pauseUpdates || forceRefreshCount > 0
     property var cachedProcesses: []
 
+    signal openContextMenuRequested(int index, real x, real y, bool fromKeyboard)
+
     onFilteredProcessesChanged: {
-        if (!pauseUpdates)
-            cachedProcesses = filteredProcesses;
+        if (!shouldUpdate)
+            return;
+        cachedProcesses = filteredProcesses;
+        if (forceRefreshCount > 0)
+            forceRefreshCount--;
     }
 
-    onPauseUpdatesChanged: {
-        if (!pauseUpdates)
+    onShouldUpdateChanged: {
+        if (shouldUpdate)
             cachedProcesses = filteredProcesses;
     }
 
@@ -73,6 +82,135 @@ Item {
         });
 
         return procs;
+    }
+
+    function selectNext() {
+        if (cachedProcesses.length === 0)
+            return;
+        keyboardNavigationActive = true;
+        selectedIndex = Math.min(selectedIndex + 1, cachedProcesses.length - 1);
+        ensureVisible();
+    }
+
+    function selectPrevious() {
+        if (cachedProcesses.length === 0)
+            return;
+        keyboardNavigationActive = true;
+        if (selectedIndex <= 0) {
+            selectedIndex = -1;
+            keyboardNavigationActive = false;
+            return;
+        }
+        selectedIndex = selectedIndex - 1;
+        ensureVisible();
+    }
+
+    function selectFirst() {
+        if (cachedProcesses.length === 0)
+            return;
+        keyboardNavigationActive = true;
+        selectedIndex = 0;
+        ensureVisible();
+    }
+
+    function selectLast() {
+        if (cachedProcesses.length === 0)
+            return;
+        keyboardNavigationActive = true;
+        selectedIndex = cachedProcesses.length - 1;
+        ensureVisible();
+    }
+
+    function toggleExpand() {
+        if (selectedIndex < 0 || selectedIndex >= cachedProcesses.length)
+            return;
+        const process = cachedProcesses[selectedIndex];
+        const pidStr = (process?.pid ?? -1).toString();
+        expandedPid = (expandedPid === pidStr) ? "" : pidStr;
+    }
+
+    function openContextMenu() {
+        if (selectedIndex < 0 || selectedIndex >= cachedProcesses.length)
+            return;
+        const delegate = processListView.itemAtIndex(selectedIndex);
+        if (!delegate)
+            return;
+        const process = cachedProcesses[selectedIndex];
+        if (!process || !contextMenu)
+            return;
+        contextMenu.processData = process;
+        const itemPos = delegate.mapToItem(contextMenu.parent, delegate.width / 2, delegate.height / 2);
+        contextMenu.parentFocusItem = root;
+        contextMenu.show(itemPos.x, itemPos.y, true);
+    }
+
+    function reset() {
+        selectedIndex = -1;
+        keyboardNavigationActive = false;
+        expandedPid = "";
+    }
+
+    function forceRefresh(count) {
+        forceRefreshCount = count || 3;
+    }
+
+    function ensureVisible() {
+        if (selectedIndex < 0)
+            return;
+        processListView.positionViewAtIndex(selectedIndex, ListView.Contain);
+    }
+
+    function handleKey(event) {
+        switch (event.key) {
+        case Qt.Key_Down:
+            selectNext();
+            event.accepted = true;
+            return;
+        case Qt.Key_Up:
+            selectPrevious();
+            event.accepted = true;
+            return;
+        case Qt.Key_J:
+            if (event.modifiers & Qt.ControlModifier) {
+                selectNext();
+                event.accepted = true;
+            }
+            return;
+        case Qt.Key_K:
+            if (event.modifiers & Qt.ControlModifier) {
+                selectPrevious();
+                event.accepted = true;
+            }
+            return;
+        case Qt.Key_Home:
+            selectFirst();
+            event.accepted = true;
+            return;
+        case Qt.Key_End:
+            selectLast();
+            event.accepted = true;
+            return;
+        case Qt.Key_Space:
+            if (keyboardNavigationActive) {
+                toggleExpand();
+                event.accepted = true;
+            }
+            return;
+        case Qt.Key_Return:
+        case Qt.Key_Enter:
+            if (keyboardNavigationActive) {
+                toggleExpand();
+                event.accepted = true;
+            }
+            return;
+        case Qt.Key_Menu:
+        case Qt.Key_F10:
+            if (keyboardNavigationActive && selectedIndex >= 0) {
+                openContextMenu();
+                event.accepted = true;
+            }
+            return;
+        }
     }
 
     Component.onCompleted: {
@@ -163,22 +301,28 @@ Item {
 
             delegate: ProcessItem {
                 required property var modelData
+                required property int index
 
                 width: processListView.width
                 process: modelData
                 isExpanded: root.expandedPid === (modelData?.pid ?? -1).toString()
+                isSelected: root.keyboardNavigationActive && root.selectedIndex === index
                 contextMenu: root.contextMenu
                 onToggleExpand: {
                     const pidStr = (modelData?.pid ?? -1).toString();
                     root.expandedPid = (root.expandedPid === pidStr) ? "" : pidStr;
                 }
-                onHoveringExpandedChanged: {
-                    if (hoveringExpanded)
-                        root.hoveringExpandedItem = true;
-                    else
-                        Qt.callLater(() => {
-                            root.hoveringExpandedItem = false;
-                        });
+                onClicked: {
+                    root.keyboardNavigationActive = true;
+                    root.selectedIndex = index;
+                }
+                onContextMenuRequested: (mouseX, mouseY) => {
+                    if (root.contextMenu) {
+                        root.contextMenu.processData = modelData;
+                        root.contextMenu.parentFocusItem = root;
+                        const globalPos = mapToItem(root.contextMenu.parent, mouseX, mouseY);
+                        root.contextMenu.show(globalPos.x, globalPos.y, false);
+                    }
                 }
             }
 
@@ -288,10 +432,12 @@ Item {
 
         property var process: null
         property bool isExpanded: false
+        property bool isSelected: false
         property var contextMenu: null
-        readonly property bool hoveringExpanded: (isExpanded && processMouseArea.containsMouse) || copyMouseArea.containsMouse
 
         signal toggleExpand
+        signal clicked
+        signal contextMenuRequested(real mouseX, real mouseY)
 
         readonly property int processPid: process?.pid ?? 0
         readonly property real processCpu: process?.cpu ?? 0
@@ -301,8 +447,16 @@ Item {
 
         height: isExpanded ? (44 + expandedRect.height + Theme.spacingXS) : 44
         radius: Theme.cornerRadius
-        color: processMouseArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.06) : "transparent"
-        border.color: processMouseArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : "transparent"
+        color: {
+            if (isSelected)
+                return Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.15);
+            return processMouseArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.06) : "transparent";
+        }
+        border.color: {
+            if (isSelected)
+                return Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.3);
+            return processMouseArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : "transparent";
+        }
         border.width: 1
         clip: true
 
@@ -327,14 +481,10 @@ Item {
             acceptedButtons: Qt.LeftButton | Qt.RightButton
             onClicked: mouse => {
                 if (mouse.button === Qt.RightButton) {
-                    if (processItemRoot.processPid > 0 && processItemRoot.contextMenu) {
-                        processItemRoot.contextMenu.processData = processItemRoot.process;
-                        const globalPos = processMouseArea.mapToGlobal(mouse.x, mouse.y);
-                        const localPos = processItemRoot.contextMenu.parent ? processItemRoot.contextMenu.parent.mapFromGlobal(globalPos.x, globalPos.y) : globalPos;
-                        processItemRoot.contextMenu.show(localPos.x, localPos.y);
-                    }
+                    processItemRoot.contextMenuRequested(mouse.x, mouse.y);
                     return;
                 }
+                processItemRoot.clicked();
                 processItemRoot.toggleExpand();
             }
         }

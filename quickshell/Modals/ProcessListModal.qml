@@ -71,6 +71,14 @@ FloatingWindow {
         return (bytes / (1024 * 1024 * 1024)).toFixed(2) + " GB/s";
     }
 
+    function nextTab() {
+        currentTab = (currentTab + 1) % 4;
+    }
+
+    function previousTab() {
+        currentTab = (currentTab - 1 + 4) % 4;
+    }
+
     objectName: "processListModal"
     title: I18n.tr("System Monitor", "sysmon window title")
     minimumSize: Qt.size(750, 550)
@@ -79,16 +87,25 @@ FloatingWindow {
     color: Theme.surfaceContainer
     visible: false
 
+    onCurrentTabChanged: {
+        if (visible && currentTab === 0 && searchField.visible)
+            searchField.forceActiveFocus();
+    }
+
     onVisibleChanged: {
         if (!visible) {
             closingModal();
             searchText = "";
             expandedPid = "";
+            if (processesTabLoader.item)
+                processesTabLoader.item.reset();
             DgopService.removeRef(["cpu", "memory", "network", "disk", "system"]);
         } else {
             DgopService.addRef(["cpu", "memory", "network", "disk", "system"]);
             Qt.callLater(() => {
-                if (contentFocusScope)
+                if (currentTab === 0 && searchField.visible)
+                    searchField.forceActiveFocus();
+                else if (contentFocusScope)
                     contentFocusScope.forceActiveFocus();
             });
         }
@@ -96,6 +113,11 @@ FloatingWindow {
 
     ProcessContextMenu {
         id: processContextMenu
+        parentFocusItem: contentFocusScope
+        onProcessKilled: {
+            if (processesTabLoader.item)
+                processesTabLoader.item.forceRefresh(3);
+        }
     }
 
     FocusScope {
@@ -108,6 +130,9 @@ FloatingWindow {
         focus: true
 
         Keys.onPressed: event => {
+            if (processContextMenu.visible)
+                return;
+
             switch (event.key) {
             case Qt.Key_1:
                 currentTab = 0;
@@ -125,9 +150,22 @@ FloatingWindow {
                 currentTab = 3;
                 event.accepted = true;
                 return;
+            case Qt.Key_Tab:
+                nextTab();
+                event.accepted = true;
+                return;
+            case Qt.Key_Backtab:
+                previousTab();
+                event.accepted = true;
+                return;
             case Qt.Key_Escape:
                 if (searchText.length > 0) {
                     searchText = "";
+                    event.accepted = true;
+                    return;
+                }
+                if (currentTab === 0 && processesTabLoader.item?.keyboardNavigationActive) {
+                    processesTabLoader.item.reset();
                     event.accepted = true;
                     return;
                 }
@@ -142,6 +180,9 @@ FloatingWindow {
                 }
                 break;
             }
+
+            if (currentTab === 0 && processesTabLoader.item)
+                processesTabLoader.item.handleKey(event);
         }
 
         Rectangle {
@@ -336,6 +377,8 @@ FloatingWindow {
                     text: searchText
                     visible: currentTab === 0
                     onTextChanged: searchText = text
+                    ignoreUpDownKeys: true
+                    keyForwardTargets: [contentFocusScope]
                 }
             }
 

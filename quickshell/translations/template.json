@@ -140,6 +140,13 @@
     "comment": ""
   },
   {
+    "term": "1 device connected",
+    "translation": "",
+    "context": "KDE Connect status single device",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "1 event",
     "translation": "",
     "context": "",
@@ -353,6 +360,13 @@
     "term": "Accent Color",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Accept",
+    "translation": "",
+    "context": "KDE Connect accept pairing button",
     "reference": "",
     "comment": ""
   },
@@ -609,6 +623,13 @@
     "comment": ""
   },
   {
+    "term": "Always hide the dock and reveal it when hovering near the dock area",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Always on icons",
     "translation": "",
     "context": "",
@@ -766,6 +787,13 @@
     "term": "Apps are ordered by usage frequency, then last used, then alphabetically.",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Architecture",
+    "translation": "",
+    "context": "system info label",
     "reference": "",
     "comment": ""
   },
@@ -1400,6 +1428,13 @@
     "comment": ""
   },
   {
+    "term": "Browse Files",
+    "translation": "",
+    "context": "KDE Connect browse tooltip",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Browse Plugins",
     "translation": "",
     "context": "plugin browser header | plugin browser window title",
@@ -1729,6 +1764,13 @@
     "comment": ""
   },
   {
+    "term": "Clear History?",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Clear all history when server starts",
     "translation": "",
     "context": "",
@@ -1816,6 +1858,13 @@
     "term": "Clipboard Manager",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Clipboard sent",
+    "translation": "",
+    "context": "KDE Connect clipboard action",
     "reference": "",
     "comment": ""
   },
@@ -2158,7 +2207,7 @@
   {
     "term": "Connected",
     "translation": "",
-    "context": "",
+    "context": "KDE Connect connected status",
     "reference": "",
     "comment": ""
   },
@@ -2254,14 +2303,21 @@
     "comment": ""
   },
   {
-    "term": "Copy PID",
+    "term": "Copy Full Command",
     "translation": "",
     "context": "",
     "reference": "",
     "comment": ""
   },
   {
-    "term": "Copy Process Name",
+    "term": "Copy Name",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Copy PID",
     "translation": "",
     "context": "",
     "reference": "",
@@ -2786,6 +2842,13 @@
     "comment": ""
   },
   {
+    "term": "Delete Saved Item?",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Delete VPN",
     "translation": "",
     "context": "",
@@ -2865,7 +2928,14 @@
   {
     "term": "Device paired",
     "translation": "",
-    "context": "",
+    "context": "KDE Connect pairing action",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Device unpaired",
+    "translation": "",
+    "context": "KDE Connect unpair action",
     "reference": "",
     "comment": ""
   },
@@ -2954,7 +3024,21 @@
     "comment": ""
   },
   {
+    "term": "Disk I/O",
+    "translation": "",
+    "context": "disk io header in system monitor",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Disk Usage",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Disks",
     "translation": "",
     "context": "",
     "reference": "",
@@ -3097,6 +3181,13 @@
     "term": "Displays the active keyboard layout and allows switching",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Distribution",
+    "translation": "",
+    "context": "system info label",
     "reference": "",
     "comment": ""
   },
@@ -3311,13 +3402,6 @@
     "comment": ""
   },
   {
-    "term": "Enable GPU Temperature",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
     "term": "Enable History",
     "translation": "",
     "context": "notification history toggle label",
@@ -3416,6 +3500,13 @@
     "comment": ""
   },
   {
+    "term": "Enter URL or text to share",
+    "translation": "",
+    "context": "KDE Connect share input placeholder",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Enter a search query",
     "translation": "",
     "context": "",
@@ -3487,6 +3578,20 @@
   },
   {
     "term": "Enterprise",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Entry pinned",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Entry unpinned",
     "translation": "",
     "context": "",
     "reference": "",
@@ -3577,6 +3682,13 @@
     "comment": ""
   },
   {
+    "term": "Failed to accept pairing",
+    "translation": "",
+    "context": "KDE Connect error",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Failed to activate configuration",
     "translation": "",
     "context": "",
@@ -3598,6 +3710,13 @@
     "comment": ""
   },
   {
+    "term": "Failed to browse device",
+    "translation": "",
+    "context": "KDE Connect error",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Failed to cancel all jobs",
     "translation": "",
     "context": "",
@@ -3606,6 +3725,13 @@
   },
   {
     "term": "Failed to cancel selected job",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Failed to check pin limit",
     "translation": "",
     "context": "",
     "reference": "",
@@ -3738,6 +3864,13 @@
     "comment": ""
   },
   {
+    "term": "Failed to launch SMS app",
+    "translation": "",
+    "context": "KDE Connect error",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Failed to load VPN config",
     "translation": "",
     "context": "",
@@ -3787,9 +3920,23 @@
     "comment": ""
   },
   {
+    "term": "Failed to pin entry",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Failed to print test page",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Failed to reject pairing",
+    "translation": "",
+    "context": "KDE Connect error",
     "reference": "",
     "comment": ""
   },
@@ -3829,6 +3976,13 @@
     "comment": ""
   },
   {
+    "term": "Failed to ring device",
+    "translation": "",
+    "context": "KDE Connect error",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Failed to save clipboard setting",
     "translation": "",
     "context": "",
@@ -3839,6 +3993,20 @@
     "term": "Failed to save keybind",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Failed to send clipboard",
+    "translation": "",
+    "context": "KDE Connect error",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Failed to send ping",
+    "translation": "",
+    "context": "KDE Connect error",
     "reference": "",
     "comment": ""
   },
@@ -3885,7 +4053,21 @@
     "comment": ""
   },
   {
+    "term": "Failed to share",
+    "translation": "",
+    "context": "KDE Connect error",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Failed to start connection to %1",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Failed to unpin entry",
     "translation": "",
     "context": "",
     "reference": "",
@@ -3972,6 +4154,13 @@
     "term": "File Information",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "File received from",
+    "translation": "",
+    "context": "KDE Connect file share notification",
     "reference": "",
     "comment": ""
   },
@@ -4151,7 +4340,7 @@
     "comment": ""
   },
   {
-    "term": "Force Kill Process",
+    "term": "Force Kill (SIGKILL)",
     "translation": "",
     "context": "",
     "reference": "",
@@ -4242,6 +4431,13 @@
     "comment": ""
   },
   {
+    "term": "Full Command:",
+    "translation": "",
+    "context": "process detail label",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Full Content",
     "translation": "",
     "context": "lock screen notification mode option",
@@ -4266,6 +4462,13 @@
     "term": "GPU",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "GPU Monitoring",
+    "translation": "",
+    "context": "gpu section header in system monitor",
     "reference": "",
     "comment": ""
   },
@@ -4585,13 +4788,6 @@
     "comment": ""
   },
   {
-    "term": "Hide the dock when not in use and reveal it when hovering near the dock area",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
     "term": "High-fidelity palette that preserves source hues.",
     "translation": "",
     "context": "",
@@ -4614,6 +4810,13 @@
   },
   {
     "term": "History Settings",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "History cleared. %1 pinned entries kept.",
     "translation": "",
     "context": "",
     "reference": "",
@@ -4651,6 +4854,13 @@
     "term": "Hold to confirm (%1s)",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Hostname",
+    "translation": "",
+    "context": "system info label",
     "reference": "",
     "comment": ""
   },
@@ -4970,6 +5180,13 @@
     "comment": ""
   },
   {
+    "term": "Intelligent Auto-hide",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Intensity",
     "translation": "",
     "context": "shadow intensity slider",
@@ -5040,6 +5257,20 @@
     "comment": ""
   },
   {
+    "term": "KDE Connect Not Available",
+    "translation": "",
+    "context": "KDE Connect unavailable error title",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "KDE Connect unavailable",
+    "translation": "",
+    "context": "KDE Connect service unavailable message",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Keep Awake",
     "translation": "",
     "context": "",
@@ -5057,6 +5288,13 @@
     "term": "Keeping Awake",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Kernel",
+    "translation": "",
+    "context": "system info label",
     "reference": "",
     "comment": ""
   },
@@ -5285,6 +5523,13 @@
     "comment": ""
   },
   {
+    "term": "Load Average",
+    "translation": "",
+    "context": "system info label",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Loading codecs...",
     "translation": "",
     "context": "",
@@ -5442,6 +5687,13 @@
     "term": "MTU",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Make sure KDE Connect is running on your other devices",
+    "translation": "",
+    "context": "KDE Connect hint message",
     "reference": "",
     "comment": ""
   },
@@ -5614,7 +5866,21 @@
     "comment": ""
   },
   {
+    "term": "Maximum Pinned Entries",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Maximum number of clipboard entries to keep",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Maximum number of entries that can be saved",
     "translation": "",
     "context": "",
     "reference": "",
@@ -5624,6 +5890,13 @@
     "term": "Maximum number of notifications to keep",
     "translation": "",
     "context": "notification history limit",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Maximum pinned entries reached",
+    "translation": "",
+    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -5736,6 +6009,13 @@
     "term": "Memory usage indicator",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Message",
+    "translation": "",
+    "context": "KDE Connect SMS message input placeholder",
     "reference": "",
     "comment": ""
   },
@@ -5887,9 +6167,9 @@
     "comment": ""
   },
   {
-    "term": "Mount",
+    "term": "Mount Points",
     "translation": "",
-    "context": "",
+    "context": "mount points header in system monitor",
     "reference": "",
     "comment": ""
   },
@@ -6174,6 +6454,13 @@
     "comment": ""
   },
   {
+    "term": "No GPUs detected",
+    "translation": "",
+    "context": "empty state in gpu list",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No Media",
     "translation": "",
     "context": "",
@@ -6244,13 +6531,6 @@
     "comment": ""
   },
   {
-    "term": "No clipboard entries found",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
     "term": "No custom theme file",
     "translation": "",
     "context": "no custom theme file status",
@@ -6258,9 +6538,23 @@
     "comment": ""
   },
   {
+    "term": "No devices",
+    "translation": "",
+    "context": "KDE Connect no devices status",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No devices connected",
+    "translation": "",
+    "context": "KDE Connect status",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No devices found",
     "translation": "",
-    "context": "",
+    "context": "KDE Connect no devices message",
     "reference": "",
     "comment": ""
   },
@@ -6335,6 +6629,20 @@
     "comment": ""
   },
   {
+    "term": "No matching processes",
+    "translation": "",
+    "context": "empty state in process list",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No mount points found",
+    "translation": "",
+    "context": "empty state in disk mounts list",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No plugins found",
     "translation": "",
     "context": "empty plugin list",
@@ -6364,6 +6672,20 @@
   },
   {
     "term": "No printers found",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No recent clipboard entries found",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No saved clipboard entries",
     "translation": "",
     "context": "",
     "reference": "",
@@ -6457,6 +6779,13 @@
     "term": "Not detected",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Not paired",
+    "translation": "",
+    "context": "KDE Connect not paired status",
     "reference": "",
     "comment": ""
   },
@@ -6580,6 +6909,13 @@
     "comment": ""
   },
   {
+    "term": "Occupied Color",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Off",
     "translation": "",
     "context": "",
@@ -6590,6 +6926,13 @@
     "term": "Office",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Offline",
+    "translation": "",
+    "context": "KDE Connect offline status",
     "reference": "",
     "comment": ""
   },
@@ -6657,6 +7000,20 @@
     "comment": ""
   },
   {
+    "term": "Open App",
+    "translation": "",
+    "context": "KDE Connect open SMS app button",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Open KDE Connect on your phone",
+    "translation": "",
+    "context": "KDE Connect open app hint",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Open Notepad File",
     "translation": "",
     "context": "",
@@ -6674,6 +7031,34 @@
     "term": "Open with...",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Opening SMS",
+    "translation": "",
+    "context": "KDE Connect SMS action",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Opening SMS app",
+    "translation": "",
+    "context": "KDE Connect SMS action",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Opening file browser",
+    "translation": "",
+    "context": "KDE Connect browse action",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Opening files",
+    "translation": "",
+    "context": "KDE Connect browse action",
     "reference": "",
     "comment": ""
   },
@@ -6827,7 +7212,7 @@
   {
     "term": "Pair",
     "translation": "",
-    "context": "",
+    "context": "KDE Connect pair button",
     "reference": "",
     "comment": ""
   },
@@ -6846,9 +7231,37 @@
     "comment": ""
   },
   {
+    "term": "Pairing",
+    "translation": "",
+    "context": "KDE Connect pairing in progress status",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Pairing failed",
     "translation": "",
-    "context": "",
+    "context": "KDE Connect error",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Pairing request from",
+    "translation": "",
+    "context": "KDE Connect pairing request notification",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Pairing request sent",
+    "translation": "",
+    "context": "KDE Connect pairing action",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Pairing requested",
+    "translation": "",
+    "context": "KDE Connect pairing requested status",
     "reference": "",
     "comment": ""
   },
@@ -6930,6 +7343,13 @@
     "comment": ""
   },
   {
+    "term": "Performance",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Permission denied to set profile image.",
     "translation": "",
     "context": "",
@@ -6944,6 +7364,13 @@
     "comment": ""
   },
   {
+    "term": "Phone number",
+    "translation": "",
+    "context": "KDE Connect SMS phone input placeholder",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Pin",
     "translation": "",
     "context": "",
@@ -6954,6 +7381,27 @@
     "term": "Pin to Dock",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Ping",
+    "translation": "",
+    "context": "KDE Connect ping tooltip",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Ping sent",
+    "translation": "",
+    "context": "KDE Connect ping action",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Ping sent to",
+    "translation": "",
+    "context": "KDE Connect ping action",
     "reference": "",
     "comment": ""
   },
@@ -7175,6 +7623,13 @@
     "comment": ""
   },
   {
+    "term": "Power off monitors on lock",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Power profile management available",
     "translation": "",
     "context": "",
@@ -7322,16 +7777,23 @@
     "comment": ""
   },
   {
-    "term": "Process",
+    "term": "Process Count",
     "translation": "",
     "context": "",
     "reference": "",
     "comment": ""
   },
   {
-    "term": "Process Count",
+    "term": "Processes",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Processes:",
+    "translation": "",
+    "context": "process count label in footer",
     "reference": "",
     "comment": ""
   },
@@ -7420,6 +7882,13 @@
     "comment": ""
   },
   {
+    "term": "Read:",
+    "translation": "",
+    "context": "disk read label",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Reason",
     "translation": "",
     "context": "",
@@ -7457,7 +7926,7 @@
   {
     "term": "Refresh",
     "translation": "",
-    "context": "",
+    "context": "KDE Connect refresh button | KDE Connect refresh tooltip",
     "reference": "",
     "comment": ""
   },
@@ -7465,6 +7934,13 @@
     "term": "Refresh Weather",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Reject",
+    "translation": "",
+    "context": "KDE Connect reject pairing button",
     "reference": "",
     "comment": ""
   },
@@ -7521,6 +7997,13 @@
     "term": "Report",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Request Pairing",
+    "translation": "",
+    "context": "KDE Connect request pairing button",
     "reference": "",
     "comment": ""
   },
@@ -7693,6 +8176,20 @@
     "comment": ""
   },
   {
+    "term": "Ring",
+    "translation": "",
+    "context": "KDE Connect ring tooltip",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Ringing",
+    "translation": "",
+    "context": "KDE Connect ring action",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Root Filesystem",
     "translation": "",
     "context": "",
@@ -7791,6 +8288,13 @@
     "comment": ""
   },
   {
+    "term": "SMS",
+    "translation": "",
+    "context": "KDE Connect SMS tooltip",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Save",
     "translation": "",
     "context": "",
@@ -7854,6 +8358,13 @@
     "comment": ""
   },
   {
+    "term": "Saved item deleted",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Scale",
     "translation": "",
     "context": "",
@@ -7897,6 +8408,13 @@
   },
   {
     "term": "Science",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Screen Sharing",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7990,6 +8508,13 @@
     "term": "Search plugins...",
     "translation": "",
     "context": "plugin search placeholder",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Search processes...",
+    "translation": "",
+    "context": "process search placeholder",
     "reference": "",
     "comment": ""
   },
@@ -8218,6 +8743,27 @@
     "comment": ""
   },
   {
+    "term": "Send",
+    "translation": "",
+    "context": "KDE Connect SMS send button",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Send Clipboard",
+    "translation": "",
+    "context": "KDE Connect clipboard tooltip",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Send SMS",
+    "translation": "",
+    "context": "KDE Connect SMS dialog title",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Separator",
     "translation": "",
     "context": "",
@@ -8277,6 +8823,27 @@
     "term": "Shadow",
     "translation": "",
     "context": "bar shadow settings card",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Share",
+    "translation": "",
+    "context": "KDE Connect share button | KDE Connect share dialog title | KDE Connect share tooltip",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Share URL",
+    "translation": "",
+    "context": "KDE Connect share URL button",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Shared",
+    "translation": "",
+    "context": "KDE Connect share success",
     "reference": "",
     "comment": ""
   },
@@ -8652,6 +9219,13 @@
     "comment": ""
   },
   {
+    "term": "Show dock when floating windows don't overlap its area",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Show launcher overlay when typing in Niri overview. Disable to use another launcher.",
     "translation": "",
     "context": "",
@@ -9016,6 +9590,20 @@
     "comment": ""
   },
   {
+    "term": "Start kdeconnectd to connect devices",
+    "translation": "",
+    "context": "KDE Connect start daemon hint",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Start kdeconnectd to use this plugin",
+    "translation": "",
+    "context": "KDE Connect daemon hint",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Start typing your notes here...",
     "translation": "",
     "context": "",
@@ -9052,13 +9640,6 @@
   },
   {
     "term": "Stopping",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
-    "term": "Storage & Disks",
     "translation": "",
     "context": "",
     "reference": "",
@@ -9108,13 +9689,6 @@
   },
   {
     "term": "Suspend system after",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
-    "term": "Swap",
     "translation": "",
     "context": "",
     "reference": "",
@@ -9173,6 +9747,13 @@
     "term": "System Check",
     "translation": "",
     "context": "greeter doctor page title",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "System Information",
+    "translation": "",
+    "context": "system info header in system monitor",
     "reference": "",
     "comment": ""
   },
@@ -9312,7 +9893,7 @@
   {
     "term": "The 'dgop' tool is required for system monitoring.\\nPlease install dgop to use this feature.",
     "translation": "",
-    "context": "",
+    "context": "dgop unavailable error message",
     "reference": "",
     "comment": ""
   },
@@ -9401,7 +9982,21 @@
     "comment": ""
   },
   {
+    "term": "This will delete all unpinned entries. %1 pinned entries will be kept.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "This will permanently delete all clipboard history.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "This will permanently remove this saved clipboard item. This action cannot be undone.",
     "translation": "",
     "context": "",
     "reference": "",
@@ -9639,6 +10234,13 @@
     "comment": ""
   },
   {
+    "term": "Turn off all displays immediately when the lock screen activates",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Turn off monitors after",
     "translation": "",
     "context": "",
@@ -9676,7 +10278,7 @@
   {
     "term": "Unavailable",
     "translation": "",
-    "context": "",
+    "context": "KDE Connect unavailable status",
     "reference": "",
     "comment": ""
   },
@@ -9732,7 +10334,7 @@
   {
     "term": "Unknown",
     "translation": "",
-    "context": "unknown author",
+    "context": "KDE Connect unknown device status | unknown author",
     "reference": "",
     "comment": ""
   },
@@ -9751,6 +10353,13 @@
     "comment": ""
   },
   {
+    "term": "Unknown GPU",
+    "translation": "",
+    "context": "fallback gpu name",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Unknown Monitor",
     "translation": "",
     "context": "",
@@ -9761,6 +10370,20 @@
     "term": "Unknown Network",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Unpair",
+    "translation": "",
+    "context": "KDE Connect unpair tooltip",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Unpair failed",
+    "translation": "",
+    "context": "KDE Connect error",
     "reference": "",
     "comment": ""
   },
@@ -9817,6 +10440,20 @@
     "term": "Update Plugin",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Uptime",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Uptime:",
+    "translation": "",
+    "context": "uptime label in footer",
     "reference": "",
     "comment": ""
   },
@@ -9989,20 +10626,6 @@
     "comment": ""
   },
   {
-    "term": "Use%",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
-    "term": "Used",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
     "term": "Used when accent color is set to Custom",
     "translation": "",
     "context": "",
@@ -10125,6 +10748,13 @@
     "term": "Variable Refresh Rate",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Verification",
+    "translation": "",
+    "context": "KDE Connect pairing verification key label",
     "reference": "",
     "comment": ""
   },
@@ -10605,6 +11235,13 @@
     "comment": ""
   },
   {
+    "term": "Write:",
+    "translation": "",
+    "context": "disk write label",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "X Axis",
     "translation": "",
     "context": "",
@@ -10685,6 +11322,20 @@
     "term": "days",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "device",
+    "translation": "",
+    "context": "Generic device name | Generic device name fallback",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "devices connected",
+    "translation": "",
+    "context": "KDE Connect status multiple devices",
     "reference": "",
     "comment": ""
   },
@@ -10797,6 +11448,13 @@
     "term": "official",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "procs",
+    "translation": "",
+    "context": "short for processes",
     "reference": "",
     "comment": ""
   },

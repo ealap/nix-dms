@@ -60,6 +60,11 @@ Item {
                         currentIndex: 0
                         selectionMode: "single"
                         checkEnabled: false
+                        onSelectionChanged: (index, selected) => {
+                            if (!selected)
+                                return;
+                            currentIndex = index;
+                        }
                     }
                 }
 
@@ -323,6 +328,7 @@ Item {
                         onSelectionChanged: (index, selected) => {
                             if (!selected)
                                 return;
+                            currentIndex = index;
                             if (powerCategory.currentIndex === 0) {
                                 SettingsData.set("acSuspendBehavior", index);
                             } else {
@@ -548,7 +554,6 @@ Item {
 
                         DankTextField {
                             width: parent.width
-                            height: 48
                             placeholderText: modelData.placeholder
                             backgroundColor: Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency)
                             normalBorderColor: Theme.outlineMedium

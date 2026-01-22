@@ -15,5 +15,5 @@ Singleton {
     readonly property int viewportBuffer: 100
     readonly property int extendedBuffer: 200
     readonly property int keyboardHintsHeight: 80
-    readonly property int headerHeight: 40
+    readonly property int headerHeight: 32
 }

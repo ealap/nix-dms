@@ -8,6 +8,7 @@ MouseArea {
     property color stateColor: Theme.surfaceText
     property real cornerRadius: parent && parent.radius !== undefined ? parent.radius : Theme.cornerRadius
     property var tooltipText: null
+    property string tooltipSide: "bottom"
 
     readonly property real stateOpacity: disabled ? 0 : pressed ? 0.12 : containsMouse ? 0.08 : 0
 
@@ -26,7 +27,7 @@ MouseArea {
         interval: 400
         repeat: false
         onTriggered: {
-            tooltip.show(root.tooltipText, root, 0, 0, "bottom");
+            tooltip.show(root.tooltipText, root, 0, 0, root.tooltipSide);
         }
     }
 

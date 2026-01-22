@@ -20,6 +20,7 @@ import (
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/brightness"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/clipboard"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/cups"
+	serverDbus "github.com/AvengeMedia/DankMaterialShell/core/internal/server/dbus"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/dwl"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/evdev"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/extworkspace"
@@ -65,7 +66,10 @@ var brightnessManager *brightness.Manager
 var wlrOutputManager *wlroutput.Manager
 var evdevManager *evdev.Manager
 var clipboardManager *clipboard.Manager
+var dbusManager *serverDbus.Manager
 var wlContext *wlcontext.SharedContext
+
+const dbusClientID = "dms-dbus-client"
 
 var capabilitySubscribers syncmap.Map[string, chan ServerInfo]
 var cupsSubscribers syncmap.Map[string, bool]
@@ -363,6 +367,19 @@ func InitializeClipboardManager() error {
 	return nil
 }
 
+func InitializeDbusManager() error {
+	manager, err := serverDbus.NewManager()
+	if err != nil {
+		log.Warnf("Failed to initialize dbus manager: %v", err)
+		return err
+	}
+
+	dbusManager = manager
+
+	log.Info("DBus manager initialized")
+	return nil
+}
+
 func handleConnection(conn net.Conn) {
 	defer conn.Close()
 
@@ -440,6 +457,10 @@ func getCapabilities() Capabilities {
 		caps = append(caps, "clipboard")
 	}
 
+	if dbusManager != nil {
+		caps = append(caps, "dbus")
+	}
+
 	return Capabilities{Capabilities: caps}
 }
 
@@ -496,6 +517,10 @@ func getServerInfo() ServerInfo {
 
 	if clipboardManager != nil {
 		caps = append(caps, "clipboard")
+	}
+
+	if dbusManager != nil {
+		caps = append(caps, "dbus")
 	}
 
 	return ServerInfo{
@@ -1133,6 +1158,31 @@ func handleSubscribe(conn net.Conn, req models.Request) {
 		}()
 	}
 
+	if shouldSubscribe("dbus") && dbusManager != nil {
+		wg.Add(1)
+		dbusChan := dbusManager.SubscribeSignals(dbusClientID)
+		go func() {
+			defer wg.Done()
+			defer dbusManager.UnsubscribeSignals(dbusClientID)
+
+			for {
+				select {
+				case event, ok := <-dbusChan:
+					if !ok {
+						return
+					}
+					select {
+					case eventChan <- ServiceEvent{Service: "dbus", Data: event}:
+					case <-stopChan:
+						return
+					}
+				case <-stopChan:
+					return
+				}
+			}
+		}()
+	}
+
 	go func() {
 		wg.Wait()
 		close(eventChan)
@@ -1197,6 +1247,9 @@ func cleanupManagers() {
 	}
 	if clipboardManager != nil {
 		clipboardManager.Close()
+	}
+	if dbusManager != nil {
+		dbusManager.Close()
 	}
 	if wlContext != nil {
 		wlContext.Close()
@@ -1487,6 +1540,14 @@ func Start(printDocs bool) error {
 		if wlContext != nil {
 			wlContext.Start()
 			log.Info("Wayland event dispatcher started")
+		}
+	}()
+
+	go func() {
+		if err := InitializeDbusManager(); err != nil {
+			log.Warnf("DBus manager unavailable: %v", err)
+		} else {
+			notifyCapabilityChange()
 		}
 	}()
 

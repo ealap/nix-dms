@@ -1,5 +1,6 @@
 pragma ComponentBehavior: Bound
 import QtQuick
+import Quickshell
 import Quickshell.Io
 import qs.Common
 import qs.Modals.Common
@@ -22,6 +23,7 @@ Item {
     property string pendingSaveContent: ""
 
     signal hideRequested
+    signal previewRequested(string content)
 
     Ref {
         service: NotepadStorageService
@@ -51,7 +53,9 @@ Item {
         if (tabIndex === NotepadStorageService.currentTabIndex && hasUnsavedChanges()) {
             root.pendingAction = "close_tab_" + tabIndex;
             root.confirmationDialogOpen = true;
-            confirmationDialog.open();
+            confirmationDialogLoader.active = true;
+            if (confirmationDialogLoader.item)
+                confirmationDialogLoader.item.open();
         } else {
             performCloseTab(tabIndex);
         }
@@ -101,7 +105,9 @@ Item {
             root.pendingFileUrl = fileUrl;
             root.pendingAction = "load_file";
             root.confirmationDialogOpen = true;
-            confirmationDialog.open();
+            confirmationDialogLoader.active = true;
+            if (confirmationDialogLoader.item)
+                confirmationDialogLoader.item.open();
         } else {
             performLoadFromFile(fileUrl);
         }
@@ -170,29 +176,31 @@ Item {
                     saveToFile(fileUrl);
                 } else {
                     root.fileDialogOpen = true;
-                    saveBrowser.open();
+                    saveBrowserLoader.active = true;
+                    if (saveBrowserLoader.item)
+                        saveBrowserLoader.item.open();
                 }
             }
 
             onOpenRequested: {
-                if (hasUnsavedChanges()) {
-                    root.pendingAction = "open";
-                    root.confirmationDialogOpen = true;
-                    confirmationDialog.open();
-                } else {
-                    root.fileDialogOpen = true;
-                    loadBrowser.open();
+                textEditor.autoSaveToSession();
+                if (textEditor.text.length > 0) {
+                    createNewTab();
                 }
+
+                root.fileDialogOpen = true;
+                loadBrowserLoader.active = true;
+                if (loadBrowserLoader.item)
+                    loadBrowserLoader.item.open();
             }
 
             onNewRequested: {
-                if (hasUnsavedChanges()) {
-                    root.pendingAction = "new";
-                    root.confirmationDialogOpen = true;
-                    confirmationDialog.open();
-                } else {
-                    createNewTab();
-                }
+                textEditor.autoSaveToSession();
+                createNewTab();
+            }
+
+            onPreviewRequested: {
+                textEditor.togglePreview();
             }
 
             onEscapePressed: {
@@ -249,241 +257,261 @@ Item {
         onLoadFailed: error => {}
     }
 
-    FileBrowserModal {
-        id: saveBrowser
+    LazyLoader {
+        id: saveBrowserLoader
+        active: false
 
-        browserTitle: I18n.tr("Save Notepad File")
-        browserIcon: "save"
-        browserType: "notepad_save"
-        fileExtensions: ["*.txt", "*.md", "*.*"]
-        allowStacking: true
-        saveMode: true
-        defaultFileName: {
-            if (currentTab && currentTab.title && currentTab.title !== "Untitled") {
-                return currentTab.title;
-            } else if (currentTab && !currentTab.isTemporary && currentTab.filePath) {
-                return currentTab.filePath.split('/').pop();
-            } else {
-                return "note.txt";
-            }
-        }
+        FileBrowserSurfaceModal {
+            id: saveBrowser
 
-        onFileSelected: path => {
-            root.fileDialogOpen = false;
-            const cleanPath = path.toString().replace(/^file:\/\//, '');
-            const fileName = cleanPath.split('/').pop();
-            const fileUrl = "file://" + cleanPath;
-
-            root.currentFileName = fileName;
-            root.currentFileUrl = fileUrl;
-
-            if (currentTab) {
-                NotepadStorageService.saveTabAs(NotepadStorageService.currentTabIndex, cleanPath);
+            browserTitle: I18n.tr("Save Notepad File")
+            browserIcon: "save"
+            browserType: "notepad_save"
+            fileExtensions: ["*.txt", "*.md", "*.*"]
+            allowStacking: true
+            saveMode: true
+            defaultFileName: {
+                if (currentTab && currentTab.title && currentTab.title !== "Untitled") {
+                    return currentTab.title;
+                } else if (currentTab && !currentTab.isTemporary && currentTab.filePath) {
+                    return currentTab.filePath.split('/').pop();
+                } else {
+                    return "note.txt";
+                }
             }
 
-            saveToFile(fileUrl);
+            onFileSelected: path => {
+                root.fileDialogOpen = false;
+                const cleanPath = path.toString().replace(/^file:\/\//, '');
+                const fileName = cleanPath.split('/').pop();
+                const fileUrl = "file://" + cleanPath;
 
-            if (root.pendingAction === "new") {
-                Qt.callLater(() => {
-                    createNewTab();
-                });
-            } else if (root.pendingAction === "open") {
-                Qt.callLater(() => {
-                    root.fileDialogOpen = true;
-                    loadBrowser.open();
-                });
-            } else if (root.pendingAction.startsWith("close_tab_")) {
-                Qt.callLater(() => {
-                    var tabIndex = parseInt(root.pendingAction.split("_")[2]);
-                    performCloseTab(tabIndex);
-                });
-            }
-            root.pendingAction = "";
+                root.currentFileName = fileName;
+                root.currentFileUrl = fileUrl;
 
-            close();
-        }
-
-        onDialogClosed: {
-            root.fileDialogOpen = false;
-        }
-    }
-
-    FileBrowserModal {
-        id: loadBrowser
-
-        browserTitle: I18n.tr("Open Notepad File")
-        browserIcon: "folder_open"
-        browserType: "notepad_load"
-        fileExtensions: ["*.txt", "*.md", "*.*"]
-        allowStacking: true
-
-        onFileSelected: path => {
-            root.fileDialogOpen = false;
-            const cleanPath = path.toString().replace(/^file:\/\//, '');
-            const fileName = cleanPath.split('/').pop();
-            const fileUrl = "file://" + cleanPath;
-
-            root.currentFileName = fileName;
-            root.currentFileUrl = fileUrl;
-
-            loadFromFile(fileUrl);
-            close();
-        }
-
-        onDialogClosed: {
-            root.fileDialogOpen = false;
-        }
-    }
-
-    DankModal {
-        id: confirmationDialog
-
-        width: 400
-        height: 180
-        shouldBeVisible: false
-        allowStacking: true
-
-        onBackgroundClicked: {
-            close();
-            root.confirmationDialogOpen = false;
-        }
-
-        content: Component {
-            FocusScope {
-                anchors.fill: parent
-                focus: true
-
-                Keys.onEscapePressed: event => {
-                    confirmationDialog.close();
-                    root.confirmationDialogOpen = false;
-                    event.accepted = true;
+                if (currentTab) {
+                    NotepadStorageService.saveTabAs(NotepadStorageService.currentTabIndex, cleanPath);
                 }
 
-                Column {
-                    anchors.centerIn: parent
-                    width: parent.width - Theme.spacingM * 2
-                    spacing: Theme.spacingM
+                saveToFile(fileUrl);
 
-                    Row {
-                        width: parent.width
+                if (root.pendingAction === "new") {
+                    Qt.callLater(() => {
+                        createNewTab();
+                    });
+                } else if (root.pendingAction === "open") {
+                    Qt.callLater(() => {
+                        root.fileDialogOpen = true;
+                        loadBrowserLoader.active = true;
+                        if (loadBrowserLoader.item)
+                            loadBrowserLoader.item.open();
+                    });
+                } else if (root.pendingAction.startsWith("close_tab_")) {
+                    Qt.callLater(() => {
+                        var tabIndex = parseInt(root.pendingAction.split("_")[2]);
+                        performCloseTab(tabIndex);
+                    });
+                }
+                root.pendingAction = "";
 
-                        Column {
-                            width: parent.width - 40
-                            spacing: Theme.spacingXS
+                close();
+            }
 
-                            StyledText {
-                                text: I18n.tr("Unsaved Changes")
-                                font.pixelSize: Theme.fontSizeLarge
-                                color: Theme.surfaceText
-                                font.weight: Font.Medium
-                            }
+            onDialogClosed: {
+                root.fileDialogOpen = false;
+            }
+        }
+    }
 
-                            StyledText {
-                                text: root.pendingAction === "new" ? I18n.tr("You have unsaved changes. Save before creating a new file?") : root.pendingAction.startsWith("close_tab_") ? I18n.tr("You have unsaved changes. Save before closing this tab?") : root.pendingAction === "load_file" || root.pendingAction === "open" ? I18n.tr("You have unsaved changes. Save before opening a file?") : I18n.tr("You have unsaved changes. Save before continuing?")
-                                font.pixelSize: Theme.fontSizeMedium
-                                color: Theme.surfaceTextMedium
-                                width: parent.width
-                                wrapMode: Text.Wrap
-                            }
+    LazyLoader {
+        id: loadBrowserLoader
+        active: false
+
+        FileBrowserSurfaceModal {
+            id: loadBrowser
+
+            browserTitle: I18n.tr("Open Notepad File")
+            browserIcon: "folder_open"
+            browserType: "notepad_load"
+            fileExtensions: ["*.txt", "*.md", "*.*"]
+            allowStacking: true
+
+            onFileSelected: path => {
+                root.fileDialogOpen = false;
+                const cleanPath = path.toString().replace(/^file:\/\//, '');
+                const fileName = cleanPath.split('/').pop();
+                const fileUrl = "file://" + cleanPath;
+
+                root.currentFileName = fileName;
+                root.currentFileUrl = fileUrl;
+
+                loadFromFile(fileUrl);
+                close();
+            }
+
+            onDialogClosed: {
+                root.fileDialogOpen = false;
+            }
+        }
+    }
+
+    LazyLoader {
+        id: confirmationDialogLoader
+        active: false
+
+        DankModal {
+            id: confirmationDialog
+
+            modalWidth: 400
+            modalHeight: contentLoader.item ? contentLoader.item.implicitHeight + Theme.spacingM * 2 : 180
+            shouldBeVisible: false
+            allowStacking: true
+
+            onBackgroundClicked: {
+                close();
+                root.confirmationDialogOpen = false;
+            }
+
+            content: Component {
+                FocusScope {
+                    anchors.fill: parent
+                    focus: true
+                    implicitHeight: contentColumn.implicitHeight
+
+                    Keys.onEscapePressed: event => {
+                        confirmationDialog.close();
+                        root.confirmationDialogOpen = false;
+                        event.accepted = true;
+                    }
+
+                    Column {
+                        id: contentColumn
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.top: parent.top
+                        anchors.margins: Theme.spacingM
+                        spacing: Theme.spacingM
+
+                        StyledText {
+                            text: I18n.tr("Unsaved Changes")
+                            font.pixelSize: Theme.fontSizeLarge
+                            color: Theme.surfaceText
+                            font.weight: Font.Medium
                         }
 
-                        DankActionButton {
-                            iconName: "close"
-                            iconSize: Theme.iconSize - 4
-                            iconColor: Theme.surfaceText
-                            onClicked: {
-                                confirmationDialog.close();
-                                root.confirmationDialogOpen = false;
+                        StyledText {
+                            text: root.pendingAction === "new" ? I18n.tr("You have unsaved changes. Save before creating a new file?") : root.pendingAction.startsWith("close_tab_") ? I18n.tr("You have unsaved changes. Save before closing this tab?") : root.pendingAction === "load_file" || root.pendingAction === "open" ? I18n.tr("You have unsaved changes. Save before opening a file?") : I18n.tr("You have unsaved changes. Save before continuing?")
+                            font.pixelSize: Theme.fontSizeMedium
+                            color: Theme.surfaceTextMedium
+                            width: parent.width
+                            wrapMode: Text.Wrap
+                        }
+
+                        Item {
+                            width: parent.width
+                            height: 36
+
+                            Row {
+                                anchors.right: parent.right
+                                anchors.verticalCenter: parent.verticalCenter
+                                spacing: Theme.spacingM
+
+                                Rectangle {
+                                    width: Math.max(80, discardText.contentWidth + Theme.spacingM * 2)
+                                    height: 36
+                                    radius: Theme.cornerRadius
+                                    color: discardArea.containsMouse ? Theme.surfaceTextHover : "transparent"
+                                    border.color: Theme.surfaceVariantAlpha
+                                    border.width: 1
+
+                                    StyledText {
+                                        id: discardText
+                                        anchors.centerIn: parent
+                                        text: I18n.tr("Don't Save")
+                                        font.pixelSize: Theme.fontSizeMedium
+                                        color: Theme.surfaceText
+                                        font.weight: Font.Medium
+                                    }
+
+                                    MouseArea {
+                                        id: discardArea
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: {
+                                            confirmationDialog.close();
+                                            root.confirmationDialogOpen = false;
+                                            if (root.pendingAction === "new") {
+                                                createNewTab();
+                                            } else if (root.pendingAction === "open") {
+                                                root.fileDialogOpen = true;
+                                                loadBrowserLoader.active = true;
+                                                if (loadBrowserLoader.item)
+                                                    loadBrowserLoader.item.open();
+                                            } else if (root.pendingAction === "load_file") {
+                                                performLoadFromFile(root.pendingFileUrl);
+                                            } else if (root.pendingAction.startsWith("close_tab_")) {
+                                                var tabIndex = parseInt(root.pendingAction.split("_")[2]);
+                                                performCloseTab(tabIndex);
+                                            }
+                                            root.pendingAction = "";
+                                            root.pendingFileUrl = "";
+                                        }
+                                    }
+                                }
+
+                                Rectangle {
+                                    width: Math.max(70, saveAsText.contentWidth + Theme.spacingM * 2)
+                                    height: 36
+                                    radius: Theme.cornerRadius
+                                    color: saveAsArea.containsMouse ? Qt.darker(Theme.primary, 1.1) : Theme.primary
+
+                                    StyledText {
+                                        id: saveAsText
+                                        anchors.centerIn: parent
+                                        text: I18n.tr("Save")
+                                        font.pixelSize: Theme.fontSizeMedium
+                                        color: Theme.background
+                                        font.weight: Font.Medium
+                                    }
+
+                                    MouseArea {
+                                        id: saveAsArea
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: {
+                                            confirmationDialog.close();
+                                            root.confirmationDialogOpen = false;
+                                            root.fileDialogOpen = true;
+                                            saveBrowserLoader.active = true;
+                                            if (saveBrowserLoader.item)
+                                                saveBrowserLoader.item.open();
+                                        }
+                                    }
+
+                                    Behavior on color {
+                                        ColorAnimation {
+                                            duration: Theme.shortDuration
+                                            easing.type: Theme.standardEasing
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
 
-                    Item {
-                        width: parent.width
-                        height: 40
-
-                        Row {
-                            anchors.right: parent.right
-                            anchors.verticalCenter: parent.verticalCenter
-                            spacing: Theme.spacingM
-
-                            Rectangle {
-                                width: Math.max(80, discardText.contentWidth + Theme.spacingM * 2)
-                                height: 36
-                                radius: Theme.cornerRadius
-                                color: discardArea.containsMouse ? Theme.surfaceTextHover : "transparent"
-                                border.color: Theme.surfaceVariantAlpha
-                                border.width: 1
-
-                                StyledText {
-                                    id: discardText
-                                    anchors.centerIn: parent
-                                    text: I18n.tr("Don't Save")
-                                    font.pixelSize: Theme.fontSizeMedium
-                                    color: Theme.surfaceText
-                                    font.weight: Font.Medium
-                                }
-
-                                MouseArea {
-                                    id: discardArea
-                                    anchors.fill: parent
-                                    hoverEnabled: true
-                                    cursorShape: Qt.PointingHandCursor
-                                    onClicked: {
-                                        confirmationDialog.close();
-                                        root.confirmationDialogOpen = false;
-                                        if (root.pendingAction === "new") {
-                                            createNewTab();
-                                        } else if (root.pendingAction === "open") {
-                                            root.fileDialogOpen = true;
-                                            loadBrowser.open();
-                                        } else if (root.pendingAction === "load_file") {
-                                            performLoadFromFile(root.pendingFileUrl);
-                                        } else if (root.pendingAction.startsWith("close_tab_")) {
-                                            var tabIndex = parseInt(root.pendingAction.split("_")[2]);
-                                            performCloseTab(tabIndex);
-                                        }
-                                        root.pendingAction = "";
-                                        root.pendingFileUrl = "";
-                                    }
-                                }
-                            }
-
-                            Rectangle {
-                                width: Math.max(70, saveAsText.contentWidth + Theme.spacingM * 2)
-                                height: 36
-                                radius: Theme.cornerRadius
-                                color: saveAsArea.containsMouse ? Qt.darker(Theme.primary, 1.1) : Theme.primary
-
-                                StyledText {
-                                    id: saveAsText
-                                    anchors.centerIn: parent
-                                    text: I18n.tr("Save")
-                                    font.pixelSize: Theme.fontSizeMedium
-                                    color: Theme.background
-                                    font.weight: Font.Medium
-                                }
-
-                                MouseArea {
-                                    id: saveAsArea
-                                    anchors.fill: parent
-                                    hoverEnabled: true
-                                    cursorShape: Qt.PointingHandCursor
-                                    onClicked: {
-                                        confirmationDialog.close();
-                                        root.confirmationDialogOpen = false;
-                                        root.fileDialogOpen = true;
-                                        saveBrowser.open();
-                                    }
-                                }
-
-                                Behavior on color {
-                                    ColorAnimation {
-                                        duration: Theme.shortDuration
-                                        easing.type: Theme.standardEasing
-                                    }
-                                }
-                            }
+                    DankActionButton {
+                        anchors.top: parent.top
+                        anchors.right: parent.right
+                        anchors.topMargin: Theme.spacingM
+                        anchors.rightMargin: Theme.spacingM
+                        iconName: "close"
+                        iconSize: Theme.iconSize - 4
+                        iconColor: Theme.surfaceText
+                        onClicked: {
+                            confirmationDialog.close();
+                            root.confirmationDialogOpen = false;
                         }
                     }
                 }

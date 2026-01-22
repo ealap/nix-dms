@@ -55,9 +55,23 @@ var SPEC = {
     enabledGpuPciIds: { def: [] },
 
     wifiDeviceOverride: { def: "" },
-    weatherHourlyDetailed: { def: true }
+    weatherHourlyDetailed: { def: true },
+
+    hiddenApps: { def: [] },
+    appOverrides: { def: {} },
+    searchAppActions: { def: true }
 };
 
 function getValidKeys() {
     return Object.keys(SPEC).concat(["configVersion"]);
+}
+
+function set(root, key, value, saveFn, hooks) {
+    if (!(key in SPEC)) return;
+    root[key] = value;
+    var hookName = SPEC[key].onChange;
+    if (hookName && hooks && hooks[hookName]) {
+        hooks[hookName](root);
+    }
+    saveFn();
 }

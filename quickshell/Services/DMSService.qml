@@ -64,7 +64,7 @@ Singleton {
     property bool screensaverInhibited: false
     property var screensaverInhibitors: []
 
-    property var activeSubscriptions: ["network", "network.credentials", "loginctl", "freedesktop", "freedesktop.screensaver", "gamma", "bluetooth", "bluetooth.pairing", "dwl", "brightness", "wlroutput", "evdev", "browser"]
+    property var activeSubscriptions: ["network", "network.credentials", "loginctl", "freedesktop", "freedesktop.screensaver", "gamma", "bluetooth", "bluetooth.pairing", "dwl", "brightness", "wlroutput", "evdev", "browser", "dbus"]
 
     Component.onCompleted: {
         if (socketPath && socketPath.length > 0) {
@@ -191,17 +191,19 @@ Singleton {
                 if (!line || line.length === 0)
                     return;
 
+                let response;
                 try {
-                    const response = JSON.parse(line);
-                    const isClipboard = clipboardRequestIds[response.id];
-                    if (isClipboard)
-                        delete clipboardRequestIds[response.id];
-                    else
-                        console.log("DMSService: Request socket <<", line);
-                    handleResponse(response);
+                    response = JSON.parse(line);
                 } catch (e) {
-                    console.warn("DMSService: Failed to parse request response");
+                    console.warn("DMSService: Failed to parse request response:", line.substring(0, 100));
+                    return;
                 }
+                const isClipboard = clipboardRequestIds[response.id];
+                if (isClipboard)
+                    delete clipboardRequestIds[response.id];
+                else
+                    console.log("DMSService: Request socket <<", line);
+                handleResponse(response);
             }
         }
     }
@@ -223,14 +225,16 @@ Singleton {
                 if (!line || line.length === 0)
                     return;
 
+                let response;
                 try {
-                    const response = JSON.parse(line);
-                    if (!line.includes("clipboard"))
-                        console.log("DMSService: Subscribe socket <<", line);
-                    handleSubscriptionEvent(response);
+                    response = JSON.parse(line);
                 } catch (e) {
-                    console.warn("DMSService: Failed to parse subscription event");
+                    console.warn("DMSService: Failed to parse subscription event:", line.substring(0, 100));
+                    return;
                 }
+                if (!line.includes("clipboard"))
+                    console.log("DMSService: Subscribe socket <<", line);
+                handleSubscriptionEvent(response);
             }
         }
     }
@@ -300,7 +304,7 @@ Singleton {
             excludeServices = [excludeServices];
         }
 
-        const allServices = ["network", "loginctl", "freedesktop", "gamma", "bluetooth", "cups", "dwl", "brightness", "extworkspace", "browser"];
+        const allServices = ["network", "loginctl", "freedesktop", "gamma", "bluetooth", "cups", "dwl", "brightness", "extworkspace", "browser", "dbus"];
         const filtered = allServices.filter(s => !excludeServices.includes(s));
         subscribe(filtered);
     }
@@ -383,6 +387,8 @@ Singleton {
             screensaverInhibited = data.inhibited || false;
             screensaverInhibitors = data.inhibitors || [];
             screensaverStateUpdate(data);
+        } else if (service === "dbus") {
+            dbusSignalReceived(data.subscriptionId || "", data);
         }
     }
 
@@ -645,5 +651,90 @@ Singleton {
         sendRequest("bluetooth.pairing.cancel", {
             "token": token
         }, callback);
+    }
+
+    signal dbusSignalReceived(string subscriptionId, var data)
+
+    property var dbusSubscriptions: ({})
+
+    function dbusCall(bus, dest, path, iface, method, args, callback) {
+        sendRequest("dbus.call", {
+            "bus": bus,
+            "dest": dest,
+            "path": path,
+            "interface": iface,
+            "method": method,
+            "args": args || []
+        }, callback);
+    }
+
+    function dbusGetProperty(bus, dest, path, iface, property, callback) {
+        sendRequest("dbus.getProperty", {
+            "bus": bus,
+            "dest": dest,
+            "path": path,
+            "interface": iface,
+            "property": property
+        }, callback);
+    }
+
+    function dbusSetProperty(bus, dest, path, iface, property, value, callback) {
+        sendRequest("dbus.setProperty", {
+            "bus": bus,
+            "dest": dest,
+            "path": path,
+            "interface": iface,
+            "property": property,
+            "value": value
+        }, callback);
+    }
+
+    function dbusGetAllProperties(bus, dest, path, iface, callback) {
+        sendRequest("dbus.getAllProperties", {
+            "bus": bus,
+            "dest": dest,
+            "path": path,
+            "interface": iface
+        }, callback);
+    }
+
+    function dbusIntrospect(bus, dest, path, callback) {
+        sendRequest("dbus.introspect", {
+            "bus": bus,
+            "dest": dest,
+            "path": path || "/"
+        }, callback);
+    }
+
+    function dbusListNames(bus, callback) {
+        sendRequest("dbus.listNames", {
+            "bus": bus
+        }, callback);
+    }
+
+    function dbusSubscribe(bus, sender, path, iface, member, callback) {
+        sendRequest("dbus.subscribe", {
+            "bus": bus,
+            "sender": sender || "",
+            "path": path || "",
+            "interface": iface || "",
+            "member": member || ""
+        }, response => {
+            if (!response.error && response.result?.subscriptionId) {
+                dbusSubscriptions[response.result.subscriptionId] = true;
+            }
+            if (callback) callback(response);
+        });
+    }
+
+    function dbusUnsubscribe(subscriptionId, callback) {
+        sendRequest("dbus.unsubscribe", {
+            "subscriptionId": subscriptionId
+        }, response => {
+            if (!response.error) {
+                delete dbusSubscriptions[subscriptionId];
+            }
+            if (callback) callback(response);
+        });
     }
 }

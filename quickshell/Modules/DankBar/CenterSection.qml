@@ -296,6 +296,9 @@ Item {
     width: parent.width
     anchors.centerIn: parent
 
+    implicitWidth: isVertical ? widgetThickness : totalSize
+    implicitHeight: isVertical ? totalSize : widgetThickness
+
     Timer {
         id: layoutTimer
         interval: 0
@@ -365,6 +368,7 @@ Item {
                 onContentItemReady: contentItem => {
                     contentItem.widthChanged.connect(() => layoutTimer.restart());
                     contentItem.heightChanged.connect(() => layoutTimer.restart());
+                    layoutTimer.restart();
                 }
 
                 onActiveChanged: layoutTimer.restart()

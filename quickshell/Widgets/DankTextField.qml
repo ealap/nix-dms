@@ -8,16 +8,8 @@ StyledRect {
     LayoutMirroring.enabled: I18n.isRtl
     LayoutMirroring.childrenInherit: true
 
-    activeFocusOnTab: true
-
     KeyNavigation.tab: keyNavigationTab
     KeyNavigation.backtab: keyNavigationBacktab
-
-    onActiveFocusChanged: {
-        if (activeFocus) {
-            textInput.forceActiveFocus();
-        }
-    }
 
     property alias text: textInput.text
     property string placeholderText: ""
@@ -43,16 +35,17 @@ StyledRect {
     property real cornerRadius: Theme.cornerRadius
     readonly property real leftPadding: Theme.spacingM + (leftIconName ? leftIconSize + Theme.spacingM : 0)
     readonly property real rightPadding: {
-        let p = Theme.spacingM;
+        let p = Theme.spacingS;
         if (showPasswordToggle)
-            p += 24 + Theme.spacingS;
+            p += 20 + Theme.spacingXS;
         if (showClearButton && text.length > 0)
-            p += 24 + Theme.spacingS;
+            p += 20 + Theme.spacingXS;
         return p;
     }
-    property real topPadding: Theme.spacingM
-    property real bottomPadding: Theme.spacingM
+    property real topPadding: Theme.spacingS
+    property real bottomPadding: Theme.spacingS
     property bool ignoreLeftRightKeys: false
+    property bool ignoreUpDownKeys: false
     property bool ignoreTabKeys: false
     property var keyForwardTargets: []
     property Item keyNavigationTab: null
@@ -83,7 +76,7 @@ StyledRect {
     }
 
     width: 200
-    height: Math.round(Theme.fontSizeMedium * 3.4)
+    height: Math.round(Theme.fontSizeMedium * 3)
     radius: cornerRadius
     color: backgroundColor
     border.color: textInput.activeFocus ? focusedBorderColor : normalBorderColor
@@ -145,9 +138,16 @@ StyledRect {
             if (root.ignoreTabKeys && (event.key === Qt.Key_Tab || event.key === Qt.Key_Backtab)) {
                 event.accepted = false;
                 for (var i = 0; i < root.keyForwardTargets.length; i++) {
-                    if (root.keyForwardTargets[i]) {
+                    if (root.keyForwardTargets[i])
                         root.keyForwardTargets[i].Keys.pressed(event);
-                    }
+                }
+                return;
+            }
+            if (root.ignoreUpDownKeys && (event.key === Qt.Key_Up || event.key === Qt.Key_Down)) {
+                event.accepted = false;
+                for (var i = 0; i < root.keyForwardTargets.length; i++) {
+                    if (root.keyForwardTargets[i])
+                        root.keyForwardTargets[i].Keys.pressed(event);
                 }
             }
         }
@@ -164,7 +164,7 @@ StyledRect {
         id: rightButtonsRow
 
         anchors.right: parent.right
-        anchors.rightMargin: Theme.spacingM
+        anchors.rightMargin: Theme.spacingS
         anchors.verticalCenter: parent.verticalCenter
         spacing: Theme.spacingXS
         visible: showPasswordToggle || (showClearButton && text.length > 0)
@@ -172,16 +172,16 @@ StyledRect {
         StyledRect {
             id: passwordToggleButton
 
-            width: 24
-            height: 24
-            radius: 12
+            width: 20
+            height: 20
+            radius: 10
             color: passwordToggleArea.containsMouse ? Theme.outlineStrong : "transparent"
             visible: showPasswordToggle
 
             DankIcon {
                 anchors.centerIn: parent
                 name: passwordVisible ? "visibility_off" : "visibility"
-                size: 16
+                size: 14
                 color: passwordToggleArea.containsMouse ? Theme.outline : Theme.surfaceVariantText
             }
 
@@ -198,16 +198,16 @@ StyledRect {
         StyledRect {
             id: clearButton
 
-            width: 24
-            height: 24
-            radius: 12
+            width: 20
+            height: 20
+            radius: 10
             color: clearArea.containsMouse ? Theme.outlineStrong : "transparent"
             visible: showClearButton && text.length > 0
 
             DankIcon {
                 anchors.centerIn: parent
                 name: "close"
-                size: 16
+                size: 14
                 color: clearArea.containsMouse ? Theme.outline : Theme.surfaceVariantText
             }
 

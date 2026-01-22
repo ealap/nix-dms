@@ -531,8 +531,8 @@ PanelWindow {
             Row {
                 anchors.right: clearButton.visible ? clearButton.left : parent.right
                 anchors.rightMargin: clearButton.visible ? contentSpacing : Theme.spacingL
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: contentSpacing
+                anchors.top: notificationContent.bottom
+                anchors.topMargin: contentSpacing
                 spacing: contentSpacing
                 z: 20
 
@@ -585,8 +585,8 @@ PanelWindow {
                 visible: actionCount < 3
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.spacingL
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: contentSpacing
+                anchors.top: notificationContent.bottom
+                anchors.topMargin: contentSpacing
                 width: Math.max(clearTextLabel.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
                 height: actionButtonHeight
                 radius: Theme.spacingXS
