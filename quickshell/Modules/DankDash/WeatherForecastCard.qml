@@ -47,10 +47,17 @@ Rectangle {
     readonly property var humidity: WeatherService.formatPercent(root.forecastData?.humidity)
     readonly property string humidityText: humidity ?? "--"
 
-    readonly property var wind: WeatherService.formatSpeed(root.forecastData?.wind)
+    readonly property var wind: {
+        SettingsData.windSpeedUnit;
+        SettingsData.useFahrenheit;
+        return WeatherService.formatSpeed(root.forecastData?.wind);
+    }
     readonly property string windText: wind ?? "--"
 
-    readonly property var pressure: WeatherService.formatPressure(root.forecastData?.pressure)
+    readonly property var pressure: {
+        SettingsData.useFahrenheit;
+        return WeatherService.formatPressure(root.forecastData?.pressure);
+    }
     readonly property string pressureText: pressure ?? "--"
 
     readonly property var precipitation: root.forecastData?.precipitationProbability

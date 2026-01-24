@@ -354,9 +354,15 @@ Singleton {
         if (kmh == null) {
             return null;
         }
-        const value = SettingsData.useFahrenheit ? Math.round(kmh * 0.621371) : kmh;
-        const unit = SettingsData.useFahrenheit ? "mph" : "km/h";
-        return includeUnits ? value + " " + unit : value;
+        if (SettingsData.useFahrenheit) {
+            const value = Math.round(kmh * 0.621371);
+            return includeUnits ? value + " mph" : value;
+        }
+        if (SettingsData.windSpeedUnit === "ms") {
+            const value = (kmh / 3.6).toFixed(1);
+            return includeUnits ? value + " m/s" : value;
+        }
+        return includeUnits ? kmh + " km/h" : kmh;
     }
 
     function formatPressure(hpa, includeUnits = true) {
@@ -805,7 +811,7 @@ Singleton {
                         "country": root.location?.country || "Unknown",
                         "wCode": current.weather_code || 0,
                         "humidity": Math.round(current.relative_humidity_2m || 0),
-                        "wind": Math.round(current.wind_speed_10m || 0) + " " + (currentUnits.wind_speed_10m || 'm/s'),
+                        "wind": Math.round(current.wind_speed_10m || 0),
                         "sunrise": formatTime(daily.sunrise?.[0]) || "06:00",
                         "sunset": formatTime(daily.sunset?.[0]) || "18:00",
                         "rawSunrise": daily.sunrise?.[0] || "",

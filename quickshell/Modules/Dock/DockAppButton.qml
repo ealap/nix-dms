@@ -29,9 +29,26 @@ Item {
     property bool showTooltip: mouseArea.containsMouse && !dragging
     property var cachedDesktopEntry: null
     property real actualIconSize: 40
+    readonly property string coreIconColorOverride: SettingsData.dockLauncherLogoColorOverride
+    readonly property bool coreIconHasCustomColor: coreIconColorOverride !== "" && coreIconColorOverride !== "primary" && coreIconColorOverride !== "surface"
+    readonly property color effectiveCoreIconColor: {
+        if (coreIconColorOverride === "primary")
+            return Theme.primary;
+        if (coreIconColorOverride === "surface")
+            return Theme.surfaceText;
+        if (coreIconColorOverride !== "")
+            return coreIconColorOverride;
+        return Theme.surfaceText;
+    }
+    readonly property real effectiveCoreIconBrightness: coreIconHasCustomColor ? SettingsData.dockLauncherLogoBrightness : 0.0
+    readonly property real effectiveCoreIconContrast: coreIconHasCustomColor ? SettingsData.dockLauncherLogoContrast : 0.0
 
     function updateDesktopEntry() {
         if (!appData || appData.appId === "__SEPARATOR__") {
+            cachedDesktopEntry = null;
+            return;
+        }
+        if (appData.isCoreApp) {
             cachedDesktopEntry = null;
             return;
         }
@@ -85,7 +102,12 @@ Item {
             return "";
         }
 
-        const appName = Paths.getAppName(appData.appId, cachedDesktopEntry);
+        let appName;
+        if (appData.isCoreApp && appData.coreAppData) {
+            appName = appData.coreAppData.name || appData.appId;
+        } else {
+            appName = Paths.getAppName(appData.appId, cachedDesktopEntry);
+        }
 
         if ((appData.type === "window" && showWindowTitle) || (appData.type === "grouped" && appData.windowTitle)) {
             const title = appData.type === "window" ? windowTitle : appData.windowTitle;
@@ -208,7 +230,7 @@ Item {
             targetIndex = -1;
             originalIndex = -1;
 
-            if (dockApps && !didReorder) {
+            if (dockApps) {
                 dockApps.draggedIndex = -1;
                 dockApps.dropTargetIndex = -1;
             }
@@ -227,6 +249,10 @@ Item {
             case "pinned":
                 if (!appData.appId)
                     return;
+                if (appData.isCoreApp && appData.coreAppData) {
+                    AppSearchService.executeCoreApp(appData.coreAppData);
+                    return;
+                }
                 const pinnedEntry = cachedDesktopEntry;
                 if (pinnedEntry) {
                     AppUsageHistoryData.addAppUsage({
@@ -248,6 +274,10 @@ Item {
                 if (appData.windowCount === 0) {
                     if (!appData.appId)
                         return;
+                    if (appData.isCoreApp && appData.coreAppData) {
+                        AppSearchService.executeCoreApp(appData.coreAppData);
+                        return;
+                    }
                     const groupedEntry = cachedDesktopEntry;
                     if (groupedEntry) {
                         AppUsageHistoryData.addAppUsage({
@@ -374,6 +404,19 @@ Item {
             z: -1
         }
 
+        AppIconRenderer {
+            id: coreIcon
+
+            anchors.centerIn: parent
+            iconSize: actualIconSize
+            iconValue: appData && appData.isCoreApp && appData.coreAppData ? (appData.coreAppData.icon || "") : ""
+            colorOverride: effectiveCoreIconColor
+            brightnessOverride: effectiveCoreIconBrightness
+            contrastOverride: effectiveCoreIconContrast
+            fallbackText: "?"
+            visible: iconValue !== ""
+        }
+
         IconImage {
             id: iconImg
 
@@ -383,12 +426,15 @@ Item {
                 if (!appData || appData.appId === "__SEPARATOR__") {
                     return "";
                 }
+                if (appData.isCoreApp && appData.coreAppData) {
+                    return "";
+                }
                 return Paths.getAppIcon(appData.appId, cachedDesktopEntry);
             }
             mipmap: true
             smooth: true
             asynchronous: true
-            visible: status === Image.Ready
+            visible: status === Image.Ready && !coreIcon.visible
             layer.enabled: appData && appData.appId === "org.quickshell"
             layer.smooth: true
             layer.mipmap: true
@@ -403,7 +449,7 @@ Item {
             width: actualIconSize
             height: actualIconSize
             anchors.centerIn: parent
-            visible: iconImg.status !== Image.Ready && appData && appData.appId && !Paths.isSteamApp(appData.appId)
+            visible: !coreIcon.visible && iconImg.status !== Image.Ready && appData && appData.appId && !Paths.isSteamApp(appData.appId)
             color: Theme.surfaceLight
             radius: Theme.cornerRadius
             border.width: 1
@@ -416,7 +462,12 @@ Item {
                         return "?";
                     }
 
-                    const appName = Paths.getAppName(appData.appId, cachedDesktopEntry);
+                    let appName;
+                    if (appData.isCoreApp && appData.coreAppData) {
+                        appName = appData.coreAppData.name || appData.appId;
+                    } else {
+                        appName = Paths.getAppName(appData.appId, cachedDesktopEntry);
+                    }
                     return appName.charAt(0).toUpperCase();
                 }
                 font.pixelSize: Math.max(8, parent.width * 0.35)
@@ -430,7 +481,7 @@ Item {
             size: actualIconSize
             name: "sports_esports"
             color: Theme.surfaceText
-            visible: iconImg.status !== Image.Ready && appData && appData.appId && Paths.isSteamApp(appData.appId)
+            visible: !coreIcon.visible && iconImg.status !== Image.Ready && appData && appData.appId && Paths.isSteamApp(appData.appId)
         }
 
         Loader {

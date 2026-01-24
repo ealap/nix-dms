@@ -230,9 +230,16 @@ Item {
                         }
 
                         StyledText {
+                            property var feelsLike: SettingsData.useFahrenheit ? (WeatherService.weather.feelsLikeF || WeatherService.weather.tempF) : (WeatherService.weather.feelsLike || WeatherService.weather.temp)
+                            text: I18n.tr("Feels Like %1°", "weather feels like temperature").arg(feelsLike)
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.withAlpha(Theme.surfaceText, 0.7)
+                        }
+
+                        StyledText {
                             text: WeatherService.weather.city || ""
                             font.pixelSize: Theme.fontSizeMedium
-                            color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.7)
+                            color: Theme.withAlpha(Theme.surfaceText, 0.7)
                             visible: text.length > 0
                         }
                     }
@@ -253,7 +260,7 @@ Item {
                                 id: sunriseIcon
                                 name: "wb_twilight"
                                 size: Theme.iconSize - 6
-                                color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.6)
+                                color: Theme.withAlpha(Theme.surfaceText, 0.6)
                                 anchors.left: parent.left
                                 anchors.verticalCenter: parent.verticalCenter
                             }
@@ -272,7 +279,7 @@ Item {
                                     }
                                 }
                                 font.pixelSize: Theme.fontSizeSmall
-                                color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.6)
+                                color: Theme.withAlpha(Theme.surfaceText, 0.6)
                                 anchors.left: sunriseIcon.right
                                 anchors.leftMargin: Theme.spacingXS
                                 anchors.verticalCenter: parent.verticalCenter

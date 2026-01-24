@@ -22,18 +22,34 @@ Item {
     implicitWidth: isVertical ? appLayout.height : appLayout.width
     implicitHeight: isVertical ? appLayout.width : appLayout.height
 
-    function movePinnedApp(fromIndex, toIndex) {
-        if (fromIndex === toIndex) {
+    function dockIndexToPinnedIndex(dockIndex) {
+        if (!SettingsData.dockLauncherEnabled) {
+            return dockIndex;
+        }
+
+        const launcherPos = SessionData.dockLauncherPosition;
+        if (dockIndex < launcherPos) {
+            return dockIndex;
+        } else {
+            return dockIndex - 1;
+        }
+    }
+
+    function movePinnedApp(fromDockIndex, toDockIndex) {
+        const fromPinnedIndex = dockIndexToPinnedIndex(fromDockIndex);
+        const toPinnedIndex = dockIndexToPinnedIndex(toDockIndex);
+
+        if (fromPinnedIndex === toPinnedIndex) {
             return;
         }
 
         const currentPinned = [...(SessionData.pinnedApps || [])];
-        if (fromIndex < 0 || fromIndex >= currentPinned.length || toIndex < 0 || toIndex >= currentPinned.length) {
+        if (fromPinnedIndex < 0 || fromPinnedIndex >= currentPinned.length || toPinnedIndex < 0 || toPinnedIndex >= currentPinned.length) {
             return;
         }
 
-        const movedApp = currentPinned.splice(fromIndex, 1)[0];
-        currentPinned.splice(toIndex, 0, movedApp);
+        const movedApp = currentPinned.splice(fromPinnedIndex, 1)[0];
+        currentPinned.splice(toPinnedIndex, 0, movedApp);
 
         SessionData.setPinnedApps(currentPinned);
     }
@@ -75,6 +91,51 @@ Item {
                     return false;
                 }
 
+                function getCoreAppData(appId) {
+                    if (typeof AppSearchService === "undefined")
+                        return null;
+
+                    const coreApps = AppSearchService.coreApps || [];
+                    for (let i = 0; i < coreApps.length; i++) {
+                        const app = coreApps[i];
+                        if (app.builtInPluginId === appId) {
+                            return app;
+                        }
+                    }
+                    return null;
+                }
+
+                function getCoreAppDataByTitle(windowTitle) {
+                    if (typeof AppSearchService === "undefined" || !windowTitle)
+                        return null;
+
+                    const coreApps = AppSearchService.coreApps || [];
+                    for (let i = 0; i < coreApps.length; i++) {
+                        const app = coreApps[i];
+                        if (app.name === windowTitle) {
+                            return app;
+                        }
+                    }
+                    return null;
+                }
+
+                function insertLauncher(targetArray) {
+                    if (!SettingsData.dockLauncherEnabled)
+                        return;
+
+                    const launcherItem = {
+                        uniqueKey: "launcher_button",
+                        type: "launcher",
+                        appId: "__LAUNCHER__",
+                        toplevel: null,
+                        isPinned: true,
+                        isRunning: false
+                    };
+
+                    const pos = Math.max(0, Math.min(SessionData.dockLauncherPosition, targetArray.length));
+                    targetArray.splice(pos, 0, launcherItem);
+                }
+
                 function updateModel() {
                     const items = [];
                     const pinnedApps = [...(SessionData.pinnedApps || [])];
@@ -86,21 +147,35 @@ Item {
 
                         pinnedApps.forEach(rawAppId => {
                             const appId = Paths.moddedAppId(rawAppId);
+                            const coreAppData = getCoreAppData(appId);
                             appGroups.set(appId, {
                                 appId: appId,
                                 isPinned: true,
-                                windows: []
+                                windows: [],
+                                isCoreApp: coreAppData !== null,
+                                coreAppData: coreAppData
                             });
                         });
 
                         sortedToplevels.forEach((toplevel, index) => {
                             const rawAppId = toplevel.appId || "unknown";
-                            const appId = Paths.moddedAppId(rawAppId);
+                            let appId = Paths.moddedAppId(rawAppId);
+
+                            let coreAppData = null;
+                            if (rawAppId === "org.quickshell") {
+                                coreAppData = getCoreAppDataByTitle(toplevel.title);
+                                if (coreAppData) {
+                                    appId = coreAppData.builtInPluginId;
+                                }
+                            }
+
                             if (!appGroups.has(appId)) {
                                 appGroups.set(appId, {
                                     appId: appId,
                                     isPinned: false,
-                                    windows: []
+                                    windows: [],
+                                    isCoreApp: coreAppData !== null,
+                                    coreAppData: coreAppData
                                 });
                             }
 
@@ -124,7 +199,9 @@ Item {
                                 isPinned: group.isPinned,
                                 isRunning: group.windows.length > 0,
                                 windowCount: group.windows.length,
-                                allWindows: group.windows
+                                allWindows: group.windows,
+                                isCoreApp: group.isCoreApp || false,
+                                coreAppData: group.coreAppData || null
                             };
 
                             if (group.isPinned) {
@@ -135,6 +212,8 @@ Item {
                         });
 
                         pinnedGroups.forEach(item => items.push(item));
+
+                        insertLauncher(items);
 
                         if (pinnedGroups.length > 0 && unpinnedGroups.length > 0) {
                             items.push({
@@ -148,21 +227,26 @@ Item {
                         }
 
                         unpinnedGroups.forEach(item => items.push(item));
-                        root.pinnedAppCount = pinnedGroups.length;
+                        root.pinnedAppCount = pinnedGroups.length + (SettingsData.dockLauncherEnabled ? 1 : 0);
                     } else {
                         pinnedApps.forEach(rawAppId => {
                             const appId = Paths.moddedAppId(rawAppId);
+                            const coreAppData = getCoreAppData(appId);
                             items.push({
                                 uniqueKey: "pinned_" + appId,
                                 type: "pinned",
                                 appId: appId,
                                 toplevel: null,
                                 isPinned: true,
-                                isRunning: false
+                                isRunning: false,
+                                isCoreApp: coreAppData !== null,
+                                coreAppData: coreAppData
                             });
                         });
 
-                        root.pinnedAppCount = pinnedApps.length;
+                        root.pinnedAppCount = pinnedApps.length + (SettingsData.dockLauncherEnabled ? 1 : 0);
+
+                        insertLauncher(items);
 
                         if (pinnedApps.length > 0 && sortedToplevels.length > 0) {
                             items.push({
@@ -187,13 +271,31 @@ Item {
                                 }
                             }
 
+                            const rawAppId = toplevel.appId || "unknown";
+                            const moddedAppId = Paths.moddedAppId(rawAppId);
+
+                            // Check if this is a core app window (e.g., Settings modal with appId "org.quickshell")
+                            let coreAppData = null;
+                            let isCoreApp = false;
+                            if (rawAppId === "org.quickshell") {
+                                coreAppData = getCoreAppDataByTitle(toplevel.title);
+                                if (coreAppData) {
+                                    isCoreApp = true;
+                                }
+                            }
+
+                            const finalAppId = isCoreApp ? coreAppData.builtInPluginId : moddedAppId;
+                            const isPinned = pinnedApps.indexOf(finalAppId) !== -1;
+
                             items.push({
                                 uniqueKey: uniqueKey,
                                 type: "window",
-                                appId: Paths.moddedAppId(toplevel.appId),
+                                appId: finalAppId,
                                 toplevel: toplevel,
-                                isPinned: false,
-                                isRunning: true
+                                isPinned: isPinned,
+                                isRunning: true,
+                                isCoreApp: isCoreApp,
+                                coreAppData: coreAppData
                             });
                         });
                     }
@@ -203,10 +305,10 @@ Item {
 
                 delegate: Item {
                     id: delegateItem
-                    property alias dockButton: button
+                    property var dockButton: itemData.type === "launcher" ? launcherButton : button
                     property var itemData: modelData
                     clip: false
-                    z: button.dragging ? 100 : 0
+                    z: (itemData.type === "launcher" ? launcherButton.dragging : button.dragging) ? 100 : 0
 
                     width: itemData.type === "separator" ? (root.isVertical ? root.iconSize : 8) : (root.isVertical ? root.iconSize : root.iconSize * 1.2)
                     height: itemData.type === "separator" ? (root.isVertical ? 8 : root.iconSize) : (root.isVertical ? root.iconSize * 1.2 : root.iconSize)
@@ -261,9 +363,22 @@ Item {
                         anchors.centerIn: parent
                     }
 
+                    DockLauncherButton {
+                        id: launcherButton
+                        visible: itemData.type === "launcher"
+                        anchors.centerIn: parent
+
+                        width: delegateItem.width
+                        height: delegateItem.height
+                        actualIconSize: root.iconSize
+
+                        dockApps: root
+                        index: model.index
+                    }
+
                     DockAppButton {
                         id: button
-                        visible: itemData.type !== "separator"
+                        visible: itemData.type !== "separator" && itemData.type !== "launcher"
                         anchors.centerIn: parent
 
                         width: delegateItem.width
@@ -313,6 +428,28 @@ Item {
         target: SettingsData
         function onDockIsolateDisplaysChanged() {
             repeater.updateModel();
+        }
+        function onDockLauncherEnabledChanged() {
+            root.suppressShiftAnimation = true;
+            root.draggedIndex = -1;
+            root.dropTargetIndex = -1;
+            repeater.updateModel();
+            Qt.callLater(() => {
+                root.suppressShiftAnimation = false;
+            });
+        }
+    }
+
+    Connections {
+        target: SessionData
+        function onDockLauncherPositionChanged() {
+            root.suppressShiftAnimation = true;
+            root.draggedIndex = -1;
+            root.dropTargetIndex = -1;
+            repeater.updateModel();
+            Qt.callLater(() => {
+                root.suppressShiftAnimation = false;
+            });
         }
     }
 }

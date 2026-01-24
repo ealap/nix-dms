@@ -20,7 +20,7 @@ Popup {
     function hasContextMenuActions(spotlightItem) {
         if (!spotlightItem)
             return false;
-        if (spotlightItem.type === "app" && !spotlightItem.isCore)
+        if (spotlightItem.type === "app")
             return true;
         if (spotlightItem.type === "plugin" && spotlightItem.pluginId) {
             var instance = PluginService.pluginInstances[spotlightItem.pluginId];
@@ -34,9 +34,16 @@ Popup {
         return false;
     }
 
-    readonly property var desktopEntry: item?.data ?? null
-    readonly property string appId: desktopEntry?.id || desktopEntry?.execString || ""
-    readonly property bool isPinned: SessionData.isPinnedApp(appId)
+    readonly property bool isCoreApp: item?.type === "app" && item?.isCore
+    readonly property var coreAppData: isCoreApp ? item?.data ?? null : null
+    readonly property var desktopEntry: !isCoreApp ? (item?.data ?? null) : null
+    readonly property string appId: {
+        if (isCoreApp) {
+            return item?.id || coreAppData?.builtInPluginId || "";
+        }
+        return desktopEntry?.id || desktopEntry?.execString || "";
+    }
+    readonly property bool isPinned: appId ? SessionData.isPinnedApp(appId) : false
     readonly property bool isRegularApp: item?.type === "app" && !item.isCore && desktopEntry
     readonly property bool isPluginItem: item?.type === "plugin"
 
@@ -82,15 +89,14 @@ Popup {
             return items;
         }
 
-        if (!desktopEntry)
-            return items;
-
-        items.push({
-            type: "item",
-            icon: isPinned ? "keep_off" : "push_pin",
-            text: isPinned ? I18n.tr("Unpin from Dock") : I18n.tr("Pin to Dock"),
-            action: togglePin
-        });
+        if (item?.type === "app") {
+            items.push({
+                type: "item",
+                icon: isPinned ? "keep_off" : "push_pin",
+                text: isPinned ? I18n.tr("Unpin from Dock") : I18n.tr("Pin to Dock"),
+                action: togglePin
+            });
+        }
 
         if (isRegularApp) {
             items.push({
@@ -125,17 +131,8 @@ Popup {
         items.push({
             type: "separator"
         });
-        items.push({
-            type: "item",
-            icon: "launch",
-            text: I18n.tr("Launch"),
-            action: launchApp
-        });
 
-        if (SessionService.nvidiaCommand) {
-            items.push({
-                type: "separator"
-            });
+        if (isRegularApp && SessionService.nvidiaCommand) {
             items.push({
                 type: "item",
                 icon: "memory",
@@ -143,6 +140,13 @@ Popup {
                 action: launchWithNvidia
             });
         }
+
+        items.push({
+            type: "item",
+            icon: "launch",
+            text: I18n.tr("Launch"),
+            action: launchApp
+        });
 
         return items;
     }
@@ -212,6 +216,14 @@ Popup {
     }
 
     function launchApp() {
+        if (isCoreApp) {
+            if (!coreAppData)
+                return;
+            AppSearchService.executeCoreApp(coreAppData);
+            controller?.itemExecuted();
+            hide();
+            return;
+        }
         if (!desktopEntry)
             return;
         SessionService.launchDesktopEntry(desktopEntry);

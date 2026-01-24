@@ -15,6 +15,7 @@ Item {
     required property var hyprKeybindsModalLoader
     required property var dankBarRepeater
     required property var hyprlandOverviewLoader
+    required property var workspaceRenameModalLoader
 
     function getFirstBar() {
         if (!root.dankBarRepeater || root.dankBarRepeater.count === 0)
@@ -1062,7 +1063,7 @@ Item {
         }
 
         function toggleQuery(query: string): string {
-            PopoutService.toggleDankLauncherV2();
+            PopoutService.toggleDankLauncherV2WithQuery(query);
             return "LAUNCHER_TOGGLE_QUERY_SUCCESS";
         }
 
@@ -1106,7 +1107,7 @@ Item {
         }
 
         function toggleQuery(query: string): string {
-            PopoutService.toggleDankLauncherV2();
+            PopoutService.toggleDankLauncherV2WithQuery(query);
             return "SPOTLIGHT_TOGGLE_QUERY_SUCCESS";
         }
 
@@ -1291,5 +1292,41 @@ Item {
         }
 
         target: "desktopWidget"
+    }
+
+    IpcHandler {
+        function open(): string {
+            root.workspaceRenameModalLoader.active = true;
+            if (root.workspaceRenameModalLoader.item) {
+                const ws = NiriService.workspaces[NiriService.focusedWorkspaceId];
+                root.workspaceRenameModalLoader.item.show(ws?.name || "");
+                return "WORKSPACE_RENAME_MODAL_OPENED";
+            }
+            return "WORKSPACE_RENAME_MODAL_NOT_FOUND";
+        }
+
+        function close(): string {
+            if (root.workspaceRenameModalLoader.item) {
+                root.workspaceRenameModalLoader.item.hide();
+                return "WORKSPACE_RENAME_MODAL_CLOSED";
+            }
+            return "WORKSPACE_RENAME_MODAL_NOT_FOUND";
+        }
+
+        function toggle(): string {
+            root.workspaceRenameModalLoader.active = true;
+            if (root.workspaceRenameModalLoader.item) {
+                if (root.workspaceRenameModalLoader.item.visible) {
+                    root.workspaceRenameModalLoader.item.hide();
+                    return "WORKSPACE_RENAME_MODAL_CLOSED";
+                }
+                const ws = NiriService.workspaces[NiriService.focusedWorkspaceId];
+                root.workspaceRenameModalLoader.item.show(ws?.name || "");
+                return "WORKSPACE_RENAME_MODAL_OPENED";
+            }
+            return "WORKSPACE_RENAME_MODAL_NOT_FOUND";
+        }
+
+        target: "workspace-rename"
     }
 }

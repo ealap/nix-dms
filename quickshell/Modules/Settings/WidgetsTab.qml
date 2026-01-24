@@ -69,6 +69,13 @@ Item {
                 "enabled": true
             },
             {
+                "id": "appsDock",
+                "text": I18n.tr("Apps Dock"),
+                "description": I18n.tr("Pinned and running apps with drag-and-drop"),
+                "icon": "dock_to_bottom",
+                "enabled": true
+            },
+            {
                 "id": "clock",
                 "text": I18n.tr("Clock"),
                 "description": I18n.tr("Current time and date display"),

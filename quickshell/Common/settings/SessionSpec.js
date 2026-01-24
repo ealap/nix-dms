@@ -39,6 +39,8 @@ var SPEC = {
     weatherCoordinates: { def: "40.7128,-74.0060" },
 
     pinnedApps: { def: [] },
+    barPinnedApps: { def: [] },
+    dockLauncherPosition: { def: 0 },
     hiddenTrayIds: { def: [] },
     recentColors: { def: [] },
     showThirdPartyPlugins: { def: false },

@@ -146,7 +146,9 @@ Singleton {
 
     property bool use24HourClock: true
     property bool showSeconds: false
+    property bool padHours12Hour: false
     property bool useFahrenheit: false
+    property string windSpeedUnit: "kmh"
     property bool nightModeEnabled: false
     property int animationSpeed: SettingsData.AnimationSpeed.Short
     property int customAnimationDuration: 500
@@ -272,6 +274,8 @@ Singleton {
     property string spotlightModalViewMode: "list"
     property string browserPickerViewMode: "grid"
     property var browserUsageHistory: ({})
+    property string appPickerViewMode: "grid"
+    property var filePickerUsageHistory: ({})
     property bool sortAppsAlphabetically: false
     property int appLauncherGridColumns: 4
     property bool spotlightCloseNiriOverview: true
@@ -430,6 +434,13 @@ Singleton {
     property real dockBorderOpacity: 1.0
     property int dockBorderThickness: 1
     property bool dockIsolateDisplays: false
+    property bool dockLauncherEnabled: false
+    property string dockLauncherLogoMode: "apps"
+    property string dockLauncherLogoCustomPath: ""
+    property string dockLauncherLogoColorOverride: ""
+    property int dockLauncherLogoSizeOffset: 0
+    property real dockLauncherLogoBrightness: 0.5
+    property real dockLauncherLogoContrast: 1
 
     property bool notificationOverlayEnabled: false
     property int overviewRows: 2
@@ -444,6 +455,7 @@ Singleton {
     property bool lockScreenShowDate: true
     property bool lockScreenShowProfileImage: true
     property bool lockScreenShowPasswordField: true
+    property bool lockScreenShowMediaPlayer: true
     property bool lockScreenPowerOffMonitorsOnLock: false
 
     property bool enableFprint: false
@@ -1243,11 +1255,11 @@ Singleton {
     }
 
     function getEffectiveTimeFormat() {
-        if (use24HourClock) {
+        if (use24HourClock)
             return showSeconds ? "hh:mm:ss" : "hh:mm";
-        } else {
-            return showSeconds ? "h:mm:ss AP" : "h:mm AP";
-        }
+        if (padHours12Hour)
+            return showSeconds ? "hh:mm:ss AP" : "hh:mm AP";
+        return showSeconds ? "h:mm:ss AP" : "h:mm AP";
     }
 
     function getEffectiveClockDateFormat() {

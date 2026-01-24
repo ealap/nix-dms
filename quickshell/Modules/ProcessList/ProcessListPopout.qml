@@ -42,8 +42,6 @@ DankPopout {
         if (!shouldBeVisible) {
             searchText = "";
             expandedPid = "";
-            if (processesView)
-                processesView.reset();
         }
     }
 
@@ -108,8 +106,11 @@ DankPopout {
             Connections {
                 target: processListPopout
                 function onShouldBeVisibleChanged() {
-                    if (processListPopout.shouldBeVisible)
+                    if (processListPopout.shouldBeVisible) {
                         Qt.callLater(() => processListContent.forceActiveFocus());
+                    } else {
+                        processesView.reset();
+                    }
                 }
             }
 

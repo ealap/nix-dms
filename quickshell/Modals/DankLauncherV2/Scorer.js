@@ -16,7 +16,7 @@ const Weights = {
 }
 
 function tokenize(text) {
-    return text.toLowerCase().trim().split(/[\s\-_]+/).filter(function(w) { return w.length > 0 })
+    return text.toLowerCase().trim().split(/[\s\-_]+/).filter(function (w) { return w.length > 0 })
 }
 
 function hasWordBoundaryMatch(text, query) {
@@ -164,7 +164,7 @@ function scoreItems(items, query, getFrecencyFn) {
         }
     }
 
-    scored.sort(function(a, b) {
+    scored.sort(function (a, b) {
         return b.score - a.score
     })
 
@@ -204,7 +204,7 @@ function groupBySection(scoredItems, sectionOrder, sortAlphabetically, maxPerSec
         var section = sections[sectionOrder[i].id]
         if (section && section.items.length > 0) {
             if (sortAlphabetically && section.id === "apps") {
-                section.items.sort(function(a, b) {
+                section.items.sort(function (a, b) {
                     return (a.name || "").localeCompare(b.name || "")
                 })
             }

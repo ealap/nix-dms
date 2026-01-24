@@ -219,7 +219,8 @@ Singleton {
                 action: plugin.action,
                 categories: plugin.categories,
                 isCore: true,
-                builtInPluginId: pluginId
+                builtInPluginId: pluginId,
+                cornerIcon: plugin.cornerIcon
             });
         }
         return apps;
@@ -318,10 +319,10 @@ Singleton {
             PopoutService.focusOrToggleSettings();
             return true;
         case "notepad":
-            PopoutService.openNotepad();
+            PopoutService.toggleNotepad();
             return true;
         case "processlist":
-            PopoutService.showProcessListModal();
+            PopoutService.toggleProcessList();
             return true;
         }
         return false;
@@ -852,6 +853,21 @@ Singleton {
         }
 
         return false;
+    }
+
+    function getPluginPasteText(pluginId, item) {
+        if (typeof PluginService === "undefined")
+            return null;
+
+        const instance = PluginService.pluginInstances[pluginId];
+        if (!instance)
+            return null;
+
+        if (typeof instance.getPasteText === "function") {
+            return instance.getPasteText(item);
+        }
+
+        return null;
     }
 
     function searchPluginItems(query) {

@@ -65,7 +65,7 @@ Scope {
         lockInitiatedLocally = true;
         lockPowerOffArmed = SettingsData.lockScreenPowerOffMonitorsOnLock;
 
-        if (!SessionService.active && SessionService.loginctlAvailable) {
+        if (!SessionService.active && SessionService.loginctlAvailable && SettingsData.loginctlLockIntegration) {
             pendingLock = true;
             notifyLoginctl(true);
             return;
@@ -99,7 +99,7 @@ Scope {
         function onSessionLocked() {
             if (shouldLock || pendingLock)
                 return;
-            if (!SessionService.active && SessionService.loginctlAvailable) {
+            if (!SessionService.active && SessionService.loginctlAvailable && SettingsData.loginctlLockIntegration) {
                 pendingLock = true;
                 lockInitiatedLocally = false;
                 return;

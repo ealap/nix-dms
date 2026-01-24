@@ -49,6 +49,17 @@ Item {
                     checked: SettingsData.showSeconds
                     onToggled: checked => SettingsData.set("showSeconds", checked)
                 }
+
+                SettingsToggleRow {
+                    tab: "time"
+                    tags: ["time", "12hour", "format", "padding", "leading", "zero"]
+                    settingKey: "padHours12Hour"
+                    text: I18n.tr("Pad Hours")
+                    description: "02:31 PM vs 2:31 PM"
+                    checked: SettingsData.padHours12Hour
+                    onToggled: checked => SettingsData.set("padHours12Hour", checked)
+                    visible: !SettingsData.use24HourClock
+                }
             }
 
             SettingsCard {
@@ -361,6 +372,25 @@ Item {
                         description: I18n.tr("Use Imperial units (°F, mph, inHg) instead of Metric (°C, km/h, hPa)")
                         checked: SettingsData.useFahrenheit
                         onToggled: checked => SettingsData.set("useFahrenheit", checked)
+                    }
+
+                    Rectangle {
+                        width: parent.width
+                        height: 1
+                        color: Theme.outline
+                        opacity: 0.15
+                        visible: !SettingsData.useFahrenheit
+                    }
+
+                    SettingsToggleRow {
+                        tab: "time"
+                        tags: ["weather", "wind", "speed", "units", "metric"]
+                        settingKey: "windSpeedUnit"
+                        text: I18n.tr("Wind Speed in m/s")
+                        description: I18n.tr("Use meters per second instead of km/h for wind speed")
+                        checked: SettingsData.windSpeedUnit === "ms"
+                        onToggled: checked => SettingsData.set("windSpeedUnit", checked ? "ms" : "kmh")
+                        visible: !SettingsData.useFahrenheit
                     }
 
                     Rectangle {
@@ -690,6 +720,13 @@ Item {
                                 }
 
                                 StyledText {
+                                    property var feelsLike: SettingsData.useFahrenheit ? (WeatherService.weather.feelsLikeF || WeatherService.weather.tempF) : (WeatherService.weather.feelsLike || WeatherService.weather.temp)
+                                    text: I18n.tr("Feels Like %1°").arg(feelsLike)
+                                    font.pixelSize: Theme.fontSizeSmall
+                                    color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.5)
+                                }
+
+                                StyledText {
                                     text: WeatherService.weather.city || ""
                                     font.pixelSize: Theme.fontSizeMedium
                                     color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.7)
@@ -891,20 +928,24 @@ Item {
                                         anchors.horizontalCenter: parent.horizontalCenter
                                     }
                                     StyledText {
+                                        id: windText
                                         text: {
-                                            if (!WeatherService.weather.wind)
-                                                return "--";
-                                            const windKmh = parseFloat(WeatherService.weather.wind);
-                                            if (isNaN(windKmh))
-                                                return WeatherService.weather.wind;
-                                            if (SettingsData.useFahrenheit)
-                                                return Math.round(windKmh * 0.621371) + " mph";
-                                            return WeatherService.weather.wind;
+                                            SettingsData.windSpeedUnit;
+                                            SettingsData.useFahrenheit;
+                                            return WeatherService.formatSpeed(WeatherService.weather.wind) || "--";
                                         }
                                         font.pixelSize: Theme.fontSizeSmall + 1
                                         color: Theme.surfaceText
                                         font.weight: Font.Medium
                                         anchors.horizontalCenter: parent.horizontalCenter
+
+                                        MouseArea {
+                                            anchors.fill: parent
+                                            hoverEnabled: true
+                                            cursorShape: SettingsData.useFahrenheit ? Qt.ArrowCursor : Qt.PointingHandCursor
+                                            enabled: !SettingsData.useFahrenheit
+                                            onClicked: SettingsData.set("windSpeedUnit", SettingsData.windSpeedUnit === "kmh" ? "ms" : "kmh")
+                                        }
                                     }
                                 }
                             }

@@ -83,6 +83,8 @@ Singleton {
     property string nightModeLocationProvider: ""
 
     property var pinnedApps: []
+    property var barPinnedApps: []
+    property int dockLauncherPosition: 0
     property var hiddenTrayIds: []
     property var recentColors: []
     property bool showThirdPartyPlugins: false
@@ -757,6 +759,11 @@ Singleton {
         saveSettings();
     }
 
+    function setDockLauncherPosition(position) {
+        dockLauncherPosition = position;
+        saveSettings();
+    }
+
     function addPinnedApp(appId) {
         if (!appId)
             return;
@@ -776,6 +783,32 @@ Singleton {
 
     function isPinnedApp(appId) {
         return appId && pinnedApps.indexOf(appId) !== -1;
+    }
+
+    function setBarPinnedApps(apps) {
+        barPinnedApps = apps;
+        saveSettings();
+    }
+
+    function addBarPinnedApp(appId) {
+        if (!appId)
+            return;
+        var currentPinned = [...barPinnedApps];
+        if (currentPinned.indexOf(appId) === -1) {
+            currentPinned.push(appId);
+            setBarPinnedApps(currentPinned);
+        }
+    }
+
+    function removeBarPinnedApp(appId) {
+        if (!appId)
+            return;
+        var currentPinned = barPinnedApps.filter(id => id !== appId);
+        setBarPinnedApps(currentPinned);
+    }
+
+    function isBarPinnedApp(appId) {
+        return appId && barPinnedApps.indexOf(appId) !== -1;
     }
 
     function hideTrayId(trayId) {

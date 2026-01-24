@@ -29,16 +29,7 @@ DankModal {
     property int activeImageLoads: 0
     readonly property int maxConcurrentLoads: 3
     readonly property bool clipboardAvailable: DMSService.isConnected && (DMSService.capabilities.length === 0 || DMSService.capabilities.includes("clipboard"))
-    property bool wtypeAvailable: false
-
-    Process {
-        id: wtypeCheck
-        command: ["which", "wtype"]
-        running: true
-        onExited: exitCode => {
-            clipboardHistoryModal.wtypeAvailable = (exitCode === 0);
-        }
-    }
+    readonly property bool wtypeAvailable: SessionService.wtypeAvailable
 
     Process {
         id: wtypeProcess

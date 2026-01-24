@@ -6,6 +6,8 @@ This file is more of a quick reference so I know what to account for before next
 - dbus API for plugins, KDEConnect
 - new dank16 algorithm
 - launcher actions, customize env, args, name, icon
+- launcher v2 - omega stuff, GIF search, supa powerful
+- dock on bar
 
 # 1.2.0
 

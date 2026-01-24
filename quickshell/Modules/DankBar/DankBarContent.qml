@@ -302,6 +302,7 @@ Item {
             "workspaceSwitcher": workspaceSwitcherComponent,
             "focusedWindow": focusedWindowComponent,
             "runningApps": runningAppsComponent,
+            "appsDock": appsDockComponent,
             "clock": clockComponent,
             "music": mediaComponent,
             "weather": weatherComponent,
@@ -343,6 +344,7 @@ Item {
             "workspaceSwitcherComponent": workspaceSwitcherComponent,
             "focusedWindowComponent": focusedWindowComponent,
             "runningAppsComponent": runningAppsComponent,
+            "appsDockComponent": appsDockComponent,
             "clockComponent": clockComponent,
             "mediaComponent": mediaComponent,
             "weatherComponent": weatherComponent,
@@ -649,6 +651,21 @@ Item {
         id: runningAppsComponent
 
         RunningApps {
+            widgetThickness: barWindow.widgetThickness
+            barThickness: barWindow.effectiveBarThickness
+            barSpacing: barConfig?.spacing ?? 4
+            section: topBarContent.getWidgetSection(parent)
+            parentScreen: barWindow.screen
+            topBar: topBarContent
+            barConfig: topBarContent.barConfig
+            isAutoHideBar: topBarContent.barConfig?.autoHide ?? false
+        }
+    }
+
+    Component {
+        id: appsDockComponent
+
+        AppsDock {
             widgetThickness: barWindow.widgetThickness
             barThickness: barWindow.effectiveBarThickness
             barSpacing: barConfig?.spacing ?? 4

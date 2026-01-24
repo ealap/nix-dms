@@ -242,7 +242,8 @@ Loader {
             "colorPicker": components.colorPickerComponent,
             "systemUpdate": components.systemUpdateComponent,
             "layout": components.layoutComponent,
-            "powerMenuButton": components.powerMenuButtonComponent
+            "powerMenuButton": components.powerMenuButtonComponent,
+            "appsDock": components.appsDockComponent
         };
 
         if (componentMap[widgetId]) {

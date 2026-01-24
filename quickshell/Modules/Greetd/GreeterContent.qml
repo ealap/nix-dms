@@ -23,17 +23,12 @@ Item {
 
     readonly property string xdgDataDirs: Quickshell.env("XDG_DATA_DIRS")
     property string screenName: ""
-    property string randomFact: ""
     property string hyprlandCurrentLayout: ""
     property string hyprlandKeyboard: ""
     property int hyprlandLayoutCount: 0
     property bool isPrimaryScreen: !Quickshell.screens?.length || screenName === Quickshell.screens[0]?.name
 
     signal launchRequested
-
-    function pickRandomFact() {
-        randomFact = Facts.getRandomFact();
-    }
 
     property bool weatherInitialized: false
 
@@ -58,7 +53,6 @@ Item {
     }
 
     Component.onCompleted: {
-        pickRandomFact();
         initWeatherService();
 
         if (isPrimaryScreen)
@@ -223,7 +217,7 @@ Item {
                 spacing: 0
 
                 property string fullTimeStr: {
-                    const format = GreetdSettings.use24HourClock ? (GreetdSettings.showSeconds ? "HH:mm:ss" : "HH:mm") : (GreetdSettings.showSeconds ? "h:mm:ss AP" : "h:mm AP");
+                    const format = GreetdSettings.getEffectiveTimeFormat();
                     return systemClock.date.toLocaleTimeString(Qt.locale(), format);
                 }
                 property var timeParts: fullTimeStr.split(':')
@@ -369,6 +363,7 @@ Item {
                             return PortalService.profileImage;
                         }
                         fallbackIcon: "person"
+                        visible: GreetdSettings.lockScreenShowProfileImage
                     }
 
                     Rectangle {
@@ -959,20 +954,6 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                 }
             }
-        }
-
-        StyledText {
-            anchors.bottom: parent.bottom
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.margins: Theme.spacingL
-            width: Math.min(parent.width - Theme.spacingXL * 2, implicitWidth)
-            text: root.randomFact
-            font.pixelSize: Theme.fontSizeSmall
-            color: "white"
-            opacity: 0.8
-            horizontalAlignment: Text.AlignHCenter
-            wrapMode: Text.NoWrap
-            visible: root.randomFact !== ""
         }
 
         DankActionButton {

@@ -259,7 +259,8 @@ Item {
                             minButtonWidth: parent.width < 420 ? 44 : 64
                             textSize: parent.width < 420 ? Theme.fontSizeSmall : Theme.fontSizeMedium
                             property bool isRegistryTheme: Theme.currentThemeCategory === "registry"
-                            property int currentThemeIndex: {
+                            property int pendingIndex: -1
+                            property int computedIndex: {
                                 if (isRegistryTheme)
                                     return 3;
                                 if (Theme.currentTheme === Theme.dynamic)
@@ -268,20 +269,21 @@ Item {
                                     return 2;
                                 return 0;
                             }
-                            property int pendingThemeIndex: -1
 
                             model: DMSService.dmsAvailable ? ["Generic", "Auto", "Custom", "Browse"] : ["Generic", "Auto", "Custom"]
-                            currentIndex: currentThemeIndex
+                            currentIndex: pendingIndex >= 0 ? pendingIndex : computedIndex
                             selectionMode: "single"
                             onSelectionChanged: (index, selected) => {
                                 if (!selected)
                                     return;
-                                pendingThemeIndex = index;
+                                pendingIndex = index;
                             }
                             onAnimationCompleted: {
-                                if (pendingThemeIndex === -1)
+                                if (pendingIndex < 0)
                                     return;
-                                switch (pendingThemeIndex) {
+                                const idx = pendingIndex;
+                                pendingIndex = -1;
+                                switch (idx) {
                                 case 0:
                                     Theme.switchThemeCategory("generic", "blue");
                                     break;
@@ -300,7 +302,6 @@ Item {
                                     Theme.switchThemeCategory("registry", "");
                                     break;
                                 }
-                                pendingThemeIndex = -1;
                             }
                         }
                     }
@@ -809,13 +810,21 @@ Item {
                                     buttonPadding: parent.width < 400 ? Theme.spacingS : Theme.spacingL
                                     minButtonWidth: parent.width < 400 ? 44 : 64
                                     textSize: parent.width < 400 ? Theme.fontSizeSmall : Theme.fontSizeMedium
+                                    property int pendingIndex: -1
                                     model: variantSelector.flavorNames
-                                    currentIndex: variantSelector.flavorIndex
+                                    currentIndex: pendingIndex >= 0 ? pendingIndex : variantSelector.flavorIndex
                                     selectionMode: "single"
-                                    onAnimationCompleted: {
-                                        if (currentIndex < 0 || currentIndex >= variantSelector.flavorOptions.length)
+                                    onSelectionChanged: (index, selected) => {
+                                        if (!selected)
                                             return;
-                                        const flavorId = variantSelector.flavorOptions[currentIndex]?.id;
+                                        pendingIndex = index;
+                                    }
+                                    onAnimationCompleted: {
+                                        if (pendingIndex < 0 || pendingIndex >= variantSelector.flavorOptions.length)
+                                            return;
+                                        const flavorId = variantSelector.flavorOptions[pendingIndex]?.id;
+                                        const idx = pendingIndex;
+                                        pendingIndex = -1;
                                         if (!flavorId || flavorId === variantSelector.selectedFlavor)
                                             return;
                                         Theme.screenTransition();
@@ -909,13 +918,21 @@ Item {
                                     buttonPadding: parent.width < 400 ? Theme.spacingS : Theme.spacingL
                                     minButtonWidth: parent.width < 400 ? 44 : 64
                                     textSize: parent.width < 400 ? Theme.fontSizeSmall : Theme.fontSizeMedium
+                                    property int pendingIndex: -1
                                     model: variantSelector.variantNames
-                                    currentIndex: variantSelector.selectedIndex
+                                    currentIndex: pendingIndex >= 0 ? pendingIndex : variantSelector.selectedIndex
                                     selectionMode: "single"
-                                    onAnimationCompleted: {
-                                        if (currentIndex < 0 || !variantSelector.activeThemeVariants?.options)
+                                    onSelectionChanged: (index, selected) => {
+                                        if (!selected)
                                             return;
-                                        const variantId = variantSelector.activeThemeVariants.options[currentIndex]?.id;
+                                        pendingIndex = index;
+                                    }
+                                    onAnimationCompleted: {
+                                        if (pendingIndex < 0 || !variantSelector.activeThemeVariants?.options)
+                                            return;
+                                        const variantId = variantSelector.activeThemeVariants.options[pendingIndex]?.id;
+                                        const idx = pendingIndex;
+                                        pendingIndex = -1;
                                         if (!variantId || variantId === variantSelector.selectedVariant)
                                             return;
                                         Theme.screenTransition();

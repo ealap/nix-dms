@@ -20,6 +20,7 @@ Singleton {
     property string matugenScheme: "scheme-tonal-spot"
     property bool use24HourClock: true
     property bool showSeconds: false
+    property bool padHours12Hour: false
     property bool useFahrenheit: false
     property bool nightModeEnabled: false
     property string weatherLocation: "New York, NY"
@@ -39,6 +40,7 @@ Singleton {
     property string widgetBackgroundColor: "sch"
     property string lockDateFormat: ""
     property bool lockScreenShowPowerActions: true
+    property bool lockScreenShowProfileImage: true
     property var screenPreferences: ({})
     property int animationSpeed: 2
     property string wallpaperFillMode: "Fill"
@@ -52,6 +54,7 @@ Singleton {
                 matugenScheme = settings.matugenScheme !== undefined ? settings.matugenScheme : "scheme-tonal-spot";
                 use24HourClock = settings.use24HourClock !== undefined ? settings.use24HourClock : true;
                 showSeconds = settings.showSeconds !== undefined ? settings.showSeconds : false;
+                padHours12Hour = settings.padHours12Hour !== undefined ? settings.padHours12Hour : false;
                 useFahrenheit = settings.useFahrenheit !== undefined ? settings.useFahrenheit : false;
                 nightModeEnabled = settings.nightModeEnabled !== undefined ? settings.nightModeEnabled : false;
                 weatherLocation = settings.weatherLocation !== undefined ? settings.weatherLocation : "New York, NY";
@@ -71,6 +74,7 @@ Singleton {
                 widgetBackgroundColor = settings.widgetBackgroundColor !== undefined ? settings.widgetBackgroundColor : "sch";
                 lockDateFormat = settings.lockDateFormat !== undefined ? settings.lockDateFormat : "";
                 lockScreenShowPowerActions = settings.lockScreenShowPowerActions !== undefined ? settings.lockScreenShowPowerActions : true;
+                lockScreenShowProfileImage = settings.lockScreenShowProfileImage !== undefined ? settings.lockScreenShowProfileImage : true;
                 screenPreferences = settings.screenPreferences !== undefined ? settings.screenPreferences : ({});
                 animationSpeed = settings.animationSpeed !== undefined ? settings.animationSpeed : 2;
                 wallpaperFillMode = settings.wallpaperFillMode !== undefined ? settings.wallpaperFillMode : "Fill";
@@ -86,6 +90,14 @@ Singleton {
         } catch (e) {
             console.warn("Failed to parse greetd settings:", e);
         }
+    }
+
+    function getEffectiveTimeFormat() {
+        if (use24HourClock)
+            return showSeconds ? "hh:mm:ss" : "hh:mm";
+        if (padHours12Hour)
+            return showSeconds ? "hh:mm:ss AP" : "hh:mm AP";
+        return showSeconds ? "h:mm:ss AP" : "h:mm AP";
     }
 
     function getEffectiveLockDateFormat() {

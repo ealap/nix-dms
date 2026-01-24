@@ -7,9 +7,7 @@ import (
 	"strings"
 
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/config"
-	"github.com/AvengeMedia/DankMaterialShell/core/internal/dms"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/log"
-	tea "github.com/charmbracelet/bubbletea"
 	"github.com/spf13/cobra"
 )
 
@@ -20,11 +18,9 @@ var rootCmd = &cobra.Command{
 	Use:   "dms",
 	Short: "dms CLI",
 	Long:  "dms is the DankMaterialShell management CLI and backend server.",
-	Run:   runInteractiveMode,
 }
 
 func init() {
-	// Add the -c flag
 	rootCmd.PersistentFlags().StringVarP(&customConfigPath, "config", "c", "", "Specify a custom path to the DMS config directory")
 }
 
@@ -38,7 +34,7 @@ func findConfig(cmd *cobra.Command, args []string) error {
 		if statErr == nil && !info.IsDir() {
 			configPath = customConfigPath
 			log.Debug("Using config from: %s", configPath)
-			return nil // <-- Guard statement
+			return nil
 		}
 
 		if statErr != nil {
@@ -75,19 +71,4 @@ func findConfig(cmd *cobra.Command, args []string) error {
 
 	log.Debug("Using config from: %s", configPath)
 	return nil
-}
-func runInteractiveMode(cmd *cobra.Command, args []string) {
-	detector, _ := dms.NewDetector()
-
-	if !detector.IsDMSInstalled() {
-		log.Error("DankMaterialShell (DMS) is not detected as installed on this system.")
-		log.Info("Please install DMS using dankinstall before using this management interface.")
-		os.Exit(1)
-	}
-
-	model := dms.NewModel(Version)
-	p := tea.NewProgram(model, tea.WithAltScreen())
-	if _, err := p.Run(); err != nil {
-		log.Fatalf("Error running program: %v", err)
-	}
 }

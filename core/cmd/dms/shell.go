@@ -618,9 +618,8 @@ func getShellIPCCompletions(args []string, _ string) []string {
 
 func runShellIPCCommand(args []string) {
 	if len(args) == 0 {
-		log.Error("IPC command requires arguments")
-		log.Info("Usage: dms ipc <command> [args...]")
-		os.Exit(1)
+		printIPCHelp()
+		return
 	}
 
 	if args[0] != "call" {
@@ -640,5 +639,47 @@ func runShellIPCCommand(args []string) {
 
 	if err := cmd.Run(); err != nil {
 		log.Fatalf("Error running IPC command: %v", err)
+	}
+}
+
+func printIPCHelp() {
+	fmt.Println("Usage: dms ipc <target> <function> [args...]")
+	fmt.Println()
+
+	cmdArgs := []string{"ipc"}
+	if qsHasAnyDisplay() {
+		cmdArgs = append(cmdArgs, "--any-display")
+	}
+	cmdArgs = append(cmdArgs, "-p", configPath, "show")
+	cmd := exec.Command("qs", cmdArgs...)
+
+	output, err := cmd.Output()
+	if err != nil {
+		fmt.Println("Could not retrieve available IPC targets (is DMS running?)")
+		return
+	}
+
+	targets := parseTargetsFromIPCShowOutput(string(output))
+	if len(targets) == 0 {
+		fmt.Println("No IPC targets available")
+		return
+	}
+
+	fmt.Println("Targets:")
+
+	targetNames := make([]string, 0, len(targets))
+	for name := range targets {
+		targetNames = append(targetNames, name)
+	}
+	slices.Sort(targetNames)
+
+	for _, targetName := range targetNames {
+		funcs := targets[targetName]
+		funcNames := make([]string, 0, len(funcs))
+		for fn := range funcs {
+			funcNames = append(funcNames, fn)
+		}
+		slices.Sort(funcNames)
+		fmt.Printf("  %-16s %s\n", targetName, strings.Join(funcNames, ", "))
 	}
 }

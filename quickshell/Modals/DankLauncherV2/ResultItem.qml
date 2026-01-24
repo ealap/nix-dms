@@ -9,7 +9,7 @@ Rectangle {
 
     property var item: null
     property bool isSelected: false
-    property bool isHovered: itemArea.containsMouse
+    property bool isHovered: itemArea.containsMouse || allModeToggleArea.containsMouse
     property var controller: null
     property int flatIndex: -1
 
@@ -37,6 +37,29 @@ Rectangle {
     height: 52
     color: isSelected ? Theme.primaryPressed : isHovered ? Theme.primaryPressed : "transparent"
     radius: Theme.cornerRadius
+
+    MouseArea {
+        id: itemArea
+        anchors.fill: parent
+        anchors.rightMargin: root.item?.type === "plugin_browse" ? 40 : 0
+        hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+        onClicked: mouse => {
+            if (mouse.button === Qt.RightButton) {
+                var scenePos = mapToItem(null, mouse.x, mouse.y);
+                root.rightClicked(scenePos.x, scenePos.y);
+            } else {
+                root.clicked();
+            }
+        }
+
+        onPositionChanged: {
+            if (root.controller)
+                root.controller.keyboardNavigationActive = false;
+        }
+    }
 
     Row {
         anchors.fill: parent
@@ -86,7 +109,47 @@ Rectangle {
             spacing: Theme.spacingS
 
             Rectangle {
-                visible: root.item?.type && root.item.type !== "app"
+                id: allModeToggle
+                visible: root.item?.type === "plugin_browse"
+                width: 28
+                height: 28
+                radius: 14
+                anchors.verticalCenter: parent.verticalCenter
+                color: allModeToggleArea.containsMouse ? Theme.surfaceHover : "transparent"
+
+                property bool isAllowed: {
+                    if (root.item?.type !== "plugin_browse")
+                        return false;
+                    var pluginId = root.item?.data?.pluginId;
+                    if (!pluginId)
+                        return false;
+                    SettingsData.launcherPluginVisibility;
+                    return SettingsData.getPluginAllowWithoutTrigger(pluginId);
+                }
+
+                DankIcon {
+                    anchors.centerIn: parent
+                    name: allModeToggle.isAllowed ? "visibility" : "visibility_off"
+                    size: 18
+                    color: allModeToggle.isAllowed ? Theme.primary : Theme.surfaceVariantText
+                }
+
+                MouseArea {
+                    id: allModeToggleArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        var pluginId = root.item?.data?.pluginId;
+                        if (!pluginId)
+                            return;
+                        SettingsData.setPluginAllowWithoutTrigger(pluginId, !allModeToggle.isAllowed);
+                    }
+                }
+            }
+
+            Rectangle {
+                visible: root.item?.type && root.item.type !== "app" && root.item.type !== "plugin_browse"
                 width: typeBadge.implicitWidth + Theme.spacingS * 2
                 height: 20
                 radius: 10
@@ -113,29 +176,6 @@ Rectangle {
                     font.pixelSize: Theme.fontSizeSmall - 2
                     color: Theme.surfaceVariantText
                 }
-            }
-        }
-    }
-
-    MouseArea {
-        id: itemArea
-        anchors.fill: parent
-        hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
-
-        onClicked: mouse => {
-            if (mouse.button === Qt.RightButton) {
-                var scenePos = mapToItem(null, mouse.x, mouse.y);
-                root.rightClicked(scenePos.x, scenePos.y);
-            } else {
-                root.clicked();
-            }
-        }
-
-        onPositionChanged: {
-            if (root.controller) {
-                root.controller.keyboardNavigationActive = false;
             }
         }
     }

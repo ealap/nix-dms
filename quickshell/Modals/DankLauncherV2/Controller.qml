@@ -2,9 +2,13 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import qs.Common
 import qs.Services
 import "Scorer.js" as Scorer
+import "ControllerUtils.js" as Utils
+import "NavigationHelpers.js" as Nav
+import "ItemTransformers.js" as Transform
 
 Item {
     id: root
@@ -39,6 +43,47 @@ Item {
         function onSortAppsAlphabeticallyChanged() {
             AppSearchService.invalidateLauncherCache();
         }
+    }
+
+    Connections {
+        target: PluginService
+        function onRequestLauncherUpdate(pluginId) {
+            if (activePluginId === pluginId || searchQuery) {
+                performSearch();
+            }
+        }
+    }
+
+    Process {
+        id: wtypeProcess
+        command: ["wtype", "-M", "ctrl", "-P", "v", "-p", "v", "-m", "ctrl"]
+        running: false
+    }
+
+    Timer {
+        id: pasteTimer
+        interval: 200
+        repeat: false
+        onTriggered: wtypeProcess.running = true
+    }
+
+    function pasteSelected() {
+        if (!selectedItem)
+            return;
+        if (!SessionService.wtypeAvailable) {
+            ToastService.showError("wtype not available - install wtype for paste support");
+            return;
+        }
+
+        const pluginId = selectedItem.pluginId;
+        if (!pluginId)
+            return;
+        const pasteText = AppSearchService.getPluginPasteText(pluginId, selectedItem.data);
+        if (!pasteText)
+            return;
+        Quickshell.execDetached(["dms", "cl", "copy", pasteText]);
+        itemExecuted();
+        pasteTimer.start();
     }
 
     readonly property var sectionDefinitions: [
@@ -105,6 +150,10 @@ Item {
             if (sectionDefinitions[i].id === sectionId)
                 return sectionDefinitions[i].defaultViewMode || "list";
         }
+
+        if (pluginViewPreferences[sectionId]?.mode)
+            return pluginViewPreferences[sectionId].mode;
+
         return "list";
     }
 
@@ -271,9 +320,23 @@ Item {
         return false;
     }
 
+    function preserveSelectionAfterUpdate() {
+        var previousSelectedId = selectedItem?.id || "";
+        return function (newFlatModel) {
+            if (!previousSelectedId)
+                return getFirstItemIndex();
+            for (var i = 0; i < newFlatModel.length; i++) {
+                if (!newFlatModel[i].isHeader && newFlatModel[i].item?.id === previousSelectedId)
+                    return i;
+            }
+            return getFirstItemIndex();
+        };
+    }
+
     function performSearch() {
         var currentVersion = _searchVersion;
         isSearching = true;
+        var restoreSelection = preserveSelectionAfterUpdate();
 
         var cachedSections = AppSearchService.getCachedDefaultSections();
         if (cachedSections && !searchQuery && searchMode === "all" && !pluginFilter) {
@@ -289,7 +352,7 @@ Item {
                 return copy;
             });
             flatModel = Scorer.flattenSections(sections);
-            selectedFlatIndex = getFirstItemIndex();
+            selectedFlatIndex = restoreSelection(flatModel);
             updateSelectedItem();
             isSearching = false;
             searchCompleted();
@@ -328,7 +391,7 @@ Item {
             }
 
             flatModel = Scorer.flattenSections(sections);
-            selectedFlatIndex = getFirstItemIndex();
+            selectedFlatIndex = restoreSelection(flatModel);
             updateSelectedItem();
 
             isSearching = false;
@@ -367,7 +430,7 @@ Item {
                     return copy;
                 });
                 flatModel = Scorer.flattenSections(sections);
-                selectedFlatIndex = getFirstItemIndex();
+                selectedFlatIndex = restoreSelection(flatModel);
                 updateSelectedItem();
                 isSearching = false;
                 searchCompleted();
@@ -392,7 +455,7 @@ Item {
             }
 
             flatModel = Scorer.flattenSections(sections);
-            selectedFlatIndex = getFirstItemIndex();
+            selectedFlatIndex = restoreSelection(flatModel);
             updateSelectedItem();
 
             isSearching = false;
@@ -447,7 +510,7 @@ Item {
             }
 
             flatModel = Scorer.flattenSections(sections);
-            selectedFlatIndex = getFirstItemIndex();
+            selectedFlatIndex = restoreSelection(flatModel);
             updateSelectedItem();
 
             isSearching = false;
@@ -531,7 +594,7 @@ Item {
             AppSearchService.setCachedDefaultSections(sections, flatModel);
         }
 
-        selectedFlatIndex = getFirstItemIndex();
+        selectedFlatIndex = restoreSelection(flatModel);
         updateSelectedItem();
 
         isSearching = false;
@@ -632,249 +695,26 @@ Item {
     function transformApp(app) {
         var appId = app.id || app.execString || app.exec || "";
         var override = SessionData.getAppOverride(appId);
-
-        var actions = [];
-        if (app.actions && app.actions.length > 0) {
-            for (var i = 0; i < app.actions.length; i++) {
-                actions.push({
-                    name: app.actions[i].name,
-                    icon: "play_arrow",
-                    actionData: app.actions[i]
-                });
-            }
-        }
-
-        if (SessionService.nvidiaCommand) {
-            actions.push({
-                name: I18n.tr("Launch on dGPU"),
-                icon: "memory",
-                action: "launch_dgpu"
-            });
-        }
-
-        return {
-            id: appId,
-            type: "app",
-            name: override?.name || app.name || "",
-            subtitle: override?.comment || app.comment || "",
-            icon: override?.icon || app.icon || "application-x-executable",
-            iconType: "image",
-            section: "apps",
-            data: app,
-            keywords: app.keywords || [],
-            actions: actions,
-            primaryAction: {
-                name: I18n.tr("Launch"),
-                icon: "open_in_new",
-                action: "launch"
-            }
-        };
+        return Transform.transformApp(app, override, [], I18n.tr("Launch"));
     }
 
     function transformCoreApp(app) {
-        var iconName = "apps";
-        var iconType = "material";
-
-        if (app.icon) {
-            if (app.icon.startsWith("svg+corner:")) {
-                iconType = "composite";
-            } else if (app.icon.startsWith("material:")) {
-                iconName = app.icon.substring(9);
-            } else {
-                iconName = app.icon;
-                iconType = "image";
-            }
-        }
-
-        return {
-            id: app.builtInPluginId || app.action || "",
-            type: "app",
-            name: app.name || "",
-            subtitle: app.comment || "",
-            icon: iconName,
-            iconType: iconType,
-            iconFull: app.icon,
-            section: "apps",
-            data: app,
-            isCore: true,
-            actions: [],
-            primaryAction: {
-                name: I18n.tr("Open"),
-                icon: "open_in_new",
-                action: "launch"
-            }
-        };
+        return Transform.transformCoreApp(app, I18n.tr("Open"));
     }
 
     function transformBuiltInLauncherItem(item, pluginId) {
-        var rawIcon = item.icon || "extension";
-        var icon = stripIconPrefix(rawIcon);
-        var iconType = item.iconType;
-        if (!iconType) {
-            if (rawIcon.startsWith("material:"))
-                iconType = "material";
-            else if (rawIcon.startsWith("unicode:"))
-                iconType = "unicode";
-            else
-                iconType = "image";
-        }
-
-        return {
-            id: item.action || "",
-            type: "plugin",
-            name: item.name || "",
-            subtitle: item.comment || "",
-            icon: icon,
-            iconType: iconType,
-            section: "plugin_" + pluginId,
-            data: item,
-            pluginId: pluginId,
-            isBuiltInLauncher: true,
-            keywords: item.keywords || [],
-            actions: [],
-            primaryAction: {
-                name: I18n.tr("Open"),
-                icon: "open_in_new",
-                action: "execute"
-            }
-        };
+        return Transform.transformBuiltInLauncherItem(item, pluginId, I18n.tr("Open"));
     }
 
     function transformFileResult(file) {
-        var filename = file.path ? file.path.split("/").pop() : "";
-        var dirname = file.path ? file.path.substring(0, file.path.lastIndexOf("/")) : "";
-
-        return {
-            id: file.path || "",
-            type: "file",
-            name: filename,
-            subtitle: dirname,
-            icon: getFileIcon(filename),
-            iconType: "material",
-            section: "files",
-            data: file,
-            actions: [
-                {
-                    name: I18n.tr("Open folder"),
-                    icon: "folder_open",
-                    action: "open_folder"
-                },
-                {
-                    name: I18n.tr("Copy path"),
-                    icon: "content_copy",
-                    action: "copy_path"
-                }
-            ],
-            primaryAction: {
-                name: I18n.tr("Open"),
-                icon: "open_in_new",
-                action: "open"
-            }
-        };
-    }
-
-    function getFileIcon(filename) {
-        var ext = filename.lastIndexOf(".") > 0 ? filename.substring(filename.lastIndexOf(".") + 1).toLowerCase() : "";
-
-        var iconMap = {
-            "pdf": "picture_as_pdf",
-            "doc": "description",
-            "docx": "description",
-            "odt": "description",
-            "xls": "table_chart",
-            "xlsx": "table_chart",
-            "ods": "table_chart",
-            "ppt": "slideshow",
-            "pptx": "slideshow",
-            "odp": "slideshow",
-            "txt": "article",
-            "md": "article",
-            "rst": "article",
-            "jpg": "image",
-            "jpeg": "image",
-            "png": "image",
-            "gif": "image",
-            "svg": "image",
-            "webp": "image",
-            "mp3": "audio_file",
-            "wav": "audio_file",
-            "flac": "audio_file",
-            "ogg": "audio_file",
-            "mp4": "video_file",
-            "mkv": "video_file",
-            "avi": "video_file",
-            "webm": "video_file",
-            "zip": "folder_zip",
-            "tar": "folder_zip",
-            "gz": "folder_zip",
-            "7z": "folder_zip",
-            "rar": "folder_zip",
-            "js": "code",
-            "ts": "code",
-            "py": "code",
-            "rs": "code",
-            "go": "code",
-            "java": "code",
-            "c": "code",
-            "cpp": "code",
-            "h": "code",
-            "html": "web",
-            "css": "web",
-            "htm": "web",
-            "json": "data_object",
-            "xml": "data_object",
-            "yaml": "data_object",
-            "yml": "data_object",
-            "sh": "terminal",
-            "bash": "terminal",
-            "zsh": "terminal"
-        };
-
-        return iconMap[ext] || "insert_drive_file";
+        return Transform.transformFileResult(file, I18n.tr("Open"), I18n.tr("Open folder"), I18n.tr("Copy path"));
     }
 
     function evaluateCalculator(query) {
-        if (!query || query.length === 0)
+        var calc = Utils.evaluateCalculator(query);
+        if (!calc)
             return null;
-
-        var mathExpr = query.replace(/[^0-9+\-*/().%\s^]/g, "");
-        if (mathExpr.length < 2)
-            return null;
-
-        var hasMath = /[+\-*/^%]/.test(query) && /\d/.test(query);
-        if (!hasMath)
-            return null;
-
-        try {
-            var sanitized = mathExpr.replace(/\^/g, "**");
-            var result = Function('"use strict"; return (' + sanitized + ')')();
-
-            if (typeof result === "number" && isFinite(result)) {
-                var displayResult = Number.isInteger(result) ? result.toString() : result.toFixed(6).replace(/\.?0+$/, "");
-
-                return {
-                    id: "calculator_result",
-                    type: "calculator",
-                    name: displayResult,
-                    subtitle: query + " =",
-                    icon: "calculate",
-                    iconType: "material",
-                    section: "calculator",
-                    data: {
-                        expression: query,
-                        result: result
-                    },
-                    actions: [],
-                    primaryAction: {
-                        name: I18n.tr("Copy"),
-                        icon: "content_copy",
-                        action: "copy"
-                    }
-                };
-            }
-        } catch (e) {}
-
-        return null;
+        return Transform.createCalculatorItem(calc, query, I18n.tr("Copy"));
     }
 
     function detectTrigger(query) {
@@ -946,17 +786,7 @@ Item {
     }
 
     function sortPluginIdsByOrder(pluginIds) {
-        var order = SettingsData.launcherPluginOrder || [];
-        if (order.length === 0)
-            return pluginIds;
-        var orderMap = {};
-        for (var i = 0; i < order.length; i++)
-            orderMap[order[i]] = i;
-        return pluginIds.slice().sort(function (a, b) {
-            var aOrder = orderMap[a] !== undefined ? orderMap[a] : 9999;
-            var bOrder = orderMap[b] !== undefined ? orderMap[b] : 9999;
-            return aOrder - bOrder;
-        });
+        return Utils.sortPluginIdsByOrder(pluginIds, SettingsData.launcherPluginOrder || []);
     }
 
     function getAllVisiblePluginsOrdered() {
@@ -977,17 +807,7 @@ Item {
                     isBuiltIn: true
                 });
         }
-        var order = SettingsData.launcherPluginOrder || [];
-        if (order.length === 0)
-            return all;
-        var orderMap = {};
-        for (var i = 0; i < order.length; i++)
-            orderMap[order[i]] = i;
-        return all.sort(function (a, b) {
-            var aOrder = orderMap[a.id] !== undefined ? orderMap[a.id] : 9999;
-            var bOrder = orderMap[b.id] !== undefined ? orderMap[b.id] : 9999;
-            return aOrder - bOrder;
-        });
+        return Utils.sortPluginsOrdered(all, SettingsData.launcherPluginOrder || []);
     }
 
     function getEmptyTriggerPluginsOrdered() {
@@ -1010,72 +830,27 @@ Item {
                     isBuiltIn: true
                 });
         }
-        var order = SettingsData.launcherPluginOrder || [];
-        if (order.length === 0)
-            return all;
-        var orderMap = {};
-        for (var i = 0; i < order.length; i++)
-            orderMap[order[i]] = i;
-        return all.sort(function (a, b) {
-            var aOrder = orderMap[a.id] !== undefined ? orderMap[a.id] : 9999;
-            var bOrder = orderMap[b.id] !== undefined ? orderMap[b.id] : 9999;
-            return aOrder - bOrder;
-        });
+        return Utils.sortPluginsOrdered(all, SettingsData.launcherPluginOrder || []);
     }
 
     function getPluginBrowseItems() {
         var items = [];
+        var browseLabel = I18n.tr("Browse");
+        var triggerLabel = I18n.tr("Trigger: %1");
+        var noTriggerLabel = I18n.tr("No trigger");
 
         var launchers = PluginService.getLauncherPlugins();
         for (var pluginId in launchers) {
-            var plugin = launchers[pluginId];
             var trigger = PluginService.getPluginTrigger(pluginId);
-            var rawIcon = plugin.icon || "extension";
-            items.push({
-                id: "browse_" + pluginId,
-                type: "plugin_browse",
-                name: plugin.name || pluginId,
-                subtitle: trigger ? I18n.tr("Trigger: %1").arg(trigger) : I18n.tr("No trigger"),
-                icon: stripIconPrefix(rawIcon),
-                iconType: detectIconType(rawIcon),
-                section: "browse_plugins",
-                data: {
-                    pluginId: pluginId,
-                    plugin: plugin
-                },
-                actions: [],
-                primaryAction: {
-                    name: I18n.tr("Browse"),
-                    icon: "arrow_forward",
-                    action: "browse_plugin"
-                }
-            });
+            var isAllowed = SettingsData.getPluginAllowWithoutTrigger(pluginId);
+            items.push(Transform.createPluginBrowseItem(pluginId, launchers[pluginId], trigger, false, isAllowed, browseLabel, triggerLabel, noTriggerLabel));
         }
 
         var builtInLaunchers = AppSearchService.getBuiltInLauncherPlugins();
         for (var pluginId in builtInLaunchers) {
-            var plugin = builtInLaunchers[pluginId];
             var trigger = AppSearchService.getBuiltInPluginTrigger(pluginId);
-            items.push({
-                id: "browse_" + pluginId,
-                type: "plugin_browse",
-                name: plugin.name || pluginId,
-                subtitle: trigger ? I18n.tr("Trigger: %1").arg(trigger) : I18n.tr("No trigger"),
-                icon: plugin.cornerIcon || "extension",
-                iconType: "material",
-                section: "browse_plugins",
-                data: {
-                    pluginId: pluginId,
-                    plugin: plugin,
-                    isBuiltIn: true
-                },
-                actions: [],
-                primaryAction: {
-                    name: I18n.tr("Browse"),
-                    icon: "arrow_forward",
-                    action: "browse_plugin"
-                }
-            });
+            var isAllowed = SettingsData.getPluginAllowWithoutTrigger(pluginId);
+            items.push(Transform.createPluginBrowseItem(pluginId, builtInLaunchers[pluginId], trigger, true, isAllowed, browseLabel, triggerLabel, noTriggerLabel));
         }
 
         return items;
@@ -1098,34 +873,6 @@ Item {
         }
 
         return transformed;
-    }
-
-    function detectIconType(iconName) {
-        if (!iconName)
-            return "material";
-        if (iconName.startsWith("unicode:"))
-            return "unicode";
-        if (iconName.startsWith("material:"))
-            return "material";
-        if (iconName.startsWith("image:"))
-            return "image";
-        if (iconName.indexOf("/") >= 0 || iconName.indexOf(".") >= 0)
-            return "image";
-        if (/^[a-z]+-[a-z]/.test(iconName.toLowerCase()))
-            return "image";
-        return "material";
-    }
-
-    function stripIconPrefix(iconName) {
-        if (!iconName)
-            return "extension";
-        if (iconName.startsWith("unicode:"))
-            return iconName.substring(8);
-        if (iconName.startsWith("material:"))
-            return iconName.substring(9);
-        if (iconName.startsWith("image:"))
-            return iconName.substring(6);
-        return iconName;
     }
 
     function getPluginName(pluginId, isBuiltIn) {
@@ -1153,7 +900,7 @@ Item {
             var rawIcon = launchers[pluginId].icon || "extension";
             return {
                 name: launchers[pluginId].name || pluginId,
-                icon: stripIconPrefix(rawIcon)
+                icon: Utils.stripIconPrefix(rawIcon)
             };
         }
         return {
@@ -1185,9 +932,8 @@ Item {
                 defaultViewMode: viewPref.mode || "list"
             };
 
-            if (viewPref.enforced) {
-                setPluginViewPreference(section, viewPref.mode, true);
-            }
+            if (viewPref.mode)
+                setPluginViewPreference(section, viewPref.mode, viewPref.enforced);
 
             basePriority += 0.01;
         }
@@ -1223,36 +969,7 @@ Item {
     }
 
     function transformPluginItem(item, pluginId) {
-        var rawIcon = item.icon || "extension";
-        var icon = stripIconPrefix(rawIcon);
-        var iconType = item.iconType;
-        if (!iconType) {
-            if (rawIcon.startsWith("material:"))
-                iconType = "material";
-            else if (rawIcon.startsWith("unicode:"))
-                iconType = "unicode";
-            else
-                iconType = "image";
-        }
-
-        return {
-            id: item.id || item.name || "",
-            type: "plugin",
-            name: item.name || "",
-            subtitle: item.comment || item.description || "",
-            icon: icon,
-            iconType: iconType,
-            section: "plugin_" + pluginId,
-            data: item,
-            pluginId: pluginId,
-            keywords: item.keywords || [],
-            actions: item.actions || [],
-            primaryAction: item.primaryAction || {
-                name: I18n.tr("Select"),
-                icon: "check",
-                action: "execute"
-            }
-        };
+        return Transform.transformPluginItem(item, pluginId, I18n.tr("Select"));
     }
 
     function getFrecencyForItem(item) {
@@ -1278,11 +995,7 @@ Item {
     }
 
     function getFirstItemIndex() {
-        for (var i = 0; i < flatModel.length; i++) {
-            if (!flatModel[i].isHeader)
-                return i;
-        }
-        return 0;
+        return Nav.getFirstItemIndex(flatModel);
     }
 
     function updateSelectedItem() {
@@ -1303,266 +1016,67 @@ Item {
         return getSectionViewMode(entry.sectionId);
     }
 
-    function findNextNonHeaderIndex(startIndex) {
-        for (var i = startIndex; i < flatModel.length; i++) {
-            if (!flatModel[i].isHeader)
-                return i;
-        }
-        return -1;
-    }
-
-    function findPrevNonHeaderIndex(startIndex) {
-        for (var i = startIndex; i >= 0; i--) {
-            if (!flatModel[i].isHeader)
-                return i;
-        }
-        return -1;
-    }
-
-    function getSectionBounds(sectionId) {
-        var start = -1, end = -1;
-        for (var i = 0; i < flatModel.length; i++) {
-            if (flatModel[i].isHeader && flatModel[i].section?.id === sectionId) {
-                start = i + 1;
-            } else if (start >= 0 && !flatModel[i].isHeader && flatModel[i].sectionId === sectionId) {
-                end = i;
-            } else if (start >= 0 && end >= 0 && flatModel[i].sectionId !== sectionId) {
-                break;
-            }
-        }
-        return {
-            start: start,
-            end: end,
-            count: end >= start ? end - start + 1 : 0
-        };
-    }
-
     function getGridColumns(sectionId) {
-        var mode = getSectionViewMode(sectionId);
-        if (mode === "tile")
-            return 3;
-        if (mode === "grid")
-            return gridColumns;
-        return 1;
+        return Nav.getGridColumns(getSectionViewMode(sectionId), gridColumns);
     }
 
     function selectNext() {
         keyboardNavigationActive = true;
-        if (flatModel.length === 0)
-            return;
-        var entry = flatModel[selectedFlatIndex];
-        if (!entry || entry.isHeader) {
-            var next = findNextNonHeaderIndex(selectedFlatIndex + 1);
-            if (next !== -1) {
-                selectedFlatIndex = next;
-                updateSelectedItem();
-            }
-            return;
-        }
-
-        var viewMode = getSectionViewMode(entry.sectionId);
-        if (viewMode === "list") {
-            var next = findNextNonHeaderIndex(selectedFlatIndex + 1);
-            if (next !== -1) {
-                selectedFlatIndex = next;
-                updateSelectedItem();
-            }
-            return;
-        }
-
-        var bounds = getSectionBounds(entry.sectionId);
-        var cols = getGridColumns(entry.sectionId);
-        var posInSection = selectedFlatIndex - bounds.start;
-        var newPosInSection = posInSection + cols;
-
-        if (newPosInSection < bounds.count) {
-            selectedFlatIndex = bounds.start + newPosInSection;
+        var newIndex = Nav.calculateNextIndex(flatModel, selectedFlatIndex, null, null, gridColumns, getSectionViewMode);
+        if (newIndex !== selectedFlatIndex) {
+            selectedFlatIndex = newIndex;
             updateSelectedItem();
-        } else {
-            var nextSection = findNextNonHeaderIndex(bounds.end + 1);
-            if (nextSection !== -1) {
-                selectedFlatIndex = nextSection;
-                updateSelectedItem();
-            }
         }
     }
 
     function selectPrevious() {
         keyboardNavigationActive = true;
-        if (flatModel.length === 0)
-            return;
-        var entry = flatModel[selectedFlatIndex];
-        if (!entry || entry.isHeader) {
-            var prev = findPrevNonHeaderIndex(selectedFlatIndex - 1);
-            if (prev !== -1) {
-                selectedFlatIndex = prev;
-                updateSelectedItem();
-            }
-            return;
-        }
-
-        var viewMode = getSectionViewMode(entry.sectionId);
-        if (viewMode === "list") {
-            var prev = findPrevNonHeaderIndex(selectedFlatIndex - 1);
-            if (prev !== -1) {
-                selectedFlatIndex = prev;
-                updateSelectedItem();
-            }
-            return;
-        }
-
-        var bounds = getSectionBounds(entry.sectionId);
-        var cols = getGridColumns(entry.sectionId);
-        var posInSection = selectedFlatIndex - bounds.start;
-        var newPosInSection = posInSection - cols;
-
-        if (newPosInSection >= 0) {
-            selectedFlatIndex = bounds.start + newPosInSection;
+        var newIndex = Nav.calculatePrevIndex(flatModel, selectedFlatIndex, null, null, gridColumns, getSectionViewMode);
+        if (newIndex !== selectedFlatIndex) {
+            selectedFlatIndex = newIndex;
             updateSelectedItem();
-        } else {
-            var prevItem = findPrevNonHeaderIndex(bounds.start - 1);
-            if (prevItem !== -1) {
-                selectedFlatIndex = prevItem;
-                updateSelectedItem();
-            }
         }
     }
 
     function selectRight() {
         keyboardNavigationActive = true;
-        if (flatModel.length === 0)
-            return;
-        var entry = flatModel[selectedFlatIndex];
-        if (!entry || entry.isHeader) {
-            var next = findNextNonHeaderIndex(selectedFlatIndex + 1);
-            if (next !== -1) {
-                selectedFlatIndex = next;
-                updateSelectedItem();
-            }
-            return;
-        }
-
-        var viewMode = getSectionViewMode(entry.sectionId);
-        if (viewMode === "list") {
-            var next = findNextNonHeaderIndex(selectedFlatIndex + 1);
-            if (next !== -1) {
-                selectedFlatIndex = next;
-                updateSelectedItem();
-            }
-            return;
-        }
-
-        var bounds = getSectionBounds(entry.sectionId);
-        var posInSection = selectedFlatIndex - bounds.start;
-        if (posInSection + 1 < bounds.count) {
-            selectedFlatIndex = bounds.start + posInSection + 1;
+        var newIndex = Nav.calculateRightIndex(flatModel, selectedFlatIndex, getSectionViewMode);
+        if (newIndex !== selectedFlatIndex) {
+            selectedFlatIndex = newIndex;
             updateSelectedItem();
         }
     }
 
     function selectLeft() {
         keyboardNavigationActive = true;
-        if (flatModel.length === 0)
-            return;
-        var entry = flatModel[selectedFlatIndex];
-        if (!entry || entry.isHeader) {
-            var prev = findPrevNonHeaderIndex(selectedFlatIndex - 1);
-            if (prev !== -1) {
-                selectedFlatIndex = prev;
-                updateSelectedItem();
-            }
-            return;
-        }
-
-        var viewMode = getSectionViewMode(entry.sectionId);
-        if (viewMode === "list") {
-            var prev = findPrevNonHeaderIndex(selectedFlatIndex - 1);
-            if (prev !== -1) {
-                selectedFlatIndex = prev;
-                updateSelectedItem();
-            }
-            return;
-        }
-
-        var bounds = getSectionBounds(entry.sectionId);
-        var posInSection = selectedFlatIndex - bounds.start;
-        if (posInSection > 0) {
-            selectedFlatIndex = bounds.start + posInSection - 1;
+        var newIndex = Nav.calculateLeftIndex(flatModel, selectedFlatIndex, getSectionViewMode);
+        if (newIndex !== selectedFlatIndex) {
+            selectedFlatIndex = newIndex;
             updateSelectedItem();
         }
     }
 
     function selectNextSection() {
         keyboardNavigationActive = true;
-        var currentSection = null;
-        if (selectedFlatIndex >= 0 && selectedFlatIndex < flatModel.length) {
-            currentSection = flatModel[selectedFlatIndex].sectionId;
-        }
-
-        var foundCurrent = false;
-        for (var i = 0; i < flatModel.length; i++) {
-            if (flatModel[i].isHeader) {
-                if (foundCurrent) {
-                    for (var j = i + 1; j < flatModel.length; j++) {
-                        if (!flatModel[j].isHeader) {
-                            selectedFlatIndex = j;
-                            updateSelectedItem();
-                            return;
-                        }
-                    }
-                }
-                if (flatModel[i].section.id === currentSection) {
-                    foundCurrent = true;
-                }
-            }
+        var newIndex = Nav.calculateNextSectionIndex(flatModel, selectedFlatIndex);
+        if (newIndex !== selectedFlatIndex) {
+            selectedFlatIndex = newIndex;
+            updateSelectedItem();
         }
     }
 
     function selectPreviousSection() {
         keyboardNavigationActive = true;
-        var currentSection = null;
-        if (selectedFlatIndex >= 0 && selectedFlatIndex < flatModel.length) {
-            currentSection = flatModel[selectedFlatIndex].sectionId;
-        }
-
-        var lastSectionStart = -1;
-        var prevSectionStart = -1;
-
-        for (var i = 0; i < flatModel.length; i++) {
-            if (flatModel[i].isHeader) {
-                if (flatModel[i].section.id === currentSection) {
-                    break;
-                }
-                prevSectionStart = lastSectionStart;
-                lastSectionStart = i;
-            }
-        }
-
-        if (prevSectionStart >= 0) {
-            for (var j = prevSectionStart + 1; j < flatModel.length; j++) {
-                if (!flatModel[j].isHeader) {
-                    selectedFlatIndex = j;
-                    updateSelectedItem();
-                    return;
-                }
-            }
+        var newIndex = Nav.calculatePrevSectionIndex(flatModel, selectedFlatIndex);
+        if (newIndex !== selectedFlatIndex) {
+            selectedFlatIndex = newIndex;
+            updateSelectedItem();
         }
     }
 
     function selectPageDown(visibleItems) {
         keyboardNavigationActive = true;
-        if (flatModel.length === 0)
-            return;
-        var itemsToSkip = visibleItems || 8;
-        var newIndex = selectedFlatIndex;
-
-        for (var i = 0; i < itemsToSkip; i++) {
-            var next = findNextNonHeaderIndex(newIndex + 1);
-            if (next === -1)
-                break;
-            newIndex = next;
-        }
-
+        var newIndex = Nav.calculatePageDownIndex(flatModel, selectedFlatIndex, visibleItems);
         if (newIndex !== selectedFlatIndex) {
             selectedFlatIndex = newIndex;
             updateSelectedItem();
@@ -1571,18 +1085,7 @@ Item {
 
     function selectPageUp(visibleItems) {
         keyboardNavigationActive = true;
-        if (flatModel.length === 0)
-            return;
-        var itemsToSkip = visibleItems || 8;
-        var newIndex = selectedFlatIndex;
-
-        for (var i = 0; i < itemsToSkip; i++) {
-            var prev = findPrevNonHeaderIndex(newIndex - 1);
-            if (prev === -1)
-                break;
-            newIndex = prev;
-        }
-
+        var newIndex = Nav.calculatePageUpIndex(flatModel, selectedFlatIndex, visibleItems);
         if (newIndex !== selectedFlatIndex) {
             selectedFlatIndex = newIndex;
             updateSelectedItem();
@@ -1713,6 +1216,14 @@ Item {
                 launchAppWithNvidia(item.data);
             }
             break;
+        case "toggle_all_visibility":
+            if (item.type === "plugin_browse" && item.data?.pluginId) {
+                var pluginId = item.data.pluginId;
+                var currentState = SettingsData.getPluginAllowWithoutTrigger(pluginId);
+                SettingsData.setPluginAllowWithoutTrigger(pluginId, !currentState);
+                performSearch();
+            }
+            return;
         default:
             if (item.type === "app" && action.actionData) {
                 launchAppAction({

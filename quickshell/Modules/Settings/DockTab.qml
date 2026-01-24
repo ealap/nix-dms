@@ -166,6 +166,265 @@ Item {
 
             SettingsCard {
                 width: parent.width
+                iconName: "apps"
+                title: I18n.tr("Launcher Button")
+                settingKey: "dockLauncher"
+
+                SettingsToggleRow {
+                    settingKey: "dockLauncherEnabled"
+                    tags: ["dock", "launcher", "button", "apps"]
+                    text: I18n.tr("Show Launcher Button")
+                    description: I18n.tr("Add a draggable launcher button to the dock")
+                    checked: SettingsData.dockLauncherEnabled
+                    onToggled: checked => SettingsData.set("dockLauncherEnabled", checked)
+                }
+
+                Column {
+                    width: parent.width
+                    spacing: Theme.spacingL
+                    visible: SettingsData.dockLauncherEnabled
+
+                    StyledText {
+                        width: parent.width
+                        text: I18n.tr("Long press and drag the launcher button to reposition it in the dock")
+                        font.pixelSize: Theme.fontSizeSmall
+                        color: Theme.surfaceVariantText
+                        wrapMode: Text.WordWrap
+                    }
+
+                    Column {
+                        width: parent.width
+                        spacing: Theme.spacingM
+
+                        StyledText {
+                            text: I18n.tr("Launcher Icon")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceText
+                            font.weight: Font.Medium
+                            anchors.horizontalCenter: parent.horizontalCenter
+                        }
+
+                        Item {
+                            width: parent.width
+                            height: logoModeGroup.implicitHeight
+                            clip: true
+
+                            DankButtonGroup {
+                                id: logoModeGroup
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                buttonPadding: parent.width < 480 ? Theme.spacingS : Theme.spacingL
+                                minButtonWidth: parent.width < 480 ? 44 : 64
+                                textSize: parent.width < 480 ? Theme.fontSizeSmall : Theme.fontSizeMedium
+                                model: {
+                                    const modes = [I18n.tr("Apps Icon"), I18n.tr("OS Logo"), I18n.tr("Dank")];
+                                    if (CompositorService.isNiri) {
+                                        modes.push("niri");
+                                    } else if (CompositorService.isHyprland) {
+                                        modes.push("Hyprland");
+                                    } else if (CompositorService.isDwl) {
+                                        modes.push("mango");
+                                    } else if (CompositorService.isSway) {
+                                        modes.push("Sway");
+                                    } else if (CompositorService.isScroll) {
+                                        modes.push("Scroll");
+                                    } else {
+                                        modes.push(I18n.tr("Compositor"));
+                                    }
+                                    modes.push(I18n.tr("Custom"));
+                                    return modes;
+                                }
+                                currentIndex: {
+                                    if (SettingsData.dockLauncherLogoMode === "apps")
+                                        return 0;
+                                    if (SettingsData.dockLauncherLogoMode === "os")
+                                        return 1;
+                                    if (SettingsData.dockLauncherLogoMode === "dank")
+                                        return 2;
+                                    if (SettingsData.dockLauncherLogoMode === "compositor")
+                                        return 3;
+                                    if (SettingsData.dockLauncherLogoMode === "custom")
+                                        return 4;
+                                    return 0;
+                                }
+                                onSelectionChanged: (index, selected) => {
+                                    if (!selected)
+                                        return;
+                                    switch (index) {
+                                    case 0:
+                                        SettingsData.set("dockLauncherLogoMode", "apps");
+                                        break;
+                                    case 1:
+                                        SettingsData.set("dockLauncherLogoMode", "os");
+                                        break;
+                                    case 2:
+                                        SettingsData.set("dockLauncherLogoMode", "dank");
+                                        break;
+                                    case 3:
+                                        SettingsData.set("dockLauncherLogoMode", "compositor");
+                                        break;
+                                    case 4:
+                                        SettingsData.set("dockLauncherLogoMode", "custom");
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Column {
+                        width: parent.width
+                        spacing: Theme.spacingL
+                        visible: SettingsData.dockLauncherLogoMode !== "apps"
+
+                        Column {
+                            width: parent.width
+                            spacing: Theme.spacingM
+
+                            StyledText {
+                                text: I18n.tr("Color Override")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceText
+                                font.weight: Font.Medium
+                                anchors.horizontalCenter: parent.horizontalCenter
+                            }
+
+                            Item {
+                                width: parent.width
+                                height: colorOverrideRow.implicitHeight
+                                clip: true
+
+                                Row {
+                                    id: colorOverrideRow
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    spacing: Theme.spacingM
+
+                                    DankButtonGroup {
+                                        id: colorModeGroup
+                                        buttonPadding: parent.parent.width < 480 ? Theme.spacingS : Theme.spacingL
+                                        minButtonWidth: parent.parent.width < 480 ? 44 : 64
+                                        textSize: parent.parent.width < 480 ? Theme.fontSizeSmall : Theme.fontSizeMedium
+                                        model: [I18n.tr("Default"), I18n.tr("Primary"), I18n.tr("Surface"), I18n.tr("Custom")]
+                                        currentIndex: {
+                                            const override = SettingsData.dockLauncherLogoColorOverride;
+                                            if (override === "")
+                                                return 0;
+                                            if (override === "primary")
+                                                return 1;
+                                            if (override === "surface")
+                                                return 2;
+                                            return 3;
+                                        }
+                                        onSelectionChanged: (index, selected) => {
+                                            if (!selected)
+                                                return;
+                                            switch (index) {
+                                            case 0:
+                                                SettingsData.set("dockLauncherLogoColorOverride", "");
+                                                break;
+                                            case 1:
+                                                SettingsData.set("dockLauncherLogoColorOverride", "primary");
+                                                break;
+                                            case 2:
+                                                SettingsData.set("dockLauncherLogoColorOverride", "surface");
+                                                break;
+                                            case 3:
+                                                const currentOverride = SettingsData.dockLauncherLogoColorOverride;
+                                                const isPreset = currentOverride === "" || currentOverride === "primary" || currentOverride === "surface";
+                                                if (isPreset) {
+                                                    SettingsData.set("dockLauncherLogoColorOverride", "#ffffff");
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    Rectangle {
+                                        id: colorPickerCircle
+                                        visible: {
+                                            const override = SettingsData.dockLauncherLogoColorOverride;
+                                            return override !== "" && override !== "primary" && override !== "surface";
+                                        }
+                                        width: 36
+                                        height: 36
+                                        radius: 18
+                                        color: {
+                                            const override = SettingsData.dockLauncherLogoColorOverride;
+                                            if (override !== "" && override !== "primary" && override !== "surface")
+                                                return override;
+                                            return "#ffffff";
+                                        }
+                                        border.color: Theme.outline
+                                        border.width: 1
+                                        anchors.verticalCenter: parent.verticalCenter
+
+                                        MouseArea {
+                                            anchors.fill: parent
+                                            cursorShape: Qt.PointingHandCursor
+                                            onClicked: {
+                                                if (!PopoutService.colorPickerModal)
+                                                    return;
+                                                PopoutService.colorPickerModal.selectedColor = SettingsData.dockLauncherLogoColorOverride;
+                                                PopoutService.colorPickerModal.pickerTitle = I18n.tr("Choose Dock Launcher Logo Color");
+                                                PopoutService.colorPickerModal.onColorSelectedCallback = function (selectedColor) {
+                                                    SettingsData.set("dockLauncherLogoColorOverride", selectedColor);
+                                                };
+                                                PopoutService.colorPickerModal.show();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        SettingsSliderRow {
+                            settingKey: "dockLauncherLogoSizeOffset"
+                            tags: ["dock", "launcher", "logo", "size", "offset", "scale"]
+                            text: I18n.tr("Size Offset")
+                            minimum: -12
+                            maximum: 12
+                            value: SettingsData.dockLauncherLogoSizeOffset
+                            defaultValue: 0
+                            onSliderValueChanged: newValue => SettingsData.set("dockLauncherLogoSizeOffset", newValue)
+                        }
+
+                        Column {
+                            width: parent.width
+                            spacing: Theme.spacingM
+                            visible: {
+                                const override = SettingsData.dockLauncherLogoColorOverride;
+                                return override !== "" && override !== "primary" && override !== "surface";
+                            }
+
+                            SettingsSliderRow {
+                                settingKey: "dockLauncherLogoBrightness"
+                                tags: ["dock", "launcher", "logo", "brightness", "color"]
+                                text: I18n.tr("Brightness")
+                                minimum: 0
+                                maximum: 100
+                                value: Math.round(SettingsData.dockLauncherLogoBrightness * 100)
+                                unit: "%"
+                                defaultValue: 50
+                                onSliderValueChanged: newValue => SettingsData.set("dockLauncherLogoBrightness", newValue / 100)
+                            }
+
+                            SettingsSliderRow {
+                                settingKey: "dockLauncherLogoContrast"
+                                tags: ["dock", "launcher", "logo", "contrast", "color"]
+                                text: I18n.tr("Contrast")
+                                minimum: 0
+                                maximum: 200
+                                value: Math.round(SettingsData.dockLauncherLogoContrast * 100)
+                                unit: "%"
+                                defaultValue: 100
+                                onSliderValueChanged: newValue => SettingsData.set("dockLauncherLogoContrast", newValue / 100)
+                            }
+                        }
+                    }
+                }
+            }
+
+            SettingsCard {
+                width: parent.width
                 iconName: "photo_size_select_large"
                 title: I18n.tr("Sizing")
                 settingKey: "dockSizing"

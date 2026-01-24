@@ -29,6 +29,7 @@ Singleton {
     }
 
     property bool loginctlAvailable: false
+    property bool wtypeAvailable: false
     property string sessionId: ""
     property string sessionPath: ""
     property bool locked: false
@@ -59,6 +60,7 @@ Singleton {
             detectElogindProcess.running = true;
             detectHibernateProcess.running = true;
             detectPrimeRunProcess.running = true;
+            detectWtypeProcess.running = true;
             console.info("SessionService: Native inhibitor available:", nativeInhibitorAvailable);
             if (!SettingsData.loginctlLockIntegration) {
                 console.log("SessionService: loginctl lock integration disabled by user");
@@ -121,6 +123,15 @@ Singleton {
             }
             ToastService.showError("Hibernate failed", errorOutput);
             errorOutput = "";
+        }
+    }
+
+    Process {
+        id: detectWtypeProcess
+        running: false
+        command: ["which", "wtype"]
+        onExited: exitCode => {
+            wtypeAvailable = (exitCode === 0);
         }
     }
 

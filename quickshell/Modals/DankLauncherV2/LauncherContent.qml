@@ -76,8 +76,6 @@ FocusScope {
     function showContextMenu(item, x, y, fromKeyboard) {
         if (!item)
             return;
-        if (item.isCore)
-            return;
         if (!contextMenu.hasContextMenuActions(item))
             return;
         contextMenu.show(x, y, item, fromKeyboard);
@@ -211,6 +209,10 @@ FocusScope {
             return;
         case Qt.Key_Return:
         case Qt.Key_Enter:
+            if (event.modifiers & Qt.ShiftModifier) {
+                controller.pasteSelected();
+                return;
+            }
             if (actionPanel.expanded && actionPanel.selectedActionIndex > 0) {
                 actionPanel.executeSelectedAction();
             } else {

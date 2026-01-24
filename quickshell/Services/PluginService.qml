@@ -592,6 +592,13 @@ Singleton {
         return SettingsData.getPluginSetting(pluginId, key, defaultValue);
     }
 
+    function getPluginPath(pluginId) {
+        const plugin = availablePlugins[pluginId];
+        if (!plugin)
+            return "";
+        return plugin.pluginDirectory || "";
+    }
+
     function saveAllPluginSettings() {
         SettingsData.savePluginSettings();
     }

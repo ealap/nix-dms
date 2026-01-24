@@ -76,6 +76,14 @@ Item {
                     onToggled: checked => SettingsData.set("lockScreenShowPasswordField", checked)
                 }
 
+                SettingsToggleRow {
+                    settingKey: "lockScreenShowMediaPlayer"
+                    tags: ["lock", "screen", "media", "player", "music", "mpris"]
+                    text: I18n.tr("Show Media Player", "Enable media player controls on the lock screen window")
+                    checked: SettingsData.lockScreenShowMediaPlayer
+                    onToggled: checked => SettingsData.set("lockScreenShowMediaPlayer", checked)
+                }
+
                 SettingsDropdownRow {
                     settingKey: "lockScreenNotificationMode"
                     tags: ["lock", "screen", "notification", "notifications", "privacy"]
