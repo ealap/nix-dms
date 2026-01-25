@@ -483,9 +483,64 @@ FocusScope {
                 }
             }
 
+            Row {
+                id: categoryRow
+                width: parent.width
+                height: controller.activePluginCategories.length > 0 ? 36 : 0
+                visible: controller.activePluginCategories.length > 0
+                spacing: Theme.spacingS
+
+                clip: true
+
+                Behavior on height {
+                    NumberAnimation {
+                        duration: Theme.shortDuration
+                        easing.type: Theme.standardEasing
+                    }
+                }
+
+                DankDropdown {
+                    id: categoryDropdown
+                    width: Math.min(200, parent.width)
+                    compactMode: true
+                    dropdownWidth: 200
+                    popupWidth: 240
+                    maxPopupHeight: 300
+                    enableFuzzySearch: controller.activePluginCategories.length > 8
+                    currentValue: {
+                        const cats = controller.activePluginCategories;
+                        const current = controller.activePluginCategory;
+                        if (!current)
+                            return cats.length > 0 ? cats[0].name : "";
+                        for (let i = 0; i < cats.length; i++) {
+                            if (cats[i].id === current)
+                                return cats[i].name;
+                        }
+                        return cats.length > 0 ? cats[0].name : "";
+                    }
+                    options: {
+                        const cats = controller.activePluginCategories;
+                        const names = [];
+                        for (let i = 0; i < cats.length; i++)
+                            names.push(cats[i].name);
+                        return names;
+                    }
+
+                    onValueChanged: value => {
+                        const cats = controller.activePluginCategories;
+                        for (let i = 0; i < cats.length; i++) {
+                            if (cats[i].name === value) {
+                                controller.setActivePluginCategory(cats[i].id);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+
             Item {
                 width: parent.width
-                height: parent.height - searchField.height - actionPanel.height - Theme.spacingXS * 2
+                height: parent.height - searchField.height - categoryRow.height - actionPanel.height - Theme.spacingXS * (categoryRow.visible ? 3 : 2)
                 opacity: root.parentModal?.isClosing ? 0 : 1
 
                 ResultsList {

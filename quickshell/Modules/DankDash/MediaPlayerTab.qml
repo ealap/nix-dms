@@ -129,7 +129,7 @@ Item {
     }
 
     implicitWidth: 700
-    implicitHeight: 410
+    implicitHeight: playerContent.height + playerContent.anchors.topMargin * 2
 
     Connections {
         target: activePlayer
@@ -327,6 +327,7 @@ Item {
         clip: false
         visible: !_noneAvailable && (!showNoPlayerNow)
         ColumnLayout {
+            id: playerContent
             width: 484
             height: 370
             spacing: Theme.spacingXS

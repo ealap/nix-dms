@@ -13,7 +13,7 @@ import "settings/SessionStore.js" as Store
 Singleton {
     id: root
 
-    readonly property int sessionConfigVersion: 2
+    readonly property int sessionConfigVersion: 3
 
     readonly property bool isGreeterMode: Quickshell.env("DMS_RUN_GREETER") === "1" || Quickshell.env("DMS_RUN_GREETER") === "true"
     property bool _parseError: false
@@ -82,6 +82,15 @@ Singleton {
     property bool nightModeUseIPLocation: false
     property string nightModeLocationProvider: ""
 
+    property bool themeModeAutoEnabled: false
+    property string themeModeAutoMode: "time"
+    property int themeModeStartHour: 18
+    property int themeModeStartMinute: 0
+    property int themeModeEndHour: 6
+    property int themeModeEndMinute: 0
+    property bool themeModeShareGammaSettings: true
+    property string themeModeNextTransition: ""
+
     property var pinnedApps: []
     property var barPinnedApps: []
     property int dockLauncherPosition: 0
@@ -108,6 +117,8 @@ Singleton {
     property var hiddenApps: []
     property var appOverrides: ({})
     property bool searchAppActions: true
+
+    property string vpnLastConnected: ""
 
     Component.onCompleted: {
         if (!isGreeterMode) {
@@ -172,7 +183,7 @@ Singleton {
         } catch (e) {
             _parseError = true;
             const msg = e.message;
-            console.error("SessionData: Failed to parse session.json - file will not be overwritten. Error:", msg);
+            console.error("SessionData: Failed to parse session.json - file will not be overwritten.");
             Qt.callLater(() => ToastService.showError(I18n.tr("Failed to parse session.json"), msg));
         }
     }
@@ -186,14 +197,10 @@ Singleton {
         _isReadOnly = !writable;
         if (_isReadOnly) {
             _hasUnsavedChanges = _checkForUnsavedChanges();
-            if (!wasReadOnly)
-                console.info("SessionData: session.json is now read-only");
         } else {
             _loadedSessionSnapshot = getCurrentSessionJson();
             _hasUnsavedChanges = false;
-            if (wasReadOnly)
-                console.info("SessionData: session.json is now writable");
-            if (_pendingMigration)
+            if (wasReadOnly && _pendingMigration)
                 settingsFile.setText(JSON.stringify(_pendingMigration, null, 2));
         }
         _pendingMigration = null;
@@ -255,7 +262,7 @@ Singleton {
         } catch (e) {
             _parseError = true;
             const msg = e.message;
-            console.error("SessionData: Failed to parse session.json - file will not be overwritten. Error:", msg);
+            console.error("SessionData: Failed to parse session.json - file will not be overwritten.");
             Qt.callLater(() => ToastService.showError(I18n.tr("Failed to parse session.json"), msg));
         }
     }
@@ -273,7 +280,6 @@ Singleton {
     }
 
     function migrateFromUndefinedToV1(settings) {
-        console.info("SessionData: Migrating configuration from undefined to version 1");
         if (typeof SettingsData !== "undefined") {
             if (settings.acMonitorTimeout !== undefined) {
                 SettingsData.set("acMonitorTimeout", settings.acMonitorTimeout);
@@ -448,7 +454,7 @@ Singleton {
         }
 
         if (!screen) {
-            console.warn("SessionData: Screen not found:", screenName);
+            console.warn("SessionData: Screen not found");
             return;
         }
 
@@ -545,7 +551,7 @@ Singleton {
         }
 
         if (!screen) {
-            console.warn("SessionData: Screen not found:", screenName);
+            console.warn("SessionData: Screen not found");
             return;
         }
 
@@ -583,7 +589,7 @@ Singleton {
         }
 
         if (!screen) {
-            console.warn("SessionData: Screen not found:", screenName);
+            console.warn("SessionData: Screen not found");
             return;
         }
 
@@ -621,7 +627,7 @@ Singleton {
         }
 
         if (!screen) {
-            console.warn("SessionData: Screen not found:", screenName);
+            console.warn("SessionData: Screen not found");
             return;
         }
 
@@ -659,7 +665,7 @@ Singleton {
         }
 
         if (!screen) {
-            console.warn("SessionData: Screen not found:", screenName);
+            console.warn("SessionData: Screen not found");
             return;
         }
 
@@ -702,7 +708,6 @@ Singleton {
     }
 
     function setNightModeAutoEnabled(enabled) {
-        console.log("SessionData: Setting nightModeAutoEnabled to", enabled);
         nightModeAutoEnabled = enabled;
         saveSettings();
     }
@@ -738,19 +743,52 @@ Singleton {
     }
 
     function setLatitude(lat) {
-        console.log("SessionData: Setting latitude to", lat);
         latitude = lat;
         saveSettings();
     }
 
     function setLongitude(lng) {
-        console.log("SessionData: Setting longitude to", lng);
         longitude = lng;
         saveSettings();
     }
 
     function setNightModeLocationProvider(provider) {
         nightModeLocationProvider = provider;
+        saveSettings();
+    }
+
+    function setThemeModeAutoEnabled(enabled) {
+        themeModeAutoEnabled = enabled;
+        saveSettings();
+    }
+
+    function setThemeModeAutoMode(mode) {
+        themeModeAutoMode = mode;
+        saveSettings();
+    }
+
+    function setThemeModeStartHour(hour) {
+        themeModeStartHour = hour;
+        saveSettings();
+    }
+
+    function setThemeModeStartMinute(minute) {
+        themeModeStartMinute = minute;
+        saveSettings();
+    }
+
+    function setThemeModeEndHour(hour) {
+        themeModeEndHour = hour;
+        saveSettings();
+    }
+
+    function setThemeModeEndMinute(minute) {
+        themeModeEndMinute = minute;
+        saveSettings();
+    }
+
+    function setThemeModeShareGammaSettings(share) {
+        themeModeShareGammaSettings = share;
         saveSettings();
     }
 
@@ -1000,6 +1038,11 @@ Singleton {
 
     function setSearchAppActions(enabled) {
         searchAppActions = enabled;
+        saveSettings();
+    }
+
+    function setVpnLastConnected(uuid) {
+        vpnLastConnected = uuid || "";
         saveSettings();
     }
 

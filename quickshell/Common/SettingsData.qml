@@ -292,13 +292,13 @@ Singleton {
 
     property string _legacyWeatherLocation: "New York, NY"
     property string _legacyWeatherCoordinates: "40.7128,-74.0060"
+    property string _legacyVpnLastConnected: ""
     readonly property string weatherLocation: SessionData.weatherLocation
     readonly property string weatherCoordinates: SessionData.weatherCoordinates
     property bool useAutoLocation: false
     property bool weatherEnabled: true
 
     property string networkPreference: "auto"
-    property string vpnLastConnected: ""
 
     property string iconTheme: "System Default"
     property var availableIconThemes: ["System Default"]
@@ -1078,6 +1078,11 @@ Singleton {
                 _legacyWeatherLocation = obj.weatherLocation;
             if (obj?.weatherCoordinates !== undefined)
                 _legacyWeatherCoordinates = obj.weatherCoordinates;
+            if (obj?.vpnLastConnected !== undefined && obj.vpnLastConnected !== "") {
+                _legacyVpnLastConnected = obj.vpnLastConnected;
+                SessionData.vpnLastConnected = _legacyVpnLastConnected;
+                SessionData.saveSettings();
+            }
 
             _loadedSettingsSnapshot = JSON.stringify(Store.toJson(root));
             _hasLoaded = true;
@@ -2311,6 +2316,11 @@ Singleton {
                     _legacyWeatherLocation = obj.weatherLocation;
                 if (obj.weatherCoordinates !== undefined)
                     _legacyWeatherCoordinates = obj.weatherCoordinates;
+                if (obj.vpnLastConnected !== undefined && obj.vpnLastConnected !== "") {
+                    _legacyVpnLastConnected = obj.vpnLastConnected;
+                    SessionData.vpnLastConnected = _legacyVpnLastConnected;
+                    SessionData.saveSettings();
+                }
 
                 _loadedSettingsSnapshot = JSON.stringify(Store.toJson(root));
                 _hasLoaded = true;

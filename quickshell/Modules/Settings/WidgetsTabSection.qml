@@ -373,81 +373,42 @@ Column {
                             }
                         }
 
+                        DankActionButton {
+                            id: musicMenuButton
+                            visible: modelData.id === "music"
+                            buttonSize: 32
+                            iconName: "more_vert"
+                            iconSize: 18
+                            iconColor: Theme.outline
+                            onClicked: {
+                                musicContextMenu.widgetData = modelData;
+                                musicContextMenu.sectionId = root.sectionId;
+                                musicContextMenu.widgetIndex = index;
+
+                                var buttonPos = musicMenuButton.mapToItem(root, 0, 0);
+                                var popupWidth = musicContextMenu.width;
+                                var popupHeight = musicContextMenu.height;
+
+                                var xPos = buttonPos.x - popupWidth - Theme.spacingS;
+                                if (xPos < 0)
+                                    xPos = buttonPos.x + musicMenuButton.width + Theme.spacingS;
+
+                                var yPos = buttonPos.y - popupHeight / 2 + musicMenuButton.height / 2;
+                                if (yPos < 0) {
+                                    yPos = Theme.spacingS;
+                                } else if (yPos + popupHeight > root.height) {
+                                    yPos = root.height - popupHeight - Theme.spacingS;
+                                }
+
+                                musicContextMenu.x = xPos;
+                                musicContextMenu.y = yPos;
+                                musicContextMenu.open();
+                            }
+                        }
+
                         Row {
                             spacing: Theme.spacingXS
-                            visible: modelData.id === "clock" || modelData.id === "music" || modelData.id === "focusedWindow" || modelData.id === "runningApps" || modelData.id === "keyboard_layout_name"
-
-                            DankActionButton {
-                                id: smallSizeButton
-                                buttonSize: 28
-                                visible: modelData.id === "music"
-                                iconName: "photo_size_select_small"
-                                iconSize: 16
-                                iconColor: (modelData.mediaSize !== undefined ? modelData.mediaSize : SettingsData.mediaSize) === 0 ? Theme.primary : Theme.outline
-                                onClicked: {
-                                    root.compactModeChanged("music", 0);
-                                }
-                                onEntered: {
-                                    sharedTooltip.show("Small", smallSizeButton, 0, 0, "bottom");
-                                }
-                                onExited: {
-                                    sharedTooltip.hide();
-                                }
-                            }
-
-                            DankActionButton {
-                                id: mediumSizeButton
-                                buttonSize: 28
-                                visible: modelData.id === "music"
-                                iconName: "photo_size_select_actual"
-                                iconSize: 16
-                                iconColor: (modelData.mediaSize !== undefined ? modelData.mediaSize : SettingsData.mediaSize) === 1 ? Theme.primary : Theme.outline
-                                onClicked: {
-                                    root.compactModeChanged("music", 1);
-                                }
-                                onEntered: {
-                                    sharedTooltip.show("Medium", mediumSizeButton, 0, 0, "bottom");
-                                }
-                                onExited: {
-                                    sharedTooltip.hide();
-                                }
-                            }
-
-                            DankActionButton {
-                                id: largeSizeButton
-                                buttonSize: 28
-                                visible: modelData.id === "music"
-                                iconName: "photo_size_select_large"
-                                iconSize: 16
-                                iconColor: (modelData.mediaSize !== undefined ? modelData.mediaSize : SettingsData.mediaSize) === 2 ? Theme.primary : Theme.outline
-                                onClicked: {
-                                    root.compactModeChanged("music", 2);
-                                }
-                                onEntered: {
-                                    sharedTooltip.show("Large", largeSizeButton, 0, 0, "bottom");
-                                }
-                                onExited: {
-                                    sharedTooltip.hide();
-                                }
-                            }
-
-                            DankActionButton {
-                                id: largerSizeButton
-                                buttonSize: 28
-                                visible: modelData.id === "music"
-                                iconName: "fit_screen"
-                                iconSize: 16
-                                iconColor: (modelData.mediaSize !== undefined ? modelData.mediaSize : SettingsData.mediaSize) === 3 ? Theme.primary : Theme.outline
-                                onClicked: {
-                                    root.compactModeChanged("music", 3);
-                                }
-                                onEntered: {
-                                    sharedTooltip.show("Largest", largerSizeButton, 0, 0, "bottom");
-                                }
-                                onExited: {
-                                    sharedTooltip.hide();
-                                }
-                            }
+                            visible: modelData.id === "clock" || modelData.id === "focusedWindow" || modelData.id === "runningApps" || modelData.id === "keyboard_layout_name"
 
                             DankActionButton {
                                 id: compactModeButton
@@ -1301,6 +1262,121 @@ Column {
                             onClicked: {
                                 root.gpuSelectionChanged(gpuContextMenu.sectionId, gpuContextMenu.widgetIndex, index);
                                 gpuContextMenu.close();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    Popup {
+        id: musicContextMenu
+
+        property var widgetData: null
+        property string sectionId: ""
+        property int widgetIndex: -1
+
+        width: 180
+        height: musicMenuColumn.implicitHeight + Theme.spacingS * 2
+        padding: 0
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
+        background: Rectangle {
+            color: Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
+            radius: Theme.cornerRadius
+            border.color: Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.08)
+            border.width: 0
+        }
+
+        contentItem: Item {
+            Column {
+                id: musicMenuColumn
+                anchors.fill: parent
+                anchors.margins: Theme.spacingS
+                spacing: 2
+
+                Repeater {
+                    model: [
+                        {
+                            icon: "photo_size_select_small",
+                            label: I18n.tr("Small"),
+                            sizeValue: 0
+                        },
+                        {
+                            icon: "photo_size_select_actual",
+                            label: I18n.tr("Medium"),
+                            sizeValue: 1
+                        },
+                        {
+                            icon: "photo_size_select_large",
+                            label: I18n.tr("Large"),
+                            sizeValue: 2
+                        },
+                        {
+                            icon: "fit_screen",
+                            label: I18n.tr("Largest"),
+                            sizeValue: 3
+                        }
+                    ]
+
+                    delegate: Rectangle {
+                        required property var modelData
+                        required property int index
+
+                        function isSelected() {
+                            var wd = musicContextMenu.widgetData;
+                            var currentSize = wd?.mediaSize ?? SettingsData.mediaSize;
+                            return currentSize === modelData.sizeValue;
+                        }
+
+                        width: musicMenuColumn.width
+                        height: Math.max(18, Theme.fontSizeSmall) + Theme.spacingM * 2
+                        radius: Theme.cornerRadius
+                        color: musicOptionArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : "transparent"
+
+                        Row {
+                            anchors.left: parent.left
+                            anchors.leftMargin: Theme.spacingS
+                            anchors.verticalCenter: parent.verticalCenter
+                            spacing: Theme.spacingS
+
+                            DankIcon {
+                                name: modelData.icon
+                                size: 18
+                                color: isSelected() ? Theme.primary : Theme.surfaceText
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+                            StyledText {
+                                text: modelData.label
+                                font.pixelSize: Theme.fontSizeSmall
+                                font.weight: isSelected() ? Font.Medium : Font.Normal
+                                color: isSelected() ? Theme.primary : Theme.surfaceText
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+                        }
+
+                        DankIcon {
+                            anchors.right: parent.right
+                            anchors.rightMargin: Theme.spacingS
+                            anchors.verticalCenter: parent.verticalCenter
+                            name: "check"
+                            size: 16
+                            color: Theme.primary
+                            visible: isSelected()
+                        }
+
+                        MouseArea {
+                            id: musicOptionArea
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                root.compactModeChanged("music", modelData.sizeValue);
+                                musicContextMenu.close();
                             }
                         }
                     }

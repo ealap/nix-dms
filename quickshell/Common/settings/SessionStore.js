@@ -1,6 +1,6 @@
 .pragma library
 
-.import "./SessionSpec.js" as SpecModule
+    .import "./SessionSpec.js" as SpecModule
 
 function parse(root, jsonObj) {
     var SPEC = SpecModule.SPEC;
@@ -66,6 +66,11 @@ function migrateToVersion(obj, targetVersion, settingsData) {
         }
 
         session.configVersion = 2;
+    }
+
+    if (currentVersion < 3) {
+        console.info("SessionData: Migrating session to version 3");
+        session.configVersion = 3;
     }
 
     return session;

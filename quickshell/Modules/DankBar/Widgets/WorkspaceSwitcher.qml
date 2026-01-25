@@ -508,18 +508,17 @@ Item {
 
     function getRealWorkspaces() {
         return root.workspaceList.filter(ws => {
-        if (useExtWorkspace)
-            return ws && (ws.id !== "" || ws.name !== "") && !ws.hidden;
-        if (CompositorService.isNiri)
-            return ws && ws.idx !== -1;
-        if (CompositorService.isHyprland)
-            return ws && ws.id !== -1;
-        if (CompositorService.isDwl)
-            return ws && ws.tag !== -1;
-        if (CompositorService.isSway || CompositorService.isScroll)
-            return ws && ws.num !== -1;
-        return ws !== -1;
-
+            if (useExtWorkspace)
+                return ws && (ws.id !== "" || ws.name !== "") && !ws.hidden;
+            if (CompositorService.isNiri)
+                return ws && ws.idx !== -1;
+            if (CompositorService.isHyprland)
+                return ws && ws.id !== -1;
+            if (CompositorService.isDwl)
+                return ws && ws.tag !== -1;
+            if (CompositorService.isSway || CompositorService.isScroll)
+                return ws && ws.num !== -1;
+            return ws !== -1;
         });
     }
 
@@ -864,6 +863,60 @@ Item {
                 property bool loadedHasIcon: false
                 property var loadedIcons: []
 
+                readonly property int stableIconCount: {
+                    if (!SettingsData.showWorkspaceApps || isPlaceholder)
+                        return 0;
+
+                    let targetWorkspaceId;
+                    if (root.useExtWorkspace) {
+                        targetWorkspaceId = modelData?.id || modelData?.name;
+                    } else if (CompositorService.isNiri) {
+                        targetWorkspaceId = modelData?.id;
+                    } else if (CompositorService.isHyprland) {
+                        targetWorkspaceId = modelData?.id;
+                    } else if (CompositorService.isDwl) {
+                        targetWorkspaceId = modelData?.tag;
+                    } else if (CompositorService.isSway || CompositorService.isScroll) {
+                        targetWorkspaceId = modelData?.num;
+                    }
+                    if (targetWorkspaceId === undefined || targetWorkspaceId === null)
+                        return 0;
+
+                    const wins = CompositorService.isNiri ? (NiriService.windows || []) : CompositorService.sortedToplevels;
+                    const seen = {};
+                    let groupedCount = 0;
+                    let totalCount = 0;
+
+                    for (let i = 0; i < wins.length; i++) {
+                        const w = wins[i];
+                        if (!w)
+                            continue;
+
+                        let winWs = null;
+                        if (CompositorService.isNiri) {
+                            winWs = w.workspace_id;
+                        } else if (CompositorService.isSway || CompositorService.isScroll) {
+                            winWs = w.workspace?.num;
+                        } else if (CompositorService.isHyprland) {
+                            const hyprlandToplevels = Array.from(Hyprland.toplevels?.values || []);
+                            const hyprToplevel = hyprlandToplevels.find(ht => ht.wayland === w);
+                            winWs = hyprToplevel?.workspace?.id;
+                        }
+
+                        if (winWs !== targetWorkspaceId)
+                            continue;
+                        totalCount++;
+
+                        const appKey = w.app_id || w.appId || w.class || w.windowClass || "unknown";
+                        if (!seen[appKey]) {
+                            seen[appKey] = true;
+                            groupedCount++;
+                        }
+                    }
+
+                    return SettingsData.groupWorkspaceApps ? groupedCount : totalCount;
+                }
+
                 readonly property real baseWidth: root.isVertical ? (SettingsData.showWorkspaceApps ? widgetHeight * 0.7 : widgetHeight * 0.5) : (isActive ? root.widgetHeight * 1.05 : root.widgetHeight * 0.7)
                 readonly property real baseHeight: root.isVertical ? (isActive ? root.widgetHeight * 1.05 : root.widgetHeight * 0.7) : (SettingsData.showWorkspaceApps ? widgetHeight * 0.7 : widgetHeight * 0.5)
                 readonly property bool hasWorkspaceName: SettingsData.showWorkspaceName && modelData?.name && modelData.name !== ""
@@ -872,27 +925,29 @@ Item {
                 readonly property real contentImplicitHeight: (workspaceNamesEnabled || loadedHasIcon) ? (appIconsLoader.item?.contentHeight ?? 0) : 0
 
                 readonly property real iconsExtraWidth: {
-                    if (!root.isVertical && SettingsData.showWorkspaceApps && loadedIcons.length > 0) {
-                        const numIcons = Math.min(loadedIcons.length, SettingsData.maxWorkspaceIcons);
+                    if (!root.isVertical && SettingsData.showWorkspaceApps && stableIconCount > 0) {
+                        const numIcons = Math.min(stableIconCount, SettingsData.maxWorkspaceIcons);
                         return numIcons * root.appIconSize + (numIcons > 0 ? (numIcons - 1) * Theme.spacingXS : 0) + (isActive ? Theme.spacingXS : 0);
                     }
                     return 0;
                 }
                 readonly property real iconsExtraHeight: {
-                    if (root.isVertical && SettingsData.showWorkspaceApps && loadedIcons.length > 0) {
-                        const numIcons = Math.min(loadedIcons.length, SettingsData.maxWorkspaceIcons);
+                    if (root.isVertical && SettingsData.showWorkspaceApps && stableIconCount > 0) {
+                        const numIcons = Math.min(stableIconCount, SettingsData.maxWorkspaceIcons);
                         return numIcons * root.appIconSize + (numIcons > 0 ? (numIcons - 1) * Theme.spacingXS : 0) + (isActive ? Theme.spacingXS : 0);
                     }
                     return 0;
                 }
 
                 readonly property real visualWidth: {
-                    if (contentImplicitWidth <= 0) return baseWidth + iconsExtraWidth;
+                    if (contentImplicitWidth <= 0)
+                        return baseWidth + iconsExtraWidth;
                     const padding = root.isVertical ? Theme.spacingXS : Theme.spacingS;
                     return Math.max(baseWidth + iconsExtraWidth, contentImplicitWidth + padding);
                 }
                 readonly property real visualHeight: {
-                    if (contentImplicitHeight <= 0) return baseHeight + iconsExtraHeight;
+                    if (contentImplicitHeight <= 0)
+                        return baseHeight + iconsExtraHeight;
                     const padding = root.isVertical ? Theme.spacingS : Theme.spacingXS;
                     return Math.max(baseHeight + iconsExtraHeight, contentImplicitHeight + padding);
                 }
@@ -1079,6 +1134,20 @@ Item {
 
                 width: root.isVertical ? root.widgetHeight : visualWidth
                 height: root.isVertical ? visualHeight : root.widgetHeight
+
+                Behavior on width {
+                    NumberAnimation {
+                        duration: Theme.mediumDuration
+                        easing.type: Theme.emphasizedEasing
+                    }
+                }
+
+                Behavior on height {
+                    NumberAnimation {
+                        duration: Theme.mediumDuration
+                        easing.type: Theme.emphasizedEasing
+                    }
+                }
 
                 Rectangle {
                     id: focusedBorderRing
@@ -1344,6 +1413,15 @@ Item {
                                         visible: loadedHasIcon && loadedIconData?.type === "text"
                                         anchors.horizontalCenter: parent.horizontalCenter
                                         text: loadedIconData?.value ?? ""
+                                        color: (isActive || isUrgent) ? Qt.rgba(Theme.surfaceContainer.r, Theme.surfaceContainer.g, Theme.surfaceContainer.b, 0.95) : isPlaceholder ? Theme.surfaceTextAlpha : Theme.surfaceTextMedium
+                                        font.pixelSize: Theme.barTextSize(barThickness, barConfig?.fontScale)
+                                        font.weight: (isActive && !isPlaceholder) ? Font.DemiBold : Font.Normal
+                                    }
+
+                                    StyledText {
+                                        visible: (SettingsData.showWorkspaceIndex || SettingsData.showWorkspaceName) && !loadedHasIcon
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                        text: root.getWorkspaceIndex(modelData, index)
                                         color: (isActive || isUrgent) ? Qt.rgba(Theme.surfaceContainer.r, Theme.surfaceContainer.g, Theme.surfaceContainer.b, 0.95) : isPlaceholder ? Theme.surfaceTextAlpha : Theme.surfaceTextMedium
                                         font.pixelSize: Theme.barTextSize(barThickness, barConfig?.fontScale)
                                         font.weight: (isActive && !isPlaceholder) ? Font.DemiBold : Font.Normal

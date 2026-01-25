@@ -1115,6 +1115,79 @@ Item {
     }
 
     IpcHandler {
+        function info(message: string): string {
+            if (!message)
+                return "ERROR: No message specified";
+
+            ToastService.showInfo(message);
+            return "TOAST_INFO_SUCCESS";
+        }
+
+        function infoWith(message: string, details: string, command: string, category: string): string {
+            if (!message)
+                return "ERROR: No message specified";
+
+            ToastService.showInfo(message, details, command, category);
+            return "TOAST_INFO_SUCCESS";
+        }
+
+        function warn(message: string): string {
+            if (!message)
+                return "ERROR: No message specified";
+
+            ToastService.showWarning(message);
+            return "TOAST_WARN_SUCCESS";
+        }
+
+        function warnWith(message: string, details: string, command: string, category: string): string {
+            if (!message)
+                return "ERROR: No message specified";
+
+            ToastService.showWarning(message, details, command, category);
+            return "TOAST_WARN_SUCCESS";
+        }
+
+        function error(message: string): string {
+            if (!message)
+                return "ERROR: No message specified";
+
+            ToastService.showError(message);
+            return "TOAST_ERROR_SUCCESS";
+        }
+
+        function errorWith(message: string, details: string, command: string, category: string): string {
+            if (!message)
+                return "ERROR: No message specified";
+
+            ToastService.showError(message, details, command, category);
+            return "TOAST_ERROR_SUCCESS";
+        }
+
+        function hide(): string {
+            ToastService.hideToast();
+            return "TOAST_HIDE_SUCCESS";
+        }
+
+        function dismiss(category: string): string {
+            if (!category)
+                return "ERROR: No category specified";
+
+            ToastService.dismissCategory(category);
+            return "TOAST_DISMISS_SUCCESS";
+        }
+
+        function status(): string {
+            if (!ToastService.toastVisible)
+                return "hidden";
+
+            const levels = ["info", "warn", "error"];
+            return `visible:${levels[ToastService.currentLevel]}:${ToastService.currentMessage}`;
+        }
+
+        target: "toast"
+    }
+
+    IpcHandler {
         function open(): string {
             FirstLaunchService.showWelcome();
             return "WELCOME_OPEN_SUCCESS";

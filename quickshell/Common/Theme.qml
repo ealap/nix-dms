@@ -94,6 +94,9 @@ Singleton {
     property var matugenColors: ({})
     property var _pendingGenerateParams: null
 
+    property bool themeModeAutomationActive: false
+    property bool dmsServiceWasDisconnected: true
+
     readonly property var dank16: {
         const raw = matugenColors?.dank16;
         if (!raw)
@@ -175,6 +178,237 @@ Singleton {
 
         if (typeof SettingsData !== "undefined" && SettingsData.currentThemeName) {
             switchTheme(SettingsData.currentThemeName, false, false);
+        }
+
+        if (typeof SessionData !== "undefined" && SessionData.themeModeAutoEnabled) {
+            startThemeModeAutomation();
+        }
+    }
+
+    Connections {
+        target: SessionData
+        enabled: typeof SessionData !== "undefined"
+
+        function onThemeModeAutoEnabledChanged() {
+            if (SessionData.themeModeAutoEnabled) {
+                root.startThemeModeAutomation();
+            } else {
+                root.stopThemeModeAutomation();
+            }
+        }
+
+        function onThemeModeAutoModeChanged() {
+            if (root.themeModeAutomationActive) {
+                root.evaluateThemeMode();
+                root.syncTimeThemeSchedule();
+                root.syncLocationThemeSchedule();
+            }
+        }
+
+        function onThemeModeStartHourChanged() {
+            if (root.themeModeAutomationActive && !SessionData.themeModeShareGammaSettings) {
+                root.evaluateThemeMode();
+                root.syncTimeThemeSchedule();
+            }
+        }
+
+        function onThemeModeStartMinuteChanged() {
+            if (root.themeModeAutomationActive && !SessionData.themeModeShareGammaSettings) {
+                root.evaluateThemeMode();
+                root.syncTimeThemeSchedule();
+            }
+        }
+
+        function onThemeModeEndHourChanged() {
+            if (root.themeModeAutomationActive && !SessionData.themeModeShareGammaSettings) {
+                root.evaluateThemeMode();
+                root.syncTimeThemeSchedule();
+            }
+        }
+
+        function onThemeModeEndMinuteChanged() {
+            if (root.themeModeAutomationActive && !SessionData.themeModeShareGammaSettings) {
+                root.evaluateThemeMode();
+                root.syncTimeThemeSchedule();
+            }
+        }
+
+        function onThemeModeShareGammaSettingsChanged() {
+            if (root.themeModeAutomationActive) {
+                root.evaluateThemeMode();
+                root.syncTimeThemeSchedule();
+                root.syncLocationThemeSchedule();
+            }
+        }
+
+        function onNightModeStartHourChanged() {
+            if (root.themeModeAutomationActive && SessionData.themeModeShareGammaSettings) {
+                root.evaluateThemeMode();
+                root.syncTimeThemeSchedule();
+            }
+        }
+
+        function onNightModeStartMinuteChanged() {
+            if (root.themeModeAutomationActive && SessionData.themeModeShareGammaSettings) {
+                root.evaluateThemeMode();
+                root.syncTimeThemeSchedule();
+            }
+        }
+
+        function onNightModeEndHourChanged() {
+            if (root.themeModeAutomationActive && SessionData.themeModeShareGammaSettings) {
+                root.evaluateThemeMode();
+                root.syncTimeThemeSchedule();
+            }
+        }
+
+        function onNightModeEndMinuteChanged() {
+            if (root.themeModeAutomationActive && SessionData.themeModeShareGammaSettings) {
+                root.evaluateThemeMode();
+                root.syncTimeThemeSchedule();
+            }
+        }
+
+        function onLatitudeChanged() {
+            if (root.themeModeAutomationActive && SessionData.themeModeAutoMode === "location") {
+                if (!SessionData.nightModeUseIPLocation &&
+                    SessionData.latitude !== 0.0 &&
+                    SessionData.longitude !== 0.0 &&
+                    typeof DMSService !== "undefined") {
+                    DMSService.sendRequest("wayland.gamma.setLocation", {
+                        "latitude": SessionData.latitude,
+                        "longitude": SessionData.longitude
+                    });
+                }
+                root.evaluateThemeMode();
+                root.syncLocationThemeSchedule();
+            }
+        }
+
+        function onLongitudeChanged() {
+            if (root.themeModeAutomationActive && SessionData.themeModeAutoMode === "location") {
+                if (!SessionData.nightModeUseIPLocation &&
+                    SessionData.latitude !== 0.0 &&
+                    SessionData.longitude !== 0.0 &&
+                    typeof DMSService !== "undefined") {
+                    DMSService.sendRequest("wayland.gamma.setLocation", {
+                        "latitude": SessionData.latitude,
+                        "longitude": SessionData.longitude
+                    });
+                }
+                root.evaluateThemeMode();
+                root.syncLocationThemeSchedule();
+            }
+        }
+
+        function onNightModeUseIPLocationChanged() {
+            if (root.themeModeAutomationActive && SessionData.themeModeAutoMode === "location") {
+                if (typeof DMSService !== "undefined") {
+                    DMSService.sendRequest("wayland.gamma.setUseIPLocation", {
+                        "use": SessionData.nightModeUseIPLocation
+                    }, response => {
+                        if (!response.error && !SessionData.nightModeUseIPLocation &&
+                            SessionData.latitude !== 0.0 && SessionData.longitude !== 0.0) {
+                            DMSService.sendRequest("wayland.gamma.setLocation", {
+                                "latitude": SessionData.latitude,
+                                "longitude": SessionData.longitude
+                            });
+                        }
+                    });
+                }
+                root.evaluateThemeMode();
+                root.syncLocationThemeSchedule();
+            }
+        }
+    }
+
+    // React to gamma backend's isDay state changes for location-based mode
+    Connections {
+        target: DisplayService
+        enabled: typeof DisplayService !== "undefined" &&
+                 typeof SessionData !== "undefined" &&
+                 SessionData.themeModeAutoEnabled &&
+                 SessionData.themeModeAutoMode === "location" &&
+                 !themeAutoBackendAvailable()
+
+        function onGammaIsDayChanged() {
+            if (root.isLightMode !== DisplayService.gammaIsDay) {
+                root.setLightMode(DisplayService.gammaIsDay, true, true);
+            }
+        }
+    }
+
+    Connections {
+        target: DMSService
+        enabled: typeof DMSService !== "undefined" && typeof SessionData !== "undefined"
+
+        function onLoginctlEvent(event) {
+            if (!SessionData.themeModeAutoEnabled) return;
+            if (event.event === "unlock" || event.event === "resume") {
+                if (!themeAutoBackendAvailable()) {
+                    root.evaluateThemeMode();
+                    return;
+                }
+                DMSService.sendRequest("theme.auto.trigger", {});
+            }
+        }
+
+        function onThemeAutoStateUpdate(data) {
+            if (!SessionData.themeModeAutoEnabled) {
+                return;
+            }
+            applyThemeAutoState(data);
+        }
+
+        function onConnectionStateChanged() {
+            if (DMSService.isConnected && SessionData.themeModeAutoMode === "time") {
+                root.syncTimeThemeSchedule();
+            }
+
+            if (DMSService.isConnected && SessionData.themeModeAutoMode === "location") {
+                root.syncLocationThemeSchedule();
+            }
+
+            if (themeAutoBackendAvailable() && SessionData.themeModeAutoEnabled) {
+                DMSService.sendRequest("theme.auto.getState", null, response => {
+                    if (response && response.result) {
+                        applyThemeAutoState(response.result);
+                    }
+                });
+            }
+
+            if (!SessionData.themeModeAutoEnabled) {
+                return;
+            }
+
+            if (DMSService.isConnected && SessionData.themeModeAutoMode === "location") {
+                if (SessionData.nightModeUseIPLocation) {
+                    DMSService.sendRequest("wayland.gamma.setUseIPLocation", {
+                        "use": true
+                    }, response => {
+                        if (!response.error) {
+                            console.info("Theme automation: IP location enabled after connection");
+                        }
+                    });
+                } else if (SessionData.latitude !== 0.0 && SessionData.longitude !== 0.0) {
+                    DMSService.sendRequest("wayland.gamma.setUseIPLocation", {
+                        "use": false
+                    }, response => {
+                        if (!response.error) {
+                            DMSService.sendRequest("wayland.gamma.setLocation", {
+                                "latitude": SessionData.latitude,
+                                "longitude": SessionData.longitude
+                            }, locationResponse => {
+                                if (locationResponse?.error) {
+                                    console.warn("Theme automation: Failed to set location", locationResponse.error);
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    console.warn("Theme automation: No location configured");
+                }
+            }
         }
     }
 
@@ -491,7 +725,9 @@ Singleton {
     property real popupTransparency: typeof SettingsData !== "undefined" && SettingsData.popupTransparency !== undefined ? SettingsData.popupTransparency : 1.0
 
     function screenTransition() {
-        CompositorService.isNiri && NiriService.doScreenTransition();
+        if (CompositorService.isNiri) {
+            NiriService.doScreenTransition();
+        }
     }
 
     function switchTheme(themeName, savePrefs = true, enableTransition = true) {
@@ -543,8 +779,10 @@ Singleton {
         }
 
         const isGreeterMode = (typeof SessionData !== "undefined" && SessionData.isGreeterMode);
-        if (savePrefs && typeof SessionData !== "undefined" && !isGreeterMode)
+        if (savePrefs && typeof SessionData !== "undefined" && !isGreeterMode) {
             SessionData.setLightMode(light);
+        }
+
         if (!isGreeterMode) {
             // Skip with matugen because, our script runner will do it.
             if (!matugenAvailable) {
@@ -552,6 +790,7 @@ Singleton {
             }
             generateSystemThemesFromCurrentTheme();
         }
+
     }
 
     function toggleLightMode(savePrefs = true) {
@@ -1233,7 +1472,7 @@ Singleton {
         return `#${invR}${invG}${invB}`;
     }
 
-    property string baseLogoColor: {
+    property var baseLogoColor: {
         if (typeof SettingsData === "undefined")
             return "";
         const colorOverride = SettingsData.launcherLogoColorOverride;
@@ -1246,7 +1485,7 @@ Singleton {
         return colorOverride;
     }
 
-    property string effectiveLogoColor: {
+    property var effectiveLogoColor: {
         if (typeof SettingsData === "undefined")
             return "";
 
@@ -1451,6 +1690,299 @@ Singleton {
         onTriggered: {
             root.currentThemeCategory = category;
             root.switchTheme(defaultTheme, true, false);
+        }
+    }
+
+    // Theme mode automation functions
+    function themeAutoBackendAvailable() {
+        return typeof DMSService !== "undefined" &&
+               DMSService.isConnected &&
+               Array.isArray(DMSService.capabilities) &&
+               DMSService.capabilities.includes("theme.auto");
+    }
+
+    function applyThemeAutoState(state) {
+        if (!state) {
+            return;
+        }
+        if (state.config && state.config.mode && state.config.mode !== SessionData.themeModeAutoMode) {
+            return;
+        }
+        if (typeof SessionData !== "undefined" && state.nextTransition !== undefined) {
+            SessionData.themeModeNextTransition = state.nextTransition || "";
+        }
+        if (state.isLight !== undefined && root.isLightMode !== state.isLight) {
+            root.setLightMode(state.isLight, true, true);
+        }
+    }
+
+    function syncTimeThemeSchedule() {
+        if (typeof SessionData === "undefined" || typeof DMSService === "undefined") {
+            return;
+        }
+
+        if (!DMSService.isConnected) {
+            return;
+        }
+
+        const timeModeActive = SessionData.themeModeAutoEnabled && SessionData.themeModeAutoMode === "time";
+
+        if (!timeModeActive) {
+            return;
+        }
+
+        DMSService.sendRequest("theme.auto.setMode", {"mode": "time"});
+
+        const shareSettings = SessionData.themeModeShareGammaSettings;
+        const startHour = shareSettings ? SessionData.nightModeStartHour : SessionData.themeModeStartHour;
+        const startMinute = shareSettings ? SessionData.nightModeStartMinute : SessionData.themeModeStartMinute;
+        const endHour = shareSettings ? SessionData.nightModeEndHour : SessionData.themeModeEndHour;
+        const endMinute = shareSettings ? SessionData.nightModeEndMinute : SessionData.themeModeEndMinute;
+
+        DMSService.sendRequest("theme.auto.setSchedule", {
+            "startHour": startHour,
+            "startMinute": startMinute,
+            "endHour": endHour,
+            "endMinute": endMinute
+        }, response => {
+            if (response && response.error) {
+                console.error("Theme automation: Failed to sync time schedule:", response.error);
+            }
+        });
+
+        DMSService.sendRequest("theme.auto.setEnabled", {"enabled": true});
+        DMSService.sendRequest("theme.auto.trigger", {});
+    }
+
+    function syncLocationThemeSchedule() {
+        if (typeof SessionData === "undefined" || typeof DMSService === "undefined") {
+            return;
+        }
+
+        if (!DMSService.isConnected) {
+            return;
+        }
+
+        const locationModeActive = SessionData.themeModeAutoEnabled && SessionData.themeModeAutoMode === "location";
+
+        if (!locationModeActive) {
+            return;
+        }
+
+        DMSService.sendRequest("theme.auto.setMode", {"mode": "location"});
+
+        if (SessionData.nightModeUseIPLocation) {
+            DMSService.sendRequest("theme.auto.setUseIPLocation", {"use": true});
+        } else {
+            DMSService.sendRequest("theme.auto.setUseIPLocation", {"use": false});
+            if (SessionData.latitude !== 0.0 && SessionData.longitude !== 0.0) {
+                DMSService.sendRequest("theme.auto.setLocation", {
+                    "latitude": SessionData.latitude,
+                    "longitude": SessionData.longitude
+                });
+            }
+        }
+
+        DMSService.sendRequest("theme.auto.setEnabled", {"enabled": true});
+        DMSService.sendRequest("theme.auto.trigger", {});
+    }
+
+    function evaluateThemeMode() {
+        if (typeof SessionData === "undefined" || !SessionData.themeModeAutoEnabled) {
+            return;
+        }
+
+        if (themeAutoBackendAvailable()) {
+            DMSService.sendRequest("theme.auto.getState", null, response => {
+                if (response && response.result) {
+                    applyThemeAutoState(response.result);
+                }
+            });
+            return;
+        }
+
+        const mode = SessionData.themeModeAutoMode;
+
+        if (mode === "location") {
+            evaluateLocationBasedThemeMode();
+        } else {
+            evaluateTimeBasedThemeMode();
+        }
+    }
+
+    function evaluateLocationBasedThemeMode() {
+        if (typeof DisplayService !== "undefined") {
+            const shouldBeLight = DisplayService.gammaIsDay;
+            if (root.isLightMode !== shouldBeLight) {
+                root.setLightMode(shouldBeLight, true, true);
+            }
+            return;
+        }
+
+        if (!SessionData.nightModeUseIPLocation &&
+            SessionData.latitude !== 0.0 &&
+            SessionData.longitude !== 0.0) {
+            const shouldBeLight = calculateIsDaytime(
+                SessionData.latitude,
+                SessionData.longitude
+            );
+            if (root.isLightMode !== shouldBeLight) {
+                root.setLightMode(shouldBeLight, true, true);
+            }
+            return;
+        }
+
+        if (root.themeModeAutomationActive) {
+            if (SessionData.nightModeUseIPLocation) {
+                console.warn("Theme automation: Waiting for IP location from backend");
+            } else {
+                console.warn("Theme automation: Location mode requires coordinates");
+            }
+        }
+    }
+
+    function evaluateTimeBasedThemeMode() {
+        const shareSettings = SessionData.themeModeShareGammaSettings;
+
+        const startHour = shareSettings ?
+            SessionData.nightModeStartHour : SessionData.themeModeStartHour;
+        const startMinute = shareSettings ?
+            SessionData.nightModeStartMinute : SessionData.themeModeStartMinute;
+        const endHour = shareSettings ?
+            SessionData.nightModeEndHour : SessionData.themeModeEndHour;
+        const endMinute = shareSettings ?
+            SessionData.nightModeEndMinute : SessionData.themeModeEndMinute;
+
+        const now = new Date();
+        const currentMinutes = now.getHours() * 60 + now.getMinutes();
+        const startMinutes = startHour * 60 + startMinute;
+        const endMinutes = endHour * 60 + endMinute;
+
+        let shouldBeLight;
+        if (startMinutes < endMinutes) {
+            shouldBeLight = currentMinutes < startMinutes || currentMinutes >= endMinutes;
+        } else {
+            shouldBeLight = currentMinutes >= endMinutes && currentMinutes < startMinutes;
+        }
+
+        if (root.isLightMode !== shouldBeLight) {
+            root.setLightMode(shouldBeLight, true, true);
+        }
+    }
+
+    function calculateIsDaytime(lat, lng) {
+        const now = new Date();
+        const start = new Date(now.getFullYear(), 0, 0);
+        const diff = now - start;
+        const dayOfYear = Math.floor(diff / 86400000);
+        const latRad = lat * Math.PI / 180;
+
+        const declination = 23.45 * Math.sin((360/365) * (dayOfYear - 81) * Math.PI / 180);
+        const declinationRad = declination * Math.PI / 180;
+
+        const cosHourAngle = -Math.tan(latRad) * Math.tan(declinationRad);
+
+        if (cosHourAngle > 1) {
+            return false; // Polar night
+        }
+        if (cosHourAngle < -1) {
+            return true; // Midnight sun
+        }
+
+        const hourAngle = Math.acos(cosHourAngle);
+        const hourAngleDeg = hourAngle * 180 / Math.PI;
+
+        const sunriseHour = 12 - hourAngleDeg / 15;
+        const sunsetHour = 12 + hourAngleDeg / 15;
+
+        const timeZoneOffset = now.getTimezoneOffset() / 60;
+        const localSunrise = sunriseHour - lng / 15 - timeZoneOffset;
+        const localSunset = sunsetHour - lng / 15 - timeZoneOffset;
+
+        const currentHour = now.getHours() + now.getMinutes() / 60;
+
+        const normalizeSunrise = ((localSunrise % 24) + 24) % 24;
+        const normalizeSunset = ((localSunset % 24) + 24) % 24;
+
+        return currentHour >= normalizeSunrise && currentHour < normalizeSunset;
+    }
+
+    // Helper function to send location to backend
+    function sendLocationToBackend() {
+        if (typeof SessionData === "undefined" || typeof DMSService === "undefined") {
+            return false;
+        }
+
+        if (!DMSService.isConnected) {
+            return false;
+        }
+
+        if (SessionData.nightModeUseIPLocation) {
+            DMSService.sendRequest("wayland.gamma.setUseIPLocation", {"use": true}, response => {
+                if (response?.error) {
+                    console.warn("Theme automation: Failed to enable IP location", response.error);
+                }
+            });
+            return true;
+        } else if (SessionData.latitude !== 0.0 && SessionData.longitude !== 0.0) {
+            DMSService.sendRequest("wayland.gamma.setUseIPLocation", {"use": false}, response => {
+                if (!response.error) {
+                    DMSService.sendRequest("wayland.gamma.setLocation", {
+                        "latitude": SessionData.latitude,
+                        "longitude": SessionData.longitude
+                    }, locResp => {
+                        if (locResp?.error) {
+                            console.warn("Theme automation: Failed to set location", locResp.error);
+                        }
+                    });
+                }
+            });
+            return true;
+        }
+        return false;
+    }
+
+    Timer {
+        id: locationRetryTimer
+        interval: 1000
+        repeat: true
+        running: false
+        property int retryCount: 0
+
+        onTriggered: {
+            if (root.sendLocationToBackend()) {
+                stop();
+                retryCount = 0;
+                root.evaluateThemeMode();
+            } else {
+                retryCount++;
+                if (retryCount >= 10) {
+                    stop();
+                    retryCount = 0;
+                }
+            }
+        }
+    }
+
+    function startThemeModeAutomation() {
+        root.themeModeAutomationActive = true;
+
+        root.syncTimeThemeSchedule();
+        root.syncLocationThemeSchedule();
+
+        const sent = root.sendLocationToBackend();
+
+        if (!sent && typeof SessionData !== "undefined" && SessionData.themeModeAutoMode === "location") {
+            locationRetryTimer.start();
+        } else {
+            root.evaluateThemeMode();
+        }
+    }
+
+    function stopThemeModeAutomation() {
+        root.themeModeAutomationActive = false;
+        if (typeof DMSService !== "undefined" && DMSService.isConnected) {
+            DMSService.sendRequest("theme.auto.setEnabled", {"enabled": false});
         }
     }
 }

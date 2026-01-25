@@ -343,7 +343,7 @@ FloatingWindow {
                     id: sidebar
 
                     anchors.left: parent.left
-                    width: settingsModal.isCompactMode ? parent.width : 270
+                    width: settingsModal.isCompactMode ? parent.width : sidebar.implicitWidth
                     visible: settingsModal.isCompactMode ? settingsModal.menuVisible : true
                     parentModal: settingsModal
                     currentIndex: settingsModal.currentTabIndex

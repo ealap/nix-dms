@@ -12,7 +12,7 @@ Item {
     LayoutMirroring.childrenInherit: true
 
     implicitWidth: 700
-    implicitHeight: 410
+    implicitHeight: root.available ? mainColumn.implicitHeight : unavailableColumn.implicitHeight + Theme.spacingXL * 2
     property bool syncing: false
 
     function syncFrom(type) {
@@ -52,6 +52,7 @@ Item {
     property bool available: WeatherService.weather.available
 
     Column {
+        id: unavailableColumn
         anchors.centerIn: parent
         spacing: Theme.spacingL
         visible: !root.available
@@ -141,6 +142,7 @@ Item {
     }
 
     Column {
+        id: mainColumn
         anchors.fill: parent
         visible: root.available
         spacing: Theme.spacingXS
@@ -164,7 +166,7 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     // anchors.verticalCenter: parent.verticalCenter
                     width: weatherIcon.width + tempColumn.width + sunriseColumn.width + Theme.spacingM * 2
-                    height: 70
+                    height: Math.max(weatherIcon.height, tempColumn.height, sunriseColumn.height)
 
                     DankIcon {
                         id: weatherIcon
@@ -325,7 +327,7 @@ Item {
                 Item {
                     id: dateStepper
                     anchors.horizontalCenter: parent.horizontalCenter
-                    height: 60
+                    height: dateStepperInner.height + Theme.spacingM * 2
                     width: dateStepperInner.width
 
                     property var currentDate: new Date()
@@ -354,10 +356,11 @@ Item {
 
                     Item {
                         id: dateStepperInner
-                        anchors.fill: parent
+                        anchors.horizontalCenter: parent.horizontalCenter
                         anchors.verticalCenter: parent.verticalCenter
                         readonly property var space: Theme.spacingXS
                         width: yearStepper.width + monthStepper.width + dayStepper.width + hourStepper.width + minuteStepper.width + (suffix.visible ? suffix.width : 0) + 10.5 * space + 2 * dateStepperInnerPadding.width
+                        height: Math.max(yearStepper.height, monthStepper.height, dayStepper.height, hourStepper.height, minuteStepper.height)
 
                         Item {
                             id: dateStepperInnerPadding
@@ -444,20 +447,15 @@ Item {
                                 text: ":"
                             }
                         }
-                        Rectangle {
+                        StyledText {
                             id: suffix
                             visible: !SettingsData.use24HourClock
-                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.verticalCenter: minuteStepper.verticalCenter
                             anchors.left: minuteStepper.right
                             anchors.leftMargin: 2 * parent.space
-                            StyledText {
-                                isMonospace: true
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                text: dateStepper.splitDate[5] ?? ""
-                                font.pixelSize: Theme.fontSizeSmall
-                                x: -Theme.fontSizeSmall / 2
-                                y: -Theme.fontSizeSmall / 2
-                            }
+                            isMonospace: true
+                            text: dateStepper.splitDate[5] ?? ""
+                            font.pixelSize: Theme.fontSizeSmall
                         }
                         DankActionButton {
                             id: dateResetButton
@@ -898,7 +896,7 @@ Item {
 
         Row {
             width: parent.width
-            height: 32
+            height: Math.max(hourlyHeader.height, denseButton.height) + Theme.spacingS
             spacing: Theme.spacingS
 
             StyledText {
@@ -928,7 +926,7 @@ Item {
 
         Item {
             width: parent.width
-            height: 100 + Theme.spacingXS
+            height: (hourlyLoader.item?.cardHeight ?? (Theme.fontSizeLarge * 6)) + Theme.spacingXS
 
             Loader {
                 id: hourlyLoader
@@ -962,7 +960,7 @@ Item {
                     contentHeight: cardHeight
                     contentWidth: cardWidth
 
-                    property var cardHeight: 100
+                    property var cardHeight: Theme.fontSizeLarge * 6
                     property var cardWidth: ((hourlyList.width + hourlyList.spacing) / hourlyList.visibleCount) - hourlyList.spacing
                     property int initialIndex: (new Date()).getHours()
                     property bool dense: !SessionData.weatherHourlyDetailed
@@ -1038,7 +1036,7 @@ Item {
 
         Row {
             width: parent.width
-            height: 32
+            height: dailyHeader.height + Theme.spacingS
             spacing: Theme.spacingS
 
             StyledText {
@@ -1060,7 +1058,7 @@ Item {
 
         Item {
             width: parent.width
-            height: 100 + Theme.spacingXS
+            height: (dailyLoader.item?.cardHeight ?? (Theme.fontSizeLarge * 6)) + Theme.spacingXS
 
             Loader {
                 id: dailyLoader
@@ -1094,7 +1092,7 @@ Item {
                     contentHeight: cardHeight
                     contentWidth: cardWidth
 
-                    property var cardHeight: 100
+                    property var cardHeight: Theme.fontSizeLarge * 6
                     property var cardWidth: ((dailyList.width + dailyList.spacing) / dailyList.visibleCount) - dailyList.spacing
                     property int initialIndex: 0
                     property bool dense: false

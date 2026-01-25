@@ -130,7 +130,7 @@ Singleton {
 
     Component.onCompleted: {
         root.userPreference = SettingsData.networkPreference;
-        lastConnectedVpnUuid = SettingsData.vpnLastConnected || "";
+        lastConnectedVpnUuid = SessionData.vpnLastConnected || "";
         if (socketPath && socketPath.length > 0) {
             checkDMSCapabilities();
         }
@@ -293,7 +293,7 @@ Singleton {
 
         if (vpnConnected && activeUuid) {
             lastConnectedVpnUuid = activeUuid;
-            SettingsData.set("vpnLastConnected", activeUuid);
+            SessionData.setVpnLastConnected(activeUuid);
         }
 
         if (vpnIsBusy) {

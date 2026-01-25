@@ -626,6 +626,7 @@ func (m *Manager) schedulerLoop() {
 			m.schedule.calcDay = time.Time{}
 			m.scheduleMutex.Unlock()
 			m.recalcSchedule(time.Now())
+			m.updateStateFromSchedule()
 			m.configMutex.RLock()
 			enabled := m.config.Enabled
 			m.configMutex.RUnlock()

@@ -56,6 +56,7 @@ Singleton {
     signal wlrOutputStateUpdate(var data)
     signal evdevStateUpdate(var data)
     signal gammaStateUpdate(var data)
+    signal themeAutoStateUpdate(var data)
     signal openUrlRequested(string url)
     signal appPickerRequested(var data)
     signal screensaverStateUpdate(var data)
@@ -64,7 +65,7 @@ Singleton {
     property bool screensaverInhibited: false
     property var screensaverInhibitors: []
 
-    property var activeSubscriptions: ["network", "network.credentials", "loginctl", "freedesktop", "freedesktop.screensaver", "gamma", "bluetooth", "bluetooth.pairing", "dwl", "brightness", "wlroutput", "evdev", "browser", "dbus"]
+    property var activeSubscriptions: ["network", "network.credentials", "loginctl", "freedesktop", "freedesktop.screensaver", "gamma", "theme.auto", "bluetooth", "bluetooth.pairing", "dwl", "brightness", "wlroutput", "evdev", "browser", "dbus"]
 
     Component.onCompleted: {
         if (socketPath && socketPath.length > 0) {
@@ -304,7 +305,7 @@ Singleton {
             excludeServices = [excludeServices];
         }
 
-        const allServices = ["network", "loginctl", "freedesktop", "gamma", "bluetooth", "cups", "dwl", "brightness", "extworkspace", "browser", "dbus"];
+        const allServices = ["network", "loginctl", "freedesktop", "gamma", "theme.auto", "bluetooth", "cups", "dwl", "brightness", "extworkspace", "browser", "dbus"];
         const filtered = allServices.filter(s => !excludeServices.includes(s));
         subscribe(filtered);
     }
@@ -373,6 +374,8 @@ Singleton {
             evdevStateUpdate(data);
         } else if (service === "gamma") {
             gammaStateUpdate(data);
+        } else if (service === "theme.auto") {
+            themeAutoStateUpdate(data);
         } else if (service === "browser.open_requested") {
             if (data.target) {
                 if (data.requestType === "url" || !data.requestType) {

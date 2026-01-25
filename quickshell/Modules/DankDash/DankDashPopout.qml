@@ -314,25 +314,39 @@ DankPopout {
                     height: Theme.spacingXS
                 }
 
-                StackLayout {
+                Item {
                     id: pages
                     width: parent.width
+                    height: implicitHeight
                     implicitHeight: {
-                        if (currentIndex === 0)
+                        if (root.currentTabIndex === 0)
                             return overviewLoader.item?.implicitHeight ?? 410;
-                        if (currentIndex === 1)
+                        if (root.currentTabIndex === 1)
                             return mediaLoader.item?.implicitHeight ?? 410;
-                        if (currentIndex === 2)
+                        if (root.currentTabIndex === 2)
                             return wallpaperLoader.item?.implicitHeight ?? 410;
-                        if (SettingsData.weatherEnabled && currentIndex === 3)
+                        if (SettingsData.weatherEnabled && root.currentTabIndex === 3)
                             return weatherLoader.item?.implicitHeight ?? 410;
                         return 410;
                     }
-                    currentIndex: root.currentTabIndex
+
+                    readonly property var currentItem: {
+                        if (root.currentTabIndex === 0)
+                            return overviewLoader.item;
+                        if (root.currentTabIndex === 1)
+                            return mediaLoader.item;
+                        if (root.currentTabIndex === 2)
+                            return wallpaperLoader.item;
+                        if (root.currentTabIndex === 3)
+                            return weatherLoader.item;
+                        return null;
+                    }
 
                     Loader {
                         id: overviewLoader
+                        anchors.fill: parent
                         active: root.currentTabIndex === 0
+                        visible: active
                         sourceComponent: Component {
                             OverviewTab {
                                 onCloseDash: root.dashVisible = false
@@ -350,7 +364,9 @@ DankPopout {
 
                     Loader {
                         id: mediaLoader
+                        anchors.fill: parent
                         active: root.currentTabIndex === 1
+                        visible: active
                         sourceComponent: Component {
                             MediaPlayerTab {
                                 targetScreen: root.screen
@@ -379,7 +395,9 @@ DankPopout {
 
                     Loader {
                         id: wallpaperLoader
+                        anchors.fill: parent
                         active: root.currentTabIndex === 2
+                        visible: active
                         sourceComponent: Component {
                             WallpaperTab {
                                 active: true
@@ -393,7 +411,9 @@ DankPopout {
 
                     Loader {
                         id: weatherLoader
+                        anchors.fill: parent
                         active: SettingsData.weatherEnabled && root.currentTabIndex === 3
+                        visible: active
                         sourceComponent: Component {
                             WeatherTab {}
                         }

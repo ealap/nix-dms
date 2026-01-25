@@ -502,17 +502,17 @@ func (p *MangoWCParser) handleSource(line, baseDir string, keybinds *[]MangoWCKe
 		p.dmsProcessed = true
 	}
 
-	fullPath := sourcePath
-	if !filepath.IsAbs(sourcePath) {
-		fullPath = filepath.Join(baseDir, sourcePath)
-	}
-
-	expanded, err := utils.ExpandPath(fullPath)
+	expanded, err := utils.ExpandPath(sourcePath)
 	if err != nil {
 		return
 	}
 
-	includedBinds, err := p.parseFileWithSource(expanded)
+	fullPath := expanded
+	if !filepath.IsAbs(expanded) {
+		fullPath = filepath.Join(baseDir, expanded)
+	}
+
+	includedBinds, err := p.parseFileWithSource(fullPath)
 	if err != nil {
 		return
 	}
@@ -521,33 +521,10 @@ func (p *MangoWCParser) handleSource(line, baseDir string, keybinds *[]MangoWCKe
 }
 
 func (p *MangoWCParser) parseDMSBindsDirectly(dmsBindsPath string) []MangoWCKeyBinding {
-	data, err := os.ReadFile(dmsBindsPath)
+	keybinds, err := p.parseFileWithSource(dmsBindsPath)
 	if err != nil {
 		return nil
 	}
-
-	prevSource := p.currentSource
-	p.currentSource = dmsBindsPath
-
-	var keybinds []MangoWCKeyBinding
-	lines := strings.Split(string(data), "\n")
-
-	for lineNum, line := range lines {
-		trimmed := strings.TrimSpace(line)
-		if !strings.HasPrefix(trimmed, "bind") {
-			continue
-		}
-
-		kb := p.getKeybindAtLineContent(line, lineNum)
-		if kb == nil {
-			continue
-		}
-		kb.Source = dmsBindsPath
-		p.addBind(kb)
-		keybinds = append(keybinds, *kb)
-	}
-
-	p.currentSource = prevSource
 	p.dmsProcessed = true
 	return keybinds
 }

@@ -1,6 +1,6 @@
 .pragma library
 
-.import "./SettingsSpec.js" as SpecModule
+    .import "./SettingsSpec.js" as SpecModule
 
 function parse(root, jsonObj) {
     var SPEC = SpecModule.SPEC;

@@ -884,4 +884,52 @@ Singleton {
 
         return allItems;
     }
+
+    function getPluginLauncherCategories(pluginId) {
+        if (typeof PluginService === "undefined")
+            return [];
+
+        const instance = PluginService.pluginInstances[pluginId];
+        if (!instance)
+            return [];
+
+        if (typeof instance.getCategories !== "function")
+            return [];
+
+        try {
+            return instance.getCategories() || [];
+        } catch (e) {
+            console.warn("AppSearchService: Error getting categories from plugin", pluginId, ":", e);
+            return [];
+        }
+    }
+
+    function setPluginLauncherCategory(pluginId, categoryId) {
+        if (typeof PluginService === "undefined")
+            return;
+
+        const instance = PluginService.pluginInstances[pluginId];
+        if (!instance)
+            return;
+
+        if (typeof instance.setCategory !== "function")
+            return;
+
+        try {
+            instance.setCategory(categoryId);
+        } catch (e) {
+            console.warn("AppSearchService: Error setting category on plugin", pluginId, ":", e);
+        }
+    }
+
+    function pluginHasCategories(pluginId) {
+        if (typeof PluginService === "undefined")
+            return false;
+
+        const instance = PluginService.pluginInstances[pluginId];
+        if (!instance)
+            return false;
+
+        return typeof instance.getCategories === "function";
+    }
 }

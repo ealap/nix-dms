@@ -125,6 +125,19 @@ Item {
         return Theme.warning;
     }
 
+    function formatThemeAutoTime(isoString) {
+        if (!isoString)
+            return "";
+        try {
+            const date = new Date(isoString);
+            if (isNaN(date.getTime()))
+                return "";
+            return date.toLocaleTimeString(Qt.locale(), "HH:mm");
+        } catch (e) {
+            return "";
+        }
+    }
+
     Component.onCompleted: {
         SettingsData.detectAvailableIconThemes();
         SettingsData.detectAvailableCursorThemes();
@@ -152,7 +165,6 @@ Item {
                     }
                     themeColorsTab.templateDetection = detection;
                 } catch (e) {
-                    console.warn("ThemeColorsTab: Failed to parse template check:", e);
                 }
             }
         }
@@ -957,6 +969,453 @@ Item {
                             iconName: "store"
                             anchors.horizontalCenter: parent.horizontalCenter
                             onClicked: showThemeBrowser()
+                        }
+                    }
+                }
+            }
+
+            SettingsCard {
+                tab: "theme"
+                tags: ["automatic", "color", "mode", "schedule", "sunrise", "sunset"]
+                title: I18n.tr("Automatic Color Mode")
+                settingKey: "automaticColorMode"
+                iconName: "schedule"
+
+                Column {
+                    width: parent.width
+                    spacing: Theme.spacingM
+
+                    DankToggle {
+                        id: themeModeAutoToggle
+                        width: parent.width
+                        text: I18n.tr("Enable Automatic Switching")
+                        description: I18n.tr("Automatically switch between light and dark modes based on time or sunrise/sunset")
+                        checked: SessionData.themeModeAutoEnabled
+                        onToggled: checked => {
+                            SessionData.setThemeModeAutoEnabled(checked);
+                        }
+
+                        Connections {
+                            target: SessionData
+                            function onThemeModeAutoEnabledChanged() {
+                                themeModeAutoToggle.checked = SessionData.themeModeAutoEnabled;
+                            }
+                        }
+                    }
+
+                    Column {
+                        width: parent.width
+                        spacing: Theme.spacingM
+                        visible: SessionData.themeModeAutoEnabled
+
+                        DankToggle {
+                            width: parent.width
+                            text: I18n.tr("Share Gamma Control Settings")
+                            description: I18n.tr("Use the same time and location settings as gamma control")
+                            checked: SessionData.themeModeShareGammaSettings
+                            onToggled: checked => {
+                                SessionData.setThemeModeShareGammaSettings(checked);
+                            }
+                        }
+
+                        Item {
+                            width: parent.width
+                            height: 45 + Theme.spacingM
+
+                            DankTabBar {
+                                id: themeModeTabBar
+                                width: 200
+                                height: 45
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                model: [
+                                    { "text": "Time", "icon": "access_time" },
+                                    { "text": "Location", "icon": "place" }
+                                ]
+
+                                Component.onCompleted: {
+                                    currentIndex = SessionData.themeModeAutoMode === "location" ? 1 : 0;
+                                    Qt.callLater(updateIndicator);
+                                }
+
+                                onTabClicked: index => {
+                                    SessionData.setThemeModeAutoMode(index === 1 ? "location" : "time");
+                                    currentIndex = index;
+                                }
+
+                                Connections {
+                                    target: SessionData
+                                    function onThemeModeAutoModeChanged() {
+                                        themeModeTabBar.currentIndex = SessionData.themeModeAutoMode === "location" ? 1 : 0;
+                                        Qt.callLater(themeModeTabBar.updateIndicator);
+                                    }
+                                }
+                            }
+                        }
+
+                        Column {
+                            width: parent.width
+                            spacing: Theme.spacingM
+                            visible: SessionData.themeModeAutoMode === "time" && !SessionData.themeModeShareGammaSettings
+
+                            Column {
+                                spacing: Theme.spacingXS
+                                anchors.horizontalCenter: parent.horizontalCenter
+
+                                Row {
+                                    spacing: Theme.spacingM
+
+                                    StyledText {
+                                        text: ""
+                                        width: 80
+                                        height: 20
+                                    }
+
+                                    StyledText {
+                                        text: I18n.tr("Hour")
+                                        font.pixelSize: Theme.fontSizeSmall
+                                        color: Theme.surfaceVariantText
+                                        width: 70
+                                        horizontalAlignment: Text.AlignHCenter
+                                    }
+
+                                    StyledText {
+                                        text: I18n.tr("Minute")
+                                        font.pixelSize: Theme.fontSizeSmall
+                                        color: Theme.surfaceVariantText
+                                        width: 70
+                                        horizontalAlignment: Text.AlignHCenter
+                                    }
+                                }
+
+                                Row {
+                                    spacing: Theme.spacingM
+
+                                    StyledText {
+                                        text: I18n.tr("Dark Start")
+                                        font.pixelSize: Theme.fontSizeMedium
+                                        color: Theme.surfaceText
+                                        width: 80
+                                        height: 40
+                                        verticalAlignment: Text.AlignVCenter
+                                    }
+
+                                    DankDropdown {
+                                        dropdownWidth: 70
+                                        currentValue: SessionData.themeModeStartHour.toString()
+                                        options: {
+                                            var hours = [];
+                                            for (var i = 0; i < 24; i++) hours.push(i.toString());
+                                            return hours;
+                                        }
+                                        onValueChanged: value => {
+                                            SessionData.setThemeModeStartHour(parseInt(value));
+                                        }
+                                    }
+
+                                    DankDropdown {
+                                        dropdownWidth: 70
+                                        currentValue: SessionData.themeModeStartMinute.toString().padStart(2, '0')
+                                        options: {
+                                            var minutes = [];
+                                            for (var i = 0; i < 60; i += 5) {
+                                                minutes.push(i.toString().padStart(2, '0'));
+                                            }
+                                            return minutes;
+                                        }
+                                        onValueChanged: value => {
+                                            SessionData.setThemeModeStartMinute(parseInt(value));
+                                        }
+                                    }
+                                }
+
+                                Row {
+                                    spacing: Theme.spacingM
+
+                                    StyledText {
+                                        text: I18n.tr("Light Start")
+                                        font.pixelSize: Theme.fontSizeMedium
+                                        color: Theme.surfaceText
+                                        width: 80
+                                        height: 40
+                                        verticalAlignment: Text.AlignVCenter
+                                    }
+
+                                    DankDropdown {
+                                        dropdownWidth: 70
+                                        currentValue: SessionData.themeModeEndHour.toString()
+                                        options: {
+                                            var hours = [];
+                                            for (var i = 0; i < 24; i++) hours.push(i.toString());
+                                            return hours;
+                                        }
+                                        onValueChanged: value => {
+                                            SessionData.setThemeModeEndHour(parseInt(value));
+                                        }
+                                    }
+
+                                    DankDropdown {
+                                        dropdownWidth: 70
+                                        currentValue: SessionData.themeModeEndMinute.toString().padStart(2, '0')
+                                        options: {
+                                            var minutes = [];
+                                            for (var i = 0; i < 60; i += 5) {
+                                                minutes.push(i.toString().padStart(2, '0'));
+                                            }
+                                            return minutes;
+                                        }
+                                        onValueChanged: value => {
+                                            SessionData.setThemeModeEndMinute(parseInt(value));
+                                        }
+                                    }
+                                }
+                            }
+
+                            StyledText {
+                                text: SessionData.isLightMode ? I18n.tr("Light mode will be active from Light Start to Dark Start") : I18n.tr("Dark mode will be active from Dark Start to Light Start")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceVariantText
+                                width: parent.width
+                                wrapMode: Text.WordWrap
+                                horizontalAlignment: Text.AlignHCenter
+                            }
+                        }
+
+                        Column {
+                            width: parent.width
+                            spacing: Theme.spacingM
+                            visible: SessionData.themeModeAutoMode === "location" && !SessionData.themeModeShareGammaSettings
+
+                            DankToggle {
+                                id: themeModeIpLocationToggle
+                                width: parent.width
+                                text: I18n.tr("Use IP Location")
+                                description: I18n.tr("Automatically detect location based on IP address")
+                                checked: SessionData.nightModeUseIPLocation || false
+                                onToggled: checked => {
+                                    SessionData.setNightModeUseIPLocation(checked);
+                                }
+
+                                Connections {
+                                    target: SessionData
+                                    function onNightModeUseIPLocationChanged() {
+                                        themeModeIpLocationToggle.checked = SessionData.nightModeUseIPLocation;
+                                    }
+                                }
+                            }
+
+                            Column {
+                                width: parent.width
+                                spacing: Theme.spacingM
+                                visible: !SessionData.nightModeUseIPLocation
+
+                                StyledText {
+                                    text: I18n.tr("Manual Coordinates")
+                                    font.pixelSize: Theme.fontSizeMedium
+                                    color: Theme.surfaceText
+                                    horizontalAlignment: Text.AlignHCenter
+                                    width: parent.width
+                                }
+
+                                Row {
+                                    spacing: Theme.spacingL
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    Column {
+                                        spacing: Theme.spacingXS
+
+                                        StyledText {
+                                            text: I18n.tr("Latitude")
+                                            font.pixelSize: Theme.fontSizeSmall
+                                            color: Theme.surfaceVariantText
+                                        }
+
+                                        DankTextField {
+                                            width: 120
+                                            height: 40
+                                            text: SessionData.latitude.toString()
+                                            placeholderText: "0.0"
+                                            onEditingFinished: {
+                                                const lat = parseFloat(text);
+                                                if (!isNaN(lat) && lat >= -90 && lat <= 90 && lat !== SessionData.latitude) {
+                                                    SessionData.setLatitude(lat);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    Column {
+                                        spacing: Theme.spacingXS
+
+                                        StyledText {
+                                            text: I18n.tr("Longitude")
+                                            font.pixelSize: Theme.fontSizeSmall
+                                            color: Theme.surfaceVariantText
+                                        }
+
+                                        DankTextField {
+                                            width: 120
+                                            height: 40
+                                            text: SessionData.longitude.toString()
+                                            placeholderText: "0.0"
+                                            onEditingFinished: {
+                                                const lon = parseFloat(text);
+                                                if (!isNaN(lon) && lon >= -180 && lon <= 180 && lon !== SessionData.longitude) {
+                                                    SessionData.setLongitude(lon);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                StyledText {
+                                    text: I18n.tr("Uses sunrise/sunset times to automatically adjust theme mode based on your location.")
+                                    font.pixelSize: Theme.fontSizeSmall
+                                    color: Theme.surfaceVariantText
+                                    width: parent.width
+                                    wrapMode: Text.WordWrap
+                                    horizontalAlignment: Text.AlignHCenter
+                                }
+                            }
+
+                            StyledText {
+                                text: SessionData.isLightMode ? I18n.tr("Light mode will be active from sunrise to sunset") : I18n.tr("Dark mode will be active from sunset to sunrise")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.primary
+                                width: parent.width
+                                wrapMode: Text.WordWrap
+                                horizontalAlignment: Text.AlignHCenter
+                                visible: SessionData.nightModeUseIPLocation || (SessionData.latitude !== 0.0 && SessionData.longitude !== 0.0)
+                            }
+                        }
+
+                        StyledText {
+                            width: parent.width
+                            text: I18n.tr("Using shared settings from Gamma Control")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.primary
+                            wrapMode: Text.WordWrap
+                            horizontalAlignment: Text.AlignHCenter
+                            visible: SessionData.themeModeShareGammaSettings
+                        }
+
+                        Rectangle {
+                            width: parent.width
+                            height: statusRow.implicitHeight + Theme.spacingM * 2
+                            radius: Theme.cornerRadius
+                            color: Theme.surfaceContainerHigh
+
+                            Row {
+                                id: statusRow
+                                anchors.centerIn: parent
+                                spacing: Theme.spacingL
+                                width: parent.width - Theme.spacingM * 2
+
+                                Column {
+                                    spacing: 2
+                                    width: (parent.width - Theme.spacingL * 2) / 3
+                                    anchors.verticalCenter: parent.verticalCenter
+
+                                    Row {
+                                        spacing: Theme.spacingS
+                                        anchors.horizontalCenter: parent.horizontalCenter
+
+                                        Rectangle {
+                                            width: 8
+                                            height: 8
+                                            radius: 4
+                                            color: SessionData.themeModeAutoEnabled ? Theme.success : Theme.error
+                                            anchors.verticalCenter: parent.verticalCenter
+                                        }
+
+                                        StyledText {
+                                            text: I18n.tr("Automation")
+                                            font.pixelSize: Theme.fontSizeMedium
+                                            font.weight: Font.Medium
+                                            color: Theme.surfaceText
+                                        }
+                                    }
+
+                                    StyledText {
+                                        text: SessionData.themeModeAutoEnabled ? I18n.tr("Enabled") : I18n.tr("Disabled")
+                                        font.pixelSize: Theme.fontSizeMedium
+                                        font.weight: Font.Medium
+                                        color: Theme.surfaceText
+                                        horizontalAlignment: Text.AlignHCenter
+                                        width: parent.width
+                                    }
+                                }
+
+                                Column {
+                                    spacing: 2
+                                    width: (parent.width - Theme.spacingL * 2) / 3
+                                    anchors.verticalCenter: parent.verticalCenter
+
+                                    Row {
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                        spacing: Theme.spacingS
+
+                                        DankIcon {
+                                            name: SessionData.isLightMode ? "light_mode" : "dark_mode"
+                                            size: Theme.iconSizeMedium
+                                            color: SessionData.isLightMode ? "#FFA726" : "#7E57C2"
+                                            anchors.verticalCenter: parent.verticalCenter
+                                        }
+
+                                        StyledText {
+                                            text: SessionData.isLightMode ? I18n.tr("Light Mode") : I18n.tr("Dark Mode")
+                                            font.pixelSize: Theme.fontSizeMedium
+                                            font.weight: Font.Bold
+                                            color: Theme.surfaceText
+                                            anchors.verticalCenter: parent.verticalCenter
+                                        }
+                                    }
+
+                                    StyledText {
+                                        text: I18n.tr("Active")
+                                        font.pixelSize: Theme.fontSizeMedium
+                                        font.weight: Font.Medium
+                                        color: Theme.surfaceText
+                                        horizontalAlignment: Text.AlignHCenter
+                                        width: parent.width
+                                    }
+                                }
+
+                                Column {
+                                    spacing: 2
+                                    width: (parent.width - Theme.spacingL * 2) / 3
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    visible: SessionData.themeModeAutoEnabled && SessionData.themeModeNextTransition
+
+                                    Row {
+                                        spacing: Theme.spacingS
+                                        anchors.horizontalCenter: parent.horizontalCenter
+
+                                        DankIcon {
+                                            name: "schedule"
+                                            size: Theme.iconSizeMedium
+                                            color: Theme.primary
+                                            anchors.verticalCenter: parent.verticalCenter
+                                        }
+
+                                        StyledText {
+                                            text: I18n.tr("Next Transition")
+                                            font.pixelSize: Theme.fontSizeMedium
+                                            font.weight: Font.Medium
+                                            color: Theme.surfaceText
+                                            anchors.verticalCenter: parent.verticalCenter
+                                        }
+                                    }
+
+                                    StyledText {
+                                        text: themeColorsTab.formatThemeAutoTime(SessionData.themeModeNextTransition)
+                                        font.pixelSize: Theme.fontSizeMedium
+                                        font.weight: Font.Medium
+                                        color: Theme.surfaceText
+                                        horizontalAlignment: Text.AlignHCenter
+                                        width: parent.width
+                                    }
+                                }
+                            }
                         }
                     }
                 }

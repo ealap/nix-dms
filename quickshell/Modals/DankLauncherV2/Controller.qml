@@ -48,9 +48,14 @@ Item {
     Connections {
         target: PluginService
         function onRequestLauncherUpdate(pluginId) {
-            if (activePluginId === pluginId || searchQuery) {
+            if (activePluginId === pluginId) {
+                if (activePluginCategories.length <= 1)
+                    loadPluginCategories(pluginId);
                 performSearch();
+                return;
             }
+            if (searchQuery)
+                performSearch();
         }
     }
 
@@ -133,6 +138,8 @@ Item {
 
     property string pluginFilter: ""
     property string activePluginName: ""
+    property var activePluginCategories: []
+    property string activePluginCategory: ""
 
     function getSectionViewMode(sectionId) {
         if (sectionId === "browse_plugins")
@@ -307,8 +314,31 @@ Item {
         isSearching = false;
         activePluginId = "";
         activePluginName = "";
+        activePluginCategories = [];
+        activePluginCategory = "";
         pluginFilter = "";
         collapsedSections = {};
+    }
+
+    function loadPluginCategories(pluginId) {
+        if (!pluginId) {
+            activePluginCategories = [];
+            activePluginCategory = "";
+            return;
+        }
+
+        const categories = AppSearchService.getPluginLauncherCategories(pluginId);
+        activePluginCategories = categories;
+        activePluginCategory = "";
+        AppSearchService.setPluginLauncherCategory(pluginId, "");
+    }
+
+    function setActivePluginCategory(categoryId) {
+        if (activePluginCategory === categoryId)
+            return;
+        activePluginCategory = categoryId;
+        AppSearchService.setPluginLauncherCategory(activePluginId, categoryId);
+        performSearch();
     }
 
     function clearPluginFilter() {
@@ -342,6 +372,8 @@ Item {
         if (cachedSections && !searchQuery && searchMode === "all" && !pluginFilter) {
             activePluginId = "";
             activePluginName = "";
+            activePluginCategories = [];
+            activePluginCategory = "";
             clearActivePluginViewPreference();
             sections = cachedSections.map(function (s) {
                 var copy = Object.assign({}, s, {
@@ -363,9 +395,13 @@ Item {
 
         var triggerMatch = detectTrigger(searchQuery);
         if (triggerMatch.pluginId) {
+            var pluginChanged = activePluginId !== triggerMatch.pluginId;
             activePluginId = triggerMatch.pluginId;
             activePluginName = getPluginName(triggerMatch.pluginId, triggerMatch.isBuiltIn);
             applyActivePluginViewPreference(triggerMatch.pluginId, triggerMatch.isBuiltIn);
+
+            if (pluginChanged && !triggerMatch.isBuiltIn)
+                loadPluginCategories(triggerMatch.pluginId);
 
             var pluginItems = getPluginItems(triggerMatch.pluginId, triggerMatch.query);
             allItems = allItems.concat(pluginItems);
@@ -401,6 +437,8 @@ Item {
 
         activePluginId = "";
         activePluginName = "";
+        activePluginCategories = [];
+        activePluginCategory = "";
         clearActivePluginViewPreference();
 
         if (searchMode === "files") {
