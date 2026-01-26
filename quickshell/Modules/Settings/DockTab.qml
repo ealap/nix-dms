@@ -174,7 +174,6 @@ Item {
                     settingKey: "dockLauncherEnabled"
                     tags: ["dock", "launcher", "button", "apps"]
                     text: I18n.tr("Show Launcher Button")
-                    description: I18n.tr("Add a draggable launcher button to the dock")
                     checked: SettingsData.dockLauncherEnabled
                     onToggled: checked => SettingsData.set("dockLauncherEnabled", checked)
                 }
@@ -184,20 +183,12 @@ Item {
                     spacing: Theme.spacingL
                     visible: SettingsData.dockLauncherEnabled
 
-                    StyledText {
-                        width: parent.width
-                        text: I18n.tr("Long press and drag the launcher button to reposition it in the dock")
-                        font.pixelSize: Theme.fontSizeSmall
-                        color: Theme.surfaceVariantText
-                        wrapMode: Text.WordWrap
-                    }
-
                     Column {
                         width: parent.width
                         spacing: Theme.spacingM
 
                         StyledText {
-                            text: I18n.tr("Launcher Icon")
+                            text: I18n.tr("Icon")
                             font.pixelSize: Theme.fontSizeSmall
                             color: Theme.surfaceText
                             font.weight: Font.Medium

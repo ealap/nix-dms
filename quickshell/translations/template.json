@@ -707,6 +707,13 @@
     "comment": ""
   },
   {
+    "term": "App Customizations",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "App ID Substitutions",
     "translation": "",
     "context": "",
@@ -731,6 +738,13 @@
     "term": "App Theming",
     "translation": "",
     "context": "greeter feature card title",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Appearance",
+    "translation": "",
+    "context": "launcher appearance settings",
     "reference": "",
     "comment": ""
   },
@@ -777,6 +791,20 @@
     "comment": ""
   },
   {
+    "term": "Apps",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Apps Dock",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Apps Icon",
     "translation": "",
     "context": "",
@@ -785,6 +813,13 @@
   },
   {
     "term": "Apps are ordered by usage frequency, then last used, then alphabetically.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.",
     "translation": "",
     "context": "",
     "reference": "",
@@ -1036,6 +1071,13 @@
     "comment": ""
   },
   {
+    "term": "Automatic Color Mode",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Automatic Control",
     "translation": "",
     "context": "",
@@ -1086,6 +1128,13 @@
   },
   {
     "term": "Automatically lock the screen when the system prepares to suspend",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Automation",
     "translation": "",
     "context": "",
     "reference": "",
@@ -1325,7 +1374,7 @@
   {
     "term": "Border",
     "translation": "",
-    "context": "",
+    "context": "launcher border option",
     "reference": "",
     "comment": ""
   },
@@ -1449,6 +1498,13 @@
     "comment": ""
   },
   {
+    "term": "Browse or search plugins",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "CPU",
     "translation": "",
     "context": "",
@@ -1520,6 +1576,20 @@
   },
   {
     "term": "CUPS not available",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Calc",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Calculator",
     "translation": "",
     "context": "",
     "reference": "",
@@ -1645,6 +1715,13 @@
     "comment": ""
   },
   {
+    "term": "Choose Dock Launcher Logo Color",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Choose Launcher Logo Color",
     "translation": "",
     "context": "",
@@ -1723,6 +1800,13 @@
   },
   {
     "term": "Choose which monitor shows the lock screen interface. Other monitors will display a solid color for OLED burn-in protection.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Chroma Style",
     "translation": "",
     "context": "",
     "reference": "",
@@ -1904,7 +1988,21 @@
     "comment": ""
   },
   {
+    "term": "Close All Windows",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Close Overview on Launch",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Close Window",
     "translation": "",
     "context": "",
     "reference": "",
@@ -1913,7 +2011,7 @@
   {
     "term": "Color",
     "translation": "",
-    "context": "",
+    "context": "border color",
     "reference": "",
     "comment": ""
   },
@@ -1981,6 +2079,20 @@
     "comment": ""
   },
   {
+    "term": "Color theme for syntax highlighting.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Color theme for syntax highlighting. %1 themes available.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Color theme from DMS registry",
     "translation": "",
     "context": "registry theme description",
@@ -2010,6 +2122,13 @@
   },
   {
     "term": "Command",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Commands",
     "translation": "",
     "context": "",
     "reference": "",
@@ -2261,6 +2380,13 @@
     "comment": ""
   },
   {
+    "term": "Control which plugins appear in 'All' mode without requiring a trigger prefix. Drag to reorder.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Control workspaces and columns by scrolling on the bar",
     "translation": "",
     "context": "",
@@ -2310,6 +2436,13 @@
     "comment": ""
   },
   {
+    "term": "Copy HTML",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Copy Name",
     "translation": "",
     "context": "",
@@ -2318,6 +2451,27 @@
   },
   {
     "term": "Copy PID",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Copy Text",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Copy URL",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Copy path",
     "translation": "",
     "context": "",
     "reference": "",
@@ -2705,13 +2859,6 @@
     "term": "DankMaterialShell is ready to use",
     "translation": "",
     "context": "greeter completion page subtitle",
-    "reference": "",
-    "comment": ""
-  },
-  {
-    "term": "DankSearch not available",
-    "translation": "",
-    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -3360,6 +3507,13 @@
     "comment": ""
   },
   {
+    "term": "Edit App",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Education",
     "translation": "",
     "context": "",
@@ -3507,7 +3661,7 @@
     "comment": ""
   },
   {
-    "term": "Enter a search query",
+    "term": "Enter a new name for this workspace",
     "translation": "",
     "context": "",
     "reference": "",
@@ -3598,6 +3752,13 @@
     "comment": ""
   },
   {
+    "term": "Environment Variables",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Error",
     "translation": "",
     "context": "",
@@ -3657,6 +3818,13 @@
     "term": "External Wallpaper Management",
     "translation": "",
     "context": "wallpaper settings external management",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Extra Arguments",
+    "translation": "",
+    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -4004,6 +4172,13 @@
     "comment": ""
   },
   {
+    "term": "Failed to send file",
+    "translation": "",
+    "context": "KDE Connect error",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Failed to send ping",
     "translation": "",
     "context": "KDE Connect error",
@@ -4137,6 +4312,13 @@
     "comment": ""
   },
   {
+    "term": "Feels Like %1°",
+    "translation": "",
+    "context": "weather feels like temperature",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "File",
     "translation": "",
     "context": "",
@@ -4161,6 +4343,13 @@
     "term": "File received from",
     "translation": "",
     "context": "KDE Connect file share notification",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "File search requires dsearch\\nInstall from github.com/morelazers/dsearch",
+    "translation": "",
+    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -4683,6 +4872,13 @@
     "comment": ""
   },
   {
+    "term": "HTML copied to clipboard",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Health",
     "translation": "",
     "context": "",
@@ -4725,7 +4921,28 @@
     "comment": ""
   },
   {
+    "term": "Hidden Apps",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Hidden Network",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Hide App",
     "translation": "",
     "context": "",
     "reference": "",
@@ -4942,6 +5159,13 @@
     "comment": ""
   },
   {
+    "term": "Icon",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Icon Size",
     "translation": "",
     "context": "",
@@ -5027,6 +5251,13 @@
   },
   {
     "term": "Include Transitions",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Include desktop actions (shortcuts) in search results.",
     "translation": "",
     "context": "",
     "reference": "",
@@ -5376,6 +5607,20 @@
     "comment": ""
   },
   {
+    "term": "Large",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Largest",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Last hour",
     "translation": "",
     "context": "notification history filter",
@@ -5447,6 +5692,13 @@
   },
   {
     "term": "Launcher",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Launcher Button",
     "translation": "",
     "context": "",
     "reference": "",
@@ -5538,6 +5790,13 @@
   },
   {
     "term": "Loading keybinds...",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Loading trending...",
     "translation": "",
     "context": "",
     "reference": "",
@@ -6503,6 +6762,20 @@
     "comment": ""
   },
   {
+    "term": "No app customizations.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No apps found",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No battery",
     "translation": "",
     "context": "",
@@ -6601,6 +6874,13 @@
     "comment": ""
   },
   {
+    "term": "No hidden apps.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No info items",
     "translation": "",
     "context": "greeter doctor page empty state",
@@ -6616,6 +6896,13 @@
   },
   {
     "term": "No keybinds found",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No launcher plugins installed.",
     "translation": "",
     "context": "",
     "reference": "",
@@ -6639,6 +6926,13 @@
     "term": "No mount points found",
     "translation": "",
     "context": "empty state in disk mounts list",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No plugin results",
+    "translation": "",
+    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -6685,6 +6979,13 @@
     "comment": ""
   },
   {
+    "term": "No results found",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No saved clipboard entries",
     "translation": "",
     "context": "",
@@ -6702,6 +7003,13 @@
     "term": "No themes installed. Browse themes to install from the registry.",
     "translation": "",
     "context": "no registry themes installed hint",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No trigger",
+    "translation": "",
+    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -7021,6 +7329,20 @@
     "comment": ""
   },
   {
+    "term": "Open folder",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Open in Browser",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Open search bar to find text",
     "translation": "",
     "context": "",
@@ -7094,6 +7416,13 @@
     "term": "Other",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Outline",
+    "translation": "",
+    "context": "outline color",
     "reference": "",
     "comment": ""
   },
@@ -7197,6 +7526,13 @@
   },
   {
     "term": "PIN",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Pad Hours",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7413,6 +7749,13 @@
     "comment": ""
   },
   {
+    "term": "Pinned and running apps with drag-and-drop",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Place plugin directories here. Each plugin should have a plugin.json manifest file.",
     "translation": "",
     "context": "",
@@ -7491,6 +7834,13 @@
   },
   {
     "term": "Plugin Management",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Plugin Visibility",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7693,9 +8043,16 @@
     "comment": ""
   },
   {
-    "term": "Primary",
+    "term": "Preview",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Primary",
+    "translation": "",
+    "context": "primary color",
     "reference": "",
     "comment": ""
   },
@@ -7974,6 +8331,20 @@
   },
   {
     "term": "Remove gaps and border when windows are maximized",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Rename",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Rename Workspace",
     "translation": "",
     "context": "",
     "reference": "",
@@ -8463,21 +8834,21 @@
     "comment": ""
   },
   {
+    "term": "Search App Actions",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Search Options",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
-    "term": "Search file contents",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
-    "term": "Search filenames",
     "translation": "",
     "context": "",
     "reference": "",
@@ -8549,7 +8920,7 @@
   {
     "term": "Secondary",
     "translation": "",
-    "context": "",
+    "context": "secondary color",
     "reference": "",
     "comment": ""
   },
@@ -8575,6 +8946,13 @@
     "comment": ""
   },
   {
+    "term": "Select",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Select Application",
     "translation": "",
     "context": "",
@@ -8592,6 +8970,13 @@
     "term": "Select Custom Theme",
     "translation": "",
     "context": "custom theme file browser title",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Select File to Send",
+    "translation": "",
+    "context": "KDE Connect file browser title",
     "reference": "",
     "comment": ""
   },
@@ -8757,9 +9142,23 @@
     "comment": ""
   },
   {
+    "term": "Send File",
+    "translation": "",
+    "context": "KDE Connect send file button",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Send SMS",
     "translation": "",
     "context": "KDE Connect SMS dialog title",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Sending",
+    "translation": "",
+    "context": "KDE Connect file send",
     "reference": "",
     "comment": ""
   },
@@ -8829,7 +9228,21 @@
   {
     "term": "Share",
     "translation": "",
-    "context": "KDE Connect share button | KDE Connect share dialog title | KDE Connect share tooltip",
+    "context": "KDE Connect share dialog title | KDE Connect share tooltip",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Share Gamma Control Settings",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Share Text",
+    "translation": "",
+    "context": "KDE Connect share button",
     "reference": "",
     "comment": ""
   },
@@ -8856,6 +9269,13 @@
   },
   {
     "term": "Shift+Del: Clear All • Esc: Close",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Shift+Enter to paste",
     "translation": "",
     "context": "",
     "reference": "",
@@ -8946,6 +9366,13 @@
     "comment": ""
   },
   {
+    "term": "Show Footer",
+    "translation": "",
+    "context": "launcher footer visibility",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Show Forecast",
     "translation": "",
     "context": "",
@@ -8995,6 +9422,13 @@
     "comment": ""
   },
   {
+    "term": "Show Launcher Button",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Show Line Numbers",
     "translation": "",
     "context": "",
@@ -9019,6 +9453,13 @@
     "term": "Show Log Out",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show Media Player",
+    "translation": "",
+    "context": "Enable media player controls on the lock screen window",
     "reference": "",
     "comment": ""
   },
@@ -9233,6 +9674,13 @@
     "comment": ""
   },
   {
+    "term": "Show mode tabs and keyboard hints at the bottom.",
+    "translation": "",
+    "context": "launcher footer description",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Show on Last Display",
     "translation": "",
     "context": "",
@@ -9417,7 +9865,7 @@
   {
     "term": "Size",
     "translation": "",
-    "context": "",
+    "context": "launcher size option",
     "reference": "",
     "comment": ""
   },
@@ -9446,6 +9894,13 @@
     "term": "Skip setup",
     "translation": "",
     "context": "greeter skip button tooltip",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Small",
+    "translation": "",
+    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -9886,7 +10341,7 @@
   {
     "term": "Text",
     "translation": "",
-    "context": "shadow color option",
+    "context": "shadow color option | text color",
     "reference": "",
     "comment": ""
   },
@@ -9949,7 +10404,7 @@
   {
     "term": "Thickness",
     "translation": "",
-    "context": "",
+    "context": "border thickness",
     "reference": "",
     "comment": ""
   },
@@ -10220,6 +10675,20 @@
     "comment": ""
   },
   {
+    "term": "Trending GIFs",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Trending Stickers",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Trigger",
     "translation": "",
     "context": "",
@@ -10228,6 +10697,20 @@
   },
   {
     "term": "Trigger Prefix",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Trigger: %1",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Try a different search",
     "translation": "",
     "context": "",
     "reference": "",
@@ -10255,7 +10738,35 @@
     "comment": ""
   },
   {
+    "term": "Type at least 2 characters",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Type this prefix to search keybinds",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Type to search",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Type to search apps",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Type to search files",
     "translation": "",
     "context": "",
     "reference": "",
@@ -10598,6 +11109,13 @@
     "comment": ""
   },
   {
+    "term": "Use meters per second instead of km/h for wind speed",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Use smaller notification cards",
     "translation": "",
     "context": "",
@@ -10647,7 +11165,21 @@
     "comment": ""
   },
   {
+    "term": "Uses sunrise/sunset times based on your location.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Uses sunrise/sunset times to automatically adjust night mode based on your location.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Using shared settings from Gamma Control",
     "translation": "",
     "context": "",
     "reference": "",
@@ -11144,6 +11676,13 @@
     "comment": ""
   },
   {
+    "term": "Wind Speed in m/s",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Window Corner Radius",
     "translation": "",
     "context": "",
@@ -11215,6 +11754,13 @@
   },
   {
     "term": "Workspace Switcher",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Workspace name",
     "translation": "",
     "context": "",
     "reference": "",
@@ -11305,7 +11851,7 @@
     "comment": ""
   },
   {
-    "term": "apps",
+    "term": "actions",
     "translation": "",
     "context": "",
     "reference": "",
@@ -11389,13 +11935,6 @@
     "comment": ""
   },
   {
-    "term": "files",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
     "term": "leave empty for default",
     "translation": "",
     "context": "",
@@ -11431,6 +11970,13 @@
     "comment": ""
   },
   {
+    "term": "nav",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "niri shortcuts config",
     "translation": "",
     "context": "greeter keybinds niri description",
@@ -11446,6 +11992,13 @@
   },
   {
     "term": "official",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "open",
     "translation": "",
     "context": "",
     "reference": "",

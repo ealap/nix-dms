@@ -281,6 +281,9 @@
   "Anonymous Identity (optional)": {
     "Anonymous Identity (optional)": "Anonim Kimlik (isteğe bağlı)"
   },
+  "App Customizations": {
+    "App Customizations": ""
+  },
   "App ID Substitutions": {
     "App ID Substitutions": ""
   },
@@ -305,11 +308,20 @@
   "Apply warm color temperature to reduce eye strain. Use automation settings below to control when it activates.": {
     "Apply warm color temperature to reduce eye strain. Use automation settings below to control when it activates.": "Göz yorgunluğunu azaltmak için sıcak renk sıcaklığı uygulayın. Etkinleştirme zamanını kontrol etmek için aşağıdaki otomasyon ayarlarını kullanın."
   },
+  "Apps": {
+    "Apps": ""
+  },
+  "Apps Dock": {
+    "Apps Dock": ""
+  },
   "Apps Icon": {
     "Apps Icon": "Uygulamalar"
   },
   "Apps are ordered by usage frequency, then last used, then alphabetically.": {
     "Apps are ordered by usage frequency, then last used, then alphabetically.": "Uygulamalar önce kullanım sıklığına göre, daha sonra son kullanılana göre ve en son alfabetik olarak sıralanır."
+  },
+  "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": {
+    "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": ""
   },
   "Arrange displays and configure resolution, refresh rate, and VRR": {
     "Arrange displays and configure resolution, refresh rate, and VRR": "Ekranları düzenleyin ve çözünürlüğü, yenileme hızını ve VRR'yi yapılandırın"
@@ -410,6 +422,9 @@
   "Autoconnect enabled": {
     "Autoconnect enabled": "Otomatik bağlanma etkin"
   },
+  "Automatic Color Mode": {
+    "Automatic Color Mode": ""
+  },
   "Automatic Control": {
     "Automatic Control": "Otomatik Kontrol"
   },
@@ -433,6 +448,9 @@
   },
   "Automatically lock the screen when the system prepares to suspend": {
     "Automatically lock the screen when the system prepares to suspend": "Sistem askıya alınmaya hazırlanırken ekranı otomatik olarak kilitle"
+  },
+  "Automation": {
+    "Automation": ""
   },
   "Available": {
     "Available": "Kullanılabilir"
@@ -578,6 +596,9 @@
   "Browse Plugins": {
     "Browse Plugins": "Eklentilere Göz At"
   },
+  "Browse or search plugins": {
+    "Browse or search plugins": ""
+  },
   "CPU": {
     "CPU": "CPU"
   },
@@ -607,6 +628,12 @@
   },
   "CUPS not available": {
     "CUPS not available": "CUPS kullanılamıyor"
+  },
+  "Calc": {
+    "Calc": ""
+  },
+  "Calculator": {
+    "Calculator": ""
   },
   "Camera": {
     "Camera": "Kamera"
@@ -659,6 +686,9 @@
   "Choose Color": {
     "Choose Color": "Renk Seç"
   },
+  "Choose Dock Launcher Logo Color": {
+    "Choose Dock Launcher Logo Color": ""
+  },
   "Choose Launcher Logo Color": {
     "Choose Launcher Logo Color": "Başlatıcı Logo Rengini Seçin"
   },
@@ -694,6 +724,9 @@
   },
   "Choose which monitor shows the lock screen interface. Other monitors will display a solid color for OLED burn-in protection.": {
     "Choose which monitor shows the lock screen interface. Other monitors will display a solid color for OLED burn-in protection.": "Hangi monitörün kilit ekranı arayüzünü göstereceğini seçin. Diğer monitörler, OLED yanma koruması için düz bir renk gösterecektir."
+  },
+  "Chroma Style": {
+    "Chroma Style": ""
   },
   "Cipher": {
     "Cipher": "Şifre"
@@ -770,8 +803,14 @@
   "Close": {
     "Close": "Kapat"
   },
+  "Close All Windows": {
+    "Close All Windows": ""
+  },
   "Close Overview on Launch": {
     "Close Overview on Launch": "Başlatmada Genel Görünümü Kapat"
+  },
+  "Close Window": {
+    "Close Window": ""
   },
   "Color": {
     "Color": "Renk"
@@ -803,6 +842,12 @@
   "Color temperature for night mode": {
     "Color temperature for night mode": "Gece modu için renk sıcaklığı"
   },
+  "Color theme for syntax highlighting.": {
+    "Color theme for syntax highlighting.": ""
+  },
+  "Color theme for syntax highlighting. %1 themes available.": {
+    "Color theme for syntax highlighting. %1 themes available.": ""
+  },
   "Colorful mix of bright contrasting accents.": {
     "Colorful mix of bright contrasting accents.": "Parlak kontrastlı vurguların renkli karışımı."
   },
@@ -811,6 +856,9 @@
   },
   "Command": {
     "Command": "Komut"
+  },
+  "Commands": {
+    "Commands": ""
   },
   "Communication": {
     "Communication": "İletişim"
@@ -905,6 +953,9 @@
   "Control currently playing media": {
     "Control currently playing media": "Şu anda oynatılan medyayı kontrol et"
   },
+  "Control which plugins appear in 'All' mode without requiring a trigger prefix. Drag to reorder.": {
+    "Control which plugins appear in 'All' mode without requiring a trigger prefix. Drag to reorder.": ""
+  },
   "Control workspaces and columns by scrolling on the bar": {
     "Control workspaces and columns by scrolling on the bar": "Çubuk üzerinde kaydırarak çalışma alanlarını ve sütunları kontrol edin"
   },
@@ -926,6 +977,9 @@
   "Copy Full Command": {
     "Copy Full Command": ""
   },
+  "Copy HTML": {
+    "Copy HTML": ""
+  },
   "Copy Name": {
     "Copy Name": ""
   },
@@ -934,6 +988,15 @@
   },
   "Copy Process Name": {
     "Copy Process Name": "Süreç Adını Kopyala"
+  },
+  "Copy Text": {
+    "Copy Text": ""
+  },
+  "Copy URL": {
+    "Copy URL": ""
+  },
+  "Copy path": {
+    "Copy path": ""
   },
   "Corner Radius": {
     "Corner Radius": "Köşe Yarıçapı"
@@ -1343,6 +1406,9 @@
   "Edge Spacing": {
     "Edge Spacing": "Kenar Aralığı"
   },
+  "Edit App": {
+    "Edit App": ""
+  },
   "Education": {
     "Education": "Eğitim"
   },
@@ -1391,6 +1457,9 @@
   "Enable loginctl lock integration": {
     "Enable loginctl lock integration": "loginctl kilit entegrasyonunu etkinleştir"
   },
+  "Enable media player controls on the lock screen window": {
+    "Show Media Player": ""
+  },
   "Enable password field display on the lock screen window": {
     "Show Password Field": "Parola Alanını Göster"
   },
@@ -1426,6 +1495,9 @@
   },
   "Enter PIN for ": {
     "Enter PIN for ": "Şunun için PIN gir: "
+  },
+  "Enter a new name for this workspace": {
+    "Enter a new name for this workspace": ""
   },
   "Enter a search query": {
     "Enter a search query": "Arama sorgusu girin"
@@ -1466,6 +1538,9 @@
   "Entry unpinned": {
     "Entry unpinned": ""
   },
+  "Environment Variables": {
+    "Environment Variables": ""
+  },
   "Error": {
     "Error": "Hata"
   },
@@ -1480,6 +1555,9 @@
   },
   "Exponential": {
     "Exponential": "Üstel"
+  },
+  "Extra Arguments": {
+    "Extra Arguments": ""
   },
   "F1/I: Toggle • F10: Help": {
     "F1/I: Toggle • F10: Help": "F1/I: Değiştir • F10: Yardım"
@@ -1669,6 +1747,9 @@
   },
   "File Information": {
     "File Information": "Dosya Bilgisi"
+  },
+  "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": {
+    "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": ""
   },
   "Files": {
     "Files": "Dosyalar"
@@ -1868,6 +1949,9 @@
   "HSV": {
     "HSV": "HSV"
   },
+  "HTML copied to clipboard": {
+    "HTML copied to clipboard": ""
+  },
   "Health": {
     "Health": "Sağlık"
   },
@@ -1886,8 +1970,17 @@
   "Hidden": {
     "Hidden": ""
   },
+  "Hidden Apps": {
+    "Hidden Apps": ""
+  },
   "Hidden Network": {
     "Hidden Network": ""
+  },
+  "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": {
+    "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": ""
+  },
+  "Hide App": {
+    "Hide App": ""
   },
   "Hide Delay": {
     "Hide Delay": "Gizleme Gecikmesi"
@@ -1970,6 +2063,9 @@
   "IP Address:": {
     "IP Address:": "IP Adresi:"
   },
+  "Icon": {
+    "Icon": ""
+  },
   "Icon Size": {
     "Icon Size": "Simge Boyutu"
   },
@@ -2008,6 +2104,9 @@
   },
   "Include Transitions": {
     "Include Transitions": "Geçişleri Dahil Et"
+  },
+  "Include desktop actions (shortcuts) in search results.": {
+    "Include desktop actions (shortcuts) in search results.": ""
   },
   "Incompatible Plugins Loaded": {
     "Incompatible Plugins Loaded": "Uyumsuz Eklentiler Yüklendi"
@@ -2114,10 +2213,17 @@
     "Failed to reject pairing": "",
     "Failed to ring device": "",
     "Failed to send clipboard": "",
+    "Failed to send file": "",
     "Failed to send ping": "",
     "Failed to share": "",
     "Pairing failed": "",
     "Unpair failed": ""
+  },
+  "KDE Connect file browser title": {
+    "Select File to Send": ""
+  },
+  "KDE Connect file send": {
+    "Sending": ""
   },
   "KDE Connect file share notification": {
     "File received from": ""
@@ -2184,13 +2290,22 @@
   "KDE Connect ring tooltip": {
     "Ring": ""
   },
+  "KDE Connect send file button": {
+    "Send File": ""
+  },
   "KDE Connect service unavailable message": {
     "KDE Connect unavailable": ""
   },
   "KDE Connect share URL button": {
     "Share URL": ""
   },
+  "KDE Connect share button": {
+    "Share Text": ""
+  },
   "KDE Connect share button | KDE Connect share dialog title | KDE Connect share tooltip": {
+    "Share": ""
+  },
+  "KDE Connect share dialog title | KDE Connect share tooltip": {
     "Share": ""
   },
   "KDE Connect share input placeholder": {
@@ -2265,6 +2380,12 @@
   "LED device": {
     "LED device": "LED cihazı"
   },
+  "Large": {
+    "Large": ""
+  },
+  "Largest": {
+    "Largest": ""
+  },
   "Last launched %1": {
     "Last launched %1": "Son başlatma %1"
   },
@@ -2294,6 +2415,9 @@
   },
   "Launcher": {
     "Launcher": "Başlatıcı"
+  },
+  "Launcher Button": {
+    "Launcher Button": ""
   },
   "Launcher Button Logo": {
     "Launcher Button Logo": "Başlatıcı Buton Logosu"
@@ -2333,6 +2457,9 @@
   },
   "Loading plugins...": {
     "Loading plugins...": "Eklentiler yükleniyor..."
+  },
+  "Loading trending...": {
+    "Loading trending...": ""
   },
   "Loading...": {
     "Loading...": "Yükleniyor..."
@@ -2709,6 +2836,12 @@
   "No adapters": {
     "No adapters": "Bağdaştırıcı yok"
   },
+  "No app customizations.": {
+    "No app customizations.": ""
+  },
+  "No apps found": {
+    "No apps found": ""
+  },
   "No battery": {
     "No battery": "Batarya yok"
   },
@@ -2739,14 +2872,23 @@
   "No files found": {
     "No files found": "Dosya bulunamadı"
   },
+  "No hidden apps.": {
+    "No hidden apps.": ""
+  },
   "No items added yet": {
     "No items added yet": "Henüz eklenen öğe yok"
   },
   "No keybinds found": {
     "No keybinds found": "Tuş kombinasyonu bulunamadı"
   },
+  "No launcher plugins installed.": {
+    "No launcher plugins installed.": ""
+  },
   "No matches": {
     "No matches": "Eşleşme yok"
+  },
+  "No plugin results": {
+    "No plugin results": ""
   },
   "No plugins found": {
     "No plugins found": "Eklenti bulunamadı"
@@ -2766,8 +2908,14 @@
   "No recent clipboard entries found": {
     "No recent clipboard entries found": ""
   },
+  "No results found": {
+    "No results found": ""
+  },
   "No saved clipboard entries": {
     "No saved clipboard entries": ""
+  },
+  "No trigger": {
+    "No trigger": ""
   },
   "No variants created. Click Add to create a new monitor widget.": {
     "No variants created. Click Add to create a new monitor widget.": "Hiçbir varyant oluşturulmadı. Yeni bir monitör widget'ı oluşturmak için Ekle'ye tıklayın."
@@ -2880,6 +3028,12 @@
   "Open Notepad File": {
     "Open Notepad File": "Not Defteri Dosyası Aç"
   },
+  "Open folder": {
+    "Open folder": ""
+  },
+  "Open in Browser": {
+    "Open in Browser": ""
+  },
   "Open search bar to find text": {
     "Open search bar to find text": "Metin bulmak için arama çubuğunu aç"
   },
@@ -2945,6 +3099,9 @@
   },
   "PIN": {
     "PIN": "PİN"
+  },
+  "Pad Hours": {
+    "Pad Hours": ""
   },
   "Padding": {
     "Padding": "Dolgu"
@@ -3012,6 +3169,9 @@
   "Pinned": {
     "Pinned": "Sabitlendi"
   },
+  "Pinned and running apps with drag-and-drop": {
+    "Pinned and running apps with drag-and-drop": ""
+  },
   "Place plugin directories here. Each plugin should have a plugin.json manifest file.": {
     "Place plugin directories here. Each plugin should have a plugin.json manifest file.": "Eklenti klasörlerini buraya yerleştirin. Her eklenti plugin.json manifest dosyasına sahip olmalı."
   },
@@ -3047,6 +3207,9 @@
   },
   "Plugin Management": {
     "Plugin Management": "Eklenti Yönetimi"
+  },
+  "Plugin Visibility": {
+    "Plugin Visibility": ""
   },
   "Plugin is disabled - enable in Plugins settings to use": {
     "Plugin is disabled - enable in Plugins settings to use": "Eklenti devre dışı - kullanmak için Eklenti ayarlarından etkinleştirin"
@@ -3125,6 +3288,9 @@
   },
   "Prevent screen timeout": {
     "Prevent screen timeout": "Ekran zaman aşımını önle"
+  },
+  "Preview": {
+    "Preview": ""
   },
   "Primary": {
     "Primary": "Birincil"
@@ -3239,6 +3405,12 @@
   },
   "Remove gaps and border when windows are maximized": {
     "Remove gaps and border when windows are maximized": "Pencereler ekranı kapladığında boşlukları ve kenarlıkları kaldır"
+  },
+  "Rename": {
+    "Rename": ""
+  },
+  "Rename Workspace": {
+    "Rename Workspace": ""
   },
   "Repeat": {
     "Repeat": ""
@@ -3417,6 +3589,12 @@
   "Scrolling": {
     "Scrolling": "Kaydırma"
   },
+  "Search App Actions": {
+    "Search App Actions": ""
+  },
+  "Search Options": {
+    "Search Options": ""
+  },
   "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
     "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": ""
   },
@@ -3455,6 +3633,9 @@
   },
   "Security": {
     "Security": "Güvenlik"
+  },
+  "Select": {
+    "Select": ""
   },
   "Select Application": {
     "Select Application": "Uygulama Seç"
@@ -3534,11 +3715,17 @@
   "Setup": {
     "Setup": "Kurulum"
   },
+  "Share Gamma Control Settings": {
+    "Share Gamma Control Settings": ""
+  },
   "Shell": {
     "Shell": "Shell"
   },
   "Shift+Del: Clear All • Esc: Close": {
     "Shift+Del: Clear All • Esc: Close": "Shift+Del: Tümünü Temizle • Esc: Kapat"
+  },
+  "Shift+Enter to paste": {
+    "Shift+Enter to paste": ""
   },
   "Shift+Enter: Paste • Shift+Del: Clear All • Esc: Close": {
     "Shift+Enter: Paste • Shift+Del: Clear All • Esc: Close": "Shift+Enter: Yapıştır • Shift+Del: Tümünü Temizle • Esc: Kapat"
@@ -3596,6 +3783,9 @@
   },
   "Show Humidity": {
     "Show Humidity": ""
+  },
+  "Show Launcher Button": {
+    "Show Launcher Button": ""
   },
   "Show Line Numbers": {
     "Show Line Numbers": "Satır Numaralarını Göster"
@@ -3773,6 +3963,9 @@
   },
   "Sizing": {
     "Sizing": "Boyutlandırma"
+  },
+  "Small": {
+    "Small": ""
   },
   "Smartcard Authentication": {
     "Smartcard Authentication": ""
@@ -4095,11 +4288,23 @@
   "Transparency": {
     "Transparency": "Transparanlık"
   },
+  "Trending GIFs": {
+    "Trending GIFs": ""
+  },
+  "Trending Stickers": {
+    "Trending Stickers": ""
+  },
   "Trigger": {
     "Trigger": ""
   },
   "Trigger Prefix": {
     "Trigger Prefix": ""
+  },
+  "Trigger: %1": {
+    "Trigger: %1": ""
+  },
+  "Try a different search": {
+    "Try a different search": ""
   },
   "Turn off all displays immediately when the lock screen activates": {
     "Turn off all displays immediately when the lock screen activates": ""
@@ -4110,8 +4315,20 @@
   "Type": {
     "Type": "Tip"
   },
+  "Type at least 2 characters": {
+    "Type at least 2 characters": ""
+  },
   "Type this prefix to search keybinds": {
     "Type this prefix to search keybinds": ""
+  },
+  "Type to search": {
+    "Type to search": ""
+  },
+  "Type to search apps": {
+    "Type to search apps": ""
+  },
+  "Type to search files": {
+    "Type to search files": ""
   },
   "Typography": {
     "Typography": "Tipografi"
@@ -4230,6 +4447,9 @@
   "Use light theme instead of dark theme": {
     "Use light theme instead of dark theme": "Karanlık tema yerine aydınlık tema kullan"
   },
+  "Use meters per second instead of km/h for wind speed": {
+    "Use meters per second instead of km/h for wind speed": ""
+  },
   "Use smaller notification cards": {
     "Use smaller notification cards": ""
   },
@@ -4257,8 +4477,14 @@
   "Username": {
     "Username": "Kullanıcı Adı"
   },
+  "Uses sunrise/sunset times based on your location.": {
+    "Uses sunrise/sunset times based on your location.": ""
+  },
   "Uses sunrise/sunset times to automatically adjust night mode based on your location.": {
     "Uses sunrise/sunset times to automatically adjust night mode based on your location.": "Gün doğumu/batımı saatlerini kullanarak konumunuza göre gece modunu otomatik olarak ayarlar."
+  },
+  "Using shared settings from Gamma Control": {
+    "Using shared settings from Gamma Control": ""
   },
   "Utilities": {
     "Utilities": "Araçlar"
@@ -4460,6 +4686,9 @@
   "Wind Speed": {
     "Wind Speed": "Rüzgar hızı"
   },
+  "Wind Speed in m/s": {
+    "Wind Speed in m/s": ""
+  },
   "Window Corner Radius": {
     "Window Corner Radius": "Pencere Köşe Yarıçapı"
   },
@@ -4493,6 +4722,9 @@
   "Workspace Switcher": {
     "Workspace Switcher": "Çalışma Alanı Değiştirici"
   },
+  "Workspace name": {
+    "Workspace name": ""
+  },
   "Workspaces": {
     "Workspaces": "Çalışma Alanları"
   },
@@ -4520,6 +4752,9 @@
   "You have unsaved changes. Save before opening a file?": {
     "You have unsaved changes. Save before opening a file?": "Kaydedilmemiş değişiklikleriniz var. Yeni dosya açmadan önce kaydedelim mi?"
   },
+  "actions": {
+    "actions": ""
+  },
   "apps": {
     "apps": "uygulamalar"
   },
@@ -4528,6 +4763,12 @@
   },
   "bar shadow settings card": {
     "Shadow": ""
+  },
+  "border color": {
+    "Color": ""
+  },
+  "border thickness": {
+    "Thickness": ""
   },
   "browse themes button | theme browser header | theme browser window title": {
     "Browse Themes": "Temalara Göz At"
@@ -4786,6 +5027,21 @@
   "installed status": {
     "Installed": "Yüklendi"
   },
+  "launcher appearance settings": {
+    "Appearance": ""
+  },
+  "launcher border option": {
+    "Border": ""
+  },
+  "launcher footer description": {
+    "Show mode tabs and keyboard hints at the bottom.": ""
+  },
+  "launcher footer visibility": {
+    "Show Footer": ""
+  },
+  "launcher size option": {
+    "Size": ""
+  },
   "leave empty for default": {
     "leave empty for default": "Varsayılanlar için boş bırakın"
   },
@@ -4825,6 +5081,9 @@
   },
   "ms": {
     "ms": "ms"
+  },
+  "nav": {
+    "nav": ""
   },
   "no custom theme file status": {
     "No custom theme file": "Özel tema dosyası yok"
@@ -4882,6 +5141,12 @@
   "official": {
     "official": "resmi"
   },
+  "open": {
+    "open": ""
+  },
+  "outline color": {
+    "Outline": ""
+  },
   "plugin browser description": {
     "Install plugins from the DMS plugin registry": "DMS eklenti kayıt defterinden eklentiler yükle"
   },
@@ -4896,6 +5161,9 @@
   },
   "plugin search placeholder": {
     "Search plugins...": "Eklenti ara..."
+  },
+  "primary color": {
+    "Primary": ""
   },
   "process count label in footer": {
     "Processes:": ""
@@ -4915,6 +5183,9 @@
   "registry theme description": {
     "Color theme from DMS registry": "DMS kayıt defterinden renk teması"
   },
+  "secondary color": {
+    "Secondary": ""
+  },
   "seconds": {
     "seconds": "saniye"
   },
@@ -4926,6 +5197,9 @@
   },
   "shadow color option": {
     "Surface": "",
+    "Text": ""
+  },
+  "shadow color option | text color": {
     "Text": ""
   },
   "shadow intensity slider": {
@@ -5006,6 +5280,9 @@
   },
   "wallpaper settings external management": {
     "External Wallpaper Management": "Harici Duvar Kağıdı Yönetimi"
+  },
+  "weather feels like temperature": {
+    "Feels Like %1°": ""
   },
   "wtype not available - install wtype for paste support": {
     "wtype not available - install wtype for paste support": "wtype mevcut değil - yapıştırma desteği için wtype'ı yükleyin"

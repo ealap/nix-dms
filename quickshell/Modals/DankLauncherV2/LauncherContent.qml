@@ -271,21 +271,32 @@ FocusScope {
         anchors.fill: parent
         visible: !editMode
 
-        Rectangle {
+        Item {
             id: footerBar
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom
+            anchors.leftMargin: root.parentModal?.borderWidth ?? 1
+            anchors.rightMargin: root.parentModal?.borderWidth ?? 1
+            anchors.bottomMargin: root.parentModal?.borderWidth ?? 1
             readonly property bool showFooter: SettingsData.dankLauncherV2Size !== "micro" && SettingsData.dankLauncherV2ShowFooter
-            height: showFooter ? 32 : 0
+            height: showFooter ? 36 : 0
             visible: showFooter
-            color: Theme.surfaceContainerHigh
-            radius: Theme.cornerRadius
+            clip: true
+
+            Rectangle {
+                anchors.fill: parent
+                anchors.topMargin: -Theme.cornerRadius
+                color: Theme.surfaceContainerHigh
+                radius: Theme.cornerRadius
+            }
 
             Row {
                 id: modeButtonsRow
-                x: I18n.isRtl ? parent.width - width - Theme.spacingS : Theme.spacingS
-                y: (parent.height - height) / 2
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.spacingXS
+                anchors.verticalCenter: parent.verticalCenter
+                layoutDirection: I18n.isRtl ? Qt.RightToLeft : Qt.LeftToRight
                 spacing: 2
 
                 Repeater {
@@ -316,28 +327,25 @@ FocusScope {
                         required property var modelData
                         required property int index
 
-                        width: modeButtonMetrics.width + 14 + Theme.spacingXS + Theme.spacingM * 2 + Theme.spacingS
-                        height: footerBar.height - 4
-                        radius: Theme.cornerRadius - 2
+                        width: buttonContent.width + Theme.spacingM * 2
+                        height: 28
+                        radius: Theme.cornerRadius
                         color: controller.searchMode === modelData.id || modeArea.containsMouse ? Theme.primaryContainer : "transparent"
 
-                        TextMetrics {
-                            id: modeButtonMetrics
-                            font.pixelSize: Theme.fontSizeSmall
-                            text: modelData.label
-                        }
-
                         Row {
+                            id: buttonContent
                             anchors.centerIn: parent
                             spacing: Theme.spacingXS
 
                             DankIcon {
+                                anchors.verticalCenter: parent.verticalCenter
                                 name: modelData.icon
                                 size: 14
                                 color: controller.searchMode === modelData.id ? Theme.primary : Theme.surfaceVariantText
                             }
 
                             StyledText {
+                                anchors.verticalCenter: parent.verticalCenter
                                 text: modelData.label
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: controller.searchMode === modelData.id ? Theme.primary : Theme.surfaceText
@@ -357,23 +365,28 @@ FocusScope {
 
             Row {
                 id: hintsRow
-                x: I18n.isRtl ? Theme.spacingS : parent.width - width - Theme.spacingS
-                y: (parent.height - height) / 2
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.spacingS
+                anchors.verticalCenter: parent.verticalCenter
+                layoutDirection: I18n.isRtl ? Qt.RightToLeft : Qt.LeftToRight
                 spacing: Theme.spacingM
 
                 StyledText {
+                    anchors.verticalCenter: parent.verticalCenter
                     text: "↑↓ " + I18n.tr("nav")
                     font.pixelSize: Theme.fontSizeSmall - 1
                     color: Theme.surfaceVariantText
                 }
 
                 StyledText {
+                    anchors.verticalCenter: parent.verticalCenter
                     text: "↵ " + I18n.tr("open")
                     font.pixelSize: Theme.fontSizeSmall - 1
                     color: Theme.surfaceVariantText
                 }
 
                 StyledText {
+                    anchors.verticalCenter: parent.verticalCenter
                     text: "Tab " + I18n.tr("actions")
                     font.pixelSize: Theme.fontSizeSmall - 1
                     color: Theme.surfaceVariantText
@@ -390,7 +403,6 @@ FocusScope {
             anchors.leftMargin: Theme.spacingM
             anchors.rightMargin: Theme.spacingM
             anchors.topMargin: Theme.spacingM
-            anchors.bottomMargin: Theme.spacingXS
             spacing: Theme.spacingXS
             clip: false
 

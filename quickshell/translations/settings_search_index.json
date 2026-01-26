@@ -488,6 +488,27 @@
     ]
   },
   {
+    "section": "padHours12Hour",
+    "label": "Pad Hours",
+    "tabIndex": 1,
+    "category": "Time & Weather",
+    "keywords": [
+      "12hour",
+      "clock",
+      "date",
+      "forecast",
+      "format",
+      "hours",
+      "leading",
+      "pad",
+      "padding",
+      "time",
+      "weather",
+      "zero"
+    ],
+    "description": "02:31 PM vs 2:31 PM"
+  },
+  {
     "section": "showSeconds",
     "label": "Show Seconds",
     "tabIndex": 1,
@@ -605,6 +626,26 @@
     ],
     "icon": "cloud",
     "description": "Show weather information in top bar and control center"
+  },
+  {
+    "section": "windSpeedUnit",
+    "label": "Wind Speed in m/s",
+    "tabIndex": 1,
+    "category": "Time & Weather",
+    "keywords": [
+      "clock",
+      "date",
+      "forecast",
+      "meters",
+      "metric",
+      "second",
+      "speed",
+      "time",
+      "units",
+      "weather",
+      "wind"
+    ],
+    "description": "Use meters per second instead of km/h for wind speed"
   },
   {
     "section": "_tab_2",
@@ -1163,6 +1204,39 @@
     "description": "Add a border around the dock"
   },
   {
+    "section": "dockLauncherLogoBrightness",
+    "label": "Brightness",
+    "tabIndex": 5,
+    "category": "Dock",
+    "keywords": [
+      "backlight",
+      "bright",
+      "brightness",
+      "color",
+      "dim",
+      "dock",
+      "launcher",
+      "launcher bar",
+      "logo",
+      "taskbar"
+    ]
+  },
+  {
+    "section": "dockLauncherLogoContrast",
+    "label": "Contrast",
+    "tabIndex": 5,
+    "category": "Dock",
+    "keywords": [
+      "color",
+      "contrast",
+      "dock",
+      "launcher",
+      "launcher bar",
+      "logo",
+      "taskbar"
+    ]
+  },
+  {
     "section": "_tab_5",
     "label": "Dock & Launcher",
     "tabIndex": 5,
@@ -1326,6 +1400,25 @@
     "description": "Only show windows from the current monitor on each dock"
   },
   {
+    "section": "dockLauncher",
+    "label": "Launcher Button",
+    "tabIndex": 5,
+    "category": "Dock",
+    "keywords": [
+      "app drawer",
+      "app menu",
+      "applications",
+      "apps",
+      "button",
+      "dock",
+      "launcher",
+      "launcher bar",
+      "start menu",
+      "taskbar"
+    ],
+    "icon": "apps"
+  },
+  {
     "section": "showDock",
     "label": "Show Dock",
     "tabIndex": 5,
@@ -1352,6 +1445,25 @@
     "description": "Display a dock with pinned and running applications"
   },
   {
+    "section": "dockLauncherEnabled",
+    "label": "Show Launcher Button",
+    "tabIndex": 5,
+    "category": "Dock",
+    "keywords": [
+      "app drawer",
+      "app menu",
+      "applications",
+      "apps",
+      "button",
+      "dock",
+      "launcher",
+      "launcher bar",
+      "show",
+      "start menu",
+      "taskbar"
+    ]
+  },
+  {
     "section": "dockOpenOnOverview",
     "label": "Show on Overview",
     "tabIndex": 5,
@@ -1368,6 +1480,22 @@
     ],
     "description": "Always show the dock when niri",
     "conditionKey": "isNiri"
+  },
+  {
+    "section": "dockLauncherLogoSizeOffset",
+    "label": "Size Offset",
+    "tabIndex": 5,
+    "category": "Dock",
+    "keywords": [
+      "dock",
+      "launcher",
+      "launcher bar",
+      "logo",
+      "offset",
+      "scale",
+      "size",
+      "taskbar"
+    ]
   },
   {
     "section": "dockSizing",
@@ -1706,6 +1834,27 @@
     "conditionKey": "isNiri"
   },
   {
+    "section": "pluginVisibility",
+    "label": "Plugin Visibility",
+    "tabIndex": 9,
+    "category": "Launcher",
+    "keywords": [
+      "auto-hide",
+      "autohide",
+      "drawer",
+      "hidden",
+      "hide",
+      "launcher",
+      "menu",
+      "plugin",
+      "show",
+      "start",
+      "visibility",
+      "visible"
+    ],
+    "icon": "filter_list"
+  },
+  {
     "section": "recentApps",
     "label": "Recently Used Apps",
     "tabIndex": 9,
@@ -1934,6 +2083,30 @@
     "description": "Hide cursor after inactivity (0 = disabled)"
   },
   {
+    "section": "automaticColorMode",
+    "label": "Automatic Color Mode",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "automatic",
+      "color",
+      "colors",
+      "colour",
+      "hue",
+      "look",
+      "mode",
+      "schedule",
+      "scheme",
+      "style",
+      "sunrise",
+      "sunset",
+      "theme",
+      "tint"
+    ],
+    "icon": "schedule"
+  },
+  {
     "section": "niriLayoutBorderSize",
     "label": "Border Size",
     "tabIndex": 10,
@@ -2113,6 +2286,23 @@
       "theme"
     ],
     "description": "Show darkened overlay behind modal dialogs"
+  },
+  {
+    "section": "matugenTemplateEmacs",
+    "label": "Emacs",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "appearance",
+      "colors",
+      "emacs",
+      "look",
+      "matugen",
+      "scheme",
+      "style",
+      "template",
+      "theme"
+    ]
   },
   {
     "section": "matugenTemplateFirefox",
@@ -2934,23 +3124,6 @@
     ]
   },
   {
-    "section": "matugenTemplateEmacs",
-    "label": "Emacs",
-    "tabIndex": 10,
-    "category": "Theme & Colors",
-    "keywords": [
-      "appearance",
-      "colors",
-      "look",
-      "matugen",
-      "scheme",
-      "style",
-      "template",
-      "theme",
-      "emacs"
-    ]
-  },
-  {
     "section": "widgetBackgroundColor",
     "label": "Widget Background Color",
     "tabIndex": 10,
@@ -3586,6 +3759,26 @@
       "turn"
     ],
     "description": "Turn off all displays immediately when the lock screen activates"
+  },
+  {
+    "section": "lockScreenShowMediaPlayer",
+    "label": "Show Media Player",
+    "tabIndex": 11,
+    "category": "Lock Screen",
+    "keywords": [
+      "audio",
+      "lock",
+      "login",
+      "media",
+      "mpris",
+      "music",
+      "password",
+      "playback",
+      "player",
+      "screen",
+      "security",
+      "show"
+    ]
   },
   {
     "section": "lockScreenShowPasswordField",

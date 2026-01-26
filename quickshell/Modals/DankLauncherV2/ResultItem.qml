@@ -35,7 +35,7 @@ Rectangle {
 
     width: parent?.width ?? 200
     height: 52
-    color: isSelected ? Theme.primaryPressed : isHovered ? Theme.primaryPressed : "transparent"
+    color: isSelected ? Theme.primaryPressed : isHovered ? Theme.primaryHoverLight : "transparent"
     radius: Theme.cornerRadius
 
     MouseArea {

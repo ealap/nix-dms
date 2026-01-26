@@ -34,9 +34,7 @@ BasePill {
                             if (SettingsData.use24HourClock)
                                 return String(hours).padStart(2, '0').charAt(0);
                             const display = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
-                            if (SettingsData.padHours12Hour)
-                                return String(display).padStart(2, '0').charAt(0);
-                            return display >= 10 ? String(display).charAt(0) : "";
+                            return String(display).padStart(2, '0').charAt(0);
                         }
                         font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
                         color: Theme.widgetTextColor
@@ -51,9 +49,7 @@ BasePill {
                             if (SettingsData.use24HourClock)
                                 return String(hours).padStart(2, '0').charAt(1);
                             const display = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
-                            if (SettingsData.padHours12Hour)
-                                return String(display).padStart(2, '0').charAt(1);
-                            return display >= 10 ? String(display).charAt(1) : String(display);
+                            return String(display).padStart(2, '0').charAt(1);
                         }
                         font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
                         color: Theme.widgetTextColor
@@ -203,27 +199,100 @@ BasePill {
                 anchors.centerIn: parent
                 spacing: Theme.spacingS
 
-                StyledText {
-                    id: timeText
-                    text: {
-                        return systemClock?.date?.toLocaleTimeString(Qt.locale(), SettingsData.getEffectiveTimeFormat());
+                property real fontSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
+                property real digitWidth: fontSize * 0.6
+
+                property string hoursStr: {
+                    const hours = systemClock?.date?.getHours() ?? 0;
+                    if (SettingsData.use24HourClock)
+                        return String(hours).padStart(2, '0');
+                    const display = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
+                    if (SettingsData.padHours12Hour)
+                        return String(display).padStart(2, '0');
+                    return String(display);
+                }
+                property string minutesStr: String(systemClock?.date?.getMinutes() ?? 0).padStart(2, '0')
+                property string secondsStr: String(systemClock?.date?.getSeconds() ?? 0).padStart(2, '0')
+                property string ampmStr: {
+                    if (SettingsData.use24HourClock)
+                        return "";
+                    const hours = systemClock?.date?.getHours() ?? 0;
+                    return hours >= 12 ? " PM" : " AM";
+                }
+
+                Row {
+                    spacing: 0
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    StyledText {
+                        visible: clockRow.hoursStr.length > 1
+                        text: clockRow.hoursStr.charAt(0)
+                        font.pixelSize: clockRow.fontSize
+                        color: Theme.widgetTextColor
+                        width: clockRow.digitWidth
+                        horizontalAlignment: Text.AlignHCenter
                     }
-                    font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
-                    color: Theme.widgetTextColor
-                    anchors.baseline: dateText.baseline
-                    width: timeTextMetrics.width
-                    horizontalAlignment: Text.AlignHCenter
-                    TextMetrics {
-                        id: timeTextMetrics
-                        font: timeText.font
-                        text: {
-                            const format = SettingsData.getEffectiveTimeFormat();
-                            if (SettingsData.use24HourClock) {
-                                return SettingsData.showSeconds ? "88:88:88" : "88:88";
-                            } else {
-                                return SettingsData.showSeconds ? "88:88:88 PM" : "88:88 PM";
-                            }
-                        }
+
+                    StyledText {
+                        text: clockRow.hoursStr.length > 1 ? clockRow.hoursStr.charAt(1) : clockRow.hoursStr.charAt(0)
+                        font.pixelSize: clockRow.fontSize
+                        color: Theme.widgetTextColor
+                        width: clockRow.digitWidth
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+
+                    StyledText {
+                        text: ":"
+                        font.pixelSize: clockRow.fontSize
+                        color: Theme.widgetTextColor
+                    }
+
+                    StyledText {
+                        text: clockRow.minutesStr.charAt(0)
+                        font.pixelSize: clockRow.fontSize
+                        color: Theme.widgetTextColor
+                        width: clockRow.digitWidth
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+
+                    StyledText {
+                        text: clockRow.minutesStr.charAt(1)
+                        font.pixelSize: clockRow.fontSize
+                        color: Theme.widgetTextColor
+                        width: clockRow.digitWidth
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+
+                    StyledText {
+                        visible: SettingsData.showSeconds
+                        text: ":"
+                        font.pixelSize: clockRow.fontSize
+                        color: Theme.widgetTextColor
+                    }
+
+                    StyledText {
+                        visible: SettingsData.showSeconds
+                        text: clockRow.secondsStr.charAt(0)
+                        font.pixelSize: clockRow.fontSize
+                        color: Theme.widgetTextColor
+                        width: clockRow.digitWidth
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+
+                    StyledText {
+                        visible: SettingsData.showSeconds
+                        text: clockRow.secondsStr.charAt(1)
+                        font.pixelSize: clockRow.fontSize
+                        color: Theme.widgetTextColor
+                        width: clockRow.digitWidth
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+
+                    StyledText {
+                        visible: !SettingsData.use24HourClock
+                        text: clockRow.ampmStr
+                        font.pixelSize: clockRow.fontSize
+                        color: Theme.widgetTextColor
                     }
                 }
 
@@ -232,7 +301,7 @@ BasePill {
                     text: "•"
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.outlineButton
-                    anchors.baseline: dateText.baseline
+                    anchors.verticalCenter: parent.verticalCenter
                     visible: !compact
                 }
 
@@ -244,7 +313,7 @@ BasePill {
                         }
                         return systemClock?.date?.toLocaleDateString(Qt.locale(), "ddd d");
                     }
-                    font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
+                    font.pixelSize: clockRow.fontSize
                     color: Theme.widgetTextColor
                     anchors.verticalCenter: parent.verticalCenter
                     visible: !compact

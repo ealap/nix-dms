@@ -5,12 +5,15 @@ import qs.Common
 ScrollBar {
     id: scrollbar
 
+    property var targetFlickable: null
+    readonly property var _target: targetFlickable ?? parent
+
     property bool _scrollBarActive: false
     property alias hideTimer: hideScrollBarTimer
-    property bool _isParentMoving: parent && (parent.moving || parent.flicking || parent.isMomentumActive)
+    property bool _isParentMoving: _target && (_target.moving || _target.flicking || _target.isMomentumActive)
     property bool _shouldShow: pressed || hovered || active || _isParentMoving || _scrollBarActive
 
-    policy: (parent && parent.contentHeight > parent.height) ? ScrollBar.AsNeeded : ScrollBar.AlwaysOff
+    policy: (_target && _target.contentHeight > _target.height) ? ScrollBar.AsNeeded : ScrollBar.AlwaysOff
     minimumSize: 0.08
     implicitWidth: 10
     interactive: true

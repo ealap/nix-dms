@@ -73,6 +73,17 @@ Column {
         onToggled: checked => root.updateConfig("showAnalogSeconds", checked)
     }
 
+    SettingsDivider {
+        visible: cfg.style === "digital" || cfg.style === "stacked"
+    }
+
+    SettingsToggleRow {
+        visible: cfg.style === "digital" || cfg.style === "stacked"
+        text: I18n.tr("Show Seconds")
+        checked: cfg.showDigitalSeconds ?? false
+        onToggled: checked => root.updateConfig("showDigitalSeconds", checked)
+    }
+
     SettingsDivider {}
 
     SettingsToggleRow {

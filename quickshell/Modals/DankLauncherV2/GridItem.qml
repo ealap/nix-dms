@@ -36,7 +36,7 @@ Rectangle {
     readonly property int computedIconSize: Math.min(48, Math.max(32, width * 0.45))
 
     radius: Theme.cornerRadius
-    color: isSelected ? Theme.primaryPressed : isHovered ? Theme.primaryPressed : "transparent"
+    color: isSelected ? Theme.primaryPressed : isHovered ? Theme.primaryHoverLight : "transparent"
 
     Column {
         anchors.centerIn: parent

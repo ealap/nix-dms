@@ -281,6 +281,9 @@
   "Anonymous Identity (optional)": {
     "Anonymous Identity (optional)": "匿名 ID (オプション)"
   },
+  "App Customizations": {
+    "App Customizations": ""
+  },
   "App ID Substitutions": {
     "App ID Substitutions": ""
   },
@@ -305,11 +308,20 @@
   "Apply warm color temperature to reduce eye strain. Use automation settings below to control when it activates.": {
     "Apply warm color temperature to reduce eye strain. Use automation settings below to control when it activates.": "目の疲れを軽減するために、暖色系の色温度を適用します。以下の自動化設定で、いつアクティブにするか制御できます。"
   },
+  "Apps": {
+    "Apps": ""
+  },
+  "Apps Dock": {
+    "Apps Dock": ""
+  },
   "Apps Icon": {
     "Apps Icon": "アプリアイコン"
   },
   "Apps are ordered by usage frequency, then last used, then alphabetically.": {
     "Apps are ordered by usage frequency, then last used, then alphabetically.": "アプリは使用頻度、最終使用日、アルファベット順の優先順位で並べられています。"
+  },
+  "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": {
+    "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": ""
   },
   "Arrange displays and configure resolution, refresh rate, and VRR": {
     "Arrange displays and configure resolution, refresh rate, and VRR": ""
@@ -410,6 +422,9 @@
   "Autoconnect enabled": {
     "Autoconnect enabled": "自動接続が有効"
   },
+  "Automatic Color Mode": {
+    "Automatic Color Mode": ""
+  },
   "Automatic Control": {
     "Automatic Control": "自動制御"
   },
@@ -433,6 +448,9 @@
   },
   "Automatically lock the screen when the system prepares to suspend": {
     "Automatically lock the screen when the system prepares to suspend": "システムが一時停止の準備中に自動的に画面をロック"
+  },
+  "Automation": {
+    "Automation": ""
   },
   "Available": {
     "Available": "利用可能"
@@ -578,6 +596,9 @@
   "Browse Plugins": {
     "Browse Plugins": "ブラウズプラグイン"
   },
+  "Browse or search plugins": {
+    "Browse or search plugins": ""
+  },
   "CPU": {
     "CPU": "CPU"
   },
@@ -607,6 +628,12 @@
   },
   "CUPS not available": {
     "CUPS not available": ""
+  },
+  "Calc": {
+    "Calc": ""
+  },
+  "Calculator": {
+    "Calculator": ""
   },
   "Camera": {
     "Camera": "カメラ"
@@ -659,6 +686,9 @@
   "Choose Color": {
     "Choose Color": "色を選んでください"
   },
+  "Choose Dock Launcher Logo Color": {
+    "Choose Dock Launcher Logo Color": ""
+  },
   "Choose Launcher Logo Color": {
     "Choose Launcher Logo Color": "ランチャーロゴの色を選ぶ"
   },
@@ -694,6 +724,9 @@
   },
   "Choose which monitor shows the lock screen interface. Other monitors will display a solid color for OLED burn-in protection.": {
     "Choose which monitor shows the lock screen interface. Other monitors will display a solid color for OLED burn-in protection.": ""
+  },
+  "Chroma Style": {
+    "Chroma Style": ""
   },
   "Cipher": {
     "Cipher": ""
@@ -770,8 +803,14 @@
   "Close": {
     "Close": "閉じる"
   },
+  "Close All Windows": {
+    "Close All Windows": ""
+  },
   "Close Overview on Launch": {
     "Close Overview on Launch": "起動中のときに概要を閉じる"
+  },
+  "Close Window": {
+    "Close Window": ""
   },
   "Color": {
     "Color": ""
@@ -803,6 +842,12 @@
   "Color temperature for night mode": {
     "Color temperature for night mode": "ナイトモードの色温度"
   },
+  "Color theme for syntax highlighting.": {
+    "Color theme for syntax highlighting.": ""
+  },
+  "Color theme for syntax highlighting. %1 themes available.": {
+    "Color theme for syntax highlighting. %1 themes available.": ""
+  },
   "Colorful mix of bright contrasting accents.": {
     "Colorful mix of bright contrasting accents.": "明るいコントラストのアクセントのカラフルなミックス。"
   },
@@ -811,6 +856,9 @@
   },
   "Command": {
     "Command": ""
+  },
+  "Commands": {
+    "Commands": ""
   },
   "Communication": {
     "Communication": "コミュニケーション"
@@ -905,6 +953,9 @@
   "Control currently playing media": {
     "Control currently playing media": "現在再生中のメディアを制御"
   },
+  "Control which plugins appear in 'All' mode without requiring a trigger prefix. Drag to reorder.": {
+    "Control which plugins appear in 'All' mode without requiring a trigger prefix. Drag to reorder.": ""
+  },
   "Control workspaces and columns by scrolling on the bar": {
     "Control workspaces and columns by scrolling on the bar": ""
   },
@@ -926,6 +977,9 @@
   "Copy Full Command": {
     "Copy Full Command": ""
   },
+  "Copy HTML": {
+    "Copy HTML": ""
+  },
   "Copy Name": {
     "Copy Name": ""
   },
@@ -934,6 +988,15 @@
   },
   "Copy Process Name": {
     "Copy Process Name": "プロセス名をコピー"
+  },
+  "Copy Text": {
+    "Copy Text": ""
+  },
+  "Copy URL": {
+    "Copy URL": ""
+  },
+  "Copy path": {
+    "Copy path": ""
   },
   "Corner Radius": {
     "Corner Radius": ""
@@ -1343,6 +1406,9 @@
   "Edge Spacing": {
     "Edge Spacing": ""
   },
+  "Edit App": {
+    "Edit App": ""
+  },
   "Education": {
     "Education": "教育"
   },
@@ -1391,6 +1457,9 @@
   "Enable loginctl lock integration": {
     "Enable loginctl lock integration": "ログインロックの統合を有効に"
   },
+  "Enable media player controls on the lock screen window": {
+    "Show Media Player": ""
+  },
   "Enable password field display on the lock screen window": {
     "Show Password Field": ""
   },
@@ -1426,6 +1495,9 @@
   },
   "Enter PIN for ": {
     "Enter PIN for ": "PINを入力してください "
+  },
+  "Enter a new name for this workspace": {
+    "Enter a new name for this workspace": ""
   },
   "Enter a search query": {
     "Enter a search query": "検索クエリを入力してください"
@@ -1466,6 +1538,9 @@
   "Entry unpinned": {
     "Entry unpinned": ""
   },
+  "Environment Variables": {
+    "Environment Variables": ""
+  },
   "Error": {
     "Error": "エラー"
   },
@@ -1480,6 +1555,9 @@
   },
   "Exponential": {
     "Exponential": ""
+  },
+  "Extra Arguments": {
+    "Extra Arguments": ""
   },
   "F1/I: Toggle • F10: Help": {
     "F1/I: Toggle • F10: Help": "F1/I: 切り替え • F10: ヘルプ"
@@ -1669,6 +1747,9 @@
   },
   "File Information": {
     "File Information": "ファイル情報"
+  },
+  "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": {
+    "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": ""
   },
   "Files": {
     "Files": ""
@@ -1868,6 +1949,9 @@
   "HSV": {
     "HSV": "色相/彩度/輝度"
   },
+  "HTML copied to clipboard": {
+    "HTML copied to clipboard": ""
+  },
   "Health": {
     "Health": "健康"
   },
@@ -1886,8 +1970,17 @@
   "Hidden": {
     "Hidden": ""
   },
+  "Hidden Apps": {
+    "Hidden Apps": ""
+  },
   "Hidden Network": {
     "Hidden Network": ""
+  },
+  "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": {
+    "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": ""
+  },
+  "Hide App": {
+    "Hide App": ""
   },
   "Hide Delay": {
     "Hide Delay": ""
@@ -1970,6 +2063,9 @@
   "IP Address:": {
     "IP Address:": ""
   },
+  "Icon": {
+    "Icon": ""
+  },
   "Icon Size": {
     "Icon Size": "アイコンサイズ"
   },
@@ -2008,6 +2104,9 @@
   },
   "Include Transitions": {
     "Include Transitions": "トランジションを含める"
+  },
+  "Include desktop actions (shortcuts) in search results.": {
+    "Include desktop actions (shortcuts) in search results.": ""
   },
   "Incompatible Plugins Loaded": {
     "Incompatible Plugins Loaded": ""
@@ -2114,10 +2213,17 @@
     "Failed to reject pairing": "",
     "Failed to ring device": "",
     "Failed to send clipboard": "",
+    "Failed to send file": "",
     "Failed to send ping": "",
     "Failed to share": "",
     "Pairing failed": "",
     "Unpair failed": ""
+  },
+  "KDE Connect file browser title": {
+    "Select File to Send": ""
+  },
+  "KDE Connect file send": {
+    "Sending": ""
   },
   "KDE Connect file share notification": {
     "File received from": ""
@@ -2184,13 +2290,22 @@
   "KDE Connect ring tooltip": {
     "Ring": ""
   },
+  "KDE Connect send file button": {
+    "Send File": ""
+  },
   "KDE Connect service unavailable message": {
     "KDE Connect unavailable": ""
   },
   "KDE Connect share URL button": {
     "Share URL": ""
   },
+  "KDE Connect share button": {
+    "Share Text": ""
+  },
   "KDE Connect share button | KDE Connect share dialog title | KDE Connect share tooltip": {
+    "Share": ""
+  },
+  "KDE Connect share dialog title | KDE Connect share tooltip": {
     "Share": ""
   },
   "KDE Connect share input placeholder": {
@@ -2265,6 +2380,12 @@
   "LED device": {
     "LED device": ""
   },
+  "Large": {
+    "Large": ""
+  },
+  "Largest": {
+    "Largest": ""
+  },
   "Last launched %1": {
     "Last launched %1": "最終起動日 %1"
   },
@@ -2294,6 +2415,9 @@
   },
   "Launcher": {
     "Launcher": "ランチャー"
+  },
+  "Launcher Button": {
+    "Launcher Button": ""
   },
   "Launcher Button Logo": {
     "Launcher Button Logo": "ランチャーのボタンロゴ"
@@ -2333,6 +2457,9 @@
   },
   "Loading plugins...": {
     "Loading plugins...": "プラグインを読み込んでいます..."
+  },
+  "Loading trending...": {
+    "Loading trending...": ""
   },
   "Loading...": {
     "Loading...": ""
@@ -2709,6 +2836,12 @@
   "No adapters": {
     "No adapters": ""
   },
+  "No app customizations.": {
+    "No app customizations.": ""
+  },
+  "No apps found": {
+    "No apps found": ""
+  },
   "No battery": {
     "No battery": ""
   },
@@ -2739,14 +2872,23 @@
   "No files found": {
     "No files found": "ファイルが見つかりませんでした"
   },
+  "No hidden apps.": {
+    "No hidden apps.": ""
+  },
   "No items added yet": {
     "No items added yet": "まだアイテムが追加されていません"
   },
   "No keybinds found": {
     "No keybinds found": ""
   },
+  "No launcher plugins installed.": {
+    "No launcher plugins installed.": ""
+  },
   "No matches": {
     "No matches": "一致するものはありません"
+  },
+  "No plugin results": {
+    "No plugin results": ""
   },
   "No plugins found": {
     "No plugins found": "プラグインが見つかりませんでした"
@@ -2766,8 +2908,14 @@
   "No recent clipboard entries found": {
     "No recent clipboard entries found": ""
   },
+  "No results found": {
+    "No results found": ""
+  },
   "No saved clipboard entries": {
     "No saved clipboard entries": ""
+  },
+  "No trigger": {
+    "No trigger": ""
   },
   "No variants created. Click Add to create a new monitor widget.": {
     "No variants created. Click Add to create a new monitor widget.": ""
@@ -2880,6 +3028,12 @@
   "Open Notepad File": {
     "Open Notepad File": "メモ帳ファイルを開く"
   },
+  "Open folder": {
+    "Open folder": ""
+  },
+  "Open in Browser": {
+    "Open in Browser": ""
+  },
   "Open search bar to find text": {
     "Open search bar to find text": "検索バーを開いてテキストを検索"
   },
@@ -2945,6 +3099,9 @@
   },
   "PIN": {
     "PIN": ""
+  },
+  "Pad Hours": {
+    "Pad Hours": ""
   },
   "Padding": {
     "Padding": "パディング"
@@ -3012,6 +3169,9 @@
   "Pinned": {
     "Pinned": ""
   },
+  "Pinned and running apps with drag-and-drop": {
+    "Pinned and running apps with drag-and-drop": ""
+  },
   "Place plugin directories here. Each plugin should have a plugin.json manifest file.": {
     "Place plugin directories here. Each plugin should have a plugin.json manifest file.": "プラグインディレクトリをここに配置します。各プラグインには plugin.json マニフェストファイルが必要です。"
   },
@@ -3047,6 +3207,9 @@
   },
   "Plugin Management": {
     "Plugin Management": "プラグイン管理"
+  },
+  "Plugin Visibility": {
+    "Plugin Visibility": ""
   },
   "Plugin is disabled - enable in Plugins settings to use": {
     "Plugin is disabled - enable in Plugins settings to use": "プラグインは無効です - 使用するにはプラグイン設定で有効にしてください"
@@ -3125,6 +3288,9 @@
   },
   "Prevent screen timeout": {
     "Prevent screen timeout": "画面のタイムアウトを防止"
+  },
+  "Preview": {
+    "Preview": ""
   },
   "Primary": {
     "Primary": "プライマリー"
@@ -3239,6 +3405,12 @@
   },
   "Remove gaps and border when windows are maximized": {
     "Remove gaps and border when windows are maximized": ""
+  },
+  "Rename": {
+    "Rename": ""
+  },
+  "Rename Workspace": {
+    "Rename Workspace": ""
   },
   "Repeat": {
     "Repeat": ""
@@ -3417,6 +3589,12 @@
   "Scrolling": {
     "Scrolling": "スクロール"
   },
+  "Search App Actions": {
+    "Search App Actions": ""
+  },
+  "Search Options": {
+    "Search Options": ""
+  },
   "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
     "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": ""
   },
@@ -3455,6 +3633,9 @@
   },
   "Security": {
     "Security": ""
+  },
+  "Select": {
+    "Select": ""
   },
   "Select Application": {
     "Select Application": ""
@@ -3534,11 +3715,17 @@
   "Setup": {
     "Setup": ""
   },
+  "Share Gamma Control Settings": {
+    "Share Gamma Control Settings": ""
+  },
   "Shell": {
     "Shell": ""
   },
   "Shift+Del: Clear All • Esc: Close": {
     "Shift+Del: Clear All • Esc: Close": "Shift+Del: すべてクリア • Esc: 閉じる"
+  },
+  "Shift+Enter to paste": {
+    "Shift+Enter to paste": ""
   },
   "Shift+Enter: Paste • Shift+Del: Clear All • Esc: Close": {
     "Shift+Enter: Paste • Shift+Del: Clear All • Esc: Close": ""
@@ -3596,6 +3783,9 @@
   },
   "Show Humidity": {
     "Show Humidity": ""
+  },
+  "Show Launcher Button": {
+    "Show Launcher Button": ""
   },
   "Show Line Numbers": {
     "Show Line Numbers": "行番号を表示"
@@ -3773,6 +3963,9 @@
   },
   "Sizing": {
     "Sizing": ""
+  },
+  "Small": {
+    "Small": ""
   },
   "Smartcard Authentication": {
     "Smartcard Authentication": ""
@@ -4095,11 +4288,23 @@
   "Transparency": {
     "Transparency": ""
   },
+  "Trending GIFs": {
+    "Trending GIFs": ""
+  },
+  "Trending Stickers": {
+    "Trending Stickers": ""
+  },
   "Trigger": {
     "Trigger": ""
   },
   "Trigger Prefix": {
     "Trigger Prefix": ""
+  },
+  "Trigger: %1": {
+    "Trigger: %1": ""
+  },
+  "Try a different search": {
+    "Try a different search": ""
   },
   "Turn off all displays immediately when the lock screen activates": {
     "Turn off all displays immediately when the lock screen activates": ""
@@ -4110,8 +4315,20 @@
   "Type": {
     "Type": ""
   },
+  "Type at least 2 characters": {
+    "Type at least 2 characters": ""
+  },
   "Type this prefix to search keybinds": {
     "Type this prefix to search keybinds": ""
+  },
+  "Type to search": {
+    "Type to search": ""
+  },
+  "Type to search apps": {
+    "Type to search apps": ""
+  },
+  "Type to search files": {
+    "Type to search files": ""
   },
   "Typography": {
     "Typography": ""
@@ -4230,6 +4447,9 @@
   "Use light theme instead of dark theme": {
     "Use light theme instead of dark theme": "ダークテーマではなく、ライトテーマを使用"
   },
+  "Use meters per second instead of km/h for wind speed": {
+    "Use meters per second instead of km/h for wind speed": ""
+  },
   "Use smaller notification cards": {
     "Use smaller notification cards": ""
   },
@@ -4257,8 +4477,14 @@
   "Username": {
     "Username": "ユーザー名"
   },
+  "Uses sunrise/sunset times based on your location.": {
+    "Uses sunrise/sunset times based on your location.": ""
+  },
   "Uses sunrise/sunset times to automatically adjust night mode based on your location.": {
     "Uses sunrise/sunset times to automatically adjust night mode based on your location.": "あなたの位置情報に基づいて、日の出と日の入りの時間を使ってナイトモードを自動調整します。"
+  },
+  "Using shared settings from Gamma Control": {
+    "Using shared settings from Gamma Control": ""
   },
   "Utilities": {
     "Utilities": "ユーティリティ"
@@ -4460,6 +4686,9 @@
   "Wind Speed": {
     "Wind Speed": ""
   },
+  "Wind Speed in m/s": {
+    "Wind Speed in m/s": ""
+  },
   "Window Corner Radius": {
     "Window Corner Radius": ""
   },
@@ -4493,6 +4722,9 @@
   "Workspace Switcher": {
     "Workspace Switcher": "ワークスペーススイッチャー"
   },
+  "Workspace name": {
+    "Workspace name": ""
+  },
   "Workspaces": {
     "Workspaces": ""
   },
@@ -4520,6 +4752,9 @@
   "You have unsaved changes. Save before opening a file?": {
     "You have unsaved changes. Save before opening a file?": "保存されていない変更があります。ファイルを開く前に保存しますか?"
   },
+  "actions": {
+    "actions": ""
+  },
   "apps": {
     "apps": ""
   },
@@ -4528,6 +4763,12 @@
   },
   "bar shadow settings card": {
     "Shadow": ""
+  },
+  "border color": {
+    "Color": ""
+  },
+  "border thickness": {
+    "Thickness": ""
   },
   "browse themes button | theme browser header | theme browser window title": {
     "Browse Themes": ""
@@ -4786,6 +5027,21 @@
   "installed status": {
     "Installed": ""
   },
+  "launcher appearance settings": {
+    "Appearance": ""
+  },
+  "launcher border option": {
+    "Border": ""
+  },
+  "launcher footer description": {
+    "Show mode tabs and keyboard hints at the bottom.": ""
+  },
+  "launcher footer visibility": {
+    "Show Footer": ""
+  },
+  "launcher size option": {
+    "Size": ""
+  },
   "leave empty for default": {
     "leave empty for default": ""
   },
@@ -4825,6 +5081,9 @@
   },
   "ms": {
     "ms": ""
+  },
+  "nav": {
+    "nav": ""
   },
   "no custom theme file status": {
     "No custom theme file": ""
@@ -4882,6 +5141,12 @@
   "official": {
     "official": "公式"
   },
+  "open": {
+    "open": ""
+  },
+  "outline color": {
+    "Outline": ""
+  },
   "plugin browser description": {
     "Install plugins from the DMS plugin registry": ""
   },
@@ -4896,6 +5161,9 @@
   },
   "plugin search placeholder": {
     "Search plugins...": ""
+  },
+  "primary color": {
+    "Primary": ""
   },
   "process count label in footer": {
     "Processes:": ""
@@ -4915,6 +5183,9 @@
   "registry theme description": {
     "Color theme from DMS registry": ""
   },
+  "secondary color": {
+    "Secondary": ""
+  },
   "seconds": {
     "seconds": ""
   },
@@ -4926,6 +5197,9 @@
   },
   "shadow color option": {
     "Surface": "",
+    "Text": ""
+  },
+  "shadow color option | text color": {
     "Text": ""
   },
   "shadow intensity slider": {
@@ -5006,6 +5280,9 @@
   },
   "wallpaper settings external management": {
     "External Wallpaper Management": ""
+  },
+  "weather feels like temperature": {
+    "Feels Like %1°": ""
   },
   "wtype not available - install wtype for paste support": {
     "wtype not available - install wtype for paste support": ""

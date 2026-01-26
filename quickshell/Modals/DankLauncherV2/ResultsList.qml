@@ -159,6 +159,15 @@ Item {
         contentHeight: sectionsColumn.height
         clip: true
 
+        Component.onCompleted: {
+            verticalScrollBar.targetFlickable = mainFlickable;
+            verticalScrollBar.parent = root;
+            verticalScrollBar.z = 102;
+            verticalScrollBar.anchors.right = root.right;
+            verticalScrollBar.anchors.top = root.top;
+            verticalScrollBar.anchors.bottom = root.bottom;
+        }
+
         Column {
             id: sectionsColumn
             width: parent.width

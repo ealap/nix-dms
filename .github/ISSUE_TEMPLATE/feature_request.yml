@@ -1,5 +1,5 @@
 name: Feature Request
-description: Suggest a new feature or improvement for DMS
+description: Suggest a new feature or improvement for DMS. Keep features focused on a single topic with clear benefits, examples, etc. Avoid vague or broad requests, they will be closed.
 labels:
   - enhancement
 body:

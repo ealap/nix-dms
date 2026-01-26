@@ -722,7 +722,7 @@ Item {
                                                     anchors.centerIn: parent
                                                     text: "DMS"
                                                     font.pixelSize: Theme.fontSizeSmall - 2
-                                                    color: Theme.primaryText
+                                                    color: Theme.primary
                                                 }
                                             }
                                         }

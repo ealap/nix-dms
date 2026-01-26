@@ -19,7 +19,7 @@ Rectangle {
     width: parent?.width ?? 200
     height: 32
     color: isSticky ? "transparent" : (hoverArea.containsMouse ? Theme.surfaceHover : "transparent")
-    radius: Theme.cornerRadius / 2
+    radius: Theme.cornerRadius
 
     MouseArea {
         id: hoverArea

@@ -242,6 +242,7 @@ Singleton {
     property bool showWorkspaceApps: false
     property bool groupWorkspaceApps: true
     property int maxWorkspaceIcons: 3
+    property int workspaceAppIconSizeOffset: 0
     property bool workspaceFollowFocus: false
     property bool showOccupiedWorkspacesOnly: false
     property bool reverseScrolling: false

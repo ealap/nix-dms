@@ -164,8 +164,7 @@ Item {
                         detection[item.id] = item.detected;
                     }
                     themeColorsTab.templateDetection = detection;
-                } catch (e) {
-                }
+                } catch (e) {}
             }
         }
     }
@@ -988,8 +987,7 @@ Item {
                     DankToggle {
                         id: themeModeAutoToggle
                         width: parent.width
-                        text: I18n.tr("Enable Automatic Switching")
-                        description: I18n.tr("Automatically switch between light and dark modes based on time or sunrise/sunset")
+                        text: I18n.tr("Automatic Control")
                         checked: SessionData.themeModeAutoEnabled
                         onToggled: checked => {
                             SessionData.setThemeModeAutoEnabled(checked);
@@ -1011,7 +1009,6 @@ Item {
                         DankToggle {
                             width: parent.width
                             text: I18n.tr("Share Gamma Control Settings")
-                            description: I18n.tr("Use the same time and location settings as gamma control")
                             checked: SessionData.themeModeShareGammaSettings
                             onToggled: checked => {
                                 SessionData.setThemeModeShareGammaSettings(checked);
@@ -1028,8 +1025,14 @@ Item {
                                 height: 45
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 model: [
-                                    { "text": "Time", "icon": "access_time" },
-                                    { "text": "Location", "icon": "place" }
+                                    {
+                                        "text": "Time",
+                                        "icon": "access_time"
+                                    },
+                                    {
+                                        "text": "Location",
+                                        "icon": "place"
+                                    }
                                 ]
 
                                 Component.onCompleted: {
@@ -1066,7 +1069,7 @@ Item {
 
                                     StyledText {
                                         text: ""
-                                        width: 80
+                                        width: 50
                                         height: 20
                                     }
 
@@ -1091,10 +1094,10 @@ Item {
                                     spacing: Theme.spacingM
 
                                     StyledText {
-                                        text: I18n.tr("Dark Start")
+                                        text: I18n.tr("Start")
                                         font.pixelSize: Theme.fontSizeMedium
                                         color: Theme.surfaceText
-                                        width: 80
+                                        width: 50
                                         height: 40
                                         verticalAlignment: Text.AlignVCenter
                                     }
@@ -1104,7 +1107,8 @@ Item {
                                         currentValue: SessionData.themeModeStartHour.toString()
                                         options: {
                                             var hours = [];
-                                            for (var i = 0; i < 24; i++) hours.push(i.toString());
+                                            for (var i = 0; i < 24; i++)
+                                                hours.push(i.toString());
                                             return hours;
                                         }
                                         onValueChanged: value => {
@@ -1132,10 +1136,10 @@ Item {
                                     spacing: Theme.spacingM
 
                                     StyledText {
-                                        text: I18n.tr("Light Start")
+                                        text: I18n.tr("End")
                                         font.pixelSize: Theme.fontSizeMedium
                                         color: Theme.surfaceText
-                                        width: 80
+                                        width: 50
                                         height: 40
                                         verticalAlignment: Text.AlignVCenter
                                     }
@@ -1145,7 +1149,8 @@ Item {
                                         currentValue: SessionData.themeModeEndHour.toString()
                                         options: {
                                             var hours = [];
-                                            for (var i = 0; i < 24; i++) hours.push(i.toString());
+                                            for (var i = 0; i < 24; i++)
+                                                hours.push(i.toString());
                                             return hours;
                                         }
                                         onValueChanged: value => {
@@ -1169,15 +1174,6 @@ Item {
                                     }
                                 }
                             }
-
-                            StyledText {
-                                text: SessionData.isLightMode ? I18n.tr("Light mode will be active from Light Start to Dark Start") : I18n.tr("Dark mode will be active from Dark Start to Light Start")
-                                font.pixelSize: Theme.fontSizeSmall
-                                color: Theme.surfaceVariantText
-                                width: parent.width
-                                wrapMode: Text.WordWrap
-                                horizontalAlignment: Text.AlignHCenter
-                            }
                         }
 
                         Column {
@@ -1189,7 +1185,6 @@ Item {
                                 id: themeModeIpLocationToggle
                                 width: parent.width
                                 text: I18n.tr("Use IP Location")
-                                description: I18n.tr("Automatically detect location based on IP address")
                                 checked: SessionData.nightModeUseIPLocation || false
                                 onToggled: checked => {
                                     SessionData.setNightModeUseIPLocation(checked);
@@ -1268,23 +1263,13 @@ Item {
                                 }
 
                                 StyledText {
-                                    text: I18n.tr("Uses sunrise/sunset times to automatically adjust theme mode based on your location.")
+                                    text: I18n.tr("Uses sunrise/sunset times based on your location.")
                                     font.pixelSize: Theme.fontSizeSmall
                                     color: Theme.surfaceVariantText
                                     width: parent.width
                                     wrapMode: Text.WordWrap
                                     horizontalAlignment: Text.AlignHCenter
                                 }
-                            }
-
-                            StyledText {
-                                text: SessionData.isLightMode ? I18n.tr("Light mode will be active from sunrise to sunset") : I18n.tr("Dark mode will be active from sunset to sunrise")
-                                font.pixelSize: Theme.fontSizeSmall
-                                color: Theme.primary
-                                width: parent.width
-                                wrapMode: Text.WordWrap
-                                horizontalAlignment: Text.AlignHCenter
-                                visible: SessionData.nightModeUseIPLocation || (SessionData.latitude !== 0.0 && SessionData.longitude !== 0.0)
                             }
                         }
 
@@ -1356,7 +1341,7 @@ Item {
 
                                         DankIcon {
                                             name: SessionData.isLightMode ? "light_mode" : "dark_mode"
-                                            size: Theme.iconSizeMedium
+                                            size: Theme.iconSize
                                             color: SessionData.isLightMode ? "#FFA726" : "#7E57C2"
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
@@ -1392,7 +1377,7 @@ Item {
 
                                         DankIcon {
                                             name: "schedule"
-                                            size: Theme.iconSizeMedium
+                                            size: Theme.iconSize
                                             color: Theme.primary
                                             anchors.verticalCenter: parent.verticalCenter
                                         }

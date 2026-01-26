@@ -5,6 +5,7 @@ import qs.Widgets
 Flickable {
     id: flickable
 
+    property alias verticalScrollBar: vbar
     property real mouseWheelSpeed: 60
     property real momentumVelocity: 0
     property bool isMomentumActive: false

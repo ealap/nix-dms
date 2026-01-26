@@ -104,6 +104,17 @@ Item {
                     }
                 }
 
+                SettingsSliderRow {
+                    visible: SettingsData.showWorkspaceApps
+                    text: I18n.tr("Icon Size")
+                    value: SettingsData.workspaceAppIconSizeOffset
+                    minimum: 0
+                    maximum: 10
+                    unit: "px"
+                    defaultValue: 0
+                    onSliderValueChanged: newValue => SettingsData.set("workspaceAppIconSizeOffset", newValue)
+                }
+
                 SettingsToggleRow {
                     settingKey: "groupWorkspaceApps"
                     tags: ["workspace", "apps", "icons", "group", "grouped", "collapse"]
