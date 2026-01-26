@@ -133,6 +133,7 @@ Singleton {
     property real dockTransparency: 1
     property string widgetBackgroundColor: "sch"
     property string widgetColorMode: "default"
+    property string controlCenterTileColorMode: "primary"
     property real cornerRadius: 12
     property int niriLayoutGapsOverride: -1
     property int niriLayoutRadiusOverride: -1

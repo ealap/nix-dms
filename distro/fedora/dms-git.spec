@@ -109,8 +109,6 @@ rm -f %{buildroot}%{_datadir}/quickshell/dms/.gitignore
 rm -rf %{buildroot}%{_datadir}/quickshell/dms/.github
 rm -rf %{buildroot}%{_datadir}/quickshell/dms/distro
 
-echo "%{version}" > %{buildroot}%{_datadir}/quickshell/dms/VERSION
-
 %posttrans
 # Signal running DMS instances to reload
 pkill -USR1 -x dms >/dev/null 2>&1 || :

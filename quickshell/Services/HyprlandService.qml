@@ -88,8 +88,8 @@ Singleton {
             if (transform !== 0)
                 monitorLine += ", transform, " + transform;
 
-            if (output.vrr_supported && output.vrr_enabled)
-                monitorLine += ", vrr, 1";
+            if (output.vrr_supported)
+                monitorLine += ", vrr, " + (output.vrr_enabled ? "1" : "0");
 
             if (output.mirror && output.mirror.length > 0)
                 monitorLine += ", mirror, " + output.mirror;

@@ -271,10 +271,7 @@ Singleton {
 
         function onLatitudeChanged() {
             if (root.themeModeAutomationActive && SessionData.themeModeAutoMode === "location") {
-                if (!SessionData.nightModeUseIPLocation &&
-                    SessionData.latitude !== 0.0 &&
-                    SessionData.longitude !== 0.0 &&
-                    typeof DMSService !== "undefined") {
+                if (!SessionData.nightModeUseIPLocation && SessionData.latitude !== 0.0 && SessionData.longitude !== 0.0 && typeof DMSService !== "undefined") {
                     DMSService.sendRequest("wayland.gamma.setLocation", {
                         "latitude": SessionData.latitude,
                         "longitude": SessionData.longitude
@@ -287,10 +284,7 @@ Singleton {
 
         function onLongitudeChanged() {
             if (root.themeModeAutomationActive && SessionData.themeModeAutoMode === "location") {
-                if (!SessionData.nightModeUseIPLocation &&
-                    SessionData.latitude !== 0.0 &&
-                    SessionData.longitude !== 0.0 &&
-                    typeof DMSService !== "undefined") {
+                if (!SessionData.nightModeUseIPLocation && SessionData.latitude !== 0.0 && SessionData.longitude !== 0.0 && typeof DMSService !== "undefined") {
                     DMSService.sendRequest("wayland.gamma.setLocation", {
                         "latitude": SessionData.latitude,
                         "longitude": SessionData.longitude
@@ -307,8 +301,7 @@ Singleton {
                     DMSService.sendRequest("wayland.gamma.setUseIPLocation", {
                         "use": SessionData.nightModeUseIPLocation
                     }, response => {
-                        if (!response.error && !SessionData.nightModeUseIPLocation &&
-                            SessionData.latitude !== 0.0 && SessionData.longitude !== 0.0) {
+                        if (!response.error && !SessionData.nightModeUseIPLocation && SessionData.latitude !== 0.0 && SessionData.longitude !== 0.0) {
                             DMSService.sendRequest("wayland.gamma.setLocation", {
                                 "latitude": SessionData.latitude,
                                 "longitude": SessionData.longitude
@@ -325,11 +318,7 @@ Singleton {
     // React to gamma backend's isDay state changes for location-based mode
     Connections {
         target: DisplayService
-        enabled: typeof DisplayService !== "undefined" &&
-                 typeof SessionData !== "undefined" &&
-                 SessionData.themeModeAutoEnabled &&
-                 SessionData.themeModeAutoMode === "location" &&
-                 !themeAutoBackendAvailable()
+        enabled: typeof DisplayService !== "undefined" && typeof SessionData !== "undefined" && SessionData.themeModeAutoEnabled && SessionData.themeModeAutoMode === "location" && !themeAutoBackendAvailable()
 
         function onGammaIsDayChanged() {
             if (root.isLightMode !== DisplayService.gammaIsDay) {
@@ -343,7 +332,8 @@ Singleton {
         enabled: typeof DMSService !== "undefined" && typeof SessionData !== "undefined"
 
         function onLoginctlEvent(event) {
-            if (!SessionData.themeModeAutoEnabled) return;
+            if (!SessionData.themeModeAutoEnabled)
+                return;
             if (event.event === "unlock" || event.event === "resume") {
                 if (!themeAutoBackendAvailable()) {
                     root.evaluateThemeMode();
@@ -563,6 +553,58 @@ Singleton {
 
     property color errorHover: Qt.rgba(error.r, error.g, error.b, 0.12)
     property color errorPressed: Qt.rgba(error.r, error.g, error.b, 0.16)
+
+    readonly property color ccTileActiveBg: {
+        switch (SettingsData.controlCenterTileColorMode) {
+        case "primaryContainer":
+            return primaryContainer;
+        case "secondary":
+            return secondary;
+        case "surfaceVariant":
+            return surfaceVariant;
+        default:
+            return primary;
+        }
+    }
+
+    readonly property color ccTileActiveText: {
+        switch (SettingsData.controlCenterTileColorMode) {
+        case "primaryContainer":
+            return primary;
+        case "secondary":
+            return surfaceText;
+        case "surfaceVariant":
+            return surfaceText;
+        default:
+            return primaryText;
+        }
+    }
+
+    readonly property color ccTileInactiveIcon: {
+        switch (SettingsData.controlCenterTileColorMode) {
+        case "primaryContainer":
+            return primary;
+        case "secondary":
+            return secondary;
+        case "surfaceVariant":
+            return surfaceText;
+        default:
+            return primary;
+        }
+    }
+
+    readonly property color ccTileRing: {
+        switch (SettingsData.controlCenterTileColorMode) {
+        case "primaryContainer":
+            return Qt.rgba(primary.r, primary.g, primary.b, 0.22);
+        case "secondary":
+            return Qt.rgba(surfaceText.r, surfaceText.g, surfaceText.b, 0.22);
+        case "surfaceVariant":
+            return Qt.rgba(surfaceText.r, surfaceText.g, surfaceText.b, 0.22);
+        default:
+            return Qt.rgba(primaryText.r, primaryText.g, primaryText.b, 0.22);
+        }
+    }
 
     property color shadowMedium: Qt.rgba(0, 0, 0, 0.08)
     property color shadowStrong: Qt.rgba(0, 0, 0, 0.3)
@@ -790,7 +832,6 @@ Singleton {
             }
             generateSystemThemesFromCurrentTheme();
         }
-
     }
 
     function toggleLightMode(savePrefs = true) {
@@ -1187,7 +1228,7 @@ Singleton {
                     skipTemplates.push("kcolorscheme");
                 if (!SettingsData.matugenTemplateVscode)
                     skipTemplates.push("vscode");
-		if (!SettingsData.matugenTemplateEmacs)
+                if (!SettingsData.matugenTemplateEmacs)
                     skipTemplates.push("emacs");
             }
             if (skipTemplates.length > 0) {
@@ -1695,10 +1736,7 @@ Singleton {
 
     // Theme mode automation functions
     function themeAutoBackendAvailable() {
-        return typeof DMSService !== "undefined" &&
-               DMSService.isConnected &&
-               Array.isArray(DMSService.capabilities) &&
-               DMSService.capabilities.includes("theme.auto");
+        return typeof DMSService !== "undefined" && DMSService.isConnected && Array.isArray(DMSService.capabilities) && DMSService.capabilities.includes("theme.auto");
     }
 
     function applyThemeAutoState(state) {
@@ -1731,7 +1769,9 @@ Singleton {
             return;
         }
 
-        DMSService.sendRequest("theme.auto.setMode", {"mode": "time"});
+        DMSService.sendRequest("theme.auto.setMode", {
+            "mode": "time"
+        });
 
         const shareSettings = SessionData.themeModeShareGammaSettings;
         const startHour = shareSettings ? SessionData.nightModeStartHour : SessionData.themeModeStartHour;
@@ -1750,7 +1790,9 @@ Singleton {
             }
         });
 
-        DMSService.sendRequest("theme.auto.setEnabled", {"enabled": true});
+        DMSService.sendRequest("theme.auto.setEnabled", {
+            "enabled": true
+        });
         DMSService.sendRequest("theme.auto.trigger", {});
     }
 
@@ -1769,12 +1811,18 @@ Singleton {
             return;
         }
 
-        DMSService.sendRequest("theme.auto.setMode", {"mode": "location"});
+        DMSService.sendRequest("theme.auto.setMode", {
+            "mode": "location"
+        });
 
         if (SessionData.nightModeUseIPLocation) {
-            DMSService.sendRequest("theme.auto.setUseIPLocation", {"use": true});
+            DMSService.sendRequest("theme.auto.setUseIPLocation", {
+                "use": true
+            });
         } else {
-            DMSService.sendRequest("theme.auto.setUseIPLocation", {"use": false});
+            DMSService.sendRequest("theme.auto.setUseIPLocation", {
+                "use": false
+            });
             if (SessionData.latitude !== 0.0 && SessionData.longitude !== 0.0) {
                 DMSService.sendRequest("theme.auto.setLocation", {
                     "latitude": SessionData.latitude,
@@ -1783,7 +1831,9 @@ Singleton {
             }
         }
 
-        DMSService.sendRequest("theme.auto.setEnabled", {"enabled": true});
+        DMSService.sendRequest("theme.auto.setEnabled", {
+            "enabled": true
+        });
         DMSService.sendRequest("theme.auto.trigger", {});
     }
 
@@ -1819,13 +1869,8 @@ Singleton {
             return;
         }
 
-        if (!SessionData.nightModeUseIPLocation &&
-            SessionData.latitude !== 0.0 &&
-            SessionData.longitude !== 0.0) {
-            const shouldBeLight = calculateIsDaytime(
-                SessionData.latitude,
-                SessionData.longitude
-            );
+        if (!SessionData.nightModeUseIPLocation && SessionData.latitude !== 0.0 && SessionData.longitude !== 0.0) {
+            const shouldBeLight = calculateIsDaytime(SessionData.latitude, SessionData.longitude);
             if (root.isLightMode !== shouldBeLight) {
                 root.setLightMode(shouldBeLight, true, true);
             }
@@ -1844,14 +1889,10 @@ Singleton {
     function evaluateTimeBasedThemeMode() {
         const shareSettings = SessionData.themeModeShareGammaSettings;
 
-        const startHour = shareSettings ?
-            SessionData.nightModeStartHour : SessionData.themeModeStartHour;
-        const startMinute = shareSettings ?
-            SessionData.nightModeStartMinute : SessionData.themeModeStartMinute;
-        const endHour = shareSettings ?
-            SessionData.nightModeEndHour : SessionData.themeModeEndHour;
-        const endMinute = shareSettings ?
-            SessionData.nightModeEndMinute : SessionData.themeModeEndMinute;
+        const startHour = shareSettings ? SessionData.nightModeStartHour : SessionData.themeModeStartHour;
+        const startMinute = shareSettings ? SessionData.nightModeStartMinute : SessionData.themeModeStartMinute;
+        const endHour = shareSettings ? SessionData.nightModeEndHour : SessionData.themeModeEndHour;
+        const endMinute = shareSettings ? SessionData.nightModeEndMinute : SessionData.themeModeEndMinute;
 
         const now = new Date();
         const currentMinutes = now.getHours() * 60 + now.getMinutes();
@@ -1877,7 +1918,7 @@ Singleton {
         const dayOfYear = Math.floor(diff / 86400000);
         const latRad = lat * Math.PI / 180;
 
-        const declination = 23.45 * Math.sin((360/365) * (dayOfYear - 81) * Math.PI / 180);
+        const declination = 23.45 * Math.sin((360 / 365) * (dayOfYear - 81) * Math.PI / 180);
         const declinationRad = declination * Math.PI / 180;
 
         const cosHourAngle = -Math.tan(latRad) * Math.tan(declinationRad);
@@ -1918,14 +1959,18 @@ Singleton {
         }
 
         if (SessionData.nightModeUseIPLocation) {
-            DMSService.sendRequest("wayland.gamma.setUseIPLocation", {"use": true}, response => {
+            DMSService.sendRequest("wayland.gamma.setUseIPLocation", {
+                "use": true
+            }, response => {
                 if (response?.error) {
                     console.warn("Theme automation: Failed to enable IP location", response.error);
                 }
             });
             return true;
         } else if (SessionData.latitude !== 0.0 && SessionData.longitude !== 0.0) {
-            DMSService.sendRequest("wayland.gamma.setUseIPLocation", {"use": false}, response => {
+            DMSService.sendRequest("wayland.gamma.setUseIPLocation", {
+                "use": false
+            }, response => {
                 if (!response.error) {
                     DMSService.sendRequest("wayland.gamma.setLocation", {
                         "latitude": SessionData.latitude,
@@ -1982,7 +2027,9 @@ Singleton {
     function stopThemeModeAutomation() {
         root.themeModeAutomationActive = false;
         if (typeof DMSService !== "undefined" && DMSService.isConnected) {
-            DMSService.sendRequest("theme.auto.setEnabled", {"enabled": false});
+            DMSService.sendRequest("theme.auto.setEnabled", {
+                "enabled": false
+            });
         }
     }
 }

@@ -26,9 +26,9 @@ Rectangle {
         return isActive ? Theme.cornerRadius : Theme.cornerRadius + 4;
     }
 
-    readonly property color _tileBgActive: Theme.primary
+    readonly property color _tileBgActive: Theme.ccTileActiveBg
     readonly property color _tileBgInactive: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
-    readonly property color _tileRingActive: Qt.rgba(Theme.primaryText.r, Theme.primaryText.g, Theme.primaryText.b, 0.22)
+    readonly property color _tileRingActive: Theme.ccTileRing
 
     color: {
         if (isActive)
@@ -69,7 +69,7 @@ Rectangle {
         DankIcon {
             name: root.iconName
             size: Theme.iconSize
-            color: isActive ? Theme.primaryText : Theme.primary
+            color: isActive ? Theme.ccTileActiveText : Theme.ccTileInactiveIcon
             anchors.verticalCenter: parent.verticalCenter
             rotation: root.iconRotation
             onRotationCompleted: root.iconRotationCompleted()
@@ -89,7 +89,7 @@ Rectangle {
                     width: parent.width
                     text: root.text
                     font.pixelSize: Theme.fontSizeMedium
-                    color: isActive ? Theme.primaryText : Theme.surfaceText
+                    color: isActive ? Theme.ccTileActiveText : Theme.surfaceText
                     font.weight: Font.Medium
                     elide: Text.ElideRight
                     wrapMode: Text.NoWrap
@@ -100,7 +100,7 @@ Rectangle {
                     width: parent.width
                     text: root.secondaryText
                     font.pixelSize: Theme.fontSizeSmall
-                    color: isActive ? Theme.primaryText : Theme.surfaceVariantText
+                    color: isActive ? Theme.ccTileActiveText : Theme.surfaceVariantText
                     visible: text.length > 0
                     elide: Text.ElideRight
                     wrapMode: Text.NoWrap

@@ -1484,6 +1484,42 @@ Item {
                     }
                 }
 
+                SettingsDropdownRow {
+                    tab: "theme"
+                    tags: ["control", "center", "tile", "button", "color", "active"]
+                    settingKey: "controlCenterTileColorMode"
+                    text: I18n.tr("Control Center Tile Color")
+                    description: I18n.tr("Active tile background and icon color")
+                    options: ["Primary", "Primary Container", "Secondary", "Surface Variant"]
+                    currentValue: {
+                        switch (SettingsData.controlCenterTileColorMode) {
+                        case "primaryContainer":
+                            return "Primary Container";
+                        case "secondary":
+                            return "Secondary";
+                        case "surfaceVariant":
+                            return "Surface Variant";
+                        default:
+                            return "Primary";
+                        }
+                    }
+                    onValueChanged: value => {
+                        switch (value) {
+                        case "Primary Container":
+                            SettingsData.set("controlCenterTileColorMode", "primaryContainer");
+                            return;
+                        case "Secondary":
+                            SettingsData.set("controlCenterTileColorMode", "secondary");
+                            return;
+                        case "Surface Variant":
+                            SettingsData.set("controlCenterTileColorMode", "surfaceVariant");
+                            return;
+                        default:
+                            SettingsData.set("controlCenterTileColorMode", "primary");
+                        }
+                    }
+                }
+
                 SettingsSliderRow {
                     tab: "theme"
                     tags: ["popup", "transparency", "opacity", "modal"]

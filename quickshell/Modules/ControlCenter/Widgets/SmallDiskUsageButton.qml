@@ -73,7 +73,7 @@ Rectangle {
                     return Theme.error;
                 if (root.usagePercent > 75)
                     return Theme.warning;
-                return Theme.primary;
+                return Theme.ccTileInactiveIcon;
             }
         }
 
@@ -99,7 +99,7 @@ Rectangle {
                         return Theme.error;
                     if (root.usagePercent > 75)
                         return Theme.warning;
-                    return Theme.primary;
+                    return Theme.ccTileInactiveIcon;
                 }
             }
         }
