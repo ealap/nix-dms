@@ -274,39 +274,39 @@ Column {
                 case "wifi":
                     {
                         if (NetworkService.wifiToggling)
-                            return NetworkService.wifiEnabled ? "Disabling WiFi..." : "Enabling WiFi...";
+                            return NetworkService.wifiEnabled ? I18n.tr("Disabling WiFi...", "network status") : I18n.tr("Enabling WiFi...", "network status");
 
                         const status = NetworkService.networkStatus;
                         if (status === "ethernet")
-                            return "Ethernet";
+                            return I18n.tr("Ethernet", "network status");
                         if (status === "vpn") {
                             if (NetworkService.ethernetConnected)
-                                return "Ethernet";
+                                return I18n.tr("Ethernet", "network status");
                             if (NetworkService.wifiConnected && NetworkService.currentWifiSSID)
                                 return NetworkService.currentWifiSSID;
                         }
                         if (status === "wifi" && NetworkService.currentWifiSSID)
                             return NetworkService.currentWifiSSID;
                         if (NetworkService.wifiEnabled)
-                            return "Not connected";
-                        return "WiFi off";
+                            return I18n.tr("Not connected", "network status");
+                        return I18n.tr("WiFi off", "network status");
                     }
                 case "bluetooth":
                     {
                         if (!BluetoothService.available)
-                            return "Bluetooth";
+                            return I18n.tr("Bluetooth", "bluetooth status");
                         if (!BluetoothService.adapter)
-                            return "No adapter";
+                            return I18n.tr("No adapter", "bluetooth status");
                         if (!BluetoothService.adapter.enabled)
-                            return "Disabled";
-                        return "Enabled";
+                            return I18n.tr("Disabled", "bluetooth status");
+                        return I18n.tr("Enabled", "bluetooth status");
                     }
                 case "audioOutput":
-                    return AudioService.sink?.description || "No output device";
+                    return AudioService.sink?.description || I18n.tr("No output device", "audio status");
                 case "audioInput":
-                    return AudioService.source?.description || "No input device";
+                    return AudioService.source?.description || I18n.tr("No input device", "audio status");
                 default:
-                    return widgetDef?.text || "Unknown";
+                    return widgetDef?.text || I18n.tr("Unknown", "widget status");
                 }
             }
             secondaryText: {
@@ -314,29 +314,29 @@ Column {
                 case "wifi":
                     {
                         if (NetworkService.wifiToggling)
-                            return "Please wait...";
+                            return I18n.tr("Please wait...", "network status");
 
                         const status = NetworkService.networkStatus;
                         if (status === "ethernet")
-                            return "Connected";
+                            return I18n.tr("Connected", "network status");
                         if (status === "vpn") {
                             if (NetworkService.ethernetConnected)
-                                return "Connected";
+                                return I18n.tr("Connected", "network status");
                             if (NetworkService.wifiConnected)
-                                return NetworkService.wifiSignalStrength > 0 ? NetworkService.wifiSignalStrength + "%" : "Connected";
+                                return NetworkService.wifiSignalStrength > 0 ? NetworkService.wifiSignalStrength + "%" : I18n.tr("Connected", "network status");
                         }
                         if (status === "wifi")
-                            return NetworkService.wifiSignalStrength > 0 ? NetworkService.wifiSignalStrength + "%" : "Connected";
+                            return NetworkService.wifiSignalStrength > 0 ? NetworkService.wifiSignalStrength + "%" : I18n.tr("Connected", "network status");
                         if (NetworkService.wifiEnabled)
-                            return "Select network";
+                            return I18n.tr("Select network", "network status");
                         return "";
                     }
                 case "bluetooth":
                     {
                         if (!BluetoothService.available)
-                            return "No adapters";
+                            return I18n.tr("No adapters", "bluetooth status");
                         if (!BluetoothService.adapter || !BluetoothService.adapter.enabled)
-                            return "Off";
+                            return I18n.tr("Off", "bluetooth status");
                         const primaryDevice = (() => {
                                 if (!BluetoothService.adapter || !BluetoothService.adapter.devices)
                                     return null;
@@ -348,15 +348,15 @@ Column {
                                 return null;
                             })();
                         if (primaryDevice)
-                            return primaryDevice.name || primaryDevice.alias || primaryDevice.deviceName || "Connected Device";
-                        return "No devices";
+                            return primaryDevice.name || primaryDevice.alias || primaryDevice.deviceName || I18n.tr("Connected Device", "bluetooth status");
+                        return I18n.tr("No devices", "bluetooth status");
                     }
                 case "audioOutput":
                     {
                         if (!AudioService.sink)
-                            return "Select device";
+                            return I18n.tr("Select device", "audio status");
                         if (AudioService.sink.audio.muted)
-                            return "Muted";
+                            return I18n.tr("Muted", "audio status");
                         const volume = AudioService.sink.audio.volume;
                         if (typeof volume !== "number" || isNaN(volume))
                             return "0%";
@@ -365,9 +365,9 @@ Column {
                 case "audioInput":
                     {
                         if (!AudioService.source)
-                            return "Select device";
+                            return I18n.tr("Select device", "audio status");
                         if (AudioService.source.audio.muted)
-                            return "Muted";
+                            return I18n.tr("Muted", "audio status");
                         const volume = AudioService.source.audio.volume;
                         if (typeof volume !== "number" || isNaN(volume))
                             return "0%";
@@ -606,7 +606,7 @@ Column {
                 case "idleInhibitor":
                     return SessionService.idleInhibited ? I18n.tr("Keeping Awake") : I18n.tr("Keep Awake");
                 default:
-                    return "Unknown";
+                    return I18n.tr("Unknown", "widget status");
                 }
             }
 

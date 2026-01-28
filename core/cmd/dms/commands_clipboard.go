@@ -12,17 +12,21 @@ import (
 	_ "image/jpeg"
 	_ "image/png"
 	"io"
+	"net/http"
+	"net/url"
 	"os"
 	"os/exec"
 	"os/signal"
 	"path/filepath"
 	"strconv"
+	"strings"
 	"syscall"
 	"time"
 
 	bolt "go.etcd.io/bbolt"
 	_ "golang.org/x/image/bmp"
 	_ "golang.org/x/image/tiff"
+	_ "golang.org/x/image/webp"
 
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/clipboard"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/log"
@@ -48,6 +52,7 @@ var (
 	clipCopyForeground bool
 	clipCopyPasteOnce  bool
 	clipCopyType       string
+	clipCopyDownload   bool
 	clipJSONOutput     bool
 )
 
@@ -184,11 +189,12 @@ func init() {
 	clipCopyCmd.Flags().BoolVarP(&clipCopyForeground, "foreground", "f", false, "Stay in foreground instead of forking")
 	clipCopyCmd.Flags().BoolVarP(&clipCopyPasteOnce, "paste-once", "o", false, "Exit after first paste")
 	clipCopyCmd.Flags().StringVarP(&clipCopyType, "type", "t", "text/plain;charset=utf-8", "MIME type")
+	clipCopyCmd.Flags().BoolVarP(&clipCopyDownload, "download", "d", false, "Download URL as image and copy as file")
 
 	clipWatchCmd.Flags().BoolVar(&clipJSONOutput, "json", false, "Output as JSON")
 	clipHistoryCmd.Flags().BoolVar(&clipJSONOutput, "json", false, "Output as JSON")
 	clipGetCmd.Flags().BoolVar(&clipJSONOutput, "json", false, "Output as JSON")
-	clipGetCmd.Flags().BoolVarP(&clipGetCopy, "copy", "c", false, "Copy entry to clipboard")
+	clipGetCmd.Flags().BoolVarP(&clipGetCopy, "copy", "C", false, "Copy entry to clipboard")
 
 	clipSearchCmd.Flags().IntVarP(&clipSearchLimit, "limit", "l", 50, "Max results")
 	clipSearchCmd.Flags().IntVarP(&clipSearchOffset, "offset", "o", 0, "Result offset")
@@ -215,9 +221,10 @@ func init() {
 func runClipCopy(cmd *cobra.Command, args []string) {
 	var data []byte
 
-	if len(args) > 0 {
+	switch {
+	case len(args) > 0:
 		data = []byte(args[0])
-	} else {
+	default:
 		var err error
 		data, err = io.ReadAll(os.Stdin)
 		if err != nil {
@@ -225,9 +232,66 @@ func runClipCopy(cmd *cobra.Command, args []string) {
 		}
 	}
 
+	if clipCopyDownload {
+		filePath, err := downloadToTempFile(strings.TrimSpace(string(data)))
+		if err != nil {
+			log.Fatalf("download: %v", err)
+		}
+		if err := copyFileToClipboard(filePath); err != nil {
+			log.Fatalf("copy file: %v", err)
+		}
+		fmt.Printf("Downloaded and copied: %s\n", filePath)
+		return
+	}
+
+	if clipCopyType == "__multi__" {
+		offers, err := parseMultiOffers(data)
+		if err != nil {
+			log.Fatalf("parse multi offers: %v", err)
+		}
+		if err := clipboard.CopyMulti(offers, true, clipCopyPasteOnce); err != nil {
+			log.Fatalf("copy multi: %v", err)
+		}
+		return
+	}
+
 	if err := clipboard.CopyOpts(data, clipCopyType, clipCopyForeground, clipCopyPasteOnce); err != nil {
 		log.Fatalf("copy: %v", err)
 	}
+}
+
+func parseMultiOffers(data []byte) ([]clipboard.Offer, error) {
+	var offers []clipboard.Offer
+	pos := 0
+
+	for pos < len(data) {
+		mimeEnd := bytes.IndexByte(data[pos:], 0)
+		if mimeEnd == -1 {
+			break
+		}
+		mimeType := string(data[pos : pos+mimeEnd])
+		pos += mimeEnd + 1
+
+		lenEnd := bytes.IndexByte(data[pos:], 0)
+		if lenEnd == -1 {
+			break
+		}
+		dataLen, err := strconv.Atoi(string(data[pos : pos+lenEnd]))
+		if err != nil {
+			return nil, fmt.Errorf("parse length: %w", err)
+		}
+		pos += lenEnd + 1
+
+		if pos+dataLen > len(data) {
+			return nil, fmt.Errorf("data truncated")
+		}
+		offerData := data[pos : pos+dataLen]
+		pos += dataLen
+
+		offers = append(offers, clipboard.Offer{MimeType: mimeType, Data: offerData})
+	}
+
+	return offers, nil
 }
 
 func runClipPaste(cmd *cobra.Command, args []string) {
@@ -386,16 +450,13 @@ func runClipGet(cmd *cobra.Command, args []string) {
 		req := models.Request{
 			ID:     1,
 			Method: "clipboard.copyEntry",
-			Params: map[string]any{
-				"id": id,
-			},
+			Params: map[string]any{"id": id},
 		}
 
 		resp, err := sendServerRequest(req)
 		if err != nil {
 			log.Fatalf("Failed to copy clipboard entry: %v", err)
 		}
-
 		if resp.Error != "" {
 			log.Fatalf("Error: %s", resp.Error)
 		}
@@ -672,7 +733,7 @@ func runClipExport(cmd *cobra.Command, args []string) {
 		return
 	}
 
-	if err := os.WriteFile(args[0], out, 0644); err != nil {
+	if err := os.WriteFile(args[0], out, 0o644); err != nil {
 		log.Fatalf("Failed to write file: %v", err)
 	}
 	fmt.Printf("Exported to %s\n", args[0])
@@ -727,7 +788,7 @@ func runClipMigrate(cmd *cobra.Command, args []string) {
 		log.Fatalf("Cliphist db not found: %s", dbPath)
 	}
 
-	db, err := bolt.Open(dbPath, 0644, &bolt.Options{
+	db, err := bolt.Open(dbPath, 0o644, &bolt.Options{
 		ReadOnly: true,
 		Timeout:  1 * time.Second,
 	})
@@ -794,4 +855,114 @@ func detectMimeType(data []byte) string {
 
 func btoi(v []byte) uint64 {
 	return binary.BigEndian.Uint64(v)
+}
+
+func downloadToTempFile(rawURL string) (string, error) {
+	if !strings.HasPrefix(rawURL, "http://") && !strings.HasPrefix(rawURL, "https://") {
+		return "", fmt.Errorf("invalid URL: %s", rawURL)
+	}
+
+	parsedURL, err := url.Parse(rawURL)
+	if err != nil {
+		return "", fmt.Errorf("parse URL: %w", err)
+	}
+
+	ext := filepath.Ext(parsedURL.Path)
+	if ext == "" {
+		ext = ".png"
+	}
+
+	client := &http.Client{Timeout: 30 * time.Second}
+
+	var data []byte
+	var contentType string
+	var lastErr error
+
+	for attempt := 0; attempt < 3; attempt++ {
+		if attempt > 0 {
+			time.Sleep(time.Duration(attempt) * 500 * time.Millisecond)
+		}
+
+		req, err := http.NewRequest("GET", rawURL, nil)
+		if err != nil {
+			lastErr = fmt.Errorf("create request: %w", err)
+			continue
+		}
+		req.Header.Set("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+		req.Header.Set("Accept", "image/*,video/*,*/*")
+
+		resp, err := client.Do(req)
+		if err != nil {
+			lastErr = fmt.Errorf("download (attempt %d): %w", attempt+1, err)
+			continue
+		}
+
+		if resp.StatusCode != http.StatusOK {
+			resp.Body.Close()
+			lastErr = fmt.Errorf("download failed (attempt %d): status %d", attempt+1, resp.StatusCode)
+			continue
+		}
+
+		data, err = io.ReadAll(resp.Body)
+		resp.Body.Close()
+		if err != nil {
+			lastErr = fmt.Errorf("read response (attempt %d): %w", attempt+1, err)
+			continue
+		}
+
+		contentType = resp.Header.Get("Content-Type")
+		if idx := strings.Index(contentType, ";"); idx != -1 {
+			contentType = strings.TrimSpace(contentType[:idx])
+		}
+
+		lastErr = nil
+		break
+	}
+
+	if lastErr != nil {
+		return "", lastErr
+	}
+
+	if len(data) == 0 {
+		return "", fmt.Errorf("downloaded empty file")
+	}
+
+	if !strings.HasPrefix(contentType, "image/") && !strings.HasPrefix(contentType, "video/") {
+		if _, _, err := image.DecodeConfig(bytes.NewReader(data)); err != nil {
+			return "", fmt.Errorf("not a valid media file (content-type: %s)", contentType)
+		}
+	}
+
+	cacheDir, err := os.UserCacheDir()
+	if err != nil {
+		cacheDir = "/tmp"
+	}
+	clipDir := filepath.Join(cacheDir, "dms", "clipboard")
+	if err := os.MkdirAll(clipDir, 0o755); err != nil {
+		return "", fmt.Errorf("create cache dir: %w", err)
+	}
+
+	filePath := filepath.Join(clipDir, fmt.Sprintf("%d%s", time.Now().UnixNano(), ext))
+	if err := os.WriteFile(filePath, data, 0o644); err != nil {
+		return "", fmt.Errorf("write file: %w", err)
+	}
+
+	return filePath, nil
+}
+
+func copyFileToClipboard(filePath string) error {
+	req := models.Request{
+		ID:     1,
+		Method: "clipboard.copyFile",
+		Params: map[string]any{"filePath": filePath},
+	}
+
+	resp, err := sendServerRequest(req)
+	if err != nil {
+		return fmt.Errorf("server request: %w", err)
+	}
+	if resp.Error != "" {
+		return fmt.Errorf("server error: %s", resp.Error)
+	}
+	return nil
 }

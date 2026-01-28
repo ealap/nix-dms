@@ -330,3 +330,163 @@ func selectPreferredMimeType(mimes []string) string {
 func IsImageMimeType(mime string) bool {
 	return len(mime) > 6 && mime[:6] == "image/"
 }
+
+type Offer struct {
+	MimeType string
+	Data     []byte
+}
+
+func CopyMulti(offers []Offer, foreground, pasteOnce bool) error {
+	if !foreground {
+		return copyMultiFork(offers, pasteOnce)
+	}
+	return copyMultiServe(offers, pasteOnce)
+}
+
+func copyMultiFork(offers []Offer, pasteOnce bool) error {
+	args := []string{os.Args[0], "cl", "copy", "--foreground", "--type", "__multi__"}
+	if pasteOnce {
+		args = append(args, "--paste-once")
+	}
+
+	cmd := exec.Command(args[0], args[1:]...)
+	cmd.Stdin = nil
+	cmd.Stdout = nil
+	cmd.Stderr = nil
+	cmd.SysProcAttr = &syscall.SysProcAttr{Setsid: true}
+
+	stdin, err := cmd.StdinPipe()
+	if err != nil {
+		return fmt.Errorf("stdin pipe: %w", err)
+	}
+
+	if err := cmd.Start(); err != nil {
+		return fmt.Errorf("start: %w", err)
+	}
+
+	for _, offer := range offers {
+		fmt.Fprintf(stdin, "%s\x00%d\x00", offer.MimeType, len(offer.Data))
+		if _, err := stdin.Write(offer.Data); err != nil {
+			stdin.Close()
+			return fmt.Errorf("write offer data: %w", err)
+		}
+	}
+	stdin.Close()
+
+	return nil
+}
+
+func copyMultiServe(offers []Offer, pasteOnce bool) error {
+	display, err := wlclient.Connect("")
+	if err != nil {
+		return fmt.Errorf("wayland connect: %w", err)
+	}
+	defer display.Destroy()
+
+	ctx := display.Context()
+	registry, err := display.GetRegistry()
+	if err != nil {
+		return fmt.Errorf("get registry: %w", err)
+	}
+	defer registry.Destroy()
+
+	var dataControlMgr *ext_data_control.ExtDataControlManagerV1
+	var seat *wlclient.Seat
+	var bindErr error
+
+	registry.SetGlobalHandler(func(e wlclient.RegistryGlobalEvent) {
+		switch e.Interface {
+		case "ext_data_control_manager_v1":
+			dataControlMgr = ext_data_control.NewExtDataControlManagerV1(ctx)
+			if err := registry.Bind(e.Name, e.Interface, e.Version, dataControlMgr); err != nil {
+				bindErr = err
+			}
+		case "wl_seat":
+			if seat != nil {
+				return
+			}
+			seat = wlclient.NewSeat(ctx)
+			if err := registry.Bind(e.Name, e.Interface, e.Version, seat); err != nil {
+				bindErr = err
+			}
+		}
+	})
+
+	display.Roundtrip()
+	display.Roundtrip()
+
+	if bindErr != nil {
+		return fmt.Errorf("registry bind: %w", bindErr)
+	}
+
+	if dataControlMgr == nil {
+		return fmt.Errorf("compositor does not support ext_data_control_manager_v1")
+	}
+	defer dataControlMgr.Destroy()
+
+	if seat == nil {
+		return fmt.Errorf("no seat available")
+	}
+
+	device, err := dataControlMgr.GetDataDevice(seat)
+	if err != nil {
+		return fmt.Errorf("get data device: %w", err)
+	}
+	defer device.Destroy()
+
+	source, err := dataControlMgr.CreateDataSource()
+	if err != nil {
+		return fmt.Errorf("create data source: %w", err)
+	}
+
+	offerMap := make(map[string][]byte)
+	for _, offer := range offers {
+		if err := source.Offer(offer.MimeType); err != nil {
+			return fmt.Errorf("offer %s: %w", offer.MimeType, err)
+		}
+		offerMap[offer.MimeType] = offer.Data
+	}
+
+	cancelled := make(chan struct{})
+	pasted := make(chan struct{}, 1)
+
+	source.SetSendHandler(func(e ext_data_control.ExtDataControlSourceV1SendEvent) {
+		defer syscall.Close(e.Fd)
+		file := os.NewFile(uintptr(e.Fd), "pipe")
+		defer file.Close()
+
+		if data, ok := offerMap[e.MimeType]; ok {
+			file.Write(data)
+		}
+
+		select {
+		case pasted <- struct{}{}:
+		default:
+		}
+	})
+
+	source.SetCancelledHandler(func(e ext_data_control.ExtDataControlSourceV1CancelledEvent) {
+		close(cancelled)
+	})
+
+	if err := device.SetSelection(source); err != nil {
+		return fmt.Errorf("set selection: %w", err)
+	}
+
+	display.Roundtrip()
+
+	for {
+		select {
+		case <-cancelled:
+			return nil
+		case <-pasted:
+			if pasteOnce {
+				return nil
+			}
+		default:
+			if err := ctx.Dispatch(); err != nil {
+				return nil
+			}
+		}
+	}
+}

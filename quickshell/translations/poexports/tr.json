@@ -950,6 +950,9 @@
   "Control Center": {
     "Control Center": "Kontrol Merkezi"
   },
+  "Control Center Tile Color": {
+    "Control Center Tile Color": ""
+  },
   "Control currently playing media": {
     "Control currently playing media": "Şu anda oynatılan medyayı kontrol et"
   },
@@ -964,6 +967,15 @@
   },
   "Cooldown": {
     "Cooldown": "Bekleme"
+  },
+  "Copied GIF": {
+    "Copied GIF": ""
+  },
+  "Copied MP4": {
+    "Copied MP4": ""
+  },
+  "Copied WebP": {
+    "Copied WebP": ""
   },
   "Copied to clipboard": {
     "Copied to clipboard": "Panoya kopyalandı"
@@ -2203,6 +2215,9 @@
   "KDE Connect connected status": {
     "Connected": ""
   },
+  "KDE Connect connected status | network status": {
+    "Connected": ""
+  },
   "KDE Connect daemon hint": {
     "Start kdeconnectd to use this plugin": ""
   },
@@ -2235,6 +2250,9 @@
     "No devices found": ""
   },
   "KDE Connect no devices status": {
+    "No devices": ""
+  },
+  "KDE Connect no devices status | bluetooth status": {
     "No devices": ""
   },
   "KDE Connect not paired status": {
@@ -2331,6 +2349,9 @@
   },
   "KDE Connect unavailable status": {
     "Unavailable": ""
+  },
+  "KDE Connect unknown device status | battery status | power profile option | unknown author | widget status": {
+    "Unknown": ""
   },
   "KDE Connect unknown device status | unknown author": {
     "Unknown": ""
@@ -4758,11 +4779,38 @@
   "apps": {
     "apps": "uygulamalar"
   },
+  "audio status": {
+    "Muted": "",
+    "No input device": "",
+    "No output device": "",
+    "Select device": ""
+  },
   "author attribution": {
     "by %1": "%1 tarafından"
   },
   "bar shadow settings card": {
     "Shadow": ""
+  },
+  "battery status": {
+    "Charging": "",
+    "Discharging": "",
+    "Empty": "",
+    "Fully Charged": "",
+    "No Battery": "",
+    "Pending Charge": "",
+    "Pending Discharge": "",
+    "Plugged In": ""
+  },
+  "bluetooth status": {
+    "Bluetooth": "",
+    "Connected Device": "",
+    "Enabled": "",
+    "No adapter": "",
+    "No adapters": "",
+    "Off": ""
+  },
+  "bluetooth status | lock screen notification mode option": {
+    "Disabled": ""
   },
   "border color": {
     "Color": ""
@@ -4775,6 +4823,18 @@
   },
   "catppuccin theme description": {
     "Soothing pastel theme based on Catppuccin": "Catppuccin tabanlı rahatlatıcı pastel tema"
+  },
+  "color option | primary color | tile color option": {
+    "Primary": ""
+  },
+  "color option | secondary color | tile color option": {
+    "Secondary": ""
+  },
+  "color option | shadow color option": {
+    "Surface": ""
+  },
+  "control center tile color setting description": {
+    "Active tile background and icon color": ""
   },
   "current theme label": {
     "Current Theme: %1": "Mevcut Tema: %1"
@@ -4790,6 +4850,18 @@
   },
   "dark mode wallpaper file browser title | light mode wallpaper file browser title | wallpaper file browser title": {
     "Select Wallpaper": "Duvar Kağıdı Seç"
+  },
+  "date format option": {
+    "Custom...": "",
+    "Day Date": "",
+    "Day Month Date": "",
+    "Full Day & Month": "",
+    "Full with Year": "",
+    "ISO Date": "",
+    "Month Date": "",
+    "Numeric (D/M)": "",
+    "Numeric (M/D)": "",
+    "System Default": ""
   },
   "days": {
     "days": "gün"
@@ -4820,6 +4892,16 @@
   },
   "dms/outputs config exists but is not included in your compositor config. Display changes won't persist.": {
     "dms/outputs config exists but is not included in your compositor config. Display changes won't persist.": "dms/outputs yapılandırması mevcut ancak kompozitör yapılandırmanıza dahil edilmemiş. Ekran değişiklikleri kalıcı olmayacaktır."
+  },
+  "dock indicator style option": {
+    "Circle": "",
+    "Line": ""
+  },
+  "dock position option": {
+    "Bottom": "",
+    "Left": "",
+    "Right": "",
+    "Top": ""
   },
   "dynamic colors description": {
     "Dynamic colors from wallpaper": "Duvar kağıdından dinamik renkler"
@@ -5064,6 +5146,17 @@
   "loginctl not available - lock integration requires DMS socket connection": {
     "loginctl not available - lock integration requires DMS socket connection": "loginctl kullanılabilir değil - kilit entegrasyonu DMS soket bağlantısı gerektirir"
   },
+  "matugen color scheme option": {
+    "Content": "",
+    "Expressive": "",
+    "Fidelity": "",
+    "Fruit Salad": "",
+    "Monochrome": "",
+    "Neutral": "",
+    "Rainbow": "",
+    "Tonal Spot": "",
+    "Vibrant": ""
+  },
   "matugen error": {
     "matugen not found - install matugen package for dynamic theming": "matugen bulunamadı - dinamik tema için matugen paketini yükleyin"
   },
@@ -5072,6 +5165,11 @@
   },
   "matugen not found status": {
     "Matugen Missing": "Matugen Bulunamadı"
+  },
+  "media scroll wheel option": {
+    "Change Song": "",
+    "Change Volume": "",
+    "Nothing": ""
   },
   "minutes": {
     "minutes": "dakika"
@@ -5084,6 +5182,15 @@
   },
   "nav": {
     "nav": ""
+  },
+  "network status": {
+    "Disabling WiFi...": "",
+    "Enabling WiFi...": "",
+    "Ethernet": "",
+    "Not connected": "",
+    "Please wait...": "",
+    "Select network": "",
+    "WiFi off": ""
   },
   "no custom theme file status": {
     "No custom theme file": "Özel tema dosyası yok"
@@ -5162,6 +5269,17 @@
   "plugin search placeholder": {
     "Search plugins...": "Eklenti ara..."
   },
+  "power profile description": {
+    "Balance power and performance": "",
+    "Custom power profile": "",
+    "Extend battery life": "",
+    "Prioritize performance": ""
+  },
+  "power profile option": {
+    "Balanced": "",
+    "Performance": "",
+    "Power Saver": ""
+  },
   "primary color": {
     "Primary": ""
   },
@@ -5182,6 +5300,16 @@
   },
   "registry theme description": {
     "Color theme from DMS registry": "DMS kayıt defterinden renk teması"
+  },
+  "screen position option": {
+    "Bottom Center": "",
+    "Bottom Left": "",
+    "Bottom Right": "",
+    "Left Center": "",
+    "Right Center": "",
+    "Top Center": "",
+    "Top Left": "",
+    "Top Right": ""
   },
   "secondary color": {
     "Secondary": ""
@@ -5227,6 +5355,12 @@
   "theme browser description": {
     "Install color themes from the DMS theme registry": "DMS tema kayıt defterinden renk temaları yükle"
   },
+  "theme category option": {
+    "Auto": "",
+    "Browse": "",
+    "Custom": "",
+    "Generic": ""
+  },
   "theme installation confirmation": {
     "Install theme '%1' from the DMS registry?": "DMS kayıt defterinden '%1' teması yüklensin mi?"
   },
@@ -5235,6 +5369,10 @@
   },
   "theme search placeholder": {
     "Search themes...": "Tema ara..."
+  },
+  "tile color option": {
+    "Primary Container": "",
+    "Surface Variant": ""
   },
   "uninstall action button": {
     "Uninstall": "Kaldır"
@@ -5269,6 +5407,15 @@
   "wallpaper error status": {
     "Wallpaper Error": "Duvar Kağıdı Hatası"
   },
+  "wallpaper fill mode": {
+    "Fill": "",
+    "Fit": "",
+    "Pad": "",
+    "Stretch": "",
+    "Tile": "",
+    "Tile H": "",
+    "Tile V": ""
+  },
   "wallpaper processing error": {
     "Wallpaper processing failed": "Duvar kağıdı işleme başarısız oldu"
   },
@@ -5281,8 +5428,23 @@
   "wallpaper settings external management": {
     "External Wallpaper Management": "Harici Duvar Kağıdı Yönetimi"
   },
+  "wallpaper transition option": {
+    "Disc": "",
+    "Fade": "",
+    "Iris Bloom": "",
+    "None": "",
+    "Pixelate": "",
+    "Portal": "",
+    "Random": "",
+    "Stripes": "",
+    "Wipe": ""
+  },
   "weather feels like temperature": {
     "Feels Like %1°": ""
+  },
+  "widget style option": {
+    "Colorful": "",
+    "Default": ""
   },
   "wtype not available - install wtype for paste support": {
     "wtype not available - install wtype for paste support": "wtype mevcut değil - yapıştırma desteği için wtype'ı yükleyin"

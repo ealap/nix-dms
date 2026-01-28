@@ -66,7 +66,7 @@ func TestIsInstalled(t *testing.T) {
 
 		plugin := Plugin{ID: "test-plugin", Name: "TestPlugin"}
 		pluginPath := filepath.Join(pluginsDir, plugin.ID)
-		err := fs.MkdirAll(pluginPath, 0755)
+		err := fs.MkdirAll(pluginPath, 0o755)
 		require.NoError(t, err)
 
 		installed, err := manager.IsInstalled(plugin)
@@ -100,7 +100,7 @@ func TestInstall(t *testing.T) {
 				cloneCalled = true
 				assert.Equal(t, filepath.Join(pluginsDir, plugin.ID), path)
 				assert.Equal(t, plugin.Repo, url)
-				return fs.MkdirAll(path, 0755)
+				return fs.MkdirAll(path, 0o755)
 			},
 		}
 		manager.gitClient = mockGit
@@ -118,7 +118,7 @@ func TestInstall(t *testing.T) {
 
 		plugin := Plugin{ID: "test-plugin", Name: "TestPlugin"}
 		pluginPath := filepath.Join(pluginsDir, plugin.ID)
-		err := fs.MkdirAll(pluginPath, 0755)
+		err := fs.MkdirAll(pluginPath, 0o755)
 		require.NoError(t, err)
 
 		err = manager.Install(plugin)
@@ -137,7 +137,7 @@ func TestManagerUpdate(t *testing.T) {
 
 		plugin := Plugin{ID: "test-plugin", Name: "TestPlugin"}
 		pluginPath := filepath.Join(pluginsDir, plugin.ID)
-		err := fs.MkdirAll(pluginPath, 0755)
+		err := fs.MkdirAll(pluginPath, 0o755)
 		require.NoError(t, err)
 
 		pullCalled := false
@@ -171,7 +171,7 @@ func TestUninstall(t *testing.T) {
 
 		plugin := Plugin{ID: "test-plugin", Name: "TestPlugin"}
 		pluginPath := filepath.Join(pluginsDir, plugin.ID)
-		err := fs.MkdirAll(pluginPath, 0755)
+		err := fs.MkdirAll(pluginPath, 0o755)
 		require.NoError(t, err)
 
 		err = manager.Uninstall(plugin)
@@ -195,14 +195,14 @@ func TestListInstalled(t *testing.T) {
 	t.Run("lists installed plugins", func(t *testing.T) {
 		manager, fs, pluginsDir := setupTestManager(t)
 
-		err := fs.MkdirAll(filepath.Join(pluginsDir, "Plugin1"), 0755)
+		err := fs.MkdirAll(filepath.Join(pluginsDir, "Plugin1"), 0o755)
 		require.NoError(t, err)
-		err = afero.WriteFile(fs, filepath.Join(pluginsDir, "Plugin1", "plugin.json"), []byte(`{"id":"Plugin1"}`), 0644)
+		err = afero.WriteFile(fs, filepath.Join(pluginsDir, "Plugin1", "plugin.json"), []byte(`{"id":"Plugin1"}`), 0o644)
 		require.NoError(t, err)
 
-		err = fs.MkdirAll(filepath.Join(pluginsDir, "Plugin2"), 0755)
+		err = fs.MkdirAll(filepath.Join(pluginsDir, "Plugin2"), 0o755)
 		require.NoError(t, err)
-		err = afero.WriteFile(fs, filepath.Join(pluginsDir, "Plugin2", "plugin.json"), []byte(`{"id":"Plugin2"}`), 0644)
+		err = afero.WriteFile(fs, filepath.Join(pluginsDir, "Plugin2", "plugin.json"), []byte(`{"id":"Plugin2"}`), 0o644)
 		require.NoError(t, err)
 
 		installed, err := manager.ListInstalled()
@@ -223,15 +223,15 @@ func TestListInstalled(t *testing.T) {
 	t.Run("ignores files and .repos directory", func(t *testing.T) {
 		manager, fs, pluginsDir := setupTestManager(t)
 
-		err := fs.MkdirAll(pluginsDir, 0755)
+		err := fs.MkdirAll(pluginsDir, 0o755)
 		require.NoError(t, err)
-		err = fs.MkdirAll(filepath.Join(pluginsDir, "Plugin1"), 0755)
+		err = fs.MkdirAll(filepath.Join(pluginsDir, "Plugin1"), 0o755)
 		require.NoError(t, err)
-		err = afero.WriteFile(fs, filepath.Join(pluginsDir, "Plugin1", "plugin.json"), []byte(`{"id":"Plugin1"}`), 0644)
+		err = afero.WriteFile(fs, filepath.Join(pluginsDir, "Plugin1", "plugin.json"), []byte(`{"id":"Plugin1"}`), 0o644)
 		require.NoError(t, err)
-		err = fs.MkdirAll(filepath.Join(pluginsDir, ".repos"), 0755)
+		err = fs.MkdirAll(filepath.Join(pluginsDir, ".repos"), 0o755)
 		require.NoError(t, err)
-		err = afero.WriteFile(fs, filepath.Join(pluginsDir, "README.md"), []byte("test"), 0644)
+		err = afero.WriteFile(fs, filepath.Join(pluginsDir, "README.md"), []byte("test"), 0o644)
 		require.NoError(t, err)
 
 		installed, err := manager.ListInstalled()

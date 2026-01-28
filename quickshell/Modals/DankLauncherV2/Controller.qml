@@ -65,6 +65,12 @@ Item {
         running: false
     }
 
+    Process {
+        id: copyProcess
+        running: false
+        onExited: pasteTimer.start()
+    }
+
     Timer {
         id: pasteTimer
         interval: 200
@@ -83,12 +89,12 @@ Item {
         const pluginId = selectedItem.pluginId;
         if (!pluginId)
             return;
-        const pasteText = AppSearchService.getPluginPasteText(pluginId, selectedItem.data);
-        if (!pasteText)
+        const pasteArgs = AppSearchService.getPluginPasteArgs(pluginId, selectedItem.data);
+        if (!pasteArgs)
             return;
-        Quickshell.execDetached(["dms", "cl", "copy", pasteText]);
+        copyProcess.command = pasteArgs;
+        copyProcess.running = true;
         itemExecuted();
-        pasteTimer.start();
     }
 
     readonly property var sectionDefinitions: [
@@ -322,12 +328,25 @@ Item {
 
     function loadPluginCategories(pluginId) {
         if (!pluginId) {
-            activePluginCategories = [];
-            activePluginCategory = "";
+            if (activePluginCategories.length > 0) {
+                activePluginCategories = [];
+                activePluginCategory = "";
+            }
             return;
         }
 
         const categories = AppSearchService.getPluginLauncherCategories(pluginId);
+        if (categories.length === activePluginCategories.length) {
+            let same = true;
+            for (let i = 0; i < categories.length; i++) {
+                if (categories[i].id !== activePluginCategories[i]?.id) {
+                    same = false;
+                    break;
+                }
+            }
+            if (same)
+                return;
+        }
         activePluginCategories = categories;
         activePluginCategory = "";
         AppSearchService.setPluginLauncherCategory(pluginId, "");

@@ -31,6 +31,15 @@ Item {
     property bool suppressShiftAnimation: false
     property int pinnedAppCount: 0
 
+    property int maxVisibleApps: widgetData?.barMaxVisibleApps !== undefined ? widgetData.barMaxVisibleApps : SettingsData.barMaxVisibleApps
+    property int maxVisibleRunningApps: widgetData?.barMaxVisibleRunningApps !== undefined ? widgetData.barMaxVisibleRunningApps : SettingsData.barMaxVisibleRunningApps
+    property bool showOverflowBadge: widgetData?.barShowOverflowBadge !== undefined ? widgetData.barShowOverflowBadge : SettingsData.barShowOverflowBadge
+    property bool overflowExpanded: false
+    property int overflowItemCount: 0
+
+    onMaxVisibleAppsChanged: updateModel()
+    onMaxVisibleRunningAppsChanged: updateModel()
+
     readonly property real effectiveBarThickness: {
         if (barThickness > 0 && barSpacing > 0) {
             return barThickness + barSpacing;
@@ -116,6 +125,12 @@ Item {
         function onRunningAppsCurrentWorkspaceChanged() {
             updateModel();
         }
+        function onBarMaxVisibleAppsChanged() {
+            updateModel();
+        }
+        function onBarMaxVisibleRunningAppsChanged() {
+            updateModel();
+        }
     }
 
     Connections {
@@ -165,7 +180,51 @@ Item {
         return null;
     }
 
-    function updateModel() {
+    function createSeparator(key) {
+        return {
+            uniqueKey: key,
+            type: "separator",
+            appId: "__SEPARATOR__",
+            toplevel: null,
+            isPinned: false,
+            isRunning: false,
+            isInOverflow: false
+        };
+    }
+
+    function markAsOverflow(item) {
+        return {
+            uniqueKey: item.uniqueKey,
+            type: item.type,
+            appId: item.appId,
+            toplevel: item.toplevel,
+            isPinned: item.isPinned,
+            isRunning: item.isRunning,
+            windowCount: item.windowCount,
+            allWindows: item.allWindows,
+            isCoreApp: item.isCoreApp,
+            coreAppData: item.coreAppData,
+            isInOverflow: true
+        };
+    }
+
+    function markAsVisible(item) {
+        return {
+            uniqueKey: item.uniqueKey,
+            type: item.type,
+            appId: item.appId,
+            toplevel: item.toplevel,
+            isPinned: item.isPinned,
+            isRunning: item.isRunning,
+            windowCount: item.windowCount,
+            allWindows: item.allWindows,
+            isCoreApp: item.isCoreApp,
+            coreAppData: item.coreAppData,
+            isInOverflow: false
+        };
+    }
+
+    function buildBaseItems() {
         const items = [];
         const pinnedApps = [...(SessionData.barPinnedApps || [])];
         _toplevelsUpdateTrigger;
@@ -235,7 +294,8 @@ Item {
                 windowCount: group.windows.length,
                 allWindows: group.windows,
                 isCoreApp: group.isCoreApp || false,
-                coreAppData: group.coreAppData || null
+                coreAppData: group.coreAppData || null,
+                isInOverflow: false
             };
 
             if (group.isPinned) {
@@ -248,20 +308,97 @@ Item {
         pinnedGroups.forEach(item => items.push(item));
 
         if (pinnedGroups.length > 0 && unpinnedGroups.length > 0) {
-            items.push({
-                uniqueKey: "separator_grouped",
-                type: "separator",
-                appId: "__SEPARATOR__",
-                toplevel: null,
-                isPinned: false,
-                isRunning: false
-            });
+            items.push(createSeparator("separator_grouped"));
         }
 
         unpinnedGroups.forEach(item => items.push(item));
 
         root.pinnedAppCount = pinnedGroups.length;
-        dockItems = items;
+        return {
+            items,
+            pinnedCount: pinnedGroups.length,
+            runningCount: unpinnedGroups.length
+        };
+    }
+
+    function applyOverflow(baseResult) {
+        const { items } = baseResult;
+        const maxPinned = root.maxVisibleApps;
+        const maxRunning = root.maxVisibleRunningApps;
+
+        const pinnedItems = items.filter(i => i.type === "grouped" && i.isPinned);
+        const runningItems = items.filter(i => i.type === "grouped" && i.isRunning && !i.isPinned);
+
+        const pinnedOverflow = maxPinned > 0 && pinnedItems.length > maxPinned;
+        const runningOverflow = maxRunning > 0 && runningItems.length > maxRunning;
+
+        if (!pinnedOverflow && !runningOverflow) {
+            root.overflowItemCount = 0;
+            return items.map(i => markAsVisible(i));
+        }
+
+        const visiblePinnedKeys = new Set(pinnedOverflow ? pinnedItems.slice(0, maxPinned).map(i => i.uniqueKey) : pinnedItems.map(i => i.uniqueKey));
+        const visibleRunningKeys = new Set(runningOverflow ? runningItems.slice(0, maxRunning).map(i => i.uniqueKey) : runningItems.map(i => i.uniqueKey));
+
+        const overflowPinnedCount = pinnedOverflow ? pinnedItems.length - maxPinned : 0;
+        const overflowRunningCount = runningOverflow ? runningItems.length - maxRunning : 0;
+        const totalOverflow = overflowPinnedCount + overflowRunningCount;
+        root.overflowItemCount = totalOverflow;
+
+        const finalItems = [];
+        let addedSeparator = false;
+
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            switch (item.type) {
+            case "separator":
+                break;
+            case "grouped":
+                if (item.isPinned) {
+                    if (visiblePinnedKeys.has(item.uniqueKey)) {
+                        finalItems.push(markAsVisible(item));
+                    } else {
+                        finalItems.push(markAsOverflow(item));
+                    }
+                } else if (item.isRunning) {
+                    if (!addedSeparator && finalItems.length > 0) {
+                        finalItems.push(createSeparator("separator_overflow"));
+                        addedSeparator = true;
+                    }
+                    if (visibleRunningKeys.has(item.uniqueKey)) {
+                        finalItems.push(markAsVisible(item));
+                    } else {
+                        finalItems.push(markAsOverflow(item));
+                    }
+                }
+                break;
+            default:
+                finalItems.push(item);
+                break;
+            }
+        }
+
+        if (totalOverflow > 0) {
+            const toggleIndex = finalItems.findIndex(i => i.type === "separator");
+            const insertPos = toggleIndex >= 0 ? toggleIndex : finalItems.length;
+            finalItems.splice(insertPos, 0, {
+                uniqueKey: "overflow_toggle",
+                type: "overflow-toggle",
+                appId: "__OVERFLOW_TOGGLE__",
+                toplevel: null,
+                isPinned: false,
+                isRunning: false,
+                isInOverflow: false,
+                overflowCount: totalOverflow
+            });
+        }
+
+        return finalItems;
+    }
+
+    function updateModel() {
+        const baseResult = buildBaseItems();
+        dockItems = applyOverflow(baseResult);
     }
 
     Component.onCompleted: updateModel()
@@ -284,6 +421,10 @@ Item {
 
         for (let i = 0; i < dockItems.length; i++) {
             const item = dockItems[i];
+            const isInOverflow = item.isInOverflow === true;
+            if (isInOverflow && !root.overflowExpanded)
+                continue;
+
             let itemSize = 0;
             if (item.type === "separator") {
                 itemSize = 8;
@@ -411,13 +552,33 @@ Item {
         Item {
             id: delegateItem
             property bool isSeparator: modelData.type === "separator"
+            readonly property bool isOverflowToggle: modelData.type === "overflow-toggle"
+            readonly property bool isInOverflow: modelData.isInOverflow === true
 
             readonly property real visualSize: isSeparator ? 8 : ((widgetData?.runningAppsCompactMode !== undefined ? widgetData.runningAppsCompactMode : SettingsData.runningAppsCompactMode) ? 24 : (24 + Theme.spacingXS + 120))
             readonly property real visualWidth: root.isVertical ? root.barThickness : visualSize
             readonly property real visualHeight: root.isVertical ? visualSize : root.barThickness
 
-            width: visualWidth
-            height: visualHeight
+            visible: !isInOverflow || root.overflowExpanded
+            opacity: (isInOverflow && !root.overflowExpanded) ? 0 : 1
+            scale: (isInOverflow && !root.overflowExpanded) ? 0.8 : 1
+
+            width: (isInOverflow && !root.overflowExpanded) ? 0 : visualWidth
+            height: (isInOverflow && !root.overflowExpanded) ? 0 : visualHeight
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: Theme.shortDuration
+                    easing.type: Easing.OutCubic
+                }
+            }
+
+            Behavior on scale {
+                NumberAnimation {
+                    duration: Theme.shortDuration
+                    easing.type: Easing.OutCubic
+                }
+            }
 
             z: (dragHandler.dragging) ? 100 : 0
 
@@ -471,9 +632,27 @@ Item {
                 anchors.centerIn: parent
             }
 
+            AppsDockOverflowButton {
+                visible: isOverflowToggle
+                anchors.centerIn: parent
+                width: delegateItem.visualWidth
+                height: delegateItem.visualHeight
+                iconSize: 24
+                overflowCount: modelData.overflowCount || 0
+                overflowExpanded: root.overflowExpanded
+                isVertical: root.isVertical
+                showBadge: root.showOverflowBadge
+                z: 10
+                onClicked: {
+                    console.log("Overflow button clicked! Current state:", root.overflowExpanded);
+                    root.overflowExpanded = !root.overflowExpanded;
+                    console.log("New state:", root.overflowExpanded);
+                }
+            }
+
             Item {
                 id: appItem
-                visible: !isSeparator
+                visible: !isSeparator && !isOverflowToggle
                 anchors.fill: parent
 
                 property bool isFocused: {
@@ -786,21 +965,22 @@ Item {
 
                     onEntered: {
                         root.hoveredItem = delegateItem;
-                        if (isSeparator)
+                        if (isSeparator || isOverflowToggle)
                             return;
 
                         tooltipLoader.active = true;
                         if (tooltipLoader.item) {
                             if (root.isVertical) {
-                                const globalPos = delegateItem.mapToGlobal(delegateItem.width / 2, delegateItem.height / 2);
+                                const globalPos = delegateItem.mapToGlobal(0, delegateItem.height / 2);
                                 const screenX = root.parentScreen ? root.parentScreen.x : 0;
                                 const screenY = root.parentScreen ? root.parentScreen.y : 0;
-                                const relativeY = globalPos.y - screenY;
-                                const tooltipX = root.axis?.edge === "left" ? (Theme.barHeight + (barConfig?.spacing ?? 4) + Theme.spacingXS) : (root.parentScreen.width - Theme.barHeight - (barConfig?.spacing ?? 4) - Theme.spacingXS);
+                                const barThickness = root.effectiveBarThickness;
+                                const spacing = barConfig?.spacing ?? 4;
                                 const isLeft = root.axis?.edge === "left";
-                                const adjustedY = relativeY + root.minTooltipY;
-                                const finalX = screenX + tooltipX;
-                                tooltipLoader.item.show(appItem.tooltipText, finalX, adjustedY, root.parentScreen, isLeft, !isLeft);
+                                const tooltipOffset = barThickness + spacing + Theme.spacingM;
+                                const tooltipX = isLeft ? tooltipOffset : (root.parentScreen.width - tooltipOffset);
+                                const screenRelativeY = globalPos.y - screenY + root.barY;
+                                tooltipLoader.item.show(appItem.tooltipText, screenX + tooltipX, screenRelativeY, root.parentScreen, isLeft, !isLeft);
                             } else {
                                 const globalPos = delegateItem.mapToGlobal(delegateItem.width / 2, delegateItem.height);
                                 const screenHeight = root.parentScreen ? root.parentScreen.height : Screen.height;

@@ -870,6 +870,26 @@ Singleton {
         return null;
     }
 
+    function getPluginPasteArgs(pluginId, item) {
+        if (typeof PluginService === "undefined")
+            return null;
+
+        const instance = PluginService.pluginInstances[pluginId];
+        if (!instance)
+            return null;
+
+        if (typeof instance.getPasteArgs === "function")
+            return instance.getPasteArgs(item);
+
+        if (typeof instance.getPasteText === "function") {
+            const text = instance.getPasteText(item);
+            if (text)
+                return ["dms", "cl", "copy", text];
+        }
+
+        return null;
+    }
+
     function searchPluginItems(query) {
         if (typeof PluginService === "undefined")
             return [];

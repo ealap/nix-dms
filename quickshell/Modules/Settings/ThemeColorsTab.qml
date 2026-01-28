@@ -281,7 +281,7 @@ Item {
                                 return 0;
                             }
 
-                            model: DMSService.dmsAvailable ? ["Generic", "Auto", "Custom", "Browse"] : ["Generic", "Auto", "Custom"]
+                            model: DMSService.dmsAvailable ? [I18n.tr("Generic", "theme category option"), I18n.tr("Auto", "theme category option"), I18n.tr("Custom", "theme category option"), I18n.tr("Browse", "theme category option")] : [I18n.tr("Generic", "theme category option"), I18n.tr("Auto", "theme category option"), I18n.tr("Custom", "theme category option")]
                             currentIndex: pendingIndex >= 0 ? pendingIndex : computedIndex
                             selectionMode: "single"
                             onSelectionChanged: (index, selected) => {
@@ -1440,7 +1440,7 @@ Item {
                     settingKey: "widgetColorMode"
                     text: I18n.tr("Widget Style")
                     description: I18n.tr("Change bar appearance")
-                    model: ["default", "colorful"]
+                    model: [I18n.tr("Default", "widget style option"), I18n.tr("Colorful", "widget style option")]
                     currentIndex: SettingsData.widgetColorMode === "colorful" ? 1 : 0
                     onSelectionChanged: (index, selected) => {
                         if (!selected)
@@ -1489,32 +1489,28 @@ Item {
                     tags: ["control", "center", "tile", "button", "color", "active"]
                     settingKey: "controlCenterTileColorMode"
                     text: I18n.tr("Control Center Tile Color")
-                    description: I18n.tr("Active tile background and icon color")
-                    options: ["Primary", "Primary Container", "Secondary", "Surface Variant"]
+                    description: I18n.tr("Active tile background and icon color", "control center tile color setting description")
+                    options: [I18n.tr("Primary", "tile color option"), I18n.tr("Primary Container", "tile color option"), I18n.tr("Secondary", "tile color option"), I18n.tr("Surface Variant", "tile color option")]
                     currentValue: {
                         switch (SettingsData.controlCenterTileColorMode) {
                         case "primaryContainer":
-                            return "Primary Container";
+                            return I18n.tr("Primary Container", "tile color option");
                         case "secondary":
-                            return "Secondary";
+                            return I18n.tr("Secondary", "tile color option");
                         case "surfaceVariant":
-                            return "Surface Variant";
+                            return I18n.tr("Surface Variant", "tile color option");
                         default:
-                            return "Primary";
+                            return I18n.tr("Primary", "tile color option");
                         }
                     }
                     onValueChanged: value => {
-                        switch (value) {
-                        case "Primary Container":
+                        if (value === I18n.tr("Primary Container", "tile color option")) {
                             SettingsData.set("controlCenterTileColorMode", "primaryContainer");
-                            return;
-                        case "Secondary":
+                        } else if (value === I18n.tr("Secondary", "tile color option")) {
                             SettingsData.set("controlCenterTileColorMode", "secondary");
-                            return;
-                        case "Surface Variant":
+                        } else if (value === I18n.tr("Surface Variant", "tile color option")) {
                             SettingsData.set("controlCenterTileColorMode", "surfaceVariant");
-                            return;
-                        default:
+                        } else {
                             SettingsData.set("controlCenterTileColorMode", "primary");
                         }
                     }

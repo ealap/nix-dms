@@ -60,12 +60,13 @@ Singleton {
     signal openUrlRequested(string url)
     signal appPickerRequested(var data)
     signal screensaverStateUpdate(var data)
+    signal clipboardStateUpdate(var data)
 
     property bool capsLockState: false
     property bool screensaverInhibited: false
     property var screensaverInhibitors: []
 
-    property var activeSubscriptions: ["network", "network.credentials", "loginctl", "freedesktop", "freedesktop.screensaver", "gamma", "theme.auto", "bluetooth", "bluetooth.pairing", "dwl", "brightness", "wlroutput", "evdev", "browser", "dbus"]
+    property var activeSubscriptions: ["network", "network.credentials", "loginctl", "freedesktop", "freedesktop.screensaver", "gamma", "theme.auto", "bluetooth", "bluetooth.pairing", "dwl", "brightness", "wlroutput", "evdev", "browser", "dbus", "clipboard"]
 
     Component.onCompleted: {
         if (socketPath && socketPath.length > 0) {
@@ -392,6 +393,8 @@ Singleton {
             screensaverStateUpdate(data);
         } else if (service === "dbus") {
             dbusSignalReceived(data.subscriptionId || "", data);
+        } else if (service === "clipboard") {
+            clipboardStateUpdate(data);
         }
     }
 
@@ -726,7 +729,8 @@ Singleton {
             if (!response.error && response.result?.subscriptionId) {
                 dbusSubscriptions[response.result.subscriptionId] = true;
             }
-            if (callback) callback(response);
+            if (callback)
+                callback(response);
         });
     }
 
@@ -737,7 +741,8 @@ Singleton {
             if (!response.error) {
                 delete dbusSubscriptions[subscriptionId];
             }
-            if (callback) callback(response);
+            if (callback)
+                callback(response);
         });
     }
 

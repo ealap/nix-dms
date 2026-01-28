@@ -99,38 +99,32 @@ Item {
                     description: I18n.tr("Choose where notification popups appear on screen")
                     currentValue: {
                         if (SettingsData.notificationPopupPosition === -1)
-                            return "Top Center";
+                            return I18n.tr("Top Center", "screen position option");
                         switch (SettingsData.notificationPopupPosition) {
                         case SettingsData.Position.Top:
-                            return "Top Right";
+                            return I18n.tr("Top Right", "screen position option");
                         case SettingsData.Position.Bottom:
-                            return "Bottom Left";
+                            return I18n.tr("Bottom Left", "screen position option");
                         case SettingsData.Position.Left:
-                            return "Top Left";
+                            return I18n.tr("Top Left", "screen position option");
                         case SettingsData.Position.Right:
-                            return "Bottom Right";
+                            return I18n.tr("Bottom Right", "screen position option");
                         default:
-                            return "Top Right";
+                            return I18n.tr("Top Right", "screen position option");
                         }
                     }
-                    options: ["Top Right", "Top Left", "Top Center", "Bottom Right", "Bottom Left"]
+                    options: [I18n.tr("Top Right", "screen position option"), I18n.tr("Top Left", "screen position option"), I18n.tr("Top Center", "screen position option"), I18n.tr("Bottom Right", "screen position option"), I18n.tr("Bottom Left", "screen position option")]
                     onValueChanged: value => {
-                        switch (value) {
-                        case "Top Right":
+                        if (value === I18n.tr("Top Right", "screen position option")) {
                             SettingsData.set("notificationPopupPosition", SettingsData.Position.Top);
-                            break;
-                        case "Top Left":
+                        } else if (value === I18n.tr("Top Left", "screen position option")) {
                             SettingsData.set("notificationPopupPosition", SettingsData.Position.Left);
-                            break;
-                        case "Top Center":
+                        } else if (value === I18n.tr("Top Center", "screen position option")) {
                             SettingsData.set("notificationPopupPosition", -1);
-                            break;
-                        case "Bottom Right":
+                        } else if (value === I18n.tr("Bottom Right", "screen position option")) {
                             SettingsData.set("notificationPopupPosition", SettingsData.Position.Right);
-                            break;
-                        case "Bottom Left":
+                        } else if (value === I18n.tr("Bottom Left", "screen position option")) {
                             SettingsData.set("notificationPopupPosition", SettingsData.Position.Bottom);
-                            break;
                         }
                         SettingsData.sendTestNotifications();
                     }

@@ -182,7 +182,7 @@ func (r *Registry) Update() error {
 	}
 
 	if !exists {
-		if err := r.fs.MkdirAll(filepath.Dir(r.cacheDir), 0755); err != nil {
+		if err := r.fs.MkdirAll(filepath.Dir(r.cacheDir), 0o755); err != nil {
 			return fmt.Errorf("failed to create cache directory: %w", err)
 		}
 
@@ -195,7 +195,7 @@ func (r *Registry) Update() error {
 				return fmt.Errorf("failed to remove corrupted registry: %w", err)
 			}
 
-			if err := r.fs.MkdirAll(filepath.Dir(r.cacheDir), 0755); err != nil {
+			if err := r.fs.MkdirAll(filepath.Dir(r.cacheDir), 0o755); err != nil {
 				return fmt.Errorf("failed to create cache directory: %w", err)
 			}
 

@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell.Io
 import Quickshell.Hyprland
+import Quickshell.Wayland
 import qs.Common
 import qs.Services
 
@@ -16,6 +17,7 @@ Item {
     required property var dankBarRepeater
     required property var hyprlandOverviewLoader
     required property var workspaceRenameModalLoader
+    required property var windowRuleModalLoader
 
     function getFirstBar() {
         if (!root.dankBarRepeater || root.dankBarRepeater.count === 0)
@@ -1401,5 +1403,53 @@ Item {
         }
 
         target: "workspace-rename"
+    }
+
+    IpcHandler {
+        function getFocusedWindow() {
+            const active = ToplevelManager.activeToplevel;
+            if (!active)
+                return null;
+            return {
+                appId: active.appId || "",
+                title: active.title || ""
+            };
+        }
+
+        function open(): string {
+            if (!CompositorService.isNiri)
+                return "WINDOW_RULES_NIRI_ONLY";
+            root.windowRuleModalLoader.active = true;
+            if (root.windowRuleModalLoader.item) {
+                root.windowRuleModalLoader.item.show(getFocusedWindow());
+                return "WINDOW_RULE_MODAL_OPENED";
+            }
+            return "WINDOW_RULE_MODAL_NOT_FOUND";
+        }
+
+        function close(): string {
+            if (root.windowRuleModalLoader.item) {
+                root.windowRuleModalLoader.item.hide();
+                return "WINDOW_RULE_MODAL_CLOSED";
+            }
+            return "WINDOW_RULE_MODAL_NOT_FOUND";
+        }
+
+        function toggle(): string {
+            if (!CompositorService.isNiri)
+                return "WINDOW_RULES_NIRI_ONLY";
+            root.windowRuleModalLoader.active = true;
+            if (root.windowRuleModalLoader.item) {
+                if (root.windowRuleModalLoader.item.visible) {
+                    root.windowRuleModalLoader.item.hide();
+                    return "WINDOW_RULE_MODAL_CLOSED";
+                }
+                root.windowRuleModalLoader.item.show(getFocusedWindow());
+                return "WINDOW_RULE_MODAL_OPENED";
+            }
+            return "WINDOW_RULE_MODAL_NOT_FOUND";
+        }
+
+        target: "window-rules"
     }
 }

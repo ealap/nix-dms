@@ -64,11 +64,18 @@ Popup {
         return actions;
     }
 
-    function executePluginAction(actionFunc) {
-        if (typeof actionFunc === "function") {
+    function executePluginAction(actionOrObj) {
+        var actionFunc = typeof actionOrObj === "function" ? actionOrObj : actionOrObj?.action;
+        var closeLauncher = typeof actionOrObj === "object" && actionOrObj?.closeLauncher;
+
+        if (typeof actionFunc === "function")
             actionFunc();
+
+        if (closeLauncher) {
+            controller?.itemExecuted();
+        } else {
+            controller?.performSearch();
         }
-        controller?.performSearch();
         hide();
     }
 
@@ -83,7 +90,7 @@ Popup {
                     type: "item",
                     icon: act.icon || "play_arrow",
                     text: act.text || act.name || "",
-                    pluginAction: act.action
+                    pluginAction: act
                 });
             }
             return items;

@@ -591,7 +591,7 @@ ShellRoot {
 }
 `
 
-	if err := os.WriteFile(testScript, []byte(qmlContent), 0644); err != nil {
+	if err := os.WriteFile(testScript, []byte(qmlContent), 0o644); err != nil {
 		return nil, false
 	}
 
@@ -752,7 +752,7 @@ func checkConfigurationFiles() []checkResult {
 
 		status := statusOK
 		message := "Present"
-		if info.Mode().Perm()&0200 == 0 {
+		if info.Mode().Perm()&0o200 == 0 {
 			status = statusWarn
 			message += " (read-only)"
 		}

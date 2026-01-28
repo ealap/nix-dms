@@ -281,7 +281,7 @@ func (m Model) tryFingerprint() tea.Cmd {
 		askpassScript := filepath.Join(tmpDir, fmt.Sprintf("danklinux-fp-%d.sh", time.Now().UnixNano()))
 
 		scriptContent := "#!/bin/sh\nexit 1\n"
-		if err := os.WriteFile(askpassScript, []byte(scriptContent), 0700); err != nil {
+		if err := os.WriteFile(askpassScript, []byte(scriptContent), 0o700); err != nil {
 			return passwordValidMsg{password: "", valid: false}
 		}
 		defer os.Remove(askpassScript)

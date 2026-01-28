@@ -27,7 +27,7 @@ func TestNiriProviderGetCheatSheet(t *testing.T) {
     Mod+Shift+E { quit; }
 }
 `
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -312,7 +312,7 @@ func TestNiriGenerateBindsContentRoundTrip(t *testing.T) {
 
 	tmpDir := t.TempDir()
 	configFile := filepath.Join(tmpDir, "config.kdl")
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write temp file: %v", err)
 	}
 
@@ -351,12 +351,12 @@ func TestNiriEmptyArgsPreservation(t *testing.T) {
 
 	tmpDir := t.TempDir()
 	dmsDir := filepath.Join(tmpDir, "dms")
-	if err := os.MkdirAll(dmsDir, 0755); err != nil {
+	if err := os.MkdirAll(dmsDir, 0o755); err != nil {
 		t.Fatalf("Failed to create dms directory: %v", err)
 	}
 
 	bindsFile := filepath.Join(dmsDir, "binds.kdl")
-	if err := os.WriteFile(bindsFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(bindsFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write binds file: %v", err)
 	}
 
@@ -428,7 +428,7 @@ recent-windows {
     }
 }
 `
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -621,7 +621,7 @@ func TestNiriGenerateWorkspaceBindsRoundTrip(t *testing.T) {
 
 	tmpDir := t.TempDir()
 	configFile := filepath.Join(tmpDir, "config.kdl")
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write temp file: %v", err)
 	}
 

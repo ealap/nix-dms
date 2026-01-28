@@ -190,7 +190,7 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -253,7 +253,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+1 workspace number 1
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 

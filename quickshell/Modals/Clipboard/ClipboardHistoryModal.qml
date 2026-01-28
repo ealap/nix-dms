@@ -239,20 +239,16 @@ DankModal {
 
     function clearAll() {
         const hasPinned = pinnedCount > 0;
-        const message = hasPinned ? I18n.tr("This will delete all unpinned entries. %1 pinned entries will be kept.").arg(pinnedCount) : I18n.tr("This will permanently delete all clipboard history.");
-
-        clearConfirmDialog.show(I18n.tr("Clear History?"), message, function () {
-            DMSService.sendRequest("clipboard.clearHistory", null, function (response) {
-                if (response.error) {
-                    console.warn("ClipboardHistoryModal: Failed to clear history:", response.error);
-                    return;
-                }
-                refreshClipboard();
-                if (hasPinned) {
-                    ToastService.showInfo(I18n.tr("History cleared. %1 pinned entries kept.").arg(pinnedCount));
-                }
-            });
-        }, function () {});
+        DMSService.sendRequest("clipboard.clearHistory", null, function (response) {
+            if (response.error) {
+                console.warn("ClipboardHistoryModal: Failed to clear history:", response.error);
+                return;
+            }
+            refreshClipboard();
+            if (hasPinned) {
+                ToastService.showInfo(I18n.tr("History cleared. %1 pinned entries kept.").arg(pinnedCount));
+            }
+        });
     }
 
     function getEntryPreview(entry) {
@@ -288,6 +284,20 @@ DankModal {
         modal: clipboardHistoryModal
     }
 
+    Connections {
+        target: DMSService
+        function onClipboardStateUpdate(data) {
+            if (!clipboardHistoryModal.shouldBeVisible) {
+                return;
+            }
+            const newHistory = data.history || [];
+            internalEntries = newHistory;
+            pinnedEntries = newHistory.filter(e => e.pinned);
+            pinnedCount = pinnedEntries.length;
+            updateFilteredModel();
+        }
+    }
+
     ConfirmModal {
         id: clearConfirmDialog
         confirmButtonText: I18n.tr("Clear All")
@@ -295,13 +305,18 @@ DankModal {
         onVisibleChanged: {
             if (visible) {
                 clipboardHistoryModal.shouldHaveFocus = false;
-            } else if (clipboardHistoryModal.shouldBeVisible) {
+                return;
+            }
+            Qt.callLater(function () {
+                if (!clipboardHistoryModal.shouldBeVisible) {
+                    return;
+                }
                 clipboardHistoryModal.shouldHaveFocus = true;
                 clipboardHistoryModal.modalFocusScope.forceActiveFocus();
                 if (clipboardHistoryModal.contentLoader.item?.searchField) {
                     clipboardHistoryModal.contentLoader.item.searchField.forceActiveFocus();
                 }
-            }
+            });
         }
     }
 

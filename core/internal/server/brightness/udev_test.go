@@ -13,13 +13,13 @@ func setupTestManager(t *testing.T) (*Manager, string) {
 	tmpDir := t.TempDir()
 
 	backlightDir := filepath.Join(tmpDir, "backlight", "intel_backlight")
-	if err := os.MkdirAll(backlightDir, 0755); err != nil {
+	if err := os.MkdirAll(backlightDir, 0o755); err != nil {
 		t.Fatal(err)
 	}
-	if err := os.WriteFile(filepath.Join(backlightDir, "max_brightness"), []byte("1000\n"), 0644); err != nil {
+	if err := os.WriteFile(filepath.Join(backlightDir, "max_brightness"), []byte("1000\n"), 0o644); err != nil {
 		t.Fatal(err)
 	}
-	if err := os.WriteFile(filepath.Join(backlightDir, "brightness"), []byte("500\n"), 0644); err != nil {
+	if err := os.WriteFile(filepath.Join(backlightDir, "brightness"), []byte("500\n"), 0o644); err != nil {
 		t.Fatal(err)
 	}
 
@@ -152,7 +152,7 @@ func TestHandleEvent_ChangeAction(t *testing.T) {
 	um := &UdevMonitor{stop: make(chan struct{})}
 
 	brightnessPath := filepath.Join(tmpDir, "backlight", "intel_backlight", "brightness")
-	if err := os.WriteFile(brightnessPath, []byte("800\n"), 0644); err != nil {
+	if err := os.WriteFile(brightnessPath, []byte("800\n"), 0o644); err != nil {
 		t.Fatal(err)
 	}
 
@@ -225,7 +225,7 @@ func TestHandleChange_InvalidBrightnessValue(t *testing.T) {
 	um := &UdevMonitor{stop: make(chan struct{})}
 
 	brightnessPath := filepath.Join(tmpDir, "backlight", "intel_backlight", "brightness")
-	if err := os.WriteFile(brightnessPath, []byte("not_a_number\n"), 0644); err != nil {
+	if err := os.WriteFile(brightnessPath, []byte("not_a_number\n"), 0o644); err != nil {
 		t.Fatal(err)
 	}
 

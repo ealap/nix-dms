@@ -116,12 +116,12 @@ func (m *Manager) Install(plugin Plugin) error {
 		return fmt.Errorf("plugin already installed: %s", plugin.Name)
 	}
 
-	if err := m.fs.MkdirAll(m.pluginsDir, 0755); err != nil {
+	if err := m.fs.MkdirAll(m.pluginsDir, 0o755); err != nil {
 		return fmt.Errorf("failed to create plugins directory: %w", err)
 	}
 
 	reposDir := filepath.Join(m.pluginsDir, ".repos")
-	if err := m.fs.MkdirAll(reposDir, 0755); err != nil {
+	if err := m.fs.MkdirAll(reposDir, 0o755); err != nil {
 		return fmt.Errorf("failed to create repos directory: %w", err)
 	}
 
@@ -168,7 +168,7 @@ func (m *Manager) Install(plugin Plugin) error {
 
 		metaPath := pluginPath + ".meta"
 		metaContent := fmt.Sprintf("repo=%s\npath=%s\nrepodir=%s", plugin.Repo, plugin.Path, repoName)
-		if err := afero.WriteFile(m.fs, metaPath, []byte(metaContent), 0644); err != nil {
+		if err := afero.WriteFile(m.fs, metaPath, []byte(metaContent), 0o644); err != nil {
 			return fmt.Errorf("failed to write metadata: %w", err)
 		}
 	} else {

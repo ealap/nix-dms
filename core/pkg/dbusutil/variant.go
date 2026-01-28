@@ -49,10 +49,36 @@ func Normalize(v any) any {
 			result[k] = Normalize(vv.Value())
 		}
 		return result
+	case map[string]any:
+		result := make(map[string]any)
+		for k, vv := range val {
+			result[k] = Normalize(vv)
+		}
+		return result
+	case map[dbus.ObjectPath]map[string]map[string]dbus.Variant:
+		result := make(map[string]any)
+		for path, ifaces := range val {
+			ifaceMap := make(map[string]any)
+			for ifaceName, props := range ifaces {
+				propMap := make(map[string]any)
+				for propName, propVal := range props {
+					propMap[propName] = Normalize(propVal.Value())
+				}
+				ifaceMap[ifaceName] = propMap
+			}
+			result[string(path)] = ifaceMap
+		}
+		return result
 	case []any:
 		result := make([]any, len(val))
 		for i, item := range val {
 			result[i] = Normalize(item)
+		}
+		return result
+	case []dbus.Variant:
+		result := make([]any, len(val))
+		for i, item := range val {
+			result[i] = Normalize(item.Value())
 		}
 		return result
 	default:

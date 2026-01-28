@@ -30,7 +30,9 @@ Item {
             onKeyboardHintsToggled: modal.showKeyboardHints = !modal.showKeyboardHints
             onTabChanged: tabName => modal.activeTab = tabName
             onClearAllClicked: {
-                clearConfirmDialog.show(I18n.tr("Clear All History?"), I18n.tr("This will permanently delete all clipboard history."), function () {
+                const hasPinned = modal.pinnedCount > 0;
+                const message = hasPinned ? I18n.tr("This will delete all unpinned entries. %1 pinned entries will be kept.").arg(modal.pinnedCount) : I18n.tr("This will permanently delete all clipboard history.");
+                clearConfirmDialog.show(I18n.tr("Clear History?"), message, function () {
                     modal.clearAll();
                     modal.hide();
                 }, function () {});

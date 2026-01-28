@@ -187,7 +187,7 @@ bind = SUPER, right, movefocus, r
 bind = SUPER, T, exec, kitty # Terminal
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -245,7 +245,7 @@ bind = SUPER, B, exec, app2
 #/# = SUPER, C, exec, app3 # Custom comment
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -278,10 +278,10 @@ func TestHyprlandReadContentMultipleFiles(t *testing.T) {
 	content1 := "bind = SUPER, Q, killactive\n"
 	content2 := "bind = SUPER, T, exec, kitty\n"
 
-	if err := os.WriteFile(file1, []byte(content1), 0644); err != nil {
+	if err := os.WriteFile(file1, []byte(content1), 0o644); err != nil {
 		t.Fatalf("Failed to write file1: %v", err)
 	}
-	if err := os.WriteFile(file2, []byte(content2), 0644); err != nil {
+	if err := os.WriteFile(file2, []byte(content2), 0o644); err != nil {
 		t.Fatalf("Failed to write file2: %v", err)
 	}
 
@@ -328,13 +328,13 @@ func TestHyprlandReadContentWithTildeExpansion(t *testing.T) {
 	}
 
 	tmpSubdir := filepath.Join(homeDir, ".config", "test-hypr-"+t.Name())
-	if err := os.MkdirAll(tmpSubdir, 0755); err != nil {
+	if err := os.MkdirAll(tmpSubdir, 0o755); err != nil {
 		t.Skip("Cannot create test directory in home")
 	}
 	defer os.RemoveAll(tmpSubdir)
 
 	configFile := filepath.Join(tmpSubdir, "test.conf")
-	if err := os.WriteFile(configFile, []byte("bind = SUPER, Q, killactive\n"), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte("bind = SUPER, Q, killactive\n"), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -381,7 +381,7 @@ bind = SUPER, Q, killactive
 bind = SUPER, T, exec, kitty
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 

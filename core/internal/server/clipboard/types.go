@@ -7,6 +7,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/godbus/dbus/v5"
 	bolt "go.etcd.io/bbolt"
 
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/wlcontext"
@@ -65,7 +66,7 @@ func SaveConfig(cfg Config) error {
 		return err
 	}
 
-	if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
+	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
 		return err
 	}
 
@@ -74,7 +75,7 @@ func SaveConfig(cfg Config) error {
 		return err
 	}
 
-	return os.WriteFile(path, data, 0644)
+	return os.WriteFile(path, data, 0o644)
 }
 
 type SearchParams struct {
@@ -157,6 +158,8 @@ type Manager struct {
 	dirty       chan struct{}
 	notifierWg  sync.WaitGroup
 	lastState   *State
+
+	dbusConn *dbus.Conn
 }
 
 func (m *Manager) GetState() State {

@@ -15,13 +15,13 @@ func TestAppendConfigBinaryExists(t *testing.T) {
 
 	shellDir := filepath.Join(tempDir, "shell")
 	configsDir := filepath.Join(shellDir, "matugen", "configs")
-	if err := os.MkdirAll(configsDir, 0755); err != nil {
+	if err := os.MkdirAll(configsDir, 0o755); err != nil {
 		t.Fatalf("failed to create configs dir: %v", err)
 	}
 
 	testConfig := "test config content"
 	configPath := filepath.Join(configsDir, "test.toml")
-	if err := os.WriteFile(configPath, []byte(testConfig), 0644); err != nil {
+	if err := os.WriteFile(configPath, []byte(testConfig), 0o644); err != nil {
 		t.Fatalf("failed to write config: %v", err)
 	}
 
@@ -58,13 +58,13 @@ func TestAppendConfigBinaryDoesNotExist(t *testing.T) {
 
 	shellDir := filepath.Join(tempDir, "shell")
 	configsDir := filepath.Join(shellDir, "matugen", "configs")
-	if err := os.MkdirAll(configsDir, 0755); err != nil {
+	if err := os.MkdirAll(configsDir, 0o755); err != nil {
 		t.Fatalf("failed to create configs dir: %v", err)
 	}
 
 	testConfig := "test config content"
 	configPath := filepath.Join(configsDir, "test.toml")
-	if err := os.WriteFile(configPath, []byte(testConfig), 0644); err != nil {
+	if err := os.WriteFile(configPath, []byte(testConfig), 0o644); err != nil {
 		t.Fatalf("failed to write config: %v", err)
 	}
 
@@ -99,13 +99,13 @@ func TestAppendConfigFlatpakExists(t *testing.T) {
 
 	shellDir := filepath.Join(tempDir, "shell")
 	configsDir := filepath.Join(shellDir, "matugen", "configs")
-	if err := os.MkdirAll(configsDir, 0755); err != nil {
+	if err := os.MkdirAll(configsDir, 0o755); err != nil {
 		t.Fatalf("failed to create configs dir: %v", err)
 	}
 
 	testConfig := "zen config content"
 	configPath := filepath.Join(configsDir, "test.toml")
-	if err := os.WriteFile(configPath, []byte(testConfig), 0644); err != nil {
+	if err := os.WriteFile(configPath, []byte(testConfig), 0o644); err != nil {
 		t.Fatalf("failed to write config: %v", err)
 	}
 
@@ -139,13 +139,13 @@ func TestAppendConfigFlatpakDoesNotExist(t *testing.T) {
 
 	shellDir := filepath.Join(tempDir, "shell")
 	configsDir := filepath.Join(shellDir, "matugen", "configs")
-	if err := os.MkdirAll(configsDir, 0755); err != nil {
+	if err := os.MkdirAll(configsDir, 0o755); err != nil {
 		t.Fatalf("failed to create configs dir: %v", err)
 	}
 
 	testConfig := "test config content"
 	configPath := filepath.Join(configsDir, "test.toml")
-	if err := os.WriteFile(configPath, []byte(testConfig), 0644); err != nil {
+	if err := os.WriteFile(configPath, []byte(testConfig), 0o644); err != nil {
 		t.Fatalf("failed to write config: %v", err)
 	}
 
@@ -180,13 +180,13 @@ func TestAppendConfigBothExist(t *testing.T) {
 
 	shellDir := filepath.Join(tempDir, "shell")
 	configsDir := filepath.Join(shellDir, "matugen", "configs")
-	if err := os.MkdirAll(configsDir, 0755); err != nil {
+	if err := os.MkdirAll(configsDir, 0o755); err != nil {
 		t.Fatalf("failed to create configs dir: %v", err)
 	}
 
 	testConfig := "zen config content"
 	configPath := filepath.Join(configsDir, "test.toml")
-	if err := os.WriteFile(configPath, []byte(testConfig), 0644); err != nil {
+	if err := os.WriteFile(configPath, []byte(testConfig), 0o644); err != nil {
 		t.Fatalf("failed to write config: %v", err)
 	}
 
@@ -220,13 +220,13 @@ func TestAppendConfigNeitherExists(t *testing.T) {
 
 	shellDir := filepath.Join(tempDir, "shell")
 	configsDir := filepath.Join(shellDir, "matugen", "configs")
-	if err := os.MkdirAll(configsDir, 0755); err != nil {
+	if err := os.MkdirAll(configsDir, 0o755); err != nil {
 		t.Fatalf("failed to create configs dir: %v", err)
 	}
 
 	testConfig := "test config content"
 	configPath := filepath.Join(configsDir, "test.toml")
-	if err := os.WriteFile(configPath, []byte(testConfig), 0644); err != nil {
+	if err := os.WriteFile(configPath, []byte(testConfig), 0o644); err != nil {
 		t.Fatalf("failed to write config: %v", err)
 	}
 
@@ -261,13 +261,13 @@ func TestAppendConfigNoChecks(t *testing.T) {
 
 	shellDir := filepath.Join(tempDir, "shell")
 	configsDir := filepath.Join(shellDir, "matugen", "configs")
-	if err := os.MkdirAll(configsDir, 0755); err != nil {
+	if err := os.MkdirAll(configsDir, 0o755); err != nil {
 		t.Fatalf("failed to create configs dir: %v", err)
 	}
 
 	testConfig := "always include"
 	configPath := filepath.Join(configsDir, "test.toml")
-	if err := os.WriteFile(configPath, []byte(testConfig), 0644); err != nil {
+	if err := os.WriteFile(configPath, []byte(testConfig), 0o644); err != nil {
 		t.Fatalf("failed to write config: %v", err)
 	}
 
@@ -298,7 +298,7 @@ func TestAppendConfigFileDoesNotExist(t *testing.T) {
 
 	shellDir := filepath.Join(tempDir, "shell")
 	configsDir := filepath.Join(shellDir, "matugen", "configs")
-	if err := os.MkdirAll(configsDir, 0755); err != nil {
+	if err := os.MkdirAll(configsDir, 0o755); err != nil {
 		t.Fatalf("failed to create configs dir: %v", err)
 	}
 

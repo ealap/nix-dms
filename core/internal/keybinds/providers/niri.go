@@ -235,7 +235,7 @@ func (n *NiriProvider) SetBind(key, action, description string, options map[stri
 
 	overridePath := n.GetOverridePath()
 
-	if err := os.MkdirAll(filepath.Dir(overridePath), 0755); err != nil {
+	if err := os.MkdirAll(filepath.Dir(overridePath), 0o755); err != nil {
 		return fmt.Errorf("failed to create dms directory: %w", err)
 	}
 
@@ -485,7 +485,7 @@ func (n *NiriProvider) writeOverrideBinds(binds map[string]*overrideBind) error 
 		return err
 	}
 
-	return os.WriteFile(overridePath, []byte(content), 0644)
+	return os.WriteFile(overridePath, []byte(content), 0o644)
 }
 
 func (n *NiriProvider) getBindSortPriority(action string) int {

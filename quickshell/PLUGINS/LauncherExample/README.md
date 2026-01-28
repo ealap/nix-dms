@@ -82,6 +82,10 @@ signal itemsChanged()
 // Required functions
 function getItems(query): array
 function executeItem(item): void
+
+// Optional functions (for Shift+Enter paste support)
+function getPasteText(item): string|null
+function getPasteArgs(item): array|null
 ```
 
 **Item Structure**:

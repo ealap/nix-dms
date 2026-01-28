@@ -79,16 +79,16 @@ func TestFindJSONFiles(t *testing.T) {
 	txtFile := filepath.Join(tmpDir, "readme.txt")
 	subdir := filepath.Join(tmpDir, "subdir")
 
-	if err := os.WriteFile(file1, []byte("{}"), 0644); err != nil {
+	if err := os.WriteFile(file1, []byte("{}"), 0o644); err != nil {
 		t.Fatalf("Failed to create file1: %v", err)
 	}
-	if err := os.WriteFile(file2, []byte("{}"), 0644); err != nil {
+	if err := os.WriteFile(file2, []byte("{}"), 0o644); err != nil {
 		t.Fatalf("Failed to create file2: %v", err)
 	}
-	if err := os.WriteFile(txtFile, []byte("text"), 0644); err != nil {
+	if err := os.WriteFile(txtFile, []byte("text"), 0o644); err != nil {
 		t.Fatalf("Failed to create txt file: %v", err)
 	}
-	if err := os.MkdirAll(subdir, 0755); err != nil {
+	if err := os.MkdirAll(subdir, 0o755); err != nil {
 		t.Fatalf("Failed to create subdir: %v", err)
 	}
 
@@ -143,10 +143,10 @@ func TestFindJSONFilesMultiplePaths(t *testing.T) {
 	file1 := filepath.Join(tmpDir1, "app1.json")
 	file2 := filepath.Join(tmpDir2, "app2.json")
 
-	if err := os.WriteFile(file1, []byte("{}"), 0644); err != nil {
+	if err := os.WriteFile(file1, []byte("{}"), 0o644); err != nil {
 		t.Fatalf("Failed to create file1: %v", err)
 	}
-	if err := os.WriteFile(file2, []byte("{}"), 0644); err != nil {
+	if err := os.WriteFile(file2, []byte("{}"), 0o644); err != nil {
 		t.Fatalf("Failed to create file2: %v", err)
 	}
 
@@ -174,7 +174,7 @@ func TestAutoDiscoverProviders(t *testing.T) {
 }`
 
 	file := filepath.Join(tmpDir, "testapp.json")
-	if err := os.WriteFile(file, []byte(jsonContent), 0644); err != nil {
+	if err := os.WriteFile(file, []byte(jsonContent), 0o644); err != nil {
 		t.Fatalf("Failed to create test file: %v", err)
 	}
 
@@ -226,7 +226,7 @@ func TestAutoDiscoverProvidersNoFactory(t *testing.T) {
 	tmpDir := t.TempDir()
 
 	file := filepath.Join(tmpDir, "test.json")
-	if err := os.WriteFile(file, []byte("{}"), 0644); err != nil {
+	if err := os.WriteFile(file, []byte("{}"), 0o644); err != nil {
 		t.Fatalf("Failed to create test file: %v", err)
 	}
 

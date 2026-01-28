@@ -534,7 +534,7 @@ func (b *BaseDistribution) WriteEnvironmentConfig(terminal deps.Terminal) error 
 	}
 
 	envDir := filepath.Join(homeDir, ".config", "environment.d")
-	if err := os.MkdirAll(envDir, 0755); err != nil {
+	if err := os.MkdirAll(envDir, 0o755); err != nil {
 		return fmt.Errorf("failed to create environment.d directory: %w", err)
 	}
 
@@ -555,7 +555,7 @@ TERMINAL=%s
 `, terminalCmd)
 
 	envFile := filepath.Join(envDir, "90-dms.conf")
-	if err := os.WriteFile(envFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(envFile, []byte(content), 0o644); err != nil {
 		return fmt.Errorf("failed to write environment config: %w", err)
 	}
 
@@ -594,7 +594,7 @@ func (b *BaseDistribution) WriteHyprlandSessionTarget() error {
 	}
 
 	targetDir := filepath.Join(homeDir, ".config", "systemd", "user")
-	if err := os.MkdirAll(targetDir, 0755); err != nil {
+	if err := os.MkdirAll(targetDir, 0o755); err != nil {
 		return fmt.Errorf("failed to create systemd user directory: %w", err)
 	}
 
@@ -605,7 +605,7 @@ Requires=graphical-session.target
 After=graphical-session.target
 `
 
-	if err := os.WriteFile(targetPath, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(targetPath, []byte(content), 0o644); err != nil {
 		return fmt.Errorf("failed to write hyprland-session.target: %w", err)
 	}
 

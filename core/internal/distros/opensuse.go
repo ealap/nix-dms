@@ -540,12 +540,12 @@ func (o *OpenSUSEDistribution) installQuickshell(ctx context.Context, variant de
 	}
 
 	cacheDir := filepath.Join(homeDir, ".cache", "dankinstall")
-	if err := os.MkdirAll(cacheDir, 0755); err != nil {
+	if err := os.MkdirAll(cacheDir, 0o755); err != nil {
 		return fmt.Errorf("failed to create cache directory: %w", err)
 	}
 
 	tmpDir := filepath.Join(cacheDir, "quickshell-build")
-	if err := os.MkdirAll(tmpDir, 0755); err != nil {
+	if err := os.MkdirAll(tmpDir, 0o755); err != nil {
 		return fmt.Errorf("failed to create temp directory: %w", err)
 	}
 	defer os.RemoveAll(tmpDir)
@@ -576,7 +576,7 @@ func (o *OpenSUSEDistribution) installQuickshell(ctx context.Context, variant de
 	}
 
 	buildDir := tmpDir + "/build"
-	if err := os.MkdirAll(buildDir, 0755); err != nil {
+	if err := os.MkdirAll(buildDir, 0o755); err != nil {
 		return fmt.Errorf("failed to create build directory: %w", err)
 	}
 

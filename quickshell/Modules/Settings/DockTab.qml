@@ -23,45 +23,48 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "swap_vert"
-                title: I18n.tr("Dock Position")
+                title: I18n.tr("Position")
                 settingKey: "dockPosition"
 
-                SettingsButtonGroupRow {
-                    text: I18n.tr("Position")
-                    model: ["Top", "Bottom", "Left", "Right"]
-                    buttonPadding: Theme.spacingS
-                    minButtonWidth: 44
-                    textSize: Theme.fontSizeSmall
-                    currentIndex: {
-                        switch (SettingsData.dockPosition) {
-                        case SettingsData.Position.Top:
-                            return 0;
-                        case SettingsData.Position.Bottom:
-                            return 1;
-                        case SettingsData.Position.Left:
-                            return 2;
-                        case SettingsData.Position.Right:
-                            return 3;
-                        default:
-                            return 1;
+                Item {
+                    width: parent.width
+                    height: dockPositionButtonGroup.height
+
+                    DankButtonGroup {
+                        id: dockPositionButtonGroup
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        model: [I18n.tr("Top"), I18n.tr("Bottom"), I18n.tr("Left"), I18n.tr("Right")]
+                        currentIndex: {
+                            switch (SettingsData.dockPosition) {
+                            case SettingsData.Position.Top:
+                                return 0;
+                            case SettingsData.Position.Bottom:
+                                return 1;
+                            case SettingsData.Position.Left:
+                                return 2;
+                            case SettingsData.Position.Right:
+                                return 3;
+                            default:
+                                return 1;
+                            }
                         }
-                    }
-                    onSelectionChanged: (index, selected) => {
-                        if (!selected)
-                            return;
-                        switch (index) {
-                        case 0:
-                            SettingsData.setDockPosition(SettingsData.Position.Top);
-                            break;
-                        case 1:
-                            SettingsData.setDockPosition(SettingsData.Position.Bottom);
-                            break;
-                        case 2:
-                            SettingsData.setDockPosition(SettingsData.Position.Left);
-                            break;
-                        case 3:
-                            SettingsData.setDockPosition(SettingsData.Position.Right);
-                            break;
+                        onSelectionChanged: (index, selected) => {
+                            if (!selected)
+                                return;
+                            switch (index) {
+                            case 0:
+                                SettingsData.setDockPosition(SettingsData.Position.Top);
+                                break;
+                            case 1:
+                                SettingsData.setDockPosition(SettingsData.Position.Bottom);
+                                break;
+                            case 2:
+                                SettingsData.setDockPosition(SettingsData.Position.Left);
+                                break;
+                            case 3:
+                                SettingsData.setDockPosition(SettingsData.Position.Right);
+                                break;
+                            }
                         }
                     }
                 }
@@ -151,7 +154,7 @@ Item {
                     settingKey: "dockIndicatorStyle"
                     tags: ["dock", "indicator", "style", "circle", "line"]
                     text: I18n.tr("Indicator Style")
-                    model: ["Circle", "Line"]
+                    model: [I18n.tr("Circle", "dock indicator style option"), I18n.tr("Line", "dock indicator style option")]
                     buttonPadding: Theme.spacingS
                     minButtonWidth: 44
                     textSize: Theme.fontSizeSmall
@@ -161,6 +164,39 @@ Item {
                             SettingsData.set("dockIndicatorStyle", index === 0 ? "circle" : "line");
                         }
                     }
+                }
+
+                SettingsSliderRow {
+                    settingKey: "dockMaxVisibleApps"
+                    tags: ["dock", "overflow", "max", "apps", "limit"]
+                    text: I18n.tr("Max Pinned Apps (0 = Unlimited)")
+                    minimum: 0
+                    maximum: 30
+                    value: SettingsData.dockMaxVisibleApps
+                    defaultValue: 0
+                    unit: ""
+                    onSliderValueChanged: newValue => SettingsData.set("dockMaxVisibleApps", newValue)
+                }
+
+                SettingsSliderRow {
+                    settingKey: "dockMaxVisibleRunningApps"
+                    tags: ["dock", "overflow", "max", "running", "apps", "limit"]
+                    text: I18n.tr("Max Running Apps (0 = Unlimited)")
+                    minimum: 0
+                    maximum: 30
+                    value: SettingsData.dockMaxVisibleRunningApps
+                    defaultValue: 0
+                    unit: ""
+                    onSliderValueChanged: newValue => SettingsData.set("dockMaxVisibleRunningApps", newValue)
+                }
+
+                SettingsToggleRow {
+                    settingKey: "dockShowOverflowBadge"
+                    tags: ["dock", "overflow", "badge", "count", "indicator"]
+                    text: I18n.tr("Show Overflow Badge Count")
+                    description: I18n.tr("Displays count when overflow is active")
+                    checked: SettingsData.dockShowOverflowBadge
+                    onToggled: checked => SettingsData.set("dockShowOverflowBadge", checked)
                 }
             }
 
@@ -500,7 +536,7 @@ Item {
                     text: I18n.tr("Border Color")
                     description: I18n.tr("Choose the border accent color")
                     visible: SettingsData.dockBorderEnabled
-                    model: ["Surface", "Secondary", "Primary"]
+                    model: [I18n.tr("Surface", "color option"), I18n.tr("Secondary", "color option"), I18n.tr("Primary", "color option")]
                     buttonPadding: Theme.spacingS
                     minButtonWidth: 44
                     textSize: Theme.fontSizeSmall

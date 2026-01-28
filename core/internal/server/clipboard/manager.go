@@ -10,6 +10,7 @@ import (
 	_ "image/png"
 	"io"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"slices"
 	"strings"
@@ -19,8 +20,10 @@ import (
 	"hash/fnv"
 
 	"github.com/fsnotify/fsnotify"
+	"github.com/godbus/dbus/v5"
 	_ "golang.org/x/image/bmp"
 	_ "golang.org/x/image/tiff"
+	_ "golang.org/x/image/webp"
 
 	bolt "go.etcd.io/bbolt"
 
@@ -104,7 +107,7 @@ func NewManager(wlCtx wlcontext.WaylandContext, config Config) (*Manager, error)
 }
 
 func openDB(path string) (*bolt.DB, error) {
-	db, err := bolt.Open(path, 0644, &bolt.Options{
+	db, err := bolt.Open(path, 0o644, &bolt.Options{
 		Timeout: 1 * time.Second,
 	})
 	if err != nil {
@@ -316,6 +319,13 @@ func (m *Manager) readAndStore(r *os.File, mimeType string) {
 }
 
 func (m *Manager) storeClipboardEntry(data []byte, mimeType string) {
+	if mimeType == "text/uri-list" {
+		if imgData, imgMime, ok := m.tryReadImageFromURI(data); ok {
+			data = imgData
+			mimeType = imgMime
+		}
+	}
+
 	entry := Entry{
 		Data:      data,
 		MimeType:  mimeType,
@@ -327,6 +337,8 @@ func (m *Manager) storeClipboardEntry(data []byte, mimeType string) {
 	switch {
 	case entry.IsImage:
 		entry.Preview = m.imagePreview(data, mimeType)
+	case mimeType == "text/uri-list":
+		entry.Preview, entry.IsImage = m.uriListPreview(data)
 	default:
 		entry.Preview = m.textPreview(data)
 	}
@@ -493,10 +505,10 @@ func computeHash(data []byte) uint64 {
 }
 
 func extractHash(data []byte) uint64 {
-	if len(data) < 8 {
+	if len(data) < 9 {
 		return 0
 	}
-	return binary.BigEndian.Uint64(data[len(data)-8:])
+	return binary.BigEndian.Uint64(data[len(data)-9 : len(data)-1])
 }
 
 func (m *Manager) hasSensitiveMimeType(mimes []string) bool {
@@ -507,6 +519,7 @@ func (m *Manager) hasSensitiveMimeType(mimes []string) bool {
 
 func (m *Manager) selectMimeType(mimes []string) string {
 	preferredTypes := []string{
+		"text/uri-list",
 		"text/plain;charset=utf-8",
 		"text/plain",
 		"UTF8_STRING",
@@ -527,8 +540,14 @@ func (m *Manager) selectMimeType(mimes []string) string {
 		}
 	}
 
-	if len(mimes) > 0 {
-		return mimes[0]
+	// Skip useless MIME types when falling back
+	for _, mime := range mimes {
+		switch mime {
+		case "application/vnd.portal.filetransfer":
+			continue
+		default:
+			return mime
+		}
 	}
 
 	return ""
@@ -555,6 +574,62 @@ func (m *Manager) imagePreview(data []byte, format string) string {
 		return fmt.Sprintf("[[ image %s %s ]]", sizeStr(len(data)), format)
 	}
 	return fmt.Sprintf("[[ image %s %s %dx%d ]]", sizeStr(len(data)), imgFmt, config.Width, config.Height)
+}
+
+func (m *Manager) uriListPreview(data []byte) (string, bool) {
+	text := strings.TrimSpace(string(data))
+	uris := strings.Split(text, "\r\n")
+	if len(uris) == 0 {
+		uris = strings.Split(text, "\n")
+	}
+
+	if len(uris) == 1 && strings.HasPrefix(uris[0], "file://") {
+		filePath := strings.TrimPrefix(uris[0], "file://")
+		if info, err := os.Stat(filePath); err == nil && !info.IsDir() {
+			if imgData, err := os.ReadFile(filePath); err == nil {
+				if config, imgFmt, err := image.DecodeConfig(bytes.NewReader(imgData)); err == nil {
+					return fmt.Sprintf("[[ file %s %s %dx%d ]]", filepath.Base(filePath), imgFmt, config.Width, config.Height), true
+				}
+			}
+			return fmt.Sprintf("[[ file %s ]]", filepath.Base(filePath)), false
+		}
+	}
+
+	if len(uris) > 1 {
+		return fmt.Sprintf("[[ %d files ]]", len(uris)), false
+	}
+
+	return m.textPreview(data), false
+}
+
+func (m *Manager) tryReadImageFromURI(data []byte) ([]byte, string, bool) {
+	text := strings.TrimSpace(string(data))
+	uris := strings.Split(text, "\r\n")
+	if len(uris) == 0 {
+		uris = strings.Split(text, "\n")
+	}
+
+	if len(uris) != 1 || !strings.HasPrefix(uris[0], "file://") {
+		return nil, "", false
+	}
+
+	filePath := strings.TrimPrefix(uris[0], "file://")
+	info, err := os.Stat(filePath)
+	if err != nil || info.IsDir() {
+		return nil, "", false
+	}
+
+	imgData, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, "", false
+	}
+
+	_, imgFmt, err := image.DecodeConfig(bytes.NewReader(imgData))
+	if err != nil {
+		return nil, "", false
+	}
+
+	return imgData, "image/" + imgFmt, true
 }
 
 func sizeStr(size int) string {
@@ -810,23 +885,23 @@ func (m *Manager) compactDB() error {
 	tmpPath := m.dbPath + ".compact"
 	defer os.Remove(tmpPath)
 
-	srcDB, err := bolt.Open(m.dbPath, 0644, &bolt.Options{ReadOnly: true, Timeout: time.Second})
+	srcDB, err := bolt.Open(m.dbPath, 0o644, &bolt.Options{ReadOnly: true, Timeout: time.Second})
 	if err != nil {
-		m.db, _ = bolt.Open(m.dbPath, 0644, &bolt.Options{Timeout: time.Second})
+		m.db, _ = bolt.Open(m.dbPath, 0o644, &bolt.Options{Timeout: time.Second})
 		return fmt.Errorf("open source: %w", err)
 	}
 
-	dstDB, err := bolt.Open(tmpPath, 0644, &bolt.Options{Timeout: time.Second})
+	dstDB, err := bolt.Open(tmpPath, 0o644, &bolt.Options{Timeout: time.Second})
 	if err != nil {
 		srcDB.Close()
-		m.db, _ = bolt.Open(m.dbPath, 0644, &bolt.Options{Timeout: time.Second})
+		m.db, _ = bolt.Open(m.dbPath, 0o644, &bolt.Options{Timeout: time.Second})
 		return fmt.Errorf("open destination: %w", err)
 	}
 
 	if err := bolt.Compact(dstDB, srcDB, 0); err != nil {
 		srcDB.Close()
 		dstDB.Close()
-		m.db, _ = bolt.Open(m.dbPath, 0644, &bolt.Options{Timeout: time.Second})
+		m.db, _ = bolt.Open(m.dbPath, 0o644, &bolt.Options{Timeout: time.Second})
 		return fmt.Errorf("compact: %w", err)
 	}
 
@@ -834,11 +909,11 @@ func (m *Manager) compactDB() error {
 	dstDB.Close()
 
 	if err := os.Rename(tmpPath, m.dbPath); err != nil {
-		m.db, _ = bolt.Open(m.dbPath, 0644, &bolt.Options{Timeout: time.Second})
+		m.db, _ = bolt.Open(m.dbPath, 0o644, &bolt.Options{Timeout: time.Second})
 		return fmt.Errorf("rename: %w", err)
 	}
 
-	m.db, err = bolt.Open(m.dbPath, 0644, &bolt.Options{Timeout: time.Second})
+	m.db, err = bolt.Open(m.dbPath, 0o644, &bolt.Options{Timeout: time.Second})
 	if err != nil {
 		return fmt.Errorf("reopen: %w", err)
 	}
@@ -885,10 +960,20 @@ func (m *Manager) SetClipboard(data []byte, mimeType string) error {
 			}
 		})
 
+		source.SetCancelledHandler(func(e ext_data_control.ExtDataControlSourceV1CancelledEvent) {
+			m.ownerLock.Lock()
+			m.isOwner = false
+			m.ownerLock.Unlock()
+		})
+
 		m.currentSource = source
 		m.sourceMutex.Lock()
 		m.sourceMimeTypes = []string{mimeType}
 		m.sourceMutex.Unlock()
+
+		m.ownerLock.Lock()
+		m.isOwner = true
+		m.ownerLock.Unlock()
 
 		device := m.dataDevice.(*ext_data_control.ExtDataControlDeviceV1)
 		if err := device.SetSelection(source); err != nil {
@@ -1291,6 +1376,8 @@ func (m *Manager) StoreData(data []byte, mimeType string) error {
 	switch {
 	case entry.IsImage:
 		entry.Preview = m.imagePreview(data, mimeType)
+	case mimeType == "text/uri-list":
+		entry.Preview, entry.IsImage = m.uriListPreview(data)
 	default:
 		entry.Preview = m.textPreview(data)
 	}
@@ -1453,4 +1540,234 @@ func (m *Manager) GetPinnedCount() int {
 	}
 
 	return count
+}
+
+func (m *Manager) CopyFile(filePath string) error {
+	fileInfo, err := os.Stat(filePath)
+	if err != nil {
+		return fmt.Errorf("file not found: %w", err)
+	}
+
+	cfg := m.getConfig()
+	if fileInfo.Size() > cfg.MaxEntrySize {
+		return fmt.Errorf("file too large: %d > %d", fileInfo.Size(), cfg.MaxEntrySize)
+	}
+
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		return fmt.Errorf("read file: %w", err)
+	}
+
+	exportedPath, err := m.ExportFileForFlatpak(filePath)
+	if err != nil {
+		exportedPath = filePath
+	}
+	fileURI := "file://" + exportedPath
+
+	if imgData, imgMime, ok := m.tryReadImageFromURI([]byte("file://" + filePath)); ok {
+		entry := Entry{
+			Data:      imgData,
+			MimeType:  imgMime,
+			Size:      len(imgData),
+			Timestamp: time.Now(),
+			IsImage:   true,
+			Preview:   m.imagePreview(imgData, imgMime),
+		}
+		if err := m.storeEntry(entry); err != nil {
+			log.Errorf("Failed to store file entry: %v", err)
+		}
+	} else {
+		entry := Entry{
+			Data:      fileData,
+			MimeType:  "text/uri-list",
+			Size:      len(fileData),
+			Timestamp: time.Now(),
+			IsImage:   false,
+			Preview:   fmt.Sprintf("[[ file %s ]]", filepath.Base(filePath)),
+		}
+		if err := m.storeEntry(entry); err != nil {
+			log.Errorf("Failed to store file entry: %v", err)
+		}
+	}
+
+	m.updateState()
+	m.notifySubscribers()
+
+	m.post(func() {
+		if m.dataControlMgr == nil || m.dataDevice == nil {
+			log.Error("Data control manager or device not initialized")
+			return
+		}
+
+		dataMgr := m.dataControlMgr.(*ext_data_control.ExtDataControlManagerV1)
+		source, err := dataMgr.CreateDataSource()
+		if err != nil {
+			log.Errorf("Failed to create data source: %v", err)
+			return
+		}
+
+		type offer struct {
+			mime string
+			data []byte
+		}
+		offers := []offer{
+			{"x-special/gnome-copied-files", []byte("copy\n" + fileURI)},
+			{"text/uri-list", []byte(fileURI + "\r\n")},
+			{"text/plain", []byte(filePath)},
+		}
+
+		offerData := make(map[string][]byte)
+		for _, o := range offers {
+			if err := source.Offer(o.mime); err != nil {
+				log.Errorf("Failed to offer %s: %v", o.mime, err)
+				return
+			}
+			offerData[o.mime] = o.data
+		}
+
+		source.SetSendHandler(func(e ext_data_control.ExtDataControlSourceV1SendEvent) {
+			fd := e.Fd
+			defer syscall.Close(fd)
+			file := os.NewFile(uintptr(fd), "clipboard-pipe")
+			defer file.Close()
+			if data, ok := offerData[e.MimeType]; ok {
+				file.Write(data)
+			}
+		})
+
+		source.SetCancelledHandler(func(e ext_data_control.ExtDataControlSourceV1CancelledEvent) {
+			m.ownerLock.Lock()
+			m.isOwner = false
+			m.ownerLock.Unlock()
+		})
+
+		m.currentSource = source
+
+		m.ownerLock.Lock()
+		m.isOwner = true
+		m.ownerLock.Unlock()
+
+		device := m.dataDevice.(*ext_data_control.ExtDataControlDeviceV1)
+		if err := device.SetSelection(source); err != nil {
+			log.Errorf("Failed to set selection: %v", err)
+		}
+	})
+
+	return nil
+}
+
+func (m *Manager) EntryToFile(entry *Entry) string {
+	switch {
+	case entry.MimeType == "text/uri-list":
+		data := strings.TrimSpace(string(entry.Data))
+		lines := strings.Split(data, "\n")
+		if len(lines) == 0 {
+			return ""
+		}
+		uri := strings.TrimSuffix(strings.TrimSpace(lines[0]), "\r")
+		if path, ok := strings.CutPrefix(uri, "file://"); ok {
+			return path
+		}
+	case entry.IsImage:
+		ext := ".png"
+		if suffix, ok := strings.CutPrefix(entry.MimeType, "image/"); ok {
+			ext = "." + suffix
+		}
+		cacheDir, err := os.UserCacheDir()
+		if err != nil {
+			return ""
+		}
+		clipDir := filepath.Join(cacheDir, "dms", "clipboard")
+		if err := os.MkdirAll(clipDir, 0o755); err != nil {
+			return ""
+		}
+		filePath := filepath.Join(clipDir, fmt.Sprintf("%d%s", time.Now().UnixNano(), ext))
+		if os.WriteFile(filePath, entry.Data, 0o644) != nil {
+			return ""
+		}
+		return filePath
+	}
+	return ""
+}
+
+func (m *Manager) ExportFileForFlatpak(filePath string) (string, error) {
+	if _, err := os.Stat(filePath); err != nil {
+		return "", fmt.Errorf("file not found: %w", err)
+	}
+
+	if m.dbusConn == nil {
+		conn, err := dbus.ConnectSessionBus()
+		if err != nil {
+			return "", fmt.Errorf("connect session bus: %w", err)
+		}
+		if !conn.SupportsUnixFDs() {
+			conn.Close()
+			return "", fmt.Errorf("D-Bus connection does not support Unix FD passing")
+		}
+		m.dbusConn = conn
+	}
+
+	file, err := os.Open(filePath)
+	if err != nil {
+		return "", fmt.Errorf("open file: %w", err)
+	}
+	fd := int(file.Fd())
+
+	portal := m.dbusConn.Object("org.freedesktop.portal.Documents", "/org/freedesktop/portal/documents")
+
+	var docIds []string
+	var extra map[string]dbus.Variant
+	flags := uint32(0)
+
+	err = portal.Call(
+		"org.freedesktop.portal.Documents.AddFull",
+		0,
+		[]dbus.UnixFD{dbus.UnixFD(fd)},
+		flags,
+		"",
+		[]string{},
+	).Store(&docIds, &extra)
+
+	file.Close()
+
+	if err != nil {
+		return "", fmt.Errorf("AddFull: %w", err)
+	}
+
+	if len(docIds) == 0 {
+		return "", fmt.Errorf("no doc IDs returned")
+	}
+
+	docId := docIds[0]
+
+	for _, app := range getInstalledFlatpaks() {
+		_ = portal.Call(
+			"org.freedesktop.portal.Documents.GrantPermissions",
+			0,
+			docId,
+			app,
+			[]string{"read"},
+		).Err
+	}
+
+	uid := os.Getuid()
+	basename := filepath.Base(filePath)
+	exportedPath := fmt.Sprintf("/run/user/%d/doc/%s/%s", uid, docId, basename)
+
+	return exportedPath, nil
+}
+
+func getInstalledFlatpaks() []string {
+	out, err := exec.Command("flatpak", "list", "--app", "--columns=application").Output()
+	if err != nil {
+		return nil
+	}
+
+	var apps []string
+	for _, line := range strings.Split(strings.TrimSpace(string(out)), "\n") {
+		if app := strings.TrimSpace(line); app != "" {
+			apps = append(apps, app)
+		}
+	}
+	return apps
 }

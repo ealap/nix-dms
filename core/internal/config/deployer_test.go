@@ -220,9 +220,9 @@ func TestConfigDeploymentFlow(t *testing.T) {
 	t.Run("deploy ghostty config with existing file", func(t *testing.T) {
 		existingContent := "# Old config\nfont-size = 14\n"
 		ghosttyPath := getGhosttyPath()
-		err := os.MkdirAll(filepath.Dir(ghosttyPath), 0755)
+		err := os.MkdirAll(filepath.Dir(ghosttyPath), 0o755)
 		require.NoError(t, err)
-		err = os.WriteFile(ghosttyPath, []byte(existingContent), 0644)
+		err = os.WriteFile(ghosttyPath, []byte(existingContent), 0o644)
 		require.NoError(t, err)
 
 		results, err := cd.deployGhosttyConfig()
@@ -422,9 +422,9 @@ general {
 }
 `
 		hyprPath := filepath.Join(tempDir, ".config", "hypr", "hyprland.conf")
-		err := os.MkdirAll(filepath.Dir(hyprPath), 0755)
+		err := os.MkdirAll(filepath.Dir(hyprPath), 0o755)
 		require.NoError(t, err)
-		err = os.WriteFile(hyprPath, []byte(existingContent), 0644)
+		err = os.WriteFile(hyprPath, []byte(existingContent), 0o644)
 		require.NoError(t, err)
 
 		result, err := cd.deployHyprlandConfig(deps.TerminalKitty, true)
@@ -600,9 +600,9 @@ func TestAlacrittyConfigDeployment(t *testing.T) {
 	t.Run("deploy alacritty config with existing file", func(t *testing.T) {
 		existingContent := "# Old alacritty config\n[window]\nopacity = 0.9\n"
 		alacrittyPath := filepath.Join(tempDir, ".config", "alacritty", "alacritty.toml")
-		err := os.MkdirAll(filepath.Dir(alacrittyPath), 0755)
+		err := os.MkdirAll(filepath.Dir(alacrittyPath), 0o755)
 		require.NoError(t, err)
-		err = os.WriteFile(alacrittyPath, []byte(existingContent), 0644)
+		err = os.WriteFile(alacrittyPath, []byte(existingContent), 0o644)
 		require.NoError(t, err)
 
 		results, err := cd.deployAlacrittyConfig()

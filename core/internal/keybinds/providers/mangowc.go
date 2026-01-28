@@ -218,7 +218,7 @@ func (m *MangoWCProvider) SetBind(key, action, description string, options map[s
 
 	overridePath := m.GetOverridePath()
 
-	if err := os.MkdirAll(filepath.Dir(overridePath), 0755); err != nil {
+	if err := os.MkdirAll(filepath.Dir(overridePath), 0o755); err != nil {
 		return fmt.Errorf("failed to create dms directory: %w", err)
 	}
 
@@ -360,7 +360,7 @@ func (m *MangoWCProvider) getBindSortPriority(action string) int {
 func (m *MangoWCProvider) writeOverrideBinds(binds map[string]*mangowcOverrideBind) error {
 	overridePath := m.GetOverridePath()
 	content := m.generateBindsContent(binds)
-	return os.WriteFile(overridePath, []byte(content), 0644)
+	return os.WriteFile(overridePath, []byte(content), 0o644)
 }
 
 func (m *MangoWCProvider) generateBindsContent(binds map[string]*mangowcOverrideBind) string {

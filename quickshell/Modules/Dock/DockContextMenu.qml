@@ -1,7 +1,6 @@
 import QtQuick
 import Quickshell
 import Quickshell.Wayland
-import Quickshell.Hyprland
 import Quickshell.Widgets
 import qs.Common
 import qs.Services
@@ -19,22 +18,24 @@ PanelWindow {
     property bool hidePin: false
     property var desktopEntry: null
     property bool isDmsWindow: appData?.appId === "org.quickshell"
+    property var dockApps: null
 
-    function showForButton(button, data, dockHeight, hidePinOption, entry, dockScreen) {
+    function showForButton(button, data, dockHeight, hidePinOption, entry, dockScreen, parentDockApps) {
         if (dockScreen) {
-            root.screen = dockScreen
+            root.screen = dockScreen;
         }
 
-        anchorItem = button
-        appData = data
-        dockVisibleHeight = dockHeight || 40
-        hidePin = hidePinOption || false
-        desktopEntry = entry || null
+        anchorItem = button;
+        appData = data;
+        dockVisibleHeight = dockHeight || 40;
+        hidePin = hidePinOption || false;
+        desktopEntry = entry || null;
+        dockApps = parentDockApps || null;
 
-        visible = true
+        visible = true;
     }
     function close() {
-        visible = false
+        visible = false;
     }
 
     screen: null
@@ -55,110 +56,110 @@ PanelWindow {
     onAnchorItemChanged: updatePosition()
     onVisibleChanged: {
         if (visible) {
-            updatePosition()
+            updatePosition();
         }
     }
 
     function updatePosition() {
         if (!anchorItem) {
-            anchorPos = Qt.point(screen.width / 2, screen.height - 100)
-            return
+            anchorPos = Qt.point(screen.width / 2, screen.height - 100);
+            return;
         }
 
-        const dockWindow = anchorItem.Window.window
+        const dockWindow = anchorItem.Window.window;
         if (!dockWindow) {
-            anchorPos = Qt.point(screen.width / 2, screen.height - 100)
-            return
+            anchorPos = Qt.point(screen.width / 2, screen.height - 100);
+            return;
         }
 
-        const buttonPosInDock = anchorItem.mapToItem(dockWindow.contentItem, 0, 0)
-        let actualDockHeight = root.dockVisibleHeight
+        const buttonPosInDock = anchorItem.mapToItem(dockWindow.contentItem, 0, 0);
+        let actualDockHeight = root.dockVisibleHeight;
 
         function findDockBackground(item) {
             if (item.objectName === "dockBackground") {
-                return item
+                return item;
             }
             for (var i = 0; i < item.children.length; i++) {
-                const found = findDockBackground(item.children[i])
+                const found = findDockBackground(item.children[i]);
                 if (found) {
-                    return found
+                    return found;
                 }
             }
-            return null
+            return null;
         }
 
-        const dockBackground = findDockBackground(dockWindow.contentItem)
-        let actualDockWidth = dockWindow.width
+        const dockBackground = findDockBackground(dockWindow.contentItem);
+        let actualDockWidth = dockWindow.width;
         if (dockBackground) {
-            actualDockHeight = dockBackground.height
-            actualDockWidth = dockBackground.width
+            actualDockHeight = dockBackground.height;
+            actualDockWidth = dockBackground.width;
         }
 
-        const isVertical = SettingsData.dockPosition === SettingsData.Position.Left || SettingsData.dockPosition === SettingsData.Position.Right
-        const dockMargin = SettingsData.dockMargin + 16
-        let buttonScreenX, buttonScreenY
+        const isVertical = SettingsData.dockPosition === SettingsData.Position.Left || SettingsData.dockPosition === SettingsData.Position.Right;
+        const dockMargin = SettingsData.dockMargin + 16;
+        let buttonScreenX, buttonScreenY;
 
         if (isVertical) {
-            const dockContentHeight = dockWindow.height
-            const screenHeight = root.screen.height
-            const dockTopMargin = Math.round((screenHeight - dockContentHeight) / 2)
-            buttonScreenY = dockTopMargin + buttonPosInDock.y + anchorItem.height / 2
+            const dockContentHeight = dockWindow.height;
+            const screenHeight = root.screen.height;
+            const dockTopMargin = Math.round((screenHeight - dockContentHeight) / 2);
+            buttonScreenY = dockTopMargin + buttonPosInDock.y + anchorItem.height / 2;
 
             if (SettingsData.dockPosition === SettingsData.Position.Right) {
-                buttonScreenX = root.screen.width - actualDockWidth - dockMargin - 20
+                buttonScreenX = root.screen.width - actualDockWidth - dockMargin - 20;
             } else {
-                buttonScreenX = actualDockWidth + dockMargin + 20
+                buttonScreenX = actualDockWidth + dockMargin + 20;
             }
         } else {
-            const isDockAtBottom = SettingsData.dockPosition === SettingsData.Position.Bottom
+            const isDockAtBottom = SettingsData.dockPosition === SettingsData.Position.Bottom;
 
             if (isDockAtBottom) {
-                buttonScreenY = root.screen.height - actualDockHeight - dockMargin - 20
+                buttonScreenY = root.screen.height - actualDockHeight - dockMargin - 20;
             } else {
-                buttonScreenY = actualDockHeight + dockMargin + 20
+                buttonScreenY = actualDockHeight + dockMargin + 20;
             }
 
-            const dockContentWidth = dockWindow.width
-            const screenWidth = root.screen.width
-            const dockLeftMargin = Math.round((screenWidth - dockContentWidth) / 2)
-            buttonScreenX = dockLeftMargin + buttonPosInDock.x + anchorItem.width / 2
+            const dockContentWidth = dockWindow.width;
+            const screenWidth = root.screen.width;
+            const dockLeftMargin = Math.round((screenWidth - dockContentWidth) / 2);
+            buttonScreenX = dockLeftMargin + buttonPosInDock.x + anchorItem.width / 2;
         }
 
-        anchorPos = Qt.point(buttonScreenX, buttonScreenY)
+        anchorPos = Qt.point(buttonScreenX, buttonScreenY);
     }
 
     Rectangle {
         id: menuContainer
 
         x: {
-            const isVertical = SettingsData.dockPosition === SettingsData.Position.Left || SettingsData.dockPosition === SettingsData.Position.Right
+            const isVertical = SettingsData.dockPosition === SettingsData.Position.Left || SettingsData.dockPosition === SettingsData.Position.Right;
             if (isVertical) {
-                const isDockAtRight = SettingsData.dockPosition === SettingsData.Position.Right
+                const isDockAtRight = SettingsData.dockPosition === SettingsData.Position.Right;
                 if (isDockAtRight) {
-                    return Math.max(10, root.anchorPos.x - width + 30)
+                    return Math.max(10, root.anchorPos.x - width + 30);
                 } else {
-                    return Math.min(root.width - width - 10, root.anchorPos.x - 30)
+                    return Math.min(root.width - width - 10, root.anchorPos.x - 30);
                 }
             } else {
-                const left = 10
-                const right = root.width - width - 10
-                const want = root.anchorPos.x - width / 2
-                return Math.max(left, Math.min(right, want))
+                const left = 10;
+                const right = root.width - width - 10;
+                const want = root.anchorPos.x - width / 2;
+                return Math.max(left, Math.min(right, want));
             }
         }
         y: {
-            const isVertical = SettingsData.dockPosition === SettingsData.Position.Left || SettingsData.dockPosition === SettingsData.Position.Right
+            const isVertical = SettingsData.dockPosition === SettingsData.Position.Left || SettingsData.dockPosition === SettingsData.Position.Right;
             if (isVertical) {
-                const top = 10
-                const bottom = root.height - height - 10
-                const want = root.anchorPos.y - height / 2
-                return Math.max(top, Math.min(bottom, want))
+                const top = 10;
+                const bottom = root.height - height - 10;
+                const want = root.anchorPos.y - height / 2;
+                return Math.max(top, Math.min(bottom, want));
             } else {
-                const isDockAtBottom = SettingsData.dockPosition === SettingsData.Position.Bottom
+                const isDockAtBottom = SettingsData.dockPosition === SettingsData.Position.Bottom;
                 if (isDockAtBottom) {
-                    return Math.max(10, root.anchorPos.y - height + 30)
+                    return Math.max(10, root.anchorPos.y - height + 30);
                 } else {
-                    return Math.min(root.height - height - 10, root.anchorPos.y - 30)
+                    return Math.min(root.height - height - 10, root.anchorPos.y - 30);
                 }
             }
         }
@@ -202,17 +203,18 @@ PanelWindow {
             // Window list for grouped apps
             Repeater {
                 model: {
-                    if (!root.appData || root.appData.type !== "grouped") return []
+                    if (!root.appData || root.appData.type !== "grouped")
+                        return [];
 
-                    const toplevels = []
-                    const allToplevels = ToplevelManager.toplevels.values
+                    const toplevels = [];
+                    const allToplevels = ToplevelManager.toplevels.values;
                     for (let i = 0; i < allToplevels.length; i++) {
-                        const toplevel = allToplevels[i]
+                        const toplevel = allToplevels[i];
                         if (toplevel.appId === root.appData.appId) {
-                            toplevels.push(toplevel)
+                            toplevels.push(toplevel);
                         }
                     }
-                    return toplevels
+                    return toplevels;
                 }
 
                 Rectangle {
@@ -227,7 +229,7 @@ PanelWindow {
                         anchors.right: closeButton.left
                         anchors.rightMargin: Theme.spacingXS
                         anchors.verticalCenter: parent.verticalCenter
-                        text: (modelData && modelData.title) ? modelData.title: I18n.tr("(Unnamed)")
+                        text: (modelData && modelData.title) ? modelData.title : I18n.tr("(Unnamed)")
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.surfaceText
                         font.weight: Font.Normal
@@ -259,9 +261,9 @@ PanelWindow {
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
                                 if (modelData && modelData.close) {
-                                    modelData.close()
+                                    modelData.close();
                                 }
-                                root.close()
+                                root.close();
                             }
                         }
                     }
@@ -274,9 +276,9 @@ PanelWindow {
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
                             if (modelData && modelData.activate) {
-                                modelData.activate()
+                                modelData.activate();
                             }
-                            root.close()
+                            root.close();
                         }
                     }
                 }
@@ -284,9 +286,11 @@ PanelWindow {
 
             Rectangle {
                 visible: {
-                    if (!root.appData) return false
-                    if (root.appData.type !== "grouped") return false
-                    return root.appData.windowCount > 0
+                    if (!root.appData)
+                        return false;
+                    if (root.appData.type !== "grouped")
+                        return false;
+                    return root.appData.windowCount > 0;
                 }
                 width: parent.width
                 height: 1
@@ -343,9 +347,9 @@ PanelWindow {
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
                             if (modelData) {
-                                SessionService.launchDesktopAction(root.desktopEntry, modelData)
+                                SessionService.launchDesktopAction(root.desktopEntry, modelData);
                             }
-                            root.close()
+                            root.close();
                         }
                     }
                 }
@@ -354,9 +358,9 @@ PanelWindow {
             Rectangle {
                 visible: {
                     if (!root.desktopEntry?.actions || root.desktopEntry.actions.length === 0) {
-                        return false
+                        return false;
                     }
-                    return !root.hidePin || (!root.isDmsWindow && root.desktopEntry && SessionService.nvidiaCommand)
+                    return !root.hidePin || (!root.isDmsWindow && root.desktopEntry && SessionService.nvidiaCommand);
                 }
                 width: parent.width
                 height: 1
@@ -390,26 +394,26 @@ PanelWindow {
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
-                        if (!root.appData) {
-                            return
-                        }
+                        if (!root.appData)
+                            return;
+
                         if (root.appData.isPinned) {
-                            SessionData.removePinnedApp(root.appData.appId)
+                            SessionData.removePinnedApp(root.appData.appId);
                         } else {
-                            SessionData.addPinnedApp(root.appData.appId)
+                            SessionData.addPinnedApp(root.appData.appId);
                         }
-                        root.close()
+                        root.close();
                     }
                 }
             }
 
             Rectangle {
                 visible: {
-                    const hasNvidia = !root.isDmsWindow && root.desktopEntry && SessionService.nvidiaCommand
-                    const hasWindow = root.appData && (root.appData.type === "window" || (root.appData.type === "grouped" && root.appData.windowCount > 0))
-                    const hasPinOption = !root.hidePin
-                    const hasContentAbove = hasPinOption || hasNvidia
-                    return hasContentAbove && hasWindow
+                    const hasNvidia = !root.isDmsWindow && root.desktopEntry && SessionService.nvidiaCommand;
+                    const hasWindow = root.appData && (root.appData.type === "window" || (root.appData.type === "grouped" && root.appData.windowCount > 0));
+                    const hasPinOption = !root.hidePin;
+                    const hasContentAbove = hasPinOption || hasNvidia;
+                    return hasContentAbove && hasWindow;
                 }
                 width: parent.width
                 height: 1
@@ -444,9 +448,9 @@ PanelWindow {
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
                         if (root.desktopEntry) {
-                            SessionService.launchDesktopEntry(root.desktopEntry, true)
+                            SessionService.launchDesktopEntry(root.desktopEntry, true);
                         }
-                        root.close()
+                        root.close();
                     }
                 }
             }
@@ -466,9 +470,9 @@ PanelWindow {
                     anchors.verticalCenter: parent.verticalCenter
                     text: {
                         if (root.appData && root.appData.type === "grouped") {
-                            return "Close All Windows"
+                            return "Close All Windows";
                         }
-                        return "Close Window"
+                        return "Close Window";
                     }
                     font.pixelSize: Theme.fontSizeSmall
                     color: closeArea.containsMouse ? Theme.error : Theme.surfaceText
@@ -484,11 +488,11 @@ PanelWindow {
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
                         if (root.appData?.type === "window") {
-                            root.appData?.toplevel?.close()
+                            root.appData?.toplevel?.close();
                         } else if (root.appData?.type === "grouped") {
-                            root.appData?.allWindows?.forEach(window => window.toplevel?.close())
+                            root.appData?.allWindows?.forEach(window => window.toplevel?.close());
                         }
-                        root.close()
+                        root.close();
                     }
                 }
             }

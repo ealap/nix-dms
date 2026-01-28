@@ -115,7 +115,7 @@ Item {
         anchors.fill: parent
         hoverEnabled: true
         enabled: true
-        preventStealing: true
+        preventStealing: dragging || longPressing
         cursorShape: longPressing ? Qt.DragMoveCursor : Qt.PointingHandCursor
         acceptedButtons: Qt.LeftButton
         onPressed: mouse => {

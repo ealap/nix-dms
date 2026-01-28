@@ -223,7 +223,7 @@ bind=SUPER,n,switch_layout
 bind=ALT+SHIFT,X,incgaps,1
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -285,7 +285,7 @@ bind=ALT,Left,focusdir,left
 bind=Ctrl,1,view,1,0
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 

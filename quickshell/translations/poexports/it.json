@@ -282,7 +282,7 @@
     "Anonymous Identity (optional)": "Identità anonima (facoltativa)"
   },
   "App Customizations": {
-    "App Customizations": ""
+    "App Customizations": "Personalizzazioni App"
   },
   "App ID Substitutions": {
     "App ID Substitutions": "Sostituzioni App ID"
@@ -309,10 +309,10 @@
     "Apply warm color temperature to reduce eye strain. Use automation settings below to control when it activates.": "Applica una temperatura colore più calda per ridurre l'affaticamento visivo. Usa le impostazioni di automazione qui sotto per controllare quando attivarla."
   },
   "Apps": {
-    "Apps": ""
+    "Apps": "App"
   },
   "Apps Dock": {
-    "Apps Dock": ""
+    "Apps Dock": "App della Dock"
   },
   "Apps Icon": {
     "Apps Icon": "Icona App"
@@ -321,7 +321,7 @@
     "Apps are ordered by usage frequency, then last used, then alphabetically.": "Le applicazioni sono ordinate per frequenza d'uso, poi per ultimo utilizzo, e infine in ordine alfabetico."
   },
   "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": {
-    "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": ""
+    "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": "App con nome visualizzato, icona o opzioni di avvio personalizzati. Fai clic con il tasto destro su un'app e seleziona 'Modifica app' per personalizzare."
   },
   "Arrange displays and configure resolution, refresh rate, and VRR": {
     "Arrange displays and configure resolution, refresh rate, and VRR": "Disponi gli schermi e configura risoluzione, frequenza di aggiornamento e VRR"
@@ -423,7 +423,7 @@
     "Autoconnect enabled": "Connessione automatica abilitata"
   },
   "Automatic Color Mode": {
-    "Automatic Color Mode": ""
+    "Automatic Color Mode": "Modalità Colore Automatica"
   },
   "Automatic Control": {
     "Automatic Control": "Controllo Automatico"
@@ -450,7 +450,7 @@
     "Automatically lock the screen when the system prepares to suspend": "Blocca automaticamente lo schermo quando il sistema si prepara alla sospensione"
   },
   "Automation": {
-    "Automation": ""
+    "Automation": "Automazione"
   },
   "Available": {
     "Available": "Disponibile"
@@ -597,7 +597,7 @@
     "Browse Plugins": "Sfoglia Plugin"
   },
   "Browse or search plugins": {
-    "Browse or search plugins": ""
+    "Browse or search plugins": "Sfoglia o Cerca Plugin"
   },
   "CPU": {
     "CPU": "CPU"
@@ -630,10 +630,10 @@
     "CUPS not available": "CUPS non disponibile"
   },
   "Calc": {
-    "Calc": ""
+    "Calc": "Calc"
   },
   "Calculator": {
-    "Calculator": ""
+    "Calculator": "Calcolatrice"
   },
   "Camera": {
     "Camera": "Fotocamera"
@@ -687,7 +687,7 @@
     "Choose Color": "Scegli colore"
   },
   "Choose Dock Launcher Logo Color": {
-    "Choose Dock Launcher Logo Color": ""
+    "Choose Dock Launcher Logo Color": "Scegli il Colore del Logo del Dock Launcher"
   },
   "Choose Launcher Logo Color": {
     "Choose Launcher Logo Color": "Scegli il Colore del Logo del Launcher"
@@ -726,7 +726,7 @@
     "Choose which monitor shows the lock screen interface. Other monitors will display a solid color for OLED burn-in protection.": "Scegli quale monitor mostra l'interfaccia della schermata di blocco. Gli altri monitor visualizzeranno un colore solido per proteggere gli schermi OLED dal burn-in."
   },
   "Chroma Style": {
-    "Chroma Style": ""
+    "Chroma Style": "Stile Chroma"
   },
   "Cipher": {
     "Cipher": "Cifratura"
@@ -804,13 +804,13 @@
     "Close": "Chiudi"
   },
   "Close All Windows": {
-    "Close All Windows": ""
+    "Close All Windows": "Chiudi Tutte le Finestre"
   },
   "Close Overview on Launch": {
     "Close Overview on Launch": "Chiudi Panoramica all'Avvio"
   },
   "Close Window": {
-    "Close Window": ""
+    "Close Window": "Chiudi Finestra"
   },
   "Color": {
     "Color": "Colore"
@@ -843,10 +843,10 @@
     "Color temperature for night mode": "Temperatura colore per la modalità notturna"
   },
   "Color theme for syntax highlighting.": {
-    "Color theme for syntax highlighting.": ""
+    "Color theme for syntax highlighting.": "Tema colori per l'evidenziazione della sintassi."
   },
   "Color theme for syntax highlighting. %1 themes available.": {
-    "Color theme for syntax highlighting. %1 themes available.": ""
+    "Color theme for syntax highlighting. %1 themes available.": "Tema colori per l'evidenziazione della sintassi. %1 temi disponibili."
   },
   "Colorful mix of bright contrasting accents.": {
     "Colorful mix of bright contrasting accents.": "Mix colorato di accenti contrastanti brillanti."
@@ -858,7 +858,7 @@
     "Command": "Comando"
   },
   "Commands": {
-    "Commands": ""
+    "Commands": "Comandi"
   },
   "Communication": {
     "Communication": "Comunicazione"
@@ -950,11 +950,14 @@
   "Control Center": {
     "Control Center": "Centro di Controllo"
   },
+  "Control Center Tile Color": {
+    "Control Center Tile Color": ""
+  },
   "Control currently playing media": {
     "Control currently playing media": "Controllo media attualmente in riproduzione"
   },
   "Control which plugins appear in 'All' mode without requiring a trigger prefix. Drag to reorder.": {
-    "Control which plugins appear in 'All' mode without requiring a trigger prefix. Drag to reorder.": ""
+    "Control which plugins appear in 'All' mode without requiring a trigger prefix. Drag to reorder.": "Controlla quali plugin appaiono nella modalità 'Tutti' senza richiedere un prefisso di attivazione. Trascina per riordinare."
   },
   "Control workspaces and columns by scrolling on the bar": {
     "Control workspaces and columns by scrolling on the bar": "Controlla spazi di lavoro e colonne scorrendo sulla barra"
@@ -964,6 +967,15 @@
   },
   "Cooldown": {
     "Cooldown": "Tempo di Attesa"
+  },
+  "Copied GIF": {
+    "Copied GIF": ""
+  },
+  "Copied MP4": {
+    "Copied MP4": ""
+  },
+  "Copied WebP": {
+    "Copied WebP": ""
   },
   "Copied to clipboard": {
     "Copied to clipboard": "Copiato negli appunti"
@@ -978,7 +990,7 @@
     "Copy Full Command": "Copia Comando Completo"
   },
   "Copy HTML": {
-    "Copy HTML": ""
+    "Copy HTML": "Copia HTML"
   },
   "Copy Name": {
     "Copy Name": "Copia nome"
@@ -990,13 +1002,13 @@
     "Copy Process Name": "Copia Nome Processo"
   },
   "Copy Text": {
-    "Copy Text": ""
+    "Copy Text": "Copia Testo"
   },
   "Copy URL": {
-    "Copy URL": ""
+    "Copy URL": "Copia URL"
   },
   "Copy path": {
-    "Copy path": ""
+    "Copy path": "Copia Percorso"
   },
   "Corner Radius": {
     "Corner Radius": "Raggio degli Angoli"
@@ -1056,7 +1068,7 @@
     "Cursor Size": "Dimensione Cursore"
   },
   "Cursor Theme": {
-    "Cursor Theme": "Tema del Cursore"
+    "Cursor Theme": "Tema Cursore"
   },
   "Custom": {
     "Custom": "Personalizzato"
@@ -1365,7 +1377,7 @@
     "Dock Transparency": "Trasparenza Dock"
   },
   "Dock Visibility": {
-    "Dock Visibility": "Visibilità della Dock"
+    "Dock Visibility": "Visibilità Dock"
   },
   "Docs": {
     "Docs": "Documentazione"
@@ -1407,7 +1419,7 @@
     "Edge Spacing": "Spaziatura del Bordo"
   },
   "Edit App": {
-    "Edit App": ""
+    "Edit App": "Modifica app"
   },
   "Education": {
     "Education": "Istruzione"
@@ -1458,7 +1470,7 @@
     "Enable loginctl lock integration": "Abilita l'integrazione di blocco loginctl"
   },
   "Enable media player controls on the lock screen window": {
-    "Show Media Player": ""
+    "Show Media Player": "Mostra Lettore Multimediale"
   },
   "Enable password field display on the lock screen window": {
     "Show Password Field": "Mostra Campo Password"
@@ -1497,7 +1509,7 @@
     "Enter PIN for ": "Inserisci PIN per "
   },
   "Enter a new name for this workspace": {
-    "Enter a new name for this workspace": ""
+    "Enter a new name for this workspace": "Inserisci un nuovo nome per questo spazio di lavoro"
   },
   "Enter a search query": {
     "Enter a search query": "Inserisci una query di ricerca"
@@ -1539,7 +1551,7 @@
     "Entry unpinned": "Voce sbloccata"
   },
   "Environment Variables": {
-    "Environment Variables": ""
+    "Environment Variables": "Variabili d'Ambiente"
   },
   "Error": {
     "Error": "Errore"
@@ -1557,7 +1569,7 @@
     "Exponential": "Esponenziale"
   },
   "Extra Arguments": {
-    "Extra Arguments": ""
+    "Extra Arguments": "Argomenti Aggiuntivi"
   },
   "F1/I: Toggle • F10: Help": {
     "F1/I: Toggle • F10: Help": "F1/I: Cambia • F10: Aiuto"
@@ -1749,7 +1761,7 @@
     "File Information": "Informazioni File"
   },
   "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": {
-    "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": ""
+    "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": "La ricerca file richiede dsearch\\nInstalla da github.com/morelazers/dsearch"
   },
   "Files": {
     "Files": "File"
@@ -1950,7 +1962,7 @@
     "HSV": "HSV"
   },
   "HTML copied to clipboard": {
-    "HTML copied to clipboard": ""
+    "HTML copied to clipboard": "HTML copiato negli appunti"
   },
   "Health": {
     "Health": "Salute"
@@ -1971,16 +1983,16 @@
     "Hidden": "Nascosto"
   },
   "Hidden Apps": {
-    "Hidden Apps": ""
+    "Hidden Apps": "App Nascoste"
   },
   "Hidden Network": {
     "Hidden Network": "Rete Nascosta"
   },
   "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": {
-    "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": ""
+    "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": "Le app nascoste non appariranno nel launcher. Fai clic col tasto destro su un'app e seleziona 'Nascondi app' per nasconderla."
   },
   "Hide App": {
-    "Hide App": ""
+    "Hide App": "Nascondi App"
   },
   "Hide Delay": {
     "Hide Delay": "Ritardo Nascondi"
@@ -2052,7 +2064,7 @@
     "Humidity": "Umidità"
   },
   "Hyprland Layout Overrides": {
-    "Hyprland Layout Overrides": "Sovrascritture Layout di Hyprland"
+    "Hyprland Layout Overrides": "Sovrascritture Layout Hyprland"
   },
   "I Understand": {
     "I Understand": "Ho capito"
@@ -2064,7 +2076,7 @@
     "IP Address:": "Indirizzo IP:"
   },
   "Icon": {
-    "Icon": ""
+    "Icon": "Icona"
   },
   "Icon Size": {
     "Icon Size": "Dimensione Icona"
@@ -2106,7 +2118,7 @@
     "Include Transitions": "Includi Transizioni"
   },
   "Include desktop actions (shortcuts) in search results.": {
-    "Include desktop actions (shortcuts) in search results.": ""
+    "Include desktop actions (shortcuts) in search results.": "Includi azioni desktop (scorciatoie) nei risultati di ricerca."
   },
   "Incompatible Plugins Loaded": {
     "Incompatible Plugins Loaded": "Plugin Incompatibili Caricati"
@@ -2203,6 +2215,9 @@
   "KDE Connect connected status": {
     "Connected": "Connesso"
   },
+  "KDE Connect connected status | network status": {
+    "Connected": ""
+  },
   "KDE Connect daemon hint": {
     "Start kdeconnectd to use this plugin": "Avvia kdeconnectd per utilizzare questo plugin"
   },
@@ -2213,17 +2228,17 @@
     "Failed to reject pairing": "Impossibile rifiutare l’associazione",
     "Failed to ring device": "Impossibile far squillare il dispositivo",
     "Failed to send clipboard": "Impossibile inviare gli appunti",
-    "Failed to send file": "",
+    "Failed to send file": "Impossibile Inviare il File",
     "Failed to send ping": "Impossibile inviare il ping",
     "Failed to share": "Impossibile condividere",
     "Pairing failed": "Associazione non riuscita",
     "Unpair failed": "Dissociazione non riuscita"
   },
   "KDE Connect file browser title": {
-    "Select File to Send": ""
+    "Select File to Send": "Seleziona File da Inviare"
   },
   "KDE Connect file send": {
-    "Sending": ""
+    "Sending": "Invio in Corso"
   },
   "KDE Connect file share notification": {
     "File received from": "File ricevuto da"
@@ -2236,6 +2251,9 @@
   },
   "KDE Connect no devices status": {
     "No devices": "Nessun dispositivo"
+  },
+  "KDE Connect no devices status | bluetooth status": {
+    "No devices": ""
   },
   "KDE Connect not paired status": {
     "Not paired": "Non associato"
@@ -2291,7 +2309,7 @@
     "Ring": "Fai squillare"
   },
   "KDE Connect send file button": {
-    "Send File": ""
+    "Send File": "Invia File"
   },
   "KDE Connect service unavailable message": {
     "KDE Connect unavailable": "KDE Connect non è disponibile"
@@ -2300,13 +2318,13 @@
     "Share URL": "Condividi URL"
   },
   "KDE Connect share button": {
-    "Share Text": ""
+    "Share Text": "Condividi Testo"
   },
   "KDE Connect share button | KDE Connect share dialog title | KDE Connect share tooltip": {
     "Share": "Condividi"
   },
   "KDE Connect share dialog title | KDE Connect share tooltip": {
-    "Share": ""
+    "Share": "Condividi"
   },
   "KDE Connect share input placeholder": {
     "Enter URL or text to share": "Inserisci un URL o un testo da condividere"
@@ -2331,6 +2349,9 @@
   },
   "KDE Connect unavailable status": {
     "Unavailable": "Non Disponibile"
+  },
+  "KDE Connect unknown device status | battery status | power profile option | unknown author | widget status": {
+    "Unknown": ""
   },
   "KDE Connect unknown device status | unknown author": {
     "Unknown": "Sconosciuto"
@@ -2381,10 +2402,10 @@
     "LED device": "Dispositivo LED"
   },
   "Large": {
-    "Large": ""
+    "Large": "Grande"
   },
   "Largest": {
-    "Largest": ""
+    "Largest": "Molto Grande"
   },
   "Last launched %1": {
     "Last launched %1": "Ultimo avvio %1"
@@ -2405,7 +2426,7 @@
     "Latitude": "Latitudine"
   },
   "Launch": {
-    "Launch": "Avvio"
+    "Launch": "Avvia"
   },
   "Launch Prefix": {
     "Launch Prefix": "Prefisso Avvio"
@@ -2417,7 +2438,7 @@
     "Launcher": "Launcher"
   },
   "Launcher Button": {
-    "Launcher Button": ""
+    "Launcher Button": "Pulsante del Launcher"
   },
   "Launcher Button Logo": {
     "Launcher Button Logo": "Logo Pulsante Launcher"
@@ -2459,7 +2480,7 @@
     "Loading plugins...": "Caricamento plugin..."
   },
   "Loading trending...": {
-    "Loading trending...": ""
+    "Loading trending...": "Caricamento tendenze..."
   },
   "Loading...": {
     "Loading...": "Caricando..."
@@ -2534,7 +2555,7 @@
     "Management": "Gestione"
   },
   "MangoWC Layout Overrides": {
-    "MangoWC Layout Overrides": "Sovrascritture Layout di MangoWC"
+    "MangoWC Layout Overrides": "Sovrascritture Layout MangoWC"
   },
   "Manual Coordinates": {
     "Manual Coordinates": "Coordinate Manuali"
@@ -2798,7 +2819,7 @@
     "Niri Integration": "Integrazione Niri"
   },
   "Niri Layout Overrides": {
-    "Niri Layout Overrides": "Sovrascritture Layout di Niri"
+    "Niri Layout Overrides": "Sovrascritture Layout Niri"
   },
   "Niri compositor actions (focus, move, etc.)": {
     "Niri compositor actions (focus, move, etc.)": "Azioni del compositor Niri (focus, muovi, etc.)"
@@ -2837,10 +2858,10 @@
     "No adapters": "Nessun Adattatore"
   },
   "No app customizations.": {
-    "No app customizations.": ""
+    "No app customizations.": "Nessuna personalizzazione app."
   },
   "No apps found": {
-    "No apps found": ""
+    "No apps found": "Nessuna app trovata"
   },
   "No battery": {
     "No battery": "Nessuna batteria"
@@ -2873,7 +2894,7 @@
     "No files found": "Nessun file trovato"
   },
   "No hidden apps.": {
-    "No hidden apps.": ""
+    "No hidden apps.": "Nessuna app nascosta."
   },
   "No items added yet": {
     "No items added yet": "Nessun elemento aggiunto ancora"
@@ -2882,13 +2903,13 @@
     "No keybinds found": "Nessuna scorciatoia trovata"
   },
   "No launcher plugins installed.": {
-    "No launcher plugins installed.": ""
+    "No launcher plugins installed.": "Nessun plugin del launcher installato."
   },
   "No matches": {
     "No matches": "Nessun risultato"
   },
   "No plugin results": {
-    "No plugin results": ""
+    "No plugin results": "Nessun risultato plugin"
   },
   "No plugins found": {
     "No plugins found": "Nessun plugin trovato"
@@ -2909,13 +2930,13 @@
     "No recent clipboard entries found": "Nessuna voce recente negli appunti"
   },
   "No results found": {
-    "No results found": ""
+    "No results found": "Nessun risultato trovato"
   },
   "No saved clipboard entries": {
     "No saved clipboard entries": "Nessuna voce degli appunti salvata"
   },
   "No trigger": {
-    "No trigger": ""
+    "No trigger": "Nessun attivatore"
   },
   "No variants created. Click Add to create a new monitor widget.": {
     "No variants created. Click Add to create a new monitor widget.": "Nessuna variante creata. Fai clic su Aggiungi per creare un nuovo widget monitor."
@@ -3029,10 +3050,10 @@
     "Open Notepad File": "Apri file Blocco Note"
   },
   "Open folder": {
-    "Open folder": ""
+    "Open folder": "Apri cartella"
   },
   "Open in Browser": {
-    "Open in Browser": ""
+    "Open in Browser": "Apri nel Browser"
   },
   "Open search bar to find text": {
     "Open search bar to find text": "Apri barra di ricerca per cercare testo"
@@ -3101,7 +3122,7 @@
     "PIN": "PIN"
   },
   "Pad Hours": {
-    "Pad Hours": ""
+    "Pad Hours": "Zero Iniziale Ore"
   },
   "Padding": {
     "Padding": "Spaziatura Interna"
@@ -3170,7 +3191,7 @@
     "Pinned": "Fissato"
   },
   "Pinned and running apps with drag-and-drop": {
-    "Pinned and running apps with drag-and-drop": ""
+    "Pinned and running apps with drag-and-drop": "App fissate e in esecuzione con trascinamento"
   },
   "Place plugin directories here. Each plugin should have a plugin.json manifest file.": {
     "Place plugin directories here. Each plugin should have a plugin.json manifest file.": "Posiziona la cartella dei plugin qui. Ogni plugin deve avere un file manifesto plugin.json."
@@ -3209,7 +3230,7 @@
     "Plugin Management": "Gestione Plugin"
   },
   "Plugin Visibility": {
-    "Plugin Visibility": ""
+    "Plugin Visibility": "Visibilità Plugin"
   },
   "Plugin is disabled - enable in Plugins settings to use": {
     "Plugin is disabled - enable in Plugins settings to use": "Plugin disabilitato - per usarlo, attivalo nelle impostazioni Plugin"
@@ -3290,7 +3311,7 @@
     "Prevent screen timeout": "Previeni timeout schermo"
   },
   "Preview": {
-    "Preview": ""
+    "Preview": "Anteprima"
   },
   "Primary": {
     "Primary": "Primario"
@@ -3407,10 +3428,10 @@
     "Remove gaps and border when windows are maximized": "Rimuovi spazi e bordo quando le finestre sono massimizzate"
   },
   "Rename": {
-    "Rename": ""
+    "Rename": "Rinomina"
   },
   "Rename Workspace": {
-    "Rename Workspace": ""
+    "Rename Workspace": "Rinomina Spazio di Lavoro"
   },
   "Repeat": {
     "Repeat": "Ripetizione"
@@ -3590,10 +3611,10 @@
     "Scrolling": "Scorrimento"
   },
   "Search App Actions": {
-    "Search App Actions": ""
+    "Search App Actions": "Cerca Azioni App"
   },
   "Search Options": {
-    "Search Options": ""
+    "Search Options": "Opzioni di Ricerca"
   },
   "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
     "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": "Cerca per combinazione di tasti, descrizione o nome azione.\\n\\nL'azione predefinita copia la scorciatoia negli appunti.\\nClic-destro o Freccia Destra per fissare le scorciatoie frequenti - appariranno in cima quando non si cerca."
@@ -3635,7 +3656,7 @@
     "Security": "Sicurezza"
   },
   "Select": {
-    "Select": ""
+    "Select": "Seleziona"
   },
   "Select Application": {
     "Select Application": "Seleziona Applicazione"
@@ -3716,7 +3737,7 @@
     "Setup": "Configurazione"
   },
   "Share Gamma Control Settings": {
-    "Share Gamma Control Settings": ""
+    "Share Gamma Control Settings": "Condividi Impostazioni Controllo Gamma"
   },
   "Shell": {
     "Shell": "Shell"
@@ -3725,7 +3746,7 @@
     "Shift+Del: Clear All • Esc: Close": "Shift+Canc: Elimina tutto • Esc: Chiudi"
   },
   "Shift+Enter to paste": {
-    "Shift+Enter to paste": ""
+    "Shift+Enter to paste": "Shift+Invio per incollare"
   },
   "Shift+Enter: Paste • Shift+Del: Clear All • Esc: Close": {
     "Shift+Enter: Paste • Shift+Del: Clear All • Esc: Close": "Shift+Invio: Incolla • Shift+Canc: Cancella Tutto • Esc: Chiudi"
@@ -3785,7 +3806,7 @@
     "Show Humidity": "Mostra Umidità"
   },
   "Show Launcher Button": {
-    "Show Launcher Button": ""
+    "Show Launcher Button": "Mostra Pulsante Launcher"
   },
   "Show Line Numbers": {
     "Show Line Numbers": "Mostra Numero Righe"
@@ -3965,7 +3986,7 @@
     "Sizing": "Dimensionamento"
   },
   "Small": {
-    "Small": ""
+    "Small": "Piccolo"
   },
   "Smartcard Authentication": {
     "Smartcard Authentication": "Autenticazione Tramite Smart Card"
@@ -4289,10 +4310,10 @@
     "Transparency": "Trasparenza"
   },
   "Trending GIFs": {
-    "Trending GIFs": ""
+    "Trending GIFs": "GIF di Tendenza"
   },
   "Trending Stickers": {
-    "Trending Stickers": ""
+    "Trending Stickers": "Sticker di Tendenza"
   },
   "Trigger": {
     "Trigger": "Attivatore"
@@ -4301,10 +4322,10 @@
     "Trigger Prefix": "Prefisso Attivatore"
   },
   "Trigger: %1": {
-    "Trigger: %1": ""
+    "Trigger: %1": "Attivatore: %1"
   },
   "Try a different search": {
-    "Try a different search": ""
+    "Try a different search": "Prova una ricerca diversa"
   },
   "Turn off all displays immediately when the lock screen activates": {
     "Turn off all displays immediately when the lock screen activates": "Spegni immediatamente tutti gli schermi quando si attiva la schermata di blocco"
@@ -4316,19 +4337,19 @@
     "Type": "Tipo"
   },
   "Type at least 2 characters": {
-    "Type at least 2 characters": ""
+    "Type at least 2 characters": "Digita almeno 2 caratteri"
   },
   "Type this prefix to search keybinds": {
     "Type this prefix to search keybinds": "Digita questo prefisso per cercare scorciatoie"
   },
   "Type to search": {
-    "Type to search": ""
+    "Type to search": "Scrivi per cercare"
   },
   "Type to search apps": {
-    "Type to search apps": ""
+    "Type to search apps": "Scrivi per cercare app"
   },
   "Type to search files": {
-    "Type to search files": ""
+    "Type to search files": "Scrivi per cercare file"
   },
   "Typography": {
     "Typography": "Tipografia"
@@ -4448,7 +4469,7 @@
     "Use light theme instead of dark theme": "Usa tema chiaro invece del tema scuro"
   },
   "Use meters per second instead of km/h for wind speed": {
-    "Use meters per second instead of km/h for wind speed": ""
+    "Use meters per second instead of km/h for wind speed": "Usa metri al secondo invece di km/h per la velocità del vento"
   },
   "Use smaller notification cards": {
     "Use smaller notification cards": "Usa schede di notifica più piccole"
@@ -4478,13 +4499,13 @@
     "Username": "Nome Utente"
   },
   "Uses sunrise/sunset times based on your location.": {
-    "Uses sunrise/sunset times based on your location.": ""
+    "Uses sunrise/sunset times based on your location.": "Utilizza gli orari di alba/tramonto in base alla tua posizione."
   },
   "Uses sunrise/sunset times to automatically adjust night mode based on your location.": {
     "Uses sunrise/sunset times to automatically adjust night mode based on your location.": "Usa ore alba/tramonto per regolare automaticamente la modalità notte in base alla tua posizione."
   },
   "Using shared settings from Gamma Control": {
-    "Using shared settings from Gamma Control": ""
+    "Using shared settings from Gamma Control": "Utilizzo delle impostazioni condivise di Gamma Control"
   },
   "Utilities": {
     "Utilities": "Utilità"
@@ -4650,7 +4671,7 @@
     "Widget Style": "Stile Widget"
   },
   "Widget Styling": {
-    "Widget Styling": "Stile del Widget"
+    "Widget Styling": "Aspetto Widget"
   },
   "Widget Transparency": {
     "Widget Transparency": "Trasparenza Widget"
@@ -4687,7 +4708,7 @@
     "Wind Speed": "Velocità Vento"
   },
   "Wind Speed in m/s": {
-    "Wind Speed in m/s": ""
+    "Wind Speed in m/s": "Velocità del Vento in m/s"
   },
   "Window Corner Radius": {
     "Window Corner Radius": "Raggio Angoli Finestra"
@@ -4705,7 +4726,7 @@
     "Workspace": "Spazio di Lavoro"
   },
   "Workspace Appearance": {
-    "Workspace Appearance": "Aspetto degli Spazi di Lavoro"
+    "Workspace Appearance": "Aspetto Spazi di Lavoro"
   },
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "Numeri Indice Spazi di Lavoro"
@@ -4723,7 +4744,7 @@
     "Workspace Switcher": "Switcher Spazi di Lavoro"
   },
   "Workspace name": {
-    "Workspace name": ""
+    "Workspace name": "Nome dello Spazio di Lavoro"
   },
   "Workspaces": {
     "Workspaces": "Spazi di Lavoro"
@@ -4753,10 +4774,16 @@
     "You have unsaved changes. Save before opening a file?": "Ci sono modifiche non salvate. Salvare prima di aprire un file?"
   },
   "actions": {
-    "actions": ""
+    "actions": "azioni"
   },
   "apps": {
     "apps": "app"
+  },
+  "audio status": {
+    "Muted": "",
+    "No input device": "",
+    "No output device": "",
+    "Select device": ""
   },
   "author attribution": {
     "by %1": "di %1"
@@ -4764,17 +4791,50 @@
   "bar shadow settings card": {
     "Shadow": "Ombra"
   },
+  "battery status": {
+    "Charging": "",
+    "Discharging": "",
+    "Empty": "",
+    "Fully Charged": "",
+    "No Battery": "",
+    "Pending Charge": "",
+    "Pending Discharge": "",
+    "Plugged In": ""
+  },
+  "bluetooth status": {
+    "Bluetooth": "",
+    "Connected Device": "",
+    "Enabled": "",
+    "No adapter": "",
+    "No adapters": "",
+    "Off": ""
+  },
+  "bluetooth status | lock screen notification mode option": {
+    "Disabled": ""
+  },
   "border color": {
-    "Color": ""
+    "Color": "Colore"
   },
   "border thickness": {
-    "Thickness": ""
+    "Thickness": "Spessore"
   },
   "browse themes button | theme browser header | theme browser window title": {
     "Browse Themes": "Sfoglia Temi"
   },
   "catppuccin theme description": {
     "Soothing pastel theme based on Catppuccin": "Tema pastello rilassante basato su Catppuccin"
+  },
+  "color option | primary color | tile color option": {
+    "Primary": ""
+  },
+  "color option | secondary color | tile color option": {
+    "Secondary": ""
+  },
+  "color option | shadow color option": {
+    "Surface": ""
+  },
+  "control center tile color setting description": {
+    "Active tile background and icon color": ""
   },
   "current theme label": {
     "Current Theme: %1": "Tema corrente: %1"
@@ -4790,6 +4850,18 @@
   },
   "dark mode wallpaper file browser title | light mode wallpaper file browser title | wallpaper file browser title": {
     "Select Wallpaper": "Seleziona Sfondo"
+  },
+  "date format option": {
+    "Custom...": "",
+    "Day Date": "",
+    "Day Month Date": "",
+    "Full Day & Month": "",
+    "Full with Year": "",
+    "ISO Date": "",
+    "Month Date": "",
+    "Numeric (D/M)": "",
+    "Numeric (M/D)": "",
+    "System Default": ""
   },
   "days": {
     "days": "giorni"
@@ -4820,6 +4892,16 @@
   },
   "dms/outputs config exists but is not included in your compositor config. Display changes won't persist.": {
     "dms/outputs config exists but is not included in your compositor config. Display changes won't persist.": "La configurazione dms/outputs esiste ma non è inclusa nella configurazione del compositor. Le modifiche allo schermo non saranno persistenti."
+  },
+  "dock indicator style option": {
+    "Circle": "",
+    "Line": ""
+  },
+  "dock position option": {
+    "Bottom": "",
+    "Left": "",
+    "Right": "",
+    "Top": ""
   },
   "dynamic colors description": {
     "Dynamic colors from wallpaper": "Colori dinamici dallo sfondo"
@@ -5028,19 +5110,19 @@
     "Installed": "Installato"
   },
   "launcher appearance settings": {
-    "Appearance": ""
+    "Appearance": "Aspetto"
   },
   "launcher border option": {
-    "Border": ""
+    "Border": "Bordo"
   },
   "launcher footer description": {
-    "Show mode tabs and keyboard hints at the bottom.": ""
+    "Show mode tabs and keyboard hints at the bottom.": "Mostra schede modalità e suggerimenti tastiera in basso."
   },
   "launcher footer visibility": {
-    "Show Footer": ""
+    "Show Footer": "Mostra Piè di Pagina"
   },
   "launcher size option": {
-    "Size": ""
+    "Size": "Dimensione"
   },
   "leave empty for default": {
     "leave empty for default": "lascia vuoto per il valore predefinito"
@@ -5064,6 +5146,17 @@
   "loginctl not available - lock integration requires DMS socket connection": {
     "loginctl not available - lock integration requires DMS socket connection": "loginctl non disponibile - integrazione blocco richiede connessione socket DMS"
   },
+  "matugen color scheme option": {
+    "Content": "",
+    "Expressive": "",
+    "Fidelity": "",
+    "Fruit Salad": "",
+    "Monochrome": "",
+    "Neutral": "",
+    "Rainbow": "",
+    "Tonal Spot": "",
+    "Vibrant": ""
+  },
   "matugen error": {
     "matugen not found - install matugen package for dynamic theming": "matugen non trovato - installa il pacchetto matugen per il theming dinamico"
   },
@@ -5072,6 +5165,11 @@
   },
   "matugen not found status": {
     "Matugen Missing": "Matugen Mancante"
+  },
+  "media scroll wheel option": {
+    "Change Song": "",
+    "Change Volume": "",
+    "Nothing": ""
   },
   "minutes": {
     "minutes": "minuti"
@@ -5083,7 +5181,16 @@
     "ms": "ms"
   },
   "nav": {
-    "nav": ""
+    "nav": "nav"
+  },
+  "network status": {
+    "Disabling WiFi...": "",
+    "Enabling WiFi...": "",
+    "Ethernet": "",
+    "Not connected": "",
+    "Please wait...": "",
+    "Select network": "",
+    "WiFi off": ""
   },
   "no custom theme file status": {
     "No custom theme file": "Nessun file tema personalizzato"
@@ -5142,10 +5249,10 @@
     "official": "ufficiale"
   },
   "open": {
-    "open": ""
+    "open": "apri"
   },
   "outline color": {
-    "Outline": ""
+    "Outline": "Contorno"
   },
   "plugin browser description": {
     "Install plugins from the DMS plugin registry": "Installa plugin dal registro plugin DMS"
@@ -5162,8 +5269,19 @@
   "plugin search placeholder": {
     "Search plugins...": "Cerca plugin..."
   },
+  "power profile description": {
+    "Balance power and performance": "",
+    "Custom power profile": "",
+    "Extend battery life": "",
+    "Prioritize performance": ""
+  },
+  "power profile option": {
+    "Balanced": "",
+    "Performance": "",
+    "Power Saver": ""
+  },
   "primary color": {
-    "Primary": ""
+    "Primary": "Primario"
   },
   "process count label in footer": {
     "Processes:": "Processi:"
@@ -5183,8 +5301,18 @@
   "registry theme description": {
     "Color theme from DMS registry": "Tema colore dal registro DMS"
   },
+  "screen position option": {
+    "Bottom Center": "",
+    "Bottom Left": "",
+    "Bottom Right": "",
+    "Left Center": "",
+    "Right Center": "",
+    "Top Center": "",
+    "Top Left": "",
+    "Top Right": ""
+  },
   "secondary color": {
-    "Secondary": ""
+    "Secondary": "Secondario"
   },
   "seconds": {
     "seconds": "secondi"
@@ -5200,7 +5328,7 @@
     "Text": "Testo"
   },
   "shadow color option | text color": {
-    "Text": ""
+    "Text": "Testo"
   },
   "shadow intensity slider": {
     "Intensity": "Intensità"
@@ -5227,6 +5355,12 @@
   "theme browser description": {
     "Install color themes from the DMS theme registry": "Installa temi colore dal registro temi DMS"
   },
+  "theme category option": {
+    "Auto": "",
+    "Browse": "",
+    "Custom": "",
+    "Generic": ""
+  },
   "theme installation confirmation": {
     "Install theme '%1' from the DMS registry?": "Installa il tema '%1' dal registro DMS?"
   },
@@ -5235,6 +5369,10 @@
   },
   "theme search placeholder": {
     "Search themes...": "Cerca temi..."
+  },
+  "tile color option": {
+    "Primary Container": "",
+    "Surface Variant": ""
   },
   "uninstall action button": {
     "Uninstall": "Disinstalla"
@@ -5269,6 +5407,15 @@
   "wallpaper error status": {
     "Wallpaper Error": "Errore Sfondo"
   },
+  "wallpaper fill mode": {
+    "Fill": "",
+    "Fit": "",
+    "Pad": "",
+    "Stretch": "",
+    "Tile": "",
+    "Tile H": "",
+    "Tile V": ""
+  },
   "wallpaper processing error": {
     "Wallpaper processing failed": "Elaborazione dello sfondo fallita"
   },
@@ -5279,10 +5426,25 @@
     "Disable Built-in Wallpapers": "Disabilita Sfondi Incorporati"
   },
   "wallpaper settings external management": {
-    "External Wallpaper Management": "Gestore di Sfondi Esterno"
+    "External Wallpaper Management": "Gestore Sfondi Esterno"
+  },
+  "wallpaper transition option": {
+    "Disc": "",
+    "Fade": "",
+    "Iris Bloom": "",
+    "None": "",
+    "Pixelate": "",
+    "Portal": "",
+    "Random": "",
+    "Stripes": "",
+    "Wipe": ""
   },
   "weather feels like temperature": {
-    "Feels Like %1°": ""
+    "Feels Like %1°": "Percepita %1°"
+  },
+  "widget style option": {
+    "Colorful": "",
+    "Default": ""
   },
   "wtype not available - install wtype for paste support": {
     "wtype not available - install wtype for paste support": "wtype non disponibile – installa wtype per il supporto alla funzione incolla"

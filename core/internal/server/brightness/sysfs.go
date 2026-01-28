@@ -186,7 +186,7 @@ func (b *SysfsBackend) SetBrightnessWithExponent(id string, percent int, exponen
 	brightnessPath := filepath.Join(devicePath, "brightness")
 
 	data := []byte(fmt.Sprintf("%d", value))
-	if err := os.WriteFile(brightnessPath, data, 0644); err != nil {
+	if err := os.WriteFile(brightnessPath, data, 0o644); err != nil {
 		return fmt.Errorf("write brightness: %w", err)
 	}
 

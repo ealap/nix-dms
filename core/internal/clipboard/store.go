@@ -60,7 +60,7 @@ func StoreWithConfig(data []byte, mimeType string, cfg StoreConfig) error {
 		return fmt.Errorf("get db path: %w", err)
 	}
 
-	db, err := bolt.Open(dbPath, 0644, &bolt.Options{Timeout: 1 * time.Second})
+	db, err := bolt.Open(dbPath, 0o644, &bolt.Options{Timeout: 1 * time.Second})
 	if err != nil {
 		return fmt.Errorf("open db: %w", err)
 	}
@@ -132,7 +132,7 @@ func GetDBPath() (string, error) {
 	oldPath := filepath.Join(oldDir, "db")
 
 	if _, err := os.Stat(oldPath); err == nil {
-		if err := os.MkdirAll(newDir, 0700); err != nil {
+		if err := os.MkdirAll(newDir, 0o700); err != nil {
 			return "", err
 		}
 		if err := os.Rename(oldPath, newPath); err != nil {
@@ -142,7 +142,7 @@ func GetDBPath() (string, error) {
 		return newPath, nil
 	}
 
-	if err := os.MkdirAll(newDir, 0700); err != nil {
+	if err := os.MkdirAll(newDir, 0o700); err != nil {
 		return "", err
 	}
 	return newPath, nil

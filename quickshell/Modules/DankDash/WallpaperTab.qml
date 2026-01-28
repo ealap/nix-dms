@@ -445,6 +445,15 @@ Item {
                             }
                         }
 
+                        Rectangle {
+                            id: maskRect
+                            width: thumbnailImage.width
+                            height: thumbnailImage.height
+                            radius: Theme.cornerRadius
+                            visible: false
+                            layer.enabled: true
+                        }
+
                         CachingImage {
                             id: thumbnailImage
                             anchors.fill: parent
@@ -456,13 +465,7 @@ Item {
                                 maskEnabled: true
                                 maskThresholdMin: 0.5
                                 maskSpreadAtMin: 1.0
-                                maskSource: ShaderEffectSource {
-                                    sourceItem: Rectangle {
-                                        width: thumbnailImage.width
-                                        height: thumbnailImage.height
-                                        radius: Theme.cornerRadius
-                                    }
-                                }
+                                maskSource: maskRect
                             }
                         }
 

@@ -75,60 +75,59 @@ Item {
                     settingKey: "clockDateFormat"
                     text: I18n.tr("Top Bar Format")
                     description: "Preview: " + (SettingsData.clockDateFormat ? new Date().toLocaleDateString(Qt.locale(), SettingsData.clockDateFormat) : new Date().toLocaleDateString(Qt.locale(), "ddd d"))
-                    options: ["System Default", "Day Date", "Day Month Date", "Month Date", "Numeric (M/D)", "Numeric (D/M)", "Full with Year", "ISO Date", "Full Day & Month", "Custom..."]
+                    options: [I18n.tr("System Default", "date format option"), I18n.tr("Day Date", "date format option"), I18n.tr("Day Month Date", "date format option"), I18n.tr("Month Date", "date format option"), I18n.tr("Numeric (M/D)", "date format option"), I18n.tr("Numeric (D/M)", "date format option"), I18n.tr("Full with Year", "date format option"), I18n.tr("ISO Date", "date format option"), I18n.tr("Full Day & Month", "date format option"), I18n.tr("Custom...", "date format option")]
                     currentValue: {
                         if (!SettingsData.clockDateFormat || SettingsData.clockDateFormat.length === 0)
-                            return "System Default";
+                            return I18n.tr("System Default", "date format option");
                         const presets = [
                             {
                                 "format": "ddd d",
-                                "label": "Day Date"
+                                "label": I18n.tr("Day Date", "date format option")
                             },
                             {
                                 "format": "ddd MMM d",
-                                "label": "Day Month Date"
+                                "label": I18n.tr("Day Month Date", "date format option")
                             },
                             {
                                 "format": "MMM d",
-                                "label": "Month Date"
+                                "label": I18n.tr("Month Date", "date format option")
                             },
                             {
                                 "format": "M/d",
-                                "label": "Numeric (M/D)"
+                                "label": I18n.tr("Numeric (M/D)", "date format option")
                             },
                             {
                                 "format": "d/M",
-                                "label": "Numeric (D/M)"
+                                "label": I18n.tr("Numeric (D/M)", "date format option")
                             },
                             {
                                 "format": "ddd d MMM yyyy",
-                                "label": "Full with Year"
+                                "label": I18n.tr("Full with Year", "date format option")
                             },
                             {
                                 "format": "yyyy-MM-dd",
-                                "label": "ISO Date"
+                                "label": I18n.tr("ISO Date", "date format option")
                             },
                             {
                                 "format": "dddd, MMMM d",
-                                "label": "Full Day & Month"
+                                "label": I18n.tr("Full Day & Month", "date format option")
                             }
                         ];
                         const match = presets.find(p => p.format === SettingsData.clockDateFormat);
                         return match ? match.label : I18n.tr("Custom: ") + SettingsData.clockDateFormat;
                     }
                     onValueChanged: value => {
-                        const formatMap = {
-                            "System Default": "",
-                            "Day Date": "ddd d",
-                            "Day Month Date": "ddd MMM d",
-                            "Month Date": "MMM d",
-                            "Numeric (M/D)": "M/d",
-                            "Numeric (D/M)": "d/M",
-                            "Full with Year": "ddd d MMM yyyy",
-                            "ISO Date": "yyyy-MM-dd",
-                            "Full Day & Month": "dddd, MMMM d"
-                        };
-                        if (value === "Custom...") {
+                        const formatMap = {};
+                        formatMap[I18n.tr("System Default", "date format option")] = "";
+                        formatMap[I18n.tr("Day Date", "date format option")] = "ddd d";
+                        formatMap[I18n.tr("Day Month Date", "date format option")] = "ddd MMM d";
+                        formatMap[I18n.tr("Month Date", "date format option")] = "MMM d";
+                        formatMap[I18n.tr("Numeric (M/D)", "date format option")] = "M/d";
+                        formatMap[I18n.tr("Numeric (D/M)", "date format option")] = "d/M";
+                        formatMap[I18n.tr("Full with Year", "date format option")] = "ddd d MMM yyyy";
+                        formatMap[I18n.tr("ISO Date", "date format option")] = "yyyy-MM-dd";
+                        formatMap[I18n.tr("Full Day & Month", "date format option")] = "dddd, MMMM d";
+                        if (value === I18n.tr("Custom...", "date format option")) {
                             customFormatInput.visible = true;
                         } else {
                             customFormatInput.visible = false;
@@ -163,60 +162,59 @@ Item {
                     settingKey: "lockDateFormat"
                     text: I18n.tr("Lock Screen Format")
                     description: "Preview: " + (SettingsData.lockDateFormat ? new Date().toLocaleDateString(Qt.locale(), SettingsData.lockDateFormat) : new Date().toLocaleDateString(Qt.locale(), Locale.LongFormat))
-                    options: ["System Default", "Day Date", "Day Month Date", "Month Date", "Numeric (M/D)", "Numeric (D/M)", "Full with Year", "ISO Date", "Full Day & Month", "Custom..."]
+                    options: [I18n.tr("System Default", "date format option"), I18n.tr("Day Date", "date format option"), I18n.tr("Day Month Date", "date format option"), I18n.tr("Month Date", "date format option"), I18n.tr("Numeric (M/D)", "date format option"), I18n.tr("Numeric (D/M)", "date format option"), I18n.tr("Full with Year", "date format option"), I18n.tr("ISO Date", "date format option"), I18n.tr("Full Day & Month", "date format option"), I18n.tr("Custom...", "date format option")]
                     currentValue: {
                         if (!SettingsData.lockDateFormat || SettingsData.lockDateFormat.length === 0)
-                            return "System Default";
+                            return I18n.tr("System Default", "date format option");
                         const presets = [
                             {
                                 "format": "ddd d",
-                                "label": "Day Date"
+                                "label": I18n.tr("Day Date", "date format option")
                             },
                             {
                                 "format": "ddd MMM d",
-                                "label": "Day Month Date"
+                                "label": I18n.tr("Day Month Date", "date format option")
                             },
                             {
                                 "format": "MMM d",
-                                "label": "Month Date"
+                                "label": I18n.tr("Month Date", "date format option")
                             },
                             {
                                 "format": "M/d",
-                                "label": "Numeric (M/D)"
+                                "label": I18n.tr("Numeric (M/D)", "date format option")
                             },
                             {
                                 "format": "d/M",
-                                "label": "Numeric (D/M)"
+                                "label": I18n.tr("Numeric (D/M)", "date format option")
                             },
                             {
                                 "format": "ddd d MMM yyyy",
-                                "label": "Full with Year"
+                                "label": I18n.tr("Full with Year", "date format option")
                             },
                             {
                                 "format": "yyyy-MM-dd",
-                                "label": "ISO Date"
+                                "label": I18n.tr("ISO Date", "date format option")
                             },
                             {
                                 "format": "dddd, MMMM d",
-                                "label": "Full Day & Month"
+                                "label": I18n.tr("Full Day & Month", "date format option")
                             }
                         ];
                         const match = presets.find(p => p.format === SettingsData.lockDateFormat);
                         return match ? match.label : I18n.tr("Custom: ") + SettingsData.lockDateFormat;
                     }
                     onValueChanged: value => {
-                        const formatMap = {
-                            "System Default": "",
-                            "Day Date": "ddd d",
-                            "Day Month Date": "ddd MMM d",
-                            "Month Date": "MMM d",
-                            "Numeric (M/D)": "M/d",
-                            "Numeric (D/M)": "d/M",
-                            "Full with Year": "ddd d MMM yyyy",
-                            "ISO Date": "yyyy-MM-dd",
-                            "Full Day & Month": "dddd, MMMM d"
-                        };
-                        if (value === "Custom...") {
+                        const formatMap = {};
+                        formatMap[I18n.tr("System Default", "date format option")] = "";
+                        formatMap[I18n.tr("Day Date", "date format option")] = "ddd d";
+                        formatMap[I18n.tr("Day Month Date", "date format option")] = "ddd MMM d";
+                        formatMap[I18n.tr("Month Date", "date format option")] = "MMM d";
+                        formatMap[I18n.tr("Numeric (M/D)", "date format option")] = "M/d";
+                        formatMap[I18n.tr("Numeric (D/M)", "date format option")] = "d/M";
+                        formatMap[I18n.tr("Full with Year", "date format option")] = "ddd d MMM yyyy";
+                        formatMap[I18n.tr("ISO Date", "date format option")] = "yyyy-MM-dd";
+                        formatMap[I18n.tr("Full Day & Month", "date format option")] = "dddd, MMMM d";
+                        if (value === I18n.tr("Custom...", "date format option")) {
                             customLockFormatInput.visible = true;
                         } else {
                             customLockFormatInput.visible = false;

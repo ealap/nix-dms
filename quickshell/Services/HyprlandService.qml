@@ -14,12 +14,22 @@ Singleton {
     readonly property string outputsPath: hyprDmsDir + "/outputs.conf"
     readonly property string layoutPath: hyprDmsDir + "/layout.conf"
     readonly property string cursorPath: hyprDmsDir + "/cursor.conf"
+    readonly property string windowrulesPath: hyprDmsDir + "/windowrules.conf"
 
     property int _lastGapValue: -1
 
     Component.onCompleted: {
-        if (CompositorService.isHyprland)
+        if (CompositorService.isHyprland) {
             Qt.callLater(generateLayoutConfig);
+            ensureWindowrulesConfig();
+        }
+    }
+
+    function ensureWindowrulesConfig() {
+        Proc.runCommand("hypr-ensure-windowrules", ["sh", "-c", `mkdir -p "${hyprDmsDir}" && [ ! -f "${windowrulesPath}" ] && touch "${windowrulesPath}" || true`], (output, exitCode) => {
+            if (exitCode !== 0)
+                console.warn("HyprlandService: Failed to ensure windowrules.conf:", output);
+        });
     }
 
     Connections {

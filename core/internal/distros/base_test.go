@@ -43,7 +43,7 @@ func TestBaseDistribution_detectDMS_Installed(t *testing.T) {
 
 	tempDir := t.TempDir()
 	dmsPath := filepath.Join(tempDir, ".config", "quickshell", "dms")
-	os.MkdirAll(dmsPath, 0755)
+	os.MkdirAll(dmsPath, 0o755)
 
 	originalHome := os.Getenv("HOME")
 	defer os.Setenv("HOME", originalHome)
@@ -55,7 +55,7 @@ func TestBaseDistribution_detectDMS_Installed(t *testing.T) {
 	exec.Command("git", "-C", dmsPath, "checkout", "-b", "master").Run()
 
 	testFile := filepath.Join(dmsPath, "test.txt")
-	os.WriteFile(testFile, []byte("test"), 0644)
+	os.WriteFile(testFile, []byte("test"), 0o644)
 	exec.Command("git", "-C", dmsPath, "add", ".").Run()
 	exec.Command("git", "-C", dmsPath, "commit", "-m", "initial").Run()
 
@@ -87,7 +87,7 @@ func TestBaseDistribution_detectDMS_NeedsUpdate(t *testing.T) {
 
 	tempDir := t.TempDir()
 	dmsPath := filepath.Join(tempDir, ".config", "quickshell", "dms")
-	os.MkdirAll(dmsPath, 0755)
+	os.MkdirAll(dmsPath, 0o755)
 
 	originalHome := os.Getenv("HOME")
 	defer os.Setenv("HOME", originalHome)
@@ -99,7 +99,7 @@ func TestBaseDistribution_detectDMS_NeedsUpdate(t *testing.T) {
 	exec.Command("git", "-C", dmsPath, "remote", "add", "origin", "https://github.com/AvengeMedia/DankMaterialShell.git").Run()
 
 	testFile := filepath.Join(dmsPath, "test.txt")
-	os.WriteFile(testFile, []byte("test"), 0644)
+	os.WriteFile(testFile, []byte("test"), 0o644)
 	exec.Command("git", "-C", dmsPath, "add", ".").Run()
 	exec.Command("git", "-C", dmsPath, "commit", "-m", "initial").Run()
 	exec.Command("git", "-C", dmsPath, "tag", "v0.0.1").Run()
@@ -125,7 +125,7 @@ func TestBaseDistribution_detectDMS_NeedsUpdate(t *testing.T) {
 func TestBaseDistribution_detectDMS_DirectoryWithoutGit(t *testing.T) {
 	tempDir := t.TempDir()
 	dmsPath := filepath.Join(tempDir, ".config", "quickshell", "dms")
-	os.MkdirAll(dmsPath, 0755)
+	os.MkdirAll(dmsPath, 0o755)
 
 	originalHome := os.Getenv("HOME")
 	defer os.Setenv("HOME", originalHome)

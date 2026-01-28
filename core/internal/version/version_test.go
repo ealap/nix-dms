@@ -39,10 +39,10 @@ func TestGetDMSVersionInfo_Structure(t *testing.T) {
 	// Create a temp directory with a fake DMS installation
 	tempDir := t.TempDir()
 	dmsPath := filepath.Join(tempDir, ".config", "quickshell", "dms")
-	os.MkdirAll(dmsPath, 0755)
+	os.MkdirAll(dmsPath, 0o755)
 
 	// Create a .git directory to simulate git installation
-	os.MkdirAll(filepath.Join(dmsPath, ".git"), 0755)
+	os.MkdirAll(filepath.Join(dmsPath, ".git"), 0o755)
 
 	originalHome := os.Getenv("HOME")
 	defer os.Setenv("HOME", originalHome)
@@ -84,8 +84,8 @@ func TestGetDMSVersionInfo_Structure(t *testing.T) {
 func TestGetDMSVersionInfo_BranchVersion(t *testing.T) {
 	tempDir := t.TempDir()
 	dmsPath := filepath.Join(tempDir, ".config", "quickshell", "dms")
-	os.MkdirAll(dmsPath, 0755)
-	os.MkdirAll(filepath.Join(dmsPath, ".git"), 0755)
+	os.MkdirAll(dmsPath, 0o755)
+	os.MkdirAll(filepath.Join(dmsPath, ".git"), 0o755)
 
 	originalHome := os.Getenv("HOME")
 	defer os.Setenv("HOME", originalHome)
@@ -116,8 +116,8 @@ func TestGetDMSVersionInfo_BranchVersion(t *testing.T) {
 func TestGetDMSVersionInfo_NoUpdate(t *testing.T) {
 	tempDir := t.TempDir()
 	dmsPath := filepath.Join(tempDir, ".config", "quickshell", "dms")
-	os.MkdirAll(dmsPath, 0755)
-	os.MkdirAll(filepath.Join(dmsPath, ".git"), 0755)
+	os.MkdirAll(dmsPath, 0o755)
+	os.MkdirAll(filepath.Join(dmsPath, ".git"), 0o755)
 
 	originalHome := os.Getenv("HOME")
 	defer os.Setenv("HOME", originalHome)
@@ -157,7 +157,7 @@ func TestGetCurrentDMSVersion_GitTag(t *testing.T) {
 
 	tempDir := t.TempDir()
 	dmsPath := filepath.Join(tempDir, ".config", "quickshell", "dms")
-	os.MkdirAll(dmsPath, 0755)
+	os.MkdirAll(dmsPath, 0o755)
 
 	originalHome := os.Getenv("HOME")
 	defer os.Setenv("HOME", originalHome)
@@ -168,7 +168,7 @@ func TestGetCurrentDMSVersion_GitTag(t *testing.T) {
 	exec.Command("git", "-C", dmsPath, "config", "user.name", "Test User").Run()
 
 	testFile := filepath.Join(dmsPath, "test.txt")
-	os.WriteFile(testFile, []byte("test"), 0644)
+	os.WriteFile(testFile, []byte("test"), 0o644)
 	exec.Command("git", "-C", dmsPath, "add", ".").Run()
 	exec.Command("git", "-C", dmsPath, "commit", "-m", "initial").Run()
 	exec.Command("git", "-C", dmsPath, "tag", "v0.1.0").Run()
@@ -190,7 +190,7 @@ func TestGetCurrentDMSVersion_GitBranch(t *testing.T) {
 
 	tempDir := t.TempDir()
 	dmsPath := filepath.Join(tempDir, ".config", "quickshell", "dms")
-	os.MkdirAll(dmsPath, 0755)
+	os.MkdirAll(dmsPath, 0o755)
 
 	originalHome := os.Getenv("HOME")
 	defer os.Setenv("HOME", originalHome)
@@ -202,7 +202,7 @@ func TestGetCurrentDMSVersion_GitBranch(t *testing.T) {
 	exec.Command("git", "-C", dmsPath, "checkout", "-b", "master").Run()
 
 	testFile := filepath.Join(dmsPath, "test.txt")
-	os.WriteFile(testFile, []byte("test"), 0644)
+	os.WriteFile(testFile, []byte("test"), 0o644)
 	exec.Command("git", "-C", dmsPath, "add", ".").Run()
 	exec.Command("git", "-C", dmsPath, "commit", "-m", "initial").Run()
 

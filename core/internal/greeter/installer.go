@@ -235,7 +235,7 @@ func SetupParentDirectoryACLs(logFunc func(string), sudoPassword string) error {
 
 	for _, dir := range parentDirs {
 		if _, err := os.Stat(dir.path); os.IsNotExist(err) {
-			if err := os.MkdirAll(dir.path, 0755); err != nil {
+			if err := os.MkdirAll(dir.path, 0o755); err != nil {
 				logFunc(fmt.Sprintf("⚠ Warning: Could not create %s: %v", dir.desc, err))
 				continue
 			}
@@ -295,7 +295,7 @@ func SetupDMSGroup(logFunc func(string), sudoPassword string) error {
 
 	for _, dir := range configDirs {
 		if _, err := os.Stat(dir.path); os.IsNotExist(err) {
-			if err := os.MkdirAll(dir.path, 0755); err != nil {
+			if err := os.MkdirAll(dir.path, 0o755); err != nil {
 				logFunc(fmt.Sprintf("⚠ Warning: Could not create %s: %v", dir.path, err))
 				continue
 			}
@@ -355,14 +355,14 @@ func SyncDMSConfigs(dmsPath string, logFunc func(string), sudoPassword string) e
 	for _, link := range symlinks {
 		sourceDir := filepath.Dir(link.source)
 		if _, err := os.Stat(sourceDir); os.IsNotExist(err) {
-			if err := os.MkdirAll(sourceDir, 0755); err != nil {
+			if err := os.MkdirAll(sourceDir, 0o755); err != nil {
 				logFunc(fmt.Sprintf("⚠ Warning: Could not create directory %s: %v", sourceDir, err))
 				continue
 			}
 		}
 
 		if _, err := os.Stat(link.source); os.IsNotExist(err) {
-			if err := os.WriteFile(link.source, []byte("{}"), 0644); err != nil {
+			if err := os.WriteFile(link.source, []byte("{}"), 0o644); err != nil {
 				logFunc(fmt.Sprintf("⚠ Warning: Could not create %s: %v", link.source, err))
 				continue
 			}
@@ -455,7 +455,7 @@ user = "greeter"
 	newConfig := strings.Join(finalLines, "\n")
 
 	tmpFile := "/tmp/greetd-config.toml"
-	if err := os.WriteFile(tmpFile, []byte(newConfig), 0644); err != nil {
+	if err := os.WriteFile(tmpFile, []byte(newConfig), 0o644); err != nil {
 		return fmt.Errorf("failed to write temp config: %w", err)
 	}
 

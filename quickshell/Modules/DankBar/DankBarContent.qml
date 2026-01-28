@@ -19,6 +19,7 @@ Item {
     property var rightWidgetsModel
 
     readonly property real innerPadding: barConfig?.innerPadding ?? 4
+    readonly property real outlineThickness: (barConfig?.widgetOutlineEnabled ?? false) ? (barConfig?.widgetOutlineThickness ?? 1) : 0
 
     property alias hLeftSection: hLeftSection
     property alias hCenterSection: hCenterSection
@@ -30,8 +31,8 @@ Item {
     anchors.fill: parent
     anchors.leftMargin: Math.max(Theme.spacingXS, innerPadding * 0.8)
     anchors.rightMargin: Math.max(Theme.spacingXS, innerPadding * 0.8)
-    anchors.topMargin: barWindow.isVertical ? (barWindow.hasAdjacentTopBar ? 0 : Theme.spacingXS) : 0
-    anchors.bottomMargin: barWindow.isVertical ? (barWindow.hasAdjacentBottomBar ? 0 : Theme.spacingXS) : 0
+    anchors.topMargin: barWindow.isVertical ? (barWindow.hasAdjacentTopBar ? outlineThickness : Theme.spacingXS) : 0
+    anchors.bottomMargin: barWindow.isVertical ? (barWindow.hasAdjacentBottomBar ? outlineThickness : Theme.spacingXS) : 0
     clip: false
 
     property int componentMapRevision: 0

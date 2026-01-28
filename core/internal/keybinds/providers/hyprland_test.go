@@ -57,7 +57,7 @@ bind = SUPER, T, exec, kitty # Terminal
 bind = SUPER, 1, workspace, 1
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -134,7 +134,7 @@ func TestFormatKey(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if err := os.WriteFile(configFile, []byte(tt.content), 0644); err != nil {
+			if err := os.WriteFile(configFile, []byte(tt.content), 0o644); err != nil {
 				t.Fatalf("Failed to write test config: %v", err)
 			}
 
@@ -189,7 +189,7 @@ func TestDescriptionFallback(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if err := os.WriteFile(configFile, []byte(tt.content), 0644); err != nil {
+			if err := os.WriteFile(configFile, []byte(tt.content), 0o644); err != nil {
 				t.Fatalf("Failed to write test config: %v", err)
 			}
 

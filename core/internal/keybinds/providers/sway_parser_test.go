@@ -200,7 +200,7 @@ bindsym $mod+t exec $term
 bindsym $mod+d exec $menu
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -247,7 +247,7 @@ bindsym $mod+Right focus right
 bindsym $mod+t exec kitty # Terminal
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -328,13 +328,13 @@ func TestSwayReadContentWithTildeExpansion(t *testing.T) {
 	}
 
 	tmpSubdir := filepath.Join(homeDir, ".config", "test-sway-"+t.Name())
-	if err := os.MkdirAll(tmpSubdir, 0755); err != nil {
+	if err := os.MkdirAll(tmpSubdir, 0o755); err != nil {
 		t.Skip("Cannot create test directory in home")
 	}
 	defer os.RemoveAll(tmpSubdir)
 
 	configFile := filepath.Join(tmpSubdir, "config")
-	if err := os.WriteFile(configFile, []byte("bindsym Mod4+q kill\n"), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte("bindsym Mod4+q kill\n"), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -365,7 +365,7 @@ bindsym Mod4+q kill
 bindsym Mod4+t exec kitty
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -404,7 +404,7 @@ bindsym $mod+2 workspace number 2
 bindsym $mod+Shift+1 move container to workspace number 1
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 

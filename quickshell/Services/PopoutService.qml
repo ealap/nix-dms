@@ -33,6 +33,7 @@ Singleton {
     property var polkitAuthModalLoader: null
     property var bluetoothPairingModal: null
     property var networkInfoModal: null
+    property var windowRuleModalLoader: null
 
     property var notepadSlideouts: []
 

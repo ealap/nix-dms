@@ -20,5 +20,10 @@ jobs:
       - name: Add a flatpak that mutagen could support
         run: sudo flatpak install -y org.freedesktop.Platform/x86_64/24.08 app.zen_browser.zen
 
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: core/go.mod
+
       - name: run pre-commit hooks
         uses: j178/prek-action@v1

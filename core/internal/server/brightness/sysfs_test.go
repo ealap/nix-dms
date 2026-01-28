@@ -136,26 +136,26 @@ func TestSysfsBackend_ScanDevices(t *testing.T) {
 	tmpDir := t.TempDir()
 
 	backlightDir := filepath.Join(tmpDir, "backlight", "test_backlight")
-	if err := os.MkdirAll(backlightDir, 0755); err != nil {
+	if err := os.MkdirAll(backlightDir, 0o755); err != nil {
 		t.Fatal(err)
 	}
 
-	if err := os.WriteFile(filepath.Join(backlightDir, "max_brightness"), []byte("100\n"), 0644); err != nil {
+	if err := os.WriteFile(filepath.Join(backlightDir, "max_brightness"), []byte("100\n"), 0o644); err != nil {
 		t.Fatal(err)
 	}
-	if err := os.WriteFile(filepath.Join(backlightDir, "brightness"), []byte("50\n"), 0644); err != nil {
+	if err := os.WriteFile(filepath.Join(backlightDir, "brightness"), []byte("50\n"), 0o644); err != nil {
 		t.Fatal(err)
 	}
 
 	ledsDir := filepath.Join(tmpDir, "leds", "test_led")
-	if err := os.MkdirAll(ledsDir, 0755); err != nil {
+	if err := os.MkdirAll(ledsDir, 0o755); err != nil {
 		t.Fatal(err)
 	}
 
-	if err := os.WriteFile(filepath.Join(ledsDir, "max_brightness"), []byte("255\n"), 0644); err != nil {
+	if err := os.WriteFile(filepath.Join(ledsDir, "max_brightness"), []byte("255\n"), 0o644); err != nil {
 		t.Fatal(err)
 	}
-	if err := os.WriteFile(filepath.Join(ledsDir, "brightness"), []byte("128\n"), 0644); err != nil {
+	if err := os.WriteFile(filepath.Join(ledsDir, "brightness"), []byte("128\n"), 0o644); err != nil {
 		t.Fatal(err)
 	}
 

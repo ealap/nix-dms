@@ -53,7 +53,7 @@ func TestNiriParseBasicBinds(t *testing.T) {
     Mod+T hotkey-overlay-title="Open Terminal" { spawn "kitty"; }
 }
 `
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -112,7 +112,7 @@ func TestNiriParseRecentWindows(t *testing.T) {
     }
 }
 `
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -148,7 +148,7 @@ func TestNiriParseRecentWindows(t *testing.T) {
 func TestNiriParseInclude(t *testing.T) {
 	tmpDir := t.TempDir()
 	subDir := filepath.Join(tmpDir, "dms")
-	if err := os.MkdirAll(subDir, 0755); err != nil {
+	if err := os.MkdirAll(subDir, 0o755); err != nil {
 		t.Fatalf("Failed to create subdir: %v", err)
 	}
 
@@ -165,10 +165,10 @@ include "dms/binds.kdl"
 }
 `
 
-	if err := os.WriteFile(mainConfig, []byte(mainContent), 0644); err != nil {
+	if err := os.WriteFile(mainConfig, []byte(mainContent), 0o644); err != nil {
 		t.Fatalf("Failed to write main config: %v", err)
 	}
-	if err := os.WriteFile(includeConfig, []byte(includeContent), 0644); err != nil {
+	if err := os.WriteFile(includeConfig, []byte(includeContent), 0o644); err != nil {
 		t.Fatalf("Failed to write include config: %v", err)
 	}
 
@@ -185,7 +185,7 @@ include "dms/binds.kdl"
 func TestNiriParseIncludeOverride(t *testing.T) {
 	tmpDir := t.TempDir()
 	subDir := filepath.Join(tmpDir, "dms")
-	if err := os.MkdirAll(subDir, 0755); err != nil {
+	if err := os.MkdirAll(subDir, 0o755); err != nil {
 		t.Fatalf("Failed to create subdir: %v", err)
 	}
 
@@ -202,10 +202,10 @@ include "dms/binds.kdl"
 }
 `
 
-	if err := os.WriteFile(mainConfig, []byte(mainContent), 0644); err != nil {
+	if err := os.WriteFile(mainConfig, []byte(mainContent), 0o644); err != nil {
 		t.Fatalf("Failed to write main config: %v", err)
 	}
-	if err := os.WriteFile(includeConfig, []byte(includeContent), 0644); err != nil {
+	if err := os.WriteFile(includeConfig, []byte(includeContent), 0o644); err != nil {
 		t.Fatalf("Failed to write include config: %v", err)
 	}
 
@@ -246,10 +246,10 @@ include "other.kdl"
 include "config.kdl"
 `
 
-	if err := os.WriteFile(mainConfig, []byte(mainContent), 0644); err != nil {
+	if err := os.WriteFile(mainConfig, []byte(mainContent), 0o644); err != nil {
 		t.Fatalf("Failed to write main config: %v", err)
 	}
-	if err := os.WriteFile(otherConfig, []byte(otherContent), 0644); err != nil {
+	if err := os.WriteFile(otherConfig, []byte(otherContent), 0o644); err != nil {
 		t.Fatalf("Failed to write other config: %v", err)
 	}
 
@@ -272,7 +272,7 @@ func TestNiriParseMissingInclude(t *testing.T) {
 }
 include "nonexistent/file.kdl"
 `
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -301,7 +301,7 @@ input {
     }
 }
 `
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -348,7 +348,7 @@ func TestNiriBindOverrideBehavior(t *testing.T) {
     Mod+T hotkey-overlay-title="Third" { spawn "third"; }
 }
 `
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -386,7 +386,7 @@ func TestNiriBindOverrideBehavior(t *testing.T) {
 func TestNiriBindOverrideWithIncludes(t *testing.T) {
 	tmpDir := t.TempDir()
 	subDir := filepath.Join(tmpDir, "custom")
-	if err := os.MkdirAll(subDir, 0755); err != nil {
+	if err := os.MkdirAll(subDir, 0o755); err != nil {
 		t.Fatalf("Failed to create subdir: %v", err)
 	}
 
@@ -409,10 +409,10 @@ binds {
 }
 `
 
-	if err := os.WriteFile(mainConfig, []byte(mainContent), 0644); err != nil {
+	if err := os.WriteFile(mainConfig, []byte(mainContent), 0o644); err != nil {
 		t.Fatalf("Failed to write main config: %v", err)
 	}
-	if err := os.WriteFile(includeConfig, []byte(includeContent), 0644); err != nil {
+	if err := os.WriteFile(includeConfig, []byte(includeContent), 0o644); err != nil {
 		t.Fatalf("Failed to write include config: %v", err)
 	}
 
@@ -471,7 +471,7 @@ func TestNiriParseMultipleArgs(t *testing.T) {
     }
 }
 `
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -508,7 +508,7 @@ func TestNiriParseNumericWorkspaceBinds(t *testing.T) {
     Mod+Shift+1 hotkey-overlay-title="Move to Workspace 1" { move-column-to-workspace 1; }
 }
 `
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -550,7 +550,7 @@ func TestNiriParseQuotedStringArgs(t *testing.T) {
     Super+Shift+Minus hotkey-overlay-title="Adjust Window Height -10%" { set-window-height "-10%"; }
 }
 `
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -586,7 +586,7 @@ func TestNiriParseActionWithProperties(t *testing.T) {
     Alt+Tab { next-window scope="output"; }
 }
 `
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 

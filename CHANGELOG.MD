@@ -8,6 +8,7 @@ This file is more of a quick reference so I know what to account for before next
 - launcher actions, customize env, args, name, icon
 - launcher v2 - omega stuff, GIF search, supa powerful
 - dock on bar
+- window rule manager, with IPC - #TODO verify RTL layout (niri only)
 
 # 1.2.0
 

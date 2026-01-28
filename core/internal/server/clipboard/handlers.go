@@ -45,6 +45,8 @@ func HandleRequest(conn net.Conn, req models.Request, m *Manager) {
 		handleGetPinnedEntries(conn, req, m)
 	case "clipboard.getPinnedCount":
 		handleGetPinnedCount(conn, req, m)
+	case "clipboard.copyFile":
+		handleCopyFile(conn, req, m)
 	default:
 		models.RespondError(conn, req.ID, "unknown method: "+req.Method)
 	}
@@ -123,6 +125,19 @@ func handleCopyEntry(conn net.Conn, req models.Request, m *Manager) {
 	entry, err := m.GetEntry(uint64(id))
 	if err != nil {
 		models.RespondError(conn, req.ID, err.Error())
+		return
+	}
+
+	filePath := m.EntryToFile(entry)
+	if filePath != "" {
+		if err := m.CopyFile(filePath); err != nil {
+			models.RespondError(conn, req.ID, err.Error())
+			return
+		}
+		models.Respond(conn, req.ID, map[string]any{
+			"success":  true,
+			"filePath": filePath,
+		})
 		return
 	}
 
@@ -280,4 +295,19 @@ func handleGetPinnedEntries(conn net.Conn, req models.Request, m *Manager) {
 func handleGetPinnedCount(conn net.Conn, req models.Request, m *Manager) {
 	count := m.GetPinnedCount()
 	models.Respond(conn, req.ID, map[string]int{"count": count})
+}
+
+func handleCopyFile(conn net.Conn, req models.Request, m *Manager) {
+	filePath, err := params.String(req.Params, "filePath")
+	if err != nil {
+		models.RespondError(conn, req.ID, err.Error())
+		return
+	}
+
+	if err := m.CopyFile(filePath); err != nil {
+		models.RespondError(conn, req.ID, err.Error())
+		return
+	}
+
+	models.Respond(conn, req.ID, models.SuccessResult{Success: true, Message: "copied"})
 }

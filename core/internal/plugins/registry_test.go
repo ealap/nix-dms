@@ -63,13 +63,13 @@ func setupTestRegistry(t *testing.T) (*Registry, afero.Fs, string) {
 
 func createTestPlugin(t *testing.T, fs afero.Fs, dir string, filename string, plugin Plugin) {
 	pluginsDir := filepath.Join(dir, "plugins")
-	err := fs.MkdirAll(pluginsDir, 0755)
+	err := fs.MkdirAll(pluginsDir, 0o755)
 	require.NoError(t, err)
 
 	data, err := json.Marshal(plugin)
 	require.NoError(t, err)
 
-	err = afero.WriteFile(fs, filepath.Join(pluginsDir, filename), data, 0644)
+	err = afero.WriteFile(fs, filepath.Join(pluginsDir, filename), data, 0o644)
 	require.NoError(t, err)
 }
 
@@ -118,10 +118,10 @@ func TestLoadPlugins(t *testing.T) {
 		registry, fs, tmpDir := setupTestRegistry(t)
 
 		pluginsDir := filepath.Join(tmpDir, "plugins")
-		err := fs.MkdirAll(pluginsDir, 0755)
+		err := fs.MkdirAll(pluginsDir, 0o755)
 		require.NoError(t, err)
 
-		err = afero.WriteFile(fs, filepath.Join(pluginsDir, "README.md"), []byte("# Test"), 0644)
+		err = afero.WriteFile(fs, filepath.Join(pluginsDir, "README.md"), []byte("# Test"), 0o644)
 		require.NoError(t, err)
 
 		plugin := Plugin{
@@ -146,7 +146,7 @@ func TestLoadPlugins(t *testing.T) {
 		registry, fs, tmpDir := setupTestRegistry(t)
 
 		pluginsDir := filepath.Join(tmpDir, "plugins")
-		err := fs.MkdirAll(filepath.Join(pluginsDir, "subdir"), 0755)
+		err := fs.MkdirAll(filepath.Join(pluginsDir, "subdir"), 0o755)
 		require.NoError(t, err)
 
 		plugin := Plugin{
@@ -170,10 +170,10 @@ func TestLoadPlugins(t *testing.T) {
 		registry, fs, tmpDir := setupTestRegistry(t)
 
 		pluginsDir := filepath.Join(tmpDir, "plugins")
-		err := fs.MkdirAll(pluginsDir, 0755)
+		err := fs.MkdirAll(pluginsDir, 0o755)
 		require.NoError(t, err)
 
-		err = afero.WriteFile(fs, filepath.Join(pluginsDir, "invalid.json"), []byte("{invalid json}"), 0644)
+		err = afero.WriteFile(fs, filepath.Join(pluginsDir, "invalid.json"), []byte("{invalid json}"), 0o644)
 		require.NoError(t, err)
 
 		plugin := Plugin{
@@ -303,7 +303,7 @@ func TestUpdate(t *testing.T) {
 			Distro:       []string{"any"},
 		}
 
-		err := fs.MkdirAll(tmpDir, 0755)
+		err := fs.MkdirAll(tmpDir, 0o755)
 		require.NoError(t, err)
 
 		pullCalled := false

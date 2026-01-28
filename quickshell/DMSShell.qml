@@ -662,6 +662,18 @@ Item {
     }
 
     LazyLoader {
+        id: windowRuleModalLoader
+
+        active: false
+
+        Component.onCompleted: PopoutService.windowRuleModalLoader = windowRuleModalLoader
+
+        WindowRuleModal {
+            id: windowRuleModal
+        }
+    }
+
+    LazyLoader {
         id: processListModalLoader
 
         active: false
@@ -787,6 +799,7 @@ Item {
         dankBarRepeater: dankBarRepeater
         hyprlandOverviewLoader: hyprlandOverviewLoader
         workspaceRenameModalLoader: workspaceRenameModalLoader
+        windowRuleModalLoader: windowRuleModalLoader
     }
 
     Variants {

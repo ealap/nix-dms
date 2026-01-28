@@ -107,7 +107,7 @@ func GetOutputDir() string {
 
 	if xdgPics := getXDGPicturesDir(); xdgPics != "" {
 		screenshotDir := filepath.Join(xdgPics, "Screenshots")
-		if err := os.MkdirAll(screenshotDir, 0755); err == nil {
+		if err := os.MkdirAll(screenshotDir, 0o755); err == nil {
 			return screenshotDir
 		}
 		return xdgPics

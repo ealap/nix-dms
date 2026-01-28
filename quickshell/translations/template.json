@@ -448,6 +448,13 @@
     "comment": ""
   },
   {
+    "term": "Active tile background and icon color",
+    "translation": "",
+    "context": "control center tile color setting description",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Active: %1",
     "translation": "",
     "context": "",
@@ -975,7 +982,7 @@
   {
     "term": "Auto",
     "translation": "",
-    "context": "",
+    "context": "theme category option",
     "reference": "",
     "comment": ""
   },
@@ -1225,6 +1232,20 @@
     "comment": ""
   },
   {
+    "term": "Balance power and performance",
+    "translation": "",
+    "context": "power profile description",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Balanced",
+    "translation": "",
+    "context": "power profile option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Balanced palette with focused accents (default).",
     "translation": "",
     "context": "",
@@ -1332,7 +1353,7 @@
   {
     "term": "Bluetooth",
     "translation": "",
-    "context": "",
+    "context": "bluetooth status",
     "reference": "",
     "comment": ""
   },
@@ -1409,21 +1430,28 @@
   {
     "term": "Bottom",
     "translation": "",
-    "context": "",
+    "context": "dock position option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Bottom Center",
+    "translation": "",
+    "context": "screen position option",
     "reference": "",
     "comment": ""
   },
   {
     "term": "Bottom Left",
     "translation": "",
-    "context": "",
+    "context": "screen position option",
     "reference": "",
     "comment": ""
   },
   {
     "term": "Bottom Right",
     "translation": "",
-    "context": "",
+    "context": "screen position option",
     "reference": "",
     "comment": ""
   },
@@ -1472,7 +1500,7 @@
   {
     "term": "Browse",
     "translation": "",
-    "context": "",
+    "context": "theme category option",
     "reference": "",
     "comment": ""
   },
@@ -1680,6 +1708,20 @@
     "comment": ""
   },
   {
+    "term": "Change Song",
+    "translation": "",
+    "context": "media scroll wheel option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Change Volume",
+    "translation": "",
+    "context": "media scroll wheel option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Change bar appearance",
     "translation": "",
     "context": "",
@@ -1696,7 +1738,7 @@
   {
     "term": "Charging",
     "translation": "",
-    "context": "",
+    "context": "battery status",
     "reference": "",
     "comment": ""
   },
@@ -1816,6 +1858,13 @@
     "term": "Cipher",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Circle",
+    "translation": "",
+    "context": "dock indicator style option",
     "reference": "",
     "comment": ""
   },
@@ -2100,6 +2149,13 @@
     "comment": ""
   },
   {
+    "term": "Colorful",
+    "translation": "",
+    "context": "widget style option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Colorful mix of bright contrasting accents.",
     "translation": "",
     "context": "",
@@ -2326,7 +2382,14 @@
   {
     "term": "Connected",
     "translation": "",
-    "context": "KDE Connect connected status",
+    "context": "KDE Connect connected status | network status",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Connected Device",
+    "translation": "",
+    "context": "bluetooth status",
     "reference": "",
     "comment": ""
   },
@@ -2352,6 +2415,13 @@
     "comment": ""
   },
   {
+    "term": "Content",
+    "translation": "",
+    "context": "matugen color scheme option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Contrast",
     "translation": "",
     "context": "",
@@ -2362,6 +2432,13 @@
     "term": "Control Center",
     "translation": "",
     "context": "greeter feature card title",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Control Center Tile Color",
+    "translation": "",
+    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -2402,6 +2479,27 @@
   },
   {
     "term": "Cooldown",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Copied GIF",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Copied MP4",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Copied WebP",
     "translation": "",
     "context": "",
     "reference": "",
@@ -2458,13 +2556,6 @@
   },
   {
     "term": "Copy Text",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
-    "term": "Copy URL",
     "translation": "",
     "context": "",
     "reference": "",
@@ -2641,7 +2732,7 @@
   {
     "term": "Custom",
     "translation": "",
-    "context": "",
+    "context": "theme category option",
     "reference": "",
     "comment": ""
   },
@@ -2723,6 +2814,13 @@
     "comment": ""
   },
   {
+    "term": "Custom power profile",
+    "translation": "",
+    "context": "power profile description",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Custom theme loaded from JSON file",
     "translation": "",
     "context": "custom theme description",
@@ -2732,7 +2830,7 @@
   {
     "term": "Custom...",
     "translation": "",
-    "context": "",
+    "context": "date format option",
     "reference": "",
     "comment": ""
   },
@@ -2912,6 +3010,20 @@
     "comment": ""
   },
   {
+    "term": "Day Date",
+    "translation": "",
+    "context": "date format option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Day Month Date",
+    "translation": "",
+    "context": "date format option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Day Temperature",
     "translation": "",
     "context": "",
@@ -2935,7 +3047,7 @@
   {
     "term": "Default",
     "translation": "",
-    "context": "",
+    "context": "widget style option",
     "reference": "",
     "comment": ""
   },
@@ -3124,14 +3236,21 @@
   {
     "term": "Disabled",
     "translation": "",
-    "context": "lock screen notification mode option",
+    "context": "bluetooth status | lock screen notification mode option",
     "reference": "",
     "comment": ""
   },
   {
     "term": "Disabling WiFi...",
     "translation": "",
-    "context": "",
+    "context": "network status",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Disc",
+    "translation": "",
+    "context": "wallpaper transition option",
     "reference": "",
     "comment": ""
   },
@@ -3139,6 +3258,13 @@
     "term": "Discard",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Discharging",
+    "translation": "",
+    "context": "battery status",
     "reference": "",
     "comment": ""
   },
@@ -3523,7 +3649,7 @@
   {
     "term": "Empty",
     "translation": "",
-    "context": "",
+    "context": "battery status",
     "reference": "",
     "comment": ""
   },
@@ -3614,14 +3740,14 @@
   {
     "term": "Enabled",
     "translation": "",
-    "context": "",
+    "context": "bluetooth status",
     "reference": "",
     "comment": ""
   },
   {
     "term": "Enabling WiFi...",
     "translation": "",
-    "context": "",
+    "context": "network status",
     "reference": "",
     "comment": ""
   },
@@ -3775,7 +3901,7 @@
   {
     "term": "Ethernet",
     "translation": "",
-    "context": "",
+    "context": "network status",
     "reference": "",
     "comment": ""
   },
@@ -3808,6 +3934,20 @@
     "comment": ""
   },
   {
+    "term": "Expressive",
+    "translation": "",
+    "context": "matugen color scheme option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Extend battery life",
+    "translation": "",
+    "context": "power profile description",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Extensible architecture",
     "translation": "",
     "context": "greeter feature card description",
@@ -3832,6 +3972,13 @@
     "term": "F1/I: Toggle • F10: Help",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Fade",
+    "translation": "",
+    "context": "wallpaper transition option",
     "reference": "",
     "comment": ""
   },
@@ -4319,6 +4466,13 @@
     "comment": ""
   },
   {
+    "term": "Fidelity",
+    "translation": "",
+    "context": "matugen color scheme option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "File",
     "translation": "",
     "context": "",
@@ -4368,6 +4522,13 @@
     "comment": ""
   },
   {
+    "term": "Fill",
+    "translation": "",
+    "context": "wallpaper fill mode",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Find in Text",
     "translation": "",
     "context": "",
@@ -4399,6 +4560,13 @@
     "term": "First Time Setup",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Fit",
+    "translation": "",
+    "context": "wallpaper fill mode",
     "reference": "",
     "comment": ""
   },
@@ -4620,6 +4788,13 @@
     "comment": ""
   },
   {
+    "term": "Fruit Salad",
+    "translation": "",
+    "context": "matugen color scheme option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Full Command:",
     "translation": "",
     "context": "process detail label",
@@ -4630,6 +4805,27 @@
     "term": "Full Content",
     "translation": "",
     "context": "lock screen notification mode option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Full Day & Month",
+    "translation": "",
+    "context": "date format option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Full with Year",
+    "translation": "",
+    "context": "date format option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Fully Charged",
+    "translation": "",
+    "context": "battery status",
     "reference": "",
     "comment": ""
   },
@@ -4693,6 +4889,13 @@
     "term": "Gamma control not available. Requires DMS API v6+.",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Generic",
+    "translation": "",
+    "context": "theme category option",
     "reference": "",
     "comment": ""
   },
@@ -5159,6 +5362,13 @@
     "comment": ""
   },
   {
+    "term": "ISO Date",
+    "translation": "",
+    "context": "date format option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Icon",
     "translation": "",
     "context": "",
@@ -5467,6 +5677,13 @@
     "comment": ""
   },
   {
+    "term": "Iris Bloom",
+    "translation": "",
+    "context": "wallpaper transition option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Isolate Displays",
     "translation": "",
     "context": "",
@@ -5728,7 +5945,14 @@
   {
     "term": "Left",
     "translation": "",
-    "context": "",
+    "context": "dock position option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Left Center",
+    "translation": "",
+    "context": "screen position option",
     "reference": "",
     "comment": ""
   },
@@ -5743,6 +5967,13 @@
     "term": "Light Mode",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Line",
+    "translation": "",
+    "context": "dock indicator style option",
     "reference": "",
     "comment": ""
   },
@@ -6405,6 +6636,13 @@
     "comment": ""
   },
   {
+    "term": "Monochrome",
+    "translation": "",
+    "context": "matugen color scheme option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Monocle",
     "translation": "",
     "context": "",
@@ -6415,6 +6653,13 @@
     "term": "Monospace Font",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Month Date",
+    "translation": "",
+    "context": "date format option",
     "reference": "",
     "comment": ""
   },
@@ -6464,6 +6709,13 @@
     "term": "Multi-Monitor",
     "translation": "",
     "context": "greeter feature card title",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Muted",
+    "translation": "",
+    "context": "audio status",
     "reference": "",
     "comment": ""
   },
@@ -6555,6 +6807,13 @@
     "term": "Network download and upload speed display",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Neutral",
+    "translation": "",
+    "context": "matugen color scheme option",
     "reference": "",
     "comment": ""
   },
@@ -6692,6 +6951,13 @@
     "comment": ""
   },
   {
+    "term": "No Battery",
+    "translation": "",
+    "context": "battery status",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No Bluetooth adapter found",
     "translation": "",
     "context": "",
@@ -6755,9 +7021,16 @@
     "comment": ""
   },
   {
+    "term": "No adapter",
+    "translation": "",
+    "context": "bluetooth status",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No adapters",
     "translation": "",
-    "context": "",
+    "context": "bluetooth status",
     "reference": "",
     "comment": ""
   },
@@ -6813,7 +7086,7 @@
   {
     "term": "No devices",
     "translation": "",
-    "context": "KDE Connect no devices status",
+    "context": "KDE Connect no devices status | bluetooth status",
     "reference": "",
     "comment": ""
   },
@@ -6888,6 +7161,13 @@
     "comment": ""
   },
   {
+    "term": "No input device",
+    "translation": "",
+    "context": "audio status",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No items added yet",
     "translation": "",
     "context": "",
@@ -6926,6 +7206,13 @@
     "term": "No mount points found",
     "translation": "",
     "context": "empty state in disk mounts list",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No output device",
+    "translation": "",
+    "context": "audio status",
     "reference": "",
     "comment": ""
   },
@@ -7044,7 +7331,7 @@
   {
     "term": "None",
     "translation": "",
-    "context": "",
+    "context": "wallpaper transition option",
     "reference": "",
     "comment": ""
   },
@@ -7079,7 +7366,7 @@
   {
     "term": "Not connected",
     "translation": "",
-    "context": "",
+    "context": "network status",
     "reference": "",
     "comment": ""
   },
@@ -7122,6 +7409,13 @@
     "term": "Notepad Slideout",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Nothing",
+    "translation": "",
+    "context": "media scroll wheel option",
     "reference": "",
     "comment": ""
   },
@@ -7196,6 +7490,20 @@
     "comment": ""
   },
   {
+    "term": "Numeric (D/M)",
+    "translation": "",
+    "context": "date format option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Numeric (M/D)",
+    "translation": "",
+    "context": "date format option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "OK",
     "translation": "",
     "context": "greeter doctor page status card",
@@ -7226,7 +7534,7 @@
   {
     "term": "Off",
     "translation": "",
-    "context": "",
+    "context": "bluetooth status",
     "reference": "",
     "comment": ""
   },
@@ -7532,6 +7840,13 @@
     "comment": ""
   },
   {
+    "term": "Pad",
+    "translation": "",
+    "context": "wallpaper fill mode",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Pad Hours",
     "translation": "",
     "context": "",
@@ -7651,6 +7966,20 @@
     "comment": ""
   },
   {
+    "term": "Pending Charge",
+    "translation": "",
+    "context": "battery status",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Pending Discharge",
+    "translation": "",
+    "context": "battery status",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Per-Mode Wallpapers",
     "translation": "",
     "context": "",
@@ -7681,7 +8010,7 @@
   {
     "term": "Performance",
     "translation": "",
-    "context": "",
+    "context": "power profile option",
     "reference": "",
     "comment": ""
   },
@@ -7756,6 +8085,13 @@
     "comment": ""
   },
   {
+    "term": "Pixelate",
+    "translation": "",
+    "context": "wallpaper transition option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Place plugin directories here. Each plugin should have a plugin.json manifest file.",
     "translation": "",
     "context": "",
@@ -7805,9 +8141,16 @@
     "comment": ""
   },
   {
+    "term": "Please wait...",
+    "translation": "",
+    "context": "network status",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Plugged In",
     "translation": "",
-    "context": "",
+    "context": "battery status",
     "reference": "",
     "comment": ""
   },
@@ -7885,6 +8228,13 @@
     "term": "Popup behavior, position",
     "translation": "",
     "context": "greeter notifications description",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Portal",
+    "translation": "",
+    "context": "wallpaper transition option",
     "reference": "",
     "comment": ""
   },
@@ -7973,6 +8323,13 @@
     "comment": ""
   },
   {
+    "term": "Power Saver",
+    "translation": "",
+    "context": "power profile option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Power off monitors on lock",
     "translation": "",
     "context": "",
@@ -8052,7 +8409,14 @@
   {
     "term": "Primary",
     "translation": "",
-    "context": "primary color",
+    "context": "color option | primary color | tile color option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Primary Container",
+    "translation": "",
+    "context": "tile color option",
     "reference": "",
     "comment": ""
   },
@@ -8116,6 +8480,13 @@
     "term": "Printers: ",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Prioritize performance",
+    "translation": "",
+    "context": "power profile description",
     "reference": "",
     "comment": ""
   },
@@ -8228,6 +8599,20 @@
     "term": "Rain Chance",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Rainbow",
+    "translation": "",
+    "context": "matugen color scheme option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Random",
+    "translation": "",
+    "context": "wallpaper transition option",
     "reference": "",
     "comment": ""
   },
@@ -8507,7 +8892,14 @@
   {
     "term": "Right",
     "translation": "",
-    "context": "",
+    "context": "dock position option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Right Center",
+    "translation": "",
+    "context": "screen position option",
     "reference": "",
     "comment": ""
   },
@@ -8920,7 +9312,7 @@
   {
     "term": "Secondary",
     "translation": "",
-    "context": "secondary color",
+    "context": "color option | secondary color | tile color option",
     "reference": "",
     "comment": ""
   },
@@ -9044,6 +9436,13 @@
     "comment": ""
   },
   {
+    "term": "Select device",
+    "translation": "",
+    "context": "audio status",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Select device...",
     "translation": "",
     "context": "",
@@ -9075,6 +9474,13 @@
     "term": "Select monospace font for process list and technical displays",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Select network",
+    "translation": "",
+    "context": "network status",
     "reference": "",
     "comment": ""
   },
@@ -10101,6 +10507,20 @@
     "comment": ""
   },
   {
+    "term": "Stretch",
+    "translation": "",
+    "context": "wallpaper fill mode",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Stripes",
+    "translation": "",
+    "context": "wallpaper transition option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Sunrise",
     "translation": "",
     "context": "",
@@ -10124,7 +10544,14 @@
   {
     "term": "Surface",
     "translation": "",
-    "context": "shadow color option",
+    "context": "color option | shadow color option",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Surface Variant",
+    "translation": "",
+    "context": "tile color option",
     "reference": "",
     "comment": ""
   },
@@ -10202,6 +10629,13 @@
     "term": "System Check",
     "translation": "",
     "context": "greeter doctor page title",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "System Default",
+    "translation": "",
+    "context": "date format option",
     "reference": "",
     "comment": ""
   },
@@ -10458,6 +10892,27 @@
     "comment": ""
   },
   {
+    "term": "Tile",
+    "translation": "",
+    "context": "wallpaper fill mode",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Tile H",
+    "translation": "",
+    "context": "wallpaper fill mode",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Tile V",
+    "translation": "",
+    "context": "wallpaper fill mode",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Tiling",
     "translation": "",
     "context": "",
@@ -10584,6 +11039,13 @@
     "comment": ""
   },
   {
+    "term": "Tonal Spot",
+    "translation": "",
+    "context": "matugen color scheme option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Toner Empty",
     "translation": "",
     "context": "",
@@ -10607,7 +11069,7 @@
   {
     "term": "Top",
     "translation": "",
-    "context": "",
+    "context": "dock position option",
     "reference": "",
     "comment": ""
   },
@@ -10619,9 +11081,16 @@
     "comment": ""
   },
   {
+    "term": "Top Center",
+    "translation": "",
+    "context": "screen position option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Top Left",
     "translation": "",
-    "context": "",
+    "context": "screen position option",
     "reference": "",
     "comment": ""
   },
@@ -10635,7 +11104,7 @@
   {
     "term": "Top Right",
     "translation": "",
-    "context": "",
+    "context": "screen position option",
     "reference": "",
     "comment": ""
   },
@@ -10845,7 +11314,7 @@
   {
     "term": "Unknown",
     "translation": "",
-    "context": "KDE Connect unknown device status | unknown author",
+    "context": "KDE Connect unknown device status | battery status | power profile option | unknown author | widget status",
     "reference": "",
     "comment": ""
   },
@@ -11326,6 +11795,13 @@
     "comment": ""
   },
   {
+    "term": "Vibrant",
+    "translation": "",
+    "context": "matugen color scheme option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Vibrant palette with playful saturation.",
     "translation": "",
     "context": "",
@@ -11564,6 +12040,13 @@
     "comment": ""
   },
   {
+    "term": "WiFi off",
+    "translation": "",
+    "context": "network status",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Wide (BT2020)",
     "translation": "",
     "context": "",
@@ -11707,6 +12190,13 @@
     "term": "Window Rounding",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Wipe",
+    "translation": "",
+    "context": "wallpaper transition option",
     "reference": "",
     "comment": ""
   },

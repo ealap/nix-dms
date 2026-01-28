@@ -74,9 +74,7 @@ Singleton {
             }
         }
 
-        const profileValue = BatteryService.isPluggedIn
-            ? SettingsData.acProfileName
-            : SettingsData.batteryProfileName;
+        const profileValue = BatteryService.isPluggedIn ? SettingsData.acProfileName : SettingsData.batteryProfileName;
 
         if (profileValue !== "") {
             const targetProfile = parseInt(profileValue);
@@ -132,20 +130,39 @@ Singleton {
         return batteries.length > 0 ? batteries.reduce((sum, b) => sum + b.energyCapacity, 0) : 0;
     }
 
+    function translateBatteryState(state) {
+        switch (state) {
+        case UPowerDeviceState.Charging:
+            return I18n.tr("Charging", "battery status");
+        case UPowerDeviceState.Discharging:
+            return I18n.tr("Discharging", "battery status");
+        case UPowerDeviceState.Empty:
+            return I18n.tr("Empty", "battery status");
+        case UPowerDeviceState.FullyCharged:
+            return I18n.tr("Fully Charged", "battery status");
+        case UPowerDeviceState.PendingCharge:
+            return I18n.tr("Pending Charge", "battery status");
+        case UPowerDeviceState.PendingDischarge:
+            return I18n.tr("Pending Discharge", "battery status");
+        default:
+            return I18n.tr("Unknown", "battery status");
+        }
+    }
+
     // Aggregated battery status
     readonly property string batteryStatus: {
         if (!batteryAvailable) {
-            return "No Battery";
+            return I18n.tr("No Battery", "battery status");
         }
 
         if (isCharging && !batteries.some(b => b.changeRate > 0))
-            return "Plugged In";
+            return I18n.tr("Plugged In", "battery status");
 
         const states = batteries.map(b => b.state);
         if (states.every(s => s === states[0]))
-            return UPowerDeviceState.toString(states[0]);
+            return translateBatteryState(states[0]);
 
-        return isCharging ? "Charging" : (isPluggedIn ? "Plugged In" : "Discharging");
+        return isCharging ? I18n.tr("Charging", "battery status") : (isPluggedIn ? I18n.tr("Plugged In", "battery status") : I18n.tr("Discharging", "battery status"));
     }
 
     readonly property bool suggestPowerSaver: false

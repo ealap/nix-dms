@@ -66,7 +66,7 @@ func (m *Manager) Install(theme Theme, registryThemeDir string) error {
 		return fmt.Errorf("theme already installed: %s", theme.Name)
 	}
 
-	if err := m.fs.MkdirAll(themeDir, 0755); err != nil {
+	if err := m.fs.MkdirAll(themeDir, 0o755); err != nil {
 		return fmt.Errorf("failed to create theme directory: %w", err)
 	}
 
@@ -76,7 +76,7 @@ func (m *Manager) Install(theme Theme, registryThemeDir string) error {
 	}
 
 	themePath := filepath.Join(themeDir, "theme.json")
-	if err := afero.WriteFile(m.fs, themePath, data, 0644); err != nil {
+	if err := afero.WriteFile(m.fs, themePath, data, 0o644); err != nil {
 		return fmt.Errorf("failed to write theme file: %w", err)
 	}
 
@@ -107,7 +107,7 @@ func (m *Manager) copyPreviewFiles(srcDir, dstDir string, theme Theme) {
 			continue
 		}
 		dstPath := filepath.Join(dstDir, preview)
-		_ = afero.WriteFile(m.fs, dstPath, data, 0644)
+		_ = afero.WriteFile(m.fs, dstPath, data, 0o644)
 	}
 }
 
@@ -138,7 +138,7 @@ func (m *Manager) Update(theme Theme) error {
 		return fmt.Errorf("failed to marshal theme: %w", err)
 	}
 
-	if err := afero.WriteFile(m.fs, themePath, data, 0644); err != nil {
+	if err := afero.WriteFile(m.fs, themePath, data, 0o644); err != nil {
 		return fmt.Errorf("failed to write theme file: %w", err)
 	}
 

@@ -79,7 +79,7 @@ Item {
         }
 
         Component.onCompleted: {
-            if (entryType !== "image") {
+            if (entryType !== "image" || listView.height <= 0) {
                 return;
             }
 
@@ -93,22 +93,41 @@ Item {
             }
         }
 
+        Timer {
+            id: visibilityTimer
+            interval: 100
+            onTriggered: thumbnailImage.checkVisibility()
+        }
+
+        function checkVisibility() {
+            if (entryType !== "image" || listView.height <= 0 || isVisible) {
+                return;
+            }
+            const itemY = itemIndex * (ClipboardConstants.itemHeight + listView.spacing);
+            const viewTop = listView.contentY - ClipboardConstants.viewportBuffer;
+            const viewBottom = viewTop + listView.height + ClipboardConstants.extendedBuffer;
+            const nowVisible = (itemY + ClipboardConstants.itemHeight >= viewTop && itemY <= viewBottom);
+            if (nowVisible) {
+                isVisible = true;
+                tryLoadImage();
+            }
+        }
+
         Connections {
             target: listView
+
             function onContentYChanged() {
-                if (entryType !== "image") {
+                if (thumbnailImage.isVisible || entryType !== "image") {
                     return;
                 }
+                visibilityTimer.restart();
+            }
 
-                const itemY = itemIndex * (ClipboardConstants.itemHeight + listView.spacing);
-                const viewTop = listView.contentY - ClipboardConstants.viewportBuffer;
-                const viewBottom = viewTop + listView.height + ClipboardConstants.extendedBuffer;
-                const nowVisible = (itemY + ClipboardConstants.itemHeight >= viewTop && itemY <= viewBottom);
-
-                if (nowVisible && !thumbnailImage.isVisible) {
-                    thumbnailImage.isVisible = true;
-                    thumbnailImage.tryLoadImage();
+            function onHeightChanged() {
+                if (thumbnailImage.isVisible || entryType !== "image") {
+                    return;
                 }
+                visibilityTimer.restart();
             }
         }
     }

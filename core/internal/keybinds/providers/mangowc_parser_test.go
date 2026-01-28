@@ -238,7 +238,7 @@ bind=Ctrl,1,view,1,0
 bind=Ctrl,2,view,2,0
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -276,10 +276,10 @@ func TestMangoWCReadContentMultipleFiles(t *testing.T) {
 	content1 := "bind=ALT,q,killclient,\n"
 	content2 := "bind=Alt,t,spawn,kitty\n"
 
-	if err := os.WriteFile(file1, []byte(content1), 0644); err != nil {
+	if err := os.WriteFile(file1, []byte(content1), 0o644); err != nil {
 		t.Fatalf("Failed to write file1: %v", err)
 	}
-	if err := os.WriteFile(file2, []byte(content2), 0644); err != nil {
+	if err := os.WriteFile(file2, []byte(content2), 0o644); err != nil {
 		t.Fatalf("Failed to write file2: %v", err)
 	}
 
@@ -300,7 +300,7 @@ func TestMangoWCReadContentSingleFile(t *testing.T) {
 
 	content := "bind=ALT,q,killclient,\n"
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write config: %v", err)
 	}
 
@@ -347,13 +347,13 @@ func TestMangoWCReadContentWithTildeExpansion(t *testing.T) {
 	}
 
 	tmpSubdir := filepath.Join(homeDir, ".config", "test-mango-"+t.Name())
-	if err := os.MkdirAll(tmpSubdir, 0755); err != nil {
+	if err := os.MkdirAll(tmpSubdir, 0o755); err != nil {
 		t.Skip("Cannot create test directory in home")
 	}
 	defer os.RemoveAll(tmpSubdir)
 
 	configFile := filepath.Join(tmpSubdir, "config.conf")
-	if err := os.WriteFile(configFile, []byte("bind=ALT,q,killclient,\n"), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte("bind=ALT,q,killclient,\n"), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -384,7 +384,7 @@ bind=ALT,q,killclient,
 bind=Alt,t,spawn,kitty
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 
@@ -458,7 +458,7 @@ bind=Ctrl,2,view,2,0
 bind=Ctrl,3,view,3,0
 `
 
-	if err := os.WriteFile(configFile, []byte(content), 0644); err != nil {
+	if err := os.WriteFile(configFile, []byte(content), 0o644); err != nil {
 		t.Fatalf("Failed to write test config: %v", err)
 	}
 

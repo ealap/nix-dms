@@ -65,7 +65,7 @@ func (m *Manager) Call(bus, dest, path, iface, method string, args []any) (*Call
 		return nil, fmt.Errorf("dbus call failed: %w", call.Err)
 	}
 
-	return &CallResult{Values: call.Body}, nil
+	return &CallResult{Values: dbusutil.NormalizeSlice(call.Body)}, nil
 }
 
 func (m *Manager) GetProperty(bus, dest, path, iface, property string) (*PropertyResult, error) {

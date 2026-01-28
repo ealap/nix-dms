@@ -10,3 +10,11 @@ repos:
     hooks:
       - id: shellcheck
         args: [-e, SC2164, -e, SC2001, -e, SC2012, -e, SC2317]
+  - repo: local
+    hooks:
+      - id: go-mod-tidy
+        name: go mod tidy
+        entry: bash -c 'cd core && go mod tidy'
+        language: system
+        files: ^core/.*\.(go|mod|sum)$
+        pass_filenames: false

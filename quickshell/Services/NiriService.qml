@@ -52,6 +52,10 @@ Singleton {
         root.allWorkspaces = Object.values(newMap).sort((a, b) => a.idx - b.idx);
     }
 
+    function validate() {
+        validateProcess.running = true;
+    }
+
     Component.onCompleted: fetchOutputs()
 
     Timer {
@@ -190,6 +194,16 @@ Singleton {
         onExited: exitCode => {
             if (exitCode !== 0)
                 console.warn("NiriService: Failed to ensure cursor.kdl, exit code:", exitCode);
+        }
+    }
+
+    Process {
+        id: ensureWindowrulesProcess
+        property string windowrulesPath: ""
+
+        onExited: exitCode => {
+            if (exitCode !== 0)
+                console.warn("NiriService: Failed to ensure windowrules.kdl, exit code:", exitCode);
         }
     }
 
@@ -1141,6 +1155,11 @@ Singleton {
         ensureCursorProcess.cursorPath = cursorPath;
         ensureCursorProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && [ ! -f "${cursorPath}" ] && touch "${cursorPath}" || true`];
         ensureCursorProcess.running = true;
+
+        const windowrulesPath = niriDmsDir + "/windowrules.kdl";
+        ensureWindowrulesProcess.windowrulesPath = windowrulesPath;
+        ensureWindowrulesProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && [ ! -f "${windowrulesPath}" ] && touch "${windowrulesPath}" || true`];
+        ensureWindowrulesProcess.running = true;
 
         configGenerationPending = false;
     }

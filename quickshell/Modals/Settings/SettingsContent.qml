@@ -441,5 +441,22 @@ FocusScope {
                     Qt.callLater(() => item.forceActiveFocus());
             }
         }
+
+        Loader {
+            id: windowRulesLoader
+            anchors.fill: parent
+            active: root.currentIndex === 28
+            visible: active
+            focus: active
+
+            sourceComponent: WindowRulesTab {
+                parentModal: root.parentModal
+            }
+
+            onActiveChanged: {
+                if (active && item)
+                    Qt.callLater(() => item.forceActiveFocus());
+            }
+        }
     }
 }

@@ -144,7 +144,7 @@ func TestFlatpakExistsCommandFailure(t *testing.T) {
 	fakeFlatpak := filepath.Join(tempDir, "flatpak")
 
 	script := "#!/bin/sh\nexit 1\n"
-	err := os.WriteFile(fakeFlatpak, []byte(script), 0755)
+	err := os.WriteFile(fakeFlatpak, []byte(script), 0o755)
 	if err != nil {
 		t.Fatalf("failed to create fake flatpak: %v", err)
 	}
@@ -168,7 +168,7 @@ func TestFlatpakSearchBySubstringCommandFailure(t *testing.T) {
 	fakeFlatpak := filepath.Join(tempDir, "flatpak")
 
 	script := "#!/bin/sh\nexit 1\n"
-	err := os.WriteFile(fakeFlatpak, []byte(script), 0755)
+	err := os.WriteFile(fakeFlatpak, []byte(script), 0o755)
 	if err != nil {
 		t.Fatalf("failed to create fake flatpak: %v", err)
 	}
@@ -192,7 +192,7 @@ func TestFlatpakInstallationDirCommandFailure(t *testing.T) {
 	fakeFlatpak := filepath.Join(tempDir, "flatpak")
 
 	script := "#!/bin/sh\nexit 1\n"
-	err := os.WriteFile(fakeFlatpak, []byte(script), 0755)
+	err := os.WriteFile(fakeFlatpak, []byte(script), 0o755)
 	if err != nil {
 		t.Fatalf("failed to create fake flatpak: %v", err)
 	}
@@ -220,7 +220,7 @@ if [ "$1" = "info" ] && [ "$2" = "app.exists.test" ]; then
 fi
 exit 1
 `
-	err := os.WriteFile(fakeFlatpak, []byte(script), 0755)
+	err := os.WriteFile(fakeFlatpak, []byte(script), 0o755)
 	if err != nil {
 		t.Fatalf("failed to create fake flatpak: %v", err)
 	}
@@ -239,7 +239,7 @@ func TestAnyFlatpakExistsNoneExist(t *testing.T) {
 	fakeFlatpak := filepath.Join(tempDir, "flatpak")
 
 	script := "#!/bin/sh\nexit 1\n"
-	err := os.WriteFile(fakeFlatpak, []byte(script), 0755)
+	err := os.WriteFile(fakeFlatpak, []byte(script), 0o755)
 	if err != nil {
 		t.Fatalf("failed to create fake flatpak: %v", err)
 	}

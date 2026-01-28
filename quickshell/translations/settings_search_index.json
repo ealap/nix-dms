@@ -1255,20 +1255,6 @@
     "icon": "apps"
   },
   {
-    "section": "dockPosition",
-    "label": "Dock Position",
-    "tabIndex": 5,
-    "category": "Dock",
-    "keywords": [
-      "dock",
-      "launcher bar",
-      "panel",
-      "position",
-      "taskbar"
-    ],
-    "icon": "swap_vert"
-  },
-  {
     "section": "dockVisibility",
     "label": "Dock Visibility",
     "tabIndex": 5,
@@ -1419,6 +1405,56 @@
     "icon": "apps"
   },
   {
+    "section": "dockMaxVisibleApps",
+    "label": "Max Pinned Apps (0 = Unlimited)",
+    "tabIndex": 5,
+    "category": "Dock",
+    "keywords": [
+      "apps",
+      "dock",
+      "launcher bar",
+      "limit",
+      "max",
+      "overflow",
+      "pinned",
+      "taskbar",
+      "unlimited)"
+    ]
+  },
+  {
+    "section": "dockMaxVisibleRunningApps",
+    "label": "Max Running Apps (0 = Unlimited)",
+    "tabIndex": 5,
+    "category": "Dock",
+    "keywords": [
+      "active",
+      "apps",
+      "dock",
+      "launcher bar",
+      "limit",
+      "max",
+      "open",
+      "overflow",
+      "running",
+      "taskbar",
+      "unlimited)",
+      "windows"
+    ]
+  },
+  {
+    "section": "dockPosition",
+    "label": "Position",
+    "tabIndex": 5,
+    "category": "Dock",
+    "keywords": [
+      "dock",
+      "launcher bar",
+      "position",
+      "taskbar"
+    ],
+    "icon": "swap_vert"
+  },
+  {
     "section": "showDock",
     "label": "Show Dock",
     "tabIndex": 5,
@@ -1462,6 +1498,31 @@
       "start menu",
       "taskbar"
     ]
+  },
+  {
+    "section": "dockShowOverflowBadge",
+    "label": "Show Overflow Badge Count",
+    "tabIndex": 5,
+    "category": "Dock",
+    "keywords": [
+      "active",
+      "badge",
+      "count",
+      "displays",
+      "dock",
+      "indicator",
+      "launcher bar",
+      "monitor",
+      "monitors",
+      "output",
+      "outputs",
+      "overflow",
+      "screen",
+      "screens",
+      "show",
+      "taskbar"
+    ],
+    "description": "Displays count when overflow is active"
   },
   {
     "section": "dockOpenOnOverview",
@@ -2198,6 +2259,32 @@
     ],
     "icon": "contrast",
     "description": "Use light theme instead of dark theme"
+  },
+  {
+    "section": "controlCenterTileColorMode",
+    "label": "Control Center Tile Color",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "active",
+      "appearance",
+      "background",
+      "button",
+      "center",
+      "color",
+      "colors",
+      "colour",
+      "control",
+      "hue",
+      "icon",
+      "look",
+      "scheme",
+      "style",
+      "theme",
+      "tile",
+      "tint"
+    ],
+    "description": "Active tile background and icon color"
   },
   {
     "section": "cornerRadius",
@@ -5596,5 +5683,17 @@
       "widgets"
     ],
     "icon": "widgets"
+  },
+  {
+    "section": "_tab_28",
+    "label": "Window Rules",
+    "tabIndex": 28,
+    "category": "Settings",
+    "keywords": [
+      "rules",
+      "settings",
+      "window"
+    ],
+    "icon": "select_window"
   }
 ]

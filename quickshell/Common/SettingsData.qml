@@ -263,6 +263,9 @@ Singleton {
     property bool clockCompactMode: false
     property bool focusedWindowCompactMode: false
     property bool runningAppsCompactMode: true
+    property int barMaxVisibleApps: 0
+    property int barMaxVisibleRunningApps: 0
+    property bool barShowOverflowBadge: true
     property bool keyboardLayoutNameCompactMode: false
     property bool runningAppsCurrentWorkspace: false
     property bool runningAppsGroupByApp: false
@@ -443,6 +446,9 @@ Singleton {
     property int dockLauncherLogoSizeOffset: 0
     property real dockLauncherLogoBrightness: 0.5
     property real dockLauncherLogoContrast: 1
+    property int dockMaxVisibleApps: 0
+    property int dockMaxVisibleRunningApps: 0
+    property bool dockShowOverflowBadge: true
 
     property bool notificationOverlayEnabled: false
     property int overviewRows: 2
@@ -1004,7 +1010,6 @@ Singleton {
         fi
         done
 
-        rm -rf ~/.cache/icon-cache ~/.cache/thumbnails 2>/dev/null || true
         pkill -HUP -f 'gtk' 2>/dev/null || true`;
 
         Quickshell.execDetached(["sh", "-lc", configScript]);
@@ -1036,8 +1041,7 @@ Singleton {
         fi
         }
         update_qt_icon_theme ${_configDir}/qt5ct/qt5ct.conf '${qtThemeNameEscaped}'
-        update_qt_icon_theme ${_configDir}/qt6ct/qt6ct.conf '${qtThemeNameEscaped}'
-        rm -rf '${home}'/.cache/icon-cache '${home}'/.cache/thumbnails 2>/dev/null || true`;
+        update_qt_icon_theme ${_configDir}/qt6ct/qt6ct.conf '${qtThemeNameEscaped}'`;
 
         Quickshell.execDetached(["sh", "-lc", script]);
     }
@@ -1089,7 +1093,6 @@ Singleton {
             _loadedSettingsSnapshot = JSON.stringify(Store.toJson(root));
             _hasLoaded = true;
             applyStoredTheme();
-            applyStoredIconTheme();
             updateCompositorCursor();
             Processes.detectQtTools();
 
@@ -1100,7 +1103,6 @@ Singleton {
             console.error("SettingsData: Failed to parse settings.json - file will not be overwritten. Error:", msg);
             Qt.callLater(() => ToastService.showError(I18n.tr("Failed to parse settings.json"), msg));
             applyStoredTheme();
-            applyStoredIconTheme();
         } finally {
             _loading = false;
         }
@@ -2327,7 +2329,6 @@ Singleton {
                 _loadedSettingsSnapshot = JSON.stringify(Store.toJson(root));
                 _hasLoaded = true;
                 applyStoredTheme();
-                applyStoredIconTheme();
                 updateCompositorCursor();
             } catch (e) {
                 _parseError = true;

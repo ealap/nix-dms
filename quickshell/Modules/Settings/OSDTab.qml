@@ -31,52 +31,43 @@ Item {
                     currentValue: {
                         switch (SettingsData.osdPosition) {
                         case SettingsData.Position.Top:
-                            return "Top Right";
+                            return I18n.tr("Top Right", "screen position option");
                         case SettingsData.Position.Left:
-                            return "Top Left";
+                            return I18n.tr("Top Left", "screen position option");
                         case SettingsData.Position.TopCenter:
-                            return "Top Center";
+                            return I18n.tr("Top Center", "screen position option");
                         case SettingsData.Position.Right:
-                            return "Bottom Right";
+                            return I18n.tr("Bottom Right", "screen position option");
                         case SettingsData.Position.Bottom:
-                            return "Bottom Left";
+                            return I18n.tr("Bottom Left", "screen position option");
                         case SettingsData.Position.BottomCenter:
-                            return "Bottom Center";
+                            return I18n.tr("Bottom Center", "screen position option");
                         case SettingsData.Position.LeftCenter:
-                            return "Left Center";
+                            return I18n.tr("Left Center", "screen position option");
                         case SettingsData.Position.RightCenter:
-                            return "Right Center";
+                            return I18n.tr("Right Center", "screen position option");
                         default:
-                            return "Bottom Center";
+                            return I18n.tr("Bottom Center", "screen position option");
                         }
                     }
-                    options: ["Top Right", "Top Left", "Top Center", "Bottom Right", "Bottom Left", "Bottom Center", "Left Center", "Right Center"]
+                    options: [I18n.tr("Top Right", "screen position option"), I18n.tr("Top Left", "screen position option"), I18n.tr("Top Center", "screen position option"), I18n.tr("Bottom Right", "screen position option"), I18n.tr("Bottom Left", "screen position option"), I18n.tr("Bottom Center", "screen position option"), I18n.tr("Left Center", "screen position option"), I18n.tr("Right Center", "screen position option")]
                     onValueChanged: value => {
-                        switch (value) {
-                        case "Top Right":
+                        if (value === I18n.tr("Top Right", "screen position option")) {
                             SettingsData.set("osdPosition", SettingsData.Position.Top);
-                            break;
-                        case "Top Left":
+                        } else if (value === I18n.tr("Top Left", "screen position option")) {
                             SettingsData.set("osdPosition", SettingsData.Position.Left);
-                            break;
-                        case "Top Center":
+                        } else if (value === I18n.tr("Top Center", "screen position option")) {
                             SettingsData.set("osdPosition", SettingsData.Position.TopCenter);
-                            break;
-                        case "Bottom Right":
+                        } else if (value === I18n.tr("Bottom Right", "screen position option")) {
                             SettingsData.set("osdPosition", SettingsData.Position.Right);
-                            break;
-                        case "Bottom Left":
+                        } else if (value === I18n.tr("Bottom Left", "screen position option")) {
                             SettingsData.set("osdPosition", SettingsData.Position.Bottom);
-                            break;
-                        case "Bottom Center":
+                        } else if (value === I18n.tr("Bottom Center", "screen position option")) {
                             SettingsData.set("osdPosition", SettingsData.Position.BottomCenter);
-                            break;
-                        case "Left Center":
+                        } else if (value === I18n.tr("Left Center", "screen position option")) {
                             SettingsData.set("osdPosition", SettingsData.Position.LeftCenter);
-                            break;
-                        case "Right Center":
+                        } else if (value === I18n.tr("Right Center", "screen position option")) {
                             SettingsData.set("osdPosition", SettingsData.Position.RightCenter);
-                            break;
                         }
                     }
                 }

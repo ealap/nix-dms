@@ -452,39 +452,39 @@ Singleton {
 
     readonly property var availableMatugenSchemes: [({
                 "value": "scheme-tonal-spot",
-                "label": "Tonal Spot",
+                "label": I18n.tr("Tonal Spot", "matugen color scheme option"),
                 "description": I18n.tr("Balanced palette with focused accents (default).")
             }), ({
                 "value": "scheme-vibrant",
-                "label": "Vibrant",
+                "label": I18n.tr("Vibrant", "matugen color scheme option"),
                 "description": I18n.tr("Lively palette with saturated accents.")
             }), ({
                 "value": "scheme-content",
-                "label": "Content",
+                "label": I18n.tr("Content", "matugen color scheme option"),
                 "description": I18n.tr("Derives colors that closely match the underlying image.")
             }), ({
                 "value": "scheme-expressive",
-                "label": "Expressive",
+                "label": I18n.tr("Expressive", "matugen color scheme option"),
                 "description": I18n.tr("Vibrant palette with playful saturation.")
             }), ({
                 "value": "scheme-fidelity",
-                "label": "Fidelity",
+                "label": I18n.tr("Fidelity", "matugen color scheme option"),
                 "description": I18n.tr("High-fidelity palette that preserves source hues.")
             }), ({
                 "value": "scheme-fruit-salad",
-                "label": "Fruit Salad",
+                "label": I18n.tr("Fruit Salad", "matugen color scheme option"),
                 "description": I18n.tr("Colorful mix of bright contrasting accents.")
             }), ({
                 "value": "scheme-monochrome",
-                "label": "Monochrome",
+                "label": I18n.tr("Monochrome", "matugen color scheme option"),
                 "description": I18n.tr("Minimal palette built around a single hue.")
             }), ({
                 "value": "scheme-neutral",
-                "label": "Neutral",
+                "label": I18n.tr("Neutral", "matugen color scheme option"),
                 "description": I18n.tr("Muted palette with subdued, calming tones.")
             }), ({
                 "value": "scheme-rainbow",
-                "label": "Rainbow",
+                "label": I18n.tr("Rainbow", "matugen color scheme option"),
                 "description": I18n.tr("Diverse palette spanning the full spectrum.")
             })]
 
@@ -1102,26 +1102,26 @@ Singleton {
     function getPowerProfileLabel(profile) {
         switch (profile) {
         case 0:
-            return "Power Saver";
+            return I18n.tr("Power Saver", "power profile option");
         case 1:
-            return "Balanced";
+            return I18n.tr("Balanced", "power profile option");
         case 2:
-            return "Performance";
+            return I18n.tr("Performance", "power profile option");
         default:
-            return "Unknown";
+            return I18n.tr("Unknown", "power profile option");
         }
     }
 
     function getPowerProfileDescription(profile) {
         switch (profile) {
         case 0:
-            return "Extend battery life";
+            return I18n.tr("Extend battery life", "power profile description");
         case 1:
-            return "Balance power and performance";
+            return I18n.tr("Balance power and performance", "power profile description");
         case 2:
-            return "Prioritize performance";
+            return I18n.tr("Prioritize performance", "power profile description");
         default:
-            return "Custom power profile";
+            return I18n.tr("Custom power profile", "power profile description");
         }
     }
 

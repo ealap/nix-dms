@@ -379,13 +379,17 @@ Variants {
             if (!dock.isVertical) {
                 const isBottom = SettingsData.dockPosition === SettingsData.Position.Bottom;
                 const globalX = buttonGlobalPos.x + dock.hoveredButton.width / 2 + adjacentLeftBarWidth;
-                const screenRelativeY = isBottom ? (screenHeight - dock.effectiveBarHeight - SettingsData.dockSpacing - SettingsData.dockBottomGap - SettingsData.dockMargin - barSpacing - 35) : (buttonGlobalPos.y - screenY + dock.hoveredButton.height + Theme.spacingS);
+                const tooltipHeight = 32;
+                const tooltipOffset = dock.effectiveBarHeight + SettingsData.dockSpacing + SettingsData.dockBottomGap + SettingsData.dockMargin + barSpacing + Theme.spacingM;
+                const screenRelativeY = isBottom
+                    ? (screenHeight - tooltipOffset - tooltipHeight)
+                    : tooltipOffset;
                 dockTooltip.show(tooltipText, globalX, screenRelativeY, dock.screen, false, false);
                 return;
             }
 
             const isLeft = SettingsData.dockPosition === SettingsData.Position.Left;
-            const tooltipOffset = dock.effectiveBarHeight + SettingsData.dockSpacing + SettingsData.dockMargin + barSpacing + Theme.spacingXS;
+            const tooltipOffset = dock.effectiveBarHeight + SettingsData.dockSpacing + SettingsData.dockBottomGap + SettingsData.dockMargin + barSpacing + Theme.spacingM;
             const tooltipX = isLeft ? tooltipOffset : (dock.screen.width - tooltipOffset);
             const screenRelativeY = buttonGlobalPos.y - screenY + dock.hoveredButton.height / 2 + adjacentTopBarHeight;
             dockTooltip.show(tooltipText, screenX + tooltipX, screenRelativeY, dock.screen, isLeft, !isLeft);
@@ -437,21 +441,19 @@ Variants {
 
                 height: {
                     if (dock.isVertical) {
-                        const extra = 4 + dock.borderThickness;
-                        const hiddenHeight = Math.min(Math.max(dockBackground.implicitHeight + 64, 200), screenHeight * 0.5);
-                        return dock.reveal ? Math.max(Math.min(dockBackground.implicitHeight + extra, maxDockHeight), hiddenHeight) : hiddenHeight;
-                    } else {
-                        return dock.reveal ? px(dock.effectiveBarHeight + SettingsData.dockSpacing + SettingsData.dockBottomGap + SettingsData.dockMargin) : 1;
+                        if (!dock.reveal)
+                            return Math.min(Math.max(dockBackground.height + 64, 200), screenHeight * 0.5);
+                        return Math.min(dockBackground.height + 8 + dock.borderThickness, maxDockHeight);
                     }
+                    return dock.reveal ? px(dock.effectiveBarHeight + SettingsData.dockSpacing + SettingsData.dockBottomGap + SettingsData.dockMargin) : 1;
                 }
                 width: {
                     if (dock.isVertical) {
                         return dock.reveal ? px(dock.effectiveBarHeight + SettingsData.dockSpacing + SettingsData.dockBottomGap + SettingsData.dockMargin) : 1;
-                    } else {
-                        const extra = 4 + dock.borderThickness;
-                        const hiddenWidth = Math.min(Math.max(dockBackground.implicitWidth + 64, 200), screenWidth * 0.5);
-                        return dock.reveal ? Math.max(Math.min(dockBackground.implicitWidth + extra, maxDockWidth), hiddenWidth) : hiddenWidth;
                     }
+                    if (!dock.reveal)
+                        return Math.min(Math.max(dockBackground.width + 64, 200), screenWidth * 0.5);
+                    return Math.min(dockBackground.width + 8 + dock.borderThickness, maxDockWidth);
                 }
                 anchors {
                     top: !dock.isVertical ? (SettingsData.dockPosition === SettingsData.Position.Bottom ? undefined : parent.top) : undefined

@@ -252,6 +252,13 @@ Rectangle {
                     "icon": "content_paste",
                     "tabIndex": 23,
                     "clipboardOnly": true
+                },
+                {
+                    "id": "window_rules",
+                    "text": I18n.tr("Window Rules"),
+                    "icon": "select_window",
+                    "tabIndex": 28,
+                    "niriOnly": true
                 }
             ]
         },
@@ -303,6 +310,8 @@ Rectangle {
         if (item.soundsOnly && !AudioService.soundsAvailable)
             return false;
         if (item.hyprlandNiriOnly && !CompositorService.isNiri && !CompositorService.isHyprland)
+            return false;
+        if (item.niriOnly && !CompositorService.isNiri)
             return false;
         if (item.clipboardOnly && (!DMSService.isConnected || DMSService.apiVersion < 23))
             return false;

@@ -318,8 +318,9 @@ Item {
 
                     DankButtonGroup {
                         id: fillModeGroup
+                        property var internalModes: ["Stretch", "Fit", "Fill", "Tile", "TileVertically", "TileHorizontally", "Pad"]
                         anchors.horizontalCenter: parent.horizontalCenter
-                        model: ["Stretch", "Fit", "Fill", "Tile", "Tile V", "Tile H", "Pad"]
+                        model: [I18n.tr("Stretch", "wallpaper fill mode"), I18n.tr("Fit", "wallpaper fill mode"), I18n.tr("Fill", "wallpaper fill mode"), I18n.tr("Tile", "wallpaper fill mode"), I18n.tr("Tile V", "wallpaper fill mode"), I18n.tr("Tile H", "wallpaper fill mode"), I18n.tr("Pad", "wallpaper fill mode")]
                         selectionMode: "single"
                         buttonHeight: 28
                         minButtonWidth: 48
@@ -328,21 +329,18 @@ Item {
                         textSize: Theme.fontSizeSmall
                         checkEnabled: false
                         currentIndex: {
-                            const modes = ["Stretch", "Fit", "Fill", "Tile", "TileVertically", "TileHorizontally", "Pad"];
-                            return modes.indexOf(SettingsData.wallpaperFillMode);
+                            return internalModes.indexOf(SettingsData.wallpaperFillMode);
                         }
                         onSelectionChanged: (index, selected) => {
                             if (!selected)
                                 return;
-                            const modes = ["Stretch", "Fit", "Fill", "Tile", "TileVertically", "TileHorizontally", "Pad"];
-                            SettingsData.set("wallpaperFillMode", modes[index]);
+                            SettingsData.set("wallpaperFillMode", internalModes[index]);
                         }
 
                         Connections {
                             target: SettingsData
                             function onWallpaperFillModeChanged() {
-                                const modes = ["Stretch", "Fit", "Fill", "Tile", "TileVertically", "TileHorizontally", "Pad"];
-                                fillModeGroup.currentIndex = modes.indexOf(SettingsData.wallpaperFillMode);
+                                fillModeGroup.currentIndex = fillModeGroup.internalModes.indexOf(SettingsData.wallpaperFillMode);
                             }
                         }
                     }
@@ -1134,15 +1132,41 @@ Item {
                     settingKey: "wallpaperTransition"
                     text: I18n.tr("Transition Effect")
                     description: I18n.tr("Visual effect used when wallpaper changes")
-                    currentValue: {
-                        if (SessionData.wallpaperTransition === "random")
-                            return "Random";
-                        return SessionData.wallpaperTransition.charAt(0).toUpperCase() + SessionData.wallpaperTransition.slice(1);
+
+                    function getTransitionLabel(t) {
+                        switch (t) {
+                        case "random":
+                            return I18n.tr("Random", "wallpaper transition option");
+                        case "none":
+                            return I18n.tr("None", "wallpaper transition option");
+                        case "fade":
+                            return I18n.tr("Fade", "wallpaper transition option");
+                        case "wipe":
+                            return I18n.tr("Wipe", "wallpaper transition option");
+                        case "disc":
+                            return I18n.tr("Disc", "wallpaper transition option");
+                        case "stripes":
+                            return I18n.tr("Stripes", "wallpaper transition option");
+                        case "iris bloom":
+                            return I18n.tr("Iris Bloom", "wallpaper transition option");
+                        case "pixelate":
+                            return I18n.tr("Pixelate", "wallpaper transition option");
+                        case "portal":
+                            return I18n.tr("Portal", "wallpaper transition option");
+                        default:
+                            return t.charAt(0).toUpperCase() + t.slice(1);
+                        }
                     }
-                    options: ["Random"].concat(SessionData.availableWallpaperTransitions.map(t => t.charAt(0).toUpperCase() + t.slice(1)))
+
+                    currentValue: getTransitionLabel(SessionData.wallpaperTransition)
+                    options: [I18n.tr("Random", "wallpaper transition option")].concat(SessionData.availableWallpaperTransitions.map(t => getTransitionLabel(t)))
                     onValueChanged: value => {
-                        var transition = value.toLowerCase();
-                        SessionData.setWallpaperTransition(transition);
+                        const transitionMap = {};
+                        transitionMap[I18n.tr("Random", "wallpaper transition option")] = "random";
+                        SessionData.availableWallpaperTransitions.forEach(t => {
+                            transitionMap[getTransitionLabel(t)] = t;
+                        });
+                        SessionData.setWallpaperTransition(transitionMap[value] || value.toLowerCase());
                     }
                 }
 

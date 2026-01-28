@@ -17,7 +17,7 @@ on:
         required: false
         default: ""
   schedule:
-    - cron: "0 */3 * * *" # Every 3 hours for dms-git builds
+    - cron: "0 2,5,14,17,20,23 * * *" # 9am, 12pm, 3pm, 6pm, 9pm, 12am EST (UTC times shown)
 
 jobs:
   check-updates:

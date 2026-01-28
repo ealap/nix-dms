@@ -419,7 +419,7 @@ Item {
             "id": widget.id,
             "enabled": widget.enabled
         };
-        var keys = ["size", "selectedGpuIndex", "pciId", "mountPath", "minimumWidth", "showSwap", "mediaSize", "clockCompactMode", "focusedWindowCompactMode", "runningAppsCompactMode", "keyboardLayoutNameCompactMode", "showNetworkIcon", "showBluetoothIcon", "showAudioIcon", "showAudioPercent", "showVpnIcon", "showBrightnessIcon", "showBrightnessPercent", "showMicIcon", "showMicPercent", "showBatteryIcon", "showPrinterIcon", "showScreenSharingIcon"];
+        var keys = ["size", "selectedGpuIndex", "pciId", "mountPath", "minimumWidth", "showSwap", "mediaSize", "clockCompactMode", "focusedWindowCompactMode", "runningAppsCompactMode", "keyboardLayoutNameCompactMode", "showNetworkIcon", "showBluetoothIcon", "showAudioIcon", "showAudioPercent", "showVpnIcon", "showBrightnessIcon", "showBrightnessPercent", "showMicIcon", "showMicPercent", "showBatteryIcon", "showPrinterIcon", "showScreenSharingIcon", "barMaxVisibleApps", "barMaxVisibleRunningApps", "barShowOverflowBadge"];
         for (var i = 0; i < keys.length; i++) {
             if (widget[keys[i]] !== undefined)
                 result[keys[i]] = widget[keys[i]];
@@ -530,6 +530,18 @@ Item {
         setWidgetsForSection(sectionId, widgets);
     }
 
+    function handleOverflowSettingChanged(sectionId, widgetIndex, settingName, value) {
+        var widgets = getWidgetsForSection(sectionId).slice();
+        if (widgetIndex < 0 || widgetIndex >= widgets.length) {
+            setWidgetsForSection(sectionId, widgets);
+            return;
+        }
+        var newWidget = cloneWidgetData(widgets[widgetIndex]);
+        newWidget[settingName] = value;
+        widgets[widgetIndex] = newWidget;
+        setWidgetsForSection(sectionId, widgets);
+    }
+
     function handleCompactModeChanged(sectionId, widgetId, value) {
         var widgets = getWidgetsForSection(sectionId).slice();
         for (var i = 0; i < widgets.length; i++) {
@@ -621,6 +633,12 @@ Item {
                     item.runningAppsCompactMode = widget.runningAppsCompactMode;
                 if (widget.keyboardLayoutNameCompactMode !== undefined)
                     item.keyboardLayoutNameCompactMode = widget.keyboardLayoutNameCompactMode;
+                if (widget.barMaxVisibleApps !== undefined)
+                    item.barMaxVisibleApps = widget.barMaxVisibleApps;
+                if (widget.barMaxVisibleRunningApps !== undefined)
+                    item.barMaxVisibleRunningApps = widget.barMaxVisibleRunningApps;
+                if (widget.barShowOverflowBadge !== undefined)
+                    item.barShowOverflowBadge = widget.barShowOverflowBadge;
             }
             widgets.push(item);
         });
@@ -897,6 +915,9 @@ Item {
                         onCompactModeChanged: (widgetId, value) => {
                             widgetsTab.handleCompactModeChanged(sectionId, widgetId, value);
                         }
+                        onOverflowSettingChanged: (sectionId, widgetIndex, settingName, value) => {
+                            widgetsTab.handleOverflowSettingChanged(sectionId, widgetIndex, settingName, value);
+                        }
                     }
                 }
 
@@ -952,6 +973,9 @@ Item {
                         onCompactModeChanged: (widgetId, value) => {
                             widgetsTab.handleCompactModeChanged(sectionId, widgetId, value);
                         }
+                        onOverflowSettingChanged: (sectionId, widgetIndex, settingName, value) => {
+                            widgetsTab.handleOverflowSettingChanged(sectionId, widgetIndex, settingName, value);
+                        }
                     }
                 }
 
@@ -1006,6 +1030,9 @@ Item {
                         }
                         onCompactModeChanged: (widgetId, value) => {
                             widgetsTab.handleCompactModeChanged(sectionId, widgetId, value);
+                        }
+                        onOverflowSettingChanged: (sectionId, widgetIndex, settingName, value) => {
+                            widgetsTab.handleOverflowSettingChanged(sectionId, widgetIndex, settingName, value);
                         }
                     }
                 }
