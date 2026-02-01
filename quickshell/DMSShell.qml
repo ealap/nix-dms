@@ -527,6 +527,20 @@ Item {
         }
     }
 
+    LazyLoader {
+        id: clipboardHistoryPopoutLoader
+
+        active: false
+
+        ClipboardHistoryPopout {
+            id: clipboardHistoryPopout
+
+            Component.onCompleted: {
+                PopoutService.clipboardHistoryPopout = clipboardHistoryPopout;
+            }
+        }
+    }
+
     ClipboardHistoryModal {
         id: clipboardHistoryModalPopup
 
@@ -553,7 +567,7 @@ Item {
         viewMode: SettingsData.appPickerViewMode || "grid"
 
         onViewModeChanged: {
-            SettingsData.set("appPickerViewMode", viewMode)
+            SettingsData.set("appPickerViewMode", viewMode);
         }
 
         function shellEscape(str) {

@@ -13,6 +13,7 @@ type PluginInfo struct {
 	Dependencies []string `json:"dependencies,omitempty"`
 	Installed    bool     `json:"installed,omitempty"`
 	FirstParty   bool     `json:"firstParty,omitempty"`
+	Featured     bool     `json:"featured,omitempty"`
 	Note         string   `json:"note,omitempty"`
 	HasUpdate    bool     `json:"hasUpdate,omitempty"`
 	RequiresDMS  string   `json:"requires_dms,omitempty"`

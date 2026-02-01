@@ -208,7 +208,7 @@ exec "$QS_CMD; swaymsg exit"
 SWAY_EOF
             COMPOSITOR_CONFIG="$TEMP_CONFIG"
         fi
-        exec sway -c "$COMPOSITOR_CONFIG"
+        exec sway --unsupported-gpu -c "$COMPOSITOR_CONFIG"
         ;;
 
     scroll)

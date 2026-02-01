@@ -28,7 +28,7 @@ FloatingWindow {
     }
 
     function submitAuth() {
-        if (passwordInput.length === 0 || !currentFlow || isLoading)
+        if (!currentFlow || isLoading)
             return;
         isLoading = true;
         currentFlow.submit(passwordInput);
@@ -287,7 +287,7 @@ FloatingWindow {
                         height: 36
                         radius: Theme.cornerRadius
                         color: authArea.containsMouse ? Qt.darker(Theme.primary, 1.1) : Theme.primary
-                        enabled: !isLoading && (passwordInput.length > 0 || !(currentFlow?.isResponseRequired ?? true))
+                        enabled: !isLoading
                         opacity: enabled ? 1 : 0.5
 
                         StyledText {

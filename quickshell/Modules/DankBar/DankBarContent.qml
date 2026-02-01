@@ -555,13 +555,57 @@ Item {
         id: clipboardComponent
 
         ClipboardButton {
+            id: clipboardWidget
             widgetThickness: barWindow.widgetThickness
             barThickness: barWindow.effectiveBarThickness
             axis: barWindow.axis
             section: topBarContent.getWidgetSection(parent)
             parentScreen: barWindow.screen
-            onClicked: {
-                clipboardHistoryModalPopup.toggle();
+            popoutTarget: {
+                clipboardHistoryPopoutLoader.active = true;
+                return clipboardHistoryPopoutLoader.item;
+            }
+
+            function openClipboardPopout(initialTab) {
+                clipboardHistoryPopoutLoader.active = true;
+                if (!clipboardHistoryPopoutLoader.item) {
+                    return;
+                }
+                const popout = clipboardHistoryPopoutLoader.item;
+                const effectiveBarConfig = topBarContent.barConfig;
+                const barPosition = barWindow.axis?.edge === "left" ? 2 : (barWindow.axis?.edge === "right" ? 3 : (barWindow.axis?.edge === "top" ? 0 : 1));
+                if (popout.setBarContext) {
+                    popout.setBarContext(barPosition, effectiveBarConfig?.bottomGap ?? 0);
+                }
+                if (popout.setTriggerPosition) {
+                    const globalPos = clipboardWidget.mapToItem(null, 0, 0);
+                    const pos = SettingsData.getPopupTriggerPosition(globalPos, barWindow.screen, barWindow.effectiveBarThickness, clipboardWidget.width, effectiveBarConfig?.spacing ?? 4, barPosition, effectiveBarConfig);
+                    const widgetSection = topBarContent.getWidgetSection(parent) || "right";
+                    popout.setTriggerPosition(pos.x, pos.y, pos.width, widgetSection, barWindow.screen, barPosition, barWindow.effectiveBarThickness, effectiveBarConfig?.spacing ?? 4, effectiveBarConfig);
+                }
+                if (initialTab) {
+                    popout.activeTab = initialTab;
+                }
+                PopoutManager.requestPopout(popout, undefined, "clipboard");
+            }
+
+            onClipboardClicked: openClipboardPopout("recents")
+
+            onShowSavedItemsRequested: openClipboardPopout("saved")
+
+            onClearAllRequested: {
+                clipboardHistoryPopoutLoader.active = true;
+                const popout = clipboardHistoryPopoutLoader.item;
+                if (!popout?.confirmDialog) {
+                    return;
+                }
+                const hasPinned = popout.pinnedCount > 0;
+                const message = hasPinned ? I18n.tr("This will delete all unpinned entries. %1 pinned entries will be kept.").arg(popout.pinnedCount) : I18n.tr("This will permanently delete all clipboard history.");
+                popout.confirmDialog.show(I18n.tr("Clear History?"), message, function () {
+                    if (popout && typeof popout.clearAll === "function") {
+                        popout.clearAll();
+                    }
+                }, function () {});
             }
         }
     }

@@ -914,7 +914,7 @@ Item {
                         }
                     }
 
-                    return SettingsData.groupWorkspaceApps ? groupedCount : totalCount;
+                    return (SettingsData.groupWorkspaceApps && !isActive) ? groupedCount : totalCount;
                 }
 
                 readonly property real baseWidth: root.isVertical ? (SettingsData.showWorkspaceApps ? Math.max(widgetHeight * 0.7, root.appIconSize + Theme.spacingXS * 2) : widgetHeight * 0.5) : (isActive ? root.widgetHeight * 1.05 : root.widgetHeight * 0.7)

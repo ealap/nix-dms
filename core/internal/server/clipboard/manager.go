@@ -820,6 +820,28 @@ func (m *Manager) DeleteEntry(id uint64) error {
 	return err
 }
 
+func (m *Manager) TouchEntry(id uint64) error {
+	if m.db == nil {
+		return fmt.Errorf("database not available")
+	}
+
+	entry, err := m.GetEntry(id)
+	if err != nil {
+		return err
+	}
+
+	entry.Timestamp = time.Now()
+
+	if err := m.storeEntry(*entry); err != nil {
+		return err
+	}
+
+	m.updateState()
+	m.notifySubscribers()
+
+	return nil
+}
+
 func (m *Manager) ClearHistory() {
 	if m.db == nil {
 		return
@@ -1593,6 +1615,8 @@ func (m *Manager) CopyFile(filePath string) error {
 	m.updateState()
 	m.notifySubscribers()
 
+	_, imgMime, imgErr := image.DecodeConfig(bytes.NewReader(fileData))
+
 	m.post(func() {
 		if m.dataControlMgr == nil || m.dataDevice == nil {
 			log.Error("Data control manager or device not initialized")
@@ -1614,6 +1638,11 @@ func (m *Manager) CopyFile(filePath string) error {
 			{"x-special/gnome-copied-files", []byte("copy\n" + fileURI)},
 			{"text/uri-list", []byte(fileURI + "\r\n")},
 			{"text/plain", []byte(filePath)},
+		}
+
+		if imgErr == nil {
+			imgMimeType := "image/" + imgMime
+			offers = append(offers, offer{imgMimeType, fileData})
 		}
 
 		offerData := make(map[string][]byte)

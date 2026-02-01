@@ -3,7 +3,7 @@
 %global debug_package %{nil}
 
 Name:           dms
-Version:        1.0.3
+Version:        1.2.3
 Release:        1%{?dist}
 Summary:        DankMaterialShell - Material 3 inspired shell for Wayland compositors
 

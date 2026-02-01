@@ -17,11 +17,20 @@
   "%1 days ago": {
     "%1 days ago": ""
   },
+  "%1 disconnected": {
+    "%1 disconnected": ""
+  },
+  "%1 disconnected (hidden)": {
+    "%1 disconnected (hidden)": ""
+  },
   "%1 display(s)": {
     "%1 display(s)": "%1 pantalla(s)"
   },
   "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": {
     "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": ""
+  },
+  "%1 exists but is not included. Window rules won't apply.": {
+    "%1 exists but is not included. Window rules won't apply.": ""
   },
   "%1 is now included in config": {
     "%1 is now included in config": ""
@@ -203,6 +212,9 @@
   "Add Printer": {
     "Add Printer": "Añadir impresora"
   },
+  "Add Title": {
+    "Add Title": ""
+  },
   "Add Widget": {
     "Add Widget": "Añadir widget"
   },
@@ -286,6 +298,9 @@
   },
   "App ID Substitutions": {
     "App ID Substitutions": ""
+  },
+  "App ID regex (e.g. ^firefox$)": {
+    "App ID regex (e.g. ^firefox$)": ""
   },
   "App Launcher": {
     "App Launcher": "Lanzador de aplicaciones"
@@ -521,6 +536,12 @@
   "Bit Depth": {
     "Bit Depth": "Profundidad de bits"
   },
+  "Block Out": {
+    "Block Out": ""
+  },
+  "Block Out From": {
+    "Block Out From": ""
+  },
   "Block notifications": {
     "Block notifications": "Bloquear notificaciones"
   },
@@ -562,6 +583,9 @@
   },
   "Border Thickness": {
     "Border Thickness": "Grosor del borde"
+  },
+  "Border with BG": {
+    "Border with BG": ""
   },
   "Bottom": {
     "Bottom": "Abajo"
@@ -731,6 +755,9 @@
   "Cipher": {
     "Cipher": "Cifrado"
   },
+  "Class regex (e.g. ^firefox$)": {
+    "Class regex (e.g. ^firefox$)": ""
+  },
   "Clear": {
     "Clear": "Limpiar"
   },
@@ -755,6 +782,9 @@
   "Click 'Setup' to create %1 and add include to config.": {
     "Click 'Setup' to create %1 and add include to config.": ""
   },
+  "Click 'Setup' to create %1 and add include to your compositor config.": {
+    "Click 'Setup' to create %1 and add include to your compositor config.": ""
+  },
   "Click 'Setup' to create cursor config and add include to your compositor config.": {
     "Click 'Setup' to create cursor config and add include to your compositor config.": ""
   },
@@ -763,6 +793,9 @@
   },
   "Click 'Setup' to create the outputs config and add include to your compositor config.": {
     "Click 'Setup' to create the outputs config and add include to your compositor config.": "Haga clic en \"Configuración\" para crear la configuración de salida y añadirla a la configuración del compositor."
+  },
+  "Click + to add a rule for the focused window": {
+    "Click + to add a rule for the focused window": ""
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "Clic en importar para añadir un archivo .ovpn o .conf"
@@ -778,6 +811,12 @@
   },
   "Click to capture": {
     "Click to capture": "Clic para capturar"
+  },
+  "Clip": {
+    "Clip": ""
+  },
+  "Clip to Geometry": {
+    "Clip to Geometry": ""
   },
   "Clipboard": {
     "Clipboard": "Portapapeles"
@@ -854,6 +893,12 @@
   "Column": {
     "Column": "Columna"
   },
+  "Column Display": {
+    "Column Display": ""
+  },
+  "Column Width": {
+    "Column Width": ""
+  },
   "Command": {
     "Command": "Comando"
   },
@@ -878,6 +923,9 @@
   "Compositor Settings": {
     "Compositor Settings": "Ajustes del compositor"
   },
+  "Compositor not supported": {
+    "Compositor not supported": ""
+  },
   "Config Format": {
     "Config Format": "Formato de la configuracion"
   },
@@ -901,6 +949,9 @@
   },
   "Configure icons for named workspaces. Icons take priority over numbers when both are enabled.": {
     "Configure icons for named workspaces. Icons take priority over numbers when both are enabled.": "Configurar íconos para espacios de trabajo con nombre. Los íconos tienen prioridad sobre los números cuando ambos están activados."
+  },
+  "Configure match criteria and actions": {
+    "Configure match criteria and actions": ""
   },
   "Configure which displays show shell components": {
     "Configure which displays show shell components": "Configurar qué pantallas muestran los componentes del sistema"
@@ -944,6 +995,9 @@
   "Connecting...": {
     "Connecting...": "Conectando..."
   },
+  "Content copied": {
+    "Content copied": ""
+  },
   "Contrast": {
     "Contrast": "Contraste"
   },
@@ -986,6 +1040,9 @@
   "Copy": {
     "Copy": ""
   },
+  "Copy Content": {
+    "Copy Content": ""
+  },
   "Copy Full Command": {
     "Copy Full Command": ""
   },
@@ -1022,11 +1079,20 @@
   "Cover Open": {
     "Cover Open": "Cubierta abierta"
   },
+  "Create": {
+    "Create": ""
+  },
   "Create Dir": {
     "Create Dir": "Crear carpeta"
   },
   "Create Printer": {
     "Create Printer": "Crear impresora"
+  },
+  "Create Window Rule": {
+    "Create Window Rule": ""
+  },
+  "Create rule for:": {
+    "Create rule for:": ""
   },
   "Creating...": {
     "Creating...": "Creando..."
@@ -1199,6 +1265,9 @@
   "Defaults": {
     "Defaults": "Base"
   },
+  "Define rules for window behavior. Saves to %1": {
+    "Define rules for window behavior. Saves to %1": ""
+  },
   "Del: Clear • Shift+Del: Clear All • 1-9: Actions • F10: Help • Esc: Close": {
     "Del: Clear • Shift+Del: Clear All • 1-9: Actions • F10: Help • Esc: Close": "Del: Borrar • Shift+Del: Borrar todo • 1-9: Acciones • F10: Ayuda • Esc: Cerrar"
   },
@@ -1304,11 +1373,17 @@
   "Dismiss": {
     "Dismiss": "Descartar"
   },
+  "Display": {
+    "Display": ""
+  },
   "Display Assignment": {
     "Display Assignment": "Pantalla asignada"
   },
   "Display Name Format": {
     "Display Name Format": "Formato de nombre"
+  },
+  "Display Profiles": {
+    "Display Profiles": ""
   },
   "Display Settings": {
     "Display Settings": "Ajustes de monitor"
@@ -1354,6 +1429,9 @@
   },
   "Displays": {
     "Displays": "Pantallas"
+  },
+  "Displays count when overflow is active": {
+    "Displays count when overflow is active": ""
   },
   "Displays the active keyboard layout and allows switching": {
     "Displays the active keyboard layout and allows switching": "Muestra la distribución de teclado activa y permite cambiarla"
@@ -1415,11 +1493,17 @@
   "Dusk (Nautical Twilight)": {
     "Dusk (Nautical Twilight)": "Atardecer (Crepúsculo náutico)"
   },
+  "Dynamic Properties": {
+    "Dynamic Properties": ""
+  },
   "Edge Spacing": {
     "Edge Spacing": "Espacio entre bordes"
   },
   "Edit App": {
     "Edit App": ""
+  },
+  "Edit Window Rule": {
+    "Edit Window Rule": ""
   },
   "Education": {
     "Education": "Educación"
@@ -1586,6 +1670,9 @@
   "Failed to activate configuration": {
     "Failed to activate configuration": "Error al activar la configuración"
   },
+  "Failed to activate profile - file not found": {
+    "Failed to activate profile - file not found": ""
+  },
   "Failed to add binds include": {
     "Failed to add binds include": "Fallo al añadir la inclusion de binds"
   },
@@ -1612,6 +1699,9 @@
   },
   "Failed to create printer": {
     "Failed to create printer": "Error al crear la impresora"
+  },
+  "Failed to create profiles directory": {
+    "Failed to create profiles directory": ""
   },
   "Failed to delete VPN": {
     "Failed to delete VPN": "Error al eliminar VPN"
@@ -1702,6 +1792,9 @@
   },
   "Failed to save keybind": {
     "Failed to save keybind": "No se ha podido guardar la combinación de teclas"
+  },
+  "Failed to save profile file": {
+    "Failed to save profile file": ""
   },
   "Failed to set brightness": {
     "Failed to set brightness": "Fallo al establecer el brillo"
@@ -1802,6 +1895,12 @@
   "Flipped 90°": {
     "Flipped 90°": "Volteado 90"
   },
+  "Float": {
+    "Float": ""
+  },
+  "Focus": {
+    "Focus": ""
+  },
   "Focus at Startup": {
     "Focus at Startup": "Centrarse en el inicio"
   },
@@ -1873,6 +1972,9 @@
   },
   "Frequency": {
     "Frequency": "Frecuencia"
+  },
+  "Fullscreen": {
+    "Fullscreen": ""
   },
   "Fun": {
     "Fun": "Diversión"
@@ -1967,6 +2069,9 @@
   "Health": {
     "Health": "Salud"
   },
+  "Height": {
+    "Height": ""
+  },
   "Held": {
     "Held": "Retenido"
   },
@@ -1990,6 +2095,9 @@
   },
   "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": {
     "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": ""
+  },
+  "Hide": {
+    "Hide": ""
   },
   "Hide App": {
     "Hide App": ""
@@ -2065,6 +2173,9 @@
   },
   "Hyprland Layout Overrides": {
     "Hyprland Layout Overrides": ""
+  },
+  "Hyprland Options": {
+    "Hyprland Options": ""
   },
   "I Understand": {
     "I Understand": "Lo entiendo"
@@ -2209,6 +2320,9 @@
   "KDE Connect clipboard action": {
     "Clipboard sent": ""
   },
+  "KDE Connect clipboard action | Phone Connect clipboard action": {
+    "Clipboard sent": ""
+  },
   "KDE Connect clipboard tooltip": {
     "Send Clipboard": ""
   },
@@ -2261,6 +2375,9 @@
   "KDE Connect offline status": {
     "Offline": ""
   },
+  "KDE Connect offline status | Phone Connect offline status": {
+    "Offline": ""
+  },
   "KDE Connect open SMS app button": {
     "Open App": ""
   },
@@ -2296,6 +2413,9 @@
   "KDE Connect refresh button | KDE Connect refresh tooltip": {
     "Refresh": ""
   },
+  "KDE Connect refresh button | Phone Connect refresh tooltip": {
+    "Refresh": ""
+  },
   "KDE Connect reject pairing button": {
     "Reject": ""
   },
@@ -2303,6 +2423,9 @@
     "Request Pairing": ""
   },
   "KDE Connect ring action": {
+    "Ringing": ""
+  },
+  "KDE Connect ring action | Phone Connect ring action": {
     "Ringing": ""
   },
   "KDE Connect ring tooltip": {
@@ -2357,6 +2480,9 @@
     "Unknown": ""
   },
   "KDE Connect unpair action": {
+    "Device unpaired": ""
+  },
+  "KDE Connect unpair action | Phone Connect unpair action": {
     "Device unpaired": ""
   },
   "KDE Connect unpair tooltip": {
@@ -2584,6 +2710,12 @@
   "Marker Waste Full": {
     "Marker Waste Full": "Depósito de residuos lleno"
   },
+  "Match Criteria": {
+    "Match Criteria": ""
+  },
+  "Matches profile: %1": {
+    "Matches profile: %1": ""
+  },
   "Material Colors": {
     "Material Colors": "Colores Material"
   },
@@ -2596,8 +2728,35 @@
   "Matugen Templates": {
     "Matugen Templates": "Plantillas de Matugen"
   },
+  "Max Edges": {
+    "Max Edges": ""
+  },
+  "Max H": {
+    "Max H": ""
+  },
+  "Max Pinned Apps": {
+    "Max Pinned Apps": ""
+  },
+  "Max Pinned Apps (0 = Unlimited)": {
+    "Max Pinned Apps (0 = Unlimited)": ""
+  },
+  "Max Running Apps": {
+    "Max Running Apps": ""
+  },
+  "Max Running Apps (0 = Unlimited)": {
+    "Max Running Apps (0 = Unlimited)": ""
+  },
+  "Max W": {
+    "Max W": ""
+  },
   "Max apps to show": {
     "Max apps to show": "Máximo de aplicaciones a mostrar"
+  },
+  "Max to Edges": {
+    "Max to Edges": ""
+  },
+  "Maximize": {
+    "Maximize": ""
   },
   "Maximize Detection": {
     "Maximize Detection": "Maximizar la detección"
@@ -2686,6 +2845,12 @@
   "Middle Section": {
     "Middle Section": "Sección central"
   },
+  "Min H": {
+    "Min H": ""
+  },
+  "Min W": {
+    "Min W": ""
+  },
   "Minimal palette built around a single hue.": {
     "Minimal palette built around a single hue.": "Paleta simple con un único color base."
   },
@@ -2709,6 +2874,9 @@
   },
   "Modified": {
     "Modified": "Modificado"
+  },
+  "Monitor": {
+    "Monitor": ""
   },
   "Monitor Configuration": {
     "Monitor Configuration": "Configuracion del monitor"
@@ -2736,6 +2904,9 @@
   },
   "Mouse pointer size in pixels": {
     "Mouse pointer size in pixels": ""
+  },
+  "Move": {
+    "Move": ""
   },
   "Move Widget": {
     "Move Widget": "Mover widget"
@@ -2797,6 +2968,9 @@
   "New Notification": {
     "New Notification": "Nueva notificación"
   },
+  "New Window Rule": {
+    "New Window Rule": ""
+  },
   "New York, NY": {
     "New York, NY": "New York, NY"
   },
@@ -2830,17 +3004,41 @@
   "No Active Players": {
     "No Active Players": "Sin reproductores activos"
   },
+  "No Anim": {
+    "No Anim": ""
+  },
   "No Background": {
     "No Background": "Sin fondo"
   },
   "No Bluetooth adapter found": {
     "No Bluetooth adapter found": "No se encontró un adaptador de Bluetooth"
   },
+  "No Blur": {
+    "No Blur": ""
+  },
+  "No Border": {
+    "No Border": ""
+  },
+  "No Dim": {
+    "No Dim": ""
+  },
+  "No Focus": {
+    "No Focus": ""
+  },
   "No GPU detected": {
     "No GPU detected": "No se detecta GPU"
   },
   "No Media": {
     "No Media": "Sin medios"
+  },
+  "No Round": {
+    "No Round": ""
+  },
+  "No Rounding": {
+    "No Rounding": ""
+  },
+  "No Shadow": {
+    "No Shadow": ""
   },
   "No VPN profiles": {
     "No VPN profiles": "Sin perfiles VPN"
@@ -2905,6 +3103,9 @@
   "No launcher plugins installed.": {
     "No launcher plugins installed.": ""
   },
+  "No match criteria": {
+    "No match criteria": ""
+  },
   "No matches": {
     "No matches": "Sin coincidencias"
   },
@@ -2926,6 +3127,9 @@
   "No printers found": {
     "No printers found": "No se encontraron impresoras"
   },
+  "No profiles": {
+    "No profiles": ""
+  },
   "No recent clipboard entries found": {
     "No recent clipboard entries found": ""
   },
@@ -2946,6 +3150,9 @@
   },
   "No widgets match your search": {
     "No widgets match your search": "Ningún widget encaja con tu búsqueda"
+  },
+  "No window rules configured": {
+    "No window rules configured": ""
   },
   "None": {
     "None": "Ninguna"
@@ -3043,6 +3250,9 @@
   "Opacity": {
     "Opacity": "Opacidad"
   },
+  "Opaque": {
+    "Opaque": ""
+  },
   "Open": {
     "Open": "Abrir"
   },
@@ -3076,6 +3286,9 @@
   "Other": {
     "Other": "Otro"
   },
+  "Output": {
+    "Output": ""
+  },
   "Output Area Almost Full": {
     "Output Area Almost Full": "Área de salida casi llena"
   },
@@ -3087,6 +3300,9 @@
   },
   "Outputs Include Missing": {
     "Outputs Include Missing": "Los resultados incluyen"
+  },
+  "Overflow": {
+    "Overflow": ""
   },
   "Overridden by config": {
     "Overridden by config": "Sobreescrito por la configuracion"
@@ -3148,6 +3364,9 @@
   "Password": {
     "Password": "Contraseña"
   },
+  "Paste": {
+    "Paste": ""
+  },
   "Pattern": {
     "Pattern": ""
   },
@@ -3180,6 +3399,68 @@
   },
   "Personalization": {
     "Personalization": "Personalización"
+  },
+  "Phone Connect SMS action": {
+    "Opening SMS app": ""
+  },
+  "Phone Connect browse action": {
+    "Opening file browser": ""
+  },
+  "Phone Connect daemon hint": {
+    "Start KDE Connect or Valent to use this plugin": ""
+  },
+  "Phone Connect error": {
+    "Failed to accept pairing": "",
+    "Failed to browse device": "",
+    "Failed to launch SMS app": "",
+    "Failed to reject pairing": "",
+    "Failed to ring device": "",
+    "Failed to send clipboard": "",
+    "Failed to send file": "",
+    "Failed to send ping": "",
+    "Failed to share": "",
+    "Pairing failed": "",
+    "Unpair failed": ""
+  },
+  "Phone Connect file send": {
+    "Sending": ""
+  },
+  "Phone Connect file share notification": {
+    "File received from": ""
+  },
+  "Phone Connect hint message": {
+    "Make sure KDE Connect or Valent is running on your other devices": ""
+  },
+  "Phone Connect no devices status | bluetooth status": {
+    "No devices": ""
+  },
+  "Phone Connect pairing action": {
+    "Device paired": "",
+    "Pairing request sent": ""
+  },
+  "Phone Connect pairing request notification": {
+    "Pairing request from": ""
+  },
+  "Phone Connect pairing verification key label": {
+    "Verification": ""
+  },
+  "Phone Connect ping action": {
+    "Ping sent to": ""
+  },
+  "Phone Connect service unavailable message": {
+    "Phone Connect unavailable": ""
+  },
+  "Phone Connect share success": {
+    "Shared": ""
+  },
+  "Phone Connect start daemon hint": {
+    "Start KDE Connect or Valent": ""
+  },
+  "Phone Connect unavailable error title": {
+    "Phone Connect Not Available": ""
+  },
+  "Phone Connect unavailable status": {
+    "Unavailable": ""
   },
   "Pin": {
     "Pin": "Fijar"
@@ -3364,8 +3645,26 @@
   "Profile Image Error": {
     "Profile Image Error": "Error de imagen de perfil"
   },
+  "Profile activated: %1": {
+    "Profile activated: %1": ""
+  },
+  "Profile deleted": {
+    "Profile deleted": ""
+  },
+  "Profile error": {
+    "Profile error": ""
+  },
   "Profile image is too large. Please use a smaller image.": {
     "Profile image is too large. Please use a smaller image.": "La imagen de perfil es muy grande. Por favor usa una más pequeña."
+  },
+  "Profile name": {
+    "Profile name": ""
+  },
+  "Profile not found": {
+    "Profile not found": ""
+  },
+  "Profile saved: %1": {
+    "Profile saved: %1": ""
   },
   "Protocol": {
     "Protocol": "Protocolo"
@@ -3384,6 +3683,9 @@
   },
   "RGB": {
     "RGB": "RGB"
+  },
+  "Radius": {
+    "Radius": ""
   },
   "Rain Chance": {
     "Rain Chance": "Lluvia"
@@ -3520,6 +3822,15 @@
   "Rounded corners for windows (decoration.rounding)": {
     "Rounded corners for windows (decoration.rounding)": ""
   },
+  "Rule": {
+    "Rule": ""
+  },
+  "Rule Name": {
+    "Rule Name": ""
+  },
+  "Rules (%1)": {
+    "Rules (%1)": ""
+  },
   "Run DMS Templates": {
     "Run DMS Templates": "Ejecutar plantillas de DMS"
   },
@@ -3553,6 +3864,9 @@
   "Save Notepad File": {
     "Save Notepad File": "Guardar archivo"
   },
+  "Save and switch between display configurations": {
+    "Save and switch between display configurations": ""
+  },
   "Save password": {
     "Save password": "Guardar contraseña"
   },
@@ -3564,6 +3878,9 @@
   },
   "Saved item deleted": {
     "Saved item deleted": ""
+  },
+  "Saving...": {
+    "Saving...": ""
   },
   "Scale": {
     "Scale": "Escala"
@@ -3591,6 +3908,12 @@
   },
   "Screen sharing": {
     "Screen sharing": "Compartir pantalla"
+  },
+  "Scroll": {
+    "Scroll": ""
+  },
+  "Scroll Factor": {
+    "Scroll Factor": ""
   },
   "Scroll Wheel": {
     "Scroll Wheel": "Rueda de desplazamiento"
@@ -3676,6 +3999,9 @@
   "Select a widget to add. You can add multiple instances of the same widget if needed.": {
     "Select a widget to add. You can add multiple instances of the same widget if needed.": "Elija un widget para añadir. Puede añadir varias copias del mismo widget si es necesario."
   },
+  "Select a window...": {
+    "Select a window...": ""
+  },
   "Select an image file...": {
     "Select an image file...": "Selecciona un archivo de imagen..."
   },
@@ -3760,8 +4086,14 @@
   "Shortcuts (%1)": {
     "Shortcuts (%1)": "Atajos (%1)"
   },
+  "Show": {
+    "Show": ""
+  },
   "Show All Tags": {
     "Show All Tags": "Mostrar todas las etiquetas"
+  },
+  "Show Badge": {
+    "Show Badge": ""
   },
   "Show CPU": {
     "Show CPU": "Mostrar CPU"
@@ -3834,6 +4166,9 @@
   },
   "Show Occupied Workspaces Only": {
     "Show Occupied Workspaces Only": "Mostrar solo espacios de trabajo ocupados"
+  },
+  "Show Overflow Badge Count": {
+    "Show Overflow Badge Count": ""
   },
   "Show Power Off": {
     "Show Power Off": "Mostrar Apagar"
@@ -3979,6 +4314,9 @@
   "Size": {
     "Size": "Tamaño"
   },
+  "Size Constraints": {
+    "Size Constraints": ""
+  },
   "Size Offset": {
     "Size Offset": "Tamaño relativo"
   },
@@ -3993,6 +4331,9 @@
   },
   "Smartcard PIN": {
     "Smartcard PIN": "PIN de la tarjeta inteligente"
+  },
+  "Snap": {
+    "Snap": ""
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": "Algunos plugins requieren una version más nueva de DMS:"
@@ -4141,6 +4482,9 @@
   "System notification area icons": {
     "System notification area icons": "Iconos del área de notificaciones del sistema"
   },
+  "System sounds are not available. Install %1 for sound support.": {
+    "System sounds are not available. Install %1 for sound support.": ""
+  },
   "System sounds are not available. Install canberra-gtk-play for sound support.": {
     "System sounds are not available. Install canberra-gtk-play for sound support.": "Los sonidos del sistema no están disponibles. Instale canberra-gtk-play para obtener soporte de sonido."
   },
@@ -4216,6 +4560,12 @@
   "This will permanently remove this saved clipboard item. This action cannot be undone.": {
     "This will permanently remove this saved clipboard item. This action cannot be undone.": ""
   },
+  "Tiled": {
+    "Tiled": ""
+  },
+  "Tiled State": {
+    "Tiled State": ""
+  },
   "Tiling": {
     "Tiling": "Mosaico"
   },
@@ -4245,6 +4595,9 @@
   },
   "Title": {
     "Title": "Titulo"
+  },
+  "Title regex (optional)": {
+    "Title regex (optional)": ""
   },
   "To Full": {
     "To Full": "Carga completa"
@@ -4384,6 +4737,9 @@
   "Unknown Network": {
     "Unknown Network": "Red desconocida"
   },
+  "Unnamed Rule": {
+    "Unnamed Rule": ""
+  },
   "Unpin": {
     "Unpin": ""
   },
@@ -4401,6 +4757,9 @@
   },
   "Untitled": {
     "Untitled": "Sin titulo"
+  },
+  "Update": {
+    "Update": ""
   },
   "Update All": {
     "Update All": "Actualizar todo"
@@ -4692,6 +5051,9 @@
   "Widget removed": {
     "Widget removed": "Widget eliminado"
   },
+  "Width": {
+    "Width": ""
+  },
   "Width of window border (borderpx)": {
     "Width of window border (borderpx)": ""
   },
@@ -4719,8 +5081,23 @@
   "Window Gaps (px)": {
     "Window Gaps (px)": "Separacion de ventanas (px)"
   },
+  "Window Height": {
+    "Window Height": ""
+  },
+  "Window Opening": {
+    "Window Opening": ""
+  },
   "Window Rounding": {
     "Window Rounding": ""
+  },
+  "Window Rules": {
+    "Window Rules": ""
+  },
+  "Window Rules Include Missing": {
+    "Window Rules Include Missing": ""
+  },
+  "Window Rules Not Configured": {
+    "Window Rules Not Configured": ""
   },
   "Workspace": {
     "Workspace": "Espacio de trabajo"

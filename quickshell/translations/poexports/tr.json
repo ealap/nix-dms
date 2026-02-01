@@ -17,11 +17,20 @@
   "%1 days ago": {
     "%1 days ago": "%1 gün önce"
   },
+  "%1 disconnected": {
+    "%1 disconnected": ""
+  },
+  "%1 disconnected (hidden)": {
+    "%1 disconnected (hidden)": ""
+  },
   "%1 display(s)": {
     "%1 display(s)": "%1 ekran"
   },
   "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": {
     "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": ""
+  },
+  "%1 exists but is not included. Window rules won't apply.": {
+    "%1 exists but is not included. Window rules won't apply.": ""
   },
   "%1 is now included in config": {
     "%1 is now included in config": ""
@@ -203,6 +212,9 @@
   "Add Printer": {
     "Add Printer": "Yazıcı Ekle"
   },
+  "Add Title": {
+    "Add Title": ""
+  },
   "Add Widget": {
     "Add Widget": "Widget Ekle"
   },
@@ -286,6 +298,9 @@
   },
   "App ID Substitutions": {
     "App ID Substitutions": ""
+  },
+  "App ID regex (e.g. ^firefox$)": {
+    "App ID regex (e.g. ^firefox$)": ""
   },
   "App Launcher": {
     "App Launcher": "Uygulama Başlatıcı"
@@ -521,6 +536,12 @@
   "Bit Depth": {
     "Bit Depth": "Bit Derinliği"
   },
+  "Block Out": {
+    "Block Out": ""
+  },
+  "Block Out From": {
+    "Block Out From": ""
+  },
   "Block notifications": {
     "Block notifications": "Bildirimleri engelle"
   },
@@ -562,6 +583,9 @@
   },
   "Border Thickness": {
     "Border Thickness": "Kenarlık Kalınlığı"
+  },
+  "Border with BG": {
+    "Border with BG": ""
   },
   "Bottom": {
     "Bottom": "Alt"
@@ -731,6 +755,9 @@
   "Cipher": {
     "Cipher": "Şifre"
   },
+  "Class regex (e.g. ^firefox$)": {
+    "Class regex (e.g. ^firefox$)": ""
+  },
   "Clear": {
     "Clear": "Temizle"
   },
@@ -755,6 +782,9 @@
   "Click 'Setup' to create %1 and add include to config.": {
     "Click 'Setup' to create %1 and add include to config.": ""
   },
+  "Click 'Setup' to create %1 and add include to your compositor config.": {
+    "Click 'Setup' to create %1 and add include to your compositor config.": ""
+  },
   "Click 'Setup' to create cursor config and add include to your compositor config.": {
     "Click 'Setup' to create cursor config and add include to your compositor config.": ""
   },
@@ -763,6 +793,9 @@
   },
   "Click 'Setup' to create the outputs config and add include to your compositor config.": {
     "Click 'Setup' to create the outputs config and add include to your compositor config.": "Çıktı yapılandırmasını oluşturmak ve kompozitör yapılandırmanıza dahil etmek için 'Kur'a tıklayın."
+  },
+  "Click + to add a rule for the focused window": {
+    "Click + to add a rule for the focused window": ""
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": ".ovpn veya .conf dosyası eklemek için İçe Aktar'ı tıklayın."
@@ -778,6 +811,12 @@
   },
   "Click to capture": {
     "Click to capture": "Yakalamak için tıkla"
+  },
+  "Clip": {
+    "Clip": ""
+  },
+  "Clip to Geometry": {
+    "Clip to Geometry": ""
   },
   "Clipboard": {
     "Clipboard": "Pano"
@@ -854,6 +893,12 @@
   "Column": {
     "Column": "Kolon"
   },
+  "Column Display": {
+    "Column Display": ""
+  },
+  "Column Width": {
+    "Column Width": ""
+  },
   "Command": {
     "Command": "Komut"
   },
@@ -878,6 +923,9 @@
   "Compositor Settings": {
     "Compositor Settings": "Kompozitör Ayarları"
   },
+  "Compositor not supported": {
+    "Compositor not supported": ""
+  },
   "Config Format": {
     "Config Format": "Yapılandırma Biçimi"
   },
@@ -901,6 +949,9 @@
   },
   "Configure icons for named workspaces. Icons take priority over numbers when both are enabled.": {
     "Configure icons for named workspaces. Icons take priority over numbers when both are enabled.": "Adlandırılmış çalışma alanları için simgeleri yapılandırın. Her ikisi de etkinleştirildiğinde simgeler sayılara göre önceliklidir."
+  },
+  "Configure match criteria and actions": {
+    "Configure match criteria and actions": ""
   },
   "Configure which displays show shell components": {
     "Configure which displays show shell components": "Hangi ekranların kabuk bileşenlerini göstereceğini yapılandırın"
@@ -944,6 +995,9 @@
   "Connecting...": {
     "Connecting...": "Bağlanıyor..."
   },
+  "Content copied": {
+    "Content copied": ""
+  },
   "Contrast": {
     "Contrast": "Kontrast"
   },
@@ -986,6 +1040,9 @@
   "Copy": {
     "Copy": ""
   },
+  "Copy Content": {
+    "Copy Content": ""
+  },
   "Copy Full Command": {
     "Copy Full Command": ""
   },
@@ -1022,11 +1079,20 @@
   "Cover Open": {
     "Cover Open": "Kapak Açık"
   },
+  "Create": {
+    "Create": ""
+  },
   "Create Dir": {
     "Create Dir": "Dizin Oluştur"
   },
   "Create Printer": {
     "Create Printer": "Yazıcı Oluştur"
+  },
+  "Create Window Rule": {
+    "Create Window Rule": ""
+  },
+  "Create rule for:": {
+    "Create rule for:": ""
   },
   "Creating...": {
     "Creating...": "Oluşturuluyor..."
@@ -1199,6 +1265,9 @@
   "Defaults": {
     "Defaults": "Varsayılanlar"
   },
+  "Define rules for window behavior. Saves to %1": {
+    "Define rules for window behavior. Saves to %1": ""
+  },
   "Del: Clear • Shift+Del: Clear All • 1-9: Actions • F10: Help • Esc: Close": {
     "Del: Clear • Shift+Del: Clear All • 1-9: Actions • F10: Help • Esc: Close": "Del: Temizle • Shift+Del: Tümünü Temizle • 1-9: Eylemler • F10: Yardım • Esc: Kapat"
   },
@@ -1304,11 +1373,17 @@
   "Dismiss": {
     "Dismiss": "Reddet"
   },
+  "Display": {
+    "Display": ""
+  },
   "Display Assignment": {
     "Display Assignment": "Ekran Ataması"
   },
   "Display Name Format": {
     "Display Name Format": "Ekran İsim Formatı"
+  },
+  "Display Profiles": {
+    "Display Profiles": ""
   },
   "Display Settings": {
     "Display Settings": "Ekran Ayarları"
@@ -1354,6 +1429,9 @@
   },
   "Displays": {
     "Displays": "Ekranlar"
+  },
+  "Displays count when overflow is active": {
+    "Displays count when overflow is active": ""
   },
   "Displays the active keyboard layout and allows switching": {
     "Displays the active keyboard layout and allows switching": "Etkin klavye düzenini gösterir ve değiştirmeye izin verir"
@@ -1415,11 +1493,17 @@
   "Dusk (Nautical Twilight)": {
     "Dusk (Nautical Twilight)": "Alacakaranlık (Denizci Alacakaranlığı)"
   },
+  "Dynamic Properties": {
+    "Dynamic Properties": ""
+  },
   "Edge Spacing": {
     "Edge Spacing": "Kenar Aralığı"
   },
   "Edit App": {
     "Edit App": ""
+  },
+  "Edit Window Rule": {
+    "Edit Window Rule": ""
   },
   "Education": {
     "Education": "Eğitim"
@@ -1586,6 +1670,9 @@
   "Failed to activate configuration": {
     "Failed to activate configuration": "Yapılandırma etkinleştirilemedi"
   },
+  "Failed to activate profile - file not found": {
+    "Failed to activate profile - file not found": ""
+  },
   "Failed to add binds include": {
     "Failed to add binds include": "Bağlantı dahili eklenemedi"
   },
@@ -1612,6 +1699,9 @@
   },
   "Failed to create printer": {
     "Failed to create printer": "Yazıcı oluşturulamadı"
+  },
+  "Failed to create profiles directory": {
+    "Failed to create profiles directory": ""
   },
   "Failed to delete VPN": {
     "Failed to delete VPN": "VPN silinemedi"
@@ -1702,6 +1792,9 @@
   },
   "Failed to save keybind": {
     "Failed to save keybind": "Tuş kombinasyonu kaydedilemedi"
+  },
+  "Failed to save profile file": {
+    "Failed to save profile file": ""
   },
   "Failed to set brightness": {
     "Failed to set brightness": "Parlaklık ayarlanamadı"
@@ -1802,6 +1895,12 @@
   "Flipped 90°": {
     "Flipped 90°": "90° döndürülmüş"
   },
+  "Float": {
+    "Float": ""
+  },
+  "Focus": {
+    "Focus": ""
+  },
   "Focus at Startup": {
     "Focus at Startup": "Başlangıçta Odakla"
   },
@@ -1873,6 +1972,9 @@
   },
   "Frequency": {
     "Frequency": "Frekans"
+  },
+  "Fullscreen": {
+    "Fullscreen": ""
   },
   "Fun": {
     "Fun": "Eğlence"
@@ -1967,6 +2069,9 @@
   "Health": {
     "Health": "Sağlık"
   },
+  "Height": {
+    "Height": ""
+  },
   "Held": {
     "Held": "Bekletildi"
   },
@@ -1990,6 +2095,9 @@
   },
   "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": {
     "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": ""
+  },
+  "Hide": {
+    "Hide": ""
   },
   "Hide App": {
     "Hide App": ""
@@ -2065,6 +2173,9 @@
   },
   "Hyprland Layout Overrides": {
     "Hyprland Layout Overrides": ""
+  },
+  "Hyprland Options": {
+    "Hyprland Options": ""
   },
   "I Understand": {
     "I Understand": "Anladım"
@@ -2209,6 +2320,9 @@
   "KDE Connect clipboard action": {
     "Clipboard sent": ""
   },
+  "KDE Connect clipboard action | Phone Connect clipboard action": {
+    "Clipboard sent": ""
+  },
   "KDE Connect clipboard tooltip": {
     "Send Clipboard": ""
   },
@@ -2261,6 +2375,9 @@
   "KDE Connect offline status": {
     "Offline": ""
   },
+  "KDE Connect offline status | Phone Connect offline status": {
+    "Offline": ""
+  },
   "KDE Connect open SMS app button": {
     "Open App": ""
   },
@@ -2296,6 +2413,9 @@
   "KDE Connect refresh button | KDE Connect refresh tooltip": {
     "Refresh": ""
   },
+  "KDE Connect refresh button | Phone Connect refresh tooltip": {
+    "Refresh": ""
+  },
   "KDE Connect reject pairing button": {
     "Reject": ""
   },
@@ -2303,6 +2423,9 @@
     "Request Pairing": ""
   },
   "KDE Connect ring action": {
+    "Ringing": ""
+  },
+  "KDE Connect ring action | Phone Connect ring action": {
     "Ringing": ""
   },
   "KDE Connect ring tooltip": {
@@ -2357,6 +2480,9 @@
     "Unknown": ""
   },
   "KDE Connect unpair action": {
+    "Device unpaired": ""
+  },
+  "KDE Connect unpair action | Phone Connect unpair action": {
     "Device unpaired": ""
   },
   "KDE Connect unpair tooltip": {
@@ -2584,6 +2710,12 @@
   "Marker Waste Full": {
     "Marker Waste Full": "Atık Haznesi Dolu"
   },
+  "Match Criteria": {
+    "Match Criteria": ""
+  },
+  "Matches profile: %1": {
+    "Matches profile: %1": ""
+  },
   "Material Colors": {
     "Material Colors": "Materyal Renkleri"
   },
@@ -2596,8 +2728,35 @@
   "Matugen Templates": {
     "Matugen Templates": "Matugen Şablonları"
   },
+  "Max Edges": {
+    "Max Edges": ""
+  },
+  "Max H": {
+    "Max H": ""
+  },
+  "Max Pinned Apps": {
+    "Max Pinned Apps": ""
+  },
+  "Max Pinned Apps (0 = Unlimited)": {
+    "Max Pinned Apps (0 = Unlimited)": ""
+  },
+  "Max Running Apps": {
+    "Max Running Apps": ""
+  },
+  "Max Running Apps (0 = Unlimited)": {
+    "Max Running Apps (0 = Unlimited)": ""
+  },
+  "Max W": {
+    "Max W": ""
+  },
   "Max apps to show": {
     "Max apps to show": "Gösterilecek maks uygulama"
+  },
+  "Max to Edges": {
+    "Max to Edges": ""
+  },
+  "Maximize": {
+    "Maximize": ""
   },
   "Maximize Detection": {
     "Maximize Detection": "Algılamayı En Üst Düzeye Çıkar"
@@ -2686,6 +2845,12 @@
   "Middle Section": {
     "Middle Section": "Orta Bölüm"
   },
+  "Min H": {
+    "Min H": ""
+  },
+  "Min W": {
+    "Min W": ""
+  },
   "Minimal palette built around a single hue.": {
     "Minimal palette built around a single hue.": "Tek bir renk tonu etrafında oluşturulmuş minimal palet."
   },
@@ -2709,6 +2874,9 @@
   },
   "Modified": {
     "Modified": "Değiştirilmiş"
+  },
+  "Monitor": {
+    "Monitor": ""
   },
   "Monitor Configuration": {
     "Monitor Configuration": "Monitör Yapılandırması"
@@ -2736,6 +2904,9 @@
   },
   "Mouse pointer size in pixels": {
     "Mouse pointer size in pixels": ""
+  },
+  "Move": {
+    "Move": ""
   },
   "Move Widget": {
     "Move Widget": "Widget Taşı"
@@ -2797,6 +2968,9 @@
   "New Notification": {
     "New Notification": "Yeni Bildirim"
   },
+  "New Window Rule": {
+    "New Window Rule": ""
+  },
   "New York, NY": {
     "New York, NY": "New York, NY"
   },
@@ -2830,17 +3004,41 @@
   "No Active Players": {
     "No Active Players": "Aktif Oynatıcı Yok"
   },
+  "No Anim": {
+    "No Anim": ""
+  },
   "No Background": {
     "No Background": "Arkaplan Yok"
   },
   "No Bluetooth adapter found": {
     "No Bluetooth adapter found": "Bluetooth adaptörü bulunamadı"
   },
+  "No Blur": {
+    "No Blur": ""
+  },
+  "No Border": {
+    "No Border": ""
+  },
+  "No Dim": {
+    "No Dim": ""
+  },
+  "No Focus": {
+    "No Focus": ""
+  },
   "No GPU detected": {
     "No GPU detected": "GPU tespit edilmedi"
   },
   "No Media": {
     "No Media": "Medya Yok"
+  },
+  "No Round": {
+    "No Round": ""
+  },
+  "No Rounding": {
+    "No Rounding": ""
+  },
+  "No Shadow": {
+    "No Shadow": ""
   },
   "No VPN profiles": {
     "No VPN profiles": "VPN profili yok"
@@ -2905,6 +3103,9 @@
   "No launcher plugins installed.": {
     "No launcher plugins installed.": ""
   },
+  "No match criteria": {
+    "No match criteria": ""
+  },
   "No matches": {
     "No matches": "Eşleşme yok"
   },
@@ -2926,6 +3127,9 @@
   "No printers found": {
     "No printers found": "Hiçbir yazıcı bulunmadı"
   },
+  "No profiles": {
+    "No profiles": ""
+  },
   "No recent clipboard entries found": {
     "No recent clipboard entries found": ""
   },
@@ -2946,6 +3150,9 @@
   },
   "No widgets match your search": {
     "No widgets match your search": "Aramanla eşleşen bir widget yok"
+  },
+  "No window rules configured": {
+    "No window rules configured": ""
   },
   "None": {
     "None": "Hiçbiri"
@@ -3043,6 +3250,9 @@
   "Opacity": {
     "Opacity": "Opaklık"
   },
+  "Opaque": {
+    "Opaque": ""
+  },
   "Open": {
     "Open": "Aç"
   },
@@ -3076,6 +3286,9 @@
   "Other": {
     "Other": "Diğer"
   },
+  "Output": {
+    "Output": ""
+  },
   "Output Area Almost Full": {
     "Output Area Almost Full": "Çıkış Alanı Neredeyse Dolu"
   },
@@ -3087,6 +3300,9 @@
   },
   "Outputs Include Missing": {
     "Outputs Include Missing": "Çıkış İçe Aktarımı Eksik"
+  },
+  "Overflow": {
+    "Overflow": ""
   },
   "Overridden by config": {
     "Overridden by config": "Yapılandırma tarafından geçersiz kılınmıştır"
@@ -3148,6 +3364,9 @@
   "Password": {
     "Password": "Parola"
   },
+  "Paste": {
+    "Paste": ""
+  },
   "Pattern": {
     "Pattern": ""
   },
@@ -3180,6 +3399,68 @@
   },
   "Personalization": {
     "Personalization": "Kişiselleştirme"
+  },
+  "Phone Connect SMS action": {
+    "Opening SMS app": ""
+  },
+  "Phone Connect browse action": {
+    "Opening file browser": ""
+  },
+  "Phone Connect daemon hint": {
+    "Start KDE Connect or Valent to use this plugin": ""
+  },
+  "Phone Connect error": {
+    "Failed to accept pairing": "",
+    "Failed to browse device": "",
+    "Failed to launch SMS app": "",
+    "Failed to reject pairing": "",
+    "Failed to ring device": "",
+    "Failed to send clipboard": "",
+    "Failed to send file": "",
+    "Failed to send ping": "",
+    "Failed to share": "",
+    "Pairing failed": "",
+    "Unpair failed": ""
+  },
+  "Phone Connect file send": {
+    "Sending": ""
+  },
+  "Phone Connect file share notification": {
+    "File received from": ""
+  },
+  "Phone Connect hint message": {
+    "Make sure KDE Connect or Valent is running on your other devices": ""
+  },
+  "Phone Connect no devices status | bluetooth status": {
+    "No devices": ""
+  },
+  "Phone Connect pairing action": {
+    "Device paired": "",
+    "Pairing request sent": ""
+  },
+  "Phone Connect pairing request notification": {
+    "Pairing request from": ""
+  },
+  "Phone Connect pairing verification key label": {
+    "Verification": ""
+  },
+  "Phone Connect ping action": {
+    "Ping sent to": ""
+  },
+  "Phone Connect service unavailable message": {
+    "Phone Connect unavailable": ""
+  },
+  "Phone Connect share success": {
+    "Shared": ""
+  },
+  "Phone Connect start daemon hint": {
+    "Start KDE Connect or Valent": ""
+  },
+  "Phone Connect unavailable error title": {
+    "Phone Connect Not Available": ""
+  },
+  "Phone Connect unavailable status": {
+    "Unavailable": ""
   },
   "Pin": {
     "Pin": "Sabitle"
@@ -3364,8 +3645,26 @@
   "Profile Image Error": {
     "Profile Image Error": "Profil Resmi Hatası"
   },
+  "Profile activated: %1": {
+    "Profile activated: %1": ""
+  },
+  "Profile deleted": {
+    "Profile deleted": ""
+  },
+  "Profile error": {
+    "Profile error": ""
+  },
   "Profile image is too large. Please use a smaller image.": {
     "Profile image is too large. Please use a smaller image.": "Profil resmi çok büyük. Lütfen daha küçük bir resim kullanın."
+  },
+  "Profile name": {
+    "Profile name": ""
+  },
+  "Profile not found": {
+    "Profile not found": ""
+  },
+  "Profile saved: %1": {
+    "Profile saved: %1": ""
   },
   "Protocol": {
     "Protocol": "Protokol"
@@ -3384,6 +3683,9 @@
   },
   "RGB": {
     "RGB": "RGB"
+  },
+  "Radius": {
+    "Radius": ""
   },
   "Rain Chance": {
     "Rain Chance": "Yağış İhtimali"
@@ -3520,6 +3822,15 @@
   "Rounded corners for windows (decoration.rounding)": {
     "Rounded corners for windows (decoration.rounding)": ""
   },
+  "Rule": {
+    "Rule": ""
+  },
+  "Rule Name": {
+    "Rule Name": ""
+  },
+  "Rules (%1)": {
+    "Rules (%1)": ""
+  },
   "Run DMS Templates": {
     "Run DMS Templates": "DMS Şablonlarını Çalıştır"
   },
@@ -3553,6 +3864,9 @@
   "Save Notepad File": {
     "Save Notepad File": "Not Defteri Dosyasını Kaydet"
   },
+  "Save and switch between display configurations": {
+    "Save and switch between display configurations": ""
+  },
   "Save password": {
     "Save password": "Parolayı kaydet"
   },
@@ -3564,6 +3878,9 @@
   },
   "Saved item deleted": {
     "Saved item deleted": ""
+  },
+  "Saving...": {
+    "Saving...": ""
   },
   "Scale": {
     "Scale": "Ölçek"
@@ -3591,6 +3908,12 @@
   },
   "Screen sharing": {
     "Screen sharing": "Ekran paylaşımı"
+  },
+  "Scroll": {
+    "Scroll": ""
+  },
+  "Scroll Factor": {
+    "Scroll Factor": ""
   },
   "Scroll Wheel": {
     "Scroll Wheel": "Kaydırma Tekerleği"
@@ -3676,6 +3999,9 @@
   "Select a widget to add. You can add multiple instances of the same widget if needed.": {
     "Select a widget to add. You can add multiple instances of the same widget if needed.": "Eklemek için bir widget seçin. Gerekirse aynı widget'ın birden fazla örneğini ekleyebilirsiniz."
   },
+  "Select a window...": {
+    "Select a window...": ""
+  },
   "Select an image file...": {
     "Select an image file...": "Bir resim dosyası seçin..."
   },
@@ -3760,8 +4086,14 @@
   "Shortcuts (%1)": {
     "Shortcuts (%1)": "Kısayollar (%1)"
   },
+  "Show": {
+    "Show": ""
+  },
   "Show All Tags": {
     "Show All Tags": "Tüm Etiketleri Göster"
+  },
+  "Show Badge": {
+    "Show Badge": ""
   },
   "Show CPU": {
     "Show CPU": "CPU'yu Göster"
@@ -3834,6 +4166,9 @@
   },
   "Show Occupied Workspaces Only": {
     "Show Occupied Workspaces Only": "Sadece Dolu Çalışma Alanlarını Göster"
+  },
+  "Show Overflow Badge Count": {
+    "Show Overflow Badge Count": ""
   },
   "Show Power Off": {
     "Show Power Off": "Kapatı Göster"
@@ -3979,6 +4314,9 @@
   "Size": {
     "Size": "Boyut"
   },
+  "Size Constraints": {
+    "Size Constraints": ""
+  },
   "Size Offset": {
     "Size Offset": "Boyut Ofseti"
   },
@@ -3993,6 +4331,9 @@
   },
   "Smartcard PIN": {
     "Smartcard PIN": ""
+  },
+  "Snap": {
+    "Snap": ""
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": "Bazı eklentiler daha yeni bir DMS sürümü gerektirir:"
@@ -4141,6 +4482,9 @@
   "System notification area icons": {
     "System notification area icons": "Sistem bildirim alanı simgeleri"
   },
+  "System sounds are not available. Install %1 for sound support.": {
+    "System sounds are not available. Install %1 for sound support.": ""
+  },
   "System sounds are not available. Install canberra-gtk-play for sound support.": {
     "System sounds are not available. Install canberra-gtk-play for sound support.": "Sistem sesleri mevcut değil. Ses desteği için canberra-gtk-play'i yükleyin."
   },
@@ -4216,6 +4560,12 @@
   "This will permanently remove this saved clipboard item. This action cannot be undone.": {
     "This will permanently remove this saved clipboard item. This action cannot be undone.": ""
   },
+  "Tiled": {
+    "Tiled": ""
+  },
+  "Tiled State": {
+    "Tiled State": ""
+  },
   "Tiling": {
     "Tiling": "Döşeme"
   },
@@ -4245,6 +4595,9 @@
   },
   "Title": {
     "Title": "Başlık"
+  },
+  "Title regex (optional)": {
+    "Title regex (optional)": ""
   },
   "To Full": {
     "To Full": "Dolmasına"
@@ -4384,6 +4737,9 @@
   "Unknown Network": {
     "Unknown Network": "Bilinmeyen Ağ"
   },
+  "Unnamed Rule": {
+    "Unnamed Rule": ""
+  },
   "Unpin": {
     "Unpin": ""
   },
@@ -4401,6 +4757,9 @@
   },
   "Untitled": {
     "Untitled": "Başlıksız"
+  },
+  "Update": {
+    "Update": ""
   },
   "Update All": {
     "Update All": "Tümünü Güncelle"
@@ -4692,6 +5051,9 @@
   "Widget removed": {
     "Widget removed": "Widget kaldırıldı"
   },
+  "Width": {
+    "Width": ""
+  },
   "Width of window border (borderpx)": {
     "Width of window border (borderpx)": ""
   },
@@ -4719,8 +5081,23 @@
   "Window Gaps (px)": {
     "Window Gaps (px)": "Pencere Boşlukları (px)"
   },
+  "Window Height": {
+    "Window Height": ""
+  },
+  "Window Opening": {
+    "Window Opening": ""
+  },
   "Window Rounding": {
     "Window Rounding": ""
+  },
+  "Window Rules": {
+    "Window Rules": ""
+  },
+  "Window Rules Include Missing": {
+    "Window Rules Include Missing": ""
+  },
+  "Window Rules Not Configured": {
+    "Window Rules Not Configured": ""
   },
   "Workspace": {
     "Workspace": "Çalışma Alanı"

@@ -147,6 +147,48 @@ check_obs_version_exists() {
     return 1
 }
 
+update_debian_dms_service() {
+    local service_path="$1"
+    if [[ -z "$service_path" || ! -f "$service_path" ]]; then
+        return 0
+    fi
+    if [[ -z "$CHANGELOG_VERSION" ]]; then
+        return 0
+    fi
+
+    # Extract base version (e.g., 1.2.3 from 1.2.3db3 or 1.2.3-1)
+    local base_version
+    base_version=$(echo "$CHANGELOG_VERSION" | sed -E 's/^([0-9]+(\.[0-9]+)*).*/\1/')
+    if [[ -z "$base_version" ]]; then
+        return 0
+    fi
+
+    sed -i "s|/archive/refs/tags/v[0-9][^\"]*\.tar\.gz|/archive/refs/tags/v${base_version}.tar.gz|" "$service_path"
+    sed -i "s|/releases/download/v[0-9][^\"]*/dms-distropkg-amd64\.gz|/releases/download/v${base_version}/dms-distropkg-amd64.gz|" "$service_path"
+    sed -i "s|/releases/download/v[0-9][^\"]*/dms-distropkg-arm64\.gz|/releases/download/v${base_version}/dms-distropkg-arm64.gz|" "$service_path"
+}
+
+update_opensuse_git_spec() {
+    local spec_path="$1"
+    if [[ -z "$spec_path" || ! -f "$spec_path" ]]; then
+        return 0
+    fi
+    if [[ -n "$CHANGELOG_VERSION" ]]; then
+        echo "    Updating OpenSUSE spec to version $CHANGELOG_VERSION"
+        sed -i "s/^Version:.*/Version:        $CHANGELOG_VERSION/" "$spec_path"
+
+        # Update changelog in spec file
+        DATE_STR=$(date "+%a %b %d %Y")
+        LOCAL_SPEC_HEAD=$(sed -n '1,/%changelog/{ /%changelog/d; p }' "$spec_path")
+        {
+            echo "$LOCAL_SPEC_HEAD"
+            echo "%changelog"
+            echo "* $DATE_STR Avenge Media <AvengeMedia.US@gmail.com> - ${CHANGELOG_VERSION}-1"
+            echo "- Git snapshot (commit $COMMIT_COUNT: $COMMIT_HASH)"
+        } > "$spec_path"
+    fi
+}
+
 # Handle "all" option
 if [[ "$PACKAGE" == "all" ]]; then
     echo "==> Uploading all packages"
@@ -263,7 +305,10 @@ if [[ -d "distro/debian/$PACKAGE/debian" ]]; then
     if [[ "$PACKAGE" == *"-git" ]]; then
         COMMIT_HASH=$(git rev-parse --short=8 HEAD)
         COMMIT_COUNT=$(git rev-list --count HEAD)
-        BASE_VERSION=$(grep -oP '^Version:\s+\K[0-9.]+' distro/opensuse/dms.spec | head -1 || echo "1.0.2")
+        BASE_VERSION=$(git describe --tags --abbrev=0 2>/dev/null | sed 's/^v//' || true)
+        if [[ -z "$BASE_VERSION" ]]; then
+            BASE_VERSION=$(grep -oP '^Version:\s+\K[0-9.]+' distro/opensuse/dms.spec | head -1 || echo "1.0.2")
+        fi
         CHANGELOG_VERSION="${BASE_VERSION}+git${COMMIT_COUNT}.${COMMIT_HASH}"
         echo "  - Generated git snapshot version: $CHANGELOG_VERSION"
     else
@@ -282,6 +327,11 @@ if [[ -d "distro/debian/$PACKAGE/debian" ]]; then
         BASE_VERSION=$(echo "$CHANGELOG_VERSION" | sed 's/db[0-9]*$//')
         CHANGELOG_VERSION="${BASE_VERSION}db${REBUILD_RELEASE}"
         echo "  - Applied rebuild suffix: $CHANGELOG_VERSION"
+    fi
+
+    # Keep Debian dms _service in sync with changelog version
+    if [[ "$PACKAGE" == "dms" ]] && [[ -f "distro/debian/$PACKAGE/_service" ]]; then
+        update_debian_dms_service "distro/debian/$PACKAGE/_service"
     fi
 
     # Check if this version already exists in OBS
@@ -326,6 +376,10 @@ fi
 if [[ "$UPLOAD_OPENSUSE" == true ]] && [[ -f "distro/opensuse/$PACKAGE.spec" ]]; then
     echo "  - Copying $PACKAGE.spec for OpenSUSE"
     cp "distro/opensuse/$PACKAGE.spec" "$WORK_DIR/"
+
+    if [[ "$PACKAGE" == *"-git" ]] && [[ -n "$CHANGELOG_VERSION" ]]; then
+        update_opensuse_git_spec "$WORK_DIR/$PACKAGE.spec"
+    fi
 
     if [[ -f "$WORK_DIR/.osc/$PACKAGE.spec" ]]; then
         NEW_VERSION=$(grep "^Version:" "$WORK_DIR/$PACKAGE.spec" | awk '{print $2}' | head -1)
@@ -607,11 +661,7 @@ if [[ "$UPLOAD_DEBIAN" == true ]] && [[ -d "distro/debian/$PACKAGE/debian" ]]; t
 
                 case "$PACKAGE" in
                 dms)
-                    if [[ -n "$CHANGELOG_VERSION" ]]; then
-                        DMS_VERSION="$CHANGELOG_VERSION"
-                    else
-                        DMS_VERSION=$(grep "^Version:" "$REPO_ROOT/distro/opensuse/$PACKAGE.spec" | sed 's/^Version:[[:space:]]*//' | head -1)
-                    fi
+                    DMS_VERSION=$(grep "^Version:" "$REPO_ROOT/distro/opensuse/$PACKAGE.spec" | sed 's/^Version:[[:space:]]*//' | head -1)
                     EXPECTED_DIR="DankMaterialShell-${DMS_VERSION}"
                     echo "    Creating $SOURCE0 (directory: $EXPECTED_DIR)"
                     cp -r "$SOURCE_DIR" "$EXPECTED_DIR"
@@ -662,18 +712,7 @@ if [[ "$UPLOAD_DEBIAN" == true ]] && [[ -d "distro/debian/$PACKAGE/debian" ]]; t
             # Copy and update OpenSUSE spec file with the correct version (for -git packages)
             cp "distro/opensuse/$PACKAGE.spec" "$WORK_DIR/"
             if [[ "$PACKAGE" == *"-git" ]] && [[ -n "$CHANGELOG_VERSION" ]]; then
-                echo "    Updating OpenSUSE spec to version $CHANGELOG_VERSION"
-                sed -i "s/^Version:.*/Version:        $CHANGELOG_VERSION/" "$WORK_DIR/$PACKAGE.spec"
-
-                # Update changelog in spec file
-                DATE_STR=$(date "+%a %b %d %Y")
-                LOCAL_SPEC_HEAD=$(sed -n '1,/%changelog/{ /%changelog/d; p }' "$WORK_DIR/$PACKAGE.spec")
-                {
-                    echo "$LOCAL_SPEC_HEAD"
-                    echo "%changelog"
-                    echo "* $DATE_STR Avenge Media <AvengeMedia.US@gmail.com> - ${CHANGELOG_VERSION}-1"
-                    echo "- Git snapshot (commit $COMMIT_COUNT: $COMMIT_HASH)"
-                } > "$WORK_DIR/$PACKAGE.spec"
+                update_opensuse_git_spec "$WORK_DIR/$PACKAGE.spec"
             fi
         fi
 
@@ -853,6 +892,15 @@ if [[ -n "$OBS_FILES" ]]; then
             ((DELETED_COUNT++)) || true
         fi
     done
+
+    # Remove service-generated download_url artifacts so new ones are created
+    for old_file in $(echo "$OBS_FILES" | grep -oP '(?<=name=")_service:download_url:[^"]+(?=")' || true); do
+        echo "  - Deleting old service artifact: $old_file"
+        if osc api -X DELETE "/source/$OBS_PROJECT/$PACKAGE/$old_file" 2>/dev/null; then
+            ((DELETED_COUNT++)) || true
+        fi
+    done
+
     if [[ $DELETED_COUNT -gt 0 ]]; then
         echo "  ✓ Deleted $DELETED_COUNT old tarball(s) from server"
     else
@@ -884,6 +932,10 @@ find . -maxdepth 1 -type f \( -name "*.dsc" -o -name "*.spec" \) -exec grep -l "
     echo "  Removing conflicted text file: $conflicted_file"
     rm -f "$conflicted_file"
 done
+
+if [[ "$UPLOAD_DEBIAN" == false ]]; then
+    rm -f ./*.dsc ./*.dsc.* ./*.spec.* ./*.mine ./*.new ./*.orig _service 2>/dev/null || true
+fi
 
 # Ensure we're STILL in WORK_DIR before running osc commands
 cd "$WORK_DIR" || {

@@ -36,7 +36,7 @@ StyledRect {
             }
 
             Column {
-                width: parent.width - Theme.iconSize - Theme.spacingM - (disconnectedBadge.visible ? disconnectedBadge.width + Theme.spacingS : 0)
+                width: parent.width - Theme.iconSize - Theme.spacingM - (disconnectedBadge.visible ? disconnectedBadge.width + deleteButton.width + Theme.spacingS * 2 : 0)
                 spacing: 2
 
                 StyledText {
@@ -68,6 +68,31 @@ StyledRect {
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.surfaceVariantText
                     anchors.centerIn: parent
+                }
+            }
+
+            Rectangle {
+                id: deleteButton
+                visible: !root.isConnected
+                width: 28
+                height: 28
+                radius: Theme.cornerRadius
+                color: deleteArea.containsMouse ? Theme.errorHover : "transparent"
+                anchors.verticalCenter: parent.verticalCenter
+
+                DankIcon {
+                    anchors.centerIn: parent
+                    name: "delete"
+                    size: 18
+                    color: deleteArea.containsMouse ? Theme.error : Theme.surfaceVariantText
+                }
+
+                MouseArea {
+                    id: deleteArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: DisplayConfigState.deleteDisconnectedOutput(root.outputName)
                 }
             }
         }

@@ -519,6 +519,7 @@ Variants {
                 blurEnabled: true
                 blur: 0.8
                 blurMax: 75
+                autoPaddingEnabled: false
             }
         }
     }

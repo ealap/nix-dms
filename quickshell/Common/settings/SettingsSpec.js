@@ -123,6 +123,12 @@ var SPEC = {
     barMaxVisibleApps: { def: 0 },
     barMaxVisibleRunningApps: { def: 0 },
     barShowOverflowBadge: { def: true },
+    appsDockHideIndicators: { def: false },
+    appsDockColorizeActive: { def: false },
+    appsDockActiveColorMode: { def: "primary" },
+    appsDockEnlargeOnHover: { def: false },
+    appsDockEnlargePercentage: { def: 125 },
+    appsDockIconSizePercentage: { def: 100 },
     keyboardLayoutNameCompactMode: { def: false },
     runningAppsCurrentWorkspace: { def: false },
     runningAppsGroupByApp: { def: false },
@@ -347,6 +353,11 @@ var SPEC = {
     showOnLastDisplay: { def: {} },
     niriOutputSettings: { def: {} },
     hyprlandOutputSettings: { def: {} },
+    displayProfiles: { def: {} },
+    activeDisplayProfile: { def: {} },
+    displayProfileAutoSelect: { def: false },
+    displayShowDisconnected: { def: false },
+    displaySnapToEdge: { def: true },
 
     barConfigs: {
         def: [{

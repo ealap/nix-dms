@@ -266,6 +266,12 @@ Singleton {
     property int barMaxVisibleApps: 0
     property int barMaxVisibleRunningApps: 0
     property bool barShowOverflowBadge: true
+    property bool appsDockHideIndicators: false
+    property bool appsDockColorizeActive: false
+    property string appsDockActiveColorMode: "primary"
+    property bool appsDockEnlargeOnHover: false
+    property int appsDockEnlargePercentage: 125
+    property int appsDockIconSizePercentage: 100
     property bool keyboardLayoutNameCompactMode: false
     property bool runningAppsCurrentWorkspace: false
     property bool runningAppsGroupByApp: false
@@ -519,6 +525,11 @@ Singleton {
     property var showOnLastDisplay: ({})
     property var niriOutputSettings: ({})
     property var hyprlandOutputSettings: ({})
+    property var displayProfiles: ({})
+    property var activeDisplayProfile: ({})
+    property bool displayProfileAutoSelect: false
+    property bool displayShowDisconnected: false
+    property bool displaySnapToEdge: true
 
     property var barConfigs: [
         {
@@ -2253,6 +2264,39 @@ Singleton {
         const updated = JSON.parse(JSON.stringify(hyprlandOutputSettings));
         delete updated[outputId];
         hyprlandOutputSettings = updated;
+        saveSettings();
+    }
+
+    function getDisplayProfiles(compositor) {
+        return displayProfiles[compositor] || {};
+    }
+
+    function setDisplayProfile(compositor, profileId, data) {
+        const updated = JSON.parse(JSON.stringify(displayProfiles));
+        if (!updated[compositor])
+            updated[compositor] = {};
+        updated[compositor][profileId] = data;
+        displayProfiles = updated;
+        saveSettings();
+    }
+
+    function removeDisplayProfile(compositor, profileId) {
+        if (!displayProfiles[compositor] || !displayProfiles[compositor][profileId])
+            return;
+        const updated = JSON.parse(JSON.stringify(displayProfiles));
+        delete updated[compositor][profileId];
+        displayProfiles = updated;
+        saveSettings();
+    }
+
+    function getActiveDisplayProfile(compositor) {
+        return activeDisplayProfile[compositor] || "";
+    }
+
+    function setActiveDisplayProfile(compositor, profileId) {
+        const updated = JSON.parse(JSON.stringify(activeDisplayProfile));
+        updated[compositor] = profileId;
+        activeDisplayProfile = updated;
         saveSettings();
     }
 

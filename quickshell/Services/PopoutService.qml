@@ -20,6 +20,7 @@ Singleton {
     property var settingsModal: null
     property var settingsModalLoader: null
     property var clipboardHistoryModal: null
+    property var clipboardHistoryPopout: null
     property var dankLauncherV2Modal: null
     property var dankLauncherV2ModalLoader: null
     property var powerMenuModal: null

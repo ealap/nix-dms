@@ -9,6 +9,8 @@ Singleton {
     readonly property int longTextThreshold: 200
     readonly property int modalWidth: 650
     readonly property int modalHeight: 550
+    readonly property int popoutWidth: 550
+    readonly property int popoutHeight: 500
     readonly property int itemHeight: 72
     readonly property int thumbnailSize: 48
     readonly property int retryInterval: 50

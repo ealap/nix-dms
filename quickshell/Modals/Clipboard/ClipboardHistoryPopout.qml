@@ -1,25 +1,21 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
-import Quickshell.Hyprland
 import qs.Common
 import qs.Modals.Clipboard
 import qs.Modals.Common
 import qs.Services
+import qs.Widgets
 
-DankModal {
-    id: clipboardHistoryModal
+DankPopout {
+    id: root
 
-    layerNamespace: "dms:clipboard"
+    layerNamespace: "dms:clipboard-popout"
 
-    HyprlandFocusGrab {
-        windows: [clipboardHistoryModal.contentWindow]
-        active: clipboardHistoryModal.useHyprlandFocusGrab && clipboardHistoryModal.shouldHaveFocus
-    }
-
+    property var parentWidget: null
+    property var triggerScreen: null
     property string activeTab: "recents"
     property bool showKeyboardHints: false
-    property Component clipboardContent
     property int activeImageLoads: 0
     readonly property int maxConcurrentLoads: 3
 
@@ -35,6 +31,8 @@ DankModal {
     property string searchText: ClipboardService.searchText
     onSearchTextChanged: ClipboardService.searchText = searchText
 
+    readonly property var modalFocusScope: contentLoader.item ?? null
+
     Ref {
         service: ClipboardService
     }
@@ -47,12 +45,8 @@ DankModal {
         ClipboardService.pasteSelected(instantClose);
     }
 
-    function toggle() {
-        if (shouldBeVisible) {
-            hide();
-        } else {
-            show();
-        }
+    function instantClose() {
+        close();
     }
 
     function show() {
@@ -62,7 +56,6 @@ DankModal {
         }
         open();
         activeImageLoads = 0;
-        shouldHaveFocus = true;
         ClipboardService.reset();
         ClipboardService.refresh();
         keyboardController.reset();
@@ -77,9 +70,6 @@ DankModal {
 
     function hide() {
         close();
-    }
-
-    onDialogClosed: {
         activeImageLoads = 0;
         ClipboardService.reset();
         keyboardController.reset();
@@ -121,53 +111,90 @@ DankModal {
         return ClipboardService.getEntryType(entry);
     }
 
-    visible: false
-    modalWidth: ClipboardConstants.modalWidth
-    modalHeight: ClipboardConstants.modalHeight
-    backgroundColor: Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
-    cornerRadius: Theme.cornerRadius
-    borderColor: Theme.outlineMedium
-    borderWidth: 1
-    enableShadow: true
+    popupWidth: ClipboardConstants.popoutWidth
+    popupHeight: ClipboardConstants.popoutHeight
+    triggerWidth: 55
+    positioning: ""
+    screen: triggerScreen
+    shouldBeVisible: false
+    contentHandlesKeys: true
+
     onBackgroundClicked: hide()
-    modalFocusScope.Keys.onPressed: function (event) {
-        keyboardController.handleKey(event);
+
+    onShouldBeVisibleChanged: {
+        if (!shouldBeVisible) {
+            return;
+        }
+        ClipboardService.refresh();
+        keyboardController.reset();
+        Qt.callLater(function () {
+            if (contentLoader.item?.searchField) {
+                contentLoader.item.searchField.text = "";
+                contentLoader.item.searchField.forceActiveFocus();
+            }
+        });
     }
-    content: clipboardContent
+
+    onPopoutClosed: {
+        activeImageLoads = 0;
+        ClipboardService.reset();
+        keyboardController.reset();
+    }
 
     ClipboardKeyboardController {
         id: keyboardController
-        modal: clipboardHistoryModal
+        modal: root
     }
 
     ConfirmModal {
         id: clearConfirmDialog
         confirmButtonText: I18n.tr("Clear All")
         confirmButtonColor: Theme.primary
-        onVisibleChanged: {
-            if (visible) {
-                clipboardHistoryModal.shouldHaveFocus = false;
-                return;
-            }
-            Qt.callLater(function () {
-                if (!clipboardHistoryModal.shouldBeVisible) {
-                    return;
-                }
-                clipboardHistoryModal.shouldHaveFocus = true;
-                clipboardHistoryModal.modalFocusScope.forceActiveFocus();
-                if (clipboardHistoryModal.contentLoader.item?.searchField) {
-                    clipboardHistoryModal.contentLoader.item.searchField.forceActiveFocus();
-                }
-            });
-        }
     }
 
     property var confirmDialog: clearConfirmDialog
 
-    clipboardContent: Component {
-        ClipboardContent {
-            modal: clipboardHistoryModal
-            clearConfirmDialog: clipboardHistoryModal.confirmDialog
+    content: Component {
+        FocusScope {
+            id: contentFocusScope
+
+            LayoutMirroring.enabled: I18n.isRtl
+            LayoutMirroring.childrenInherit: true
+
+            focus: true
+
+            property alias searchField: clipboardContentItem.searchField
+
+            Keys.onPressed: function (event) {
+                keyboardController.handleKey(event);
+            }
+
+            Component.onCompleted: {
+                if (root.shouldBeVisible)
+                    forceActiveFocus();
+            }
+
+            Connections {
+                target: root
+                function onShouldBeVisibleChanged() {
+                    if (root.shouldBeVisible) {
+                        Qt.callLater(() => contentFocusScope.forceActiveFocus());
+                    }
+                }
+                function onOpened() {
+                    Qt.callLater(() => {
+                        if (clipboardContentItem.searchField) {
+                            clipboardContentItem.searchField.forceActiveFocus();
+                        }
+                    });
+                }
+            }
+
+            ClipboardContent {
+                id: clipboardContentItem
+                modal: root
+                clearConfirmDialog: root.confirmDialog
+            }
         }
     }
 }

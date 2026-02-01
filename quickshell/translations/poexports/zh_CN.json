@@ -17,11 +17,20 @@
   "%1 days ago": {
     "%1 days ago": "%1天之前"
   },
+  "%1 disconnected": {
+    "%1 disconnected": ""
+  },
+  "%1 disconnected (hidden)": {
+    "%1 disconnected (hidden)": ""
+  },
   "%1 display(s)": {
     "%1 display(s)": "%1 显示"
   },
   "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": {
     "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": "%1存在但并未被包含至配置文件。在此问题修复前，自定义快捷键绑定将不会生效。"
+  },
+  "%1 exists but is not included. Window rules won't apply.": {
+    "%1 exists but is not included. Window rules won't apply.": ""
   },
   "%1 is now included in config": {
     "%1 is now included in config": "%1现在已被包含至配置文件"
@@ -203,6 +212,9 @@
   "Add Printer": {
     "Add Printer": "添加打印机"
   },
+  "Add Title": {
+    "Add Title": ""
+  },
   "Add Widget": {
     "Add Widget": "添加部件"
   },
@@ -282,10 +294,13 @@
     "Anonymous Identity (optional)": "匿名身份（可选）"
   },
   "App Customizations": {
-    "App Customizations": ""
+    "App Customizations": "应用自定义"
   },
   "App ID Substitutions": {
     "App ID Substitutions": "应用ID替换"
+  },
+  "App ID regex (e.g. ^firefox$)": {
+    "App ID regex (e.g. ^firefox$)": ""
   },
   "App Launcher": {
     "App Launcher": "启动器"
@@ -309,10 +324,10 @@
     "Apply warm color temperature to reduce eye strain. Use automation settings below to control when it activates.": "应用暖色温以减轻眼睛疲劳，可通过下方设置配置按时间自动启用。"
   },
   "Apps": {
-    "Apps": ""
+    "Apps": "应用"
   },
   "Apps Dock": {
-    "Apps Dock": ""
+    "Apps Dock": "程序坞"
   },
   "Apps Icon": {
     "Apps Icon": "应用图标"
@@ -321,7 +336,7 @@
     "Apps are ordered by usage frequency, then last used, then alphabetically.": "应用按使用频率、最近使用时间和字母顺序排序。"
   },
   "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": {
-    "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": ""
+    "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": "程序会带有自定义名称、图标与启动选项。右键应用并选择“编辑应用”进行自定义。"
   },
   "Arrange displays and configure resolution, refresh rate, and VRR": {
     "Arrange displays and configure resolution, refresh rate, and VRR": "排列显示器、配置分辨率、刷新率和VRR"
@@ -423,7 +438,7 @@
     "Autoconnect enabled": "已启用自动连接"
   },
   "Automatic Color Mode": {
-    "Automatic Color Mode": ""
+    "Automatic Color Mode": "自动颜色模式"
   },
   "Automatic Control": {
     "Automatic Control": "自动切换"
@@ -450,7 +465,7 @@
     "Automatically lock the screen when the system prepares to suspend": "当系统准备挂起时自动锁定屏幕"
   },
   "Automation": {
-    "Automation": ""
+    "Automation": "自动"
   },
   "Available": {
     "Available": "可用"
@@ -521,6 +536,12 @@
   "Bit Depth": {
     "Bit Depth": "位深"
   },
+  "Block Out": {
+    "Block Out": ""
+  },
+  "Block Out From": {
+    "Block Out From": ""
+  },
   "Block notifications": {
     "Block notifications": "屏蔽通知"
   },
@@ -563,6 +584,9 @@
   "Border Thickness": {
     "Border Thickness": "边框厚度"
   },
+  "Border with BG": {
+    "Border with BG": ""
+  },
   "Bottom": {
     "Bottom": "底部"
   },
@@ -597,7 +621,7 @@
     "Browse Plugins": "浏览插件"
   },
   "Browse or search plugins": {
-    "Browse or search plugins": ""
+    "Browse or search plugins": "浏览或搜索插件"
   },
   "CPU": {
     "CPU": "CPU"
@@ -630,10 +654,10 @@
     "CUPS not available": "CUPS不可用"
   },
   "Calc": {
-    "Calc": ""
+    "Calc": "计算器"
   },
   "Calculator": {
-    "Calculator": ""
+    "Calculator": "计算器"
   },
   "Camera": {
     "Camera": "摄像头"
@@ -687,7 +711,7 @@
     "Choose Color": "选择颜色"
   },
   "Choose Dock Launcher Logo Color": {
-    "Choose Dock Launcher Logo Color": ""
+    "Choose Dock Launcher Logo Color": "选择程序坞启动器图标颜色"
   },
   "Choose Launcher Logo Color": {
     "Choose Launcher Logo Color": "设置启动器 Logo 颜色"
@@ -726,10 +750,13 @@
     "Choose which monitor shows the lock screen interface. Other monitors will display a solid color for OLED burn-in protection.": "选择哪个显示器显示锁屏界面。其他显示器将显示纯色以保护 OLED 屏幕防烧伤。"
   },
   "Chroma Style": {
-    "Chroma Style": ""
+    "Chroma Style": "浓度风格"
   },
   "Cipher": {
     "Cipher": "密码"
+  },
+  "Class regex (e.g. ^firefox$)": {
+    "Class regex (e.g. ^firefox$)": ""
   },
   "Clear": {
     "Clear": "清除"
@@ -755,6 +782,9 @@
   "Click 'Setup' to create %1 and add include to config.": {
     "Click 'Setup' to create %1 and add include to config.": "点击设置以创建%1并将其包含至配置文件。"
   },
+  "Click 'Setup' to create %1 and add include to your compositor config.": {
+    "Click 'Setup' to create %1 and add include to your compositor config.": ""
+  },
   "Click 'Setup' to create cursor config and add include to your compositor config.": {
     "Click 'Setup' to create cursor config and add include to your compositor config.": "点击设置以创建光标配置，并导入至合成器配置文件。"
   },
@@ -763,6 +793,9 @@
   },
   "Click 'Setup' to create the outputs config and add include to your compositor config.": {
     "Click 'Setup' to create the outputs config and add include to your compositor config.": "点击设置以创建输出配置，并添加至合成器配置。"
+  },
+  "Click + to add a rule for the focused window": {
+    "Click + to add a rule for the focused window": ""
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "点击导入添加 .ovpn 或 .conf 文件"
@@ -778,6 +811,12 @@
   },
   "Click to capture": {
     "Click to capture": "点击以捕获"
+  },
+  "Clip": {
+    "Clip": ""
+  },
+  "Clip to Geometry": {
+    "Clip to Geometry": ""
   },
   "Clipboard": {
     "Clipboard": "剪切板"
@@ -804,13 +843,13 @@
     "Close": "关闭"
   },
   "Close All Windows": {
-    "Close All Windows": ""
+    "Close All Windows": "关闭所有窗口"
   },
   "Close Overview on Launch": {
     "Close Overview on Launch": "在启动时关闭概览"
   },
   "Close Window": {
-    "Close Window": ""
+    "Close Window": "关闭窗口"
   },
   "Color": {
     "Color": "颜色"
@@ -843,10 +882,10 @@
     "Color temperature for night mode": "夜间模式色温"
   },
   "Color theme for syntax highlighting.": {
-    "Color theme for syntax highlighting.": ""
+    "Color theme for syntax highlighting.": "语法高亮的颜色主题。"
   },
   "Color theme for syntax highlighting. %1 themes available.": {
-    "Color theme for syntax highlighting. %1 themes available.": ""
+    "Color theme for syntax highlighting. %1 themes available.": "语法高亮的颜色主题。有%1的主题可供使用。"
   },
   "Colorful mix of bright contrasting accents.": {
     "Colorful mix of bright contrasting accents.": "色彩鲜明、对比强烈的配色。"
@@ -854,11 +893,17 @@
   "Column": {
     "Column": "列"
   },
+  "Column Display": {
+    "Column Display": ""
+  },
+  "Column Width": {
+    "Column Width": ""
+  },
   "Command": {
     "Command": "命令"
   },
   "Commands": {
-    "Commands": ""
+    "Commands": "命令"
   },
   "Communication": {
     "Communication": "通讯"
@@ -877,6 +922,9 @@
   },
   "Compositor Settings": {
     "Compositor Settings": "合成器设置"
+  },
+  "Compositor not supported": {
+    "Compositor not supported": ""
   },
   "Config Format": {
     "Config Format": "配置格式"
@@ -901,6 +949,9 @@
   },
   "Configure icons for named workspaces. Icons take priority over numbers when both are enabled.": {
     "Configure icons for named workspaces. Icons take priority over numbers when both are enabled.": "为已命名工作区配置图标。当数字和图标同时启用时，图标优先生效。"
+  },
+  "Configure match criteria and actions": {
+    "Configure match criteria and actions": ""
   },
   "Configure which displays show shell components": {
     "Configure which displays show shell components": "配置哪些显示器显示各类部件"
@@ -944,6 +995,9 @@
   "Connecting...": {
     "Connecting...": "连接中..."
   },
+  "Content copied": {
+    "Content copied": ""
+  },
   "Contrast": {
     "Contrast": "对比度"
   },
@@ -986,6 +1040,9 @@
   "Copy": {
     "Copy": "复制"
   },
+  "Copy Content": {
+    "Copy Content": ""
+  },
   "Copy Full Command": {
     "Copy Full Command": "复制完整命令"
   },
@@ -1022,11 +1079,20 @@
   "Cover Open": {
     "Cover Open": "打印机盖已打开"
   },
+  "Create": {
+    "Create": ""
+  },
   "Create Dir": {
     "Create Dir": "创建目录"
   },
   "Create Printer": {
     "Create Printer": "创建打印机"
+  },
+  "Create Window Rule": {
+    "Create Window Rule": ""
+  },
+  "Create rule for:": {
+    "Create rule for:": ""
   },
   "Creating...": {
     "Creating...": "正在创建..."
@@ -1199,6 +1265,9 @@
   "Defaults": {
     "Defaults": "复位"
   },
+  "Define rules for window behavior. Saves to %1": {
+    "Define rules for window behavior. Saves to %1": ""
+  },
   "Del: Clear • Shift+Del: Clear All • 1-9: Actions • F10: Help • Esc: Close": {
     "Del: Clear • Shift+Del: Clear All • 1-9: Actions • F10: Help • Esc: Close": "Del: 清除 • Shift+Del: 清空 • 1-9: 操作 • F10: 帮助 • Esc: 关闭"
   },
@@ -1304,11 +1373,17 @@
   "Dismiss": {
     "Dismiss": "忽略"
   },
+  "Display": {
+    "Display": ""
+  },
   "Display Assignment": {
     "Display Assignment": "显示布局"
   },
   "Display Name Format": {
     "Display Name Format": "显示名称格式"
+  },
+  "Display Profiles": {
+    "Display Profiles": ""
   },
   "Display Settings": {
     "Display Settings": "显示设置"
@@ -1354,6 +1429,9 @@
   },
   "Displays": {
     "Displays": "显示"
+  },
+  "Displays count when overflow is active": {
+    "Displays count when overflow is active": ""
   },
   "Displays the active keyboard layout and allows switching": {
     "Displays the active keyboard layout and allows switching": "显示当前键盘布局并支持切换"
@@ -1415,11 +1493,17 @@
   "Dusk (Nautical Twilight)": {
     "Dusk (Nautical Twilight)": "黄昏（航海暮光）"
   },
+  "Dynamic Properties": {
+    "Dynamic Properties": ""
+  },
   "Edge Spacing": {
     "Edge Spacing": "边缘间距"
   },
   "Edit App": {
     "Edit App": ""
+  },
+  "Edit Window Rule": {
+    "Edit Window Rule": ""
   },
   "Education": {
     "Education": "教育"
@@ -1586,6 +1670,9 @@
   "Failed to activate configuration": {
     "Failed to activate configuration": "无法应用配置"
   },
+  "Failed to activate profile - file not found": {
+    "Failed to activate profile - file not found": ""
+  },
   "Failed to add binds include": {
     "Failed to add binds include": "添加绑定包含失败"
   },
@@ -1612,6 +1699,9 @@
   },
   "Failed to create printer": {
     "Failed to create printer": "创建打印机失败"
+  },
+  "Failed to create profiles directory": {
+    "Failed to create profiles directory": ""
   },
   "Failed to delete VPN": {
     "Failed to delete VPN": "删除 VPN 失败"
@@ -1702,6 +1792,9 @@
   },
   "Failed to save keybind": {
     "Failed to save keybind": "保存按键绑定失败"
+  },
+  "Failed to save profile file": {
+    "Failed to save profile file": ""
   },
   "Failed to set brightness": {
     "Failed to set brightness": "设置亮度失败"
@@ -1802,6 +1895,12 @@
   "Flipped 90°": {
     "Flipped 90°": "翻转90°"
   },
+  "Float": {
+    "Float": ""
+  },
+  "Focus": {
+    "Focus": ""
+  },
   "Focus at Startup": {
     "Focus at Startup": "启动时聚焦"
   },
@@ -1873,6 +1972,9 @@
   },
   "Frequency": {
     "Frequency": "频率"
+  },
+  "Fullscreen": {
+    "Fullscreen": ""
   },
   "Fun": {
     "Fun": "娱乐"
@@ -1967,6 +2069,9 @@
   "Health": {
     "Health": "电池健康"
   },
+  "Height": {
+    "Height": ""
+  },
   "Held": {
     "Held": "已暂停"
   },
@@ -1990,6 +2095,9 @@
   },
   "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": {
     "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": ""
+  },
+  "Hide": {
+    "Hide": ""
   },
   "Hide App": {
     "Hide App": ""
@@ -2065,6 +2173,9 @@
   },
   "Hyprland Layout Overrides": {
     "Hyprland Layout Overrides": "Hyprland布局覆盖"
+  },
+  "Hyprland Options": {
+    "Hyprland Options": ""
   },
   "I Understand": {
     "I Understand": "我明白以上内容"
@@ -2209,6 +2320,9 @@
   "KDE Connect clipboard action": {
     "Clipboard sent": "已发送剪切板"
   },
+  "KDE Connect clipboard action | Phone Connect clipboard action": {
+    "Clipboard sent": ""
+  },
   "KDE Connect clipboard tooltip": {
     "Send Clipboard": "发送剪切板"
   },
@@ -2261,6 +2375,9 @@
   "KDE Connect offline status": {
     "Offline": "离线"
   },
+  "KDE Connect offline status | Phone Connect offline status": {
+    "Offline": ""
+  },
   "KDE Connect open SMS app button": {
     "Open App": "打开应用"
   },
@@ -2296,6 +2413,9 @@
   "KDE Connect refresh button | KDE Connect refresh tooltip": {
     "Refresh": "刷新"
   },
+  "KDE Connect refresh button | Phone Connect refresh tooltip": {
+    "Refresh": ""
+  },
   "KDE Connect reject pairing button": {
     "Reject": "拒绝"
   },
@@ -2304,6 +2424,9 @@
   },
   "KDE Connect ring action": {
     "Ringing": "环绕"
+  },
+  "KDE Connect ring action | Phone Connect ring action": {
+    "Ringing": ""
   },
   "KDE Connect ring tooltip": {
     "Ring": "环绕"
@@ -2358,6 +2481,9 @@
   },
   "KDE Connect unpair action": {
     "Device unpaired": "设备已取消配对"
+  },
+  "KDE Connect unpair action | Phone Connect unpair action": {
+    "Device unpaired": ""
   },
   "KDE Connect unpair tooltip": {
     "Unpair": "取消配对"
@@ -2584,6 +2710,12 @@
   "Marker Waste Full": {
     "Marker Waste Full": "废墨仓已饱和"
   },
+  "Match Criteria": {
+    "Match Criteria": ""
+  },
+  "Matches profile: %1": {
+    "Matches profile: %1": ""
+  },
   "Material Colors": {
     "Material Colors": "Material 配色"
   },
@@ -2596,8 +2728,35 @@
   "Matugen Templates": {
     "Matugen Templates": "Matugen模板"
   },
+  "Max Edges": {
+    "Max Edges": ""
+  },
+  "Max H": {
+    "Max H": ""
+  },
+  "Max Pinned Apps": {
+    "Max Pinned Apps": ""
+  },
+  "Max Pinned Apps (0 = Unlimited)": {
+    "Max Pinned Apps (0 = Unlimited)": ""
+  },
+  "Max Running Apps": {
+    "Max Running Apps": ""
+  },
+  "Max Running Apps (0 = Unlimited)": {
+    "Max Running Apps (0 = Unlimited)": ""
+  },
+  "Max W": {
+    "Max W": ""
+  },
   "Max apps to show": {
     "Max apps to show": "应用显示上限"
+  },
+  "Max to Edges": {
+    "Max to Edges": ""
+  },
+  "Maximize": {
+    "Maximize": ""
   },
   "Maximize Detection": {
     "Maximize Detection": "最大化检测"
@@ -2686,6 +2845,12 @@
   "Middle Section": {
     "Middle Section": "中间区域"
   },
+  "Min H": {
+    "Min H": ""
+  },
+  "Min W": {
+    "Min W": ""
+  },
   "Minimal palette built around a single hue.": {
     "Minimal palette built around a single hue.": "围绕单一色调构建的简约配色。"
   },
@@ -2709,6 +2874,9 @@
   },
   "Modified": {
     "Modified": "改装"
+  },
+  "Monitor": {
+    "Monitor": ""
   },
   "Monitor Configuration": {
     "Monitor Configuration": "监视器配置"
@@ -2736,6 +2904,9 @@
   },
   "Mouse pointer size in pixels": {
     "Mouse pointer size in pixels": "鼠标指针的像素尺寸"
+  },
+  "Move": {
+    "Move": ""
   },
   "Move Widget": {
     "Move Widget": "移动部件"
@@ -2797,6 +2968,9 @@
   "New Notification": {
     "New Notification": "新通知"
   },
+  "New Window Rule": {
+    "New Window Rule": ""
+  },
   "New York, NY": {
     "New York, NY": "纽约，美国纽约州"
   },
@@ -2830,17 +3004,41 @@
   "No Active Players": {
     "No Active Players": "没有正在播放的音频"
   },
+  "No Anim": {
+    "No Anim": ""
+  },
   "No Background": {
     "No Background": "无背景底色"
   },
   "No Bluetooth adapter found": {
     "No Bluetooth adapter found": "未找到蓝牙适配器"
   },
+  "No Blur": {
+    "No Blur": ""
+  },
+  "No Border": {
+    "No Border": ""
+  },
+  "No Dim": {
+    "No Dim": ""
+  },
+  "No Focus": {
+    "No Focus": ""
+  },
   "No GPU detected": {
     "No GPU detected": "未检测到显卡"
   },
   "No Media": {
     "No Media": "当前无播放内容"
+  },
+  "No Round": {
+    "No Round": ""
+  },
+  "No Rounding": {
+    "No Rounding": ""
+  },
+  "No Shadow": {
+    "No Shadow": ""
   },
   "No VPN profiles": {
     "No VPN profiles": "无 VPN 配置"
@@ -2905,6 +3103,9 @@
   "No launcher plugins installed.": {
     "No launcher plugins installed.": ""
   },
+  "No match criteria": {
+    "No match criteria": ""
+  },
   "No matches": {
     "No matches": "未找到匹配项"
   },
@@ -2926,6 +3127,9 @@
   "No printers found": {
     "No printers found": "未找到打印机"
   },
+  "No profiles": {
+    "No profiles": ""
+  },
   "No recent clipboard entries found": {
     "No recent clipboard entries found": "未找到近期剪切板项目"
   },
@@ -2946,6 +3150,9 @@
   },
   "No widgets match your search": {
     "No widgets match your search": "未找到匹配的部件"
+  },
+  "No window rules configured": {
+    "No window rules configured": ""
   },
   "None": {
     "None": "无"
@@ -3043,6 +3250,9 @@
   "Opacity": {
     "Opacity": "不透明度"
   },
+  "Opaque": {
+    "Opaque": ""
+  },
   "Open": {
     "Open": "打开"
   },
@@ -3076,6 +3286,9 @@
   "Other": {
     "Other": "其他"
   },
+  "Output": {
+    "Output": ""
+  },
   "Output Area Almost Full": {
     "Output Area Almost Full": "出纸盒即将饱和"
   },
@@ -3087,6 +3300,9 @@
   },
   "Outputs Include Missing": {
     "Outputs Include Missing": "输出包括缺失"
+  },
+  "Overflow": {
+    "Overflow": ""
   },
   "Overridden by config": {
     "Overridden by config": "被配置覆盖"
@@ -3148,6 +3364,9 @@
   "Password": {
     "Password": "密码"
   },
+  "Paste": {
+    "Paste": ""
+  },
   "Pattern": {
     "Pattern": "模式"
   },
@@ -3180,6 +3399,68 @@
   },
   "Personalization": {
     "Personalization": "个性化"
+  },
+  "Phone Connect SMS action": {
+    "Opening SMS app": ""
+  },
+  "Phone Connect browse action": {
+    "Opening file browser": ""
+  },
+  "Phone Connect daemon hint": {
+    "Start KDE Connect or Valent to use this plugin": ""
+  },
+  "Phone Connect error": {
+    "Failed to accept pairing": "",
+    "Failed to browse device": "",
+    "Failed to launch SMS app": "",
+    "Failed to reject pairing": "",
+    "Failed to ring device": "",
+    "Failed to send clipboard": "",
+    "Failed to send file": "",
+    "Failed to send ping": "",
+    "Failed to share": "",
+    "Pairing failed": "",
+    "Unpair failed": ""
+  },
+  "Phone Connect file send": {
+    "Sending": ""
+  },
+  "Phone Connect file share notification": {
+    "File received from": ""
+  },
+  "Phone Connect hint message": {
+    "Make sure KDE Connect or Valent is running on your other devices": ""
+  },
+  "Phone Connect no devices status | bluetooth status": {
+    "No devices": ""
+  },
+  "Phone Connect pairing action": {
+    "Device paired": "",
+    "Pairing request sent": ""
+  },
+  "Phone Connect pairing request notification": {
+    "Pairing request from": ""
+  },
+  "Phone Connect pairing verification key label": {
+    "Verification": ""
+  },
+  "Phone Connect ping action": {
+    "Ping sent to": ""
+  },
+  "Phone Connect service unavailable message": {
+    "Phone Connect unavailable": ""
+  },
+  "Phone Connect share success": {
+    "Shared": ""
+  },
+  "Phone Connect start daemon hint": {
+    "Start KDE Connect or Valent": ""
+  },
+  "Phone Connect unavailable error title": {
+    "Phone Connect Not Available": ""
+  },
+  "Phone Connect unavailable status": {
+    "Unavailable": ""
   },
   "Pin": {
     "Pin": "固定"
@@ -3364,8 +3645,26 @@
   "Profile Image Error": {
     "Profile Image Error": "个人资料图片错误"
   },
+  "Profile activated: %1": {
+    "Profile activated: %1": ""
+  },
+  "Profile deleted": {
+    "Profile deleted": ""
+  },
+  "Profile error": {
+    "Profile error": ""
+  },
   "Profile image is too large. Please use a smaller image.": {
     "Profile image is too large. Please use a smaller image.": "个人资料图片过大，请选择更小的图片。"
+  },
+  "Profile name": {
+    "Profile name": ""
+  },
+  "Profile not found": {
+    "Profile not found": ""
+  },
+  "Profile saved: %1": {
+    "Profile saved: %1": ""
   },
   "Protocol": {
     "Protocol": "协议"
@@ -3384,6 +3683,9 @@
   },
   "RGB": {
     "RGB": "红绿蓝"
+  },
+  "Radius": {
+    "Radius": ""
   },
   "Rain Chance": {
     "Rain Chance": "降雨概率"
@@ -3520,6 +3822,15 @@
   "Rounded corners for windows (decoration.rounding)": {
     "Rounded corners for windows (decoration.rounding)": "窗口圆角（decoration.rounding）"
   },
+  "Rule": {
+    "Rule": ""
+  },
+  "Rule Name": {
+    "Rule Name": ""
+  },
+  "Rules (%1)": {
+    "Rules (%1)": ""
+  },
   "Run DMS Templates": {
     "Run DMS Templates": "运行DMS模板"
   },
@@ -3553,6 +3864,9 @@
   "Save Notepad File": {
     "Save Notepad File": "保存便签"
   },
+  "Save and switch between display configurations": {
+    "Save and switch between display configurations": ""
+  },
   "Save password": {
     "Save password": "保存密码"
   },
@@ -3564,6 +3878,9 @@
   },
   "Saved item deleted": {
     "Saved item deleted": "保存项目已删除"
+  },
+  "Saving...": {
+    "Saving...": ""
   },
   "Scale": {
     "Scale": "缩放"
@@ -3591,6 +3908,12 @@
   },
   "Screen sharing": {
     "Screen sharing": "屏幕分享"
+  },
+  "Scroll": {
+    "Scroll": ""
+  },
+  "Scroll Factor": {
+    "Scroll Factor": ""
   },
   "Scroll Wheel": {
     "Scroll Wheel": "滚动滚轮"
@@ -3676,6 +3999,9 @@
   "Select a widget to add. You can add multiple instances of the same widget if needed.": {
     "Select a widget to add. You can add multiple instances of the same widget if needed.": "选择要添加的部件。如果需要，您可以添加同一部件的多个实例。"
   },
+  "Select a window...": {
+    "Select a window...": ""
+  },
   "Select an image file...": {
     "Select an image file...": "选择一张图片..."
   },
@@ -3760,8 +4086,14 @@
   "Shortcuts (%1)": {
     "Shortcuts (%1)": "快捷键（%1）"
   },
+  "Show": {
+    "Show": ""
+  },
   "Show All Tags": {
     "Show All Tags": "显示所有标签"
+  },
+  "Show Badge": {
+    "Show Badge": ""
   },
   "Show CPU": {
     "Show CPU": "显示CPU"
@@ -3834,6 +4166,9 @@
   },
   "Show Occupied Workspaces Only": {
     "Show Occupied Workspaces Only": "仅显示占用工作区"
+  },
+  "Show Overflow Badge Count": {
+    "Show Overflow Badge Count": ""
   },
   "Show Power Off": {
     "Show Power Off": "显示关机"
@@ -3979,6 +4314,9 @@
   "Size": {
     "Size": "尺寸"
   },
+  "Size Constraints": {
+    "Size Constraints": ""
+  },
   "Size Offset": {
     "Size Offset": "尺寸偏移"
   },
@@ -3993,6 +4331,9 @@
   },
   "Smartcard PIN": {
     "Smartcard PIN": "智能卡PIN"
+  },
+  "Snap": {
+    "Snap": ""
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": "有些插件需要更新版的 DMS："
@@ -4141,6 +4482,9 @@
   "System notification area icons": {
     "System notification area icons": "系统通知区域图标"
   },
+  "System sounds are not available. Install %1 for sound support.": {
+    "System sounds are not available. Install %1 for sound support.": ""
+  },
   "System sounds are not available. Install canberra-gtk-play for sound support.": {
     "System sounds are not available. Install canberra-gtk-play for sound support.": "系统声音不可用。请安装 canberra-gtk-play 以获得声音支持。"
   },
@@ -4216,6 +4560,12 @@
   "This will permanently remove this saved clipboard item. This action cannot be undone.": {
     "This will permanently remove this saved clipboard item. This action cannot be undone.": "此操作会永久移除已保存的剪贴板项目。此操作将无法撤销。"
   },
+  "Tiled": {
+    "Tiled": ""
+  },
+  "Tiled State": {
+    "Tiled State": ""
+  },
   "Tiling": {
     "Tiling": "平铺"
   },
@@ -4245,6 +4595,9 @@
   },
   "Title": {
     "Title": "标题"
+  },
+  "Title regex (optional)": {
+    "Title regex (optional)": ""
   },
   "To Full": {
     "To Full": "充至满电"
@@ -4384,6 +4737,9 @@
   "Unknown Network": {
     "Unknown Network": "未知网络"
   },
+  "Unnamed Rule": {
+    "Unnamed Rule": ""
+  },
   "Unpin": {
     "Unpin": "解除固定"
   },
@@ -4401,6 +4757,9 @@
   },
   "Untitled": {
     "Untitled": "无标题"
+  },
+  "Update": {
+    "Update": ""
   },
   "Update All": {
     "Update All": "更新所有"
@@ -4692,6 +5051,9 @@
   "Widget removed": {
     "Widget removed": "部件已移除"
   },
+  "Width": {
+    "Width": ""
+  },
   "Width of window border (borderpx)": {
     "Width of window border (borderpx)": "窗口边框宽度（borderpx）"
   },
@@ -4719,8 +5081,23 @@
   "Window Gaps (px)": {
     "Window Gaps (px)": "窗口间隙（像素）"
   },
+  "Window Height": {
+    "Window Height": ""
+  },
+  "Window Opening": {
+    "Window Opening": ""
+  },
   "Window Rounding": {
     "Window Rounding": "窗口圆角"
+  },
+  "Window Rules": {
+    "Window Rules": ""
+  },
+  "Window Rules Include Missing": {
+    "Window Rules Include Missing": ""
+  },
+  "Window Rules Not Configured": {
+    "Window Rules Not Configured": ""
   },
   "Workspace": {
     "Workspace": "工作区"
@@ -4813,7 +5190,7 @@
     "Disabled": ""
   },
   "border color": {
-    "Color": ""
+    "Color": "颜色"
   },
   "border thickness": {
     "Thickness": ""
@@ -5110,10 +5487,10 @@
     "Installed": "已安装"
   },
   "launcher appearance settings": {
-    "Appearance": ""
+    "Appearance": "外观"
   },
   "launcher border option": {
-    "Border": ""
+    "Border": "边框"
   },
   "launcher footer description": {
     "Show mode tabs and keyboard hints at the bottom.": ""

@@ -48,6 +48,14 @@ FloatingWindow {
                 filtered.push(plugin);
         }
 
+        filtered.sort((a, b) => {
+            if (a.featured !== b.featured)
+                return a.featured ? -1 : 1;
+            if (a.firstParty !== b.firstParty)
+                return a.firstParty ? -1 : 1;
+            return 0;
+        });
+
         filteredPlugins = filtered;
         selectedIndex = -1;
         keyboardNavigationActive = false;
@@ -411,6 +419,7 @@ FloatingWindow {
                         property bool isSelected: root.keyboardNavigationActive && index === root.selectedIndex
                         property bool isInstalled: modelData.installed || false
                         property bool isFirstParty: modelData.firstParty || false
+                        property bool isFeatured: modelData.featured || false
                         property bool isCompatible: PluginService.checkPluginCompatibility(modelData.requires_dms)
                         color: isSelected ? Theme.primarySelected : Theme.withAlpha(Theme.surfaceVariant, 0.3)
                         border.color: isSelected ? Theme.primary : Theme.withAlpha(Theme.outline, 0.2)
@@ -447,6 +456,38 @@ FloatingWindow {
                                             color: Theme.surfaceText
                                             elide: Text.ElideRight
                                             anchors.verticalCenter: parent.verticalCenter
+                                        }
+
+                                        Rectangle {
+                                            height: 16
+                                            width: featuredRow.implicitWidth + Theme.spacingXS * 2
+                                            radius: 8
+                                            color: Theme.withAlpha(Theme.secondary, 0.15)
+                                            border.color: Theme.withAlpha(Theme.secondary, 0.4)
+                                            border.width: 1
+                                            visible: isFeatured
+                                            anchors.verticalCenter: parent.verticalCenter
+
+                                            Row {
+                                                id: featuredRow
+                                                anchors.centerIn: parent
+                                                spacing: 2
+
+                                                DankIcon {
+                                                    name: "star"
+                                                    size: 10
+                                                    color: Theme.secondary
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                }
+
+                                                StyledText {
+                                                    text: I18n.tr("featured")
+                                                    font.pixelSize: Theme.fontSizeSmall - 2
+                                                    color: Theme.secondary
+                                                    font.weight: Font.Medium
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                }
+                                            }
                                         }
 
                                         Rectangle {

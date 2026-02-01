@@ -26,7 +26,7 @@ var windowrulesListCmd = &cobra.Command{
 	Args:  cobra.MaximumNArgs(1),
 	ValidArgsFunction: func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
 		if len(args) == 0 {
-			return []string{"hyprland", "niri"}, cobra.ShellCompDirectiveNoFileComp
+			return []string{"niri"}, cobra.ShellCompDirectiveNoFileComp
 		}
 		return nil, cobra.ShellCompDirectiveNoFileComp
 	},
@@ -40,7 +40,8 @@ var windowrulesAddCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	ValidArgsFunction: func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
 		if len(args) == 0 {
-			return []string{"hyprland", "niri"}, cobra.ShellCompDirectiveNoFileComp
+			// ! disabled hyprland return []string{"hyprland", "niri"}, cobra.ShellCompDirectiveNoFileComp
+			return []string{"niri"}, cobra.ShellCompDirectiveNoFileComp
 		}
 		return nil, cobra.ShellCompDirectiveNoFileComp
 	},
@@ -54,7 +55,7 @@ var windowrulesUpdateCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(3),
 	ValidArgsFunction: func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
 		if len(args) == 0 {
-			return []string{"hyprland", "niri"}, cobra.ShellCompDirectiveNoFileComp
+			return []string{"niri"}, cobra.ShellCompDirectiveNoFileComp
 		}
 		return nil, cobra.ShellCompDirectiveNoFileComp
 	},
@@ -68,7 +69,7 @@ var windowrulesRemoveCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	ValidArgsFunction: func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
 		if len(args) == 0 {
-			return []string{"hyprland", "niri"}, cobra.ShellCompDirectiveNoFileComp
+			return []string{"niri"}, cobra.ShellCompDirectiveNoFileComp
 		}
 		return nil, cobra.ShellCompDirectiveNoFileComp
 	},
@@ -82,7 +83,7 @@ var windowrulesReorderCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	ValidArgsFunction: func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
 		if len(args) == 0 {
-			return []string{"hyprland", "niri"}, cobra.ShellCompDirectiveNoFileComp
+			return []string{"niri"}, cobra.ShellCompDirectiveNoFileComp
 		}
 		return nil, cobra.ShellCompDirectiveNoFileComp
 	},
@@ -117,9 +118,9 @@ func getCompositor(args []string) string {
 	if os.Getenv("NIRI_SOCKET") != "" {
 		return "niri"
 	}
-	if os.Getenv("HYPRLAND_INSTANCE_SIGNATURE") != "" {
-		return "hyprland"
-	}
+	// if os.Getenv("HYPRLAND_INSTANCE_SIGNATURE") != "" {
+	// 	return "hyprland"
+	// }
 	return ""
 }
 
@@ -182,6 +183,7 @@ func runWindowrulesList(cmd *cobra.Command, args []string) {
 		result.DMSStatus = parseResult.DMSStatus
 
 	case "hyprland":
+		log.Fatalf("Hyprland support is currently disabled.") // ! disabled hyprland
 		configDir, err := utils.ExpandPath("$HOME/.config/hypr")
 		if err != nil {
 			log.Fatalf("Failed to expand hyprland config path: %v", err)

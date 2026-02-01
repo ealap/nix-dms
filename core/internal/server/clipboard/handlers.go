@@ -146,6 +146,11 @@ func handleCopyEntry(conn net.Conn, req models.Request, m *Manager) {
 		return
 	}
 
+	if err := m.TouchEntry(uint64(id)); err != nil {
+		models.RespondError(conn, req.ID, err.Error())
+		return
+	}
+
 	models.Respond(conn, req.ID, models.SuccessResult{Success: true, Message: "copied to clipboard"})
 }
 

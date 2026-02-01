@@ -429,14 +429,6 @@ Item {
                             anchors.horizontalCenter: parent.horizontalCenter
                         }
 
-                        StyledText {
-                            text: I18n.tr("Click + to add a rule for the focused window")
-                            font.pixelSize: Theme.fontSizeSmall - 1
-                            color: Theme.surfaceVariantText
-                            opacity: 0.7
-                            anchors.horizontalCenter: parent.horizontalCenter
-                        }
-
                         Item {
                             width: 1
                             height: Theme.spacingM

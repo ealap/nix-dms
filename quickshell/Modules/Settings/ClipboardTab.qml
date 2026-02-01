@@ -210,7 +210,9 @@ Item {
                 ToastService.showError(I18n.tr("Failed to save clipboard setting"), response.error);
                 return;
             }
-            loadConfig();
+            const updated = JSON.parse(JSON.stringify(config));
+            updated[key] = value;
+            config = updated;
         });
     }
 
@@ -278,13 +280,18 @@ Item {
                 visible: configLoaded
 
                 SettingsDropdownRow {
+                    id: maxHistoryDropdown
                     tab: "clipboard"
                     tags: ["clipboard", "history", "max", "limit"]
                     settingKey: "maxHistory"
                     text: I18n.tr("Maximum History")
                     description: I18n.tr("Maximum number of clipboard entries to keep")
-                    currentValue: root.getMaxHistoryText(root.config.maxHistory ?? 100)
                     options: root.maxHistoryOptions.map(opt => opt.text)
+
+                    Component.onCompleted: {
+                        currentValue = root.getMaxHistoryText(root.config.maxHistory ?? 100);
+                    }
+
                     onValueChanged: value => {
                         for (let opt of root.maxHistoryOptions) {
                             if (opt.text === value) {
@@ -293,16 +300,28 @@ Item {
                             }
                         }
                     }
+
+                    Connections {
+                        target: root
+                        function onConfigChanged() {
+                            maxHistoryDropdown.currentValue = root.getMaxHistoryText(root.config.maxHistory ?? 100);
+                        }
+                    }
                 }
 
                 SettingsDropdownRow {
+                    id: maxEntrySizeDropdown
                     tab: "clipboard"
                     tags: ["clipboard", "entry", "size", "limit"]
                     settingKey: "maxEntrySize"
                     text: I18n.tr("Maximum Entry Size")
                     description: I18n.tr("Maximum size per clipboard entry")
-                    currentValue: root.getMaxEntrySizeText(root.config.maxEntrySize ?? 5242880)
                     options: root.maxEntrySizeOptions.map(opt => opt.text)
+
+                    Component.onCompleted: {
+                        currentValue = root.getMaxEntrySizeText(root.config.maxEntrySize ?? 5242880);
+                    }
+
                     onValueChanged: value => {
                         for (let opt of root.maxEntrySizeOptions) {
                             if (opt.text === value) {
@@ -311,16 +330,28 @@ Item {
                             }
                         }
                     }
+
+                    Connections {
+                        target: root
+                        function onConfigChanged() {
+                            maxEntrySizeDropdown.currentValue = root.getMaxEntrySizeText(root.config.maxEntrySize ?? 5242880);
+                        }
+                    }
                 }
 
                 SettingsDropdownRow {
+                    id: autoClearDaysDropdown
                     tab: "clipboard"
                     tags: ["clipboard", "auto", "clear", "days"]
                     settingKey: "autoClearDays"
                     text: I18n.tr("Auto-Clear After")
                     description: I18n.tr("Automatically delete entries older than this")
-                    currentValue: root.getAutoClearText(root.config.autoClearDays ?? 0)
                     options: root.autoClearOptions.map(opt => opt.text)
+
+                    Component.onCompleted: {
+                        currentValue = root.getAutoClearText(root.config.autoClearDays ?? 0);
+                    }
+
                     onValueChanged: value => {
                         for (let opt of root.autoClearOptions) {
                             if (opt.text === value) {
@@ -329,22 +360,52 @@ Item {
                             }
                         }
                     }
+
+                    Connections {
+                        target: root
+                        function onConfigChanged() {
+                            autoClearDaysDropdown.currentValue = root.getAutoClearText(root.config.autoClearDays ?? 0);
+                        }
+                    }
                 }
 
                 SettingsDropdownRow {
+                    id: maxPinnedDropdown
                     tab: "clipboard"
                     tags: ["clipboard", "pinned", "max", "limit"]
                     settingKey: "maxPinned"
                     text: I18n.tr("Maximum Pinned Entries")
                     description: I18n.tr("Maximum number of entries that can be saved")
-                    currentValue: root.getMaxPinnedText(root.config.maxPinned ?? 25)
                     options: root.maxPinnedOptions.map(opt => opt.text)
+
+                    function updateValue() {
+                        if (root.configLoaded) {
+                            currentValue = root.getMaxPinnedText(root.config.maxPinned ?? 25);
+                        }
+                    }
+
+                    Component.onCompleted: {
+                        updateValue();
+                    }
+
                     onValueChanged: value => {
                         for (let opt of root.maxPinnedOptions) {
                             if (opt.text === value) {
                                 root.saveConfig("maxPinned", opt.value);
                                 return;
                             }
+                        }
+                    }
+
+                    Connections {
+                        target: root
+                        function onConfigLoadedChanged() {
+                            if (root.configLoaded) {
+                                maxPinnedDropdown.updateValue();
+                            }
+                        }
+                        function onConfigChanged() {
+                            maxPinnedDropdown.updateValue();
                         }
                     }
                 }

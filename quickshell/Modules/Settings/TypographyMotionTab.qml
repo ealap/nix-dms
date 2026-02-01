@@ -23,20 +23,7 @@ Item {
         fonts.sort();
         fonts.unshift("Default");
         cachedFontFamilies = fonts;
-
-        var monoFonts = [];
-        for (var j = 0; j < availableFonts.length; j++) {
-            var fontName2 = availableFonts[j];
-            if (fontName2.startsWith("."))
-                continue;
-            var lowerName = fontName2.toLowerCase();
-            if (lowerName.includes("mono") || lowerName.includes("code") || lowerName.includes("console") || lowerName.includes("terminal") || lowerName.includes("courier") || lowerName.includes("jetbrains") || lowerName.includes("fira") || lowerName.includes("hack") || lowerName.includes("source code") || lowerName.includes("cascadia")) {
-                monoFonts.push(fontName2);
-            }
-        }
-        monoFonts.sort();
-        monoFonts.unshift("Default");
-        cachedMonoFamilies = monoFonts;
+        cachedMonoFamilies = fonts;
     }
 
     Timer {

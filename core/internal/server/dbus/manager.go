@@ -60,12 +60,44 @@ func (m *Manager) Call(bus, dest, path, iface, method string, args []any) (*Call
 	obj := conn.Object(dest, dbus.ObjectPath(path))
 	fullMethod := iface + "." + method
 
-	call := obj.Call(fullMethod, 0, args...)
+	convertedArgs := convertArgs(args)
+	call := obj.Call(fullMethod, 0, convertedArgs...)
 	if call.Err != nil {
 		return nil, fmt.Errorf("dbus call failed: %w", call.Err)
 	}
 
 	return &CallResult{Values: dbusutil.NormalizeSlice(call.Body)}, nil
+}
+
+func convertArgs(args []any) []any {
+	result := make([]any, len(args))
+	for i, arg := range args {
+		result[i] = convertArg(arg)
+	}
+	return result
+}
+
+func convertArg(arg any) any {
+	switch v := arg.(type) {
+	case float64:
+		if v == float64(uint32(v)) && v >= 0 && v <= float64(^uint32(0)) {
+			return uint32(v)
+		}
+		if v == float64(int32(v)) {
+			return int32(v)
+		}
+		return v
+	case []any:
+		return convertArgs(v)
+	case map[string]any:
+		result := make(map[string]any)
+		for k, val := range v {
+			result[k] = convertArg(val)
+		}
+		return result
+	default:
+		return arg
+	}
 }
 
 func (m *Manager) GetProperty(bus, dest, path, iface, property string) (*PropertyResult, error) {

@@ -4,6 +4,7 @@ import Quickshell.Hyprland
 import Quickshell.Wayland
 import qs.Common
 import qs.Services
+import qs.Modules.Settings.DisplayConfig
 
 Item {
     id: root
@@ -1451,5 +1452,82 @@ Item {
         }
 
         target: "window-rules"
+    }
+
+    IpcHandler {
+        function listProfiles(): string {
+            const profiles = DisplayConfigState.validatedProfiles;
+            const activeId = SettingsData.getActiveDisplayProfile(CompositorService.compositor);
+            const matchedId = DisplayConfigState.matchedProfile;
+            const lines = [];
+
+            for (const id in profiles) {
+                const p = profiles[id];
+                const flags = [];
+                if (id === activeId)
+                    flags.push("active");
+                if (id === matchedId)
+                    flags.push("matched");
+                const flagStr = flags.length > 0 ? " [" + flags.join(",") + "]" : "";
+                lines.push(p.name + flagStr + " -> " + JSON.stringify(p.outputSet));
+            }
+
+            if (lines.length === 0)
+                return "No profiles configured";
+            return lines.join("\n");
+        }
+
+        function setProfile(profileName: string): string {
+            if (!profileName)
+                return "ERROR: No profile name specified";
+
+            if (SettingsData.displayProfileAutoSelect)
+                return "ERROR: Auto profile selection is enabled. Use toggleAuto first";
+
+            const profiles = DisplayConfigState.validatedProfiles;
+            let profileId = null;
+
+            for (const id in profiles) {
+                if (profiles[id].name === profileName) {
+                    profileId = id;
+                    break;
+                }
+            }
+
+            if (!profileId)
+                return `ERROR: Profile not found: ${profileName}`;
+
+            DisplayConfigState.activateProfile(profileId);
+            return `PROFILE_SET_SUCCESS: ${profileName}`;
+        }
+
+        // ! TODO - auto profile switching is buggy on niri and other compositors
+        function toggleAuto(): string {
+            return "ERROR: Auto profile selection is temporarily disabled due to compositor bugs";
+        }
+
+        function status(): string {
+            const auto = "off"; // disabled for now
+            const activeId = SettingsData.getActiveDisplayProfile(CompositorService.compositor);
+            const matchedId = DisplayConfigState.matchedProfile;
+            const profiles = DisplayConfigState.validatedProfiles;
+            const activeName = profiles[activeId]?.name || "none";
+            const matchedName = profiles[matchedId]?.name || "none";
+            const currentOutputs = JSON.stringify(DisplayConfigState.currentOutputSet);
+
+            return `auto: ${auto}\nactive: ${activeName}\nmatched: ${matchedName}\noutputs: ${currentOutputs}`;
+        }
+
+        function current(): string {
+            return JSON.stringify(DisplayConfigState.currentOutputSet);
+        }
+
+        function refresh(): string {
+            DisplayConfigState.currentOutputSet = DisplayConfigState.buildCurrentOutputSet();
+            DisplayConfigState.validateProfiles();
+            return "Refreshed output state";
+        }
+
+        target: "outputs"
     }
 }

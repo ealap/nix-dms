@@ -688,6 +688,26 @@ Item {
                     return appName + (windowTitle ? " • " + windowTitle : "");
                 }
 
+                readonly property bool enlargeEnabled: (widgetData?.appsDockEnlargeOnHover !== undefined ? widgetData.appsDockEnlargeOnHover : SettingsData.appsDockEnlargeOnHover)
+                readonly property real enlargeScale: enlargeEnabled && mouseArea.containsMouse ? (widgetData?.appsDockEnlargePercentage !== undefined ? widgetData.appsDockEnlargePercentage : SettingsData.appsDockEnlargePercentage) / 100.0 : 1.0
+                readonly property real baseIconSizeMultiplier: (widgetData?.appsDockIconSizePercentage !== undefined ? widgetData.appsDockIconSizePercentage : SettingsData.appsDockIconSizePercentage) / 100.0
+                readonly property real effectiveIconSize: Theme.barIconSize(root.barThickness, undefined, root.barConfig?.noBackground) * baseIconSizeMultiplier
+
+                readonly property color activeOverlayColor: {
+                    switch (SettingsData.appsDockActiveColorMode) {
+                    case "secondary":
+                        return Theme.secondary;
+                    case "primaryContainer":
+                        return Theme.primaryContainer;
+                    case "error":
+                        return Theme.error;
+                    case "success":
+                        return Theme.success;
+                    default:
+                        return Theme.primary;
+                    }
+                }
+
                 transform: Translate {
                     x: (dragHandler.dragging && !root.isVertical) ? dragHandler.dragAxisOffset : 0
                     y: (dragHandler.dragging && root.isVertical) ? dragHandler.dragAxisOffset : 0
@@ -700,8 +720,10 @@ Item {
                     anchors.centerIn: parent
                     radius: Theme.cornerRadius
                     color: {
-                        if (appItem.isFocused) {
-                            return mouseArea.containsMouse ? Theme.primarySelected : Theme.withAlpha(Theme.primary, 0.2);
+                        const colorizeEnabled = (widgetData?.appsDockColorizeActive !== undefined ? widgetData.appsDockColorizeActive : SettingsData.appsDockColorizeActive);
+
+                        if (appItem.isFocused && colorizeEnabled) {
+                            return mouseArea.containsMouse ? Theme.withAlpha(Qt.lighter(appItem.activeOverlayColor, 1.3), 0.4) : Theme.withAlpha(appItem.activeOverlayColor, 0.3);
                         }
                         return mouseArea.containsMouse ? Theme.widgetBaseHoverColor : "transparent";
                     }
@@ -719,7 +741,7 @@ Item {
                         anchors.topMargin: (root.isVertical && !isCompact) ? Theme.spacingXS : 0
                         anchors.centerIn: (root.isVertical || isCompact) ? parent : undefined
 
-                        iconSize: Theme.barIconSize(root.barThickness, undefined, root.barConfig?.noBackground)
+                        iconSize: appItem.effectiveIconSize
                         materialIconSizeAdjustment: 0
                         iconValue: {
                             if (!modelData || !modelData.isCoreApp || !modelData.coreAppData)
@@ -734,6 +756,15 @@ Item {
                         fallbackText: "?"
                         visible: iconValue !== ""
                         z: 2
+
+                        transformOrigin: Item.Center
+                        scale: appItem.enlargeScale
+                        Behavior on scale {
+                            NumberAnimation {
+                                duration: 120
+                                easing.type: Easing.OutCubic
+                            }
+                        }
                     }
 
                     IconImage {
@@ -745,8 +776,8 @@ Item {
                         anchors.topMargin: (root.isVertical && !isCompact) ? Theme.spacingXS : 0
                         anchors.centerIn: (root.isVertical || isCompact) ? parent : undefined
 
-                        width: Theme.barIconSize(root.barThickness, undefined, root.barConfig?.noBackground)
-                        height: Theme.barIconSize(root.barThickness, undefined, root.barConfig?.noBackground)
+                        width: appItem.effectiveIconSize
+                        height: appItem.effectiveIconSize
                         source: {
                             root._desktopEntriesUpdateTrigger;
                             root._appIdSubstitutionsTrigger;
@@ -771,6 +802,15 @@ Item {
                             colorizationColor: Theme.primary
                         }
                         z: 2
+
+                        transformOrigin: Item.Center
+                        scale: appItem.enlargeScale
+                        Behavior on scale {
+                            NumberAnimation {
+                                duration: 120
+                                easing.type: Easing.OutCubic
+                            }
+                        }
                     }
 
                     DankIcon {
@@ -781,10 +821,19 @@ Item {
                         anchors.topMargin: (root.isVertical && !isCompact) ? Theme.spacingXS : 0
                         anchors.centerIn: (root.isVertical || isCompact) ? parent : undefined
 
-                        size: Theme.barIconSize(root.barThickness, undefined, root.barConfig?.noBackground)
+                        size: appItem.effectiveIconSize
                         name: "sports_esports"
                         color: Theme.widgetTextColor
                         visible: !iconImg.visible && !coreIcon.visible && Paths.isSteamApp(appItem.appId)
+
+                        transformOrigin: Item.Center
+                        scale: appItem.enlargeScale
+                        Behavior on scale {
+                            NumberAnimation {
+                                duration: 120
+                                easing.type: Easing.OutCubic
+                            }
+                        }
                     }
 
                     Text {
@@ -801,6 +850,15 @@ Item {
                         }
                         font.pixelSize: 10
                         color: Theme.widgetTextColor
+
+                        transformOrigin: Item.Center
+                        scale: appItem.enlargeScale
+                        Behavior on scale {
+                            NumberAnimation {
+                                duration: 120
+                                easing.type: Easing.OutCubic
+                            }
+                        }
                     }
 
                     Rectangle {
@@ -812,7 +870,7 @@ Item {
                         height: 14
                         radius: 7
                         color: Theme.primary
-                        visible: modelData.type === "grouped" && appItem.windowCount > 1
+                        visible: modelData.type === "grouped" && appItem.windowCount > 1 && (widgetData?.barShowOverflowBadge !== undefined ? widgetData.barShowOverflowBadge : SettingsData.barShowOverflowBadge)
                         z: 10
 
                         StyledText {
@@ -838,7 +896,7 @@ Item {
                     }
 
                     Rectangle {
-                        visible: modelData.isRunning
+                        visible: modelData.isRunning && !(widgetData?.appsDockHideIndicators !== undefined ? widgetData.appsDockHideIndicators : SettingsData.appsDockHideIndicators)
                         width: root.isVertical ? 2 : 20
                         height: root.isVertical ? 20 : 2
                         radius: 1

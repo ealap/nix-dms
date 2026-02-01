@@ -396,6 +396,7 @@ Item {
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
+                                root.currentValue = delegateRoot.modelData;
                                 root.valueChanged(delegateRoot.modelData);
                                 dropdownMenu.close();
                             }

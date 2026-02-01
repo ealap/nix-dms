@@ -50,6 +50,7 @@ var SPEC = {
     barPinnedApps: { def: [] },
     dockLauncherPosition: { def: 0 },
     hiddenTrayIds: { def: [] },
+    trayItemOrder: { def: [] },
     recentColors: { def: [] },
     showThirdPartyPlugins: { def: false },
     launchPrefix: { def: "" },

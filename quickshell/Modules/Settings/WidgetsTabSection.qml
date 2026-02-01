@@ -510,45 +510,35 @@ Column {
                             }
 
                             DankActionButton {
-                                id: overflowMenuButton
-                                buttonSize: 28
+                                id: appsDockMenuButton
+                                buttonSize: 32
                                 visible: modelData.id === "appsDock"
-                                iconName: "unfold_more"
-                                iconSize: 16
-                                iconColor: {
-                                    const maxApps = modelData.barMaxVisibleApps !== undefined ? modelData.barMaxVisibleApps : SettingsData.barMaxVisibleApps;
-                                    const maxRunning = modelData.barMaxVisibleRunningApps !== undefined ? modelData.barMaxVisibleRunningApps : SettingsData.barMaxVisibleRunningApps;
-                                    return (maxApps > 0 || maxRunning > 0) ? Theme.primary : Theme.outline;
-                                }
+                                iconName: "more_vert"
+                                iconSize: 18
+                                iconColor: Theme.outline
                                 onClicked: {
-                                    overflowContextMenu.widgetData = modelData;
-                                    overflowContextMenu.sectionId = root.sectionId;
-                                    overflowContextMenu.widgetIndex = index;
+                                    appsDockContextMenu.widgetData = modelData;
+                                    appsDockContextMenu.sectionId = root.sectionId;
+                                    appsDockContextMenu.widgetIndex = index;
 
-                                    var buttonPos = overflowMenuButton.mapToItem(root, 0, 0);
-                                    var popupWidth = overflowContextMenu.width;
-                                    var popupHeight = overflowContextMenu.height;
+                                    var buttonPos = appsDockMenuButton.mapToItem(root, 0, 0);
+                                    var popupWidth = appsDockContextMenu.width;
+                                    var popupHeight = appsDockContextMenu.height;
 
                                     var xPos = buttonPos.x - popupWidth - Theme.spacingS;
                                     if (xPos < 0)
-                                        xPos = buttonPos.x + overflowMenuButton.width + Theme.spacingS;
+                                        xPos = buttonPos.x + appsDockMenuButton.width + Theme.spacingS;
 
-                                    var yPos = buttonPos.y - popupHeight / 2 + overflowMenuButton.height / 2;
+                                    var yPos = buttonPos.y - popupHeight / 2 + appsDockMenuButton.height / 2;
                                     if (yPos < 0) {
                                         yPos = Theme.spacingS;
                                     } else if (yPos + popupHeight > root.height) {
                                         yPos = root.height - popupHeight - Theme.spacingS;
                                     }
 
-                                    overflowContextMenu.x = xPos;
-                                    overflowContextMenu.y = yPos;
-                                    overflowContextMenu.open();
-                                }
-                                onEntered: {
-                                    sharedTooltip.show(I18n.tr("Overflow"), overflowMenuButton, 0, 0, "bottom");
-                                }
-                                onExited: {
-                                    sharedTooltip.hide();
+                                    appsDockContextMenu.x = xPos;
+                                    appsDockContextMenu.y = yPos;
+                                    appsDockContextMenu.open();
                                 }
                             }
 
@@ -1430,7 +1420,7 @@ Column {
     }
 
     Popup {
-        id: overflowContextMenu
+        id: appsDockContextMenu
 
         property var widgetData: null
         property string sectionId: ""
@@ -1439,8 +1429,8 @@ Column {
         // Dynamically get current widget data from the items list
         readonly property var currentWidgetData: (widgetIndex >= 0 && widgetIndex < root.items.length) ? root.items[widgetIndex] : widgetData
 
-        width: 280
-        height: overflowMenuColumn.implicitHeight + Theme.spacingS * 2
+        width: 320
+        height: appsDockMenuColumn.implicitHeight + Theme.spacingS * 2
         padding: 0
         modal: true
         focus: true
@@ -1455,10 +1445,18 @@ Column {
 
         contentItem: Item {
             Column {
-                id: overflowMenuColumn
+                id: appsDockMenuColumn
                 anchors.fill: parent
                 anchors.margins: Theme.spacingS
                 spacing: Theme.spacingS
+
+                StyledText {
+                    text: I18n.tr("Apps Dock Settings")
+                    font.pixelSize: Theme.fontSizeSmall
+                    font.weight: Font.Medium
+                    color: Theme.surfaceText
+                    leftPadding: Theme.spacingS
+                }
 
                 StyledText {
                     text: I18n.tr("Overflow")
@@ -1494,15 +1492,15 @@ Column {
                                 iconSize: 14
                                 iconColor: Theme.outline
                                 onClicked: {
-                                    var current = overflowContextMenu.currentWidgetData?.barMaxVisibleApps ?? SettingsData.barMaxVisibleApps;
+                                    var current = appsDockContextMenu.currentWidgetData?.barMaxVisibleApps ?? SettingsData.barMaxVisibleApps;
                                     var newVal = Math.max(0, current - 1);
-                                    root.overflowSettingChanged(overflowContextMenu.sectionId, overflowContextMenu.widgetIndex, "barMaxVisibleApps", newVal);
+                                    root.overflowSettingChanged(appsDockContextMenu.sectionId, appsDockContextMenu.widgetIndex, "barMaxVisibleApps", newVal);
                                 }
                             }
 
                             StyledText {
                                 text: {
-                                    var val = overflowContextMenu.currentWidgetData?.barMaxVisibleApps ?? SettingsData.barMaxVisibleApps;
+                                    var val = appsDockContextMenu.currentWidgetData?.barMaxVisibleApps ?? SettingsData.barMaxVisibleApps;
                                     return val === 0 ? I18n.tr("All") : val;
                                 }
                                 font.pixelSize: Theme.fontSizeSmall
@@ -1518,9 +1516,9 @@ Column {
                                 iconSize: 14
                                 iconColor: Theme.outline
                                 onClicked: {
-                                    var current = overflowContextMenu.currentWidgetData?.barMaxVisibleApps ?? SettingsData.barMaxVisibleApps;
+                                    var current = appsDockContextMenu.currentWidgetData?.barMaxVisibleApps ?? SettingsData.barMaxVisibleApps;
                                     var newVal = current + 1;
-                                    root.overflowSettingChanged(overflowContextMenu.sectionId, overflowContextMenu.widgetIndex, "barMaxVisibleApps", newVal);
+                                    root.overflowSettingChanged(appsDockContextMenu.sectionId, appsDockContextMenu.widgetIndex, "barMaxVisibleApps", newVal);
                                 }
                             }
                         }
@@ -1548,15 +1546,15 @@ Column {
                                 iconSize: 14
                                 iconColor: Theme.outline
                                 onClicked: {
-                                    var current = overflowContextMenu.currentWidgetData?.barMaxVisibleRunningApps ?? SettingsData.barMaxVisibleRunningApps;
+                                    var current = appsDockContextMenu.currentWidgetData?.barMaxVisibleRunningApps ?? SettingsData.barMaxVisibleRunningApps;
                                     var newVal = Math.max(0, current - 1);
-                                    root.overflowSettingChanged(overflowContextMenu.sectionId, overflowContextMenu.widgetIndex, "barMaxVisibleRunningApps", newVal);
+                                    root.overflowSettingChanged(appsDockContextMenu.sectionId, appsDockContextMenu.widgetIndex, "barMaxVisibleRunningApps", newVal);
                                 }
                             }
 
                             StyledText {
                                 text: {
-                                    var val = overflowContextMenu.currentWidgetData?.barMaxVisibleRunningApps ?? SettingsData.barMaxVisibleRunningApps;
+                                    var val = appsDockContextMenu.currentWidgetData?.barMaxVisibleRunningApps ?? SettingsData.barMaxVisibleRunningApps;
                                     return val === 0 ? I18n.tr("All") : val;
                                 }
                                 font.pixelSize: Theme.fontSizeSmall
@@ -1572,9 +1570,9 @@ Column {
                                 iconSize: 14
                                 iconColor: Theme.outline
                                 onClicked: {
-                                    var current = overflowContextMenu.currentWidgetData?.barMaxVisibleRunningApps ?? SettingsData.barMaxVisibleRunningApps;
+                                    var current = appsDockContextMenu.currentWidgetData?.barMaxVisibleRunningApps ?? SettingsData.barMaxVisibleRunningApps;
                                     var newVal = current + 1;
-                                    root.overflowSettingChanged(overflowContextMenu.sectionId, overflowContextMenu.widgetIndex, "barMaxVisibleRunningApps", newVal);
+                                    root.overflowSettingChanged(appsDockContextMenu.sectionId, appsDockContextMenu.widgetIndex, "barMaxVisibleRunningApps", newVal);
                                 }
                             }
                         }
@@ -1622,9 +1620,9 @@ Column {
                             anchors.verticalCenter: parent.verticalCenter
                             width: 40
                             height: 20
-                            checked: overflowContextMenu.currentWidgetData?.barShowOverflowBadge ?? SettingsData.barShowOverflowBadge
+                            checked: appsDockContextMenu.currentWidgetData?.barShowOverflowBadge ?? SettingsData.barShowOverflowBadge
                             onToggled: {
-                                root.overflowSettingChanged(overflowContextMenu.sectionId, overflowContextMenu.widgetIndex, "barShowOverflowBadge", toggled);
+                                root.overflowSettingChanged(appsDockContextMenu.sectionId, appsDockContextMenu.widgetIndex, "barShowOverflowBadge", toggled);
                             }
                         }
 
@@ -1635,7 +1633,331 @@ Column {
                             cursorShape: Qt.PointingHandCursor
                             onPressed: {
                                 badgeToggle.checked = !badgeToggle.checked;
-                                root.overflowSettingChanged(overflowContextMenu.sectionId, overflowContextMenu.widgetIndex, "barShowOverflowBadge", badgeToggle.checked);
+                                root.overflowSettingChanged(appsDockContextMenu.sectionId, appsDockContextMenu.widgetIndex, "barShowOverflowBadge", badgeToggle.checked);
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        width: parent.width
+                        height: 1
+                        color: Theme.outline
+                        opacity: 0.15
+                    }
+
+                    StyledText {
+                        text: I18n.tr("Visual Effects")
+                        font.pixelSize: Theme.fontSizeSmall
+                        font.weight: Font.Medium
+                        color: Theme.surfaceText
+                        leftPadding: Theme.spacingS
+                        topPadding: Theme.spacingXS
+                    }
+
+                    Rectangle {
+                        width: parent.width
+                        height: 32
+                        radius: Theme.cornerRadius
+                        color: hideIndicatorsArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : "transparent"
+
+                        Row {
+                            anchors.left: parent.left
+                            anchors.leftMargin: Theme.spacingS
+                            anchors.verticalCenter: parent.verticalCenter
+                            spacing: Theme.spacingS
+
+                            DankIcon {
+                                name: "visibility_off"
+                                size: 16
+                                color: Theme.surfaceText
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+                            StyledText {
+                                text: I18n.tr("Hide Indicators")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceText
+                                font.weight: Font.Normal
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+                        }
+
+                        DankToggle {
+                            id: hideIndicatorsToggle
+                            anchors.right: parent.right
+                            anchors.rightMargin: Theme.spacingS
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: 40
+                            height: 20
+                            checked: SettingsData.appsDockHideIndicators
+                            onToggled: {
+                                SettingsData.set("appsDockHideIndicators", toggled);
+                            }
+                        }
+
+                        MouseArea {
+                            id: hideIndicatorsArea
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onPressed: {
+                                hideIndicatorsToggle.checked = !hideIndicatorsToggle.checked;
+                                SettingsData.set("appsDockHideIndicators", hideIndicatorsToggle.checked);
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        width: parent.width
+                        height: 32
+                        radius: Theme.cornerRadius
+                        color: colorizeActiveArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : "transparent"
+
+                        Row {
+                            anchors.left: parent.left
+                            anchors.leftMargin: Theme.spacingS
+                            anchors.verticalCenter: parent.verticalCenter
+                            spacing: Theme.spacingS
+
+                            DankIcon {
+                                name: "palette"
+                                size: 16
+                                color: Theme.surfaceText
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+                            StyledText {
+                                text: I18n.tr("Colorize Active")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceText
+                                font.weight: Font.Normal
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+                        }
+
+                        DankToggle {
+                            id: colorizeActiveToggle
+                            anchors.right: parent.right
+                            anchors.rightMargin: Theme.spacingS
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: 40
+                            height: 20
+                            checked: SettingsData.appsDockColorizeActive
+                            onToggled: {
+                                SettingsData.set("appsDockColorizeActive", toggled);
+                            }
+                        }
+
+                        MouseArea {
+                            id: colorizeActiveArea
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onPressed: {
+                                colorizeActiveToggle.checked = !colorizeActiveToggle.checked;
+                                SettingsData.set("appsDockColorizeActive", colorizeActiveToggle.checked);
+                            }
+                        }
+                    }
+
+                    Row {
+                        width: parent.width
+                        spacing: Theme.spacingS
+                        visible: SettingsData.appsDockColorizeActive
+                        leftPadding: Theme.spacingL + Theme.spacingS
+
+                        StyledText {
+                            text: I18n.tr("Active Color")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceText
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: 90
+                        }
+
+                        DankButtonGroup {
+                            anchors.verticalCenter: parent.verticalCenter
+                            model: ["pri", "sec", "pc", "err", "ok"]
+                            buttonHeight: 22
+                            minButtonWidth: 32
+                            buttonPadding: 4
+                            checkIconSize: 10
+                            textSize: 9
+                            spacing: 1
+                            currentIndex: {
+                                switch (SettingsData.appsDockActiveColorMode) {
+                                case "secondary":
+                                    return 1;
+                                case "primaryContainer":
+                                    return 2;
+                                case "error":
+                                    return 3;
+                                case "success":
+                                    return 4;
+                                default:
+                                    return 0;
+                                }
+                            }
+                            onSelectionChanged: (index, selected) => {
+                                if (!selected)
+                                    return;
+                                const modes = ["primary", "secondary", "primaryContainer", "error", "success"];
+                                SettingsData.set("appsDockActiveColorMode", modes[index]);
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        width: parent.width
+                        height: 32
+                        radius: Theme.cornerRadius
+                        color: enlargeOnHoverArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : "transparent"
+
+                        Row {
+                            anchors.left: parent.left
+                            anchors.leftMargin: Theme.spacingS
+                            anchors.verticalCenter: parent.verticalCenter
+                            spacing: Theme.spacingS
+
+                            DankIcon {
+                                name: "zoom_in"
+                                size: 16
+                                color: Theme.surfaceText
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+                            StyledText {
+                                text: I18n.tr("Enlarge on Hover")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceText
+                                font.weight: Font.Normal
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+                        }
+
+                        DankToggle {
+                            id: enlargeOnHoverToggle
+                            anchors.right: parent.right
+                            anchors.rightMargin: Theme.spacingS
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: 40
+                            height: 20
+                            checked: SettingsData.appsDockEnlargeOnHover
+                            onToggled: {
+                                SettingsData.set("appsDockEnlargeOnHover", toggled);
+                            }
+                        }
+
+                        MouseArea {
+                            id: enlargeOnHoverArea
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onPressed: {
+                                enlargeOnHoverToggle.checked = !enlargeOnHoverToggle.checked;
+                                SettingsData.set("appsDockEnlargeOnHover", enlargeOnHoverToggle.checked);
+                            }
+                        }
+                    }
+
+                    Row {
+                        width: parent.width
+                        spacing: Theme.spacingS
+                        visible: SettingsData.appsDockEnlargeOnHover
+
+                        StyledText {
+                            text: I18n.tr("Enlargement %")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceText
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: 120
+                        }
+
+                        Row {
+                            spacing: Theme.spacingXS
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            DankActionButton {
+                                buttonSize: 24
+                                iconName: "remove"
+                                iconSize: 14
+                                iconColor: Theme.outline
+                                onClicked: {
+                                    var current = SettingsData.appsDockEnlargePercentage;
+                                    var newVal = Math.max(100, current - 5);
+                                    SettingsData.set("appsDockEnlargePercentage", newVal);
+                                }
+                            }
+
+                            StyledText {
+                                text: SettingsData.appsDockEnlargePercentage + "%"
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceText
+                                anchors.verticalCenter: parent.verticalCenter
+                                horizontalAlignment: Text.AlignHCenter
+                                width: 50
+                            }
+
+                            DankActionButton {
+                                buttonSize: 24
+                                iconName: "add"
+                                iconSize: 14
+                                iconColor: Theme.outline
+                                onClicked: {
+                                    var current = SettingsData.appsDockEnlargePercentage;
+                                    var newVal = Math.min(150, current + 5);
+                                    SettingsData.set("appsDockEnlargePercentage", newVal);
+                                }
+                            }
+                        }
+                    }
+
+                    Row {
+                        width: parent.width
+                        spacing: Theme.spacingS
+
+                        StyledText {
+                            text: I18n.tr("Icon Size %")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceText
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: 120
+                        }
+
+                        Row {
+                            spacing: Theme.spacingXS
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            DankActionButton {
+                                buttonSize: 24
+                                iconName: "remove"
+                                iconSize: 14
+                                iconColor: Theme.outline
+                                onClicked: {
+                                    var current = SettingsData.appsDockIconSizePercentage;
+                                    var newVal = Math.max(50, current - 5);
+                                    SettingsData.set("appsDockIconSizePercentage", newVal);
+                                }
+                            }
+
+                            StyledText {
+                                text: SettingsData.appsDockIconSizePercentage + "%"
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceText
+                                anchors.verticalCenter: parent.verticalCenter
+                                horizontalAlignment: Text.AlignHCenter
+                                width: 50
+                            }
+
+                            DankActionButton {
+                                buttonSize: 24
+                                iconName: "add"
+                                iconSize: 14
+                                iconColor: Theme.outline
+                                onClicked: {
+                                    var current = SettingsData.appsDockIconSizePercentage;
+                                    var newVal = Math.min(200, current + 5);
+                                    SettingsData.set("appsDockIconSizePercentage", newVal);
+                                }
                             }
                         }
                     }

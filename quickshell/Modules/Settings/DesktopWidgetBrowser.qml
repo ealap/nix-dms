@@ -19,23 +19,28 @@ FloatingWindow {
 
     function updateFilteredWidgets() {
         const allWidgets = DesktopWidgetRegistry.registeredWidgetsList || [];
-        if (!searchQuery || searchQuery.length === 0) {
-            filteredWidgets = allWidgets.slice();
-            return;
-        }
-
         var filtered = [];
-        var query = searchQuery.toLowerCase();
 
-        for (var i = 0; i < allWidgets.length; i++) {
-            var widget = allWidgets[i];
-            var name = widget.name ? widget.name.toLowerCase() : "";
-            var description = widget.description ? widget.description.toLowerCase() : "";
-            var id = widget.id ? widget.id.toLowerCase() : "";
+        if (!searchQuery || searchQuery.length === 0) {
+            filtered = allWidgets.slice();
+        } else {
+            var query = searchQuery.toLowerCase();
+            for (var i = 0; i < allWidgets.length; i++) {
+                var widget = allWidgets[i];
+                var name = widget.name ? widget.name.toLowerCase() : "";
+                var description = widget.description ? widget.description.toLowerCase() : "";
+                var id = widget.id ? widget.id.toLowerCase() : "";
 
-            if (name.indexOf(query) !== -1 || description.indexOf(query) !== -1 || id.indexOf(query) !== -1)
-                filtered.push(widget);
+                if (name.indexOf(query) !== -1 || description.indexOf(query) !== -1 || id.indexOf(query) !== -1)
+                    filtered.push(widget);
+            }
         }
+
+        filtered.sort((a, b) => {
+            if (a.featured !== b.featured)
+                return a.featured ? -1 : 1;
+            return 0;
+        });
 
         filteredWidgets = filtered;
         selectedIndex = -1;
@@ -354,6 +359,38 @@ FloatingWindow {
                                             font.pixelSize: Theme.fontSizeMedium
                                             font.weight: Font.Medium
                                             color: Theme.surfaceText
+                                        }
+
+                                        Rectangle {
+                                            visible: delegateRoot.modelData.featured || false
+                                            width: featuredWidgetRow.implicitWidth + Theme.spacingXS * 2
+                                            height: 18
+                                            radius: 9
+                                            color: Theme.withAlpha(Theme.secondary, 0.15)
+                                            border.color: Theme.withAlpha(Theme.secondary, 0.4)
+                                            border.width: 1
+                                            anchors.verticalCenter: parent.verticalCenter
+
+                                            Row {
+                                                id: featuredWidgetRow
+                                                anchors.centerIn: parent
+                                                spacing: 2
+
+                                                DankIcon {
+                                                    name: "star"
+                                                    size: 10
+                                                    color: Theme.secondary
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                }
+
+                                                StyledText {
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                    text: I18n.tr("featured")
+                                                    font.pixelSize: Theme.fontSizeSmall - 2
+                                                    color: Theme.secondary
+                                                    font.weight: Font.Medium
+                                                }
+                                            }
                                         }
 
                                         Rectangle {

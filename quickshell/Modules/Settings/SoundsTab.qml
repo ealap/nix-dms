@@ -146,7 +146,7 @@ Item {
                     StyledText {
                         id: notAvailableText
                         font.pixelSize: Theme.fontSizeSmall
-                        text: I18n.tr("System sounds are not available. Install canberra-gtk-play for sound support.")
+                        text: I18n.tr("System sounds are not available. Install %1 for sound support.").arg("qt6-multimedia")
                         wrapMode: Text.WordWrap
                         width: parent.width - Theme.iconSizeSmall - Theme.spacingM
                         anchors.verticalCenter: parent.verticalCenter

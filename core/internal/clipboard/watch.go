@@ -2,6 +2,7 @@ package clipboard
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -130,11 +131,27 @@ func Watch(ctx context.Context, callback func(data []byte, mimeType string)) err
 			if err := wlCtx.SetReadDeadline(time.Now().Add(100 * time.Millisecond)); err != nil {
 				return fmt.Errorf("set read deadline: %w", err)
 			}
-			if err := wlCtx.Dispatch(); err != nil && err != os.ErrDeadlineExceeded {
+			if err := wlCtx.Dispatch(); err != nil {
+				if isTimeoutError(err) {
+					continue
+				}
 				return fmt.Errorf("dispatch: %w", err)
 			}
 		}
 	}
+}
+
+func isTimeoutError(err error) bool {
+	if err == nil {
+		return false
+	}
+	if errors.Is(err, os.ErrDeadlineExceeded) {
+		return true
+	}
+	if netErr, ok := err.(interface{ Timeout() bool }); ok && netErr.Timeout() {
+		return true
+	}
+	return false
 }
 
 func WatchChan(ctx context.Context) (<-chan ClipboardChange, <-chan error) {

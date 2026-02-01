@@ -95,6 +95,7 @@ Singleton {
     property var barPinnedApps: []
     property int dockLauncherPosition: 0
     property var hiddenTrayIds: []
+    property var trayItemOrder: []
     property var recentColors: []
     property bool showThirdPartyPlugins: false
     property string launchPrefix: ""
@@ -869,6 +870,11 @@ Singleton {
 
     function isHiddenTrayId(trayId) {
         return trayId && hiddenTrayIds.indexOf(trayId) !== -1;
+    }
+
+    function setTrayItemOrder(order) {
+        trayItemOrder = order;
+        saveSettings();
     }
 
     function addRecentColor(color) {

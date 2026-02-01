@@ -27,6 +27,7 @@ type Plugin struct {
 	Distro       []string `json:"distro"`
 	Screenshot   string   `json:"screenshot,omitempty"`
 	RequiresDMS  string   `json:"requires_dms,omitempty"`
+	Featured     bool     `json:"featured,omitempty"`
 }
 
 type GitClient interface {

@@ -67,6 +67,9 @@ func FilterByCapability(capability string, plugins []Plugin) []Plugin {
 
 func SortByFirstParty(plugins []Plugin) []Plugin {
 	sort.SliceStable(plugins, func(i, j int) bool {
+		if plugins[i].Featured != plugins[j].Featured {
+			return plugins[i].Featured
+		}
 		isFirstPartyI := strings.HasPrefix(plugins[i].Repo, "https://github.com/AvengeMedia")
 		isFirstPartyJ := strings.HasPrefix(plugins[j].Repo, "https://github.com/AvengeMedia")
 		if isFirstPartyI != isFirstPartyJ {

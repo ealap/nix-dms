@@ -1,10 +1,9 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding assistants.
 
 ## AI Guidance
 
-* Ignore GEMINI.md and GEMINI-*.md files
 * After receiving tool results, carefully reflect on their quality and determine optimal next steps before proceeding. Use your thinking to plan and iterate based on this new information, and then take the best next action.
 * For maximum efficiency, whenever you need to perform multiple independent operations, invoke all relevant tools simultaneously rather than sequentially.
 * Before you finish, please verify your solution
@@ -36,46 +35,230 @@ When asked to backup Memory Bank System files, you will copy the core context fi
 
 ## Project Overview
 
-## Project Overview
+DankMaterialShell is a complete desktop environment for Wayland compositors, built as a **monorepo** with two main components:
 
-This is a Quickshell-based desktop shell implementation with Material Design 3 dark theme. The shell provides a complete desktop environment experience with panels, widgets, and system integration services.
+**1. Go Backend (core/)** - System integration, IPC server, and CLI tools (~118,000 lines)
+**2. QML Frontend (quickshell/)** - UI layer consuming the backend's IPC API
 
-**Architecture**: Modular design with clean separation between UI components (Modules), system services (Services), and shared utilities (Common).
+**Architecture**: The Go backend provides all system integration via IPC (Inter-Process Communication), while QML services act as thin wrappers that communicate with the backend. This separation allows for robust system integration while maintaining a reactive, modern UI.
 
-**Compositor Support**: Originally designed for niri, now also fully compatible with Hyprland. Both compositors are supported with their own configuration examples and keybind formats.
+**Compositor Support**: Niri, Hyprland, MangoWC, Sway, labwc, Scroll (6 compositors supported)
+**Distribution Support**: Arch, Fedora, Debian, Ubuntu, openSUSE, Gentoo (6 distributions supported)
 
 ## Technology Stack
 
-- **QML (Qt Modeling Language)** - Primary language for all UI components
-- **Quickshell Framework** - QML-based framework for building desktop shells
+### Backend (core/)
+- **Go 1.24+** - System integration and backend services
+- **Wayland Protocols** - Display management, screenshots, clipboard, workspaces
+- **D-Bus** - Bluetooth, NetworkManager, systemd-logind, desktop portals
+- **IPC Server** - Unix socket JSON API for QML ↔ Go communication
+- **CLI Tools** - `dms` command with 20+ subcommands, `dankinstall` TUI installer
+
+### Frontend (quickshell/)
+- **QML (Qt Modeling Language)** - UI components and visual presentation
+- **Quickshell Framework** - QML-based desktop shell framework
 - **Qt/QtQuick** - UI rendering and controls
-- **Wayland** - Display server protocol
-- **Matugen** - Dynamic theming system for wallpaper-based colors and system app theming
+- **Matugen** - Dynamic theming system for wallpaper-based colors
 
 ## Development Commands
 
-Since this is a Quickshell-based project without traditional build configuration files, development typically involves:
+### Backend (Go)
 
 ```bash
-# Run the shell (requires Quickshell to be installed)
+cd core/
+
+# Build
+make                 # Build dms CLI (bin/dms)
+make dankinstall     # Build installer (bin/dankinstall)
+make test            # Run tests
+make dist            # Build distribution binaries (no update/greeter features)
+
+# Install
+sudo make install    # Install to /usr/local/bin/dms
+
+# Development
+gofmt -w .           # Format Go code
+go mod tidy          # Clean up dependencies
+golangci-lint run    # Run linter
+
+# Run dms CLI
+./bin/dms run        # Start shell via dms daemon
+./bin/dms ipc <cmd>  # Send IPC command to running shell
+./bin/dms --help     # View all commands
+```
+
+### Frontend (QML)
+
+```bash
+cd quickshell/
+
+# Run the shell (requires dms backend running or use 'dms run')
 quickshell -p shell.qml
-
-# Or use the shorthand
-qs -p .
-
-# Run with verbose output for debugging
-qs -v -p shell.qml
+qs -p .              # Shorthand
+qs -v -p shell.qml   # Verbose debugging
 
 # Code formatting and linting
-qmlfmt -t 4 -i 4 -b 250 -w /path/to/file.qml    # Format a QML file (requires qmlfmt, do not use qmlformat)
-qmllint **/*.qml         # Lint all QML files for syntax errors
+qmlfmt -t 4 -i 4 -b 250 -w /path/to/file.qml  # Format QML (don't use qmlformat)
+qmllint **/*.qml     # Lint all QML files
+./qmlformat-all.sh   # Format all QML files
 ```
 
 ## Architecture Overview
 
-### Modular Structure
+### Monorepo Structure
 
-The shell follows a clean modular architecture reduced from 4,830 lines to ~250 lines in shell.qml:
+The project is organized as a monorepo with clear separation between backend and frontend:
+
+```
+DankMaterialShell/
+├── core/               # Go backend (~118,000 lines)
+│   ├── cmd/            # Binary entrypoints
+│   │   ├── dms/        # Main CLI with 20+ commands
+│   │   └── dankinstall/# TUI installer
+│   ├── internal/       # System integration packages (23 packages)
+│   │   ├── clipboard/  # Clipboard history (ext-data-control-v1)
+│   │   ├── colorpicker/# Native Wayland color picker
+│   │   ├── screenshot/ # Screen capture functionality
+│   │   ├── brightness/ # DDC/CI & backlight control
+│   │   ├── bluez/      # Bluetooth D-Bus integration
+│   │   ├── config/     # Configuration management
+│   │   ├── dank16/     # Terminal color scheme generator
+│   │   ├── deps/       # Dependency detection
+│   │   ├── distros/    # Distribution-specific installers (6 distros)
+│   │   ├── greeter/    # Display manager greeter
+│   │   ├── keybinds/   # Compositor keybind management
+│   │   ├── matugen/    # Matugen integration
+│   │   ├── notify/     # Notification daemon
+│   │   ├── plugins/    # Plugin registry & management
+│   │   ├── screenshot/ # Screenshot utilities
+│   │   ├── server/     # IPC server with 15+ submodules
+│   │   ├── themes/     # Theme registry
+│   │   ├── wayland/    # Wayland protocol handlers
+│   │   └── windowrules/# Window rules management
+│   ├── pkg/            # Shared packages
+│   │   ├── go-wayland/ # Wayland client library
+│   │   ├── dbusutil/   # D-Bus utilities
+│   │   ├── ipp/        # Internet Printing Protocol
+│   │   └── syncmap/    # Thread-safe map
+│   └── go.mod          # Go module definition
+├── quickshell/         # QML frontend (UI layer) - see "QML Frontend Architecture" below
+│   ├── shell.qml       # Main entry point
+│   ├── Services/       # IPC client wrappers
+│   ├── Modules/        # UI components
+│   ├── Widgets/        # Reusable controls
+│   ├── Modals/         # Full-screen overlays
+│   └── Common/         # Shared resources
+├── distro/             # Distribution packaging
+│   ├── arch/           # AUR packages
+│   ├── fedora/         # RPM specs
+│   ├── debian/         # Debian packaging
+│   ├── ubuntu/         # Ubuntu PPAs
+│   ├── opensuse/       # OBS packaging
+│   └── nix/            # NixOS modules
+└── flake.nix           # Nix flake
+```
+
+### Go Backend Architecture
+
+The backend provides all system integration through these key components:
+
+#### 1. IPC Server (`internal/server/`)
+
+JSON-based RPC over Unix socket (`/tmp/dms-ipc-<uid>.sock`) with 15+ submodules:
+
+- **apppicker/** - Application search and launch
+- **bluez/** - Bluetooth device management
+- **brightness/** - Display and monitor brightness
+- **browser/** - Web browser integration
+- **clipboard/** - Clipboard history and persistence
+- **cups/** - Printer management
+- **dbus/** - Generic D-Bus interface access
+- **dwl/** - dwl/MangoWC compositor integration
+- **evdev/** - Keyboard input device monitoring
+- **extworkspace/** - Workspace protocol integration
+- **freedesktop/** - Desktop portal integration
+- **loginctl/** - systemd-logind (power, sessions, inhibitors)
+- **network/** - Network management (multi-backend)
+- **params/** - IPC parameter validation
+- **plugins/** - Plugin lifecycle management
+- **thememode/** - Dark/light mode synchronization
+- **themes/** - Theme registry operations
+- **wayland/** - Night mode, gamma control, output management
+- **wlcontext/** - Wayland connection management
+- **wlroutput/** - wlr-output-management protocol
+
+#### 2. CLI Commands (`cmd/dms/`)
+
+The `dms` CLI provides 20+ commands:
+
+```bash
+dms run [-d]                    # Start shell (daemon mode)
+dms restart / kill              # Manage shell process
+dms ipc <command> [args]        # Send IPC commands
+dms brightness [list|set]       # Display brightness control
+dms color pick [--rgb|--hsv]    # Native color picker
+dms clipboard [list|clear]      # Clipboard management
+dms screenshot [area|output]    # Take screenshots
+dms notify send <msg>           # Send notifications
+dms dpms [on|off]              # Display power management
+dms keybinds [reload|list]     # Keybind management
+dms windowrules [add|remove]   # Window rules management
+dms matugen [generate|reload]  # Theme generation
+dms dank16 [generate]          # Terminal theme generation
+dms config [get|set]           # Configuration management
+dms features                    # Show available features
+dms doctor                      # System diagnostics
+dms plugins [browse|install]   # Plugin management
+dms update [check]             # Update DMS and deps
+dms greeter [install|enable]   # Greeter management
+```
+
+#### 3. Wayland Integration (`internal/wayland/`, `internal/proto/`)
+
+Native Wayland protocol implementations (as client):
+
+- `wlr-gamma-control-unstable-v1` - Night mode color temperature
+- `wlr-screencopy-unstable-v1` - Screenshots and color picker
+- `wlr-layer-shell-unstable-v1` - Overlay surfaces
+- `wlr-output-management-unstable-v1` - Display configuration
+- `wlr-output-power-management-unstable-v1` - DPMS control
+- `ext-data-control-v1` - Clipboard history
+- `ext-workspace-v1` - Workspace integration
+- `dwl-ipc-unstable-v2` - dwl/MangoWC IPC
+- `keyboard-shortcuts-inhibit-unstable-v1` - Shortcut inhibition
+- `wp-viewporter` - Fractional scaling support
+
+#### 4. D-Bus Integration (`internal/server/bluez/`, `internal/server/network/`, etc.)
+
+**Client interfaces** (consuming external services):
+- `org.bluez` - Bluetooth with pairing agent
+- `org.freedesktop.NetworkManager` - Network management
+- `net.connman.iwd` - iwd Wi-Fi backend
+- `org.freedesktop.network1` - systemd-networkd
+- `org.freedesktop.login1` - Session control, inhibitors, brightness
+- `org.freedesktop.Accounts` - User account info
+- `org.freedesktop.portal.Desktop` - Desktop appearance settings
+- CUPS via IPP - Printer management
+
+**Server interfaces** (implementing services):
+- `org.freedesktop.ScreenSaver` - Screensaver inhibition for media playback
+
+#### 5. Distribution Support (`internal/distros/`)
+
+`dankinstall` TUI installer with full support for:
+
+- **Arch Linux** - pacman + AUR (yay/paru)
+- **Fedora** - dnf + COPR
+- **Debian** - apt + OBS repos
+- **Ubuntu** - apt + PPAs
+- **openSUSE** - zypper + OBS
+- **Gentoo** - emerge + GURU overlay + USE flags
+
+Each distro has custom package mappings, dependency detection, and installation logic.
+
+### QML Frontend Architecture
+
+The frontend follows a clean modular architecture with shell.qml reduced to ~250 lines:
 
 ```
 shell.qml           # Main entry point (minimal orchestration)
@@ -137,11 +320,13 @@ shell.qml           # Main entry point (minimal orchestration)
    - `Theme.qml` - Material Design 3 theme singleton with consistent colors, spacing, fonts
    - `Utilities.js` - Shared functions for workspace parsing, notifications, menu handling
 
-3. **Services/** - System integration singletons
+3. **Services/** - IPC client wrappers (20 singletons)
    - **Pattern**: All services use `Singleton` type with `id: root`
-   - **Independence**: No cross-service dependencies
+   - **Architecture**: Thin QML wrappers that communicate with Go backend via IPC
    - **Examples**: AudioService, NetworkService, BluetoothService, DisplayService, WeatherService, NotificationService, CalendarService, BatteryService, NiriService, MprisController
-   - Services handle system commands, state management, and hardware integration
+   - Services expose properties and functions that send IPC requests to the Go backend
+   - The Go backend handles all actual system integration (D-Bus, Wayland, hardware control)
+   - QML services receive IPC responses and update their properties for reactive UI binding
 
 4. **Modules/** - UI components (93 files)
    - **TopBar/**: Panel components with workspace switching, system indicators, media controls
@@ -227,6 +412,24 @@ shell.qml           # Main entry point (minimal orchestration)
 
 ## Code Conventions
 
+### Internationalization (I18n)
+
+When adding user-facing strings, wrap them in `I18n.tr()` with context:
+
+```qml
+import qs.Common
+
+Text {
+    text: I18n.tr("Hello World", "Hello world greeting that appears on the lock screen")
+}
+```
+
+**Best practices:**
+- Keep new terms to a minimum - reuse existing translations when possible
+- Check `quickshell/translations/en.json` for existing terms
+- Example: Use "Autoconnect" instead of "Auto-connect" if it's already translated
+- Provide clear context for translators in the second parameter
+
 ### QML Style Guidelines
 
 1. **Structure and Formatting**:
@@ -274,25 +477,198 @@ shell.qml           # Main entry point (minimal orchestration)
 
 ### Import Guidelines
 
-1. **Standard Import Order**:
-   ```qml
-   import QtQuick
-   import QtQuick.Controls  // If needed
-   import Quickshell
-   import Quickshell.Widgets
-   import Quickshell.Io     // For Process, FileView
-   import qs.Common         // For Theme, utilities
-   import qs.Services       // For service access
-   import qs.Widgets        // For reusable widgets (DankIcon, etc.)
-   ```
+#### QML Import Order
 
-2. **Service Dependencies**:
-   - Services should NOT import other services
-   - Modules and Widgets can import and use services via property bindings
-   - Use `Theme.propertyName` for consistent styling
-   - Use `DankIcon { name: "icon_name" }` for all icons instead of manual Text components
+```qml
+import QtQuick
+import QtQuick.Controls  // If needed
+import Quickshell
+import Quickshell.Widgets
+import Quickshell.Io     // For Process, FileView
+import qs.Common         // For Theme, utilities
+import qs.Services       // For service access
+import qs.Widgets        // For reusable widgets (DankIcon, etc.)
+```
+
+#### Go Import Order
+
+Follow standard Go conventions:
+
+```go
+import (
+    // Standard library
+    "context"
+    "fmt"
+    "os"
+
+    // External dependencies
+    "github.com/godbus/dbus/v5"
+    "github.com/spf13/cobra"
+
+    // Internal packages
+    "github.com/AvengeMedia/DankMaterialShell/core/internal/server/models"
+    "github.com/AvengeMedia/DankMaterialShell/core/internal/utils"
+)
+```
+
+**Service Dependencies:**
+- QML Services should NOT import other QML services
+- Modules and Widgets can import and use services via property bindings
+- Use `Theme.propertyName` for consistent styling
+- Use `DankIcon { name: "icon_name" }` for all icons instead of manual Text components
+
+### Go Backend Code Conventions
+
+#### 1. Package Structure
+
+- **cmd/** - Binary entrypoints only, minimal logic
+- **internal/** - Implementation packages (not importable by external projects)
+- **pkg/** - Shared packages (potentially importable)
+- Each package should have a clear, single responsibility
+
+#### 2. Error Handling
+
+```go
+// Always wrap errors with context
+if err != nil {
+    return fmt.Errorf("failed to connect to D-Bus: %w", err)
+}
+
+// Use custom error types for specific error handling
+if errors.Is(err, errdefs.ErrNotFound) {
+    // Handle specific error
+}
+```
+
+#### 3. IPC Handler Pattern
+
+All server modules should follow this pattern:
+
+```go
+package mymodule
+
+import (
+    "github.com/AvengeMedia/DankMaterialShell/core/internal/server/models"
+    "github.com/AvengeMedia/DankMaterialShell/core/internal/server/params"
+)
+
+type Manager struct {
+    // State, connections, etc.
+}
+
+func NewManager() (*Manager, error) {
+    // Initialize
+    return &Manager{}, nil
+}
+
+func (m *Manager) HandleRequest(req models.Request) models.Response {
+    switch req.Method {
+    case "list":
+        return m.handleList(req)
+    case "action":
+        return m.handleAction(req)
+    default:
+        return models.ErrorResponse(req.ID, "unknown method")
+    }
+}
+
+func (m *Manager) handleAction(req models.Request) models.Response {
+    // Extract and validate parameters
+    param, err := params.String(req.Params, "name")
+    if err != nil {
+        return models.ErrorResponse(req.ID, err.Error())
+    }
+
+    // Perform action
+    result, err := m.doSomething(param)
+    if err != nil {
+        return models.ErrorResponse(req.ID, err.Error())
+    }
+
+    return models.SuccessResponse(req.ID, result)
+}
+```
+
+#### 4. D-Bus Integration
+
+```go
+// Use context for cancellation
+ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+defer cancel()
+
+// Always check for D-Bus availability
+if !dbusutil.ServiceExists(conn, "org.bluez") {
+    return fmt.Errorf("bluetooth service not available")
+}
+
+// Handle signals properly with channels
+signals := make(chan *dbus.Signal, 10)
+conn.Signal(signals)
+defer conn.RemoveSignal(signals)
+```
+
+#### 5. Wayland Protocol Integration
+
+```go
+// Check protocol availability before use
+if registry.GetGammaControl() == nil {
+    return errdefs.ErrNotSupported
+}
+
+// Clean up Wayland resources
+defer output.Destroy()
+defer surface.Destroy()
+```
+
+#### 6. Testing
+
+```go
+// Use table-driven tests
+func TestManager_HandleRequest(t *testing.T) {
+    tests := []struct {
+        name    string
+        request models.Request
+        want    models.Response
+        wantErr bool
+    }{
+        {
+            name: "valid request",
+            request: models.Request{
+                ID:     "1",
+                Method: "list",
+            },
+            wantErr: false,
+        },
+    }
+
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            m := NewManager()
+            got := m.HandleRequest(tt.request)
+            // Assertions
+        })
+    }
+}
+
+// Use mocks for external dependencies (see internal/mocks/)
+```
+
+#### 7. Logging
+
+```go
+import "github.com/AvengeMedia/DankMaterialShell/core/internal/log"
+
+// Use appropriate log levels
+log.Debug("Processing request", "method", req.Method)
+log.Info("Service started", "address", addr)
+log.Warn("Feature unavailable", "reason", "missing dependency")
+log.Error("Failed to connect", "error", err)
+log.Fatal("Critical failure", "error", err) // Only for unrecoverable errors
+```
 
 ### Component Development Patterns
+
+#### QML Frontend Patterns
 
 1. **Code Reuse - Search Before Writing**:
    - **ALWAYS** search the codebase for existing functions before writing new ones
@@ -353,24 +729,78 @@ shell.qml           # Main entry point (minimal orchestration)
 
 The shell uses Quickshell's `Variants` pattern for multi-monitor support:
 - Each connected monitor gets its own top bar instance
-- Workspace switchers are compositor-aware (Niri and Hyprland)
+- Workspace switchers are compositor-aware (6 compositors supported)
 - Monitors are automatically detected by screen name (DP-1, DP-2, etc.)
-- **Niri**: Workspaces are dynamically synchronized with Niri's per-output workspaces
-- **Hyprland**: Integrates with Hyprland's workspace system and multi-monitor handling
+- **Niri**: Workspaces dynamically synchronized with per-output workspaces
+- **Hyprland**: Integrates with Hyprland's workspace system
+- **MangoWC**: Uses dwl-ipc-unstable-v2 for tag management
+- **Sway/labwc/Scroll**: Standard i3 IPC integration
+
+## IPC Communication Model
+
+### QML ↔ Go Backend Communication
+
+The shell uses a Unix socket-based IPC system for all system integration:
+
+1. **Go Backend** (`core/internal/server/`) runs an IPC server on `/tmp/dms-ipc-<uid>.sock`
+2. **QML Services** send JSON-RPC requests to the backend
+3. **Backend** handles system integration (D-Bus, Wayland, hardware) and responds
+4. **QML Services** receive responses and update properties for UI reactivity
+
+**Example Flow:**
+```
+User clicks WiFi network in UI
+  ↓
+QML NetworkService.connectNetwork(ssid, password)
+  ↓
+IPC Request: {"method": "network.connect", "params": {...}}
+  ↓
+Go Backend: internal/server/network/ handles D-Bus to NetworkManager
+  ↓
+IPC Response: {"result": {"success": true}}
+  ↓
+QML Service updates properties → UI updates reactively
+```
+
+**Why this architecture?**
+- **Separation of concerns**: UI (QML) vs system integration (Go)
+- **Type safety**: Go provides compile-time safety for system APIs
+- **Performance**: Go handles expensive operations without blocking UI
+- **Robustness**: Backend crashes don't crash the UI, and vice versa
+- **Testing**: Backend can be tested independently of UI
+
+**Development implications:**
+- QML Services should be **thin wrappers** - minimal logic, just IPC calls
+- System integration logic belongs in Go backend packages
+- When adding features, implement backend first, then QML wrapper
+- Use `dms ipc <command>` CLI to test backend functionality independently
 
 ## Common Development Tasks
 
 ### Testing and Validation
 
 When modifying the shell:
+
+**QML Frontend:**
 1. **Test changes**: `qs -p .` (automatic reload on file changes)
-2. **Code quality**: Run `./qmlformat-all.sh` or `qmlformat -i **/*.qml` and `qmllint **/*.qml` to ensure proper formatting and syntax
+2. **Code quality**: Run `./qmlformat-all.sh` or `qmlformat -i **/*.qml` and `qmllint **/*.qml`
 3. **Performance**: Ensure animations remain smooth (60 FPS target)
 4. **Theming**: Use `Theme.propertyName` for Material Design 3 consistency
-5. **Wayland compatibility**: Test on Wayland session
-6. **Multi-monitor**: Verify behavior with multiple displays
-7. **Compositor compatibility**: Test on both Niri and Hyprland when possible
-8. **Feature detection**: Test on systems with/without required tools
+
+**Go Backend:**
+1. **Build**: `cd core && make` to build dms CLI
+2. **Tests**: `make test` to run Go unit tests (add appropriate test coverage for new code)
+3. **Linting**: `gofmt -w .`, `go mod tidy`, and `golangci-lint run`
+4. **IPC testing**: Use `dms ipc <command>` to test backend functionality
+5. **Rebuild**: After backend changes, rebuild with `make` and restart shell
+
+**Integration:**
+1. **Full test**: `dms restart` to restart both backend and frontend
+2. **Wayland compatibility**: Test on Wayland session
+3. **Multi-monitor**: Verify behavior with multiple displays
+4. **Compositor compatibility**: Test on Niri, Hyprland, MangoWC, Sway, labwc, Scroll when possible
+5. **Distribution compatibility**: Test installation on Arch, Fedora, Debian, Ubuntu, openSUSE, Gentoo
+6. **Feature detection**: Test on systems with/without required tools
 
 ### Adding New Modules
 
@@ -413,6 +843,47 @@ When modifying the shell:
 
 ### Adding New Services
 
+**Important**: Most system integration should be done in the Go backend, with QML services as thin IPC wrappers.
+
+#### Step 1: Implement Go Backend
+
+1. **Create backend package**:
+   ```bash
+   mkdir -p core/internal/server/newsystem
+   ```
+
+2. **Implement backend logic** (`core/internal/server/newsystem/manager.go`):
+   ```go
+   package newsystem
+
+   import (
+       "github.com/AvengeMedia/DankMaterialShell/core/internal/server/models"
+   )
+
+   type Manager struct {
+       // State and D-Bus connections
+   }
+
+   func NewManager() (*Manager, error) {
+       // Initialize D-Bus connections, Wayland protocols, etc.
+       return &Manager{}, nil
+   }
+
+   func (m *Manager) HandleRequest(req models.Request) models.Response {
+       // Handle IPC requests
+   }
+   ```
+
+3. **Add IPC handler** in `core/internal/server/router.go`:
+   ```go
+   newsystemMgr, _ := newsystem.NewManager()
+   router["newsystem"] = newsystemMgr.HandleRequest
+   ```
+
+4. **Test backend**: `dms ipc newsystem.action '{"param": "value"}'`
+
+#### Step 2: Create QML Wrapper
+
 1. **Create service**:
    ```qml
    // Services/NewService.qml
@@ -429,14 +900,24 @@ When modifying the shell:
        property type currentValue: defaultValue
 
        function performAction(param) {
-           // Implementation
+           // Send IPC request to Go backend
+           ipcClient.send("newsystem.action", {param: param})
+       }
+
+       // Handle IPC responses to update properties
+       Connections {
+           target: IPCClient
+           function onResponse(method, data) {
+               if (method === "newsystem.status") {
+                   currentValue = data.value
+               }
+           }
        }
    }
    ```
 
 2. **Use in modules**:
    ```qml
-   // In module files
    property alias serviceValue: NewService.currentValue
 
    SomeControl {
@@ -642,29 +1123,76 @@ Daemon plugins run invisibly in the background without any UI components. They'r
 
 ### Debugging Common Issues
 
-1. **Import errors**: Check import paths
+#### QML Frontend Issues
+
+1. **Import errors**: Check import paths in qmldir files
 2. **Singleton conflicts**: Ensure services use `Singleton` type with `id: root`
 3. **Property binding issues**: Use property aliases for reactive updates
-4. **Process failures**: Check system tool availability and command syntax
-5. **Theme inconsistencies**: Always use `Theme.propertyName` instead of hardcoded values
+4. **Theme inconsistencies**: Always use `Theme.propertyName` instead of hardcoded values
+5. **IPC communication failures**: Check if `dms run` backend is running
+
+#### Go Backend Issues
+
+1. **IPC not responding**:
+   - Check if socket exists: `ls -la /tmp/dms-ipc-$(id -u).sock`
+   - Test with CLI: `dms ipc test.ping`
+   - Check logs: `journalctl --user -u dms.service -f`
+
+2. **D-Bus errors**:
+   - Verify service availability: `busctl --user list | grep org.bluez`
+   - Test D-Bus call: `busctl --user introspect org.bluez /`
+   - Check permissions: User must be in required groups (video, input, etc.)
+
+3. **Wayland protocol errors**:
+   - Check compositor support: Different compositors support different protocols
+   - Use `dms features` to see available features
+   - Enable debug output: `WAYLAND_DEBUG=1 dms run`
+
+4. **Build failures**:
+   - Update Go: Requires Go 1.24+
+   - Clean build: `cd core && make clean && make`
+   - Check dependencies: `go mod download`
+
+5. **Process failures**:
+   - Check system tool availability: `which <tool>`
+   - Verify PATH: `echo $PATH`
+   - Check command syntax in logs
 
 ### Best Practices Summary
 
+#### General
 - **Code Reuse**: ALWAYS search existing codebase before writing new functions - avoid duplication at all costs
-- **No Comments**: Code should be self-documenting - comments indicate poor naming/structure
+- **No Comments**: Code should be self-documenting - comments indicate poor naming/structure (applies to both QML and Go)
 - **Modularity**: Keep components focused and independent
+- **Testing**: Write tests for Go backend, test QML changes with live reload
+
+#### QML Frontend
 - **Reusability**: Create reusable components for common patterns using Widgets/
 - **Responsiveness**: Use property bindings for reactive UI
-- **Robustness**: Implement feature detection and graceful degradation
 - **Consistency**: Follow Material Design 3 principles via Theme singleton
 - **Performance**: Minimize expensive operations and use appropriate data structures
 - **Icon Management**: Use `DankIcon` for all icons instead of manual Text components
 - **Widget System**: Leverage existing widgets (DankSlider, DankToggle, etc.) for consistency
 - **NO WRAPPER HELL**: Avoid creating unnecessary wrapper functions - bind directly to underlying APIs for better reactivity and performance
-- **Function Discovery**: Use grep/search tools to find existing utility functions before implementing new ones
 - **Modern QML Patterns**: Leverage new widgets like DankTextField, DankDropdown, CachingImage
 - **Structured Organization**: Follow the established Services/Modules/Widgets/Modals separation
-- **Plugin System**: For user extensions, create plugins instead of modifying core modules - see docs/PLUGINS.md
+
+#### Go Backend
+- **System Integration First**: Implement backend functionality before QML wrappers
+- **Error Handling**: Always wrap errors with context using `fmt.Errorf` with `%w`
+- **IPC Pattern**: Follow established IPC handler patterns for consistency
+- **Feature Detection**: Check for system capabilities and fail gracefully
+- **Robustness**: Implement feature detection and graceful degradation
+- **D-Bus Best Practices**: Use contexts, check service availability, handle signals properly
+- **Wayland Best Practices**: Clean up resources, check protocol availability
+- **Testing**: Write table-driven tests, use mocks for external dependencies
+
+#### Architecture
+- **Separation of Concerns**: UI (QML) vs system integration (Go)
+- **Thin QML Wrappers**: Services should only handle IPC communication, not business logic
+- **Backend-First Development**: Implement and test backend via CLI before adding UI
+- **Function Discovery**: Use grep/search tools to find existing utility functions before implementing new ones
+- **Plugin System**: For user extensions, create plugins instead of modifying core modules
 
 ### Common Widget Patterns
 

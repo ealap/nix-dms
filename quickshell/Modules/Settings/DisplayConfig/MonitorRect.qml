@@ -55,7 +55,7 @@ Rectangle {
 
     Rectangle {
         id: snapPreview
-        visible: root.isDragging && root.isValidPosition
+        visible: root.isDragging && root.isValidPosition && SettingsData.displaySnapToEdge
         x: root.snappedLogical.x * root.canvasScaleFactor + root.canvasOffset.x - root.x
         y: root.snappedLogical.y * root.canvasScaleFactor + root.canvasOffset.y - root.y
         width: parent.width
@@ -124,9 +124,9 @@ Rectangle {
 
             const size = DisplayConfigState.getLogicalSize(root.outputData);
 
-            const snapped = DisplayConfigState.snapToEdges(root.outputName, posX, posY, size.w, size.h);
+            const snapped = SettingsData.displaySnapToEdge ? DisplayConfigState.snapToEdges(root.outputName, posX, posY, size.w, size.h) : Qt.point(posX, posY);
             root.snappedLogical = snapped;
-            root.isValidPosition = !DisplayConfigState.checkOverlap(root.outputName, snapped.x, snapped.y, size.w, size.h);
+            root.isValidPosition = SettingsData.displaySnapToEdge ? !DisplayConfigState.checkOverlap(root.outputName, snapped.x, snapped.y, size.w, size.h) : true;
         }
 
         onReleased: {
@@ -138,7 +138,7 @@ Rectangle {
             const finalX = root.snappedLogical.x;
             const finalY = root.snappedLogical.y;
 
-            if (DisplayConfigState.checkOverlap(root.outputName, finalX, finalY, size.w, size.h)) {
+            if (SettingsData.displaySnapToEdge && DisplayConfigState.checkOverlap(root.outputName, finalX, finalY, size.w, size.h)) {
                 root.isValidPosition = true;
                 return;
             }
