@@ -1804,17 +1804,23 @@ Singleton {
 
     function setCursorTheme(themeName) {
         const updated = JSON.parse(JSON.stringify(cursorSettings));
+        if (updated.theme === themeName)
+            return;
         updated.theme = themeName;
         cursorSettings = updated;
         saveSettings();
+        updateXResources();
         updateCompositorCursor();
     }
 
     function setCursorSize(size) {
         const updated = JSON.parse(JSON.stringify(cursorSettings));
+        if (updated.size === size)
+            return;
         updated.size = size;
         cursorSettings = updated;
         saveSettings();
+        updateXResources();
         updateCompositorCursor();
     }
 
@@ -1822,7 +1828,6 @@ Singleton {
     // https://github.com/Supreeeme/xwayland-satellite/issues/104
     // no idea if this matters on other compositors but we also set XCURSOR stuff in the launcher
     function updateCompositorCursor() {
-        updateXResources();
         if (typeof CompositorService === "undefined")
             return;
         if (CompositorService.isNiri && typeof NiriService !== "undefined") {
@@ -1850,10 +1855,23 @@ Singleton {
 
         const script = `
             xresources_file="${xresourcesPath}"
-            temp_file="\${xresources_file}.tmp.$$"
             theme_name="${themeName}"
             cursor_size="${size}"
 
+            current_theme=""
+            current_size=""
+            if [ -f "$xresources_file" ]; then
+                current_theme=$(grep -E '^[[:space:]]*Xcursor\\.theme:' "$xresources_file" 2>/dev/null | sed 's/.*:[[:space:]]*//' | head -1)
+                current_size=$(grep -E '^[[:space:]]*Xcursor\\.size:' "$xresources_file" 2>/dev/null | sed 's/.*:[[:space:]]*//' | head -1)
+            fi
+
+            [ "$current_theme" = "$theme_name" ] && [ "$current_size" = "$cursor_size" ] && exit 0
+
+            if [ -f "$xresources_file" ]; then
+                cp "$xresources_file" "\${xresources_file}.backup$(date +%s)"
+            fi
+
+            temp_file="\${xresources_file}.tmp.$$"
             if [ -f "$xresources_file" ]; then
                 grep -v '^[[:space:]]*Xcursor\\.theme:' "$xresources_file" | grep -v '^[[:space:]]*Xcursor\\.size:' > "$temp_file" 2>/dev/null || true
             else

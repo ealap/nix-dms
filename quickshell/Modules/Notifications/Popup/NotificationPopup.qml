@@ -384,8 +384,18 @@ PanelWindow {
                 DankCircularImage {
                     id: iconContainer
 
-                    readonly property bool hasNotificationImage: notificationData && notificationData.image && notificationData.image !== ""
-                    readonly property bool needsImagePersist: hasNotificationImage && notificationData.image.startsWith("image://qsimage/") && !notificationData.persistedImagePath
+                    readonly property string rawImage: notificationData?.image || ""
+                    readonly property string iconFromImage: {
+                        if (rawImage.startsWith("image://icon/"))
+                            return rawImage.substring(13);
+                        return "";
+                    }
+                    readonly property bool imageHasSpecialPrefix: {
+                        const icon = iconFromImage;
+                        return icon.startsWith("material:") || icon.startsWith("svg:") || icon.startsWith("unicode:") || icon.startsWith("image:");
+                    }
+                    readonly property bool hasNotificationImage: rawImage !== "" && !rawImage.startsWith("image://icon/")
+                    readonly property bool needsImagePersist: hasNotificationImage && rawImage.startsWith("image://qsimage/") && !notificationData.persistedImagePath
 
                     width: popupIconSize
                     height: popupIconSize
@@ -395,22 +405,26 @@ PanelWindow {
                     imageSource: {
                         if (!notificationData)
                             return "";
-
                         if (hasNotificationImage)
                             return notificationData.cleanImage || "";
-
-                        if (notificationData.appIcon) {
-                            const appIcon = notificationData.appIcon;
-                            if (appIcon.startsWith("file://") || appIcon.startsWith("http://") || appIcon.startsWith("https://"))
-                                return appIcon;
-
-                            return Quickshell.iconPath(appIcon, true);
-                        }
-                        return "";
+                        if (imageHasSpecialPrefix)
+                            return "";
+                        const appIcon = notificationData.appIcon;
+                        if (!appIcon)
+                            return iconFromImage ? "image://icon/" + iconFromImage : "";
+                        if (appIcon.startsWith("file://") || appIcon.startsWith("http://") || appIcon.startsWith("https://") || appIcon.includes("/"))
+                            return appIcon;
+                        if (appIcon.startsWith("material:") || appIcon.startsWith("svg:") || appIcon.startsWith("unicode:") || appIcon.startsWith("image:"))
+                            return "";
+                        return Quickshell.iconPath(appIcon, true);
                     }
 
                     hasImage: hasNotificationImage
-                    fallbackIcon: ""
+                    fallbackIcon: {
+                        if (imageHasSpecialPrefix)
+                            return iconFromImage;
+                        return notificationData?.appIcon || iconFromImage || "";
+                    }
                     fallbackText: {
                         const appName = notificationData?.appName || "?";
                         return appName.charAt(0).toUpperCase();

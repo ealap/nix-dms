@@ -20,17 +20,17 @@ Item {
     property real materialIconSizeAdjustment: Theme.spacingM
     property real unicodeIconScale: 0.7
     property real fallbackTextScale: 0.4
-    property alias iconMargins: iconImg.anchors.margins
+    property real iconMargins: 0
     property real fallbackLeftMargin: 0
     property real fallbackRightMargin: 0
     property real fallbackTopMargin: 0
     property real fallbackBottomMargin: 0
 
-    readonly property bool isMaterial: iconValue.startsWith("material:")
-    readonly property bool isUnicode: iconValue.startsWith("unicode:")
-    readonly property bool isSvgCorner: iconValue.startsWith("svg+corner:")
-    readonly property bool isSvg: !isSvgCorner && iconValue.startsWith("svg:")
-    readonly property bool isImage: iconValue.startsWith("image:")
+    readonly property bool isMaterial: iconValue && iconValue.startsWith("material:")
+    readonly property bool isUnicode: iconValue && iconValue.startsWith("unicode:")
+    readonly property bool isSvgCorner: iconValue && iconValue.startsWith("svg+corner:")
+    readonly property bool isSvg: iconValue && !isSvgCorner && iconValue.startsWith("svg:")
+    readonly property bool isImage: iconValue && iconValue.startsWith("image:")
     readonly property bool hasColorOverride: colorOverride.a > 0
     readonly property string materialName: isMaterial ? iconValue.substring(9) : ""
     readonly property string unicodeChar: isUnicode ? iconValue.substring(8) : ""
@@ -45,7 +45,12 @@ Item {
         return "";
     }
     readonly property string svgCornerIcon: isSvgCorner ? (iconValue.substring(11).split("|")[1] || "") : ""
-    readonly property string iconPath: isMaterial || isUnicode || isSvg || isSvgCorner || isImage ? "" : Quickshell.iconPath(iconValue, true) || DesktopService.resolveIconPath(iconValue)
+    readonly property bool hasSpecialPrefix: isMaterial || isUnicode || isSvg || isSvgCorner || isImage
+    readonly property string iconPath: {
+        if (hasSpecialPrefix || !iconValue)
+            return "";
+        return Quickshell.iconPath(iconValue, true) || DesktopService.resolveIconPath(iconValue);
+    }
 
     visible: iconValue !== undefined && iconValue !== ""
 
@@ -85,15 +90,19 @@ Item {
         visible: root.isImage && status === Image.Ready
     }
 
-    IconImage {
-        id: iconImg
-
+    Loader {
+        id: iconImgLoader
         anchors.fill: parent
-        source: root.iconPath
-        backer.sourceSize: Qt.size(root.iconSize, root.iconSize)
-        mipmap: true
-        asynchronous: true
-        visible: !root.isMaterial && !root.isUnicode && !root.isSvg && !root.isSvgCorner && !root.isImage && root.iconPath !== "" && status === Image.Ready
+        anchors.margins: root.iconMargins
+        active: !root.hasSpecialPrefix && root.iconPath !== ""
+        sourceComponent: IconImage {
+            anchors.fill: parent
+            source: root.iconPath
+            backer.sourceSize: Qt.size(root.iconSize, root.iconSize)
+            mipmap: true
+            asynchronous: true
+            visible: status === Image.Ready
+        }
     }
 
     Rectangle {
@@ -104,7 +113,7 @@ Item {
         anchors.rightMargin: root.fallbackRightMargin
         anchors.topMargin: root.fallbackTopMargin
         anchors.bottomMargin: root.fallbackBottomMargin
-        visible: !root.isMaterial && !root.isUnicode && !root.isSvg && !root.isSvgCorner && !root.isImage && (root.iconPath === "" || iconImg.status !== Image.Ready)
+        visible: !root.hasSpecialPrefix && (root.iconPath === "" || !iconImgLoader.item || iconImgLoader.item.status !== Image.Ready)
         color: root.fallbackBackgroundColor
         radius: Theme.cornerRadius
         border.width: 0

@@ -89,7 +89,17 @@ Rectangle {
 
         DankCircularImage {
             id: iconContainer
-            readonly property bool hasNotificationImage: historyItem.image && historyItem.image !== ""
+            readonly property string rawImage: historyItem.image || ""
+            readonly property string iconFromImage: {
+                if (rawImage.startsWith("image://icon/"))
+                    return rawImage.substring(13);
+                return "";
+            }
+            readonly property bool imageHasSpecialPrefix: {
+                const icon = iconFromImage;
+                return icon.startsWith("material:") || icon.startsWith("svg:") || icon.startsWith("unicode:") || icon.startsWith("image:");
+            }
+            readonly property bool hasNotificationImage: rawImage !== "" && !rawImage.startsWith("image://icon/")
 
             width: iconSize
             height: iconSize
@@ -99,17 +109,24 @@ Rectangle {
             imageSource: {
                 if (hasNotificationImage)
                     return historyItem.image;
-                if (historyItem.appIcon) {
-                    const appIcon = historyItem.appIcon;
-                    if (appIcon.startsWith("file://") || appIcon.startsWith("http://") || appIcon.startsWith("https://"))
-                        return appIcon;
-                    return Quickshell.iconPath(appIcon, true);
-                }
-                return "";
+                if (imageHasSpecialPrefix)
+                    return "";
+                const appIcon = historyItem.appIcon;
+                if (!appIcon)
+                    return iconFromImage ? "image://icon/" + iconFromImage : "";
+                if (appIcon.startsWith("file://") || appIcon.startsWith("http://") || appIcon.startsWith("https://") || appIcon.includes("/"))
+                    return appIcon;
+                if (appIcon.startsWith("material:") || appIcon.startsWith("svg:") || appIcon.startsWith("unicode:") || appIcon.startsWith("image:"))
+                    return "";
+                return Quickshell.iconPath(appIcon, true);
             }
 
             hasImage: hasNotificationImage
-            fallbackIcon: ""
+            fallbackIcon: {
+                if (imageHasSpecialPrefix)
+                    return iconFromImage;
+                return historyItem.appIcon || iconFromImage || "";
+            }
             fallbackText: {
                 const appName = historyItem.appName || "?";
                 return appName.charAt(0).toUpperCase();

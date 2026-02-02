@@ -113,7 +113,17 @@ Rectangle {
 
         DankCircularImage {
             id: iconContainer
-            readonly property bool hasNotificationImage: notificationGroup?.latestNotification?.image && notificationGroup.latestNotification.image !== ""
+            readonly property string rawImage: notificationGroup?.latestNotification?.image || ""
+            readonly property string iconFromImage: {
+                if (rawImage.startsWith("image://icon/"))
+                    return rawImage.substring(13);
+                return "";
+            }
+            readonly property bool imageHasSpecialPrefix: {
+                const icon = iconFromImage;
+                return icon.startsWith("material:") || icon.startsWith("svg:") || icon.startsWith("unicode:") || icon.startsWith("image:");
+            }
+            readonly property bool hasNotificationImage: rawImage !== "" && !rawImage.startsWith("image://icon/")
 
             width: iconSize
             height: iconSize
@@ -123,17 +133,24 @@ Rectangle {
             imageSource: {
                 if (hasNotificationImage)
                     return notificationGroup.latestNotification.cleanImage;
-                if (notificationGroup?.latestNotification?.appIcon) {
-                    const appIcon = notificationGroup.latestNotification.appIcon;
-                    if (appIcon.startsWith("file://") || appIcon.startsWith("http://") || appIcon.startsWith("https://"))
-                        return appIcon;
-                    return Quickshell.iconPath(appIcon, true);
-                }
-                return "";
+                if (imageHasSpecialPrefix)
+                    return "";
+                const appIcon = notificationGroup?.latestNotification?.appIcon;
+                if (!appIcon)
+                    return iconFromImage ? "image://icon/" + iconFromImage : "";
+                if (appIcon.startsWith("file://") || appIcon.startsWith("http://") || appIcon.startsWith("https://") || appIcon.includes("/"))
+                    return appIcon;
+                if (appIcon.startsWith("material:") || appIcon.startsWith("svg:") || appIcon.startsWith("unicode:") || appIcon.startsWith("image:"))
+                    return "";
+                return Quickshell.iconPath(appIcon, true);
             }
 
             hasImage: hasNotificationImage
-            fallbackIcon: ""
+            fallbackIcon: {
+                if (imageHasSpecialPrefix)
+                    return iconFromImage;
+                return notificationGroup?.latestNotification?.appIcon || iconFromImage || "";
+            }
             fallbackText: {
                 const appName = notificationGroup?.appName || "?";
                 return appName.charAt(0).toUpperCase();
@@ -360,7 +377,17 @@ Rectangle {
                         DankCircularImage {
                             id: messageIcon
 
-                            readonly property bool hasNotificationImage: modelData?.image && modelData.image !== ""
+                            readonly property string rawImage: modelData?.image || ""
+                            readonly property string iconFromImage: {
+                                if (rawImage.startsWith("image://icon/"))
+                                    return rawImage.substring(13);
+                                return "";
+                            }
+                            readonly property bool imageHasSpecialPrefix: {
+                                const icon = iconFromImage;
+                                return icon.startsWith("material:") || icon.startsWith("svg:") || icon.startsWith("unicode:") || icon.startsWith("image:");
+                            }
+                            readonly property bool hasNotificationImage: rawImage !== "" && !rawImage.startsWith("image://icon/")
 
                             width: expandedIconSize
                             height: expandedIconSize
@@ -371,18 +398,23 @@ Rectangle {
                             imageSource: {
                                 if (hasNotificationImage)
                                     return modelData.cleanImage;
-
-                                if (modelData?.appIcon) {
-                                    const appIcon = modelData.appIcon;
-                                    if (appIcon.startsWith("file://") || appIcon.startsWith("http://") || appIcon.startsWith("https://"))
-                                        return appIcon;
-
-                                    return Quickshell.iconPath(appIcon, true);
-                                }
-                                return "";
+                                if (imageHasSpecialPrefix)
+                                    return "";
+                                const appIcon = modelData?.appIcon;
+                                if (!appIcon)
+                                    return iconFromImage ? "image://icon/" + iconFromImage : "";
+                                if (appIcon.startsWith("file://") || appIcon.startsWith("http://") || appIcon.startsWith("https://") || appIcon.includes("/"))
+                                    return appIcon;
+                                if (appIcon.startsWith("material:") || appIcon.startsWith("svg:") || appIcon.startsWith("unicode:") || appIcon.startsWith("image:"))
+                                    return "";
+                                return Quickshell.iconPath(appIcon, true);
                             }
 
-                            fallbackIcon: ""
+                            fallbackIcon: {
+                                if (imageHasSpecialPrefix)
+                                    return iconFromImage;
+                                return modelData?.appIcon || iconFromImage || "";
+                            }
 
                             fallbackText: {
                                 const appName = modelData?.appName || "?";

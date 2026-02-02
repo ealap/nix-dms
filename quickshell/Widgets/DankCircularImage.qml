@@ -71,12 +71,18 @@ Rectangle {
         }
     }
 
-    DankIcon {
+    AppIconRenderer {
         anchors.centerIn: parent
-        name: root.fallbackIcon
-        size: parent.width * 0.5
-        color: Theme.surfaceVariantText
+        width: parent.width * 0.75
+        height: width
         visible: (internalImage.status !== Image.Ready || root.imageSource === "") && root.fallbackIcon !== ""
+        iconValue: root.fallbackIcon
+        iconSize: width
+        iconColor: Theme.surfaceVariantText
+        materialIconSizeAdjustment: 0
+        fallbackText: root.fallbackText
+        fallbackBackgroundColor: "transparent"
+        fallbackTextColor: Theme.surfaceVariantText
     }
 
     StyledText {
