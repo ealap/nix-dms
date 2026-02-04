@@ -74,6 +74,12 @@ Item {
     property int effectiveBarPosition: 0
     property real effectiveBarBottomGap: 0
 
+    // Snapshot mask geometry to prevent background damage on bar updates
+    property real _frozenMaskX: 0
+    property real _frozenMaskY: 0
+    property real _frozenMaskWidth: 0
+    property real _frozenMaskHeight: 0
+
     function setBarContext(position, bottomGap) {
         effectiveBarPosition = position !== undefined ? position : 0;
         effectiveBarBottomGap = bottomGap !== undefined ? bottomGap : 0;
@@ -103,6 +109,12 @@ Item {
         if (!screen)
             return;
         closeTimer.stop();
+
+        // Snapshot mask geometry
+        _frozenMaskX = maskX;
+        _frozenMaskY = maskY;
+        _frozenMaskWidth = maskWidth;
+        _frozenMaskHeight = maskHeight;
 
         if (_lastOpenedScreen !== null && _lastOpenedScreen !== screen) {
             contentWindow.visible = false;
@@ -236,24 +248,30 @@ Item {
         }
 
         mask: Region {
-            item: Rectangle {
-                x: root.maskX
-                y: root.maskY
-                width: (shouldBeVisible && backgroundInteractive) ? root.maskWidth : 0
-                height: (shouldBeVisible && backgroundInteractive) ? root.maskHeight : 0
-            }
+            item: maskRect
+        }
+
+        Rectangle {
+            id: maskRect
+            visible: false
+            color: "transparent"
+            x: root._frozenMaskX
+            y: root._frozenMaskY
+            width: (shouldBeVisible && backgroundInteractive) ? root._frozenMaskWidth : 0
+            height: (shouldBeVisible && backgroundInteractive) ? root._frozenMaskHeight : 0
         }
 
         MouseArea {
-            x: root.maskX
-            y: root.maskY
-            width: root.maskWidth
-            height: root.maskHeight
+            x: root._frozenMaskX
+            y: root._frozenMaskY
+            width: root._frozenMaskWidth
+            height: root._frozenMaskHeight
+            hoverEnabled: false
             enabled: shouldBeVisible && backgroundInteractive
             acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
             onClicked: mouse => {
-                const clickX = mouse.x + root.maskX;
-                const clickY = mouse.y + root.maskY;
+                const clickX = mouse.x + root._frozenMaskX;
+                const clickY = mouse.y + root._frozenMaskY;
                 const outsideContent = clickX < root.alignedX || clickX > root.alignedX + root.alignedWidth || clickY < root.alignedY || clickY > root.alignedY + root.alignedHeight;
 
                 if (!outsideContent)
@@ -435,25 +453,24 @@ Item {
                         }
                     }
 
-                    DankRectangle {
+                    Rectangle {
                         anchors.fill: parent
                         radius: Theme.cornerRadius
                         color: Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
                     }
                 }
 
-                Item {
-                    id: contentLoaderWrapper
+                DankRectangle {
                     anchors.fill: parent
-                    x: Theme.snap(x, root.dpr)
-                    y: Theme.snap(y, root.dpr)
+                    radius: Theme.cornerRadius
+                    color: Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
+                }
 
-                    Loader {
-                        id: contentLoader
-                        anchors.fill: parent
-                        active: shouldBeVisible || contentWindow.visible
-                        asynchronous: false
-                    }
+                Loader {
+                    id: contentLoader
+                    anchors.fill: parent
+                    active: shouldBeVisible || contentWindow.visible
+                    asynchronous: false
                 }
             }
         }

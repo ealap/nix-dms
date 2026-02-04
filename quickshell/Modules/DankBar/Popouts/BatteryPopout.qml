@@ -32,7 +32,7 @@ DankPopout {
     }
 
     popupWidth: 400
-    popupHeight: contentLoader.item ? contentLoader.item.implicitHeight : 400
+    popupHeight: contentLoader.item ? contentLoader.item.implicitHeight : 0
     triggerWidth: 70
     positioning: ""
     screen: triggerScreen

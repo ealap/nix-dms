@@ -52,7 +52,7 @@ StyledRect {
     width: parent.width
     height: pluginItemColumn.implicitHeight + Theme.spacingM * 2 + settingsContainer.height
     radius: Theme.cornerRadius
-    color: (pluginMouseArea.containsMouse || updateArea.containsMouse || uninstallArea.containsMouse || reloadArea.containsMouse) ? Theme.surfacePressed : (isExpanded ? Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency) : Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency))
+    color: (pluginMouseArea.containsMouse || updateArea.containsMouse || uninstallArea.containsMouse || reloadArea.containsMouse) ? Theme.surfacePressed : (isExpanded ? Theme.surfaceContainerHighest : Theme.surfaceContainerHigh)
     border.width: 0
 
     MouseArea {
@@ -183,7 +183,7 @@ StyledRect {
                     width: 28
                     height: 28
                     radius: 14
-                    color: updateArea.containsMouse ? Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency) : "transparent"
+                    color: updateArea.containsMouse ? Theme.surfaceContainerHighest : "transparent"
                     visible: DMSService.dmsAvailable && root.isLoaded && root.hasUpdate && !root.isSystemPlugin
 
                     DankIcon {
@@ -227,7 +227,7 @@ StyledRect {
                     width: 28
                     height: 28
                     radius: 14
-                    color: uninstallArea.containsMouse ? Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency) : "transparent"
+                    color: uninstallArea.containsMouse ? Theme.surfaceContainerHighest : "transparent"
                     visible: DMSService.dmsAvailable && !root.isSystemPlugin
 
                     DankIcon {
@@ -270,7 +270,7 @@ StyledRect {
                     width: 28
                     height: 28
                     radius: 14
-                    color: reloadArea.containsMouse ? Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency) : "transparent"
+                    color: reloadArea.containsMouse ? Theme.surfaceContainerHighest : "transparent"
                     visible: root.isLoaded
 
                     DankIcon {
@@ -388,7 +388,7 @@ StyledRect {
 
         Rectangle {
             anchors.fill: parent
-            color: Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency)
+            color: Theme.surfaceContainerHighest
             radius: Theme.cornerRadius
             anchors.topMargin: Theme.spacingXS
             border.width: 0

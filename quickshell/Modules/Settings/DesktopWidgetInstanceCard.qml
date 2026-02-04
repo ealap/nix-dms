@@ -84,7 +84,7 @@ SettingsCard {
                 onClosed: root.confirmingDelete = false
 
                 background: Rectangle {
-                    color: Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
+                    color: Theme.surfaceContainer
                     radius: Theme.cornerRadius
                     border.color: Theme.outlineLight
                     border.width: 1

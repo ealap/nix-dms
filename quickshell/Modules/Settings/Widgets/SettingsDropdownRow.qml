@@ -19,6 +19,7 @@ DankDropdown {
 
     width: parent?.width ?? 0
     addHorizontalPadding: true
+    usePopupTransparency: false
 
     Rectangle {
         anchors.fill: parent

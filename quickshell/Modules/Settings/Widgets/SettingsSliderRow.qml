@@ -123,7 +123,7 @@ Item {
                     iconName: "restart_alt"
                     iconSize: 20
                     visible: root.defaultValue >= 0 && slider.value !== root.defaultValue
-                    backgroundColor: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                    backgroundColor: Theme.surfaceContainerHigh
                     iconColor: Theme.surfaceVariantText
                     onClicked: {
                         slider.value = root.defaultValue;
@@ -139,7 +139,7 @@ Item {
             height: 32
             showValue: true
             wheelEnabled: false
-            thumbOutlineColor: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+            thumbOutlineColor: Theme.surfaceContainerHigh
             onSliderValueChanged: newValue => root.sliderValueChanged(newValue)
         }
     }

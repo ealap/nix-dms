@@ -555,7 +555,7 @@ Item {
                         DankTextField {
                             width: parent.width
                             placeholderText: modelData.placeholder
-                            backgroundColor: Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency)
+                            backgroundColor: Theme.surfaceContainerHighest
                             normalBorderColor: Theme.outlineMedium
                             focusedBorderColor: Theme.primary
 

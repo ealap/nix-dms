@@ -8,14 +8,15 @@ BasePill {
 
     property bool isActive: false
 
-    signal colorPickerRequested()
+    signal colorPickerRequested
 
     content: Component {
         Item {
-            implicitWidth: root.widgetThickness - root.horizontalPadding * 2
+            implicitWidth: icon.width
             implicitHeight: root.widgetThickness - root.horizontalPadding * 2
 
             DankIcon {
+                id: icon
                 anchors.centerIn: parent
                 name: "palette"
                 size: Theme.barIconSize(root.barThickness, -4, root.barConfig?.noBackground)
@@ -29,7 +30,7 @@ BasePill {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
         onPressed: {
-            root.colorPickerRequested()
+            root.colorPickerRequested();
         }
     }
 }

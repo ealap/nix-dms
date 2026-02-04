@@ -37,7 +37,7 @@ StyledRect {
         return h;
     }
     radius: Theme.cornerRadius
-    color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+    color: Theme.surfaceContainerHigh
 
     readonly property bool collapsed: collapsible && !expanded
     readonly property bool hasHeader: root.title !== "" || root.iconName !== ""

@@ -80,7 +80,7 @@ Item {
                 width: parent.width
                 height: overviewSection.implicitHeight + Theme.spacingL * 2
                 radius: Theme.cornerRadius
-                color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                color: Theme.surfaceContainerHigh
 
                 Column {
                     id: overviewSection
@@ -181,7 +181,7 @@ Item {
                 width: parent.width
                 height: addPrinterSection.implicitHeight + Theme.spacingL * 2
                 radius: Theme.cornerRadius
-                color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                color: Theme.surfaceContainerHigh
                 visible: CupsService.cupsAvailable
 
                 Column {
@@ -498,7 +498,7 @@ Item {
                 width: parent.width
                 height: printersSection.implicitHeight + Theme.spacingL * 2
                 radius: Theme.cornerRadius
-                color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                color: Theme.surfaceContainerHigh
                 visible: CupsService.cupsAvailable
 
                 Column {
@@ -1191,7 +1191,7 @@ Item {
                 width: parent.width
                 height: classesSection.implicitHeight + Theme.spacingL * 2
                 radius: Theme.cornerRadius
-                color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                color: Theme.surfaceContainerHigh
                 visible: CupsService.cupsAvailable && CupsService.printerClasses.length > 0
 
                 Column {

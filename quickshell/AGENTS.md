@@ -12,7 +12,7 @@ This file provides guidance to AI coding assistants.
 * ALWAYS prefer editing an existing file to creating a new one.
 * NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
 * When you update or modify core context files, also update markdown documentation and memory bank
-* When asked to commit changes, exclude CLAUDE.md and CLAUDE-*.md referenced memory bank system files from any commits.
+* When asked to commit changes, exclude AGENTS.md and AGENTS-*.md referenced memory bank system files from any commits.
 
 ## Memory Bank System
 
@@ -20,18 +20,18 @@ This project uses a structured memory bank system with specialized context files
 
 ### Core Context Files
 
-* **CLAUDE-activeContext.md** - Current session state, goals, and progress (if exists)
-* **CLAUDE-patterns.md** - Established code patterns and conventions (if exists)
-* **CLAUDE-decisions.md** - Architecture decisions and rationale (if exists)
-* **CLAUDE-troubleshooting.md** - Common issues and proven solutions (if exists)
-* **CLAUDE-config-variables.md** - Configuration variables reference (if exists)
-* **CLAUDE-temp.md** - Temporary scratch pad (only read when referenced)
+* **AGENTS-activeContext.md** - Current session state, goals, and progress (if exists)
+* **AGENTS-patterns.md** - Established code patterns and conventions (if exists)
+* **AGENTS-decisions.md** - Architecture decisions and rationale (if exists)
+* **AGENTS-troubleshooting.md** - Common issues and proven solutions (if exists)
+* **AGENTS-config-variables.md** - Configuration variables reference (if exists)
+* **AGENTS-temp.md** - Temporary scratch pad (only read when referenced)
 
 **Important:** Always reference the active context file first to understand what's currently being worked on and maintain session continuity.
 
 ### Memory Bank System Backups
 
-When asked to backup Memory Bank System files, you will copy the core context files above and @.claude settings directory to directory @/path/to/backup-directory. If files already exist in the backup directory, you will overwrite them.
+When asked to backup Memory Bank System files, you will copy the core context files above and @.agents settings directory to directory @/path/to/backup-directory. If files already exist in the backup directory, you will overwrite them.
 
 ## Project Overview
 

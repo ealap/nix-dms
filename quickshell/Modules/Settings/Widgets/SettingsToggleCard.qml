@@ -27,7 +27,7 @@ StyledRect {
     width: parent?.width ?? 0
     height: Theme.spacingL * 2 + mainColumn.height
     radius: Theme.cornerRadius
-    color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+    color: Theme.surfaceContainerHigh
 
     Column {
         id: mainColumn

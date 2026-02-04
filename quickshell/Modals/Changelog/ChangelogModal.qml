@@ -7,6 +7,7 @@ import qs.Widgets
 FloatingWindow {
     id: root
 
+    property bool disablePopupTransparency: true
     readonly property int modalWidth: 680
     readonly property int modalHeight: screen ? Math.min(720, screen.height - 80) : 720
 

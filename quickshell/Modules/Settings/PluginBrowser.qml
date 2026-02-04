@@ -9,6 +9,7 @@ import qs.Widgets
 FloatingWindow {
     id: root
 
+    property bool disablePopupTransparency: true
     property var allPlugins: []
     property string searchQuery: ""
     property var filteredPlugins: []
@@ -331,7 +332,7 @@ FloatingWindow {
                 anchors.topMargin: Theme.spacingM
                 height: 48
                 cornerRadius: Theme.cornerRadius
-                backgroundColor: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                backgroundColor: Theme.surfaceContainerHigh
                 normalBorderColor: Theme.outlineMedium
                 focusedBorderColor: Theme.primary
                 leftIconName: "search"
@@ -717,6 +718,8 @@ FloatingWindow {
 
         FloatingWindow {
             id: thirdPartyConfirmModal
+
+            property bool disablePopupTransparency: true
 
             function show() {
                 visible = true;

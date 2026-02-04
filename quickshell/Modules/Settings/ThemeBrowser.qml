@@ -9,6 +9,7 @@ import qs.Widgets
 FloatingWindow {
     id: root
 
+    property bool disablePopupTransparency: true
     property var allThemes: []
     property string searchQuery: ""
     property var filteredThemes: []
@@ -300,7 +301,7 @@ FloatingWindow {
                 anchors.topMargin: Theme.spacingM
                 height: 48
                 cornerRadius: Theme.cornerRadius
-                backgroundColor: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                backgroundColor: Theme.surfaceContainerHigh
                 normalBorderColor: Theme.outlineMedium
                 focusedBorderColor: Theme.primary
                 leftIconName: "search"

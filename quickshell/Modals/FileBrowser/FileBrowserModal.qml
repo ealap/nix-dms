@@ -6,6 +6,7 @@ import qs.Widgets
 FloatingWindow {
     id: fileBrowserModal
 
+    property bool disablePopupTransparency: true
     property string browserTitle: "Select File"
     property string browserIcon: "folder_open"
     property string browserType: "generic"

@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Common
+import qs.Services
 
 Item {
     id: root
@@ -21,9 +22,10 @@ Item {
     property bool isRightBarEdge: false
     property bool isTopBarEdge: false
     property bool isBottomBarEdge: false
-    readonly property real horizontalPadding: (barConfig?.noBackground ?? false) ? 0 : Math.max(Theme.spacingXS, Theme.spacingS * (widgetThickness / 30))
-    readonly property real visualWidth: isVerticalOrientation ? widgetThickness : (contentLoader.item ? (contentLoader.item.implicitWidth + horizontalPadding * 2) : 0)
-    readonly property real visualHeight: isVerticalOrientation ? (contentLoader.item ? (contentLoader.item.implicitHeight + horizontalPadding * 2) : 0) : widgetThickness
+    readonly property real dpr: parentScreen ? CompositorService.getScreenScale(parentScreen) : 1
+    readonly property real horizontalPadding: (barConfig?.noBackground ?? false) ? 0 : Theme.snap(Math.max(Theme.spacingXS, Theme.spacingS * (widgetThickness / 30)), dpr)
+    readonly property real visualWidth: Theme.snap(isVerticalOrientation ? widgetThickness : (contentLoader.item ? (contentLoader.item.implicitWidth + horizontalPadding * 2) : 0), dpr)
+    readonly property real visualHeight: Theme.snap(isVerticalOrientation ? (contentLoader.item ? (contentLoader.item.implicitHeight + horizontalPadding * 2) : 0) : widgetThickness, dpr)
     readonly property alias visualContent: visualContent
     readonly property real barEdgeExtension: 1000
     readonly property real gapExtension: sectionSpacing

@@ -606,6 +606,58 @@ Singleton {
         }
     }
 
+    readonly property color buttonBg: {
+        switch (SettingsData.buttonColorMode) {
+        case "primaryContainer":
+            return primaryContainer;
+        case "secondary":
+            return secondary;
+        case "surfaceVariant":
+            return surfaceVariant;
+        default:
+            return primary;
+        }
+    }
+
+    readonly property color buttonText: {
+        switch (SettingsData.buttonColorMode) {
+        case "primaryContainer":
+            return primary;
+        case "secondary":
+            return surfaceText;
+        case "surfaceVariant":
+            return surfaceText;
+        default:
+            return primaryText;
+        }
+    }
+
+    readonly property color buttonHover: {
+        switch (SettingsData.buttonColorMode) {
+        case "primaryContainer":
+            return Qt.rgba(primary.r, primary.g, primary.b, 0.12);
+        case "secondary":
+            return Qt.rgba(surfaceText.r, surfaceText.g, surfaceText.b, 0.12);
+        case "surfaceVariant":
+            return Qt.rgba(surfaceText.r, surfaceText.g, surfaceText.b, 0.12);
+        default:
+            return primaryHover;
+        }
+    }
+
+    readonly property color buttonPressed: {
+        switch (SettingsData.buttonColorMode) {
+        case "primaryContainer":
+            return Qt.rgba(primary.r, primary.g, primary.b, 0.16);
+        case "secondary":
+            return Qt.rgba(surfaceText.r, surfaceText.g, surfaceText.b, 0.16);
+        case "surfaceVariant":
+            return Qt.rgba(surfaceText.r, surfaceText.g, surfaceText.b, 0.16);
+        default:
+            return primaryPressed;
+        }
+    }
+
     property color shadowMedium: Qt.rgba(0, 0, 0, 0.08)
     property color shadowStrong: Qt.rgba(0, 0, 0, 0.3)
 

@@ -119,7 +119,7 @@ func installGreeter() error {
 	}
 
 	fmt.Println("\nSynchronizing DMS configurations...")
-	if err := greeter.SyncDMSConfigs(dmsPath, logFunc, ""); err != nil {
+	if err := greeter.SyncDMSConfigs(dmsPath, selectedCompositor, logFunc, ""); err != nil {
 		return err
 	}
 
@@ -146,6 +146,23 @@ func syncGreeter() error {
 		return err
 	}
 	fmt.Printf("✓ Found DMS at: %s\n", dmsPath)
+
+	if !isGreeterEnabled() {
+		fmt.Println("\n⚠ DMS greeter is not enabled in greetd config.")
+		fmt.Print("Would you like to enable it now? (Y/n): ")
+
+		var response string
+		fmt.Scanln(&response)
+		response = strings.ToLower(strings.TrimSpace(response))
+
+		if response != "n" && response != "no" {
+			if err := enableGreeter(); err != nil {
+				return err
+			}
+		} else {
+			return fmt.Errorf("greeter must be enabled before syncing")
+		}
+	}
 
 	cacheDir := "/var/cache/dms-greeter"
 	if _, err := os.Stat(cacheDir); os.IsNotExist(err) {
@@ -188,13 +205,34 @@ func syncGreeter() error {
 		}
 	}
 
+	compositor := detectConfiguredCompositor()
+	if compositor == "" {
+		compositors := greeter.DetectCompositors()
+		switch len(compositors) {
+		case 0:
+			return fmt.Errorf("no supported compositors found")
+		case 1:
+			compositor = compositors[0]
+			fmt.Printf("✓ Using compositor: %s\n", compositor)
+		default:
+			var err error
+			compositor, err = promptCompositorChoice(compositors)
+			if err != nil {
+				return err
+			}
+			fmt.Printf("✓ Selected compositor: %s\n", compositor)
+		}
+	} else {
+		fmt.Printf("✓ Detected compositor from config: %s\n", compositor)
+	}
+
 	fmt.Println("\nSetting up permissions and ACLs...")
 	if err := greeter.SetupDMSGroup(logFunc, ""); err != nil {
 		return err
 	}
 
 	fmt.Println("\nSynchronizing DMS configurations...")
-	if err := greeter.SyncDMSConfigs(dmsPath, logFunc, ""); err != nil {
+	if err := greeter.SyncDMSConfigs(dmsPath, compositor, logFunc, ""); err != nil {
 		return err
 	}
 
@@ -550,6 +588,39 @@ func enableGreeter() error {
 	fmt.Println("\nOr reboot to see the greeter at boot time.")
 
 	return nil
+}
+
+func isGreeterEnabled() bool {
+	data, err := os.ReadFile("/etc/greetd/config.toml")
+	if err != nil {
+		return false
+	}
+	return strings.Contains(string(data), "dms-greeter")
+}
+
+func detectConfiguredCompositor() string {
+	data, err := os.ReadFile("/etc/greetd/config.toml")
+	if err != nil {
+		return ""
+	}
+
+	for _, line := range strings.Split(string(data), "\n") {
+		trimmed := strings.TrimSpace(line)
+		if !strings.HasPrefix(trimmed, "command") || !strings.Contains(trimmed, "dms-greeter") {
+			continue
+		}
+
+		switch {
+		case strings.Contains(trimmed, "--command niri"):
+			return "niri"
+		case strings.Contains(trimmed, "--command hyprland"):
+			return "hyprland"
+		case strings.Contains(trimmed, "--command sway"):
+			return "sway"
+		}
+	}
+
+	return ""
 }
 
 func promptCompositorChoice(compositors []string) (string, error) {

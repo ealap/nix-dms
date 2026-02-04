@@ -7,6 +7,7 @@ import qs.Widgets
 FloatingWindow {
     id: root
 
+    property bool disablePopupTransparency: true
     property string wifiPasswordSSID: ""
     property string wifiPasswordInput: ""
     property string wifiUsernameInput: ""

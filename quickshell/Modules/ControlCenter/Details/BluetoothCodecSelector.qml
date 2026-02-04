@@ -16,9 +16,15 @@ Item {
     property string currentCodec: ""
     property bool isLoading: false
 
+    readonly property bool deviceValid: device !== null && device.connected && BluetoothService.isAudioDevice(device)
+
     signal codecSelected(string deviceAddress, string codecName)
 
     function show(bluetoothDevice) {
+        if (!bluetoothDevice?.connected)
+            return;
+        if (!BluetoothService.isAudioDevice(bluetoothDevice))
+            return;
         device = bluetoothDevice;
         isLoading = true;
         availableCodecs = [];
@@ -35,14 +41,22 @@ Item {
         modalVisible = false;
         Qt.callLater(() => {
             visible = false;
+            device = null;
         });
     }
 
     function queryCodecs() {
-        if (!device)
+        if (!deviceValid) {
+            hide();
             return;
+        }
 
-        BluetoothService.getAvailableCodecs(device, function (codecs, current) {
+        const capturedDevice = device;
+        const capturedAddress = device.address;
+
+        BluetoothService.getAvailableCodecs(capturedDevice, function (codecs, current) {
+            if (!root.deviceValid || root.device?.address !== capturedAddress)
+                return;
             availableCodecs = codecs;
             currentCodec = current;
             isLoading = false;
@@ -50,25 +64,38 @@ Item {
     }
 
     function selectCodec(profileName) {
-        if (!device || isLoading)
+        if (!deviceValid || isLoading)
             return;
 
-        let selectedCodec = availableCodecs.find(c => c.profile === profileName);
-        if (selectedCodec && device) {
-            BluetoothService.updateDeviceCodec(device.address, selectedCodec.name);
-            codecSelected(device.address, selectedCodec.name);
-        }
+        const capturedDevice = device;
+        const capturedAddress = device.address;
+
+        const selectedCodec = availableCodecs.find(c => c.profile === profileName);
+        if (!selectedCodec)
+            return;
+
+        BluetoothService.updateDeviceCodec(capturedAddress, selectedCodec.name);
+        codecSelected(capturedAddress, selectedCodec.name);
 
         isLoading = true;
-        BluetoothService.switchCodec(device, profileName, function (success, message) {
+        BluetoothService.switchCodec(capturedDevice, profileName, function (success, message) {
+            if (!root.device || root.device.address !== capturedAddress)
+                return;
+
             isLoading = false;
             if (success) {
                 ToastService.showToast(message, ToastService.levelInfo);
                 Qt.callLater(root.hide);
-            } else {
-                ToastService.showToast(message, ToastService.levelError);
+                return;
             }
+            ToastService.showToast(message, ToastService.levelError);
         });
+    }
+
+    onDeviceValidChanged: {
+        if (modalVisible && !deviceValid) {
+            hide();
+        }
     }
 
     visible: false

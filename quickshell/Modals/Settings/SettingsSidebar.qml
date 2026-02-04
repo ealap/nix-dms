@@ -498,7 +498,7 @@ Rectangle {
     implicitWidth: __calculatedWidth
     width: __calculatedWidth
     height: parent.height
-    color: Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
+    color: Theme.surfaceContainer
     radius: Theme.cornerRadius
 
     StyledTextMetrics {
@@ -596,12 +596,12 @@ Rectangle {
                 id: searchField
                 width: parent.width - parent.leftPadding - parent.rightPadding
                 placeholderText: I18n.tr("Search...")
-                backgroundColor: Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency)
                 normalBorderColor: Theme.outlineMedium
                 focusedBorderColor: Theme.primary
                 leftIconName: "search"
                 leftIconSize: Theme.iconSize - 4
                 showClearButton: text.length > 0
+                usePopupTransparency: false
                 onTextChanged: {
                     SettingsSearchService.search(text);
                     root.searchSelectedIndex = 0;
@@ -689,7 +689,7 @@ Rectangle {
                         radius: Theme.cornerRadius
                         color: {
                             if (root.searchSelectedIndex === index)
-                                return Theme.primary;
+                                return Theme.buttonBg;
                             if (resultMouseArea.containsMouse)
                                 return Theme.surfaceHover;
                             return "transparent";
@@ -707,7 +707,7 @@ Rectangle {
                             DankIcon {
                                 name: resultDelegate.modelData.icon || "settings"
                                 size: Theme.iconSize - 2
-                                color: root.searchSelectedIndex === resultDelegate.index ? Theme.primaryText : Theme.surfaceText
+                                color: root.searchSelectedIndex === resultDelegate.index ? Theme.buttonText : Theme.surfaceText
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 
@@ -720,7 +720,7 @@ Rectangle {
                                     text: resultDelegate.modelData.label
                                     font.pixelSize: Theme.fontSizeMedium
                                     font.weight: Font.Medium
-                                    color: root.searchSelectedIndex === resultDelegate.index ? Theme.primaryText : Theme.surfaceText
+                                    color: root.searchSelectedIndex === resultDelegate.index ? Theme.buttonText : Theme.surfaceText
                                     width: parent.width
                                     wrapMode: Text.Wrap
                                     horizontalAlignment: Text.AlignLeft
@@ -729,7 +729,7 @@ Rectangle {
                                 StyledText {
                                     text: resultDelegate.modelData.category
                                     font.pixelSize: Theme.fontSizeSmall - 1
-                                    color: root.searchSelectedIndex === resultDelegate.index ? Theme.withAlpha(Theme.primaryText, 0.7) : Theme.surfaceVariantText
+                                    color: root.searchSelectedIndex === resultDelegate.index ? Theme.withAlpha(Theme.buttonText, 0.7) : Theme.surfaceVariantText
                                     width: parent.width
                                     wrapMode: Text.Wrap
                                     horizontalAlignment: Text.AlignLeft
@@ -810,9 +810,9 @@ Rectangle {
 
                         color: {
                             if (isActive)
-                                return Theme.primary;
+                                return Theme.buttonBg;
                             if (isHighlighted)
-                                return Theme.primaryHover;
+                                return Theme.buttonHover;
                             if (categoryMouseArea.containsMouse)
                                 return Theme.surfaceHover;
                             return "transparent";
@@ -828,7 +828,7 @@ Rectangle {
                             DankIcon {
                                 name: categoryDelegate.modelData.icon || ""
                                 size: Theme.iconSize - 2
-                                color: categoryRow.isActive ? Theme.primaryText : Theme.surfaceText
+                                color: categoryRow.isActive ? Theme.buttonText : Theme.surfaceText
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 
@@ -836,7 +836,7 @@ Rectangle {
                                 text: categoryDelegate.modelData.text || ""
                                 font.pixelSize: Theme.fontSizeMedium
                                 font.weight: (categoryRow.isActive || root.isChildActive(categoryDelegate.modelData)) ? Font.Medium : Font.Normal
-                                color: categoryRow.isActive ? Theme.primaryText : Theme.surfaceText
+                                color: categoryRow.isActive ? Theme.buttonText : Theme.surfaceText
                                 anchors.verticalCenter: parent.verticalCenter
                             }
                         }
@@ -900,9 +900,9 @@ Rectangle {
                                 visible: root.isItemVisible(modelData)
                                 color: {
                                     if (isActive)
-                                        return Theme.primary;
+                                        return Theme.buttonBg;
                                     if (isHighlighted)
-                                        return Theme.primaryHover;
+                                        return Theme.buttonHover;
                                     if (childMouseArea.containsMouse)
                                         return Theme.surfaceHover;
                                     return "transparent";
@@ -918,7 +918,7 @@ Rectangle {
                                     DankIcon {
                                         name: childDelegate.modelData.icon || ""
                                         size: Theme.iconSize - 4
-                                        color: childDelegate.isActive ? Theme.primaryText : Theme.surfaceVariantText
+                                        color: childDelegate.isActive ? Theme.buttonText : Theme.surfaceVariantText
                                         anchors.verticalCenter: parent.verticalCenter
                                     }
 
@@ -926,7 +926,7 @@ Rectangle {
                                         text: childDelegate.modelData.text || ""
                                         font.pixelSize: Theme.fontSizeSmall + 1
                                         font.weight: childDelegate.isActive ? Font.Medium : Font.Normal
-                                        color: childDelegate.isActive ? Theme.primaryText : Theme.surfaceText
+                                        color: childDelegate.isActive ? Theme.buttonText : Theme.surfaceText
                                         anchors.verticalCenter: parent.verticalCenter
                                     }
                                 }

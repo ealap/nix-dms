@@ -70,7 +70,7 @@ Item {
                             id: updaterCustomCommand
                             width: parent.width
                             placeholderText: "myPkgMngr --sysupdate"
-                            backgroundColor: Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency)
+                            backgroundColor: Theme.surfaceContainerHighest
                             normalBorderColor: Theme.outlineMedium
                             focusedBorderColor: Theme.primary
 
@@ -114,7 +114,7 @@ Item {
                             id: updaterTerminalCustomClass
                             width: parent.width
                             placeholderText: "-T udpClass"
-                            backgroundColor: Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency)
+                            backgroundColor: Theme.surfaceContainerHighest
                             normalBorderColor: Theme.outlineMedium
                             focusedBorderColor: Theme.primary
 

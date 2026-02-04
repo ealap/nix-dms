@@ -1516,6 +1516,38 @@ Item {
                     }
                 }
 
+                SettingsDropdownRow {
+                    tab: "theme"
+                    tags: ["button", "color", "primary", "accent"]
+                    settingKey: "buttonColorMode"
+                    text: I18n.tr("Button Color")
+                    description: I18n.tr("Color for primary action buttons")
+                    options: [I18n.tr("Primary", "button color option"), I18n.tr("Primary Container", "button color option"), I18n.tr("Secondary", "button color option"), I18n.tr("Surface Variant", "button color option")]
+                    currentValue: {
+                        switch (SettingsData.buttonColorMode) {
+                        case "primaryContainer":
+                            return I18n.tr("Primary Container", "button color option");
+                        case "secondary":
+                            return I18n.tr("Secondary", "button color option");
+                        case "surfaceVariant":
+                            return I18n.tr("Surface Variant", "button color option");
+                        default:
+                            return I18n.tr("Primary", "button color option");
+                        }
+                    }
+                    onValueChanged: value => {
+                        if (value === I18n.tr("Primary Container", "button color option")) {
+                            SettingsData.set("buttonColorMode", "primaryContainer");
+                        } else if (value === I18n.tr("Secondary", "button color option")) {
+                            SettingsData.set("buttonColorMode", "secondary");
+                        } else if (value === I18n.tr("Surface Variant", "button color option")) {
+                            SettingsData.set("buttonColorMode", "surfaceVariant");
+                        } else {
+                            SettingsData.set("buttonColorMode", "primary");
+                        }
+                    }
+                }
+
                 SettingsSliderRow {
                     tab: "theme"
                     tags: ["popup", "transparency", "opacity", "modal"]

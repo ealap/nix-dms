@@ -274,7 +274,7 @@ Item {
                                     return currentWallpaper && !currentWallpaper.startsWith("#") && !currentWallpaper.startsWith("we");
                                 }
                                 opacity: enabled ? 1 : 0.5
-                                backgroundColor: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                                backgroundColor: Theme.surfaceContainerHigh
                                 iconColor: Theme.surfaceText
                                 onClicked: {
                                     if (SessionData.perMonitorWallpaper) {
@@ -294,7 +294,7 @@ Item {
                                     return currentWallpaper && !currentWallpaper.startsWith("#") && !currentWallpaper.startsWith("we");
                                 }
                                 opacity: enabled ? 1 : 0.5
-                                backgroundColor: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                                backgroundColor: Theme.surfaceContainerHigh
                                 iconColor: Theme.surfaceText
                                 onClicked: {
                                     if (SessionData.perMonitorWallpaper) {

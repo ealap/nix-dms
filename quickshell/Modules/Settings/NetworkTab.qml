@@ -107,7 +107,7 @@ Item {
                 width: parent.width
                 height: overviewSection.implicitHeight + Theme.spacingL * 2
                 radius: Theme.cornerRadius
-                color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                color: Theme.surfaceContainerHigh
 
                 Column {
                     id: overviewSection
@@ -291,7 +291,7 @@ Item {
                 width: parent.width
                 height: ethernetSection.implicitHeight + Theme.spacingL * 2
                 radius: Theme.cornerRadius
-                color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                color: Theme.surfaceContainerHigh
                 visible: NetworkService.ethernetConnected || (NetworkService.ethernetDevices?.length ?? 0) > 0
 
                 Column {
@@ -762,7 +762,7 @@ Item {
                 width: parent.width
                 height: wifiSection.implicitHeight + Theme.spacingL * 2
                 radius: Theme.cornerRadius
-                color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                color: Theme.surfaceContainerHigh
 
                 Column {
                     id: wifiSection
@@ -1480,7 +1480,7 @@ Item {
                 width: parent.width
                 height: vpnSection.implicitHeight + Theme.spacingL * 2
                 radius: Theme.cornerRadius
-                color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                color: Theme.surfaceContainerHigh
                 visible: DMSNetworkService.vpnAvailable
 
                 Column {

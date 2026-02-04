@@ -7,6 +7,7 @@ import qs.Widgets
 FloatingWindow {
     id: root
 
+    property bool disablePopupTransparency: true
     property string passwordInput: ""
     property var currentFlow: PolkitService.agent?.flow
     property bool isLoading: false

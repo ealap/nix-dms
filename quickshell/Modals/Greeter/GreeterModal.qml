@@ -8,6 +8,7 @@ import qs.Widgets
 FloatingWindow {
     id: root
 
+    property bool disablePopupTransparency: true
     property int currentPage: 0
     readonly property int totalPages: 3
     readonly property var pageComponents: [welcomePage, doctorPage, completePage]

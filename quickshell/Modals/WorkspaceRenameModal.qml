@@ -8,6 +8,7 @@ import qs.Widgets
 FloatingWindow {
     id: root
 
+    property bool disablePopupTransparency: true
     readonly property int inputFieldHeight: Theme.fontSizeMedium + Theme.spacingL * 2
 
     objectName: "workspaceRenameModal"

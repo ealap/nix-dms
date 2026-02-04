@@ -8,6 +8,7 @@ import qs.Widgets
 FloatingWindow {
     id: settingsModal
 
+    property bool disablePopupTransparency: true
     property var profileBrowser: profileBrowserLoader.item
     property var wallpaperBrowser: wallpaperBrowserLoader.item
 

@@ -79,10 +79,11 @@ BasePill {
 
     content: Component {
         Item {
-            implicitWidth: root.widgetThickness - root.horizontalPadding * 2
+            implicitWidth: icon.width
             implicitHeight: root.widgetThickness - root.horizontalPadding * 2
 
             DankIcon {
+                id: icon
                 anchors.centerIn: parent
                 name: "content_paste"
                 size: Theme.barIconSize(root.barThickness, -4, root.barConfig?.noBackground)

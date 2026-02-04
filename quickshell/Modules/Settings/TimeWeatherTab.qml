@@ -248,7 +248,7 @@ Item {
                     x: Theme.spacingM
                     height: formatHelp.implicitHeight + Theme.spacingM * 2
                     radius: Theme.cornerRadius
-                    color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                    color: Theme.surfaceContainerHigh
 
                     Column {
                         id: formatHelp
@@ -808,7 +808,7 @@ Item {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
                             radius: Theme.cornerRadius
-                            color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                            color: Theme.surfaceContainerHigh
 
                             Column {
                                 anchors.centerIn: parent
@@ -852,7 +852,7 @@ Item {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
                             radius: Theme.cornerRadius
-                            color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                            color: Theme.surfaceContainerHigh
 
                             Column {
                                 anchors.centerIn: parent
@@ -896,7 +896,7 @@ Item {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
                             radius: Theme.cornerRadius
-                            color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                            color: Theme.surfaceContainerHigh
 
                             Column {
                                 anchors.centerIn: parent
@@ -953,7 +953,7 @@ Item {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
                             radius: Theme.cornerRadius
-                            color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                            color: Theme.surfaceContainerHigh
 
                             Column {
                                 anchors.centerIn: parent
@@ -1003,7 +1003,7 @@ Item {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
                             radius: Theme.cornerRadius
-                            color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                            color: Theme.surfaceContainerHigh
 
                             Column {
                                 anchors.centerIn: parent
@@ -1047,7 +1047,7 @@ Item {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
                             radius: Theme.cornerRadius
-                            color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                            color: Theme.surfaceContainerHigh
 
                             Column {
                                 anchors.centerIn: parent

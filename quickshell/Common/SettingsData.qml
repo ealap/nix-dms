@@ -134,6 +134,7 @@ Singleton {
     property string widgetBackgroundColor: "sch"
     property string widgetColorMode: "default"
     property string controlCenterTileColorMode: "primary"
+    property string buttonColorMode: "primary"
     property real cornerRadius: 12
     property int niriLayoutGapsOverride: -1
     property int niriLayoutRadiusOverride: -1
@@ -241,6 +242,7 @@ Singleton {
     property bool showWorkspacePadding: false
     property bool workspaceScrolling: false
     property bool showWorkspaceApps: false
+    property bool workspaceDragReorder: true
     property bool groupWorkspaceApps: true
     property int maxWorkspaceIcons: 3
     property int workspaceAppIconSizeOffset: 0

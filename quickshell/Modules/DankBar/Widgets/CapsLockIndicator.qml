@@ -1,6 +1,4 @@
 import QtQuick
-import QtQuick.Controls
-import Quickshell
 import qs.Common
 import qs.Modules.Plugins
 import qs.Services
@@ -15,18 +13,28 @@ BasePill {
         State {
             name: "hidden_horizontal"
             when: !DMSService.capsLockState && !isVerticalOrientation
-            PropertyChanges { target: root; width: 0 }
+            PropertyChanges {
+                target: root
+                width: 0
+            }
         },
         State {
             name: "hidden_vertical"
             when: !DMSService.capsLockState && isVerticalOrientation
-            PropertyChanges { target: root; height: 0 }
+            PropertyChanges {
+                target: root
+                height: 0
+            }
         }
     ]
 
     transitions: [
         Transition {
-            NumberAnimation { properties: "width,height"; duration: Theme.shortDuration; easing.type: Theme.standardEasing }
+            NumberAnimation {
+                properties: "width,height"
+                duration: Theme.shortDuration
+                easing.type: Theme.standardEasing
+            }
         }
     ]
 
@@ -39,10 +47,11 @@ BasePill {
 
     content: Component {
         Item {
-            implicitWidth: root.widgetThickness - root.horizontalPadding * 2
+            implicitWidth: icon.width
             implicitHeight: root.widgetThickness - root.horizontalPadding * 2
 
             DankIcon {
+                id: icon
                 anchors.centerIn: parent
                 name: "shift_lock"
                 size: Theme.barIconSize(root.barThickness, undefined, root.barConfig?.noBackground)

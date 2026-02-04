@@ -115,7 +115,9 @@ PanelWindow {
             layer.enabled: Quickshell.env("DMS_DISABLE_LAYER") !== "true" && Quickshell.env("DMS_DISABLE_LAYER") !== "1"
             layer.smooth: false
             layer.textureSize: Qt.size(width * root.dpr, height * root.dpr)
-            opacity: customTransparency >= 0 ? customTransparency : SettingsData.popupTransparency
+            opacity: 1
+
+            readonly property real effectiveTransparency: customTransparency >= 0 ? customTransparency : SettingsData.popupTransparency
 
             anchors.top: parent.top
             anchors.bottom: parent.bottom
@@ -124,7 +126,7 @@ PanelWindow {
 
             Rectangle {
                 anchors.fill: parent
-                color: Theme.surfaceContainer
+                color: Qt.rgba(Theme.surfaceContainer.r, Theme.surfaceContainer.g, Theme.surfaceContainer.b, contentRect.effectiveTransparency)
                 radius: Theme.cornerRadius
             }
 

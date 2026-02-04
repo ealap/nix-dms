@@ -7,6 +7,7 @@ import qs.Widgets
 FloatingWindow {
     id: root
 
+    property bool disablePopupTransparency: true
     property var editingRule: null
     property bool isEditMode: editingRule !== null
     property bool isNiri: CompositorService.isNiri

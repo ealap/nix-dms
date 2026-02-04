@@ -26,6 +26,8 @@ Item {
     property string activePluginId: ""
     property var collapsedSections: ({})
     property bool keyboardNavigationActive: false
+    property var _modeSectionsCache: ({})
+    property bool _queryDrivenSearch: false
     property var sectionViewModes: ({})
     property var pluginViewPreferences: ({})
     property int gridColumns: SettingsData.appLauncherGridColumns
@@ -42,6 +44,14 @@ Item {
         target: SettingsData
         function onSortAppsAlphabeticallyChanged() {
             AppSearchService.invalidateLauncherCache();
+            _clearModeCache();
+        }
+    }
+
+    Connections {
+        target: AppSearchService
+        function onCacheVersionChanged() {
+            _clearModeCache();
         }
     }
 
@@ -266,6 +276,7 @@ Item {
 
     function setSearchQuery(query) {
         _searchVersion++;
+        _queryDrivenSearch = true;
         searchQuery = query;
         searchDebounce.restart();
 
@@ -324,6 +335,8 @@ Item {
         activePluginCategory = "";
         pluginFilter = "";
         collapsedSections = {};
+        _clearModeCache();
+        _queryDrivenSearch = false;
     }
 
     function loadPluginCategories(pluginId) {
@@ -369,7 +382,11 @@ Item {
         return false;
     }
 
-    function preserveSelectionAfterUpdate() {
+    function preserveSelectionAfterUpdate(forceFirst) {
+        if (forceFirst)
+            return function () {
+                return getFirstItemIndex();
+            };
         var previousSelectedId = selectedItem?.id || "";
         return function (newFlatModel) {
             if (!previousSelectedId)
@@ -385,7 +402,9 @@ Item {
     function performSearch() {
         var currentVersion = _searchVersion;
         isSearching = true;
-        var restoreSelection = preserveSelectionAfterUpdate();
+        var shouldResetSelection = _queryDrivenSearch;
+        _queryDrivenSearch = false;
+        var restoreSelection = preserveSelectionAfterUpdate(shouldResetSelection);
 
         var cachedSections = AppSearchService.getCachedDefaultSections();
         if (cachedSections && !searchQuery && searchMode === "all" && !pluginFilter) {
@@ -394,15 +413,22 @@ Item {
             activePluginCategories = [];
             activePluginCategory = "";
             clearActivePluginViewPreference();
-            sections = cachedSections.map(function (s) {
-                var copy = Object.assign({}, s, {
-                    items: s.items ? s.items.slice() : []
+            var modeCache = _getCachedModeData("all");
+            if (modeCache) {
+                sections = modeCache.sections;
+                flatModel = modeCache.flatModel;
+            } else {
+                sections = cachedSections.map(function (s) {
+                    var copy = Object.assign({}, s, {
+                        items: s.items ? s.items.slice() : []
+                    });
+                    if (collapsedSections[s.id] !== undefined)
+                        copy.collapsed = collapsedSections[s.id];
+                    return copy;
                 });
-                if (collapsedSections[s.id] !== undefined)
-                    copy.collapsed = collapsedSections[s.id];
-                return copy;
-            });
-            flatModel = Scorer.flattenSections(sections);
+                flatModel = Scorer.flattenSections(sections);
+                _setCachedModeData("all", sections, flatModel);
+            }
             selectedFlatIndex = restoreSelection(flatModel);
             updateSelectedItem();
             isSearching = false;
@@ -475,18 +501,25 @@ Item {
         if (searchMode === "apps") {
             var cachedSections = AppSearchService.getCachedDefaultSections();
             if (cachedSections && !searchQuery) {
-                var appSectionIds = ["favorites", "apps"];
-                sections = cachedSections.filter(function (s) {
-                    return appSectionIds.indexOf(s.id) !== -1;
-                }).map(function (s) {
-                    var copy = Object.assign({}, s, {
-                        items: s.items ? s.items.slice() : []
+                var modeCache = _getCachedModeData("apps");
+                if (modeCache) {
+                    sections = modeCache.sections;
+                    flatModel = modeCache.flatModel;
+                } else {
+                    var appSectionIds = ["favorites", "apps"];
+                    sections = cachedSections.filter(function (s) {
+                        return appSectionIds.indexOf(s.id) !== -1;
+                    }).map(function (s) {
+                        var copy = Object.assign({}, s, {
+                            items: s.items ? s.items.slice() : []
+                        });
+                        if (collapsedSections[s.id] !== undefined)
+                            copy.collapsed = collapsedSections[s.id];
+                        return copy;
                     });
-                    if (collapsedSections[s.id] !== undefined)
-                        copy.collapsed = collapsedSections[s.id];
-                    return copy;
-                });
-                flatModel = Scorer.flattenSections(sections);
+                    flatModel = Scorer.flattenSections(sections);
+                    _setCachedModeData("apps", sections, flatModel);
+                }
                 selectedFlatIndex = restoreSelection(flatModel);
                 updateSelectedItem();
                 isSearching = false;
@@ -1055,6 +1088,23 @@ Item {
         return Nav.getFirstItemIndex(flatModel);
     }
 
+    function _getCachedModeData(mode) {
+        return _modeSectionsCache[mode] || null;
+    }
+
+    function _setCachedModeData(mode, sectionsData, flatModelData) {
+        var cache = Object.assign({}, _modeSectionsCache);
+        cache[mode] = {
+            sections: sectionsData,
+            flatModel: flatModelData
+        };
+        _modeSectionsCache = cache;
+    }
+
+    function _clearModeCache() {
+        _modeSectionsCache = {};
+    }
+
     function updateSelectedItem() {
         if (selectedFlatIndex >= 0 && selectedFlatIndex < flatModel.length) {
             var entry = flatModel[selectedFlatIndex];
@@ -1158,6 +1208,7 @@ Item {
     }
 
     function toggleSection(sectionId) {
+        _clearModeCache();
         var newCollapsed = Object.assign({}, collapsedSections);
         var currentState = newCollapsed[sectionId];
 

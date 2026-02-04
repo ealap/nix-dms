@@ -12,10 +12,10 @@ Item {
     property int grade: Theme.isLightMode ? 0 : -25
     property int weight: filled ? 500 : 400
 
-    implicitWidth: icon.implicitWidth
-    implicitHeight: icon.implicitHeight
+    implicitWidth: Math.round(size)
+    implicitHeight: Math.round(size)
 
-    signal rotationCompleted()
+    signal rotationCompleted
 
     FontLoader {
         id: materialSymbolsFont
@@ -64,6 +64,6 @@ Item {
     }
 
     onRotationChanged: {
-        rotationTimer.restart()
+        rotationTimer.restart();
     }
 }

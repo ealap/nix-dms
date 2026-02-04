@@ -33,6 +33,21 @@ Rectangle {
         }
     }
 
+    function highlightText(text, query, baseColor) {
+        if (!text || !query || query.length === 0)
+            return text;
+        var lowerText = text.toLowerCase();
+        var lowerQuery = query.toLowerCase();
+        var idx = lowerText.indexOf(lowerQuery);
+        if (idx === -1)
+            return text;
+        var before = text.substring(0, idx);
+        var match = text.substring(idx, idx + query.length);
+        var after = text.substring(idx + query.length);
+        var highlightColor = Theme.primary;
+        return '<span style="color:' + baseColor + '">' + before + '</span>' + '<span style="color:' + highlightColor + '; font-weight:600">' + match + '</span>' + '<span style="color:' + baseColor + '">' + after + '</span>';
+    }
+
     width: parent?.width ?? 200
     height: 52
     color: isSelected ? Theme.primaryPressed : isHovered ? Theme.primaryHoverLight : "transparent"
@@ -82,23 +97,41 @@ Rectangle {
             width: parent.width - 36 - Theme.spacingM * 3 - rightContent.width
             spacing: 2
 
-            StyledText {
+            Text {
                 width: parent.width
-                text: root.item?.name ?? ""
+                text: {
+                    var query = root.controller?.searchQuery ?? "";
+                    var name = root.item?.name ?? "";
+                    if (!query)
+                        return name;
+                    return root.highlightText(name, query, Theme.surfaceText);
+                }
+                textFormat: root.controller?.searchQuery ? Text.RichText : Text.PlainText
                 font.pixelSize: Theme.fontSizeMedium
                 font.weight: Font.Medium
+                font.family: Theme.fontFamily
                 color: Theme.surfaceText
                 elide: Text.ElideRight
                 horizontalAlignment: Text.AlignLeft
             }
 
-            StyledText {
+            Text {
                 width: parent.width
-                text: root.item?.subtitle ?? ""
+                text: {
+                    var query = root.controller?.searchQuery ?? "";
+                    var subtitle = root.item?.subtitle ?? "";
+                    if (!subtitle)
+                        return "";
+                    if (!query)
+                        return subtitle;
+                    return root.highlightText(subtitle, query, Theme.surfaceVariantText);
+                }
+                textFormat: root.controller?.searchQuery ? Text.RichText : Text.PlainText
                 font.pixelSize: Theme.fontSizeSmall
+                font.family: Theme.fontFamily
                 color: Theme.surfaceVariantText
                 elide: Text.ElideRight
-                visible: text.length > 0
+                visible: (root.item?.subtitle ?? "").length > 0
                 horizontalAlignment: Text.AlignLeft
             }
         }

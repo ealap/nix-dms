@@ -10,6 +10,7 @@ import qs.Widgets
 FloatingWindow {
     id: processListModal
 
+    property bool disablePopupTransparency: true
     property int currentTab: 0
     property string searchText: ""
     property string expandedPid: ""

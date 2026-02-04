@@ -73,7 +73,7 @@ Rectangle {
 
     AppIconRenderer {
         anchors.centerIn: parent
-        width: parent.width * 0.75
+        width: Math.round(parent.width * 0.75)
         height: width
         visible: (internalImage.status !== Image.Ready || root.imageSource === "") && root.fallbackIcon !== ""
         iconValue: root.fallbackIcon

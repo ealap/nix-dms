@@ -11,8 +11,8 @@ Rectangle {
     property bool enabled: true
     property bool hovered: mouseArea.containsMouse
     property bool pressed: mouseArea.pressed
-    property color backgroundColor: Theme.primary
-    property color textColor: Theme.primaryText
+    property color backgroundColor: Theme.buttonBg
+    property color textColor: Theme.buttonText
     property int buttonHeight: 40
     property int horizontalPadding: Theme.spacingL
 

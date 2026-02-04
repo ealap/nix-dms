@@ -23,6 +23,21 @@ Rectangle {
     border.width: isSelected ? 2 : 0
     border.color: Theme.primary
 
+    function highlightText(text, query, baseColor) {
+        if (!text || !query || query.length === 0)
+            return text;
+        var lowerText = text.toLowerCase();
+        var lowerQuery = query.toLowerCase();
+        var idx = lowerText.indexOf(lowerQuery);
+        if (idx === -1)
+            return text;
+        var before = text.substring(0, idx);
+        var match = text.substring(idx, idx + query.length);
+        var after = text.substring(idx + query.length);
+        var highlightColor = Theme.primary;
+        return '<span style="color:' + baseColor + '">' + before + '</span>' + '<span style="color:' + highlightColor + '; font-weight:600">' + match + '</span>' + '<span style="color:' + baseColor + '">' + after + '</span>';
+    }
+
     readonly property string toplevelId: item?.data?.toplevelId ?? ""
     readonly property var waylandToplevel: {
         if (!toplevelId || !item?.pluginId)
@@ -108,12 +123,20 @@ Rectangle {
                 color: Theme.withAlpha(Theme.surfaceContainer, 0.85)
                 visible: root.item?.name?.length > 0
 
-                StyledText {
+                Text {
                     id: labelText
                     anchors.fill: parent
                     anchors.margins: Theme.spacingXS
-                    text: root.item?.name ?? ""
+                    text: {
+                        var query = root.controller?.searchQuery ?? "";
+                        var name = root.item?.name ?? "";
+                        if (!query)
+                            return name;
+                        return root.highlightText(name, query, Theme.surfaceText);
+                    }
+                    textFormat: root.controller?.searchQuery ? Text.RichText : Text.PlainText
                     font.pixelSize: Theme.fontSizeSmall
+                    font.family: Theme.fontFamily
                     color: Theme.surfaceText
                     elide: Text.ElideRight
                     horizontalAlignment: Text.AlignHCenter

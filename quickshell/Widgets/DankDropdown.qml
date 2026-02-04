@@ -12,6 +12,16 @@ Item {
     LayoutMirroring.enabled: I18n.isRtl
     LayoutMirroring.childrenInherit: true
 
+    function checkParentDisablesTransparency() {
+        let p = parent;
+        while (p) {
+            if (p.disablePopupTransparency === true)
+                return true;
+            p = p.parent;
+        }
+        return false;
+    }
+
     property string text: ""
     property string description: ""
     property string currentValue: ""
@@ -41,6 +51,7 @@ Item {
     property bool compactMode: text === "" && description === ""
     property bool addHorizontalPadding: false
     property string emptyText: ""
+    property bool usePopupTransparency: !checkParentDisablesTransparency()
 
     signal valueChanged(string value)
 
@@ -92,7 +103,7 @@ Item {
         anchors.rightMargin: root.addHorizontalPadding && !root.compactMode ? Theme.spacingM : 0
         anchors.verticalCenter: parent.verticalCenter
         radius: Theme.cornerRadius
-        color: dropdownArea.containsMouse || dropdownMenu.visible ? Theme.surfaceContainerHigh : Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
+        color: dropdownArea.containsMouse || dropdownMenu.visible ? Theme.surfaceContainerHigh : (root.usePopupTransparency ? Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency) : Theme.surfaceContainer)
         border.color: dropdownMenu.visible ? Theme.primary : Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.2)
         border.width: dropdownMenu.visible ? 2 : 1
 
@@ -258,7 +269,7 @@ Item {
                     height: 42
                     visible: root.enableFuzzySearch
                     radius: Theme.cornerRadius
-                    color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+                    color: root.usePopupTransparency ? Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency) : Theme.surfaceContainerHigh
 
                     DankTextField {
                         id: searchField

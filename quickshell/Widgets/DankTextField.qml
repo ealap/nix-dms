@@ -11,6 +11,16 @@ StyledRect {
     KeyNavigation.tab: keyNavigationTab
     KeyNavigation.backtab: keyNavigationBacktab
 
+    function checkParentDisablesTransparency() {
+        let p = parent;
+        while (p) {
+            if (p.disablePopupTransparency === true)
+                return true;
+            p = p.parent;
+        }
+        return false;
+    }
+
     property alias text: textInput.text
     property string placeholderText: ""
     property alias font: textInput.font
@@ -26,7 +36,8 @@ StyledRect {
     property bool showClearButton: false
     property bool showPasswordToggle: false
     property bool passwordVisible: false
-    property color backgroundColor: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+    property bool usePopupTransparency: !checkParentDisablesTransparency()
+    property color backgroundColor: usePopupTransparency ? Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency) : Theme.surfaceContainerHigh
     property color focusedBorderColor: Theme.primary
     property color normalBorderColor: Theme.outlineMedium
     property color placeholderColor: Theme.outlineButton
@@ -107,6 +118,8 @@ StyledRect {
         anchors.bottomMargin: root.bottomPadding
         font.pixelSize: Theme.fontSizeMedium
         color: Theme.surfaceText
+        selectionColor: Theme.primaryContainer
+        selectedTextColor: Theme.primary
         horizontalAlignment: TextInput.AlignLeft
         verticalAlignment: TextInput.AlignVCenter
         selectByMouse: !root.ignoreLeftRightKeys
