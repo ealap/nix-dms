@@ -167,46 +167,6 @@ Singleton {
         }
     }
 
-    Process {
-        id: ensureOutputsProcess
-        property string outputsPath: ""
-
-        onExited: exitCode => {
-            if (exitCode !== 0)
-                console.warn("NiriService: Failed to ensure outputs.kdl, exit code:", exitCode);
-        }
-    }
-
-    Process {
-        id: ensureBindsProcess
-        property string bindsPath: ""
-
-        onExited: exitCode => {
-            if (exitCode !== 0)
-                console.warn("NiriService: Failed to ensure binds.kdl, exit code:", exitCode);
-        }
-    }
-
-    Process {
-        id: ensureCursorProcess
-        property string cursorPath: ""
-
-        onExited: exitCode => {
-            if (exitCode !== 0)
-                console.warn("NiriService: Failed to ensure cursor.kdl, exit code:", exitCode);
-        }
-    }
-
-    Process {
-        id: ensureWindowrulesProcess
-        property string windowrulesPath: ""
-
-        onExited: exitCode => {
-            if (exitCode !== 0)
-                console.warn("NiriService: Failed to ensure windowrules.kdl, exit code:", exitCode);
-        }
-    }
-
     DankSocket {
         id: eventStreamSocket
         path: root.socketPath
@@ -1230,25 +1190,13 @@ Singleton {
         writeAlttabProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && cat > "${alttabPath}" << 'EOF'\n${alttabContent}\nEOF`];
         writeAlttabProcess.running = true;
 
-        const outputsPath = niriDmsDir + "/outputs.kdl";
-        ensureOutputsProcess.outputsPath = outputsPath;
-        ensureOutputsProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && [ ! -f "${outputsPath}" ] && touch "${outputsPath}" || true`];
-        ensureOutputsProcess.running = true;
-
-        const bindsPath = niriDmsDir + "/binds.kdl";
-        ensureBindsProcess.bindsPath = bindsPath;
-        ensureBindsProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && [ ! -f "${bindsPath}" ] && touch "${bindsPath}" || true`];
-        ensureBindsProcess.running = true;
-
-        const cursorPath = niriDmsDir + "/cursor.kdl";
-        ensureCursorProcess.cursorPath = cursorPath;
-        ensureCursorProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && [ ! -f "${cursorPath}" ] && touch "${cursorPath}" || true`];
-        ensureCursorProcess.running = true;
-
-        const windowrulesPath = niriDmsDir + "/windowrules.kdl";
-        ensureWindowrulesProcess.windowrulesPath = windowrulesPath;
-        ensureWindowrulesProcess.command = ["sh", "-c", `mkdir -p "${niriDmsDir}" && [ ! -f "${windowrulesPath}" ] && touch "${windowrulesPath}" || true`];
-        ensureWindowrulesProcess.running = true;
+        for (const name of ["outputs", "binds", "cursor", "windowrules", "colors", "alttab", "layout"]) {
+            const path = niriDmsDir + "/" + name + ".kdl";
+            Proc.runCommand("niri-ensure-" + name, ["sh", "-c", `mkdir -p "${niriDmsDir}" && [ ! -f "${path}" ] && touch "${path}" || true`], (output, exitCode) => {
+                if (exitCode !== 0)
+                    console.warn("NiriService: Failed to ensure " + name + ".kdl, exit code:", exitCode);
+            });
+        }
 
         configGenerationPending = false;
     }

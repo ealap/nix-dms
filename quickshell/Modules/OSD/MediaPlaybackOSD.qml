@@ -16,11 +16,17 @@ DankOSD {
     enableMouseInteraction: true
 
     function getPlaybackIcon() {
-        if (player.playbackState === MprisPlaybackState.Playing)
-            return "play_arrow"
-        if (player.playbackState === MprisPlaybackState.Paused || player.playbackState === MprisPlaybackState.Stopped)
-            return "pause"
-        return "music_note"
+        if (!player)
+            return "music_note";
+        switch (player.playbackState) {
+        case MprisPlaybackState.Playing:
+            return "play_arrow";
+        case MprisPlaybackState.Paused:
+        case MprisPlaybackState.Stopped:
+            return "pause";
+        default:
+            return "music_note";
+        }
     }
 
     function togglePlaying() {
@@ -29,17 +35,28 @@ DankOSD {
         }
     }
 
+    onPlayerChanged: {
+        if (!player)
+            hide();
+    }
+
     Connections {
         target: player
 
         function handleUpdate() {
+            if (!root.player?.trackTitle) return;
             if (SettingsData.osdMediaPlaybackEnabled) {
-                root.show()
+                root.show();
             }
         }
 
-        function onIsPlayingChanged() { handleUpdate() }
-        function onTrackChanged() { if (!useVertical) handleUpdate() }
+        function onIsPlayingChanged() {
+            handleUpdate();
+        }
+        function onTrackChanged() {
+            if (!useVertical)
+                handleUpdate();
+        }
     }
 
     content: Loader {
@@ -56,6 +73,11 @@ DankOSD {
             anchors.centerIn: parent
             width: parent.width - Theme.spacingS * 2
             height: 40
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: root.hide()
+            }
 
             Rectangle {
                 width: Theme.iconSize
@@ -78,7 +100,10 @@ DankOSD {
                     anchors.fill: parent
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
-                    onClicked: togglePlaying()
+                    onClicked: {
+                        togglePlaying();
+                        root.hide();
+                    }
                 }
             }
 
@@ -87,7 +112,7 @@ DankOSD {
                 x: parent.gap * 2 + Theme.iconSize
                 width: parent.width - Theme.iconSize - parent.gap * 3
                 anchors.verticalCenter: parent.verticalCenter
-                text: (`${player.trackTitle || I18n.tr("Unknown Title")} • ${player.trackArtist || I18n.tr("Unknown Artist")}`)
+                text: player ? `${player.trackTitle || I18n.tr("Unknown Title")} • ${player.trackArtist || I18n.tr("Unknown Artist")}` : ""
                 font.pixelSize: Theme.fontSizeMedium
                 font.weight: Font.Medium
                 color: Theme.surfaceText
@@ -102,6 +127,11 @@ DankOSD {
 
         Item {
             property int gap: Theme.spacingS
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: root.hide()
+            }
 
             Rectangle {
                 width: Theme.iconSize
@@ -124,7 +154,10 @@ DankOSD {
                     anchors.fill: parent
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
-                    onClicked: togglePlaying()
+                    onClicked: {
+                        togglePlaying();
+                        root.hide();
+                    }
                 }
             }
         }

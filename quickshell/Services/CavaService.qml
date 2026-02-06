@@ -30,7 +30,29 @@ Singleton {
         id: cavaProcess
 
         running: root.cavaAvailable && root.refCount > 0
-        command: ["sh", "-c", "printf '[general]\\nframerate=25\\nbars=6\\nautosens=0\\nsensitivity=30\\nlower_cutoff_freq=50\\nhigher_cutoff_freq=12000\\n[input]\\nsample_rate=48000\\n[output]\\nmethod=raw\\nraw_target=/dev/stdout\\ndata_format=ascii\\nchannels=mono\\nmono_option=average\\n[smoothing]\\nnoise_reduction=35\\nintegral=90\\ngravity=95\\nignore=2\\nmonstercat=1.5' | cava -p /dev/stdin"]
+        command: ["sh", "-c", `cat <<'CAVACONF' | cava -p /dev/stdin
+[general]
+framerate=25
+bars=6
+autosens=0
+sensitivity=30
+lower_cutoff_freq=50
+higher_cutoff_freq=12000
+
+[output]
+method=raw
+raw_target=/dev/stdout
+data_format=ascii
+channels=mono
+mono_option=average
+
+[smoothing]
+noise_reduction=35
+integral=90
+gravity=95
+ignore=2
+monstercat=1.5
+CAVACONF`]
 
         onRunningChanged: {
             if (!running) {
