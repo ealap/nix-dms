@@ -112,6 +112,7 @@ var clipClearCmd = &cobra.Command{
 }
 
 var clipWatchStore bool
+var clipWatchMimes bool
 
 var clipSearchCmd = &cobra.Command{
 	Use:   "search [query]",
@@ -211,6 +212,7 @@ func init() {
 	clipConfigSetCmd.Flags().BoolVar(&clipConfigEnabled, "enable", false, "Enable clipboard tracking")
 
 	clipWatchCmd.Flags().BoolVarP(&clipWatchStore, "store", "s", false, "Store clipboard changes to history (no server required)")
+	clipWatchCmd.Flags().BoolVarP(&clipWatchMimes, "mimes", "m", false, "Show all offered MIME types")
 
 	clipMigrateCmd.Flags().BoolVar(&clipMigrateDelete, "delete", false, "Delete cliphist db after successful migration")
 
@@ -325,6 +327,30 @@ func runClipWatch(cmd *cobra.Command, args []string) {
 			if err := clipboard.Store(data, mimeType); err != nil {
 				log.Errorf("store: %v", err)
 			}
+		}); err != nil && err != context.Canceled {
+			log.Fatalf("Watch error: %v", err)
+		}
+	case clipWatchMimes:
+		if err := clipboard.WatchAll(ctx, func(data []byte, mimeType string, allMimes []string) {
+			if clipJSONOutput {
+				out := map[string]any{
+					"data":      string(data),
+					"mimeType":  mimeType,
+					"mimeTypes": allMimes,
+					"timestamp": time.Now().Format(time.RFC3339),
+					"size":      len(data),
+				}
+				j, _ := json.Marshal(out)
+				fmt.Println(string(j))
+				return
+			}
+			fmt.Printf("=== Clipboard Change ===\n")
+			fmt.Printf("Selected: %s\n", mimeType)
+			fmt.Printf("All MIME types:\n")
+			for _, m := range allMimes {
+				fmt.Printf("  - %s\n", m)
+			}
+			fmt.Printf("Size: %d bytes\n\n", len(data))
 		}); err != nil && err != context.Canceled {
 			log.Fatalf("Watch error: %v", err)
 		}

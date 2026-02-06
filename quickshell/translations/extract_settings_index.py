@@ -81,6 +81,8 @@ CATEGORY_KEYWORDS = {
     "Power & Sleep": ["shutdown", "suspend", "energy"],
     "Displays": ["monitor", "screen", "resolution"],
     "Desktop Widgets": ["conky", "desktop clock"],
+    "Audio": ["sound", "volume", "speaker", "microphone", "headphones", "pipewire"],
+    "Window Rules": ["window", "rules", "matching", "floating", "fullscreen", "opacity"],
 }
 
 TAB_INDEX_MAP = {
@@ -111,6 +113,8 @@ TAB_INDEX_MAP = {
     "GammaControlTab.qml": 25,
     "DisplayWidgetsTab.qml": 26,
     "DesktopWidgetsTab.qml": 27,
+    "WindowRulesTab.qml": 28,
+    "AudioTab.qml": 29,
 }
 
 TAB_CATEGORY_MAP = {
@@ -141,6 +145,8 @@ TAB_CATEGORY_MAP = {
     25: "Displays",
     26: "Displays",
     27: "Desktop Widgets",
+    28: "Window Rules",
+    29: "Audio",
 }
 
 SEARCHABLE_COMPONENTS = [
@@ -387,6 +393,7 @@ def parse_tabs_from_sidebar(sidebar_file):
             ("dmsOnly", "dmsConnected"),
             ("hyprlandNiriOnly", "isHyprlandOrNiri"),
             ("clipboardOnly", "dmsConnected"),
+            ("niriOnly", "isNiri"),
         ]:
             if f'"{qml_cond}": true' in snippet:
                 cond = key

@@ -13,6 +13,7 @@ Rectangle {
     property bool descriptionExpanded: (NotificationService.expandedMessages[(notificationGroup && notificationGroup.latestNotification && notificationGroup.latestNotification.notification && notificationGroup.latestNotification.notification.id) ? (notificationGroup.latestNotification.notification.id + "_desc") : ""] || false)
     property bool userInitiatedExpansion: false
     property bool isAnimating: false
+    property bool animateExpansion: true
 
     property bool isGroupSelected: false
     property int selectedNotificationIndex: -1
@@ -715,7 +716,7 @@ Rectangle {
     }
 
     Behavior on height {
-        enabled: root.userInitiatedExpansion
+        enabled: root.userInitiatedExpansion && root.animateExpansion
         NumberAnimation {
             duration: Theme.mediumDuration
             easing.type: Theme.emphasizedEasing

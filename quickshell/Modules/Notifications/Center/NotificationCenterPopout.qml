@@ -10,6 +10,7 @@ DankPopout {
 
     property bool notificationHistoryVisible: false
     property var triggerScreen: null
+    property bool _animatePopupHeight: false
 
     NotificationKeyboardController {
         id: keyboardController
@@ -23,6 +24,14 @@ DankPopout {
     popupWidth: 400
     popupHeight: contentLoader.item ? contentLoader.item.implicitHeight : 400
     positioning: ""
+
+    Behavior on popupHeight {
+        enabled: root._animatePopupHeight
+        NumberAnimation {
+            duration: Math.min(Theme.shortDuration, 150)
+            easing.type: Theme.emphasizedEasing
+        }
+    }
     screen: triggerScreen
     shouldBeVisible: notificationHistoryVisible
 
@@ -72,10 +81,13 @@ DankPopout {
 
     onShouldBeVisibleChanged: {
         if (shouldBeVisible) {
+            _animatePopupHeight = false;
             NotificationService.onOverlayOpen();
             if (contentLoader.item)
                 Qt.callLater(setupKeyboardNavigation);
+            Qt.callLater(() => { root._animatePopupHeight = true; });
         } else {
+            _animatePopupHeight = false;
             NotificationService.onOverlayClose();
             keyboardController.keyboardNavigationActive = false;
         }
@@ -198,6 +210,7 @@ DankPopout {
                         visible: notificationHeader.currentTab === 0
                         width: parent.width
                         height: parent.height - notificationContent.cachedHeaderHeight - notificationSettings.height - contentColumnInner.spacing * 2
+                        cardAnimateExpansion: false
                     }
 
                     HistoryNotificationList {

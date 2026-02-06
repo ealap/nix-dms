@@ -154,6 +154,10 @@ Singleton {
     property bool nightModeEnabled: false
     property int animationSpeed: SettingsData.AnimationSpeed.Short
     property int customAnimationDuration: 500
+    property int popoutAnimationSpeed: SettingsData.AnimationSpeed.Short
+    property int popoutCustomAnimationDuration: 150
+    property int modalAnimationSpeed: SettingsData.AnimationSpeed.Short
+    property int modalCustomAnimationDuration: 150
     property string wallpaperFillMode: "Fill"
     property bool blurredWallpaperLayer: false
     property bool blurWallpaperOnOverview: false
@@ -275,8 +279,9 @@ Singleton {
     property int appsDockEnlargePercentage: 125
     property int appsDockIconSizePercentage: 100
     property bool keyboardLayoutNameCompactMode: false
-    property bool runningAppsCurrentWorkspace: false
+    property bool runningAppsCurrentWorkspace: true
     property bool runningAppsGroupByApp: false
+    property bool runningAppsCurrentMonitor: false
     property var appIdSubstitutions: []
     property string centeringMode: "index"
     property string clockDateFormat: ""
@@ -498,6 +503,7 @@ Singleton {
     property int osdPosition: SettingsData.Position.BottomCenter
     property bool osdVolumeEnabled: true
     property bool osdMediaVolumeEnabled: true
+    property bool osdMediaPlaybackEnabled: true
     property bool osdBrightnessEnabled: true
     property bool osdIdleInhibitorEnabled: true
     property bool osdMicMuteEnabled: true

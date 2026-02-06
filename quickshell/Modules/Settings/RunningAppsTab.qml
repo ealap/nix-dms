@@ -21,20 +21,6 @@ Item {
 
             SettingsCard {
                 width: parent.width
-                iconName: "apps"
-                title: I18n.tr("Running Apps Settings")
-                settingKey: "runningApps"
-
-                SettingsToggleRow {
-                    text: I18n.tr("Running Apps Only In Current Workspace")
-                    description: I18n.tr("Show only apps running in current workspace")
-                    checked: SettingsData.runningAppsCurrentWorkspace
-                    onToggled: checked => SettingsData.set("runningAppsCurrentWorkspace", checked)
-                }
-            }
-
-            SettingsCard {
-                width: parent.width
                 iconName: "find_replace"
                 title: I18n.tr("App ID Substitutions")
                 settingKey: "appIdSubstitutions"
@@ -182,7 +168,6 @@ Item {
                             }
                         }
                     }
-
                 }
             }
         }

@@ -21,7 +21,7 @@ Item {
     property real triggerWidth: 40
     property string triggerSection: ""
     property string positioning: "center"
-    property int animationDuration: Theme.expressiveDurations.expressiveDefaultSpatial
+    property int animationDuration: Theme.popoutAnimationDuration
     property real animationScaleCollapsed: 0.96
     property real animationOffset: Theme.spacingL
     property list<real> animationEnterCurve: Theme.expressiveCurves.expressiveDefaultSpatial

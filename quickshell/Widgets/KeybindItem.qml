@@ -28,8 +28,14 @@ Item {
     property string editDesc: ""
     property int editCooldownMs: 0
     property string editFlags: ""
+    property bool editAllowWhenLocked: false
+    property var editRepeat: undefined
+    property var editAllowInhibiting: undefined
     property int _savedCooldownMs: -1
     property string _savedFlags: ""
+    property var _savedAllowWhenLocked: undefined
+    property var _savedRepeat: undefined
+    property var _savedAllowInhibiting: undefined
     property bool hasChanges: false
     property string _actionType: ""
     property bool addingNewKey: false
@@ -115,6 +121,24 @@ Item {
                 } else {
                     editFlags = keys[i].flags || "";
                 }
+                if (_savedAllowWhenLocked !== undefined) {
+                    editAllowWhenLocked = _savedAllowWhenLocked;
+                    _savedAllowWhenLocked = undefined;
+                } else {
+                    editAllowWhenLocked = keys[i].allowWhenLocked || false;
+                }
+                if (_savedRepeat !== undefined) {
+                    editRepeat = _savedRepeat;
+                    _savedRepeat = undefined;
+                } else {
+                    editRepeat = keys[i].repeat;
+                }
+                if (_savedAllowInhibiting !== undefined) {
+                    editAllowInhibiting = _savedAllowInhibiting;
+                    _savedAllowInhibiting = undefined;
+                } else {
+                    editAllowInhibiting = keys[i].allowInhibiting;
+                }
                 hasChanges = false;
                 _actionType = Actions.getActionType(editAction);
                 useCustomCompositor = _actionType === "compositor" && editAction && !Actions.isKnownCompositorAction(KeybindsService.currentProvider, editAction);
@@ -136,6 +160,9 @@ Item {
         editDesc = bindData.desc || "";
         editCooldownMs = editingKeyIndex >= 0 ? (keys[editingKeyIndex].cooldownMs || 0) : 0;
         editFlags = editingKeyIndex >= 0 ? (keys[editingKeyIndex].flags || "") : "";
+        editAllowWhenLocked = editingKeyIndex >= 0 ? (keys[editingKeyIndex].allowWhenLocked || false) : false;
+        editRepeat = editingKeyIndex >= 0 ? keys[editingKeyIndex].repeat : undefined;
+        editAllowInhibiting = editingKeyIndex >= 0 ? keys[editingKeyIndex].allowInhibiting : undefined;
         hasChanges = false;
         _actionType = Actions.getActionType(editAction);
         useCustomCompositor = _actionType === "compositor" && editAction && !Actions.isKnownCompositorAction(KeybindsService.currentProvider, editAction);
@@ -156,6 +183,9 @@ Item {
         editKey = keys[index].key;
         editCooldownMs = keys[index].cooldownMs || 0;
         editFlags = keys[index].flags || "";
+        editAllowWhenLocked = keys[index].allowWhenLocked || false;
+        editRepeat = keys[index].repeat;
+        editAllowInhibiting = keys[index].allowInhibiting;
         hasChanges = false;
     }
 
@@ -170,10 +200,20 @@ Item {
             editCooldownMs = changes.cooldownMs;
         if (changes.flags !== undefined)
             editFlags = changes.flags;
-        const origKey = editingKeyIndex >= 0 && editingKeyIndex < keys.length ? keys[editingKeyIndex].key : "";
-        const origCooldown = editingKeyIndex >= 0 && editingKeyIndex < keys.length ? (keys[editingKeyIndex].cooldownMs || 0) : 0;
-        const origFlags = editingKeyIndex >= 0 && editingKeyIndex < keys.length ? (keys[editingKeyIndex].flags || "") : "";
-        hasChanges = editKey !== origKey || editAction !== (bindData.action || "") || editDesc !== (bindData.desc || "") || editCooldownMs !== origCooldown || editFlags !== origFlags;
+        if (changes.allowWhenLocked !== undefined)
+            editAllowWhenLocked = changes.allowWhenLocked;
+        if (changes.repeat !== undefined)
+            editRepeat = changes.repeat;
+        if (changes.allowInhibiting !== undefined)
+            editAllowInhibiting = changes.allowInhibiting;
+        const hasKey = editingKeyIndex >= 0 && editingKeyIndex < keys.length;
+        const origKey = hasKey ? keys[editingKeyIndex].key : "";
+        const origCooldown = hasKey ? (keys[editingKeyIndex].cooldownMs || 0) : 0;
+        const origFlags = hasKey ? (keys[editingKeyIndex].flags || "") : "";
+        const origAllowWhenLocked = hasKey ? (keys[editingKeyIndex].allowWhenLocked || false) : false;
+        const origRepeat = hasKey ? keys[editingKeyIndex].repeat : undefined;
+        const origAllowInhibiting = hasKey ? keys[editingKeyIndex].allowInhibiting : undefined;
+        hasChanges = editKey !== origKey || editAction !== (bindData.action || "") || editDesc !== (bindData.desc || "") || editCooldownMs !== origCooldown || editFlags !== origFlags || editAllowWhenLocked !== origAllowWhenLocked || editRepeat !== origRepeat || editAllowInhibiting !== origAllowInhibiting;
     }
 
     function canSave() {
@@ -193,12 +233,18 @@ Item {
             desc = expandedLoader.item.currentTitle;
         _savedCooldownMs = editCooldownMs;
         _savedFlags = editFlags;
+        _savedAllowWhenLocked = editAllowWhenLocked;
+        _savedRepeat = editRepeat;
+        _savedAllowInhibiting = editAllowInhibiting;
         saveBind(origKey, {
             "key": editKey,
             "action": editAction,
             "desc": desc,
             "cooldownMs": editCooldownMs,
-            "flags": editFlags
+            "flags": editFlags,
+            "allowWhenLocked": editAllowWhenLocked,
+            "repeat": editRepeat,
+            "allowInhibiting": editAllowInhibiting
         });
         hasChanges = false;
         addingNewKey = false;
@@ -1322,6 +1368,29 @@ Item {
                                 }
                             }
                         }
+
+                        RowLayout {
+                            visible: optionsRow.argConfig?.base === "quit"
+                            spacing: Theme.spacingXS
+
+                            DankToggle {
+                                checked: optionsRow.parsedArgs?.args["skip-confirmation"] === true
+                                onToggled: newChecked => {
+                                    const args = newChecked ? {
+                                        "skip-confirmation": true
+                                    } : {};
+                                    root.updateEdit({
+                                        "action": Actions.buildCompositorAction(KeybindsService.currentProvider, "quit", args)
+                                    });
+                                }
+                            }
+
+                            StyledText {
+                                text: I18n.tr("Skip confirmation")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceVariantText
+                            }
+                        }
                     }
                 }
 
@@ -1630,6 +1699,82 @@ Item {
 
                     Item {
                         Layout.fillWidth: true
+                    }
+                }
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: Theme.spacingM
+                    visible: KeybindsService.currentProvider === "niri"
+
+                    StyledText {
+                        text: I18n.tr("Options")
+                        font.pixelSize: Theme.fontSizeSmall
+                        font.weight: Font.Medium
+                        color: Theme.surfaceVariantText
+                        Layout.preferredWidth: root._labelWidth
+                    }
+
+                    Flow {
+                        Layout.fillWidth: true
+                        spacing: Theme.spacingM
+
+                        RowLayout {
+                            spacing: Theme.spacingXS
+
+                            DankToggle {
+                                checked: root.editRepeat !== false
+                                onToggled: newChecked => {
+                                    root.updateEdit({
+                                        "repeat": newChecked ? undefined : false
+                                    });
+                                }
+                            }
+
+                            StyledText {
+                                text: I18n.tr("Repeat")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceVariantText
+                            }
+                        }
+
+                        RowLayout {
+                            spacing: Theme.spacingXS
+
+                            DankToggle {
+                                checked: root.editAllowWhenLocked
+                                onToggled: newChecked => {
+                                    root.updateEdit({
+                                        "allowWhenLocked": newChecked
+                                    });
+                                }
+                            }
+
+                            StyledText {
+                                text: I18n.tr("When locked")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceVariantText
+                            }
+                        }
+
+                        RowLayout {
+                            spacing: Theme.spacingXS
+
+                            DankToggle {
+                                checked: root.editAllowInhibiting !== false
+                                onToggled: newChecked => {
+                                    root.updateEdit({
+                                        "allowInhibiting": newChecked ? undefined : false
+                                    });
+                                }
+                            }
+
+                            StyledText {
+                                text: I18n.tr("Inhibitable")
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.surfaceVariantText
+                            }
+                        }
                     }
                 }
 

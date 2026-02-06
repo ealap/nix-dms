@@ -942,8 +942,10 @@ Item {
             if (!PluginService.availablePlugins[pluginId])
                 return `PLUGIN_NOT_FOUND: ${pluginId}`;
 
-            if (!PluginService.isPluginLoaded(pluginId))
-                return `PLUGIN_NOT_LOADED: ${pluginId}`;
+            if (!PluginService.isPluginLoaded(pluginId)) {
+                const success = PluginService.enablePlugin(pluginId);
+                return success ? `PLUGIN_RELOAD_SUCCESS: ${pluginId}` : `PLUGIN_RELOAD_FAILED: ${pluginId}`;
+            }
 
             const success = PluginService.reloadPlugin(pluginId);
             return success ? `PLUGIN_RELOAD_SUCCESS: ${pluginId}` : `PLUGIN_RELOAD_FAILED: ${pluginId}`;

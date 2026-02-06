@@ -635,7 +635,7 @@ FloatingWindow {
                 Rectangle {
                     id: savePasswordCheckbox
 
-                    property bool checked: true
+                    property bool checked: !isVpnPrompt
 
                     width: 20
                     height: 20

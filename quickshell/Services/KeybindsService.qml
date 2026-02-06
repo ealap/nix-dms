@@ -384,7 +384,10 @@ Singleton {
                     "source": bind.source || "config",
                     "isOverride": bind.source === "dms",
                     "cooldownMs": bind.cooldownMs || 0,
-                    "flags": bind.flags || ""
+                    "flags": bind.flags || "",
+                    "allowWhenLocked": bind.allowWhenLocked || false,
+                    "allowInhibiting": bind.allowInhibiting,
+                    "repeat": bind.repeat
                 };
                 if (actionMap[action]) {
                     actionMap[action].keys.push(keyData);
@@ -454,6 +457,12 @@ Singleton {
             cmd.push("--replace-key", originalKey);
         if (bindData.cooldownMs > 0)
             cmd.push("--cooldown-ms", String(bindData.cooldownMs));
+        if (bindData.allowWhenLocked)
+            cmd.push("--allow-when-locked");
+        if (bindData.repeat === false)
+            cmd.push("--no-repeat");
+        if (bindData.allowInhibiting === false)
+            cmd.push("--no-inhibiting");
         if (bindData.flags)
             cmd.push("--flags", bindData.flags);
         saveProcess.command = cmd;

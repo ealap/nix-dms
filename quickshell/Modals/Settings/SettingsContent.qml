@@ -458,5 +458,20 @@ FocusScope {
                     Qt.callLater(() => item.forceActiveFocus());
             }
         }
+
+        Loader {
+            id: audioLoader
+            anchors.fill: parent
+            active: root.currentIndex === 29
+            visible: active
+            focus: active
+
+            sourceComponent: AudioTab {}
+
+            onActiveChanged: {
+                if (active && item)
+                    Qt.callLater(() => item.forceActiveFocus());
+            }
+        }
     }
 }

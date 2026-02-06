@@ -12,6 +12,7 @@ DankListView {
     property bool isAnimatingExpansion: false
     property alias count: listView.count
     property alias listContentHeight: listView.contentHeight
+    property bool cardAnimateExpansion: true
 
     clip: true
     model: NotificationService.groupedNotifications
@@ -88,6 +89,7 @@ DankListView {
             x: delegateRoot.swipeOffset
             notificationGroup: modelData
             keyboardNavigationActive: listView.keyboardActive
+            animateExpansion: listView.cardAnimateExpansion
             opacity: 1 - Math.abs(delegateRoot.swipeOffset) / (delegateRoot.width * 0.5)
             onIsAnimatingChanged: {
                 if (isAnimating) {

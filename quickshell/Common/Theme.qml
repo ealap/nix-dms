@@ -766,6 +766,24 @@ Singleton {
         };
     }
 
+    readonly property int popoutAnimationDuration: {
+        if (typeof SettingsData === "undefined")
+            return 150;
+        const presetMap = [0, 150, 300, 500];
+        if (SettingsData.popoutAnimationSpeed === SettingsData.AnimationSpeed.Custom)
+            return SettingsData.popoutCustomAnimationDuration;
+        return presetMap[SettingsData.popoutAnimationSpeed] ?? 150;
+    }
+
+    readonly property int modalAnimationDuration: {
+        if (typeof SettingsData === "undefined")
+            return 150;
+        const presetMap = [0, 150, 300, 500];
+        if (SettingsData.modalAnimationSpeed === SettingsData.AnimationSpeed.Custom)
+            return SettingsData.modalCustomAnimationDuration;
+        return presetMap[SettingsData.modalAnimationSpeed] ?? 150;
+    }
+
     property real cornerRadius: {
         if (typeof SessionData !== "undefined" && SessionData.isGreeterMode && typeof GreetdSettings !== "undefined") {
             return GreetdSettings.cornerRadius;

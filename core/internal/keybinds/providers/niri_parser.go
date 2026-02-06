@@ -12,14 +12,17 @@ import (
 )
 
 type NiriKeyBinding struct {
-	Mods          []string
-	Key           string
-	Action        string
-	Args          []string
-	Description   string
-	HideOnOverlay bool
-	CooldownMs    int
-	Source        string
+	Mods            []string
+	Key             string
+	Action          string
+	Args            []string
+	Description     string
+	HideOnOverlay   bool
+	CooldownMs      int
+	AllowWhenLocked bool
+	AllowInhibiting *bool
+	Repeat          *bool
+	Source          string
 }
 
 type NiriSection struct {
@@ -269,8 +272,10 @@ func (p *NiriParser) parseKeybindNode(node *document.Node, _ string) *NiriKeyBin
 			args = append(args, arg.ValueString())
 		}
 		if actionNode.Properties != nil {
-			if val, ok := actionNode.Properties.Get("focus"); ok {
-				args = append(args, "focus="+val.String())
+			for _, propName := range []string{"focus", "show-pointer", "write-to-disk", "skip-confirmation", "delay-ms"} {
+				if val, ok := actionNode.Properties.Get(propName); ok {
+					args = append(args, propName+"="+val.String())
+				}
 			}
 		}
 	}
@@ -278,6 +283,9 @@ func (p *NiriParser) parseKeybindNode(node *document.Node, _ string) *NiriKeyBin
 	var description string
 	var hideOnOverlay bool
 	var cooldownMs int
+	var allowWhenLocked bool
+	var allowInhibiting *bool
+	var repeat *bool
 	if node.Properties != nil {
 		if val, ok := node.Properties.Get("hotkey-overlay-title"); ok {
 			switch val.ValueString() {
@@ -290,17 +298,31 @@ func (p *NiriParser) parseKeybindNode(node *document.Node, _ string) *NiriKeyBin
 		if val, ok := node.Properties.Get("cooldown-ms"); ok {
 			cooldownMs, _ = strconv.Atoi(val.String())
 		}
+		if val, ok := node.Properties.Get("allow-when-locked"); ok {
+			allowWhenLocked = val.String() == "true"
+		}
+		if val, ok := node.Properties.Get("allow-inhibiting"); ok {
+			v := val.String() == "true"
+			allowInhibiting = &v
+		}
+		if val, ok := node.Properties.Get("repeat"); ok {
+			v := val.String() == "true"
+			repeat = &v
+		}
 	}
 
 	return &NiriKeyBinding{
-		Mods:          mods,
-		Key:           key,
-		Action:        action,
-		Args:          args,
-		Description:   description,
-		HideOnOverlay: hideOnOverlay,
-		CooldownMs:    cooldownMs,
-		Source:        p.currentSource,
+		Mods:            mods,
+		Key:             key,
+		Action:          action,
+		Args:            args,
+		Description:     description,
+		HideOnOverlay:   hideOnOverlay,
+		CooldownMs:      cooldownMs,
+		AllowWhenLocked: allowWhenLocked,
+		AllowInhibiting: allowInhibiting,
+		Repeat:          repeat,
+		Source:          p.currentSource,
 	}
 }
 

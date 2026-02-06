@@ -1,4 +1,7 @@
 {
+  "%1 Animation Speed": {
+    "%1 Animation Speed": ""
+  },
   "%1 DMS bind(s) may be overridden by config binds that come after the include.": {
     "%1 DMS bind(s) may be overridden by config binds that come after the include.": "%1 raccourci(s) DMS peuvent être remplacés par des raccourcis définis plus loin dans la configuration."
   },
@@ -14,14 +17,17 @@
   "%1 connected": {
     "%1 connected": "%1 connecté"
   },
+  "%1 custom animation duration": {
+    "%1 custom animation duration": ""
+  },
   "%1 days ago": {
     "%1 days ago": "il y a %1 jour(s)"
   },
   "%1 disconnected": {
-    "%1 disconnected": ""
+    "%1 disconnected": "%1 déconnecté"
   },
   "%1 disconnected (hidden)": {
-    "%1 disconnected (hidden)": ""
+    "%1 disconnected (hidden)": "%1 déconnecté (caché)"
   },
   "%1 display(s)": {
     "%1 display(s)": "%1 écran(s)"
@@ -30,7 +36,7 @@
     "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": "%1 existe mais n’est pas inclus dans la configuration. Les raccourcis personnalisés ne fonctionneront pas tant que ce problème n’est pas corrigé."
   },
   "%1 exists but is not included. Window rules won't apply.": {
-    "%1 exists but is not included. Window rules won't apply.": ""
+    "%1 exists but is not included. Window rules won't apply.": "%1 existe mais n'est pas inclus. Les règles de fenêtres ne s'appliqueront pas."
   },
   "%1 is now included in config": {
     "%1 is now included in config": "%1 est maintenant inclus dans la configuration"
@@ -185,6 +191,9 @@
   "Active": {
     "Active": "Actif"
   },
+  "Active Color": {
+    "Active Color": ""
+  },
   "Active Lock Screen Monitor": {
     "Active Lock Screen Monitor": "Écran actif pour l’écran de verrouillage"
   },
@@ -213,7 +222,7 @@
     "Add Printer": "Ajouter une imprimante"
   },
   "Add Title": {
-    "Add Title": ""
+    "Add Title": "Ajouter titre"
   },
   "Add Widget": {
     "Add Widget": "Ajouter un widget"
@@ -300,7 +309,7 @@
     "App ID Substitutions": "Substitutions d’identifiant d’application"
   },
   "App ID regex (e.g. ^firefox$)": {
-    "App ID regex (e.g. ^firefox$)": ""
+    "App ID regex (e.g. ^firefox$)": "Regex de l'ID d'appli (e.g. ^firefox$)"
   },
   "App Launcher": {
     "App Launcher": "Lanceur d’applications"
@@ -328,6 +337,9 @@
   },
   "Apps Dock": {
     "Apps Dock": "Dock d'applis"
+  },
+  "Apps Dock Settings": {
+    "Apps Dock Settings": ""
   },
   "Apps Icon": {
     "Apps Icon": "Icône des applis"
@@ -367,6 +379,32 @@
   },
   "Audio Visualizer": {
     "Audio Visualizer": "Visualiseur audio"
+  },
+  "Audio device rename dialog field label": {
+    "Custom Name": ""
+  },
+  "Audio device rename dialog hint": {
+    "Press Enter and the audio system will restart to apply the change": ""
+  },
+  "Audio device rename dialog placeholder": {
+    "Enter device name...": ""
+  },
+  "Audio device rename dialog title": {
+    "Set Custom Device Name": ""
+  },
+  "Audio settings description": {
+    "Set custom names for your audio input devices": "",
+    "Set custom names for your audio output devices": ""
+  },
+  "Audio settings empty state": {
+    "No input devices found": "",
+    "No output devices found": ""
+  },
+  "Audio settings: speaker/headphone devices": {
+    "Output Devices": ""
+  },
+  "Audio system restarted": {
+    "Audio system restarted": ""
   },
   "Audio volume control": {
     "Audio volume control": "Contrôle du volume audio"
@@ -537,10 +575,10 @@
     "Bit Depth": "Profondeur de bits"
   },
   "Block Out": {
-    "Block Out": ""
+    "Block Out": "Bloquer"
   },
   "Block Out From": {
-    "Block Out From": ""
+    "Block Out From": "Bloquer de"
   },
   "Block notifications": {
     "Block notifications": "Bloquer les notifications"
@@ -585,7 +623,7 @@
     "Border Thickness": "Épaisseur de la bordure"
   },
   "Border with BG": {
-    "Border with BG": ""
+    "Border with BG": "Bordures avec fond"
   },
   "Bottom": {
     "Bottom": "Bas"
@@ -622,6 +660,9 @@
   },
   "Browse or search plugins": {
     "Browse or search plugins": "Chercher des plugins"
+  },
+  "Button Color": {
+    "Button Color": ""
   },
   "CPU": {
     "CPU": "CPU"
@@ -756,7 +797,7 @@
     "Cipher": "Chiffrement"
   },
   "Class regex (e.g. ^firefox$)": {
-    "Class regex (e.g. ^firefox$)": ""
+    "Class regex (e.g. ^firefox$)": "Classe regex (e.g. firefox$)"
   },
   "Clear": {
     "Clear": "Effacer"
@@ -783,7 +824,7 @@
     "Click 'Setup' to create %1 and add include to config.": "Cliquez sur « Configurer » pour créer %1 et l’ajouter à la configuration."
   },
   "Click 'Setup' to create %1 and add include to your compositor config.": {
-    "Click 'Setup' to create %1 and add include to your compositor config.": ""
+    "Click 'Setup' to create %1 and add include to your compositor config.": "Cliquez sur “Configuration” pour créer %1 et l’ajouter aux inclusions de la configuration de votre compositeur."
   },
   "Click 'Setup' to create cursor config and add include to your compositor config.": {
     "Click 'Setup' to create cursor config and add include to your compositor config.": "Cliquez sur « Configurer » pour créer la configuration du curseur et l’ajouter à celle du compositeur."
@@ -795,7 +836,7 @@
     "Click 'Setup' to create the outputs config and add include to your compositor config.": "Cliquez sur « Configurer » pour créer la configuration des sorties et l’inclure dans la configuration du compositeur."
   },
   "Click + to add a rule for the focused window": {
-    "Click + to add a rule for the focused window": ""
+    "Click + to add a rule for the focused window": "Cliquez sur + pour ajouter une règle pour la fenêtre active"
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "Cliquez sur importer pour ajouter un fichier .ovpn ou .conf"
@@ -813,10 +854,10 @@
     "Click to capture": "Cliquer pour capturer"
   },
   "Clip": {
-    "Clip": ""
+    "Clip": "Ancrer"
   },
   "Clip to Geometry": {
-    "Clip to Geometry": ""
+    "Clip to Geometry": "Ancrer à la géométrie"
   },
   "Clipboard": {
     "Clipboard": "Presse-papiers"
@@ -875,6 +916,9 @@
   "Color displayed on monitors without the lock screen": {
     "Color displayed on monitors without the lock screen": "Couleur affichée sur les écrans sans interface de verrouillage"
   },
+  "Color for primary action buttons": {
+    "Color for primary action buttons": ""
+  },
   "Color temperature for day time": {
     "Color temperature for day time": "Température de couleur pour la journée"
   },
@@ -890,14 +934,17 @@
   "Colorful mix of bright contrasting accents.": {
     "Colorful mix of bright contrasting accents.": "Mélange coloré avec des accents lumineux et contrastés."
   },
+  "Colorize Active": {
+    "Colorize Active": ""
+  },
   "Column": {
     "Column": "Colonne"
   },
   "Column Display": {
-    "Column Display": ""
+    "Column Display": "Affichage en colonnes"
   },
   "Column Width": {
-    "Column Width": ""
+    "Column Width": "Longueur de colonne"
   },
   "Command": {
     "Command": "Commande"
@@ -924,7 +971,7 @@
     "Compositor Settings": "Paramètres du compositeur"
   },
   "Compositor not supported": {
-    "Compositor not supported": ""
+    "Compositor not supported": "Compositeur non supporté"
   },
   "Config Format": {
     "Config Format": "Format de configuration"
@@ -951,7 +998,7 @@
     "Configure icons for named workspaces. Icons take priority over numbers when both are enabled.": "Configurer les icônes pour les espaces de travail nommés. Les icônes ont priorité sur les numéros lorsqu’ils sont tous deux activés."
   },
   "Configure match criteria and actions": {
-    "Configure match criteria and actions": ""
+    "Configure match criteria and actions": "Configurer les critères de correspondance et les actions"
   },
   "Configure which displays show shell components": {
     "Configure which displays show shell components": "Configurer les écrans affichant les composants du shell"
@@ -996,7 +1043,7 @@
     "Connecting...": "Connexion..."
   },
   "Content copied": {
-    "Content copied": ""
+    "Content copied": "Contenu copié"
   },
   "Contrast": {
     "Contrast": "Contraste"
@@ -1041,7 +1088,7 @@
     "Copy": "Copier"
   },
   "Copy Content": {
-    "Copy Content": ""
+    "Copy Content": "Copier contenu"
   },
   "Copy Full Command": {
     "Copy Full Command": "Copier commande complète"
@@ -1080,7 +1127,7 @@
     "Cover Open": "Capot ouvert"
   },
   "Create": {
-    "Create": ""
+    "Create": "Créer"
   },
   "Create Dir": {
     "Create Dir": "Créer un dossier"
@@ -1089,10 +1136,10 @@
     "Create Printer": "Créer une imprimante"
   },
   "Create Window Rule": {
-    "Create Window Rule": ""
+    "Create Window Rule": "Créer règle de fenêtre"
   },
   "Create rule for:": {
-    "Create rule for:": ""
+    "Create rule for:": "Créer règle pour :"
   },
   "Creating...": {
     "Creating...": "Création..."
@@ -1266,7 +1313,7 @@
     "Defaults": "Valeurs par défaut"
   },
   "Define rules for window behavior. Saves to %1": {
-    "Define rules for window behavior. Saves to %1": ""
+    "Define rules for window behavior. Saves to %1": "Définir les règles pour le comportement des fenêtres. Enregistré dans %1"
   },
   "Del: Clear • Shift+Del: Clear All • 1-9: Actions • F10: Help • Esc: Close": {
     "Del: Clear • Shift+Del: Clear All • 1-9: Actions • F10: Help • Esc: Close": "Suppr : Effacer • Maj+Suppr : Tout effacer • 1-9 : Actions • F10 : Aide • Échap : Fermer"
@@ -1322,6 +1369,9 @@
   "Device connections": {
     "Device connections": "Connexions des périphériques"
   },
+  "Device names updated": {
+    "Device names updated": ""
+  },
   "Device paired": {
     "Device paired": "Périphérique appairé"
   },
@@ -1374,7 +1424,7 @@
     "Dismiss": "Ignorer"
   },
   "Display": {
-    "Display": ""
+    "Display": "Écran"
   },
   "Display Assignment": {
     "Display Assignment": "Affectation de l’écran"
@@ -1383,7 +1433,7 @@
     "Display Name Format": "Format du nom d’affichage"
   },
   "Display Profiles": {
-    "Display Profiles": ""
+    "Display Profiles": "Profils d'écran"
   },
   "Display Settings": {
     "Display Settings": "Paramètres d’affichage"
@@ -1431,7 +1481,7 @@
     "Displays": "Affichages"
   },
   "Displays count when overflow is active": {
-    "Displays count when overflow is active": ""
+    "Displays count when overflow is active": "Affiche le compteur lorsque le débordement est actif"
   },
   "Displays the active keyboard layout and allows switching": {
     "Displays the active keyboard layout and allows switching": "Affiche la disposition de clavier active et permet de la changer"
@@ -1472,8 +1522,14 @@
   "Door Open": {
     "Door Open": "Porte ouverte"
   },
+  "Drag to Reorder": {
+    "Drag to Reorder": ""
+  },
   "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": {
     "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": "Faites glisser les widgets pour les réorganiser dans les sections. Utilisez l’icône en forme d’œil pour afficher ou masquer les widgets (en conservant l’espacement), ou le X pour les supprimer complètement."
+  },
+  "Drag workspace indicators to reorder them": {
+    "Drag workspace indicators to reorder them": ""
   },
   "Driver": {
     "Driver": "Pilote"
@@ -1494,7 +1550,7 @@
     "Dusk (Nautical Twilight)": "Crépuscule (nautique)"
   },
   "Dynamic Properties": {
-    "Dynamic Properties": ""
+    "Dynamic Properties": "Propriétés dynamiques"
   },
   "Edge Spacing": {
     "Edge Spacing": "Espacement des bords"
@@ -1503,7 +1559,7 @@
     "Edit App": "Editer appli"
   },
   "Edit Window Rule": {
-    "Edit Window Rule": ""
+    "Edit Window Rule": "Editer règle de fenêtre"
   },
   "Education": {
     "Education": "Éducation"
@@ -1582,6 +1638,12 @@
   },
   "End": {
     "End": "Fin"
+  },
+  "Enlarge on Hover": {
+    "Enlarge on Hover": ""
+  },
+  "Enlargement %": {
+    "Enlargement %": ""
   },
   "Enter 6-digit passkey": {
     "Enter 6-digit passkey": "Saisir la clé à 6 chiffres"
@@ -1671,7 +1733,7 @@
     "Failed to activate configuration": "Échec de l’activation de la configuration"
   },
   "Failed to activate profile - file not found": {
-    "Failed to activate profile - file not found": ""
+    "Failed to activate profile - file not found": "Échec d'activation du profil - fichier non trouvé"
   },
   "Failed to add binds include": {
     "Failed to add binds include": "Échec de l’ajout de l’inclusion des raccourcis"
@@ -1701,7 +1763,7 @@
     "Failed to create printer": "Échec de la création de l’imprimante"
   },
   "Failed to create profiles directory": {
-    "Failed to create profiles directory": ""
+    "Failed to create profiles directory": "Échec de la création des répertoires de profils"
   },
   "Failed to delete VPN": {
     "Failed to delete VPN": "Échec de la suppression du VPN"
@@ -1781,11 +1843,17 @@
   "Failed to remove printer from class": {
     "Failed to remove printer from class": "Échec du retrait de l’imprimante de la classe"
   },
+  "Failed to restart audio system": {
+    "Failed to restart audio system": ""
+  },
   "Failed to restart job": {
     "Failed to restart job": "Échec du redémarrage de la tâche"
   },
   "Failed to resume printer": {
     "Failed to resume printer": "Échec de la reprise de l’imprimante"
+  },
+  "Failed to save audio config": {
+    "Failed to save audio config": ""
   },
   "Failed to save clipboard setting": {
     "Failed to save clipboard setting": "Échec de l’enregistrement du paramètre du presse-papiers"
@@ -1794,7 +1862,7 @@
     "Failed to save keybind": "Échec de l’enregistrement du raccourci clavier"
   },
   "Failed to save profile file": {
-    "Failed to save profile file": ""
+    "Failed to save profile file": "Échec de la sauvegarde du fichier de profil"
   },
   "Failed to set brightness": {
     "Failed to set brightness": "Échec du réglage de la luminosité"
@@ -1896,10 +1964,10 @@
     "Flipped 90°": "Inversé à 90°"
   },
   "Float": {
-    "Float": ""
+    "Float": "Flottant"
   },
   "Focus": {
-    "Focus": ""
+    "Focus": "Focus"
   },
   "Focus at Startup": {
     "Focus at Startup": "Focus au démarrage"
@@ -1974,7 +2042,7 @@
     "Frequency": "Fréquence"
   },
   "Fullscreen": {
-    "Fullscreen": ""
+    "Fullscreen": "Plein écran"
   },
   "Fun": {
     "Fun": "Divertissement"
@@ -2070,7 +2138,7 @@
     "Health": "Santé"
   },
   "Height": {
-    "Height": ""
+    "Height": "Hauteur"
   },
   "Held": {
     "Held": "Maintenu"
@@ -2097,13 +2165,16 @@
     "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": "Les applications masquées n’apparaîtront pas dans le lanceur. Faites un clic droit sur une appli et sélectionnez 'Masquer l’appli' pour la masquer."
   },
   "Hide": {
-    "Hide": ""
+    "Hide": "Cacher"
   },
   "Hide App": {
     "Hide App": "Masquer l'appli"
   },
   "Hide Delay": {
     "Hide Delay": "Délai de masquage"
+  },
+  "Hide Indicators": {
+    "Hide Indicators": ""
   },
   "Hide When Typing": {
     "Hide When Typing": "Masquer lors de la saisie"
@@ -2175,7 +2246,7 @@
     "Hyprland Layout Overrides": "Surcharges de disposition Hyprland"
   },
   "Hyprland Options": {
-    "Hyprland Options": ""
+    "Hyprland Options": "Options Hyprland"
   },
   "I Understand": {
     "I Understand": "Je comprends"
@@ -2191,6 +2262,9 @@
   },
   "Icon Size": {
     "Icon Size": "Taille d'icônes"
+  },
+  "Icon Size %": {
+    "Icon Size %": ""
   },
   "Icon Theme": {
     "Icon Theme": "Thème d'icônes"
@@ -2248,6 +2322,9 @@
   },
   "Inherit": {
     "Inherit": "Hériter"
+  },
+  "Inhibitable": {
+    "Inhibitable": ""
   },
   "Input Devices": {
     "Input Devices": "Périphériques d'entrée"
@@ -2321,7 +2398,7 @@
     "Clipboard sent": "Presse-papier envoyé"
   },
   "KDE Connect clipboard action | Phone Connect clipboard action": {
-    "Clipboard sent": ""
+    "Clipboard sent": "Presse-papier envoyé"
   },
   "KDE Connect clipboard tooltip": {
     "Send Clipboard": "Envoyer le presse-papier"
@@ -2376,7 +2453,7 @@
     "Offline": "Hors ligne"
   },
   "KDE Connect offline status | Phone Connect offline status": {
-    "Offline": ""
+    "Offline": "Hors-ligne"
   },
   "KDE Connect open SMS app button": {
     "Open App": "Ouvrir appli"
@@ -2414,7 +2491,7 @@
     "Refresh": "Actualiser"
   },
   "KDE Connect refresh button | Phone Connect refresh tooltip": {
-    "Refresh": ""
+    "Refresh": "Actualiser"
   },
   "KDE Connect reject pairing button": {
     "Reject": "Rejeter"
@@ -2426,7 +2503,7 @@
     "Ringing": "En train de sonner"
   },
   "KDE Connect ring action | Phone Connect ring action": {
-    "Ringing": ""
+    "Ringing": "Sonnerie"
   },
   "KDE Connect ring tooltip": {
     "Ring": "Faire sonner"
@@ -2483,7 +2560,7 @@
     "Device unpaired": "Appareil déconnecté"
   },
   "KDE Connect unpair action | Phone Connect unpair action": {
-    "Device unpaired": ""
+    "Device unpaired": "Appareil déconnecté"
   },
   "KDE Connect unpair tooltip": {
     "Unpair": "Déconnexion"
@@ -2602,6 +2679,12 @@
   "Loading keybinds...": {
     "Loading keybinds...": "Chargement des raccourcis clavier..."
   },
+  "Loading overlay subtitle": {
+    "This may take a few seconds": ""
+  },
+  "Loading overlay while WirePlumber restarts": {
+    "Restarting audio system...": ""
+  },
   "Loading plugins...": {
     "Loading plugins...": "Chargement des plugins..."
   },
@@ -2711,10 +2794,10 @@
     "Marker Waste Full": "Bac de récupération plein"
   },
   "Match Criteria": {
-    "Match Criteria": ""
+    "Match Criteria": "Critères de correspondance"
   },
   "Matches profile: %1": {
-    "Matches profile: %1": ""
+    "Matches profile: %1": "Correspond au profil : %1"
   },
   "Material Colors": {
     "Material Colors": "Couleurs Material"
@@ -2729,34 +2812,34 @@
     "Matugen Templates": "Modèles Matugen"
   },
   "Max Edges": {
-    "Max Edges": ""
+    "Max Edges": "Bordures max"
   },
   "Max H": {
-    "Max H": ""
+    "Max H": "H max"
   },
   "Max Pinned Apps": {
-    "Max Pinned Apps": ""
+    "Max Pinned Apps": "Nombre maximum d'applis épinglées"
   },
   "Max Pinned Apps (0 = Unlimited)": {
-    "Max Pinned Apps (0 = Unlimited)": ""
+    "Max Pinned Apps (0 = Unlimited)": "Nombre maximum d'applis épinglées (0 = illimité)"
   },
   "Max Running Apps": {
-    "Max Running Apps": ""
+    "Max Running Apps": "Nombre maximum d'applis lancées"
   },
   "Max Running Apps (0 = Unlimited)": {
-    "Max Running Apps (0 = Unlimited)": ""
+    "Max Running Apps (0 = Unlimited)": "Nombre maximum d'applis lancées (0 = illimité)"
   },
   "Max W": {
-    "Max W": ""
+    "Max W": "L max"
   },
   "Max apps to show": {
     "Max apps to show": "Nombre max d'apps à afficher"
   },
   "Max to Edges": {
-    "Max to Edges": ""
+    "Max to Edges": "Maximum vers les bords"
   },
   "Maximize": {
-    "Maximize": ""
+    "Maximize": "Maximiser"
   },
   "Maximize Detection": {
     "Maximize Detection": "Détection de maximisation"
@@ -2846,10 +2929,10 @@
     "Middle Section": "Section centrale"
   },
   "Min H": {
-    "Min H": ""
+    "Min H": "H min"
   },
   "Min W": {
-    "Min W": ""
+    "Min W": "L min"
   },
   "Minimal palette built around a single hue.": {
     "Minimal palette built around a single hue.": "Palette minimaliste basée sur une seule teinte."
@@ -2862,6 +2945,9 @@
   },
   "Modal Background": {
     "Modal Background": "Arrière-plan modal"
+  },
+  "Modals": {
+    "Modals": ""
   },
   "Mode": {
     "Mode": "Mode"
@@ -2876,7 +2962,7 @@
     "Modified": "Modifié"
   },
   "Monitor": {
-    "Monitor": ""
+    "Monitor": "Moniteur"
   },
   "Monitor Configuration": {
     "Monitor Configuration": "Configuration de l’écran"
@@ -2906,7 +2992,7 @@
     "Mouse pointer size in pixels": "Taille du pointeur de la souris en pixels"
   },
   "Move": {
-    "Move": ""
+    "Move": "Déplacer"
   },
   "Move Widget": {
     "Move Widget": "Déplacer le widget"
@@ -2969,7 +3055,7 @@
     "New Notification": "Nouvelle notification"
   },
   "New Window Rule": {
-    "New Window Rule": ""
+    "New Window Rule": "Nouvelle règle de fenêtre"
   },
   "New York, NY": {
     "New York, NY": "New York, NY"
@@ -3005,7 +3091,7 @@
     "No Active Players": "Aucun lecteur actif"
   },
   "No Anim": {
-    "No Anim": ""
+    "No Anim": "Pas d'animation"
   },
   "No Background": {
     "No Background": "Aucun arrière-plan"
@@ -3014,16 +3100,16 @@
     "No Bluetooth adapter found": "Aucun adaptateur Bluetooth détecté"
   },
   "No Blur": {
-    "No Blur": ""
+    "No Blur": "Pas de flou"
   },
   "No Border": {
-    "No Border": ""
+    "No Border": "Pas de bordure"
   },
   "No Dim": {
-    "No Dim": ""
+    "No Dim": "Ne pas assombrir"
   },
   "No Focus": {
-    "No Focus": ""
+    "No Focus": "Ne pas prendre le focus"
   },
   "No GPU detected": {
     "No GPU detected": "Aucun GPU détecté"
@@ -3032,13 +3118,13 @@
     "No Media": "Aucun média"
   },
   "No Round": {
-    "No Round": ""
+    "No Round": "Pas d'arrondi"
   },
   "No Rounding": {
-    "No Rounding": ""
+    "No Rounding": "Pas d'arrondi"
   },
   "No Shadow": {
-    "No Shadow": ""
+    "No Shadow": "Pas d'ombre"
   },
   "No VPN profiles": {
     "No VPN profiles": "Aucun profil VPN"
@@ -3104,7 +3190,7 @@
     "No launcher plugins installed.": "Aucun plugins de Lanceur installé."
   },
   "No match criteria": {
-    "No match criteria": ""
+    "No match criteria": "Aucun critère correspondant"
   },
   "No matches": {
     "No matches": "Aucune correspondance"
@@ -3128,7 +3214,7 @@
     "No printers found": "Aucune imprimante trouvée"
   },
   "No profiles": {
-    "No profiles": ""
+    "No profiles": "Aucun profil"
   },
   "No recent clipboard entries found": {
     "No recent clipboard entries found": "Aucune entrée récente trouvée dans le presse-papier"
@@ -3152,7 +3238,7 @@
     "No widgets match your search": "Aucun widget ne correspond à votre recherche"
   },
   "No window rules configured": {
-    "No window rules configured": ""
+    "No window rules configured": "Aucune règle de fenêtre configurée"
   },
   "None": {
     "None": "Aucun"
@@ -3251,13 +3337,16 @@
     "Opacity": "Opacité"
   },
   "Opaque": {
-    "Opaque": ""
+    "Opaque": "Opaque"
   },
   "Open": {
     "Open": "Ouvrir"
   },
   "Open Notepad File": {
     "Open Notepad File": "Ouvrir un fichier du bloc-notes"
+  },
+  "Open a new note": {
+    "Open a new note": ""
   },
   "Open folder": {
     "Open folder": "Ouvrir dossier"
@@ -3287,7 +3376,7 @@
     "Other": "Autre"
   },
   "Output": {
-    "Output": ""
+    "Output": "Sortie"
   },
   "Output Area Almost Full": {
     "Output Area Almost Full": "Zone de sortie presque pleine"
@@ -3302,7 +3391,7 @@
     "Outputs Include Missing": "Les sorties incluent des éléments manquants"
   },
   "Overflow": {
-    "Overflow": ""
+    "Overflow": "Débordement"
   },
   "Overridden by config": {
     "Overridden by config": "Surchargé par la configuration"
@@ -3365,7 +3454,7 @@
     "Password": "Mot de passe"
   },
   "Paste": {
-    "Paste": ""
+    "Paste": "Coller"
   },
   "Pattern": {
     "Pattern": "Motif"
@@ -3401,66 +3490,69 @@
     "Personalization": "Personnalisation"
   },
   "Phone Connect SMS action": {
-    "Opening SMS app": ""
+    "Opening SMS app": "Ouvrir l'appli SMS"
   },
   "Phone Connect browse action": {
-    "Opening file browser": ""
+    "Opening file browser": "Ouvrir l'explorateur de fichiers"
   },
   "Phone Connect daemon hint": {
-    "Start KDE Connect or Valent to use this plugin": ""
+    "Start KDE Connect or Valent to use this plugin": "Démarrer KDE Connect ou Valent pour utiliser ce plugin"
   },
   "Phone Connect error": {
-    "Failed to accept pairing": "",
-    "Failed to browse device": "",
-    "Failed to launch SMS app": "",
-    "Failed to reject pairing": "",
-    "Failed to ring device": "",
-    "Failed to send clipboard": "",
-    "Failed to send file": "",
-    "Failed to send ping": "",
-    "Failed to share": "",
-    "Pairing failed": "",
-    "Unpair failed": ""
+    "Failed to accept pairing": "Échec de l'appairage",
+    "Failed to browse device": "Échec de recherche de l'appareil",
+    "Failed to launch SMS app": "Échec du lancement de l'appli SMS",
+    "Failed to reject pairing": "Échec du rejet de l'appairage",
+    "Failed to ring device": "Échec de la sonnerie de l'appareil",
+    "Failed to send clipboard": "Échec de l'envoi du presse-papier",
+    "Failed to send file": "Échec de l'envoi du fichier",
+    "Failed to send ping": "Échec de l'envoi du ping",
+    "Failed to share": "Échec du partage",
+    "Pairing failed": "Échec de l'appairage",
+    "Unpair failed": "Échec de la déconnexion"
   },
   "Phone Connect file send": {
-    "Sending": ""
+    "Sending": "Envoi"
   },
   "Phone Connect file share notification": {
-    "File received from": ""
+    "File received from": "Fichier reçu de"
   },
   "Phone Connect hint message": {
-    "Make sure KDE Connect or Valent is running on your other devices": ""
+    "Make sure KDE Connect or Valent is running on your other devices": "Assurez-vous que KDE Connect ou Valent est lancé sur vos autres appareils"
   },
   "Phone Connect no devices status | bluetooth status": {
-    "No devices": ""
+    "No devices": "Aucun appareil"
   },
   "Phone Connect pairing action": {
-    "Device paired": "",
-    "Pairing request sent": ""
+    "Device paired": "Appareil connecté",
+    "Pairing request sent": "Requête d'appairage envoyée"
   },
   "Phone Connect pairing request notification": {
-    "Pairing request from": ""
+    "Pairing request from": "Requête d'appairage de"
   },
   "Phone Connect pairing verification key label": {
-    "Verification": ""
+    "Verification": "Vérification"
   },
   "Phone Connect ping action": {
-    "Ping sent to": ""
+    "Ping sent to": "Ping envoyé à"
+  },
+  "Phone Connect refresh tooltip": {
+    "Refresh": ""
   },
   "Phone Connect service unavailable message": {
-    "Phone Connect unavailable": ""
+    "Phone Connect unavailable": "Connexion au téléphone indisponible"
   },
   "Phone Connect share success": {
-    "Shared": ""
+    "Shared": "Partagé"
   },
   "Phone Connect start daemon hint": {
-    "Start KDE Connect or Valent": ""
+    "Start KDE Connect or Valent": "Démarrer KDE Connect ou Valent"
   },
   "Phone Connect unavailable error title": {
-    "Phone Connect Not Available": ""
+    "Phone Connect Not Available": "Connexion au téléphone non disponible"
   },
   "Phone Connect unavailable status": {
-    "Unavailable": ""
+    "Unavailable": "Indisponible"
   },
   "Pin": {
     "Pin": "Épingler"
@@ -3521,6 +3613,9 @@
   },
   "Pointer": {
     "Pointer": "Curseur"
+  },
+  "Popouts": {
+    "Popouts": ""
   },
   "Popup Position": {
     "Popup Position": "Position du popup"
@@ -3646,25 +3741,25 @@
     "Profile Image Error": "Erreur de l’image de profil"
   },
   "Profile activated: %1": {
-    "Profile activated: %1": ""
+    "Profile activated: %1": "Profil activé : %1"
   },
   "Profile deleted": {
-    "Profile deleted": ""
+    "Profile deleted": "Profil supprimé"
   },
   "Profile error": {
-    "Profile error": ""
+    "Profile error": "Erreur du profil"
   },
   "Profile image is too large. Please use a smaller image.": {
     "Profile image is too large. Please use a smaller image.": "L’image de profil est trop grande. Veuillez utiliser une image plus petite."
   },
   "Profile name": {
-    "Profile name": ""
+    "Profile name": "Nom du profil"
   },
   "Profile not found": {
-    "Profile not found": ""
+    "Profile not found": "Profil introuvable"
   },
   "Profile saved: %1": {
-    "Profile saved: %1": ""
+    "Profile saved: %1": "Profil sauvegardé : %1"
   },
   "Protocol": {
     "Protocol": "Protocole"
@@ -3685,7 +3780,7 @@
     "RGB": "RGB"
   },
   "Radius": {
-    "Radius": ""
+    "Radius": "Rayon"
   },
   "Rain Chance": {
     "Rain Chance": "Risque de pluie"
@@ -3768,6 +3863,9 @@
   "Reset Size": {
     "Reset Size": "Réinitialiser la taille"
   },
+  "Reset to default name": {
+    "Reset to default name": ""
+  },
   "Resize Widget": {
     "Resize Widget": "Redimensionner le widget"
   },
@@ -3823,13 +3921,13 @@
     "Rounded corners for windows (decoration.rounding)": "Coins arrondis pour les fenêtres (decoration.rounding)"
   },
   "Rule": {
-    "Rule": ""
+    "Rule": "Règle"
   },
   "Rule Name": {
-    "Rule Name": ""
+    "Rule Name": "Nom de la règle"
   },
   "Rules (%1)": {
-    "Rules (%1)": ""
+    "Rules (%1)": "Règles (%1)"
   },
   "Run DMS Templates": {
     "Run DMS Templates": "Exécuter les modèles DMS"
@@ -3852,6 +3950,12 @@
   "Running Apps Settings": {
     "Running Apps Settings": "Paramètres des applications en cours"
   },
+  "Running apps filter: only show apps from the active workspace": {
+    "Current Workspace": ""
+  },
+  "Running apps filter: only show apps from the same monitor": {
+    "Current Monitor": ""
+  },
   "SDR Brightness": {
     "SDR Brightness": "Luminosité SDR"
   },
@@ -3865,7 +3969,7 @@
     "Save Notepad File": "Enregistrer le fichier"
   },
   "Save and switch between display configurations": {
-    "Save and switch between display configurations": ""
+    "Save and switch between display configurations": "Enregistrer et basculer entre les configurations d’affichage"
   },
   "Save password": {
     "Save password": "Enregistrer le mot de passe"
@@ -3876,11 +3980,14 @@
   "Saved Configurations": {
     "Saved Configurations": "Configurations enregistrées"
   },
+  "Saved Note": {
+    "Saved Note": ""
+  },
   "Saved item deleted": {
     "Saved item deleted": "Élément sauvegardé supprimé"
   },
   "Saving...": {
-    "Saving...": ""
+    "Saving...": "Sauvegarde..."
   },
   "Scale": {
     "Scale": "Échelle"
@@ -3910,10 +4017,10 @@
     "Screen sharing": "Partage d’écran"
   },
   "Scroll": {
-    "Scroll": ""
+    "Scroll": "Défiler"
   },
   "Scroll Factor": {
-    "Scroll Factor": ""
+    "Scroll Factor": "Sensibilité du défilement"
   },
   "Scroll Wheel": {
     "Scroll Wheel": "Molette"
@@ -4000,7 +4107,7 @@
     "Select a widget to add. You can add multiple instances of the same widget if needed.": "Sélectionner un widget à ajouter. Vous pouvez ajouter plusieurs instances du même widget si nécessaire."
   },
   "Select a window...": {
-    "Select a window...": ""
+    "Select a window...": "Sélectionner une fenêtre..."
   },
   "Select an image file...": {
     "Select an image file...": "Sélectionner un fichier image..."
@@ -4050,6 +4157,9 @@
   "Server": {
     "Server": "Serveur"
   },
+  "Set custom name": {
+    "Set custom name": ""
+  },
   "Set different wallpapers for each connected monitor": {
     "Set different wallpapers for each connected monitor": "Définir des fonds d’écran différents pour chaque écran connecté"
   },
@@ -4087,13 +4197,13 @@
     "Shortcuts (%1)": "Raccourcis (%1)"
   },
   "Show": {
-    "Show": ""
+    "Show": "Montrer"
   },
   "Show All Tags": {
     "Show All Tags": "Afficher toutes les étiquettes"
   },
   "Show Badge": {
-    "Show Badge": ""
+    "Show Badge": "Montrer badge"
   },
   "Show CPU": {
     "Show CPU": "Afficher le CPU"
@@ -4168,7 +4278,7 @@
     "Show Occupied Workspaces Only": "Afficher uniquement les espaces occupés"
   },
   "Show Overflow Badge Count": {
-    "Show Overflow Badge Count": ""
+    "Show Overflow Badge Count": "Afficher le compteur du badge de débordement"
   },
   "Show Power Off": {
     "Show Power Off": "Afficher éteindre"
@@ -4184,6 +4294,9 @@
   },
   "Show Restart DMS": {
     "Show Restart DMS": "Afficher redémarrer DMS"
+  },
+  "Show Saved Items": {
+    "Show Saved Items": ""
   },
   "Show Seconds": {
     "Show Seconds": "Afficher les secondes"
@@ -4296,6 +4409,9 @@
   "Shows current workspace and allows switching": {
     "Shows current workspace and allows switching": "Afficher l’espace de travail actuel et permettre de changer"
   },
+  "Shows the original device name before renaming": {
+    "Original: %1": ""
+  },
   "Shows when caps lock is active": {
     "Shows when caps lock is active": "Indique lorsque la touche majuscule est activée"
   },
@@ -4315,13 +4431,16 @@
     "Size": "Taille"
   },
   "Size Constraints": {
-    "Size Constraints": ""
+    "Size Constraints": "Contraintes de taille"
   },
   "Size Offset": {
     "Size Offset": "Décalage de taille"
   },
   "Sizing": {
     "Sizing": "Redimensionnement"
+  },
+  "Skip confirmation": {
+    "Skip confirmation": ""
   },
   "Small": {
     "Small": "Petit"
@@ -4333,7 +4452,7 @@
     "Smartcard PIN": "PIN de la carte à puce"
   },
   "Snap": {
-    "Snap": ""
+    "Snap": "Snap"
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": "Certains plugins nécessitent une version plus récente de DMS :"
@@ -4483,7 +4602,7 @@
     "System notification area icons": "Icônes de la zone de notification système"
   },
   "System sounds are not available. Install %1 for sound support.": {
-    "System sounds are not available. Install %1 for sound support.": ""
+    "System sounds are not available. Install %1 for sound support.": "Les sons système ne sont pas disponibles. Installez %1 pour activer le support audio."
   },
   "System sounds are not available. Install canberra-gtk-play for sound support.": {
     "System sounds are not available. Install canberra-gtk-play for sound support.": "Les sons système ne sont pas disponibles. Installez canberra-gtk-play pour activer le son."
@@ -4561,10 +4680,10 @@
     "This will permanently remove this saved clipboard item. This action cannot be undone.": "Cela supprimera définitivement cet élément du presse-papier. Cela ne peut pas être annulé."
   },
   "Tiled": {
-    "Tiled": ""
+    "Tiled": "Ajusté"
   },
   "Tiled State": {
-    "Tiled State": ""
+    "Tiled State": "Etat ajusté"
   },
   "Tiling": {
     "Tiling": "Mosaïque"
@@ -4597,7 +4716,7 @@
     "Title": "Titre"
   },
   "Title regex (optional)": {
-    "Title regex (optional)": ""
+    "Title regex (optional)": "Regex du titre (optionnelle)"
   },
   "To Full": {
     "To Full": "Chargé"
@@ -4738,7 +4857,7 @@
     "Unknown Network": "Réseau inconnu"
   },
   "Unnamed Rule": {
-    "Unnamed Rule": ""
+    "Unnamed Rule": "Règle non nommée"
   },
   "Unpin": {
     "Unpin": "Détacher"
@@ -4759,7 +4878,7 @@
     "Untitled": "Sans titre"
   },
   "Update": {
-    "Update": ""
+    "Update": "Mettre à jour"
   },
   "Update All": {
     "Update All": "Tout mettre à jour"
@@ -4938,6 +5057,9 @@
   "Visibility": {
     "Visibility": "Visibilité"
   },
+  "Visual Effects": {
+    "Visual Effects": ""
+  },
   "Visual divider between widgets": {
     "Visual divider between widgets": "Séparateur visuel entre widgets"
   },
@@ -4985,6 +5107,9 @@
   },
   "When enabled, apps are sorted alphabetically. When disabled, apps are sorted by usage frequency.": {
     "When enabled, apps are sorted alphabetically. When disabled, apps are sorted by usage frequency.": "Si activé, les applications sont triées par ordre alphabétique. Sinon, elles sont triées selon la fréquence d’utilisation."
+  },
+  "When locked": {
+    "When locked": ""
   },
   "When updater widget is used, then hide it if no update found": {
     "Hide Updater Widget": "Masquer le widget de mise à jour",
@@ -5052,7 +5177,7 @@
     "Widget removed": "Widget supprimé"
   },
   "Width": {
-    "Width": ""
+    "Width": "Longueur"
   },
   "Width of window border (borderpx)": {
     "Width of window border (borderpx)": "Largeur de la bordure de la fenêtre (px)"
@@ -5082,22 +5207,22 @@
     "Window Gaps (px)": "Espacement des fenêtres (px)"
   },
   "Window Height": {
-    "Window Height": ""
+    "Window Height": "Hauteur de fenêtre"
   },
   "Window Opening": {
-    "Window Opening": ""
+    "Window Opening": "Ouverture de fenêtre"
   },
   "Window Rounding": {
     "Window Rounding": "Arrondi des fenêtres"
   },
   "Window Rules": {
-    "Window Rules": ""
+    "Window Rules": "Règles de fenêtre"
   },
   "Window Rules Include Missing": {
-    "Window Rules Include Missing": ""
+    "Window Rules Include Missing": "Inclusion des règles de fenêtre manquante"
   },
   "Window Rules Not Configured": {
-    "Window Rules Not Configured": ""
+    "Window Rules Not Configured": "Règles de fenêtres non configurées"
   },
   "Workspace": {
     "Workspace": "Espace de travail"
@@ -5197,6 +5322,16 @@
   },
   "browse themes button | theme browser header | theme browser window title": {
     "Browse Themes": "Parcourir les thèmes"
+  },
+  "button color option | color option | primary color | tile color option": {
+    "Primary": ""
+  },
+  "button color option | color option | secondary color | tile color option": {
+    "Secondary": ""
+  },
+  "button color option | tile color option": {
+    "Primary Container": "",
+    "Surface Variant": ""
   },
   "catppuccin theme description": {
     "Soothing pastel theme based on Catppuccin": "Thème pastel apaisant basé sur Catppuccin"
@@ -5318,6 +5453,9 @@
   },
   "fallback gpu name": {
     "Unknown GPU": "GPU inconnu"
+  },
+  "featured": {
+    "featured": ""
   },
   "files": {
     "files": "fichiers"
@@ -5561,6 +5699,7 @@
     "nav": "nav"
   },
   "network status": {
+    "Connected": "",
     "Disabling WiFi...": "Désactivation du Wi-Fi...",
     "Enabling WiFi...": "Activation du Wi-Fi...",
     "Ethernet": "Ethernet",

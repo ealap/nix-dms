@@ -335,6 +335,33 @@ Singleton {
         return toplevels;
     }
 
+    function filterCurrentDisplay(toplevels, screenName) {
+        if (!toplevels || toplevels.length === 0 || !screenName)
+            return toplevels;
+        if (useNiriSorting)
+            return NiriService.filterCurrentDisplay(toplevels, screenName);
+        if (isHyprland)
+            return filterHyprlandCurrentDisplaySafe(toplevels, screenName);
+        return toplevels;
+    }
+
+    function filterHyprlandCurrentDisplaySafe(toplevels, screenName) {
+        if (!toplevels || toplevels.length === 0 || !Hyprland.toplevels)
+            return toplevels;
+
+        let monitorWindows = new Set();
+        try {
+            const hy = Array.from(Hyprland.toplevels.values);
+            for (const t of hy) {
+                const mon = _get(t, ["monitor", "name"], "");
+                if (mon === screenName && t.wayland)
+                    monitorWindows.add(t.wayland);
+            }
+        } catch (e) {}
+
+        return toplevels.filter(w => monitorWindows.has(w));
+    }
+
     function filterHyprlandCurrentWorkspaceSafe(toplevels, screenName) {
         if (!toplevels || toplevels.length === 0 || !Hyprland.toplevels)
             return toplevels;

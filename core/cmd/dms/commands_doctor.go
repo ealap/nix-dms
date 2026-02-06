@@ -11,6 +11,7 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/AvengeMedia/DankMaterialShell/core/internal/clipboard"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/config"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/distros"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/server/brightness"
@@ -101,11 +102,13 @@ var doctorCmd = &cobra.Command{
 var (
 	doctorVerbose bool
 	doctorJSON    bool
+	doctorCopy    bool
 )
 
 func init() {
 	doctorCmd.Flags().BoolVarP(&doctorVerbose, "verbose", "v", false, "Show detailed output including paths and versions")
 	doctorCmd.Flags().BoolVarP(&doctorJSON, "json", "j", false, "Output results in JSON format")
+	doctorCmd.Flags().BoolVarP(&doctorCopy, "copy", "C", false, "Copy results to clipboard in GitHub-friendly format")
 }
 
 type category int
@@ -192,7 +195,7 @@ func (r checkResult) toJSON() checkResultJSON {
 }
 
 func runDoctor(cmd *cobra.Command, args []string) {
-	if !doctorJSON {
+	if !doctorJSON && !doctorCopy {
 		printDoctorHeader()
 	}
 
@@ -210,9 +213,17 @@ func runDoctor(cmd *cobra.Command, args []string) {
 		checkEnvironmentVars(),
 	)
 
-	if doctorJSON {
+	switch {
+	case doctorCopy:
+		text := formatResultsPlain(results)
+		if err := clipboard.CopyOpts([]byte(text), "text/plain;charset=utf-8", false, false); err != nil {
+			fmt.Fprintf(os.Stderr, "Failed to copy to clipboard: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Println("Doctor report copied to clipboard")
+	case doctorJSON:
 		printResultsJSON(results)
-	} else {
+	default:
 		printResults(results)
 		printSummary(results, qsMissingFeatures)
 	}
@@ -928,4 +939,37 @@ func printSummary(results []checkResult, qsMissingFeatures bool) {
 		}
 	}
 	fmt.Println()
+}
+
+func formatResultsPlain(results []checkResult) string {
+	var sb strings.Builder
+	sb.WriteString("## DMS Doctor Report\n\n")
+
+	currentCategory := category(-1)
+	for _, r := range results {
+		if r.category != currentCategory {
+			if currentCategory != -1 {
+				sb.WriteString("\n")
+			}
+			sb.WriteString(fmt.Sprintf("**%s**\n", r.category.String()))
+			currentCategory = r.category
+		}
+
+		sb.WriteString(fmt.Sprintf("- [%s] %s: %s\n", r.status, r.name, r.message))
+
+		if doctorVerbose && r.details != "" {
+			sb.WriteString(fmt.Sprintf("  - %s\n", r.details))
+		}
+	}
+
+	var ds DoctorStatus
+	for _, r := range results {
+		ds.Add(r)
+	}
+
+	sb.WriteString("\n---\n")
+	sb.WriteString(fmt.Sprintf("**Summary:** %d error(s), %d warning(s), %d ok\n",
+		ds.ErrorCount(), ds.WarningCount(), ds.OKCount()))
+
+	return sb.String()
 }

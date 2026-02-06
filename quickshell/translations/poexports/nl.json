@@ -1,4 +1,7 @@
 {
+  "%1 Animation Speed": {
+    "%1 Animation Speed": ""
+  },
   "%1 DMS bind(s) may be overridden by config binds that come after the include.": {
     "%1 DMS bind(s) may be overridden by config binds that come after the include.": "%1 DMS-bind(s) worden mogelijk overschreven door config-binds die na de include komen."
   },
@@ -14,14 +17,17 @@
   "%1 connected": {
     "%1 connected": "%1 verbonden"
   },
+  "%1 custom animation duration": {
+    "%1 custom animation duration": ""
+  },
   "%1 days ago": {
     "%1 days ago": "%1 dagen geleden"
   },
   "%1 disconnected": {
-    "%1 disconnected": ""
+    "%1 disconnected": "%1 verbroken"
   },
   "%1 disconnected (hidden)": {
-    "%1 disconnected (hidden)": ""
+    "%1 disconnected (hidden)": "%1 verbroken (verborgen)"
   },
   "%1 display(s)": {
     "%1 display(s)": "%1 beeldscherm(en)"
@@ -30,7 +36,7 @@
     "%1 exists but is not included in config. Custom keybinds will not work until this is fixed.": "%1 bestaat maar is niet opgenomen in config. Aangepaste sneltoetsen werken pas als dit is opgelost."
   },
   "%1 exists but is not included. Window rules won't apply.": {
-    "%1 exists but is not included. Window rules won't apply.": ""
+    "%1 exists but is not included. Window rules won't apply.": "%1 bestaat maar is niet opgenomen. Vensterregels zijn niet van toepassing."
   },
   "%1 is now included in config": {
     "%1 is now included in config": "%1 is nu opgenomen in config"
@@ -185,6 +191,9 @@
   "Active": {
     "Active": "Actief"
   },
+  "Active Color": {
+    "Active Color": ""
+  },
   "Active Lock Screen Monitor": {
     "Active Lock Screen Monitor": "Actief vergrendelscherm-beeldscherm"
   },
@@ -213,7 +222,7 @@
     "Add Printer": "Printer toevoegen"
   },
   "Add Title": {
-    "Add Title": ""
+    "Add Title": "Titel toevoegen"
   },
   "Add Widget": {
     "Add Widget": "Widget toevoegen"
@@ -300,7 +309,7 @@
     "App ID Substitutions": "App ID-vervangingen"
   },
   "App ID regex (e.g. ^firefox$)": {
-    "App ID regex (e.g. ^firefox$)": ""
+    "App ID regex (e.g. ^firefox$)": "App-ID regex (bijv. ^firefox$)"
   },
   "App Launcher": {
     "App Launcher": "App-starter"
@@ -328,6 +337,9 @@
   },
   "Apps Dock": {
     "Apps Dock": "Apps-dock"
+  },
+  "Apps Dock Settings": {
+    "Apps Dock Settings": ""
   },
   "Apps Icon": {
     "Apps Icon": "Apps-pictogram"
@@ -367,6 +379,32 @@
   },
   "Audio Visualizer": {
     "Audio Visualizer": "Audiovisualisatie"
+  },
+  "Audio device rename dialog field label": {
+    "Custom Name": ""
+  },
+  "Audio device rename dialog hint": {
+    "Press Enter and the audio system will restart to apply the change": ""
+  },
+  "Audio device rename dialog placeholder": {
+    "Enter device name...": ""
+  },
+  "Audio device rename dialog title": {
+    "Set Custom Device Name": ""
+  },
+  "Audio settings description": {
+    "Set custom names for your audio input devices": "",
+    "Set custom names for your audio output devices": ""
+  },
+  "Audio settings empty state": {
+    "No input devices found": "",
+    "No output devices found": ""
+  },
+  "Audio settings: speaker/headphone devices": {
+    "Output Devices": ""
+  },
+  "Audio system restarted": {
+    "Audio system restarted": ""
   },
   "Audio volume control": {
     "Audio volume control": "Audio-volumeregeling"
@@ -537,10 +575,10 @@
     "Bit Depth": "Kleurdiepte"
   },
   "Block Out": {
-    "Block Out": ""
+    "Block Out": "Uitsluiten"
   },
   "Block Out From": {
-    "Block Out From": ""
+    "Block Out From": "Uitsluiten van"
   },
   "Block notifications": {
     "Block notifications": "Meldingen blokkeren"
@@ -585,7 +623,7 @@
     "Border Thickness": "Randdikte"
   },
   "Border with BG": {
-    "Border with BG": ""
+    "Border with BG": "Rand met achtergrond"
   },
   "Bottom": {
     "Bottom": "Onder"
@@ -622,6 +660,9 @@
   },
   "Browse or search plugins": {
     "Browse or search plugins": "Plug-ins bladeren of zoeken"
+  },
+  "Button Color": {
+    "Button Color": ""
   },
   "CPU": {
     "CPU": "CPU"
@@ -756,7 +797,7 @@
     "Cipher": "Cijfer"
   },
   "Class regex (e.g. ^firefox$)": {
-    "Class regex (e.g. ^firefox$)": ""
+    "Class regex (e.g. ^firefox$)": "Klasse-regex (bijv. ^firefox$)"
   },
   "Clear": {
     "Clear": "Wissen"
@@ -783,7 +824,7 @@
     "Click 'Setup' to create %1 and add include to config.": "Klik op 'Instellen' om %1 te maken en include toe te voegen aan config."
   },
   "Click 'Setup' to create %1 and add include to your compositor config.": {
-    "Click 'Setup' to create %1 and add include to your compositor config.": ""
+    "Click 'Setup' to create %1 and add include to your compositor config.": "Klik op 'Instellen' om %1 aan te maken en de include toe te voegen aan je compositor-configuratie."
   },
   "Click 'Setup' to create cursor config and add include to your compositor config.": {
     "Click 'Setup' to create cursor config and add include to your compositor config.": "Klik op 'Instellen' om cursorconfiguratie te maken en include toe te voegen aan uw compositor-configuratie."
@@ -795,7 +836,7 @@
     "Click 'Setup' to create the outputs config and add include to your compositor config.": "Klik op 'Instellen' om de outputs-configuratie te maken en include toe te voegen aan uw compositor-configuratie."
   },
   "Click + to add a rule for the focused window": {
-    "Click + to add a rule for the focused window": ""
+    "Click + to add a rule for the focused window": "Klik op + om een regel toe te voegen voor het venster met focus"
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "Klik op Importeren om een .ovpn of .conf toe te voegen"
@@ -813,10 +854,10 @@
     "Click to capture": "Klik om vast te leggen"
   },
   "Clip": {
-    "Clip": ""
+    "Clip": "Bijsnijden"
   },
   "Clip to Geometry": {
-    "Clip to Geometry": ""
+    "Clip to Geometry": "Bijsnijden naar afmetingen"
   },
   "Clipboard": {
     "Clipboard": "Klembord"
@@ -875,6 +916,9 @@
   "Color displayed on monitors without the lock screen": {
     "Color displayed on monitors without the lock screen": "Kleur weergegeven op beeldschermen zonder vergrendelscherm"
   },
+  "Color for primary action buttons": {
+    "Color for primary action buttons": ""
+  },
   "Color temperature for day time": {
     "Color temperature for day time": "Kleurtemperatuur voor overdag"
   },
@@ -890,14 +934,17 @@
   "Colorful mix of bright contrasting accents.": {
     "Colorful mix of bright contrasting accents.": "Kleurrijke mix van heldere contrasterende accenten."
   },
+  "Colorize Active": {
+    "Colorize Active": ""
+  },
   "Column": {
     "Column": "Kolom"
   },
   "Column Display": {
-    "Column Display": ""
+    "Column Display": "Kolomweergave"
   },
   "Column Width": {
-    "Column Width": ""
+    "Column Width": "Kolombreedte"
   },
   "Command": {
     "Command": "Opdracht"
@@ -924,7 +971,7 @@
     "Compositor Settings": "Compositor-instellingen"
   },
   "Compositor not supported": {
-    "Compositor not supported": ""
+    "Compositor not supported": "Compositor niet ondersteund"
   },
   "Config Format": {
     "Config Format": "Config-formaat"
@@ -951,7 +998,7 @@
     "Configure icons for named workspaces. Icons take priority over numbers when both are enabled.": "Configureer pictogrammen voor benoemde werkbladen. Pictogrammen hebben voorrang op nummers als beide zijn ingeschakeld."
   },
   "Configure match criteria and actions": {
-    "Configure match criteria and actions": ""
+    "Configure match criteria and actions": "Criteria en acties configureren"
   },
   "Configure which displays show shell components": {
     "Configure which displays show shell components": "Configureer welke beeldschermen shell-onderdelen tonen"
@@ -996,7 +1043,7 @@
     "Connecting...": "Verbinden..."
   },
   "Content copied": {
-    "Content copied": ""
+    "Content copied": "Inhoud gekopieerd"
   },
   "Contrast": {
     "Contrast": "Contrast"
@@ -1041,7 +1088,7 @@
     "Copy": "Kopiëren"
   },
   "Copy Content": {
-    "Copy Content": ""
+    "Copy Content": "Inhoud kopiëren"
   },
   "Copy Full Command": {
     "Copy Full Command": "Volledige opdracht kopiëren"
@@ -1080,7 +1127,7 @@
     "Cover Open": "Klep open"
   },
   "Create": {
-    "Create": ""
+    "Create": "Aanmaken"
   },
   "Create Dir": {
     "Create Dir": "Map maken"
@@ -1089,10 +1136,10 @@
     "Create Printer": "Printer aanmaken"
   },
   "Create Window Rule": {
-    "Create Window Rule": ""
+    "Create Window Rule": "Vensterregel aanmaken"
   },
   "Create rule for:": {
-    "Create rule for:": ""
+    "Create rule for:": "Regel aanmaken voor:"
   },
   "Creating...": {
     "Creating...": "Aanmaken..."
@@ -1266,7 +1313,7 @@
     "Defaults": "Standaardwaarden"
   },
   "Define rules for window behavior. Saves to %1": {
-    "Define rules for window behavior. Saves to %1": ""
+    "Define rules for window behavior. Saves to %1": "Definieer regels voor venstergedrag. Wordt opgeslagen in %1"
   },
   "Del: Clear • Shift+Del: Clear All • 1-9: Actions • F10: Help • Esc: Close": {
     "Del: Clear • Shift+Del: Clear All • 1-9: Actions • F10: Help • Esc: Close": "Del: Wissen • Shift+Del: Alles wissen • 1-9: Acties • F10: Hulp • Esc: Sluiten"
@@ -1322,6 +1369,9 @@
   "Device connections": {
     "Device connections": "Apparaatverbindingen"
   },
+  "Device names updated": {
+    "Device names updated": ""
+  },
   "Device paired": {
     "Device paired": "Apparaat gekoppeld"
   },
@@ -1374,7 +1424,7 @@
     "Dismiss": "Sluiten"
   },
   "Display": {
-    "Display": ""
+    "Display": "Beeldscherm"
   },
   "Display Assignment": {
     "Display Assignment": "Beeldschermtoewijzing"
@@ -1383,7 +1433,7 @@
     "Display Name Format": "Indeling schermnaam"
   },
   "Display Profiles": {
-    "Display Profiles": ""
+    "Display Profiles": "Beeldschermprofielen"
   },
   "Display Settings": {
     "Display Settings": "Beeldscherminstellingen"
@@ -1431,7 +1481,7 @@
     "Displays": "Beeldschermen"
   },
   "Displays count when overflow is active": {
-    "Displays count when overflow is active": ""
+    "Displays count when overflow is active": "Toont aantal wanneer overloop actief is"
   },
   "Displays the active keyboard layout and allows switching": {
     "Displays the active keyboard layout and allows switching": "Toont de actieve toetsenbordindeling en maakt wisselen mogelijk"
@@ -1472,8 +1522,14 @@
   "Door Open": {
     "Door Open": "Deur open"
   },
+  "Drag to Reorder": {
+    "Drag to Reorder": ""
+  },
   "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": {
     "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": "Sleep widgets om ze te herschikken binnen secties. Gebruik het oog-pictogram om widgets te verbergen/tonen (behoudt tussenruimte), of X om ze volledig te verwijderen."
+  },
+  "Drag workspace indicators to reorder them": {
+    "Drag workspace indicators to reorder them": ""
   },
   "Driver": {
     "Driver": "Stuurprogramma"
@@ -1494,7 +1550,7 @@
     "Dusk (Nautical Twilight)": "Avondschemering (Nautische schemering)"
   },
   "Dynamic Properties": {
-    "Dynamic Properties": ""
+    "Dynamic Properties": "Dynamische eigenschappen"
   },
   "Edge Spacing": {
     "Edge Spacing": "Randafstand"
@@ -1503,7 +1559,7 @@
     "Edit App": "App bewerken"
   },
   "Edit Window Rule": {
-    "Edit Window Rule": ""
+    "Edit Window Rule": "Vensterregel bewerken"
   },
   "Education": {
     "Education": "Onderwijs"
@@ -1582,6 +1638,12 @@
   },
   "End": {
     "End": "Einde"
+  },
+  "Enlarge on Hover": {
+    "Enlarge on Hover": ""
+  },
+  "Enlargement %": {
+    "Enlargement %": ""
   },
   "Enter 6-digit passkey": {
     "Enter 6-digit passkey": "Voer 6-cijferige toegangscode in"
@@ -1671,7 +1733,7 @@
     "Failed to activate configuration": "Activeren van configuratie mislukt"
   },
   "Failed to activate profile - file not found": {
-    "Failed to activate profile - file not found": ""
+    "Failed to activate profile - file not found": "Kon profiel niet activeren - bestand niet gevonden"
   },
   "Failed to add binds include": {
     "Failed to add binds include": "Toevoegen van binds-include mislukt"
@@ -1701,7 +1763,7 @@
     "Failed to create printer": "Aanmaken van printer mislukt"
   },
   "Failed to create profiles directory": {
-    "Failed to create profiles directory": ""
+    "Failed to create profiles directory": "Kon profielenmap niet aanmaken"
   },
   "Failed to delete VPN": {
     "Failed to delete VPN": "Verwijderen van VPN mislukt"
@@ -1781,11 +1843,17 @@
   "Failed to remove printer from class": {
     "Failed to remove printer from class": "Verwijderen van printer uit klasse mislukt"
   },
+  "Failed to restart audio system": {
+    "Failed to restart audio system": ""
+  },
   "Failed to restart job": {
     "Failed to restart job": "Herstarten van taak mislukt"
   },
   "Failed to resume printer": {
     "Failed to resume printer": "Hervatten van printer mislukt"
+  },
+  "Failed to save audio config": {
+    "Failed to save audio config": ""
   },
   "Failed to save clipboard setting": {
     "Failed to save clipboard setting": "Opslaan van klembordinstelling mislukt"
@@ -1794,7 +1862,7 @@
     "Failed to save keybind": "Opslaan van sneltoets mislukt"
   },
   "Failed to save profile file": {
-    "Failed to save profile file": ""
+    "Failed to save profile file": "Kon profielbestand niet opslaan"
   },
   "Failed to set brightness": {
     "Failed to set brightness": "Instellen van helderheid mislukt"
@@ -1896,10 +1964,10 @@
     "Flipped 90°": "Gespiegeld 90°"
   },
   "Float": {
-    "Float": ""
+    "Float": "Zweven"
   },
   "Focus": {
-    "Focus": ""
+    "Focus": "Focus"
   },
   "Focus at Startup": {
     "Focus at Startup": "Focus bij opstarten"
@@ -1974,7 +2042,7 @@
     "Frequency": "Frequentie"
   },
   "Fullscreen": {
-    "Fullscreen": ""
+    "Fullscreen": "Volledig scherm"
   },
   "Fun": {
     "Fun": "Plezier"
@@ -2070,7 +2138,7 @@
     "Health": "Gezondheid"
   },
   "Height": {
-    "Height": ""
+    "Height": "Hoogte"
   },
   "Held": {
     "Held": "Vastgehouden"
@@ -2097,13 +2165,16 @@
     "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.": "Verborgen apps verschijnen niet in de starter. Klik rechts op een app en selecteer 'App verbergen' om deze te verbergen."
   },
   "Hide": {
-    "Hide": ""
+    "Hide": "Verbergen"
   },
   "Hide App": {
     "Hide App": "App verbergen"
   },
   "Hide Delay": {
     "Hide Delay": "Verbergvertraging"
+  },
+  "Hide Indicators": {
+    "Hide Indicators": ""
   },
   "Hide When Typing": {
     "Hide When Typing": "Verbergen tijdens typen"
@@ -2175,7 +2246,7 @@
     "Hyprland Layout Overrides": "Hyprland-indelingsoverschrijvingen"
   },
   "Hyprland Options": {
-    "Hyprland Options": ""
+    "Hyprland Options": "Hyprland-opties"
   },
   "I Understand": {
     "I Understand": "Ik begrijp het"
@@ -2191,6 +2262,9 @@
   },
   "Icon Size": {
     "Icon Size": "Pictogramgrootte"
+  },
+  "Icon Size %": {
+    "Icon Size %": ""
   },
   "Icon Theme": {
     "Icon Theme": "Pictogramthema"
@@ -2248,6 +2322,9 @@
   },
   "Inherit": {
     "Inherit": "Overnemen"
+  },
+  "Inhibitable": {
+    "Inhibitable": ""
   },
   "Input Devices": {
     "Input Devices": "Invoerapparaten"
@@ -2321,7 +2398,7 @@
     "Clipboard sent": "Klembord verzonden"
   },
   "KDE Connect clipboard action | Phone Connect clipboard action": {
-    "Clipboard sent": ""
+    "Clipboard sent": "Klembord verzonden"
   },
   "KDE Connect clipboard tooltip": {
     "Send Clipboard": "Klembord verzenden"
@@ -2376,7 +2453,7 @@
     "Offline": "Offline"
   },
   "KDE Connect offline status | Phone Connect offline status": {
-    "Offline": ""
+    "Offline": "Offline"
   },
   "KDE Connect open SMS app button": {
     "Open App": "App openen"
@@ -2414,7 +2491,7 @@
     "Refresh": "Verversen"
   },
   "KDE Connect refresh button | Phone Connect refresh tooltip": {
-    "Refresh": ""
+    "Refresh": "Vernieuwen"
   },
   "KDE Connect reject pairing button": {
     "Reject": "Weigeren"
@@ -2426,7 +2503,7 @@
     "Ringing": "Klingelen"
   },
   "KDE Connect ring action | Phone Connect ring action": {
-    "Ringing": ""
+    "Ringing": "Overgaan"
   },
   "KDE Connect ring tooltip": {
     "Ring": "Klingelen"
@@ -2483,7 +2560,7 @@
     "Device unpaired": "Apparaat ontkoppeld"
   },
   "KDE Connect unpair action | Phone Connect unpair action": {
-    "Device unpaired": ""
+    "Device unpaired": "Apparaat ontkoppeld"
   },
   "KDE Connect unpair tooltip": {
     "Unpair": "Ontkoppelen"
@@ -2602,6 +2679,12 @@
   "Loading keybinds...": {
     "Loading keybinds...": "Sneltoetsen laden..."
   },
+  "Loading overlay subtitle": {
+    "This may take a few seconds": ""
+  },
+  "Loading overlay while WirePlumber restarts": {
+    "Restarting audio system...": ""
+  },
   "Loading plugins...": {
     "Loading plugins...": "Plug-ins laden..."
   },
@@ -2711,10 +2794,10 @@
     "Marker Waste Full": "Afvaltank vol"
   },
   "Match Criteria": {
-    "Match Criteria": ""
+    "Match Criteria": "Overeenkomstcriteria"
   },
   "Matches profile: %1": {
-    "Matches profile: %1": ""
+    "Matches profile: %1": "Komt overeen met profiel: %1"
   },
   "Material Colors": {
     "Material Colors": "Material-kleuren"
@@ -2729,34 +2812,34 @@
     "Matugen Templates": "Matugen-sjablonen"
   },
   "Max Edges": {
-    "Max Edges": ""
+    "Max Edges": "Max. randen"
   },
   "Max H": {
-    "Max H": ""
+    "Max H": "Max. H"
   },
   "Max Pinned Apps": {
-    "Max Pinned Apps": ""
+    "Max Pinned Apps": "Max. vastgezette apps"
   },
   "Max Pinned Apps (0 = Unlimited)": {
-    "Max Pinned Apps (0 = Unlimited)": ""
+    "Max Pinned Apps (0 = Unlimited)": "Max. vastgezette apps (0 = onbeperkt)"
   },
   "Max Running Apps": {
-    "Max Running Apps": ""
+    "Max Running Apps": "Max. actieve apps"
   },
   "Max Running Apps (0 = Unlimited)": {
-    "Max Running Apps (0 = Unlimited)": ""
+    "Max Running Apps (0 = Unlimited)": "Max. actieve apps (0 = onbeperkt)"
   },
   "Max W": {
-    "Max W": ""
+    "Max W": "Max. B"
   },
   "Max apps to show": {
     "Max apps to show": "Maximaal aantal te tonen apps"
   },
   "Max to Edges": {
-    "Max to Edges": ""
+    "Max to Edges": "Maximaliseren naar randen"
   },
   "Maximize": {
-    "Maximize": ""
+    "Maximize": "Maximaliseren"
   },
   "Maximize Detection": {
     "Maximize Detection": "Maximalisatiedetectie"
@@ -2846,10 +2929,10 @@
     "Middle Section": "Middensectie"
   },
   "Min H": {
-    "Min H": ""
+    "Min H": "Min. H"
   },
   "Min W": {
-    "Min W": ""
+    "Min W": "Min. B"
   },
   "Minimal palette built around a single hue.": {
     "Minimal palette built around a single hue.": "Minimalistisch palet gebaseerd op één enkele tint."
@@ -2862,6 +2945,9 @@
   },
   "Modal Background": {
     "Modal Background": "Modale achtergrond"
+  },
+  "Modals": {
+    "Modals": ""
   },
   "Mode": {
     "Mode": "Modus"
@@ -2876,7 +2962,7 @@
     "Modified": "Gewijzigd"
   },
   "Monitor": {
-    "Monitor": ""
+    "Monitor": "Monitor"
   },
   "Monitor Configuration": {
     "Monitor Configuration": "Beeldschermconfiguratie"
@@ -2906,7 +2992,7 @@
     "Mouse pointer size in pixels": "Grootte muisaanwijzer in pixels"
   },
   "Move": {
-    "Move": ""
+    "Move": "Verplaatsen"
   },
   "Move Widget": {
     "Move Widget": "Widget verplaatsen"
@@ -2969,7 +3055,7 @@
     "New Notification": "Nieuwe melding"
   },
   "New Window Rule": {
-    "New Window Rule": ""
+    "New Window Rule": "Nieuwe vensterregel"
   },
   "New York, NY": {
     "New York, NY": "New York, NY"
@@ -3005,7 +3091,7 @@
     "No Active Players": "Geen actieve spelers"
   },
   "No Anim": {
-    "No Anim": ""
+    "No Anim": "Geen animatie"
   },
   "No Background": {
     "No Background": "Geen achtergrond"
@@ -3014,16 +3100,16 @@
     "No Bluetooth adapter found": "Geen Bluetooth-adapter gevonden"
   },
   "No Blur": {
-    "No Blur": ""
+    "No Blur": "Geen vervaging"
   },
   "No Border": {
-    "No Border": ""
+    "No Border": "Geen rand"
   },
   "No Dim": {
-    "No Dim": ""
+    "No Dim": "Niet dimmen"
   },
   "No Focus": {
-    "No Focus": ""
+    "No Focus": "Geen focus"
   },
   "No GPU detected": {
     "No GPU detected": "Geen GPU gedetecteerd"
@@ -3032,13 +3118,13 @@
     "No Media": "Geen media"
   },
   "No Round": {
-    "No Round": ""
+    "No Round": "Niet afronden"
   },
   "No Rounding": {
-    "No Rounding": ""
+    "No Rounding": "Geen afronding"
   },
   "No Shadow": {
-    "No Shadow": ""
+    "No Shadow": "Geen schaduw"
   },
   "No VPN profiles": {
     "No VPN profiles": "Geen VPN-profielen"
@@ -3104,7 +3190,7 @@
     "No launcher plugins installed.": "Geen starter-plug-ins geïnstalleerd."
   },
   "No match criteria": {
-    "No match criteria": ""
+    "No match criteria": "Geen overeenkomstcriteria"
   },
   "No matches": {
     "No matches": "Geen overeenkomsten"
@@ -3128,7 +3214,7 @@
     "No printers found": "Geen printers gevonden"
   },
   "No profiles": {
-    "No profiles": ""
+    "No profiles": "Geen profielen"
   },
   "No recent clipboard entries found": {
     "No recent clipboard entries found": "Geen recente klemborditems gevonden"
@@ -3152,7 +3238,7 @@
     "No widgets match your search": "Geen widgets voldoen aan uw zoekopdracht"
   },
   "No window rules configured": {
-    "No window rules configured": ""
+    "No window rules configured": "Geen vensterregels geconfigureerd"
   },
   "None": {
     "None": "Geen"
@@ -3251,13 +3337,16 @@
     "Opacity": "Dekking"
   },
   "Opaque": {
-    "Opaque": ""
+    "Opaque": "Ondoorzichtig"
   },
   "Open": {
     "Open": "Openen"
   },
   "Open Notepad File": {
     "Open Notepad File": "Kladblok-bestand openen"
+  },
+  "Open a new note": {
+    "Open a new note": ""
   },
   "Open folder": {
     "Open folder": "Map openen"
@@ -3287,7 +3376,7 @@
     "Other": "Overige"
   },
   "Output": {
-    "Output": ""
+    "Output": "Uitvoer"
   },
   "Output Area Almost Full": {
     "Output Area Almost Full": "Uitvoergebied bijna vol"
@@ -3302,7 +3391,7 @@
     "Outputs Include Missing": "Outputs-include ontbreekt"
   },
   "Overflow": {
-    "Overflow": ""
+    "Overflow": "Overloop"
   },
   "Overridden by config": {
     "Overridden by config": "Overschreven door config"
@@ -3365,7 +3454,7 @@
     "Password": "Wachtwoord"
   },
   "Paste": {
-    "Paste": ""
+    "Paste": "Plakken"
   },
   "Pattern": {
     "Pattern": "Patroon"
@@ -3401,66 +3490,69 @@
     "Personalization": "Persoonlijke instellingen"
   },
   "Phone Connect SMS action": {
-    "Opening SMS app": ""
+    "Opening SMS app": "SMS-app openen..."
   },
   "Phone Connect browse action": {
-    "Opening file browser": ""
+    "Opening file browser": "Bestandsbeheer openen..."
   },
   "Phone Connect daemon hint": {
-    "Start KDE Connect or Valent to use this plugin": ""
+    "Start KDE Connect or Valent to use this plugin": "Start KDE Connect of Valent om deze plug-in te gebruiken"
   },
   "Phone Connect error": {
-    "Failed to accept pairing": "",
-    "Failed to browse device": "",
-    "Failed to launch SMS app": "",
-    "Failed to reject pairing": "",
-    "Failed to ring device": "",
-    "Failed to send clipboard": "",
-    "Failed to send file": "",
-    "Failed to send ping": "",
-    "Failed to share": "",
-    "Pairing failed": "",
-    "Unpair failed": ""
+    "Failed to accept pairing": "Kon koppeling niet accepteren",
+    "Failed to browse device": "Kon niet bladeren op apparaat",
+    "Failed to launch SMS app": "Kon SMS-app niet starten",
+    "Failed to reject pairing": "Kon koppeling niet weigeren",
+    "Failed to ring device": "Kon apparaat niet laten overgaan",
+    "Failed to send clipboard": "Kon klembord niet verzenden",
+    "Failed to send file": "Kon bestand niet verzenden",
+    "Failed to send ping": "Kon ping niet verzenden",
+    "Failed to share": "Kon niet delen",
+    "Pairing failed": "Koppelen mislukt",
+    "Unpair failed": "Ontkoppelen mislukt"
   },
   "Phone Connect file send": {
-    "Sending": ""
+    "Sending": "Verzenden"
   },
   "Phone Connect file share notification": {
-    "File received from": ""
+    "File received from": "Bestand ontvangen van"
   },
   "Phone Connect hint message": {
-    "Make sure KDE Connect or Valent is running on your other devices": ""
+    "Make sure KDE Connect or Valent is running on your other devices": "Zorg ervoor dat KDE Connect of Valent actief is op je andere apparaten"
   },
   "Phone Connect no devices status | bluetooth status": {
-    "No devices": ""
+    "No devices": "Geen apparaten"
   },
   "Phone Connect pairing action": {
-    "Device paired": "",
-    "Pairing request sent": ""
+    "Device paired": "Apparaat gekoppeld",
+    "Pairing request sent": "Koppelverzoek verzonden"
   },
   "Phone Connect pairing request notification": {
-    "Pairing request from": ""
+    "Pairing request from": "Koppelverzoek van"
   },
   "Phone Connect pairing verification key label": {
-    "Verification": ""
+    "Verification": "Verificatie"
   },
   "Phone Connect ping action": {
-    "Ping sent to": ""
+    "Ping sent to": "Ping verzonden naar"
+  },
+  "Phone Connect refresh tooltip": {
+    "Refresh": ""
   },
   "Phone Connect service unavailable message": {
-    "Phone Connect unavailable": ""
+    "Phone Connect unavailable": "Phone Connect niet beschikbaar"
   },
   "Phone Connect share success": {
-    "Shared": ""
+    "Shared": "Gedeeld"
   },
   "Phone Connect start daemon hint": {
-    "Start KDE Connect or Valent": ""
+    "Start KDE Connect or Valent": "Start KDE Connect of Valent"
   },
   "Phone Connect unavailable error title": {
-    "Phone Connect Not Available": ""
+    "Phone Connect Not Available": "Phone Connect niet beschikbaar"
   },
   "Phone Connect unavailable status": {
-    "Unavailable": ""
+    "Unavailable": "Niet beschikbaar"
   },
   "Pin": {
     "Pin": "Vastmaken"
@@ -3521,6 +3613,9 @@
   },
   "Pointer": {
     "Pointer": "Aanwijzer"
+  },
+  "Popouts": {
+    "Popouts": ""
   },
   "Popup Position": {
     "Popup Position": "Popup-positie"
@@ -3646,25 +3741,25 @@
     "Profile Image Error": "Fout profielafbeelding"
   },
   "Profile activated: %1": {
-    "Profile activated: %1": ""
+    "Profile activated: %1": "Profiel geactiveerd: %1"
   },
   "Profile deleted": {
-    "Profile deleted": ""
+    "Profile deleted": "Profiel verwijderd"
   },
   "Profile error": {
-    "Profile error": ""
+    "Profile error": "Profiel-fout"
   },
   "Profile image is too large. Please use a smaller image.": {
     "Profile image is too large. Please use a smaller image.": "Profielafbeelding is te groot. Gebruik een kleinere afbeelding."
   },
   "Profile name": {
-    "Profile name": ""
+    "Profile name": "Profielnaam"
   },
   "Profile not found": {
-    "Profile not found": ""
+    "Profile not found": "Profiel niet gevonden"
   },
   "Profile saved: %1": {
-    "Profile saved: %1": ""
+    "Profile saved: %1": "Profiel opgeslagen: %1"
   },
   "Protocol": {
     "Protocol": "Protocol"
@@ -3685,7 +3780,7 @@
     "RGB": "RGB"
   },
   "Radius": {
-    "Radius": ""
+    "Radius": "Straal"
   },
   "Rain Chance": {
     "Rain Chance": "Neerslagkans"
@@ -3768,6 +3863,9 @@
   "Reset Size": {
     "Reset Size": "Grootte herstellen"
   },
+  "Reset to default name": {
+    "Reset to default name": ""
+  },
   "Resize Widget": {
     "Resize Widget": "Widgetgrootte wijzigen"
   },
@@ -3823,13 +3921,13 @@
     "Rounded corners for windows (decoration.rounding)": "Afgeronde hoeken voor vensters (decoration.rounding)"
   },
   "Rule": {
-    "Rule": ""
+    "Rule": "Regel"
   },
   "Rule Name": {
-    "Rule Name": ""
+    "Rule Name": "Regelnaam"
   },
   "Rules (%1)": {
-    "Rules (%1)": ""
+    "Rules (%1)": "Regels (%1)"
   },
   "Run DMS Templates": {
     "Run DMS Templates": "DMS-sjablonen uitvoeren"
@@ -3852,6 +3950,12 @@
   "Running Apps Settings": {
     "Running Apps Settings": "Instellingen actieve apps"
   },
+  "Running apps filter: only show apps from the active workspace": {
+    "Current Workspace": ""
+  },
+  "Running apps filter: only show apps from the same monitor": {
+    "Current Monitor": ""
+  },
   "SDR Brightness": {
     "SDR Brightness": "SDR-helderheid"
   },
@@ -3865,7 +3969,7 @@
     "Save Notepad File": "Kladblok-bestand opslaan"
   },
   "Save and switch between display configurations": {
-    "Save and switch between display configurations": ""
+    "Save and switch between display configurations": "Opslaan en schakelen tussen beeldschermconfiguraties"
   },
   "Save password": {
     "Save password": "Wachtwoord opslaan"
@@ -3876,11 +3980,14 @@
   "Saved Configurations": {
     "Saved Configurations": "Opgeslagen configuraties"
   },
+  "Saved Note": {
+    "Saved Note": ""
+  },
   "Saved item deleted": {
     "Saved item deleted": "Opgeslagen item verwijderd"
   },
   "Saving...": {
-    "Saving...": ""
+    "Saving...": "Opslaan..."
   },
   "Scale": {
     "Scale": "Schaal"
@@ -3910,10 +4017,10 @@
     "Screen sharing": "Schermdelen"
   },
   "Scroll": {
-    "Scroll": ""
+    "Scroll": "Scrollen"
   },
   "Scroll Factor": {
-    "Scroll Factor": ""
+    "Scroll Factor": "Scrollfactor"
   },
   "Scroll Wheel": {
     "Scroll Wheel": "Scrollwiel"
@@ -4000,7 +4107,7 @@
     "Select a widget to add. You can add multiple instances of the same widget if needed.": "Selecteer een widget om toe te voegen. U kunt indien nodig meerdere exemplaren van dezelfde widget toevoegen."
   },
   "Select a window...": {
-    "Select a window...": ""
+    "Select a window...": "Selecteer een venster..."
   },
   "Select an image file...": {
     "Select an image file...": "Selecteer een afbeeldingsbestand..."
@@ -4050,6 +4157,9 @@
   "Server": {
     "Server": "Server"
   },
+  "Set custom name": {
+    "Set custom name": ""
+  },
   "Set different wallpapers for each connected monitor": {
     "Set different wallpapers for each connected monitor": "Stel verschillende achtergronden in voor elk aangesloten beeldscherm"
   },
@@ -4087,13 +4197,13 @@
     "Shortcuts (%1)": "Sneltoetsen (%1)"
   },
   "Show": {
-    "Show": ""
+    "Show": "Tonen"
   },
   "Show All Tags": {
     "Show All Tags": "Alle tags tonen"
   },
   "Show Badge": {
-    "Show Badge": ""
+    "Show Badge": "Badge tonen"
   },
   "Show CPU": {
     "Show CPU": "CPU tonen"
@@ -4168,7 +4278,7 @@
     "Show Occupied Workspaces Only": "Alleen bezette werkbladen tonen"
   },
   "Show Overflow Badge Count": {
-    "Show Overflow Badge Count": ""
+    "Show Overflow Badge Count": "Aantal in overloop-badge tonen"
   },
   "Show Power Off": {
     "Show Power Off": "Uitschakelen tonen"
@@ -4184,6 +4294,9 @@
   },
   "Show Restart DMS": {
     "Show Restart DMS": "DMS herstarten tonen"
+  },
+  "Show Saved Items": {
+    "Show Saved Items": ""
   },
   "Show Seconds": {
     "Show Seconds": "Seconden tonen"
@@ -4296,6 +4409,9 @@
   "Shows current workspace and allows switching": {
     "Shows current workspace and allows switching": "Toont huidig werkblad en maakt wisselen mogelijk"
   },
+  "Shows the original device name before renaming": {
+    "Original: %1": ""
+  },
   "Shows when caps lock is active": {
     "Shows when caps lock is active": "Toont wanneer Caps Lock actief is"
   },
@@ -4315,13 +4431,16 @@
     "Size": "Grootte"
   },
   "Size Constraints": {
-    "Size Constraints": ""
+    "Size Constraints": "Groottebeperkingen"
   },
   "Size Offset": {
     "Size Offset": "Grootteverschuiving"
   },
   "Sizing": {
     "Sizing": "Formaat"
+  },
+  "Skip confirmation": {
+    "Skip confirmation": ""
   },
   "Small": {
     "Small": "Klein"
@@ -4333,7 +4452,7 @@
     "Smartcard PIN": "Smartcard-pincode"
   },
   "Snap": {
-    "Snap": ""
+    "Snap": "Vastklikken"
   },
   "Some plugins require a newer version of DMS:": {
     "Some plugins require a newer version of DMS:": "Sommige plug-ins vereisen een nieuwere versie van DMS:"
@@ -4483,7 +4602,7 @@
     "System notification area icons": "Pictogrammen systeemmeldingengebied"
   },
   "System sounds are not available. Install %1 for sound support.": {
-    "System sounds are not available. Install %1 for sound support.": ""
+    "System sounds are not available. Install %1 for sound support.": "Systeemgeluiden zijn niet beschikbaar. Installeer %1 voor geluidsondersteuning."
   },
   "System sounds are not available. Install canberra-gtk-play for sound support.": {
     "System sounds are not available. Install canberra-gtk-play for sound support.": "Systeemgeluiden zijn niet beschikbaar. Installeer canberra-gtk-play voor geluidsondersteuning."
@@ -4561,10 +4680,10 @@
     "This will permanently remove this saved clipboard item. This action cannot be undone.": "Dit verwijdert dit opgeslagen klemborditem permanent. Deze actie kan niet ongedaan worden gemaakt."
   },
   "Tiled": {
-    "Tiled": ""
+    "Tiled": "Getegeld"
   },
   "Tiled State": {
-    "Tiled State": ""
+    "Tiled State": "Tegelstatus"
   },
   "Tiling": {
     "Tiling": "Tegelen"
@@ -4597,7 +4716,7 @@
     "Title": "Titel"
   },
   "Title regex (optional)": {
-    "Title regex (optional)": ""
+    "Title regex (optional)": "Titel-regex (optioneel)"
   },
   "To Full": {
     "To Full": "Tot vol"
@@ -4738,7 +4857,7 @@
     "Unknown Network": "Onbekend netwerk"
   },
   "Unnamed Rule": {
-    "Unnamed Rule": ""
+    "Unnamed Rule": "Naamloze regel"
   },
   "Unpin": {
     "Unpin": "Losmaken"
@@ -4759,7 +4878,7 @@
     "Untitled": "Naamloos"
   },
   "Update": {
-    "Update": ""
+    "Update": "Bijwerken"
   },
   "Update All": {
     "Update All": "Alles bijwerken"
@@ -4938,6 +5057,9 @@
   "Visibility": {
     "Visibility": "Zichtbaarheid"
   },
+  "Visual Effects": {
+    "Visual Effects": ""
+  },
   "Visual divider between widgets": {
     "Visual divider between widgets": "Visuele scheiding tussen widgets"
   },
@@ -4985,6 +5107,9 @@
   },
   "When enabled, apps are sorted alphabetically. When disabled, apps are sorted by usage frequency.": {
     "When enabled, apps are sorted alphabetically. When disabled, apps are sorted by usage frequency.": "Indien ingeschakeld, worden apps alfabetisch gesorteerd. Indien uitgeschakeld, worden apps gesorteerd op gebruiksfrequentie."
+  },
+  "When locked": {
+    "When locked": ""
   },
   "When updater widget is used, then hide it if no update found": {
     "Hide Updater Widget": "Updater-widget verbergen",
@@ -5052,7 +5177,7 @@
     "Widget removed": "Widget verwijderd"
   },
   "Width": {
-    "Width": ""
+    "Width": "Breedte"
   },
   "Width of window border (borderpx)": {
     "Width of window border (borderpx)": "Breedte van vensterrand (borderpx)"
@@ -5082,22 +5207,22 @@
     "Window Gaps (px)": "Venstertussenruimte (px)"
   },
   "Window Height": {
-    "Window Height": ""
+    "Window Height": "Vensterhoogte"
   },
   "Window Opening": {
-    "Window Opening": ""
+    "Window Opening": "Venster openen"
   },
   "Window Rounding": {
     "Window Rounding": "Vensterronding"
   },
   "Window Rules": {
-    "Window Rules": ""
+    "Window Rules": "Vensterregels"
   },
   "Window Rules Include Missing": {
-    "Window Rules Include Missing": ""
+    "Window Rules Include Missing": "Vensterregels-include ontbreekt"
   },
   "Window Rules Not Configured": {
-    "Window Rules Not Configured": ""
+    "Window Rules Not Configured": "Vensterregels niet geconfigureerd"
   },
   "Workspace": {
     "Workspace": "Werkblad"
@@ -5197,6 +5322,16 @@
   },
   "browse themes button | theme browser header | theme browser window title": {
     "Browse Themes": "Thema's doorbladeren"
+  },
+  "button color option | color option | primary color | tile color option": {
+    "Primary": ""
+  },
+  "button color option | color option | secondary color | tile color option": {
+    "Secondary": ""
+  },
+  "button color option | tile color option": {
+    "Primary Container": "",
+    "Surface Variant": ""
   },
   "catppuccin theme description": {
     "Soothing pastel theme based on Catppuccin": "Rustgevend pastelthema gebaseerd op Catppuccin"
@@ -5318,6 +5453,9 @@
   },
   "fallback gpu name": {
     "Unknown GPU": "Onbekende GPU"
+  },
+  "featured": {
+    "featured": ""
   },
   "files": {
     "files": "bestanden"
@@ -5561,6 +5699,7 @@
     "nav": "navigatie"
   },
   "network status": {
+    "Connected": "",
     "Disabling WiFi...": "Wifi uitschakelen...",
     "Enabling WiFi...": "Wifi inschakelen...",
     "Ethernet": "Ethernet",

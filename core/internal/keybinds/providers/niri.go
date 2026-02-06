@@ -118,6 +118,9 @@ func (n *NiriProvider) categorizeByAction(action string) string {
 		return "Overview"
 	case action == "quit" ||
 		action == "power-off-monitors" ||
+		action == "power-on-monitors" ||
+		action == "suspend" ||
+		action == "do-screen-transition" ||
 		action == "toggle-keyboard-shortcuts-inhibit" ||
 		strings.Contains(action, "dpms"):
 		return "System"
@@ -151,13 +154,16 @@ func (n *NiriProvider) convertKeybind(kb *NiriKeyBinding, subcategory string, co
 	}
 
 	bind := keybinds.Keybind{
-		Key:           keyStr,
-		Description:   kb.Description,
-		Action:        rawAction,
-		Subcategory:   subcategory,
-		Source:        source,
-		HideOnOverlay: kb.HideOnOverlay,
-		CooldownMs:    kb.CooldownMs,
+		Key:             keyStr,
+		Description:     kb.Description,
+		Action:          rawAction,
+		Subcategory:     subcategory,
+		Source:          source,
+		HideOnOverlay:   kb.HideOnOverlay,
+		CooldownMs:      kb.CooldownMs,
+		AllowWhenLocked: kb.AllowWhenLocked,
+		AllowInhibiting: kb.AllowInhibiting,
+		Repeat:          kb.Repeat,
 	}
 
 	if source == "dms" && conflicts != nil {
@@ -341,14 +347,10 @@ func (n *NiriProvider) buildActionFromNode(bindNode *document.Node) string {
 	}
 
 	if actionNode.Properties != nil {
-		if val, ok := actionNode.Properties.Get("focus"); ok {
-			parts = append(parts, "focus="+val.String())
-		}
-		if val, ok := actionNode.Properties.Get("show-pointer"); ok {
-			parts = append(parts, "show-pointer="+val.String())
-		}
-		if val, ok := actionNode.Properties.Get("write-to-disk"); ok {
-			parts = append(parts, "write-to-disk="+val.String())
+		for _, propName := range []string{"focus", "show-pointer", "write-to-disk", "skip-confirmation", "delay-ms"} {
+			if val, ok := actionNode.Properties.Get(propName); ok {
+				parts = append(parts, propName+"="+val.String())
+			}
 		}
 	}
 
@@ -371,6 +373,9 @@ func (n *NiriProvider) extractOptions(node *document.Node) map[string]any {
 	}
 	if val, ok := node.Properties.Get("allow-when-locked"); ok {
 		opts["allow-when-locked"] = val.String() == "true"
+	}
+	if val, ok := node.Properties.Get("allow-inhibiting"); ok {
+		opts["allow-inhibiting"] = val.String() == "true"
 	}
 	return opts
 }
@@ -404,6 +409,9 @@ func (n *NiriProvider) buildBindNode(bind *overrideBind) *document.Node {
 		}
 		if v, ok := bind.Options["allow-when-locked"]; ok && v == true {
 			node.AddProperty("allow-when-locked", true, "")
+		}
+		if v, ok := bind.Options["allow-inhibiting"]; ok && v == false {
+			node.AddProperty("allow-inhibiting", false, "")
 		}
 	}
 

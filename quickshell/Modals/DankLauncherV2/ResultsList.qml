@@ -1,6 +1,7 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
+import Quickshell
 import qs.Common
 import qs.Services
 import qs.Widgets
@@ -173,7 +174,10 @@ Item {
             width: parent.width
 
             Repeater {
-                model: root.controller?.sections ?? []
+                model: ScriptModel {
+                    values: root.controller?.sections ?? []
+                    objectProp: "id"
+                }
 
                 Column {
                     id: sectionDelegate
@@ -207,33 +211,23 @@ Item {
                         visible: !sectionDelegate.isGridMode && !sectionDelegate.isCollapsed
 
                         Repeater {
-                            model: sectionDelegate.isGridMode || sectionDelegate.isCollapsed ? [] : (sectionDelegate.modelData?.items ?? [])
+                            model: ScriptModel {
+                                values: sectionDelegate.isGridMode || sectionDelegate.isCollapsed ? [] : (sectionDelegate.modelData?.items ?? [])
+                                objectProp: "id"
+                            }
 
                             ResultItem {
                                 required property var modelData
                                 required property int index
 
+                                readonly property int computedFlatIndex: (sectionDelegate.modelData?.flatStartIndex ?? 0) + index
+
                                 width: listContent.width
                                 height: 52
                                 item: modelData
-                                isSelected: getFlatIndex() === root.controller?.selectedFlatIndex
+                                isSelected: computedFlatIndex === root.controller?.selectedFlatIndex
                                 controller: root.controller
-                                flatIndex: getFlatIndex()
-
-                                function getFlatIndex() {
-                                    if (!sectionDelegate?.sectionId)
-                                        return -1;
-                                    var flatIdx = 0;
-                                    var sections = root.controller?.sections ?? [];
-                                    for (var i = 0; i < sections.length; i++) {
-                                        flatIdx++;
-                                        if (sections[i].id === sectionDelegate.sectionId)
-                                            return flatIdx + index;
-                                        if (!sections[i].collapsed)
-                                            flatIdx += sections[i].items?.length ?? 0;
-                                    }
-                                    return -1;
-                                }
+                                flatIndex: computedFlatIndex
 
                                 onClicked: {
                                     if (root.controller) {
@@ -242,7 +236,7 @@ Item {
                                 }
 
                                 onRightClicked: (mouseX, mouseY) => {
-                                    root.itemRightClicked(getFlatIndex(), modelData, mouseX, mouseY);
+                                    root.itemRightClicked(computedFlatIndex, modelData, mouseX, mouseY);
                                 }
                             }
                         }
@@ -258,7 +252,10 @@ Item {
                         readonly property real cellHeight: sectionDelegate.currentViewMode === "tile" ? cellWidth * 0.75 : cellWidth + 24
 
                         Repeater {
-                            model: sectionDelegate.isGridMode && !sectionDelegate.isCollapsed ? (sectionDelegate.modelData?.items ?? []) : []
+                            model: ScriptModel {
+                                values: sectionDelegate.isGridMode && !sectionDelegate.isCollapsed ? (sectionDelegate.modelData?.items ?? []) : []
+                                objectProp: "id"
+                            }
 
                             Item {
                                 id: gridDelegateItem
@@ -268,22 +265,7 @@ Item {
                                 width: gridContent.cellWidth
                                 height: gridContent.cellHeight
 
-                                function getFlatIndex() {
-                                    if (!sectionDelegate?.sectionId)
-                                        return -1;
-                                    var flatIdx = 0;
-                                    var sections = root.controller?.sections ?? [];
-                                    for (var i = 0; i < sections.length; i++) {
-                                        flatIdx++;
-                                        if (sections[i].id === sectionDelegate.sectionId)
-                                            return flatIdx + index;
-                                        if (!sections[i].collapsed)
-                                            flatIdx += sections[i].items?.length ?? 0;
-                                    }
-                                    return -1;
-                                }
-
-                                readonly property int cachedFlatIndex: getFlatIndex()
+                                readonly property int cachedFlatIndex: (sectionDelegate.modelData?.flatStartIndex ?? 0) + index
 
                                 GridItem {
                                     width: parent.width - 4

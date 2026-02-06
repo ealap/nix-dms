@@ -3,6 +3,7 @@ package matugen
 import (
 	"encoding/json"
 	"fmt"
+	"math"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -14,6 +15,7 @@ import (
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/dank16"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/log"
 	"github.com/AvengeMedia/DankMaterialShell/core/internal/utils"
+	"github.com/lucasb-eyer/go-colorful"
 )
 
 type ColorMode string
@@ -250,7 +252,16 @@ func buildOnce(opts *Options) error {
 		}
 	}
 
-	refreshGTK(opts.ConfigDir, opts.Mode)
+	if isDMSGTKActive(opts.ConfigDir) {
+		switch opts.Mode {
+		case ColorModeLight:
+			syncAccentColor(primaryLight)
+		default:
+			syncAccentColor(primaryDark)
+		}
+		refreshGTK(opts.Mode)
+	}
+
 	signalTerminals()
 
 	return nil
@@ -617,31 +628,24 @@ func generateDank16Variants(primaryDark, primaryLight, surface string, mode Colo
 	return dank16.GenerateVariantJSON(variantColors)
 }
 
-func refreshGTK(configDir string, mode ColorMode) {
+func isDMSGTKActive(configDir string) bool {
 	gtkCSS := filepath.Join(configDir, "gtk-3.0", "gtk.css")
 
 	info, err := os.Lstat(gtkCSS)
 	if err != nil {
-		return
+		return false
 	}
 
-	shouldRun := false
 	if info.Mode()&os.ModeSymlink != 0 {
 		target, err := os.Readlink(gtkCSS)
-		if err == nil && strings.Contains(target, "dank-colors.css") {
-			shouldRun = true
-		}
-	} else {
-		data, err := os.ReadFile(gtkCSS)
-		if err == nil && strings.Contains(string(data), "dank-colors.css") {
-			shouldRun = true
-		}
+		return err == nil && strings.Contains(target, "dank-colors.css")
 	}
 
-	if !shouldRun {
-		return
-	}
+	data, err := os.ReadFile(gtkCSS)
+	return err == nil && strings.Contains(string(data), "dank-colors.css")
+}
 
+func refreshGTK(mode ColorMode) {
 	exec.Command("gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", "").Run()
 	exec.Command("gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", mode.GTKTheme()).Run()
 }
@@ -682,6 +686,55 @@ func syncColorScheme(mode ColorMode) {
 	if err := exec.Command("gsettings", "set", "org.gnome.desktop.interface", "color-scheme", scheme).Run(); err != nil {
 		exec.Command("dconf", "write", "/org/gnome/desktop/interface/color-scheme", "'"+scheme+"'").Run()
 	}
+}
+
+var adwaitaAccents = []struct {
+	name   string
+	colors []colorful.Color
+}{
+	{"blue", hexColors("#3f8ae5", "#438de6", "#a4caee")},
+	{"green", hexColors("#26a269", "#39ac76", "#81d5ad")},
+	{"orange", hexColors("#f17738", "#ff7800", "#ffc994")},
+	{"pink", hexColors("#e4358a", "#e64392", "#f9b3d5")},
+	{"purple", hexColors("#954ab5", "#9c46b9", "#d099d6")},
+	{"red", hexColors("#e84053", "#e01b24", "#f2a1a5")},
+	{"slate", hexColors("#557b9f", "#6a8daf", "#b4c6d6")},
+	{"teal", hexColors("#129eb0", "#2190a4", "#7bdff4")},
+	{"yellow", hexColors("#cbac10", "#d4b411", "#f5c211")},
+}
+
+func hexColors(hexes ...string) []colorful.Color {
+	out := make([]colorful.Color, len(hexes))
+	for i, h := range hexes {
+		out[i], _ = colorful.Hex(h)
+	}
+	return out
+}
+
+func closestAdwaitaAccent(primaryHex string) string {
+	c, err := colorful.Hex(primaryHex)
+	if err != nil {
+		return "blue"
+	}
+
+	best := "blue"
+	bestDist := math.MaxFloat64
+	for _, a := range adwaitaAccents {
+		for _, ref := range a.colors {
+			d := c.DistanceCIEDE2000(ref)
+			if d < bestDist {
+				bestDist = d
+				best = a.name
+			}
+		}
+	}
+	return best
+}
+
+func syncAccentColor(primaryHex string) {
+	accent := closestAdwaitaAccent(primaryHex)
+	log.Infof("Setting GNOME accent color: %s", accent)
+	exec.Command("gsettings", "set", "org.gnome.desktop.interface", "accent-color", accent).Run()
 }
 
 type TemplateCheck struct {

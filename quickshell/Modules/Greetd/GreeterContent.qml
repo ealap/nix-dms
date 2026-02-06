@@ -132,6 +132,9 @@ Item {
         function onLastSuccessfulUserChanged() {
             applyLastSuccessfulUser();
         }
+        function onLastSessionIdChanged() {
+            finalizeSessionSelection();
+        }
     }
 
     Connections {

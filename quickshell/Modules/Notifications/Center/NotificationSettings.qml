@@ -19,18 +19,16 @@ Rectangle {
 
     Behavior on height {
         NumberAnimation {
-            duration: Anims.durShort
-            easing.type: Easing.BezierSpline
-            easing.bezierCurve: Anims.emphasized
+            duration: Theme.shortDuration
+            easing.type: Theme.emphasizedEasing
         }
     }
 
     opacity: expanded ? 1 : 0
     Behavior on opacity {
         NumberAnimation {
-            duration: Anims.durShort
-            easing.type: Easing.BezierSpline
-            easing.bezierCurve: Anims.emphasized
+            duration: Theme.shortDuration
+            easing.type: Theme.emphasizedEasing
         }
     }
 

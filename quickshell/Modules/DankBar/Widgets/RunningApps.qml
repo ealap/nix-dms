@@ -71,15 +71,20 @@ Item {
     property int _toplevelsUpdateTrigger: 0
     property int _appIdSubstitutionsTrigger: 0
 
+    readonly property bool _currentWorkspace: widgetData?.runningAppsCurrentWorkspace !== undefined ? widgetData.runningAppsCurrentWorkspace : SettingsData.runningAppsCurrentWorkspace
+    readonly property bool _currentMonitor: widgetData?.runningAppsCurrentMonitor !== undefined ? widgetData.runningAppsCurrentMonitor : SettingsData.runningAppsCurrentMonitor
+    readonly property bool _groupByApp: widgetData?.runningAppsGroupByApp !== undefined ? widgetData.runningAppsGroupByApp : SettingsData.runningAppsGroupByApp
+
     readonly property var sortedToplevels: {
         _toplevelsUpdateTrigger;
-        const toplevels = CompositorService.sortedToplevels;
+        let toplevels = CompositorService.sortedToplevels;
         if (!toplevels || toplevels.length === 0)
             return [];
 
-        if (SettingsData.runningAppsCurrentWorkspace) {
-            return CompositorService.filterCurrentWorkspace(toplevels, parentScreen?.name) || [];
-        }
+        if (_currentWorkspace)
+            toplevels = CompositorService.filterCurrentWorkspace(toplevels, parentScreen?.name) || [];
+        if (_currentMonitor)
+            toplevels = CompositorService.filterCurrentDisplay(toplevels, parentScreen?.name) || [];
         return toplevels;
     }
 
@@ -104,7 +109,7 @@ Item {
         }
     }
     readonly property var groupedWindows: {
-        if (!SettingsData.runningAppsGroupByApp) {
+        if (!_groupByApp) {
             return [];
         }
         try {
@@ -133,7 +138,7 @@ Item {
             return [];
         }
     }
-    readonly property int windowCount: SettingsData.runningAppsGroupByApp ? (groupedWindows?.length || 0) : (sortedToplevels?.length || 0)
+    readonly property int windowCount: _groupByApp ? (groupedWindows?.length || 0) : (sortedToplevels?.length || 0)
     readonly property int calculatedSize: {
         if (windowCount === 0) {
             return 0;
@@ -318,14 +323,14 @@ Item {
             Repeater {
                 id: windowRepeater
                 model: ScriptModel {
-                    values: SettingsData.runningAppsGroupByApp ? groupedWindows : sortedToplevels
-                    objectProp: SettingsData.runningAppsGroupByApp ? "appId" : "address"
+                    values: _groupByApp ? groupedWindows : sortedToplevels
+                    objectProp: _groupByApp ? "appId" : "address"
                 }
 
                 delegate: Item {
                     id: delegateItem
 
-                    property bool isGrouped: SettingsData.runningAppsGroupByApp
+                    property bool isGrouped: root._groupByApp
                     property var groupData: isGrouped ? modelData : null
                     property var toplevelData: isGrouped ? (modelData.windows.length > 0 ? modelData.windows[0].toplevel : null) : modelData
                     property bool isFocused: toplevelData ? toplevelData.activated : false
@@ -564,14 +569,14 @@ Item {
             Repeater {
                 id: windowRepeater
                 model: ScriptModel {
-                    values: SettingsData.runningAppsGroupByApp ? groupedWindows : sortedToplevels
-                    objectProp: SettingsData.runningAppsGroupByApp ? "appId" : "address"
+                    values: _groupByApp ? groupedWindows : sortedToplevels
+                    objectProp: _groupByApp ? "appId" : "address"
                 }
 
                 delegate: Item {
                     id: delegateItem
 
-                    property bool isGrouped: SettingsData.runningAppsGroupByApp
+                    property bool isGrouped: root._groupByApp
                     property var groupData: isGrouped ? modelData : null
                     property var toplevelData: isGrouped ? (modelData.windows.length > 0 ? modelData.windows[0].toplevel : null) : modelData
                     property bool isFocused: toplevelData ? toplevelData.activated : false

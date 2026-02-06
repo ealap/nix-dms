@@ -75,14 +75,11 @@ Singleton {
     FileView {
         id: memoryFileView
         path: root.memoryFile
-        blockLoading: false
+        blockLoading: true
         blockWrites: false
         atomicWrites: true
         watchChanges: false
         printErrors: false
-        onLoaded: {
-            parseMemory(memoryFileView.text());
-        }
     }
 
     FileView {

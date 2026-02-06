@@ -668,7 +668,15 @@ Singleton {
             return;
         if (pendingScreenshotPath && data.path === pendingScreenshotPath) {
             const editor = Quickshell.env("DMS_SCREENSHOT_EDITOR");
-            const command = editor === "satty" ? ["satty", "-f", data.path] : ["swappy", "-f", data.path];
+            let command;
+            if (editor === "satty") {
+                command = ["satty", "-f", data.path];
+            } else if (editor === "swappy" || !editor) {
+                command = ["swappy", "-f", data.path];
+            } else {
+                // Custom command with %path% placeholder
+                command = editor.split(" ").map(arg => arg === "%path%" ? data.path : arg);
+            }
             Quickshell.execDetached({
                 "command": command
             });
@@ -1014,6 +1022,87 @@ Singleton {
         const result = [];
 
         for (const niriWindow of workspaceWindows) {
+            let bestMatch = null;
+            let bestScore = -1;
+
+            for (const toplevel of toplevels) {
+                if (usedToplevels.has(toplevel))
+                    continue;
+                if (toplevel.appId === niriWindow.app_id) {
+                    let score = 1;
+
+                    if (niriWindow.title && toplevel.title) {
+                        if (toplevel.title === niriWindow.title) {
+                            score = 3;
+                        } else if (toplevel.title.includes(niriWindow.title) || niriWindow.title.includes(toplevel.title)) {
+                            score = 2;
+                        }
+                    }
+
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestMatch = toplevel;
+                        if (score === 3)
+                            break;
+                    }
+                }
+            }
+
+            if (!bestMatch)
+                continue;
+            usedToplevels.add(bestMatch);
+
+            const workspace = workspaces[niriWindow.workspace_id];
+            const isFocused = niriWindow.is_focused ?? (workspace && workspace.active_window_id === niriWindow.id) ?? false;
+
+            const enrichedToplevel = {
+                "appId": bestMatch.appId,
+                "title": bestMatch.title,
+                "activated": isFocused,
+                "niriWindowId": niriWindow.id,
+                "niriWorkspaceId": niriWindow.workspace_id,
+                "activate": function () {
+                    return NiriService.focusWindow(niriWindow.id);
+                },
+                "close": function () {
+                    if (bestMatch.close) {
+                        return bestMatch.close();
+                    }
+                    return false;
+                }
+            };
+
+            for (let prop in bestMatch) {
+                if (!(prop in enrichedToplevel)) {
+                    enrichedToplevel[prop] = bestMatch[prop];
+                }
+            }
+
+            result.push(enrichedToplevel);
+        }
+
+        return result;
+    }
+
+    function filterCurrentDisplay(toplevels, screenName) {
+        if (!toplevels || toplevels.length === 0 || !screenName)
+            return toplevels;
+
+        const outputWorkspaceIds = new Set();
+        for (var i = 0; i < allWorkspaces.length; i++) {
+            const ws = allWorkspaces[i];
+            if (ws.output === screenName)
+                outputWorkspaceIds.add(ws.id);
+        }
+
+        if (outputWorkspaceIds.size === 0)
+            return toplevels;
+
+        const displayWindows = windows.filter(niriWindow => outputWorkspaceIds.has(niriWindow.workspace_id));
+        const usedToplevels = new Set();
+        const result = [];
+
+        for (const niriWindow of displayWindows) {
             let bestMatch = null;
             let bestScore = -1;
 

@@ -270,6 +270,166 @@ Item {
                     }
                 }
             }
+
+            SettingsCard {
+                tab: "typography"
+                tags: ["animation", "speed", "motion", "duration", "popout"]
+                title: I18n.tr("%1 Animation Speed").arg(I18n.tr("Popouts"))
+                settingKey: "popoutAnimationSpeed"
+                iconName: "open_in_new"
+
+                Item {
+                    width: parent.width
+                    height: popoutSpeedGroup.implicitHeight
+                    clip: true
+
+                    DankButtonGroup {
+                        id: popoutSpeedGroup
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        buttonPadding: parent.width < 480 ? Theme.spacingS : Theme.spacingL
+                        minButtonWidth: parent.width < 480 ? 44 : 64
+                        textSize: parent.width < 480 ? Theme.fontSizeSmall : Theme.fontSizeMedium
+                        model: [I18n.tr("None"), I18n.tr("Short"), I18n.tr("Medium"), I18n.tr("Long"), I18n.tr("Custom")]
+                        selectionMode: "single"
+                        currentIndex: SettingsData.popoutAnimationSpeed
+                        onSelectionChanged: (index, selected) => {
+                            if (!selected)
+                                return;
+                            SettingsData.set("popoutAnimationSpeed", index);
+                        }
+
+                        Connections {
+                            target: SettingsData
+                            function onPopoutAnimationSpeedChanged() {
+                                popoutSpeedGroup.currentIndex = SettingsData.popoutAnimationSpeed;
+                            }
+                        }
+                    }
+                }
+
+                Rectangle {
+                    width: parent.width
+                    height: 1
+                    color: Theme.outline
+                    opacity: 0.15
+                }
+
+                SettingsSliderRow {
+                    id: popoutDurationSlider
+                    tab: "typography"
+                    tags: ["animation", "duration", "custom", "speed", "popout"]
+                    settingKey: "popoutCustomAnimationDuration"
+                    text: I18n.tr("Custom Duration")
+                    description: I18n.tr("%1 custom animation duration").arg(I18n.tr("Popouts"))
+                    minimum: 0
+                    maximum: 2000
+                    value: Theme.popoutAnimationDuration
+                    unit: "ms"
+                    defaultValue: 150
+                    onSliderValueChanged: newValue => {
+                        SettingsData.set("popoutAnimationSpeed", SettingsData.AnimationSpeed.Custom);
+                        SettingsData.set("popoutCustomAnimationDuration", newValue);
+                    }
+
+                    Connections {
+                        target: SettingsData
+                        function onPopoutAnimationSpeedChanged() {
+                            if (SettingsData.popoutAnimationSpeed === SettingsData.AnimationSpeed.Custom)
+                                return;
+                            popoutDurationSlider.value = Theme.popoutAnimationDuration;
+                        }
+                    }
+
+                    Connections {
+                        target: Theme
+                        function onPopoutAnimationDurationChanged() {
+                            if (SettingsData.popoutAnimationSpeed === SettingsData.AnimationSpeed.Custom)
+                                return;
+                            popoutDurationSlider.value = Theme.popoutAnimationDuration;
+                        }
+                    }
+                }
+            }
+
+            SettingsCard {
+                tab: "typography"
+                tags: ["animation", "speed", "motion", "duration", "modal"]
+                title: I18n.tr("%1 Animation Speed").arg(I18n.tr("Modals"))
+                settingKey: "modalAnimationSpeed"
+                iconName: "web_asset"
+
+                Item {
+                    width: parent.width
+                    height: modalSpeedGroup.implicitHeight
+                    clip: true
+
+                    DankButtonGroup {
+                        id: modalSpeedGroup
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        buttonPadding: parent.width < 480 ? Theme.spacingS : Theme.spacingL
+                        minButtonWidth: parent.width < 480 ? 44 : 64
+                        textSize: parent.width < 480 ? Theme.fontSizeSmall : Theme.fontSizeMedium
+                        model: [I18n.tr("None"), I18n.tr("Short"), I18n.tr("Medium"), I18n.tr("Long"), I18n.tr("Custom")]
+                        selectionMode: "single"
+                        currentIndex: SettingsData.modalAnimationSpeed
+                        onSelectionChanged: (index, selected) => {
+                            if (!selected)
+                                return;
+                            SettingsData.set("modalAnimationSpeed", index);
+                        }
+
+                        Connections {
+                            target: SettingsData
+                            function onModalAnimationSpeedChanged() {
+                                modalSpeedGroup.currentIndex = SettingsData.modalAnimationSpeed;
+                            }
+                        }
+                    }
+                }
+
+                Rectangle {
+                    width: parent.width
+                    height: 1
+                    color: Theme.outline
+                    opacity: 0.15
+                }
+
+                SettingsSliderRow {
+                    id: modalDurationSlider
+                    tab: "typography"
+                    tags: ["animation", "duration", "custom", "speed", "modal"]
+                    settingKey: "modalCustomAnimationDuration"
+                    text: I18n.tr("Custom Duration")
+                    description: I18n.tr("%1 custom animation duration").arg(I18n.tr("Modals"))
+                    minimum: 0
+                    maximum: 2000
+                    value: Theme.modalAnimationDuration
+                    unit: "ms"
+                    defaultValue: 150
+                    onSliderValueChanged: newValue => {
+                        SettingsData.set("modalAnimationSpeed", SettingsData.AnimationSpeed.Custom);
+                        SettingsData.set("modalCustomAnimationDuration", newValue);
+                    }
+
+                    Connections {
+                        target: SettingsData
+                        function onModalAnimationSpeedChanged() {
+                            if (SettingsData.modalAnimationSpeed === SettingsData.AnimationSpeed.Custom)
+                                return;
+                            modalDurationSlider.value = Theme.modalAnimationDuration;
+                        }
+                    }
+
+                    Connections {
+                        target: Theme
+                        function onModalAnimationDurationChanged() {
+                            if (SettingsData.modalAnimationSpeed === SettingsData.AnimationSpeed.Custom)
+                                return;
+                            modalDurationSlider.value = Theme.modalAnimationDuration;
+                        }
+                    }
+                }
+            }
         }
     }
 }

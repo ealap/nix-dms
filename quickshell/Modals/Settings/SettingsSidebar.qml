@@ -239,12 +239,12 @@ Rectangle {
             "icon": "computer",
             "collapsedByDefault": true,
             "children": [
+
                 {
-                    "id": "printers",
-                    "text": I18n.tr("Printers"),
-                    "icon": "print",
-                    "tabIndex": 8,
-                    "cupsOnly": true
+                    "id": "audio",
+                    "text": I18n.tr("Audio"),
+                    "icon": "headphones",
+                    "tabIndex": 29
                 },
                 {
                     "id": "clipboard",
@@ -252,6 +252,13 @@ Rectangle {
                     "icon": "content_paste",
                     "tabIndex": 23,
                     "clipboardOnly": true
+                },
+                {
+                    "id": "printers",
+                    "text": I18n.tr("Printers"),
+                    "icon": "print",
+                    "tabIndex": 8,
+                    "cupsOnly": true
                 },
                 {
                     "id": "window_rules",

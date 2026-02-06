@@ -1,4 +1,7 @@
 {
+  "%1 Animation Speed": {
+    "%1 Animation Speed": ""
+  },
   "%1 DMS bind(s) may be overridden by config binds that come after the include.": {
     "%1 DMS bind(s) may be overridden by config binds that come after the include.": "%1 نگاشت DMS ممکن است توسط نگاشت‌های پیکربندی که پس از include می‌آیند، لغو شوند."
   },
@@ -13,6 +16,9 @@
   },
   "%1 connected": {
     "%1 connected": "%1 متصل"
+  },
+  "%1 custom animation duration": {
+    "%1 custom animation duration": ""
   },
   "%1 days ago": {
     "%1 days ago": "%1 روز پیش"
@@ -180,10 +186,13 @@
     "Activate": "فعال‌سازی"
   },
   "Activation": {
-    "Activation": ""
+    "Activation": "فعال‌سازی"
   },
   "Active": {
     "Active": "فعال"
+  },
+  "Active Color": {
+    "Active Color": ""
   },
   "Active Lock Screen Monitor": {
     "Active Lock Screen Monitor": "مانیتور فعال صفحه قفل"
@@ -258,7 +267,7 @@
     "Alt+←/Backspace: Back • F1/I: File Info • F10: Help • Esc: Close": "Alt+←/Backspace: بازگشت • F1/I: اطلاعات فایل • F10: راهنما • Esc: بستن"
   },
   "Always Active": {
-    "Always Active": ""
+    "Always Active": "همیشه فعال"
   },
   "Always Show Percentage": {
     "Always Show Percentage": "همیشه درصد را نشان بده"
@@ -329,6 +338,9 @@
   "Apps Dock": {
     "Apps Dock": ""
   },
+  "Apps Dock Settings": {
+    "Apps Dock Settings": ""
+  },
   "Apps Icon": {
     "Apps Icon": "آیکون برنامه‌ها"
   },
@@ -367,6 +379,32 @@
   },
   "Audio Visualizer": {
     "Audio Visualizer": "مصورساز صوتی"
+  },
+  "Audio device rename dialog field label": {
+    "Custom Name": ""
+  },
+  "Audio device rename dialog hint": {
+    "Press Enter and the audio system will restart to apply the change": ""
+  },
+  "Audio device rename dialog placeholder": {
+    "Enter device name...": ""
+  },
+  "Audio device rename dialog title": {
+    "Set Custom Device Name": ""
+  },
+  "Audio settings description": {
+    "Set custom names for your audio input devices": "",
+    "Set custom names for your audio output devices": ""
+  },
+  "Audio settings empty state": {
+    "No input devices found": "",
+    "No output devices found": ""
+  },
+  "Audio settings: speaker/headphone devices": {
+    "Output Devices": ""
+  },
+  "Audio system restarted": {
+    "Audio system restarted": ""
   },
   "Audio volume control": {
     "Audio volume control": "کنترل حجم صدا"
@@ -623,6 +661,9 @@
   "Browse or search plugins": {
     "Browse or search plugins": ""
   },
+  "Button Color": {
+    "Button Color": ""
+  },
   "CPU": {
     "CPU": "CPU"
   },
@@ -771,7 +812,7 @@
     "Clear All Jobs": "پاک‌کردن همه کار‌های چاپ"
   },
   "Clear History?": {
-    "Clear History?": ""
+    "Clear History?": "تاریخچه پاک شود؟"
   },
   "Clear all history when server starts": {
     "Clear all history when server starts": "هنگام راه‌اندازی سرور تمام تاریخچه را پاک کن"
@@ -875,6 +916,9 @@
   "Color displayed on monitors without the lock screen": {
     "Color displayed on monitors without the lock screen": "رنگ نمایش داده شده در مانیتورهای بدون صفحه قفل"
   },
+  "Color for primary action buttons": {
+    "Color for primary action buttons": ""
+  },
   "Color temperature for day time": {
     "Color temperature for day time": "دمای رنگ برای زمان روز"
   },
@@ -889,6 +933,9 @@
   },
   "Colorful mix of bright contrasting accents.": {
     "Colorful mix of bright contrasting accents.": "ترکیب رنگارنگ از رنگ‌های تأکیدی متضاد."
+  },
+  "Colorize Active": {
+    "Colorize Active": ""
   },
   "Column": {
     "Column": "ستون"
@@ -1038,7 +1085,7 @@
     "Copied!": "کپی شد!"
   },
   "Copy": {
-    "Copy": ""
+    "Copy": "کپی"
   },
   "Copy Content": {
     "Copy Content": ""
@@ -1322,6 +1369,9 @@
   "Device connections": {
     "Device connections": "اتصال‌های دستگاه"
   },
+  "Device names updated": {
+    "Device names updated": ""
+  },
   "Device paired": {
     "Device paired": "دستگاه جفت شد"
   },
@@ -1472,8 +1522,14 @@
   "Door Open": {
     "Door Open": "درب باز"
   },
+  "Drag to Reorder": {
+    "Drag to Reorder": ""
+  },
   "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": {
     "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": "برای مرتب‌سازی مجدد ابزارک‌ها میان بخش‌ها، آنها را بکشید. از نماد چشم برای مخفی کردن/نمایش ویجت‌ها (حفظ فاصله) یا از X برای حذف کامل آنها استفاده کنید."
+  },
+  "Drag workspace indicators to reorder them": {
+    "Drag workspace indicators to reorder them": ""
   },
   "Driver": {
     "Driver": "درایور"
@@ -1583,6 +1639,12 @@
   "End": {
     "End": "پایان"
   },
+  "Enlarge on Hover": {
+    "Enlarge on Hover": ""
+  },
+  "Enlargement %": {
+    "Enlargement %": ""
+  },
   "Enter 6-digit passkey": {
     "Enter 6-digit passkey": "کلید عبور ۶ رقمی را وارد کنید"
   },
@@ -1629,10 +1691,10 @@
     "Enterprise": "شرکت"
   },
   "Entry pinned": {
-    "Entry pinned": ""
+    "Entry pinned": "ورودی سنجاق شد"
   },
   "Entry unpinned": {
-    "Entry unpinned": ""
+    "Entry unpinned": "سنجاق ورودی برداشته شد"
   },
   "Environment Variables": {
     "Environment Variables": ""
@@ -1686,7 +1748,7 @@
     "Failed to cancel selected job": "لغو کار چاپ انتخاب شده ناموفق بود"
   },
   "Failed to check pin limit": {
-    "Failed to check pin limit": ""
+    "Failed to check pin limit": "بررسی محدودیت سنجاق ناموفق بود"
   },
   "Failed to connect VPN": {
     "Failed to connect VPN": "اتصال به VPN ناموفق بود"
@@ -1767,7 +1829,7 @@
     "Failed to pause printer": "توقف چاپگر ناموفق بود"
   },
   "Failed to pin entry": {
-    "Failed to pin entry": ""
+    "Failed to pin entry": "سنجاق کردن ورودی ناموفق بود"
   },
   "Failed to print test page": {
     "Failed to print test page": "چاپ صفحه تست ناموفق بود"
@@ -1781,11 +1843,17 @@
   "Failed to remove printer from class": {
     "Failed to remove printer from class": "حذف چاپگر از کلاس ناموفق بود"
   },
+  "Failed to restart audio system": {
+    "Failed to restart audio system": ""
+  },
   "Failed to restart job": {
     "Failed to restart job": "شروع مجدد کار چاپ ناموفق بود"
   },
   "Failed to resume printer": {
     "Failed to resume printer": "ازسرگیری چاپگر ناموفق بود"
+  },
+  "Failed to save audio config": {
+    "Failed to save audio config": ""
   },
   "Failed to save clipboard setting": {
     "Failed to save clipboard setting": "ذخیره تنظیمات کلیپ‌بورد ناموفق بود"
@@ -1818,7 +1886,7 @@
     "Failed to start connection to %1": "شروع اتصال به %1 ناموفق بود"
   },
   "Failed to unpin entry": {
-    "Failed to unpin entry": ""
+    "Failed to unpin entry": "برداشتن سنجاق ورودی ناموفق بود"
   },
   "Failed to update VPN": {
     "Failed to update VPN": "بروزرسانی VPN ناموفق بود"
@@ -1935,7 +2003,7 @@
     "Force HDR": "اجبار HDR"
   },
   "Force Kill (SIGKILL)": {
-    "Force Kill (SIGKILL)": ""
+    "Force Kill (SIGKILL)": "بستن اجباری (SIGKILL)"
   },
   "Force Kill Process": {
     "Force Kill Process": "بستن اجباری فرایند"
@@ -1995,7 +2063,7 @@
     "Gamma control not available. Requires DMS API v6+.": "کنترل گاما در دسترس نیست. نیاز به DMS API نسخه ۶ به بالا دارد."
   },
   "Generic device name | Generic device name fallback": {
-    "device": ""
+    "device": "دستگاه"
   },
   "GitHub": {
     "GitHub": "گیت‌هاب"
@@ -2105,8 +2173,11 @@
   "Hide Delay": {
     "Hide Delay": "تأخیر پنهان‌شدن"
   },
+  "Hide Indicators": {
+    "Hide Indicators": ""
+  },
   "Hide When Typing": {
-    "Hide When Typing": ""
+    "Hide When Typing": "هنگام تایپ پنهان کن"
   },
   "Hide When Windows Open": {
     "Hide When Windows Open": "وقتی پنجره‌ها باز هستند پنهان کن"
@@ -2121,7 +2192,7 @@
     "Hide cursor when using touch input": ""
   },
   "Hide on Touch": {
-    "Hide on Touch": ""
+    "Hide on Touch": "هنگام تاچ پنهان کن"
   },
   "Hide the dock when not in use and reveal it when hovering near the dock area": {
     "Hide the dock when not in use and reveal it when hovering near the dock area": "داک را هنگامی که استفاده نمی‌شود پنهان کن و هنگامی که موشواره نزدیک آن است نشان بده"
@@ -2192,6 +2263,9 @@
   "Icon Size": {
     "Icon Size": "اندازه آیکون"
   },
+  "Icon Size %": {
+    "Icon Size %": ""
+  },
   "Icon Theme": {
     "Icon Theme": "تم آیکون"
   },
@@ -2249,6 +2323,9 @@
   "Inherit": {
     "Inherit": "ارث‌بردن"
   },
+  "Inhibitable": {
+    "Inhibitable": ""
+  },
   "Input Devices": {
     "Input Devices": "دستگاه‌های ورودی"
   },
@@ -2259,7 +2336,7 @@
     "Install plugins from the DMS plugin registry": "نصب افزونه‌ها از مخزن افزونه DMS"
   },
   "Intelligent Auto-hide": {
-    "Intelligent Auto-hide": ""
+    "Intelligent Auto-hide": "پنهان خودکار هوشمند"
   },
   "Interface:": {
     "Interface:": "اینترفیس:"
@@ -2289,20 +2366,20 @@
     "Jobs: ": "کار‌های چاپ: "
   },
   "KDE Connect SMS action": {
-    "Opening SMS": "",
-    "Opening SMS app": ""
+    "Opening SMS": "باز کردن SMS",
+    "Opening SMS app": "باز کردن برنامه SMS"
   },
   "KDE Connect SMS dialog title": {
-    "Send SMS": ""
+    "Send SMS": "ارسال SMS"
   },
   "KDE Connect SMS message input placeholder": {
-    "Message": ""
+    "Message": "پیام"
   },
   "KDE Connect SMS phone input placeholder": {
     "Phone number": ""
   },
   "KDE Connect SMS send button": {
-    "Send": ""
+    "Send": "ارسال"
   },
   "KDE Connect SMS tooltip": {
     "SMS": ""
@@ -2311,14 +2388,14 @@
     "Accept": ""
   },
   "KDE Connect browse action": {
-    "Opening file browser": "",
-    "Opening files": ""
+    "Opening file browser": "باز کردن مرورگر فایل",
+    "Opening files": "باز کردن فایل‌ها"
   },
   "KDE Connect browse tooltip": {
     "Browse Files": ""
   },
   "KDE Connect clipboard action": {
-    "Clipboard sent": ""
+    "Clipboard sent": "کلیپ‌بورد ارسال شد"
   },
   "KDE Connect clipboard action | Phone Connect clipboard action": {
     "Clipboard sent": ""
@@ -2338,10 +2415,10 @@
   "KDE Connect error": {
     "Failed to accept pairing": "",
     "Failed to browse device": "",
-    "Failed to launch SMS app": "",
-    "Failed to reject pairing": "",
-    "Failed to ring device": "",
-    "Failed to send clipboard": "",
+    "Failed to launch SMS app": "اجرای برنامه SMS ناموفق بود",
+    "Failed to reject pairing": "رد کردن اتصال ناموفق بود",
+    "Failed to ring device": "زنگ زدن دستگاه ناموفق بود",
+    "Failed to send clipboard": "ارسال کلیپ‌بورد ناموفق بود",
     "Failed to send file": "",
     "Failed to send ping": "",
     "Failed to share": "",
@@ -2355,16 +2432,16 @@
     "Sending": ""
   },
   "KDE Connect file share notification": {
-    "File received from": ""
+    "File received from": "فایل دریافت شده از"
   },
   "KDE Connect hint message": {
     "Make sure KDE Connect is running on your other devices": ""
   },
   "KDE Connect no devices message": {
-    "No devices found": ""
+    "No devices found": "دستگاهی یافت نشد"
   },
   "KDE Connect no devices status": {
-    "No devices": ""
+    "No devices": "بدون دستگاه"
   },
   "KDE Connect no devices status | bluetooth status": {
     "No devices": ""
@@ -2373,13 +2450,13 @@
     "Not paired": ""
   },
   "KDE Connect offline status": {
-    "Offline": ""
+    "Offline": "آفلاین"
   },
   "KDE Connect offline status | Phone Connect offline status": {
     "Offline": ""
   },
   "KDE Connect open SMS app button": {
-    "Open App": ""
+    "Open App": "باز کردن برنامه"
   },
   "KDE Connect open app hint": {
     "Open KDE Connect on your phone": ""
@@ -2401,7 +2478,7 @@
     "Pairing requested": ""
   },
   "KDE Connect pairing verification key label": {
-    "Verification": ""
+    "Verification": "تأیید"
   },
   "KDE Connect ping action": {
     "Ping sent": "",
@@ -2438,13 +2515,13 @@
     "KDE Connect unavailable": ""
   },
   "KDE Connect share URL button": {
-    "Share URL": ""
+    "Share URL": "اشتراک‌گذاری URL"
   },
   "KDE Connect share button": {
     "Share Text": ""
   },
   "KDE Connect share button | KDE Connect share dialog title | KDE Connect share tooltip": {
-    "Share": ""
+    "Share": "اشتراک‌گذاری"
   },
   "KDE Connect share dialog title | KDE Connect share tooltip": {
     "Share": ""
@@ -2453,16 +2530,16 @@
     "Enter URL or text to share": ""
   },
   "KDE Connect share success": {
-    "Shared": ""
+    "Shared": "به اشتراک گذاشته شد"
   },
   "KDE Connect start daemon hint": {
     "Start kdeconnectd to connect devices": ""
   },
   "KDE Connect status": {
-    "No devices connected": ""
+    "No devices connected": "بدون دستگاه متصل"
   },
   "KDE Connect status multiple devices": {
-    "devices connected": ""
+    "devices connected": "دستگاه‌های متصل"
   },
   "KDE Connect status single device": {
     "1 device connected": ""
@@ -2601,6 +2678,12 @@
   },
   "Loading keybinds...": {
     "Loading keybinds...": "بارگذاری کلید‌های میانبر..."
+  },
+  "Loading overlay subtitle": {
+    "This may take a few seconds": ""
+  },
+  "Loading overlay while WirePlumber restarts": {
+    "Restarting audio system...": ""
   },
   "Loading plugins...": {
     "Loading plugins...": "آماده‌سازی افزونه‌ها..."
@@ -2768,7 +2851,7 @@
     "Maximum History": "حداکثر تاریخچه"
   },
   "Maximum Pinned Entries": {
-    "Maximum Pinned Entries": ""
+    "Maximum Pinned Entries": "بیشینه ورودی‌های سنجاق شده"
   },
   "Maximum number of clipboard entries to keep": {
     "Maximum number of clipboard entries to keep": "بیشینه تعداد ورودی‌های کلیپ‌بورد برای نگه‌داری"
@@ -2777,7 +2860,7 @@
     "Maximum number of entries that can be saved": ""
   },
   "Maximum pinned entries reached": {
-    "Maximum pinned entries reached": ""
+    "Maximum pinned entries reached": "به بیشینه ورودی‌های سنجاق شده رسیدید"
   },
   "Maximum size per clipboard entry": {
     "Maximum size per clipboard entry": "بیشینه اندازه برای هر ورودی کلیپ‌بورد"
@@ -2862,6 +2945,9 @@
   },
   "Modal Background": {
     "Modal Background": "پس‌زمینه مودال"
+  },
+  "Modals": {
+    "Modals": ""
   },
   "Mode": {
     "Mode": "حالت"
@@ -3259,6 +3345,9 @@
   "Open Notepad File": {
     "Open Notepad File": "باز‌کردن فایل دفترچه یادداشت"
   },
+  "Open a new note": {
+    "Open a new note": ""
+  },
   "Open folder": {
     "Open folder": ""
   },
@@ -3447,6 +3536,9 @@
   "Phone Connect ping action": {
     "Ping sent to": ""
   },
+  "Phone Connect refresh tooltip": {
+    "Refresh": ""
+  },
   "Phone Connect service unavailable message": {
     "Phone Connect unavailable": ""
   },
@@ -3521,6 +3613,9 @@
   },
   "Pointer": {
     "Pointer": "اشاره‌گر"
+  },
+  "Popouts": {
+    "Popouts": ""
   },
   "Popup Position": {
     "Popup Position": "موقعیت پاپ‌آپ"
@@ -3768,6 +3863,9 @@
   "Reset Size": {
     "Reset Size": "تنظیم مجدد اندازه"
   },
+  "Reset to default name": {
+    "Reset to default name": ""
+  },
   "Resize Widget": {
     "Resize Widget": "تغییر اندازه ابزارک"
   },
@@ -3852,6 +3950,12 @@
   "Running Apps Settings": {
     "Running Apps Settings": "تنظیمات برنامه‌های درحال اجرا"
   },
+  "Running apps filter: only show apps from the active workspace": {
+    "Current Workspace": ""
+  },
+  "Running apps filter: only show apps from the same monitor": {
+    "Current Monitor": ""
+  },
   "SDR Brightness": {
     "SDR Brightness": "روشنایی SDR"
   },
@@ -3875,6 +3979,9 @@
   },
   "Saved Configurations": {
     "Saved Configurations": "پیکربندی‌های ذخیره شده"
+  },
+  "Saved Note": {
+    "Saved Note": ""
   },
   "Saved item deleted": {
     "Saved item deleted": ""
@@ -4050,6 +4157,9 @@
   "Server": {
     "Server": "سرور"
   },
+  "Set custom name": {
+    "Set custom name": ""
+  },
   "Set different wallpapers for each connected monitor": {
     "Set different wallpapers for each connected monitor": "تنظیم تصاویر پس‌زمینه مختلف برای هر مانیتور متصل"
   },
@@ -4185,6 +4295,9 @@
   "Show Restart DMS": {
     "Show Restart DMS": "نمایش راه‌اندازی مجدد DMS"
   },
+  "Show Saved Items": {
+    "Show Saved Items": ""
+  },
   "Show Seconds": {
     "Show Seconds": "نمایش ثانیه‌ها"
   },
@@ -4296,6 +4409,9 @@
   "Shows current workspace and allows switching": {
     "Shows current workspace and allows switching": "Workspace کنونی را نمایش می‌دهد و امکان تغییر را فراهم می‌کند"
   },
+  "Shows the original device name before renaming": {
+    "Original: %1": ""
+  },
   "Shows when caps lock is active": {
     "Shows when caps lock is active": "زمانی که caps lock فعال است نمایش داده می‌شود"
   },
@@ -4322,6 +4438,9 @@
   },
   "Sizing": {
     "Sizing": "اندازه‌دهی"
+  },
+  "Skip confirmation": {
+    "Skip confirmation": ""
   },
   "Small": {
     "Small": ""
@@ -4474,7 +4593,7 @@
     "System Updates": "بروزرسانی‌های سیستم"
   },
   "System monitor widget description": {
-    "CPU, memory, network, and disk monitoring": "ناظر CPU، حافظه، شبکه و دیسک"
+    "CPU, memory, network, and disk monitoring": "نظارت بر CPU، حافظه، شبکه و دیسک"
   },
   "System monitor widget name | sysmon window title": {
     "System Monitor": "ناظر سیستم"
@@ -4741,7 +4860,7 @@
     "Unnamed Rule": ""
   },
   "Unpin": {
-    "Unpin": ""
+    "Unpin": "برداشتن سنجاق"
   },
   "Unpin from Dock": {
     "Unpin from Dock": "جداکردن از داک"
@@ -4768,7 +4887,7 @@
     "Update Plugin": "بروزرسانی افزونه"
   },
   "Uptime": {
-    "Uptime": ""
+    "Uptime": "زمان اجرا"
   },
   "Urgent Color": {
     "Urgent Color": ""
@@ -4938,6 +5057,9 @@
   "Visibility": {
     "Visibility": "دید"
   },
+  "Visual Effects": {
+    "Visual Effects": ""
+  },
   "Visual divider between widgets": {
     "Visual divider between widgets": "جداکننده بصری بین ابزارک‌ها"
   },
@@ -4985,6 +5107,9 @@
   },
   "When enabled, apps are sorted alphabetically. When disabled, apps are sorted by usage frequency.": {
     "When enabled, apps are sorted alphabetically. When disabled, apps are sorted by usage frequency.": "هنگام فعال بودن، برنامه‌ها بر اساس حروف الفبا مرتب می‌شوند. هنگام غیرفعال بودن، برنامه ها بر اساس دفعات استفاده مرتب می‌شوند."
+  },
+  "When locked": {
+    "When locked": ""
   },
   "When updater widget is used, then hide it if no update found": {
     "Hide Updater Widget": "پنهان‌کردن ابزارک بروزرسان",
@@ -5198,6 +5323,16 @@
   "browse themes button | theme browser header | theme browser window title": {
     "Browse Themes": "مرور تم‌ها"
   },
+  "button color option | color option | primary color | tile color option": {
+    "Primary": ""
+  },
+  "button color option | color option | secondary color | tile color option": {
+    "Secondary": ""
+  },
+  "button color option | tile color option": {
+    "Primary Container": "",
+    "Surface Variant": ""
+  },
   "catppuccin theme description": {
     "Soothing pastel theme based on Catppuccin": "تم پاستلی آرامش‌بخش بر اساس Catppuccin"
   },
@@ -5256,7 +5391,7 @@
     "Read:": ""
   },
   "disk write label": {
-    "Write:": ""
+    "Write:": "نوشتن:"
   },
   "dms/binds.kdl exists but is not included in config.kdl. Custom keybinds will not work until this is fixed.": {
     "dms/binds.kdl exists but is not included in config.kdl. Custom keybinds will not work until this is fixed.": "فایل dms/binds.kdl وجود دارد اما در config.kdl گنجانده نشده است. کلیدهای ترکیبی سفارشی تا زمانی که این مشکل برطرف نشود، کار نخواهند کرد."
@@ -5319,6 +5454,9 @@
   "fallback gpu name": {
     "Unknown GPU": ""
   },
+  "featured": {
+    "featured": ""
+  },
   "files": {
     "files": "فایل"
   },
@@ -5326,7 +5464,7 @@
     "Material Design inspired color themes": "رنگ‌های تم الهام گرفته شده از متریال دیزاین"
   },
   "gpu section header in system monitor": {
-    "GPU Monitoring": ""
+    "GPU Monitoring": "نظارت بر GPU"
   },
   "greeter back button": {
     "Back": "بازگشت"
@@ -5561,6 +5699,7 @@
     "nav": ""
   },
   "network status": {
+    "Connected": "",
     "Disabling WiFi...": "",
     "Enabling WiFi...": "",
     "Ethernet": "",
@@ -5664,7 +5803,7 @@
     "Processes:": ""
   },
   "process detail label": {
-    "Full Command:": ""
+    "Full Command:": "دستور کامل:"
   },
   "process search placeholder": {
     "Search processes...": ""
@@ -5702,16 +5841,16 @@
   },
   "shadow color option": {
     "Surface": "",
-    "Text": ""
+    "Text": "متن"
   },
   "shadow color option | text color": {
     "Text": ""
   },
   "shadow intensity slider": {
-    "Intensity": ""
+    "Intensity": "شدت"
   },
   "short for processes": {
-    "procs": ""
+    "procs": "فرایندها"
   },
   "source code link": {
     "source": "منبع"
@@ -5720,13 +5859,13 @@
     "System Monitor": "ناظر سیستم"
   },
   "system info header in system monitor": {
-    "System Information": ""
+    "System Information": "اطلاعات سیستم"
   },
   "system info label": {
-    "Architecture": "",
+    "Architecture": "معماری",
     "Distribution": "",
     "Hostname": "",
-    "Kernel": "",
+    "Kernel": "کرنل",
     "Load Average": ""
   },
   "theme browser description": {
@@ -5770,7 +5909,7 @@
     "update dms for NM integration.": "DMS را برای یکپارچه‌سازی NM بروز کنید."
   },
   "uptime label in footer": {
-    "Uptime:": ""
+    "Uptime:": "زمان اجرا:"
   },
   "version requirement": {
     "Requires %1": ""

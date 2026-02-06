@@ -1,15 +1,18 @@
 package keybinds
 
 type Keybind struct {
-	Key           string   `json:"key"`
-	Description   string   `json:"desc"`
-	Action        string   `json:"action,omitempty"`
-	Subcategory   string   `json:"subcat,omitempty"`
-	Source        string   `json:"source,omitempty"`
-	HideOnOverlay bool     `json:"hideOnOverlay,omitempty"`
-	CooldownMs    int      `json:"cooldownMs,omitempty"`
-	Flags         string   `json:"flags,omitempty"` // Hyprland bind flags: e=repeat, l=locked, r=release, o=long-press
-	Conflict      *Keybind `json:"conflict,omitempty"`
+	Key             string   `json:"key"`
+	Description     string   `json:"desc"`
+	Action          string   `json:"action,omitempty"`
+	Subcategory     string   `json:"subcat,omitempty"`
+	Source          string   `json:"source,omitempty"`
+	HideOnOverlay   bool     `json:"hideOnOverlay,omitempty"`
+	CooldownMs      int      `json:"cooldownMs,omitempty"`
+	Flags           string   `json:"flags,omitempty"` // Hyprland bind flags: e=repeat, l=locked, r=release, o=long-press
+	AllowWhenLocked bool     `json:"allowWhenLocked,omitempty"`
+	AllowInhibiting *bool    `json:"allowInhibiting,omitempty"` // nil=default(true), false=explicitly disabled
+	Repeat          *bool    `json:"repeat,omitempty"`          // nil=default(true), false=explicitly disabled
+	Conflict        *Keybind `json:"conflict,omitempty"`
 }
 
 type DMSBindsStatus struct {

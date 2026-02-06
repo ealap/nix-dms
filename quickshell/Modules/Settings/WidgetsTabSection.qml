@@ -37,7 +37,7 @@ Column {
             "id": widget.id,
             "enabled": widget.enabled
         };
-        var keys = ["size", "selectedGpuIndex", "pciId", "mountPath", "minimumWidth", "showSwap", "mediaSize", "clockCompactMode", "focusedWindowCompactMode", "runningAppsCompactMode", "keyboardLayoutNameCompactMode", "showNetworkIcon", "showBluetoothIcon", "showAudioIcon", "showAudioPercent", "showVpnIcon", "showBrightnessIcon", "showBrightnessPercent", "showMicIcon", "showMicPercent", "showBatteryIcon", "showPrinterIcon", "showScreenSharingIcon", "barMaxVisibleApps", "barMaxVisibleRunningApps", "barShowOverflowBadge"];
+        var keys = ["size", "selectedGpuIndex", "pciId", "mountPath", "minimumWidth", "showSwap", "mediaSize", "clockCompactMode", "focusedWindowCompactMode", "runningAppsCompactMode", "keyboardLayoutNameCompactMode", "runningAppsGroupByApp", "runningAppsCurrentWorkspace", "runningAppsCurrentMonitor", "showNetworkIcon", "showBluetoothIcon", "showAudioIcon", "showAudioPercent", "showVpnIcon", "showBrightnessIcon", "showBrightnessPercent", "showMicIcon", "showMicPercent", "showBatteryIcon", "showPrinterIcon", "showScreenSharingIcon", "barMaxVisibleApps", "barMaxVisibleRunningApps", "barShowOverflowBadge"];
         for (var i = 0; i < keys.length; i++) {
             if (widget[keys[i]] !== undefined)
                 result[keys[i]] = widget[keys[i]];
@@ -407,14 +407,47 @@ Column {
                             }
                         }
 
+                        DankActionButton {
+                            id: runningAppsMenuButton
+                            visible: modelData.id === "runningApps"
+                            buttonSize: 32
+                            iconName: "more_vert"
+                            iconSize: 18
+                            iconColor: Theme.outline
+                            onClicked: {
+                                runningAppsContextMenu.widgetData = modelData;
+                                runningAppsContextMenu.sectionId = root.sectionId;
+                                runningAppsContextMenu.widgetIndex = index;
+
+                                var buttonPos = runningAppsMenuButton.mapToItem(root, 0, 0);
+                                var popupWidth = runningAppsContextMenu.width;
+                                var popupHeight = runningAppsContextMenu.height;
+
+                                var xPos = buttonPos.x - popupWidth - Theme.spacingS;
+                                if (xPos < 0)
+                                    xPos = buttonPos.x + runningAppsMenuButton.width + Theme.spacingS;
+
+                                var yPos = buttonPos.y - popupHeight / 2 + runningAppsMenuButton.height / 2;
+                                if (yPos < 0) {
+                                    yPos = Theme.spacingS;
+                                } else if (yPos + popupHeight > root.height) {
+                                    yPos = root.height - popupHeight - Theme.spacingS;
+                                }
+
+                                runningAppsContextMenu.x = xPos;
+                                runningAppsContextMenu.y = yPos;
+                                runningAppsContextMenu.open();
+                            }
+                        }
+
                         Row {
                             spacing: Theme.spacingXS
-                            visible: modelData.id === "clock" || modelData.id === "focusedWindow" || modelData.id === "runningApps" || modelData.id === "keyboard_layout_name" || modelData.id === "appsDock"
+                            visible: modelData.id === "clock" || modelData.id === "focusedWindow" || modelData.id === "keyboard_layout_name" || modelData.id === "appsDock"
 
                             DankActionButton {
                                 id: compactModeButton
                                 buttonSize: 28
-                                visible: modelData.id === "clock" || modelData.id === "focusedWindow" || modelData.id === "runningApps" || modelData.id === "keyboard_layout_name"
+                                visible: modelData.id === "clock" || modelData.id === "focusedWindow" || modelData.id === "keyboard_layout_name"
                                 iconName: {
                                     const isCompact = (() => {
                                             switch (modelData.id) {
@@ -422,8 +455,6 @@ Column {
                                                 return modelData.clockCompactMode !== undefined ? modelData.clockCompactMode : SettingsData.clockCompactMode;
                                             case "focusedWindow":
                                                 return modelData.focusedWindowCompactMode !== undefined ? modelData.focusedWindowCompactMode : SettingsData.focusedWindowCompactMode;
-                                            case "runningApps":
-                                                return modelData.runningAppsCompactMode !== undefined ? modelData.runningAppsCompactMode : SettingsData.runningAppsCompactMode;
                                             case "keyboard_layout_name":
                                                 return modelData.keyboardLayoutNameCompactMode !== undefined ? modelData.keyboardLayoutNameCompactMode : SettingsData.keyboardLayoutNameCompactMode;
                                             default:
@@ -440,8 +471,6 @@ Column {
                                                 return modelData.clockCompactMode !== undefined ? modelData.clockCompactMode : SettingsData.clockCompactMode;
                                             case "focusedWindow":
                                                 return modelData.focusedWindowCompactMode !== undefined ? modelData.focusedWindowCompactMode : SettingsData.focusedWindowCompactMode;
-                                            case "runningApps":
-                                                return modelData.runningAppsCompactMode !== undefined ? modelData.runningAppsCompactMode : SettingsData.runningAppsCompactMode;
                                             case "keyboard_layout_name":
                                                 return modelData.keyboardLayoutNameCompactMode !== undefined ? modelData.keyboardLayoutNameCompactMode : SettingsData.keyboardLayoutNameCompactMode;
                                             default:
@@ -457,8 +486,6 @@ Column {
                                                 return modelData.clockCompactMode !== undefined ? modelData.clockCompactMode : SettingsData.clockCompactMode;
                                             case "focusedWindow":
                                                 return modelData.focusedWindowCompactMode !== undefined ? modelData.focusedWindowCompactMode : SettingsData.focusedWindowCompactMode;
-                                            case "runningApps":
-                                                return modelData.runningAppsCompactMode !== undefined ? modelData.runningAppsCompactMode : SettingsData.runningAppsCompactMode;
                                             case "keyboard_layout_name":
                                                 return modelData.keyboardLayoutNameCompactMode !== undefined ? modelData.keyboardLayoutNameCompactMode : SettingsData.keyboardLayoutNameCompactMode;
                                             default:
@@ -474,8 +501,6 @@ Column {
                                                 return modelData.clockCompactMode !== undefined ? modelData.clockCompactMode : SettingsData.clockCompactMode;
                                             case "focusedWindow":
                                                 return modelData.focusedWindowCompactMode !== undefined ? modelData.focusedWindowCompactMode : SettingsData.focusedWindowCompactMode;
-                                            case "runningApps":
-                                                return modelData.runningAppsCompactMode !== undefined ? modelData.runningAppsCompactMode : SettingsData.runningAppsCompactMode;
                                             case "keyboard_layout_name":
                                                 return modelData.keyboardLayoutNameCompactMode !== undefined ? modelData.keyboardLayoutNameCompactMode : SettingsData.keyboardLayoutNameCompactMode;
                                             default:
@@ -484,25 +509,6 @@ Column {
                                         })();
                                     const tooltipText = isCompact ? "Full Size" : "Compact";
                                     sharedTooltip.show(tooltipText, compactModeButton, 0, 0, "bottom");
-                                }
-                                onExited: {
-                                    sharedTooltip.hide();
-                                }
-                            }
-
-                            DankActionButton {
-                                id: groupByAppButton
-                                buttonSize: 28
-                                visible: modelData.id === "runningApps"
-                                iconName: "apps"
-                                iconSize: 16
-                                iconColor: SettingsData.runningAppsGroupByApp ? Theme.primary : Theme.outline
-                                onClicked: {
-                                    SettingsData.set("runningAppsGroupByApp", !SettingsData.runningAppsGroupByApp);
-                                }
-                                onEntered: {
-                                    const tooltipText = SettingsData.runningAppsGroupByApp ? "Ungroup" : "Group by App";
-                                    sharedTooltip.show(tooltipText, groupByAppButton, 0, 0, "bottom");
                                 }
                                 onExited: {
                                     sharedTooltip.hide();
@@ -1412,6 +1418,264 @@ Column {
                                 root.compactModeChanged("music", modelData.sizeValue);
                                 musicContextMenu.close();
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    Popup {
+        id: runningAppsContextMenu
+
+        property var widgetData: null
+        property string sectionId: ""
+        property int widgetIndex: -1
+
+        readonly property var currentWidgetData: (widgetIndex >= 0 && widgetIndex < root.items.length) ? root.items[widgetIndex] : widgetData
+
+        width: 240
+        height: runningAppsMenuColumn.implicitHeight + Theme.spacingS * 2
+        padding: 0
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
+        background: Rectangle {
+            color: Theme.surfaceContainer
+            radius: Theme.cornerRadius
+            border.color: Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.08)
+            border.width: 0
+        }
+
+        contentItem: Item {
+            Column {
+                id: runningAppsMenuColumn
+                anchors.fill: parent
+                anchors.margins: Theme.spacingS
+                spacing: 2
+
+                Rectangle {
+                    width: parent.width
+                    height: 32
+                    radius: Theme.cornerRadius
+                    color: "transparent"
+
+                    StyledText {
+                        anchors.left: parent.left
+                        anchors.leftMargin: Theme.spacingS
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: I18n.tr("Running Apps Settings")
+                        font.pixelSize: Theme.fontSizeSmall
+                        font.weight: Font.Medium
+                        color: Theme.surfaceText
+                    }
+                }
+
+                Rectangle {
+                    width: parent.width
+                    height: 32
+                    radius: Theme.cornerRadius
+                    color: raCompactArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : "transparent"
+
+                    Row {
+                        anchors.left: parent.left
+                        anchors.leftMargin: Theme.spacingS
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: Theme.spacingS
+
+                        DankIcon {
+                            name: "zoom_in"
+                            size: 16
+                            color: Theme.surfaceText
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        StyledText {
+                            text: I18n.tr("Compact Mode")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceText
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                    }
+
+                    DankToggle {
+                        id: raCompactToggle
+                        anchors.right: parent.right
+                        anchors.rightMargin: Theme.spacingS
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: 40
+                        height: 20
+                        checked: runningAppsContextMenu.currentWidgetData?.runningAppsCompactMode ?? SettingsData.runningAppsCompactMode
+                        onToggled: {
+                            root.overflowSettingChanged(runningAppsContextMenu.sectionId, runningAppsContextMenu.widgetIndex, "runningAppsCompactMode", toggled);
+                        }
+                    }
+
+                    MouseArea {
+                        id: raCompactArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onPressed: {
+                            raCompactToggle.checked = !raCompactToggle.checked;
+                            root.overflowSettingChanged(runningAppsContextMenu.sectionId, runningAppsContextMenu.widgetIndex, "runningAppsCompactMode", raCompactToggle.checked);
+                        }
+                    }
+                }
+
+                Rectangle {
+                    width: parent.width
+                    height: 32
+                    radius: Theme.cornerRadius
+                    color: raGroupArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : "transparent"
+
+                    Row {
+                        anchors.left: parent.left
+                        anchors.leftMargin: Theme.spacingS
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: Theme.spacingS
+
+                        DankIcon {
+                            name: "apps"
+                            size: 16
+                            color: Theme.surfaceText
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        StyledText {
+                            text: I18n.tr("Group by App")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceText
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                    }
+
+                    DankToggle {
+                        id: raGroupToggle
+                        anchors.right: parent.right
+                        anchors.rightMargin: Theme.spacingS
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: 40
+                        height: 20
+                        checked: runningAppsContextMenu.currentWidgetData?.runningAppsGroupByApp ?? SettingsData.runningAppsGroupByApp
+                        onToggled: {
+                            root.overflowSettingChanged(runningAppsContextMenu.sectionId, runningAppsContextMenu.widgetIndex, "runningAppsGroupByApp", toggled);
+                        }
+                    }
+
+                    MouseArea {
+                        id: raGroupArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onPressed: {
+                            raGroupToggle.checked = !raGroupToggle.checked;
+                            root.overflowSettingChanged(runningAppsContextMenu.sectionId, runningAppsContextMenu.widgetIndex, "runningAppsGroupByApp", raGroupToggle.checked);
+                        }
+                    }
+                }
+
+                Rectangle {
+                    width: parent.width
+                    height: 32
+                    radius: Theme.cornerRadius
+                    color: raWorkspaceArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : "transparent"
+
+                    Row {
+                        anchors.left: parent.left
+                        anchors.leftMargin: Theme.spacingS
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: Theme.spacingS
+
+                        DankIcon {
+                            name: "workspaces"
+                            size: 16
+                            color: Theme.surfaceText
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        StyledText {
+                            text: I18n.tr("Current Workspace", "Running apps filter: only show apps from the active workspace")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceText
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                    }
+
+                    DankToggle {
+                        id: raWorkspaceToggle
+                        anchors.right: parent.right
+                        anchors.rightMargin: Theme.spacingS
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: 40
+                        height: 20
+                        checked: runningAppsContextMenu.currentWidgetData?.runningAppsCurrentWorkspace ?? SettingsData.runningAppsCurrentWorkspace
+                        onToggled: {
+                            root.overflowSettingChanged(runningAppsContextMenu.sectionId, runningAppsContextMenu.widgetIndex, "runningAppsCurrentWorkspace", toggled);
+                        }
+                    }
+
+                    MouseArea {
+                        id: raWorkspaceArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onPressed: {
+                            raWorkspaceToggle.checked = !raWorkspaceToggle.checked;
+                            root.overflowSettingChanged(runningAppsContextMenu.sectionId, runningAppsContextMenu.widgetIndex, "runningAppsCurrentWorkspace", raWorkspaceToggle.checked);
+                        }
+                    }
+                }
+
+                Rectangle {
+                    width: parent.width
+                    height: 32
+                    radius: Theme.cornerRadius
+                    color: raDisplayArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : "transparent"
+
+                    Row {
+                        anchors.left: parent.left
+                        anchors.leftMargin: Theme.spacingS
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: Theme.spacingS
+
+                        DankIcon {
+                            name: "monitor"
+                            size: 16
+                            color: Theme.surfaceText
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        StyledText {
+                            text: I18n.tr("Current Monitor", "Running apps filter: only show apps from the same monitor")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceText
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                    }
+
+                    DankToggle {
+                        id: raDisplayToggle
+                        anchors.right: parent.right
+                        anchors.rightMargin: Theme.spacingS
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: 40
+                        height: 20
+                        checked: runningAppsContextMenu.currentWidgetData?.runningAppsCurrentMonitor ?? SettingsData.runningAppsCurrentMonitor
+                        onToggled: {
+                            root.overflowSettingChanged(runningAppsContextMenu.sectionId, runningAppsContextMenu.widgetIndex, "runningAppsCurrentMonitor", toggled);
+                        }
+                    }
+
+                    MouseArea {
+                        id: raDisplayArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onPressed: {
+                            raDisplayToggle.checked = !raDisplayToggle.checked;
+                            root.overflowSettingChanged(runningAppsContextMenu.sectionId, runningAppsContextMenu.widgetIndex, "runningAppsCurrentMonitor", raDisplayToggle.checked);
                         }
                     }
                 }

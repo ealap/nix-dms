@@ -812,6 +812,27 @@
     "icon": "visibility_off"
   },
   {
+    "section": "workspaceDragReorder",
+    "label": "Drag to Reorder",
+    "tabIndex": 4,
+    "category": "Workspaces",
+    "keywords": [
+      "desktop",
+      "drag",
+      "indicators",
+      "move",
+      "reorder",
+      "sort",
+      "spaces",
+      "virtual",
+      "virtual desktops",
+      "workspace",
+      "workspaces"
+    ],
+    "description": "Drag workspace indicators to reorder them",
+    "conditionKey": "isNiri"
+  },
+  {
     "section": "workspaceFocusedBorderEnabled",
     "label": "Focused Border",
     "tabIndex": 4,
@@ -1630,15 +1651,19 @@
   },
   {
     "section": "_tab_8",
-    "label": "System",
+    "label": "Printers",
     "tabIndex": 8,
     "category": "System",
     "keywords": [
+      "cups",
       "linux",
       "os",
+      "print",
+      "printers",
+      "printing",
       "system"
     ],
-    "icon": "computer",
+    "icon": "print",
     "conditionKey": "cupsAvailable"
   },
   {
@@ -2232,6 +2257,30 @@
       "window"
     ],
     "description": "Width of window border (borderpx)"
+  },
+  {
+    "section": "buttonColorMode",
+    "label": "Button Color",
+    "tabIndex": 10,
+    "category": "Theme & Colors",
+    "keywords": [
+      "accent",
+      "action",
+      "appearance",
+      "button",
+      "buttons",
+      "color",
+      "colors",
+      "colour",
+      "hue",
+      "look",
+      "primary",
+      "scheme",
+      "style",
+      "theme",
+      "tint"
+    ],
+    "description": "Color for primary action buttons"
   },
   {
     "section": "colorMode",
@@ -4012,6 +4061,50 @@
     "icon": "info"
   },
   {
+    "section": "popoutAnimationSpeed",
+    "label": "%1 Animation Speed",
+    "tabIndex": 14,
+    "category": "Typography & Motion",
+    "keywords": [
+      "animate",
+      "animation",
+      "animations",
+      "custom",
+      "duration",
+      "fonts",
+      "motion",
+      "popout",
+      "speed",
+      "text",
+      "transition",
+      "typography"
+    ],
+    "icon": "open_in_new",
+    "description": "%1 custom animation duration"
+  },
+  {
+    "section": "modalAnimationSpeed",
+    "label": "%1 Animation Speed",
+    "tabIndex": 14,
+    "category": "Typography & Motion",
+    "keywords": [
+      "animate",
+      "animation",
+      "animations",
+      "custom",
+      "duration",
+      "fonts",
+      "modal",
+      "motion",
+      "speed",
+      "text",
+      "transition",
+      "typography"
+    ],
+    "icon": "web_asset",
+    "description": "%1 custom animation duration"
+  },
+  {
     "section": "animationSpeed",
     "label": "Animation Speed",
     "tabIndex": 14,
@@ -4058,6 +4151,48 @@
       "typography"
     ],
     "description": "Fine-tune animation timing in milliseconds"
+  },
+  {
+    "section": "popoutCustomAnimationDuration",
+    "label": "Custom Duration",
+    "tabIndex": 14,
+    "category": "Typography & Motion",
+    "keywords": [
+      "animate",
+      "animation",
+      "animations",
+      "custom",
+      "duration",
+      "fonts",
+      "motion",
+      "popout",
+      "speed",
+      "text",
+      "transition",
+      "typography"
+    ],
+    "description": "%1 custom animation duration"
+  },
+  {
+    "section": "modalCustomAnimationDuration",
+    "label": "Custom Duration",
+    "tabIndex": 14,
+    "category": "Typography & Motion",
+    "keywords": [
+      "animate",
+      "animation",
+      "animations",
+      "custom",
+      "duration",
+      "fonts",
+      "modal",
+      "motion",
+      "speed",
+      "text",
+      "transition",
+      "typography"
+    ],
+    "description": "%1 custom animation duration"
   },
   {
     "section": "fontScale",
@@ -4896,29 +5031,6 @@
     "conditionKey": "isHyprlandOrNiri"
   },
   {
-    "section": "runningApps",
-    "label": "Running Apps Settings",
-    "tabIndex": 19,
-    "category": "Running Apps",
-    "keywords": [
-      "active",
-      "apps",
-      "current",
-      "desktop",
-      "open",
-      "running",
-      "settings",
-      "show",
-      "taskbar",
-      "tasks",
-      "virtual",
-      "windows",
-      "workspace"
-    ],
-    "icon": "apps",
-    "description": "Show only apps running in current workspace"
-  },
-  {
     "section": "_tab_20",
     "label": "System Updater",
     "tabIndex": 20,
@@ -5688,12 +5800,71 @@
     "section": "_tab_28",
     "label": "Window Rules",
     "tabIndex": 28,
-    "category": "Settings",
+    "category": "Window Rules",
     "keywords": [
+      "floating",
+      "fullscreen",
+      "matching",
+      "opacity",
       "rules",
-      "settings",
       "window"
     ],
-    "icon": "select_window"
+    "icon": "select_window",
+    "conditionKey": "isNiri"
+  },
+  {
+    "section": "audioInputDevices",
+    "label": "Input Devices",
+    "tabIndex": 29,
+    "category": "Audio",
+    "keywords": [
+      "audio",
+      "device",
+      "devices",
+      "headphones",
+      "input",
+      "microphone",
+      "pipewire",
+      "sound",
+      "speaker",
+      "volume"
+    ],
+    "icon": "mic"
+  },
+  {
+    "section": "audioOutputDevices",
+    "label": "Output Devices",
+    "tabIndex": 29,
+    "category": "Audio",
+    "keywords": [
+      "audio",
+      "device",
+      "devices",
+      "headphones",
+      "microphone",
+      "output",
+      "pipewire",
+      "sound",
+      "speaker",
+      "volume"
+    ],
+    "icon": "volume_up"
+  },
+  {
+    "section": "_tab_29",
+    "label": "System",
+    "tabIndex": 29,
+    "category": "Audio",
+    "keywords": [
+      "audio",
+      "headphones",
+      "microphone",
+      "pipewire",
+      "sound",
+      "speaker",
+      "system",
+      "volume"
+    ],
+    "icon": "computer"
   }
 ]

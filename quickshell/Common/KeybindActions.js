@@ -121,7 +121,8 @@ const NIRI_ACTIONS = {
         { id: "expand-column-to-available-width", label: "Expand to Available Width" },
         { id: "consume-or-expel-window-left", label: "Consume/Expel Left" },
         { id: "consume-or-expel-window-right", label: "Consume/Expel Right" },
-        { id: "toggle-column-tabbed-display", label: "Toggle Tabbed" }
+        { id: "toggle-column-tabbed-display", label: "Toggle Tabbed" },
+        { id: "toggle-window-rule-opacity", label: "Toggle Window Opacity" }
     ],
     "Focus": [
         { id: "focus-column-left", label: "Focus Left" },
@@ -168,6 +169,7 @@ const NIRI_ACTIONS = {
     "System": [
         { id: "toggle-overview", label: "Toggle Overview" },
         { id: "show-hotkey-overlay", label: "Show Hotkey Overlay" },
+        { id: "do-screen-transition", label: "Screen Transition" },
         { id: "power-off-monitors", label: "Power Off Monitors" },
         { id: "power-on-monitors", label: "Power On Monitors" },
         { id: "toggle-keyboard-shortcuts-inhibit", label: "Toggle Shortcuts Inhibit" },
@@ -420,6 +422,12 @@ const COMPOSITOR_ACTIONS = {
 const CATEGORY_ORDER = ["DMS", "Execute", "Workspace", "Tags", "Window", "Move/Resize", "Focus", "Move", "Layout", "Groups", "Monitor", "Scratchpad", "Screenshot", "System", "Pass-through", "Overview", "Alt-Tab", "Other"];
 
 const NIRI_ACTION_ARGS = {
+    "quit": {
+        args: [{ name: "skip-confirmation", type: "bool", label: "Skip confirmation" }]
+    },
+    "do-screen-transition": {
+        args: [{ name: "delay-ms", type: "number", label: "Delay (ms)", placeholder: "250" }]
+    },
     "set-column-width": {
         args: [{ name: "value", type: "text", label: "Width", placeholder: "+10%, -10%, 50%" }]
     },
@@ -756,14 +764,14 @@ function getDmsActions(isNiri, isHyprland) {
             continue;
         }
         switch (action.compositor) {
-        case "niri":
-            if (isNiri)
-                result.push(action);
-            break;
-        case "hyprland":
-            if (isHyprland)
-                result.push(action);
-            break;
+            case "niri":
+                if (isNiri)
+                    result.push(action);
+                break;
+            case "hyprland":
+                if (isHyprland)
+                    result.push(action);
+                break;
         }
     }
     return result;
@@ -856,13 +864,13 @@ function isValidAction(action) {
     if (!action)
         return false;
     switch (action) {
-    case "spawn":
-    case "spawn ":
-    case "spawn sh -c \"\"":
-    case "spawn sh -c ''":
-    case "spawn_shell":
-    case "spawn_shell ":
-        return false;
+        case "spawn":
+        case "spawn ":
+        case "spawn sh -c \"\"":
+        case "spawn sh -c ''":
+        case "spawn_shell":
+        case "spawn_shell ":
+            return false;
     }
     return true;
 }
@@ -882,7 +890,7 @@ function buildSpawnAction(command, args) {
         return "";
     let parts = [command];
     if (args && args.length > 0)
-        parts = parts.concat(args.filter(function(a) { return a; }));
+        parts = parts.concat(args.filter(function (a) { return a; }));
     return "spawn " + parts.join(" ");
 }
 
@@ -899,7 +907,7 @@ function parseSpawnCommand(action) {
     if (!action || !action.startsWith("spawn "))
         return { command: "", args: [] };
     const rest = action.slice(6);
-    const parts = rest.split(" ").filter(function(p) { return p; });
+    const parts = rest.split(" ").filter(function (p) { return p; });
     return {
         command: parts[0] || "",
         args: parts.slice(1)
@@ -961,130 +969,138 @@ function parseCompositorActionArgs(compositor, action) {
     var argParts = parts.slice(1);
 
     switch (compositor) {
-    case "niri":
-        switch (base) {
-        case "move-column-to-workspace":
-            for (var i = 0; i < argParts.length; i++) {
-                if (argParts[i] === "focus=true" || argParts[i] === "focus=false") {
-                    args.focus = argParts[i] === "focus=true";
-                } else if (!args.index) {
-                    args.index = argParts[i];
+        case "niri":
+            switch (base) {
+                case "move-column-to-workspace":
+                    for (var i = 0; i < argParts.length; i++) {
+                        if (argParts[i] === "focus=true" || argParts[i] === "focus=false") {
+                            args.focus = argParts[i] === "focus=true";
+                        } else if (!args.index) {
+                            args.index = argParts[i];
+                        }
+                    }
+                    break;
+                case "move-column-to-workspace-down":
+                case "move-column-to-workspace-up":
+                    for (var k = 0; k < argParts.length; k++) {
+                        if (argParts[k] === "focus=true" || argParts[k] === "focus=false")
+                            args.focus = argParts[k] === "focus=true";
+                    }
+                    break;
+                default:
+                    for (var j = 0; j < argParts.length; j++) {
+                        var kv = argParts[j].split("=");
+                        if (kv.length === 2) {
+                            switch (kv[1]) {
+                                case "true":
+                                    args[kv[0]] = true;
+                                    break;
+                                case "false":
+                                    args[kv[0]] = false;
+                                    break;
+                                default:
+                                    args[kv[0]] = kv[1];
+                            }
+                        } else {
+                            args.value = args.value ? (args.value + " " + argParts[j]) : argParts[j];
+                        }
+                    }
+            }
+            break;
+        case "mangowc":
+            if (argConfig.args && argConfig.args.length > 0 && argParts.length > 0) {
+                var paramStr = argParts.join(" ");
+                var paramValues = paramStr.split(",");
+                for (var m = 0; m < argConfig.args.length && m < paramValues.length; m++) {
+                    args[argConfig.args[m].name] = paramValues[m];
                 }
             }
             break;
-        case "move-column-to-workspace-down":
-        case "move-column-to-workspace-up":
-            for (var k = 0; k < argParts.length; k++) {
-                if (argParts[k] === "focus=true" || argParts[k] === "focus=false")
-                    args.focus = argParts[k] === "focus=true";
+        case "hyprland":
+            if (argConfig.args && argConfig.args.length > 0) {
+                switch (base) {
+                    case "resizewindowpixel":
+                    case "movewindowpixel":
+                        var commaIdx = argParts.join(" ").indexOf(",");
+                        if (commaIdx !== -1) {
+                            var fullStr = argParts.join(" ");
+                            args[argConfig.args[0].name] = fullStr.substring(0, commaIdx);
+                            args[argConfig.args[1].name] = fullStr.substring(commaIdx + 1);
+                        } else if (argParts.length > 0) {
+                            args[argConfig.args[0].name] = argParts.join(" ");
+                        }
+                        break;
+                    case "movetoworkspace":
+                    case "movetoworkspacesilent":
+                    case "tagwindow":
+                    case "alterzorder":
+                        if (argParts.length >= 2) {
+                            args[argConfig.args[0].name] = argParts[0];
+                            args[argConfig.args[1].name] = argParts.slice(1).join(" ");
+                        } else if (argParts.length === 1) {
+                            args[argConfig.args[0].name] = argParts[0];
+                        }
+                        break;
+                    case "moveworkspacetomonitor":
+                    case "swapactiveworkspaces":
+                    case "renameworkspace":
+                    case "fullscreenstate":
+                    case "movecursor":
+                        if (argParts.length >= 2) {
+                            args[argConfig.args[0].name] = argParts[0];
+                            args[argConfig.args[1].name] = argParts[1];
+                        } else if (argParts.length === 1) {
+                            args[argConfig.args[0].name] = argParts[0];
+                        }
+                        break;
+                    case "setprop":
+                        if (argParts.length >= 3) {
+                            args.window = argParts[0];
+                            args.property = argParts[1];
+                            args.value = argParts.slice(2).join(" ");
+                        } else if (argParts.length === 2) {
+                            args.window = argParts[0];
+                            args.property = argParts[1];
+                        }
+                        break;
+                    case "sendshortcut":
+                        if (argParts.length >= 3) {
+                            args.mod = argParts[0];
+                            args.key = argParts[1];
+                            args.window = argParts.slice(2).join(" ");
+                        } else if (argParts.length >= 2) {
+                            args.mod = argParts[0];
+                            args.key = argParts[1];
+                        }
+                        break;
+                    case "sendkeystate":
+                        if (argParts.length >= 4) {
+                            args.mod = argParts[0];
+                            args.key = argParts[1];
+                            args.state = argParts[2];
+                            args.window = argParts.slice(3).join(" ");
+                        }
+                        break;
+                    case "signalwindow":
+                        if (argParts.length >= 2) {
+                            args.window = argParts[0];
+                            args.signal = argParts[1];
+                        }
+                        break;
+                    default:
+                        if (argParts.length > 0) {
+                            if (argConfig.args.length === 1) {
+                                args[argConfig.args[0].name] = argParts.join(" ");
+                            } else {
+                                args.value = argParts.join(" ");
+                            }
+                        }
+                }
             }
             break;
         default:
-            if (base.startsWith("screenshot")) {
-                for (var j = 0; j < argParts.length; j++) {
-                    var kv = argParts[j].split("=");
-                    if (kv.length === 2)
-                        args[kv[0]] = kv[1] === "true";
-                }
-            } else if (argParts.length > 0) {
+            if (argParts.length > 0)
                 args.value = argParts.join(" ");
-            }
-        }
-        break;
-    case "mangowc":
-        if (argConfig.args && argConfig.args.length > 0 && argParts.length > 0) {
-            var paramStr = argParts.join(" ");
-            var paramValues = paramStr.split(",");
-            for (var m = 0; m < argConfig.args.length && m < paramValues.length; m++) {
-                args[argConfig.args[m].name] = paramValues[m];
-            }
-        }
-        break;
-    case "hyprland":
-        if (argConfig.args && argConfig.args.length > 0) {
-            switch (base) {
-            case "resizewindowpixel":
-            case "movewindowpixel":
-                var commaIdx = argParts.join(" ").indexOf(",");
-                if (commaIdx !== -1) {
-                    var fullStr = argParts.join(" ");
-                    args[argConfig.args[0].name] = fullStr.substring(0, commaIdx);
-                    args[argConfig.args[1].name] = fullStr.substring(commaIdx + 1);
-                } else if (argParts.length > 0) {
-                    args[argConfig.args[0].name] = argParts.join(" ");
-                }
-                break;
-            case "movetoworkspace":
-            case "movetoworkspacesilent":
-            case "tagwindow":
-            case "alterzorder":
-                if (argParts.length >= 2) {
-                    args[argConfig.args[0].name] = argParts[0];
-                    args[argConfig.args[1].name] = argParts.slice(1).join(" ");
-                } else if (argParts.length === 1) {
-                    args[argConfig.args[0].name] = argParts[0];
-                }
-                break;
-            case "moveworkspacetomonitor":
-            case "swapactiveworkspaces":
-            case "renameworkspace":
-            case "fullscreenstate":
-            case "movecursor":
-                if (argParts.length >= 2) {
-                    args[argConfig.args[0].name] = argParts[0];
-                    args[argConfig.args[1].name] = argParts[1];
-                } else if (argParts.length === 1) {
-                    args[argConfig.args[0].name] = argParts[0];
-                }
-                break;
-            case "setprop":
-                if (argParts.length >= 3) {
-                    args.window = argParts[0];
-                    args.property = argParts[1];
-                    args.value = argParts.slice(2).join(" ");
-                } else if (argParts.length === 2) {
-                    args.window = argParts[0];
-                    args.property = argParts[1];
-                }
-                break;
-            case "sendshortcut":
-                if (argParts.length >= 3) {
-                    args.mod = argParts[0];
-                    args.key = argParts[1];
-                    args.window = argParts.slice(2).join(" ");
-                } else if (argParts.length >= 2) {
-                    args.mod = argParts[0];
-                    args.key = argParts[1];
-                }
-                break;
-            case "sendkeystate":
-                if (argParts.length >= 4) {
-                    args.mod = argParts[0];
-                    args.key = argParts[1];
-                    args.state = argParts[2];
-                    args.window = argParts.slice(3).join(" ");
-                }
-                break;
-            case "signalwindow":
-                if (argParts.length >= 2) {
-                    args.window = argParts[0];
-                    args.signal = argParts[1];
-                }
-                break;
-            default:
-                if (argParts.length > 0) {
-                    if (argConfig.args.length === 1) {
-                        args[argConfig.args[0].name] = argParts.join(" ");
-                    } else {
-                        args.value = argParts.join(" ");
-                    }
-                }
-            }
-        }
-        break;
-    default:
-        if (argParts.length > 0)
-            args.value = argParts.join(" ");
     }
 
     return { base: base, args: args };
@@ -1100,125 +1116,118 @@ function buildCompositorAction(compositor, base, args) {
         return base;
 
     switch (compositor) {
-    case "niri":
-        switch (base) {
-        case "move-column-to-workspace":
-            if (args.index)
-                parts.push(args.index);
-            if (args.focus === false)
-                parts.push("focus=false");
+        case "niri":
+            switch (base) {
+                case "move-column-to-workspace":
+                    if (args.index)
+                        parts.push(args.index);
+                    if (args.focus === false)
+                        parts.push("focus=false");
+                    break;
+                case "move-column-to-workspace-down":
+                case "move-column-to-workspace-up":
+                    if (args.focus === false)
+                        parts.push("focus=false");
+                    break;
+                default:
+                    if (args.value)
+                        parts.push(args.value);
+                    else if (args.index)
+                        parts.push(args.index);
+                    for (var prop in args) {
+                        switch (prop) {
+                            case "value":
+                            case "index":
+                                continue;
+                        }
+                        var val = args[prop];
+                        if (val === true)
+                            parts.push(prop + "=true");
+                        else if (val === false)
+                            parts.push(prop + "=false");
+                        else if (val !== undefined && val !== null && val !== "")
+                            parts.push(prop + "=" + val);
+                    }
+            }
             break;
-        case "move-column-to-workspace-down":
-        case "move-column-to-workspace-up":
-            if (args.focus === false)
-                parts.push("focus=false");
+        case "mangowc":
+            var compositorArgs = ACTION_ARGS.mangowc;
+            if (compositorArgs && compositorArgs[base] && compositorArgs[base].args) {
+                var argConfig = compositorArgs[base].args;
+                var argValues = [];
+                for (var i = 0; i < argConfig.length; i++) {
+                    var argDef = argConfig[i];
+                    var val = args[argDef.name];
+                    if (val === undefined || val === "")
+                        val = argDef.default || "";
+                    if (val === "" && argValues.length === 0)
+                        continue;
+                    argValues.push(val);
+                }
+                if (argValues.length > 0)
+                    parts.push(argValues.join(","));
+            } else if (args.value) {
+                parts.push(args.value);
+            }
+            break;
+        case "hyprland":
+            var hyprArgs = ACTION_ARGS.hyprland;
+            if (hyprArgs && hyprArgs[base] && hyprArgs[base].args) {
+                var hyprConfig = hyprArgs[base].args;
+                switch (base) {
+                    case "resizewindowpixel":
+                    case "movewindowpixel":
+                        if (args[hyprConfig[0].name])
+                            parts.push(args[hyprConfig[0].name]);
+                        if (args[hyprConfig[1].name])
+                            parts[parts.length - 1] += "," + args[hyprConfig[1].name];
+                        break;
+                    case "setprop":
+                        if (args.window)
+                            parts.push(args.window);
+                        if (args.property)
+                            parts.push(args.property);
+                        if (args.value)
+                            parts.push(args.value);
+                        break;
+                    case "sendshortcut":
+                        if (args.mod)
+                            parts.push(args.mod);
+                        if (args.key)
+                            parts.push(args.key);
+                        if (args.window)
+                            parts.push(args.window);
+                        break;
+                    case "sendkeystate":
+                        if (args.mod)
+                            parts.push(args.mod);
+                        if (args.key)
+                            parts.push(args.key);
+                        if (args.state)
+                            parts.push(args.state);
+                        if (args.window)
+                            parts.push(args.window);
+                        break;
+                    case "signalwindow":
+                        if (args.window)
+                            parts.push(args.window);
+                        if (args.signal)
+                            parts.push(args.signal);
+                        break;
+                    default:
+                        for (var j = 0; j < hyprConfig.length; j++) {
+                            var hVal = args[hyprConfig[j].name];
+                            if (hVal !== undefined && hVal !== "")
+                                parts.push(hVal);
+                        }
+                }
+            } else if (args.value) {
+                parts.push(args.value);
+            }
             break;
         default:
-            switch (base) {
-            case "screenshot":
-                if (args["show-pointer"] === true)
-                    parts.push("show-pointer=true");
-                else if (args["show-pointer"] === false)
-                    parts.push("show-pointer=false");
-                break;
-            case "screenshot-screen":
-                if (args["show-pointer"] === true)
-                    parts.push("show-pointer=true");
-                else if (args["show-pointer"] === false)
-                    parts.push("show-pointer=false");
-                if (args["write-to-disk"] === true)
-                    parts.push("write-to-disk=true");
-                break;
-            case "screenshot-window":
-                if (args["write-to-disk"] === true)
-                    parts.push("write-to-disk=true");
-                break;
-            }
-            if (args.value) {
+            if (args.value)
                 parts.push(args.value);
-            } else if (args.index) {
-                parts.push(args.index);
-            }
-        }
-        break;
-    case "mangowc":
-        var compositorArgs = ACTION_ARGS.mangowc;
-        if (compositorArgs && compositorArgs[base] && compositorArgs[base].args) {
-            var argConfig = compositorArgs[base].args;
-            var argValues = [];
-            for (var i = 0; i < argConfig.length; i++) {
-                var argDef = argConfig[i];
-                var val = args[argDef.name];
-                if (val === undefined || val === "")
-                    val = argDef.default || "";
-                if (val === "" && argValues.length === 0)
-                    continue;
-                argValues.push(val);
-            }
-            if (argValues.length > 0)
-                parts.push(argValues.join(","));
-        } else if (args.value) {
-            parts.push(args.value);
-        }
-        break;
-    case "hyprland":
-        var hyprArgs = ACTION_ARGS.hyprland;
-        if (hyprArgs && hyprArgs[base] && hyprArgs[base].args) {
-            var hyprConfig = hyprArgs[base].args;
-            switch (base) {
-            case "resizewindowpixel":
-            case "movewindowpixel":
-                if (args[hyprConfig[0].name])
-                    parts.push(args[hyprConfig[0].name]);
-                if (args[hyprConfig[1].name])
-                    parts[parts.length - 1] += "," + args[hyprConfig[1].name];
-                break;
-            case "setprop":
-                if (args.window)
-                    parts.push(args.window);
-                if (args.property)
-                    parts.push(args.property);
-                if (args.value)
-                    parts.push(args.value);
-                break;
-            case "sendshortcut":
-                if (args.mod)
-                    parts.push(args.mod);
-                if (args.key)
-                    parts.push(args.key);
-                if (args.window)
-                    parts.push(args.window);
-                break;
-            case "sendkeystate":
-                if (args.mod)
-                    parts.push(args.mod);
-                if (args.key)
-                    parts.push(args.key);
-                if (args.state)
-                    parts.push(args.state);
-                if (args.window)
-                    parts.push(args.window);
-                break;
-            case "signalwindow":
-                if (args.window)
-                    parts.push(args.window);
-                if (args.signal)
-                    parts.push(args.signal);
-                break;
-            default:
-                for (var j = 0; j < hyprConfig.length; j++) {
-                    var hVal = args[hyprConfig[j].name];
-                    if (hVal !== undefined && hVal !== "")
-                        parts.push(hVal);
-                }
-            }
-        } else if (args.value) {
-            parts.push(args.value);
-        }
-        break;
-    default:
-        if (args.value)
-            parts.push(args.value);
     }
 
     return parts.join(" ");
@@ -1246,22 +1255,22 @@ function parseDmsActionArgs(action) {
         for (var i = 0; i < rest.length; i++) {
             var c = rest[i];
             switch (c) {
-            case '"':
-                inQuotes = !inQuotes;
-                hadQuotes = true;
-                break;
-            case ' ':
-                if (inQuotes) {
+                case '"':
+                    inQuotes = !inQuotes;
+                    hadQuotes = true;
+                    break;
+                case ' ':
+                    if (inQuotes) {
+                        current += c;
+                    } else if (current || hadQuotes) {
+                        tokens.push(current);
+                        current = "";
+                        hadQuotes = false;
+                    }
+                    break;
+                default:
                     current += c;
-                } else if (current || hadQuotes) {
-                    tokens.push(current);
-                    current = "";
-                    hadQuotes = false;
-                }
-                break;
-            default:
-                current += c;
-                break;
+                    break;
             }
         }
         if (current || hadQuotes)

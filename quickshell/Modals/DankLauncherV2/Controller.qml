@@ -257,11 +257,20 @@ Item {
     }
 
     property int _searchVersion: 0
+    property bool _pluginPhasePending: false
+    property bool _pluginPhaseForceFirst: false
+    property var _phase1Items: []
 
     Timer {
         id: searchDebounce
-        interval: searchMode === "all" && searchQuery.length > 0 ? 90 : 60
+        interval: 60
         onTriggered: root.performSearch()
+    }
+
+    Timer {
+        id: pluginPhaseTimer
+        interval: 1
+        onTriggered: root._performPluginPhase()
     }
 
     Timer {
@@ -277,6 +286,9 @@ Item {
     function setSearchQuery(query) {
         _searchVersion++;
         _queryDrivenSearch = true;
+        _pluginPhasePending = false;
+        _phase1Items = [];
+        pluginPhaseTimer.stop();
         searchQuery = query;
         searchDebounce.restart();
 
@@ -337,6 +349,10 @@ Item {
         collapsedSections = {};
         _clearModeCache();
         _queryDrivenSearch = false;
+        _pluginPhasePending = false;
+        _pluginPhaseForceFirst = false;
+        _phase1Items = [];
+        pluginPhaseTimer.stop();
     }
 
     function loadPluginCategories(pluginId) {
@@ -418,7 +434,7 @@ Item {
                 sections = modeCache.sections;
                 flatModel = modeCache.flatModel;
             } else {
-                sections = cachedSections.map(function (s) {
+                var newSections = cachedSections.map(function (s) {
                     var copy = Object.assign({}, s, {
                         items: s.items ? s.items.slice() : []
                     });
@@ -426,7 +442,8 @@ Item {
                         copy.collapsed = collapsedSections[s.id];
                     return copy;
                 });
-                flatModel = Scorer.flattenSections(sections);
+                flatModel = Scorer.flattenSections(newSections);
+                sections = newSections;
                 _setCachedModeData("all", sections, flatModel);
             }
             selectedFlatIndex = restoreSelection(flatModel);
@@ -449,7 +466,8 @@ Item {
                 loadPluginCategories(triggerMatch.pluginId);
 
             var pluginItems = getPluginItems(triggerMatch.pluginId, triggerMatch.query);
-            allItems = allItems.concat(pluginItems);
+            for (var k = 0; k < pluginItems.length; k++)
+                allItems.push(pluginItems[k]);
 
             if (triggerMatch.isBuiltIn) {
                 var builtInItems = AppSearchService.getBuiltInLauncherItems(triggerMatch.pluginId, triggerMatch.query);
@@ -461,17 +479,18 @@ Item {
             var dynamicDefs = buildDynamicSectionDefs(allItems);
             var scoredItems = Scorer.scoreItems(allItems, triggerMatch.query, getFrecencyForItem);
             var sortAlpha = !triggerMatch.query && SettingsData.sortAppsAlphabetically;
-            sections = Scorer.groupBySection(scoredItems, dynamicDefs, sortAlpha, 500);
+            var newSections = Scorer.groupBySection(scoredItems, dynamicDefs, sortAlpha, 500);
 
             for (var sid in collapsedSections) {
-                for (var i = 0; i < sections.length; i++) {
-                    if (sections[i].id === sid) {
-                        sections[i].collapsed = collapsedSections[sid];
+                for (var i = 0; i < newSections.length; i++) {
+                    if (newSections[i].id === sid) {
+                        newSections[i].collapsed = collapsedSections[sid];
                     }
                 }
             }
 
-            flatModel = Scorer.flattenSections(sections);
+            flatModel = Scorer.flattenSections(newSections);
+            sections = newSections;
             selectedFlatIndex = restoreSelection(flatModel);
             updateSelectedItem();
 
@@ -507,7 +526,7 @@ Item {
                     flatModel = modeCache.flatModel;
                 } else {
                     var appSectionIds = ["favorites", "apps"];
-                    sections = cachedSections.filter(function (s) {
+                    var newSections = cachedSections.filter(function (s) {
                         return appSectionIds.indexOf(s.id) !== -1;
                     }).map(function (s) {
                         var copy = Object.assign({}, s, {
@@ -517,7 +536,8 @@ Item {
                             copy.collapsed = collapsedSections[s.id];
                         return copy;
                     });
-                    flatModel = Scorer.flattenSections(sections);
+                    flatModel = Scorer.flattenSections(newSections);
+                    sections = newSections;
                     _setCachedModeData("apps", sections, flatModel);
                 }
                 selectedFlatIndex = restoreSelection(flatModel);
@@ -534,17 +554,18 @@ Item {
 
             var scoredItems = Scorer.scoreItems(allItems, searchQuery, getFrecencyForItem);
             var sortAlpha = !searchQuery && SettingsData.sortAppsAlphabetically;
-            sections = Scorer.groupBySection(scoredItems, sectionDefinitions, sortAlpha, searchQuery ? 50 : 500);
+            var newSections = Scorer.groupBySection(scoredItems, sectionDefinitions, sortAlpha, searchQuery ? 50 : 500);
 
             for (var sid in collapsedSections) {
-                for (var i = 0; i < sections.length; i++) {
-                    if (sections[i].id === sid) {
-                        sections[i].collapsed = collapsedSections[sid];
+                for (var i = 0; i < newSections.length; i++) {
+                    if (newSections[i].id === sid) {
+                        newSections[i].collapsed = collapsedSections[sid];
                     }
                 }
             }
 
-            flatModel = Scorer.flattenSections(sections);
+            flatModel = Scorer.flattenSections(newSections);
+            sections = newSections;
             selectedFlatIndex = restoreSelection(flatModel);
             updateSelectedItem();
 
@@ -556,13 +577,15 @@ Item {
         if (searchMode === "plugins") {
             if (!searchQuery && !pluginFilter) {
                 var browseItems = getPluginBrowseItems();
-                allItems = allItems.concat(browseItems);
+                for (var k = 0; k < browseItems.length; k++)
+                    allItems.push(browseItems[k]);
             } else if (pluginFilter) {
                 var isBuiltInFilter = !!AppSearchService.builtInPlugins[pluginFilter];
                 applyActivePluginViewPreference(pluginFilter, isBuiltInFilter);
 
                 var filterItems = getPluginItems(pluginFilter, searchQuery);
-                allItems = allItems.concat(filterItems);
+                for (var k = 0; k < filterItems.length; k++)
+                    allItems.push(filterItems[k]);
 
                 var builtInItems = AppSearchService.getBuiltInLauncherItems(pluginFilter, searchQuery);
                 for (var j = 0; j < builtInItems.length; j++) {
@@ -573,7 +596,8 @@ Item {
                 for (var i = 0; i < emptyTriggerPlugins.length; i++) {
                     var pluginId = emptyTriggerPlugins[i];
                     var pItems = getPluginItems(pluginId, searchQuery);
-                    allItems = allItems.concat(pItems);
+                    for (var k = 0; k < pItems.length; k++)
+                        allItems.push(pItems[k]);
                 }
 
                 var builtInLauncherPlugins = getBuiltInEmptyTriggerLaunchers();
@@ -589,17 +613,18 @@ Item {
             var dynamicDefs = buildDynamicSectionDefs(allItems);
             var scoredItems = Scorer.scoreItems(allItems, searchQuery, getFrecencyForItem);
             var sortAlpha = !searchQuery && SettingsData.sortAppsAlphabetically;
-            sections = Scorer.groupBySection(scoredItems, dynamicDefs, sortAlpha, 500);
+            var newSections = Scorer.groupBySection(scoredItems, dynamicDefs, sortAlpha, 500);
 
             for (var sid in collapsedSections) {
-                for (var i = 0; i < sections.length; i++) {
-                    if (sections[i].id === sid) {
-                        sections[i].collapsed = collapsedSections[sid];
+                for (var i = 0; i < newSections.length; i++) {
+                    if (newSections[i].id === sid) {
+                        newSections[i].collapsed = collapsedSections[sid];
                     }
                 }
             }
 
-            flatModel = Scorer.flattenSections(sections);
+            flatModel = Scorer.flattenSections(newSections);
+            sections = newSections;
             selectedFlatIndex = restoreSelection(flatModel);
             updateSelectedItem();
 
@@ -610,31 +635,26 @@ Item {
 
         var calculatorResult = evaluateCalculator(searchQuery);
         if (calculatorResult) {
+            calculatorResult._preScored = 12000;
             allItems.push(calculatorResult);
         }
 
         var apps = searchApps(searchQuery);
-        allItems = allItems.concat(apps);
+        for (var i = 0; i < apps.length; i++) {
+            if (searchQuery)
+                apps[i]._preScored = 11000 - i;
+            allItems.push(apps[i]);
+        }
 
         if (searchMode === "all") {
-            var includePlugins = !searchQuery || searchQuery.length >= 2;
-            if (searchQuery && includePlugins) {
-                var allPluginsOrdered = getAllVisiblePluginsOrdered();
-                var maxPerPlugin = 10;
-                for (var i = 0; i < allPluginsOrdered.length; i++) {
-                    var plugin = allPluginsOrdered[i];
-                    if (plugin.isBuiltIn) {
-                        var blItems = AppSearchService.getBuiltInLauncherItems(plugin.id, searchQuery);
-                        var blLimit = Math.min(blItems.length, maxPerPlugin);
-                        for (var j = 0; j < blLimit; j++)
-                            allItems.push(transformBuiltInLauncherItem(blItems[j], plugin.id));
-                    } else {
-                        var pItems = getPluginItems(plugin.id, searchQuery);
-                        if (pItems.length > maxPerPlugin)
-                            pItems = pItems.slice(0, maxPerPlugin);
-                        allItems = allItems.concat(pItems);
-                    }
-                }
+            if (searchQuery && searchQuery.length >= 2) {
+                _pluginPhasePending = true;
+                _pluginPhaseForceFirst = shouldResetSelection;
+                _phase1Items = allItems;
+                pluginPhaseTimer.restart();
+                isSearching = true;
+                searchCompleted();
+                return;
             } else if (!searchQuery) {
                 var emptyTriggerOrdered = getEmptyTriggerPluginsOrdered();
                 for (var i = 0; i < emptyTriggerOrdered.length; i++) {
@@ -645,12 +665,14 @@ Item {
                             allItems.push(transformBuiltInLauncherItem(blItems[j], plugin.id));
                     } else {
                         var pItems = getPluginItems(plugin.id, searchQuery);
-                        allItems = allItems.concat(pItems);
+                        for (var j = 0; j < pItems.length; j++)
+                            allItems.push(pItems[j]);
                     }
                 }
 
                 var browseItems = getPluginBrowseItems();
-                allItems = allItems.concat(browseItems);
+                for (var i = 0; i < browseItems.length; i++)
+                    allItems.push(browseItems[i]);
             }
         }
 
@@ -677,8 +699,8 @@ Item {
             }
         }
 
+        flatModel = Scorer.flattenSections(newSections);
         sections = newSections;
-        flatModel = Scorer.flattenSections(sections);
 
         if (!AppSearchService.isCacheValid() && !searchQuery && searchMode === "all" && !pluginFilter) {
             AppSearchService.setCachedDefaultSections(sections, flatModel);
@@ -687,6 +709,63 @@ Item {
         selectedFlatIndex = restoreSelection(flatModel);
         updateSelectedItem();
 
+        isSearching = _pluginPhasePending;
+        searchCompleted();
+    }
+
+    function _performPluginPhase() {
+        _pluginPhasePending = false;
+        if (!searchQuery || searchQuery.length < 2 || searchMode !== "all")
+            return;
+
+        var currentVersion = _searchVersion;
+        var restoreSelection = preserveSelectionAfterUpdate(_pluginPhaseForceFirst);
+        var allItems = _phase1Items;
+        _phase1Items = [];
+
+        var allPluginsOrdered = getAllVisiblePluginsOrdered();
+        var maxPerPlugin = 10;
+        for (var i = 0; i < allPluginsOrdered.length; i++) {
+            if (currentVersion !== _searchVersion)
+                return;
+            var plugin = allPluginsOrdered[i];
+            if (plugin.isBuiltIn) {
+                var blItems = AppSearchService.getBuiltInLauncherItems(plugin.id, searchQuery);
+                var blLimit = Math.min(blItems.length, maxPerPlugin);
+                for (var j = 0; j < blLimit; j++) {
+                    var item = transformBuiltInLauncherItem(blItems[j], plugin.id);
+                    item._preScored = 900 - j;
+                    allItems.push(item);
+                }
+            } else {
+                var pItems = getPluginItems(plugin.id, searchQuery, maxPerPlugin);
+                for (var j = 0; j < pItems.length; j++) {
+                    pItems[j]._preScored = 900 - j;
+                    allItems.push(pItems[j]);
+                }
+            }
+        }
+
+        if (currentVersion !== _searchVersion)
+            return;
+
+        var dynamicDefs = buildDynamicSectionDefs(allItems);
+        var scoredItems = Scorer.scoreItems(allItems, searchQuery, getFrecencyForItem);
+        var newSections = Scorer.groupBySection(scoredItems, dynamicDefs, false, 50);
+
+        if (currentVersion !== _searchVersion)
+            return;
+
+        for (var i = 0; i < newSections.length; i++) {
+            var sid = newSections[i].id;
+            if (collapsedSections[sid] !== undefined)
+                newSections[i].collapsed = collapsedSections[sid];
+        }
+
+        flatModel = Scorer.flattenSections(newSections);
+        sections = newSections;
+        selectedFlatIndex = restoreSelection(flatModel);
+        updateSelectedItem();
         isSearching = false;
         searchCompleted();
     }
@@ -756,9 +835,8 @@ Item {
             newSections.sort(function (a, b) {
                 return a.priority - b.priority;
             });
+            flatModel = Scorer.flattenSections(newSections);
             sections = newSections;
-
-            flatModel = Scorer.flattenSections(sections);
             if (selectedFlatIndex >= flatModel.length) {
                 selectedFlatIndex = getFirstItemIndex();
             }
@@ -954,11 +1032,12 @@ Item {
         return sortPluginIdsByOrder(visible);
     }
 
-    function getPluginItems(pluginId, query) {
+    function getPluginItems(pluginId, query, limit) {
         var items = AppSearchService.getPluginItemsForPlugin(pluginId, query);
+        var count = limit > 0 && limit < items.length ? limit : items.length;
         var transformed = [];
 
-        for (var i = 0; i < items.length; i++) {
+        for (var i = 0; i < count; i++) {
             transformed.push(transformPluginItem(items[i], pluginId));
         }
 
@@ -1127,8 +1206,14 @@ Item {
         return Nav.getGridColumns(getSectionViewMode(sectionId), gridColumns);
     }
 
+    function _cancelPendingSelectionReset() {
+        _queryDrivenSearch = false;
+        _pluginPhaseForceFirst = false;
+    }
+
     function selectNext() {
         keyboardNavigationActive = true;
+        _cancelPendingSelectionReset();
         var newIndex = Nav.calculateNextIndex(flatModel, selectedFlatIndex, null, null, gridColumns, getSectionViewMode);
         if (newIndex !== selectedFlatIndex) {
             selectedFlatIndex = newIndex;
@@ -1138,6 +1223,7 @@ Item {
 
     function selectPrevious() {
         keyboardNavigationActive = true;
+        _cancelPendingSelectionReset();
         var newIndex = Nav.calculatePrevIndex(flatModel, selectedFlatIndex, null, null, gridColumns, getSectionViewMode);
         if (newIndex !== selectedFlatIndex) {
             selectedFlatIndex = newIndex;
@@ -1147,6 +1233,7 @@ Item {
 
     function selectRight() {
         keyboardNavigationActive = true;
+        _cancelPendingSelectionReset();
         var newIndex = Nav.calculateRightIndex(flatModel, selectedFlatIndex, getSectionViewMode);
         if (newIndex !== selectedFlatIndex) {
             selectedFlatIndex = newIndex;
@@ -1156,6 +1243,7 @@ Item {
 
     function selectLeft() {
         keyboardNavigationActive = true;
+        _cancelPendingSelectionReset();
         var newIndex = Nav.calculateLeftIndex(flatModel, selectedFlatIndex, getSectionViewMode);
         if (newIndex !== selectedFlatIndex) {
             selectedFlatIndex = newIndex;
@@ -1165,6 +1253,7 @@ Item {
 
     function selectNextSection() {
         keyboardNavigationActive = true;
+        _cancelPendingSelectionReset();
         var newIndex = Nav.calculateNextSectionIndex(flatModel, selectedFlatIndex);
         if (newIndex !== selectedFlatIndex) {
             selectedFlatIndex = newIndex;
@@ -1174,6 +1263,7 @@ Item {
 
     function selectPreviousSection() {
         keyboardNavigationActive = true;
+        _cancelPendingSelectionReset();
         var newIndex = Nav.calculatePrevSectionIndex(flatModel, selectedFlatIndex);
         if (newIndex !== selectedFlatIndex) {
             selectedFlatIndex = newIndex;
@@ -1183,6 +1273,7 @@ Item {
 
     function selectPageDown(visibleItems) {
         keyboardNavigationActive = true;
+        _cancelPendingSelectionReset();
         var newIndex = Nav.calculatePageDownIndex(flatModel, selectedFlatIndex, visibleItems);
         if (newIndex !== selectedFlatIndex) {
             selectedFlatIndex = newIndex;
@@ -1192,6 +1283,7 @@ Item {
 
     function selectPageUp(visibleItems) {
         keyboardNavigationActive = true;
+        _cancelPendingSelectionReset();
         var newIndex = Nav.calculatePageUpIndex(flatModel, selectedFlatIndex, visibleItems);
         if (newIndex !== selectedFlatIndex) {
             selectedFlatIndex = newIndex;
@@ -1232,9 +1324,8 @@ Item {
                 });
             }
         }
+        flatModel = Scorer.flattenSections(newSections);
         sections = newSections;
-
-        flatModel = Scorer.flattenSections(sections);
 
         if (selectedFlatIndex >= flatModel.length) {
             selectedFlatIndex = getFirstItemIndex();

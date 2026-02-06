@@ -42,26 +42,23 @@ function hasWordBoundaryMatch(text, query) {
 function levenshteinDistance(s1, s2) {
     var len1 = s1.length
     var len2 = s2.length
-    var matrix = []
+    var prev = new Array(len2 + 1)
+    var curr = new Array(len2 + 1)
 
-    for (var i = 0; i <= len1; i++) {
-        matrix[i] = [i]
-    }
-    for (var j = 0; j <= len2; j++) {
-        matrix[0][j] = j
-    }
+    for (var j = 0; j <= len2; j++)
+        prev[j] = j
 
     for (var i = 1; i <= len1; i++) {
+        curr[0] = i
         for (var j = 1; j <= len2; j++) {
             var cost = s1[i - 1] === s2[j - 1] ? 0 : 1
-            matrix[i][j] = Math.min(
-                matrix[i - 1][j] + 1,
-                matrix[i][j - 1] + 1,
-                matrix[i - 1][j - 1] + cost
-            )
+            curr[j] = Math.min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + cost)
         }
+        var tmp = prev
+        prev = curr
+        curr = tmp
     }
-    return matrix[len1][len2]
+    return prev[len2]
 }
 
 function fuzzyScore(text, query) {
@@ -153,8 +150,14 @@ function scoreItems(items, query, getFrecencyFn) {
 
     for (var i = 0; i < items.length; i++) {
         var item = items[i]
-        var frecencyData = getFrecencyFn ? getFrecencyFn(item) : null
-        var itemScore = score(item, query, frecencyData)
+        var itemScore
+
+        if (item._preScored !== undefined) {
+            itemScore = item._preScored
+        } else {
+            var frecencyData = getFrecencyFn ? getFrecencyFn(item) : null
+            itemScore = score(item, query, frecencyData)
+        }
 
         if (itemScore > 0 || !query || query.length === 0) {
             scored.push({
@@ -227,6 +230,8 @@ function flattenSections(sections) {
             sectionId: section.id,
             sectionIndex: i
         })
+
+        section.flatStartIndex = flat.length
 
         if (!section.collapsed) {
             for (var j = 0; j < section.items.length; j++) {

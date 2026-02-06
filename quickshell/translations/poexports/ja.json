@@ -1,4 +1,7 @@
 {
+  "%1 Animation Speed": {
+    "%1 Animation Speed": ""
+  },
   "%1 DMS bind(s) may be overridden by config binds that come after the include.": {
     "%1 DMS bind(s) may be overridden by config binds that come after the include.": ""
   },
@@ -13,6 +16,9 @@
   },
   "%1 connected": {
     "%1 connected": ""
+  },
+  "%1 custom animation duration": {
+    "%1 custom animation duration": ""
   },
   "%1 days ago": {
     "%1 days ago": ""
@@ -185,6 +191,9 @@
   "Active": {
     "Active": ""
   },
+  "Active Color": {
+    "Active Color": ""
+  },
   "Active Lock Screen Monitor": {
     "Active Lock Screen Monitor": ""
   },
@@ -329,6 +338,9 @@
   "Apps Dock": {
     "Apps Dock": ""
   },
+  "Apps Dock Settings": {
+    "Apps Dock Settings": ""
+  },
   "Apps Icon": {
     "Apps Icon": "アプリアイコン"
   },
@@ -367,6 +379,32 @@
   },
   "Audio Visualizer": {
     "Audio Visualizer": ""
+  },
+  "Audio device rename dialog field label": {
+    "Custom Name": ""
+  },
+  "Audio device rename dialog hint": {
+    "Press Enter and the audio system will restart to apply the change": ""
+  },
+  "Audio device rename dialog placeholder": {
+    "Enter device name...": ""
+  },
+  "Audio device rename dialog title": {
+    "Set Custom Device Name": ""
+  },
+  "Audio settings description": {
+    "Set custom names for your audio input devices": "",
+    "Set custom names for your audio output devices": ""
+  },
+  "Audio settings empty state": {
+    "No input devices found": "",
+    "No output devices found": ""
+  },
+  "Audio settings: speaker/headphone devices": {
+    "Output Devices": ""
+  },
+  "Audio system restarted": {
+    "Audio system restarted": ""
   },
   "Audio volume control": {
     "Audio volume control": ""
@@ -623,6 +661,9 @@
   "Browse or search plugins": {
     "Browse or search plugins": ""
   },
+  "Button Color": {
+    "Button Color": ""
+  },
   "CPU": {
     "CPU": "CPU"
   },
@@ -875,6 +916,9 @@
   "Color displayed on monitors without the lock screen": {
     "Color displayed on monitors without the lock screen": ""
   },
+  "Color for primary action buttons": {
+    "Color for primary action buttons": ""
+  },
   "Color temperature for day time": {
     "Color temperature for day time": "昼間の色温度"
   },
@@ -889,6 +933,9 @@
   },
   "Colorful mix of bright contrasting accents.": {
     "Colorful mix of bright contrasting accents.": "明るいコントラストのアクセントのカラフルなミックス。"
+  },
+  "Colorize Active": {
+    "Colorize Active": ""
   },
   "Column": {
     "Column": ""
@@ -1322,6 +1369,9 @@
   "Device connections": {
     "Device connections": ""
   },
+  "Device names updated": {
+    "Device names updated": ""
+  },
   "Device paired": {
     "Device paired": "デバイスがペアリングされました"
   },
@@ -1472,8 +1522,14 @@
   "Door Open": {
     "Door Open": "ドアオープン"
   },
+  "Drag to Reorder": {
+    "Drag to Reorder": ""
+  },
   "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": {
     "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": "ウィジェットをドラッグしてセクション内で順序を変更できます。目のアイコンでウィジェットを表示/非表示に（スペースは維持）、Xで完全に削除できます。"
+  },
+  "Drag workspace indicators to reorder them": {
+    "Drag workspace indicators to reorder them": ""
   },
   "Driver": {
     "Driver": ""
@@ -1582,6 +1638,12 @@
   },
   "End": {
     "End": "終わり"
+  },
+  "Enlarge on Hover": {
+    "Enlarge on Hover": ""
+  },
+  "Enlargement %": {
+    "Enlargement %": ""
   },
   "Enter 6-digit passkey": {
     "Enter 6-digit passkey": "6桁のパスキーを入力してください"
@@ -1781,11 +1843,17 @@
   "Failed to remove printer from class": {
     "Failed to remove printer from class": ""
   },
+  "Failed to restart audio system": {
+    "Failed to restart audio system": ""
+  },
   "Failed to restart job": {
     "Failed to restart job": ""
   },
   "Failed to resume printer": {
     "Failed to resume printer": "プリンタの再開に失敗しました"
+  },
+  "Failed to save audio config": {
+    "Failed to save audio config": ""
   },
   "Failed to save clipboard setting": {
     "Failed to save clipboard setting": ""
@@ -2105,6 +2173,9 @@
   "Hide Delay": {
     "Hide Delay": ""
   },
+  "Hide Indicators": {
+    "Hide Indicators": ""
+  },
   "Hide When Typing": {
     "Hide When Typing": ""
   },
@@ -2192,6 +2263,9 @@
   "Icon Size": {
     "Icon Size": "アイコンサイズ"
   },
+  "Icon Size %": {
+    "Icon Size %": ""
+  },
   "Icon Theme": {
     "Icon Theme": "アイコンテーマ"
   },
@@ -2248,6 +2322,9 @@
   },
   "Inherit": {
     "Inherit": ""
+  },
+  "Inhibitable": {
+    "Inhibitable": ""
   },
   "Input Devices": {
     "Input Devices": "入力デバイス"
@@ -2602,6 +2679,12 @@
   "Loading keybinds...": {
     "Loading keybinds...": ""
   },
+  "Loading overlay subtitle": {
+    "This may take a few seconds": ""
+  },
+  "Loading overlay while WirePlumber restarts": {
+    "Restarting audio system...": ""
+  },
   "Loading plugins...": {
     "Loading plugins...": "プラグインを読み込んでいます..."
   },
@@ -2862,6 +2945,9 @@
   },
   "Modal Background": {
     "Modal Background": ""
+  },
+  "Modals": {
+    "Modals": ""
   },
   "Mode": {
     "Mode": ""
@@ -3259,6 +3345,9 @@
   "Open Notepad File": {
     "Open Notepad File": "メモ帳ファイルを開く"
   },
+  "Open a new note": {
+    "Open a new note": ""
+  },
   "Open folder": {
     "Open folder": ""
   },
@@ -3447,6 +3536,9 @@
   "Phone Connect ping action": {
     "Ping sent to": ""
   },
+  "Phone Connect refresh tooltip": {
+    "Refresh": ""
+  },
   "Phone Connect service unavailable message": {
     "Phone Connect unavailable": ""
   },
@@ -3521,6 +3613,9 @@
   },
   "Pointer": {
     "Pointer": ""
+  },
+  "Popouts": {
+    "Popouts": ""
   },
   "Popup Position": {
     "Popup Position": "ポップアップの位置"
@@ -3768,6 +3863,9 @@
   "Reset Size": {
     "Reset Size": ""
   },
+  "Reset to default name": {
+    "Reset to default name": ""
+  },
   "Resize Widget": {
     "Resize Widget": ""
   },
@@ -3852,6 +3950,12 @@
   "Running Apps Settings": {
     "Running Apps Settings": "実行中のアプリの設定"
   },
+  "Running apps filter: only show apps from the active workspace": {
+    "Current Workspace": ""
+  },
+  "Running apps filter: only show apps from the same monitor": {
+    "Current Monitor": ""
+  },
   "SDR Brightness": {
     "SDR Brightness": ""
   },
@@ -3875,6 +3979,9 @@
   },
   "Saved Configurations": {
     "Saved Configurations": ""
+  },
+  "Saved Note": {
+    "Saved Note": ""
   },
   "Saved item deleted": {
     "Saved item deleted": ""
@@ -4050,6 +4157,9 @@
   "Server": {
     "Server": ""
   },
+  "Set custom name": {
+    "Set custom name": ""
+  },
   "Set different wallpapers for each connected monitor": {
     "Set different wallpapers for each connected monitor": "接続されているモニターごとに異なる壁紙を設定する"
   },
@@ -4185,6 +4295,9 @@
   "Show Restart DMS": {
     "Show Restart DMS": "DMS再起動を表示"
   },
+  "Show Saved Items": {
+    "Show Saved Items": ""
+  },
   "Show Seconds": {
     "Show Seconds": ""
   },
@@ -4296,6 +4409,9 @@
   "Shows current workspace and allows switching": {
     "Shows current workspace and allows switching": "現在のワークスペースを表示、切り替えを可能に"
   },
+  "Shows the original device name before renaming": {
+    "Original: %1": ""
+  },
   "Shows when caps lock is active": {
     "Shows when caps lock is active": "Caps Lock がアクティブなときに表示"
   },
@@ -4322,6 +4438,9 @@
   },
   "Sizing": {
     "Sizing": ""
+  },
+  "Skip confirmation": {
+    "Skip confirmation": ""
   },
   "Small": {
     "Small": ""
@@ -4938,6 +5057,9 @@
   "Visibility": {
     "Visibility": "可視性"
   },
+  "Visual Effects": {
+    "Visual Effects": ""
+  },
   "Visual divider between widgets": {
     "Visual divider between widgets": "ウィジェット間の視覚的分離"
   },
@@ -4985,6 +5107,9 @@
   },
   "When enabled, apps are sorted alphabetically. When disabled, apps are sorted by usage frequency.": {
     "When enabled, apps are sorted alphabetically. When disabled, apps are sorted by usage frequency.": "有効にすると、アプリはアルファベット順に並べ替えられます。無効にすると、アプリは使用頻度で並べ替えられます。"
+  },
+  "When locked": {
+    "When locked": ""
   },
   "When updater widget is used, then hide it if no update found": {
     "Hide Updater Widget": "",
@@ -5198,6 +5323,16 @@
   "browse themes button | theme browser header | theme browser window title": {
     "Browse Themes": ""
   },
+  "button color option | color option | primary color | tile color option": {
+    "Primary": ""
+  },
+  "button color option | color option | secondary color | tile color option": {
+    "Secondary": ""
+  },
+  "button color option | tile color option": {
+    "Primary Container": "",
+    "Surface Variant": ""
+  },
   "catppuccin theme description": {
     "Soothing pastel theme based on Catppuccin": ""
   },
@@ -5318,6 +5453,9 @@
   },
   "fallback gpu name": {
     "Unknown GPU": ""
+  },
+  "featured": {
+    "featured": ""
   },
   "files": {
     "files": ""
@@ -5561,6 +5699,7 @@
     "nav": ""
   },
   "network status": {
+    "Connected": "",
     "Disabling WiFi...": "",
     "Enabling WiFi...": "",
     "Ethernet": "",
