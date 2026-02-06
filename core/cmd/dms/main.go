@@ -19,6 +19,9 @@ func init() {
 	// Add subcommands to greeter
 	greeterCmd.AddCommand(greeterInstallCmd, greeterSyncCmd, greeterEnableCmd, greeterStatusCmd)
 
+	// Add subcommands to setup
+	setupCmd.AddCommand(setupBindsCmd, setupLayoutCmd, setupColorsCmd, setupAlttabCmd, setupOutputsCmd, setupCursorCmd, setupWindowrulesCmd)
+
 	// Add subcommands to update
 	updateCmd.AddCommand(updateCheckCmd)
 

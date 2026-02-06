@@ -1014,6 +1014,7 @@ Singleton {
 
         for config_dir in ${_configDir}/gtk-3.0 ${_configDir}/gtk-4.0; do
         settings_file="$config_dir/settings.ini"
+        [ -f "$settings_file" ] && [ ! -w "$settings_file" ] && continue
         if [ -f "$settings_file" ]; then
         if grep -q "^gtk-icon-theme-name=" "$settings_file"; then
         sed -i 's/^gtk-icon-theme-name=.*/gtk-icon-theme-name=${gtkThemeName}/' "$settings_file"
@@ -1863,6 +1864,7 @@ Singleton {
 
         const script = `
             xresources_file="${xresourcesPath}"
+            [ -f "$xresources_file" ] && [ ! -w "$xresources_file" ] && exit 0
             theme_name="${themeName}"
             cursor_size="${size}"
 

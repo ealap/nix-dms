@@ -39,6 +39,10 @@ sensitivity=30
 lower_cutoff_freq=50
 higher_cutoff_freq=12000
 
+[input]
+method=pipewire
+source=auto
+
 [output]
 method=raw
 raw_target=/dev/stdout
