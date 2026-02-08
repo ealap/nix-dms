@@ -702,13 +702,13 @@ Singleton {
     readonly property int currentAnimationSpeed: typeof SettingsData !== "undefined" ? SettingsData.animationSpeed : SettingsData.AnimationSpeed.Short
     readonly property var currentDurations: animationDurations[currentAnimationSpeed] || animationDurations[SettingsData.AnimationSpeed.Short]
 
-    property int shorterDuration: currentDurations.shorter
-    property int shortDuration: currentDurations.short
-    property int mediumDuration: currentDurations.medium
-    property int longDuration: currentDurations.long
-    property int extraLongDuration: currentDurations.extraLong
-    property int standardEasing: Easing.OutCubic
-    property int emphasizedEasing: Easing.OutQuart
+    readonly property int shorterDuration: (typeof SettingsData !== "undefined" && SettingsData.animationSpeed === SettingsData.AnimationSpeed.Custom) ? SettingsData.customAnimationDuration : currentDurations.shorter
+    readonly property int shortDuration: (typeof SettingsData !== "undefined" && SettingsData.animationSpeed === SettingsData.AnimationSpeed.Custom) ? SettingsData.customAnimationDuration : currentDurations.short
+    readonly property int mediumDuration: (typeof SettingsData !== "undefined" && SettingsData.animationSpeed === SettingsData.AnimationSpeed.Custom) ? SettingsData.customAnimationDuration : currentDurations.medium
+    readonly property int longDuration: (typeof SettingsData !== "undefined" && SettingsData.animationSpeed === SettingsData.AnimationSpeed.Custom) ? SettingsData.customAnimationDuration : currentDurations.long
+    readonly property int extraLongDuration: (typeof SettingsData !== "undefined" && SettingsData.animationSpeed === SettingsData.AnimationSpeed.Custom) ? SettingsData.customAnimationDuration : currentDurations.extraLong
+    readonly property int standardEasing: Easing.OutCubic
+    readonly property int emphasizedEasing: Easing.OutQuart
 
     readonly property var expressiveCurves: {
         "emphasized": [0.05, 0, 2 / 15, 0.06, 1 / 6, 0.4, 5 / 24, 0.82, 0.25, 1, 1, 1],

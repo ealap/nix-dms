@@ -55,6 +55,7 @@ Rectangle {
 
     MouseArea {
         id: itemArea
+        z: 1
         anchors.fill: parent
         anchors.rightMargin: root.item?.type === "plugin_browse" ? 40 : 0
         hoverEnabled: true

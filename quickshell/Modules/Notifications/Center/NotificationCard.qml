@@ -31,10 +31,18 @@ Rectangle {
     width: parent ? parent.width : 400
     height: expanded ? (expandedContent.height + cardPadding * 2) : (baseCardHeight + collapsedContent.extraHeight)
     radius: Theme.cornerRadius
+    property bool __initialized: false
+
+    Component.onCompleted: {
+        Qt.callLater(() => {
+            __initialized = true;
+        });
+    }
 
     Behavior on border.color {
+        enabled: root.__initialized
         ColorAnimation {
-            duration: Theme.shortDuration
+            duration: root.__initialized ? Theme.shortDuration : 0
             easing.type: Theme.standardEasing
         }
     }
@@ -344,6 +352,13 @@ Rectangle {
                     readonly property real expandedIconSize: compactMode ? 40 : 48
                     readonly property real expandedItemPadding: compactMode ? Theme.spacingS : Theme.spacingM
                     readonly property real expandedBaseHeight: expandedItemPadding * 2 + expandedIconSize + actionButtonHeight + contentSpacing * 2
+                    property bool __delegateInitialized: false
+
+                    Component.onCompleted: {
+                        Qt.callLater(() => {
+                            __delegateInitialized = true;
+                        });
+                    }
 
                     width: parent.width
                     height: {
@@ -360,8 +375,9 @@ Rectangle {
                     border.width: 1
 
                     Behavior on border.color {
+                        enabled: __delegateInitialized
                         ColorAnimation {
-                            duration: Theme.shortDuration
+                            duration: __delegateInitialized ? Theme.shortDuration : 0
                             easing.type: Theme.standardEasing
                         }
                     }
@@ -518,13 +534,13 @@ Rectangle {
                                         Rectangle {
                                             property bool isHovered: false
 
-                                            width: Math.max(actionText.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
+                                            width: Math.max(expandedActionText.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
                                             height: actionButtonHeight
                                             radius: Theme.spacingXS
                                             color: isHovered ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.1) : "transparent"
 
                                             StyledText {
-                                                id: actionText
+                                                id: expandedActionText
                                                 text: {
                                                     const baseText = modelData.text || "View";
                                                     if (keyboardNavigationActive && (isGroupSelected || selectedNotificationIndex >= 0))
@@ -555,13 +571,13 @@ Rectangle {
                                     Rectangle {
                                         property bool isHovered: false
 
-                                        width: Math.max(clearText.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
+                                        width: Math.max(expandedClearText.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
                                         height: actionButtonHeight
                                         radius: Theme.spacingXS
                                         color: isHovered ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.1) : "transparent"
 
                                         StyledText {
-                                            id: clearText
+                                            id: expandedClearText
                                             text: I18n.tr("Dismiss")
                                             color: parent.isHovered ? Theme.primary : Theme.surfaceVariantText
                                             font.pixelSize: Theme.fontSizeSmall
@@ -601,13 +617,13 @@ Rectangle {
             Rectangle {
                 property bool isHovered: false
 
-                width: Math.max(actionText.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
+                width: Math.max(collapsedActionText.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
                 height: actionButtonHeight
                 radius: Theme.spacingXS
                 color: isHovered ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.1) : "transparent"
 
                 StyledText {
-                    id: actionText
+                    id: collapsedActionText
                     text: {
                         const baseText = modelData.text || "View";
                         if (keyboardNavigationActive && isGroupSelected) {
@@ -649,13 +665,13 @@ Rectangle {
         anchors.rightMargin: Theme.spacingL
         anchors.top: collapsedContent.bottom
         anchors.topMargin: contentSpacing
-        width: Math.max(clearText.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
+        width: Math.max(collapsedClearText.implicitWidth + Theme.spacingM, compactMode ? 40 : 50)
         height: actionButtonHeight
         radius: Theme.spacingXS
         color: isHovered ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.1) : "transparent"
 
         StyledText {
-            id: clearText
+            id: collapsedClearText
             text: I18n.tr("Dismiss")
             color: clearButton.isHovered ? Theme.primary : Theme.surfaceVariantText
             font.pixelSize: Theme.fontSizeSmall
@@ -719,7 +735,7 @@ Rectangle {
         enabled: root.userInitiatedExpansion && root.animateExpansion
         NumberAnimation {
             duration: Theme.mediumDuration
-            easing.type: Theme.emphasizedEasing
+            easing.type: root.expanded ? Theme.emphasizedEasing : Theme.standardEasing
             onRunningChanged: {
                 if (running) {
                     root.isAnimating = true;

@@ -214,7 +214,7 @@ Item {
     }
 
     function setPluginViewPreference(pluginId, mode, enforced) {
-        var prefs = pluginViewPreferences;
+        var prefs = Object.assign({}, pluginViewPreferences);
         prefs[pluginId] = {
             mode: mode,
             enforced: enforced || false
@@ -240,7 +240,7 @@ Item {
         if (pref && pref.mode) {
             setPluginViewPreference(sectionId, pref.mode, pref.enforced);
         } else {
-            var prefs = pluginViewPreferences;
+            var prefs = Object.assign({}, pluginViewPreferences);
             delete prefs[sectionId];
             pluginViewPreferences = prefs;
         }

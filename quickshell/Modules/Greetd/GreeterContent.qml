@@ -132,7 +132,7 @@ Item {
         function onLastSuccessfulUserChanged() {
             applyLastSuccessfulUser();
         }
-        function onLastSessionIdChanged() {
+        function onMemoryReadyChanged() {
             finalizeSessionSelection();
         }
     }
@@ -1029,6 +1029,8 @@ Item {
 
     function finalizeSessionSelection() {
         if (GreeterState.sessionList.length === 0)
+            return;
+        if (!GreetdMemory.memoryReady)
             return;
 
         const savedSession = GreetdMemory.lastSessionId;

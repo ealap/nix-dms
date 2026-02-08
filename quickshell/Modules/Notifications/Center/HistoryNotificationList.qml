@@ -253,6 +253,13 @@ Item {
                 property real swipeOffset: 0
                 property bool isDismissing: false
                 readonly property real dismissThreshold: width * 0.35
+                property bool __delegateInitialized: false
+
+                Component.onCompleted: {
+                    Qt.callLater(() => {
+                        __delegateInitialized = true;
+                    });
+                }
 
                 width: ListView.view.width
                 height: historyCard.height
@@ -268,7 +275,7 @@ Item {
                     opacity: 1 - Math.abs(delegateRoot.swipeOffset) / (delegateRoot.width * 0.5)
 
                     Behavior on x {
-                        enabled: !swipeDragHandler.active
+                        enabled: !swipeDragHandler.active && delegateRoot.__delegateInitialized
                         NumberAnimation {
                             duration: Theme.shortDuration
                             easing.type: Theme.standardEasing
@@ -276,8 +283,9 @@ Item {
                     }
 
                     Behavior on opacity {
+                        enabled: delegateRoot.__delegateInitialized
                         NumberAnimation {
-                            duration: Theme.shortDuration
+                            duration: delegateRoot.__delegateInitialized ? Theme.shortDuration : 0
                         }
                     }
                 }

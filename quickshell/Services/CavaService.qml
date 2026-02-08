@@ -18,7 +18,7 @@ Singleton {
         command: ["which", "cava"]
         running: false
         onExited: exitCode => {
-            root.cavaAvailable = exitCode === 0;
+            root.cavaAvailable = exitCode === 0 && Quickshell.env("DMS_DISABLE_CAVA") !== "1";
         }
     }
 
@@ -38,10 +38,6 @@ autosens=0
 sensitivity=30
 lower_cutoff_freq=50
 higher_cutoff_freq=12000
-
-[input]
-method=pipewire
-source=auto
 
 [output]
 method=raw

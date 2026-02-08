@@ -14,6 +14,7 @@ Singleton {
 
     property string lastSessionId: ""
     property string lastSuccessfulUser: ""
+    property bool memoryReady: false
     property bool isLightMode: false
     property bool nightModeEnabled: false
 
@@ -75,11 +76,18 @@ Singleton {
     FileView {
         id: memoryFileView
         path: root.memoryFile
-        blockLoading: true
+        blockLoading: false
         blockWrites: false
         atomicWrites: true
         watchChanges: false
         printErrors: false
+        onLoaded: {
+            parseMemory(memoryFileView.text());
+            root.memoryReady = true;
+        }
+        onLoadFailed: {
+            root.memoryReady = true;
+        }
     }
 
     FileView {

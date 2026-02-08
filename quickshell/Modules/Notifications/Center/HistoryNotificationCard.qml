@@ -11,6 +11,13 @@ Rectangle {
     property bool isSelected: false
     property bool keyboardNavigationActive: false
     property bool descriptionExpanded: NotificationService.expandedMessages[historyItem?.id ? (historyItem.id + "_hist") : ""] || false
+    property bool __initialized: false
+
+    Component.onCompleted: {
+        Qt.callLater(() => {
+            __initialized = true;
+        });
+    }
 
     readonly property bool compactMode: SettingsData.notificationCompactMode
     readonly property real cardPadding: compactMode ? Theme.spacingS : Theme.spacingM
@@ -45,8 +52,9 @@ Rectangle {
     }
 
     Behavior on border.color {
+        enabled: root.__initialized
         ColorAnimation {
-            duration: Theme.shortDuration
+            duration: root.__initialized ? Theme.shortDuration : 0
             easing.type: Theme.standardEasing
         }
     }
