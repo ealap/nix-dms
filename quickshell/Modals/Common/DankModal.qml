@@ -284,9 +284,8 @@ Item {
 
             Behavior on opacity {
                 enabled: root.animationsEnabled
-                NumberAnimation {
+                DankAnim {
                     duration: root.animationDuration
-                    easing.type: Easing.BezierSpline
                     easing.bezierCurve: root.shouldBeVisible ? root.animationEnterCurve : root.animationExitCurve
                 }
             }
@@ -332,27 +331,24 @@ Item {
 
             Behavior on animX {
                 enabled: root.animationsEnabled
-                NumberAnimation {
+                DankAnim {
                     duration: root.animationDuration
-                    easing.type: Easing.BezierSpline
                     easing.bezierCurve: root.shouldBeVisible ? root.animationEnterCurve : root.animationExitCurve
                 }
             }
 
             Behavior on animY {
                 enabled: root.animationsEnabled
-                NumberAnimation {
+                DankAnim {
                     duration: root.animationDuration
-                    easing.type: Easing.BezierSpline
                     easing.bezierCurve: root.shouldBeVisible ? root.animationEnterCurve : root.animationExitCurve
                 }
             }
 
             Behavior on scaleValue {
                 enabled: root.animationsEnabled
-                NumberAnimation {
+                DankAnim {
                     duration: root.animationDuration
-                    easing.type: Easing.BezierSpline
                     easing.bezierCurve: root.shouldBeVisible ? root.animationEnterCurve : root.animationExitCurve
                 }
             }

@@ -18,6 +18,10 @@ DankModal {
     }
 
     property string activeTab: "recents"
+    onActiveTabChanged: {
+        ClipboardService.selectedIndex = 0;
+        ClipboardService.keyboardNavigationActive = false;
+    }
     property bool showKeyboardHints: false
     property Component clipboardContent
     property int activeImageLoads: 0

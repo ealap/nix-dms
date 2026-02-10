@@ -239,10 +239,10 @@ Item {
                     tab: "typography"
                     tags: ["animation", "duration", "custom", "speed"]
                     settingKey: "customAnimationDuration"
-                    text: I18n.tr("Custom Duration")
-                    description: I18n.tr("Fine-tune animation timing in milliseconds")
+                    text: I18n.tr("Animation Duration")
+                    description: I18n.tr("Globally scale all animation durations")
                     minimum: 0
-                    maximum: 750
+                    maximum: 1000
                     value: Theme.currentAnimationBaseDuration
                     unit: "ms"
                     defaultValue: 200
@@ -269,11 +269,34 @@ Item {
                         }
                     }
                 }
+
+                Rectangle {
+                    width: parent.width
+                    height: 1
+                    color: Theme.outline
+                    opacity: 0.15
+                }
+
+                SettingsToggleRow {
+                    tab: "typography"
+                    tags: ["animation", "sync", "popout", "modal", "global"]
+                    settingKey: "syncComponentAnimationSpeeds"
+                    text: I18n.tr("Sync Popouts & Modals")
+                    description: I18n.tr("Popouts and Modals follow global Animation Speed (disable to customize independently)")
+                    checked: SettingsData.syncComponentAnimationSpeeds
+                    onToggled: checked => SettingsData.set("syncComponentAnimationSpeeds", checked)
+
+                    Connections {
+                        target: SettingsData
+                        function onSyncComponentAnimationSpeedsChanged() {
+                        }
+                    }
+                }
             }
 
             SettingsCard {
                 tab: "typography"
-                tags: ["animation", "speed", "motion", "duration", "popout"]
+                tags: ["animation", "speed", "motion", "duration", "popout", "sync"]
                 title: I18n.tr("%1 Animation Speed").arg(I18n.tr("Popouts"))
                 settingKey: "popoutAnimationSpeed"
                 iconName: "open_in_new"
@@ -295,6 +318,8 @@ Item {
                         onSelectionChanged: (index, selected) => {
                             if (!selected)
                                 return;
+                            if (SettingsData.syncComponentAnimationSpeeds)
+                                SettingsData.set("syncComponentAnimationSpeeds", false);
                             SettingsData.set("popoutAnimationSpeed", index);
                         }
 
@@ -322,11 +347,13 @@ Item {
                     text: I18n.tr("Custom Duration")
                     description: I18n.tr("%1 custom animation duration").arg(I18n.tr("Popouts"))
                     minimum: 0
-                    maximum: 2000
+                    maximum: 1000
                     value: Theme.popoutAnimationDuration
                     unit: "ms"
                     defaultValue: 150
                     onSliderValueChanged: newValue => {
+                        if (SettingsData.syncComponentAnimationSpeeds)
+                            SettingsData.set("syncComponentAnimationSpeeds", false);
                         SettingsData.set("popoutAnimationSpeed", SettingsData.AnimationSpeed.Custom);
                         SettingsData.set("popoutCustomAnimationDuration", newValue);
                     }
@@ -343,7 +370,7 @@ Item {
                     Connections {
                         target: Theme
                         function onPopoutAnimationDurationChanged() {
-                            if (SettingsData.popoutAnimationSpeed === SettingsData.AnimationSpeed.Custom)
+                            if (!SettingsData.syncComponentAnimationSpeeds && SettingsData.popoutAnimationSpeed === SettingsData.AnimationSpeed.Custom)
                                 return;
                             popoutDurationSlider.value = Theme.popoutAnimationDuration;
                         }
@@ -353,7 +380,7 @@ Item {
 
             SettingsCard {
                 tab: "typography"
-                tags: ["animation", "speed", "motion", "duration", "modal"]
+                tags: ["animation", "speed", "motion", "duration", "modal", "sync"]
                 title: I18n.tr("%1 Animation Speed").arg(I18n.tr("Modals"))
                 settingKey: "modalAnimationSpeed"
                 iconName: "web_asset"
@@ -375,6 +402,8 @@ Item {
                         onSelectionChanged: (index, selected) => {
                             if (!selected)
                                 return;
+                            if (SettingsData.syncComponentAnimationSpeeds)
+                                SettingsData.set("syncComponentAnimationSpeeds", false);
                             SettingsData.set("modalAnimationSpeed", index);
                         }
 
@@ -402,11 +431,13 @@ Item {
                     text: I18n.tr("Custom Duration")
                     description: I18n.tr("%1 custom animation duration").arg(I18n.tr("Modals"))
                     minimum: 0
-                    maximum: 2000
+                    maximum: 1000
                     value: Theme.modalAnimationDuration
                     unit: "ms"
                     defaultValue: 150
                     onSliderValueChanged: newValue => {
+                        if (SettingsData.syncComponentAnimationSpeeds)
+                            SettingsData.set("syncComponentAnimationSpeeds", false);
                         SettingsData.set("modalAnimationSpeed", SettingsData.AnimationSpeed.Custom);
                         SettingsData.set("modalCustomAnimationDuration", newValue);
                     }
@@ -423,9 +454,33 @@ Item {
                     Connections {
                         target: Theme
                         function onModalAnimationDurationChanged() {
-                            if (SettingsData.modalAnimationSpeed === SettingsData.AnimationSpeed.Custom)
+                            if (!SettingsData.syncComponentAnimationSpeeds && SettingsData.modalAnimationSpeed === SettingsData.AnimationSpeed.Custom)
                                 return;
                             modalDurationSlider.value = Theme.modalAnimationDuration;
+                        }
+                    }
+                }
+            }
+
+            SettingsCard {
+                tab: "typography"
+                tags: ["animation", "ripple", "effect", "material", "feedback"]
+                title: I18n.tr("Ripple Effects")
+                settingKey: "enableRippleEffects"
+                iconName: "radio_button_unchecked"
+
+                SettingsToggleRow {
+                    tab: "typography"
+                    tags: ["animation", "ripple", "effect", "material", "click"]
+                    settingKey: "enableRippleEffects"
+                    text: I18n.tr("Enable Ripple Effects")
+                    description: I18n.tr("Show Material Design ripple animations on interactive elements")
+                    checked: SettingsData.enableRippleEffects ?? true
+                    onToggled: newValue => SettingsData.set("enableRippleEffects", newValue)
+
+                    Connections {
+                        target: SettingsData
+                        function onEnableRippleEffectsChanged() {
                         }
                     }
                 }

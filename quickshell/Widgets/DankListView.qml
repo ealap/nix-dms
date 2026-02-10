@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import qs.Common
 import qs.Widgets
 
 ListView {
@@ -21,6 +22,11 @@ ListView {
     boundsMovement: Flickable.FollowBoundsBehavior
     pressDelay: 0
     flickableDirection: Flickable.VerticalFlick
+
+    add: ListViewTransitions.add
+    remove: ListViewTransitions.remove
+    displaced: ListViewTransitions.displaced
+    move: ListViewTransitions.move
 
     onMovementStarted: {
         isUserScrolling = true;

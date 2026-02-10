@@ -309,9 +309,8 @@ Item {
             visible: contentVisible || opacity > 0
 
             Behavior on opacity {
-                NumberAnimation {
+                DankAnim {
                     duration: Theme.modalAnimationDuration
-                    easing.type: Easing.BezierSpline
                     easing.bezierCurve: contentVisible ? Theme.expressiveCurves.expressiveDefaultSpatial : Theme.expressiveCurves.emphasized
                 }
             }
@@ -345,17 +344,15 @@ Item {
             transformOrigin: Item.Center
 
             Behavior on opacity {
-                NumberAnimation {
+                DankAnim {
                     duration: Theme.modalAnimationDuration
-                    easing.type: Easing.BezierSpline
                     easing.bezierCurve: contentVisible ? Theme.expressiveCurves.expressiveDefaultSpatial : Theme.expressiveCurves.emphasized
                 }
             }
 
             Behavior on scale {
-                NumberAnimation {
+                DankAnim {
                     duration: Theme.modalAnimationDuration
-                    easing.type: Easing.BezierSpline
                     easing.bezierCurve: contentVisible ? Theme.expressiveCurves.expressiveDefaultSpatial : Theme.expressiveCurves.emphasized
                 }
             }

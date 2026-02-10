@@ -39,11 +39,36 @@ Singleton {
     }
     property bool wireplumberReloading: false
 
+    readonly property int sinkMaxVolume: {
+        const name = sink?.name ?? "";
+        if (!name)
+            return 100;
+        return SessionData.deviceMaxVolumes[name] ?? 100;
+    }
+
     signal micMuteChanged
     signal audioOutputCycled(string deviceName)
     signal deviceAliasChanged(string nodeName, string newAlias)
-    signal wireplumberReloadStarted()
+    signal wireplumberReloadStarted
     signal wireplumberReloadCompleted(bool success)
+
+    function getMaxVolumePercent(node) {
+        if (!node?.name)
+            return 100;
+        return SessionData.deviceMaxVolumes[node.name] ?? 100;
+    }
+
+    Connections {
+        target: SessionData
+        function onDeviceMaxVolumesChanged() {
+            if (!root.sink?.audio)
+                return;
+            const maxVol = root.sinkMaxVolume;
+            const currentPercent = Math.round(root.sink.audio.volume * 100);
+            if (currentPercent > maxVol)
+                root.sink.audio.volume = maxVol / 100;
+        }
+    }
 
     function getAvailableSinks() {
         return Pipewire.nodes.values.filter(node => node.audio && node.isSink && !node.isStream);
@@ -814,11 +839,11 @@ EOFCONFIG
     }
 
     function setVolume(percentage) {
-        if (!root.sink?.audio) {
+        if (!root.sink?.audio)
             return "No audio sink available";
-        }
 
-        const clampedVolume = Math.max(0, Math.min(100, percentage));
+        const maxVol = root.sinkMaxVolume;
+        const clampedVolume = Math.max(0, Math.min(maxVol, percentage));
         root.sink.audio.volume = clampedVolume / 100;
         return `Volume set to ${clampedVolume}%`;
     }
@@ -859,34 +884,32 @@ EOFCONFIG
         }
 
         function increment(step: string): string {
-            if (!root.sink?.audio) {
+            if (!root.sink?.audio)
                 return "No audio sink available";
-            }
 
-            if (root.sink.audio.muted) {
+            if (root.sink.audio.muted)
                 root.sink.audio.muted = false;
-            }
 
+            const maxVol = root.sinkMaxVolume;
             const currentVolume = Math.round(root.sink.audio.volume * 100);
             const stepValue = parseInt(step || "5");
-            const newVolume = Math.max(0, Math.min(100, currentVolume + stepValue));
+            const newVolume = Math.max(0, Math.min(maxVol, currentVolume + stepValue));
 
             root.sink.audio.volume = newVolume / 100;
             return `Volume increased to ${newVolume}%`;
         }
 
         function decrement(step: string): string {
-            if (!root.sink?.audio) {
+            if (!root.sink?.audio)
                 return "No audio sink available";
-            }
 
-            if (root.sink.audio.muted) {
+            if (root.sink.audio.muted)
                 root.sink.audio.muted = false;
-            }
 
+            const maxVol = root.sinkMaxVolume;
             const currentVolume = Math.round(root.sink.audio.volume * 100);
             const stepValue = parseInt(step || "5");
-            const newVolume = Math.max(0, Math.min(100, currentVolume - stepValue));
+            const newVolume = Math.max(0, Math.min(maxVol, currentVolume - stepValue));
 
             root.sink.audio.volume = newVolume / 100;
             return `Volume decreased to ${newVolume}%`;
@@ -912,7 +935,8 @@ EOFCONFIG
             if (root.sink?.audio) {
                 const volume = Math.round(root.sink.audio.volume * 100);
                 const muteStatus = root.sink.audio.muted ? " (muted)" : "";
-                result += `Output: ${volume}%${muteStatus}\n`;
+                const maxVol = root.sinkMaxVolume;
+                result += `Output: ${volume}%${muteStatus} (max: ${maxVol}%)\n`;
             } else {
                 result += "Output: No sink available\n";
             }
@@ -926,6 +950,36 @@ EOFCONFIG
             }
 
             return result;
+        }
+
+        function getmaxvolume(): string {
+            return `${root.sinkMaxVolume}`;
+        }
+
+        function setmaxvolume(percent: string): string {
+            if (!root.sink?.name)
+                return "No audio sink available";
+            const val = parseInt(percent);
+            if (isNaN(val))
+                return "Invalid percentage";
+            SessionData.setDeviceMaxVolume(root.sink.name, val);
+            return `Max volume set to ${SessionData.getDeviceMaxVolume(root.sink.name)}%`;
+        }
+
+        function getmaxvolumefor(nodeName: string): string {
+            if (!nodeName)
+                return "No node name specified";
+            return `${SessionData.getDeviceMaxVolume(nodeName)}`;
+        }
+
+        function setmaxvolumefor(nodeName: string, percent: string): string {
+            if (!nodeName)
+                return "No node name specified";
+            const val = parseInt(percent);
+            if (isNaN(val))
+                return "Invalid percentage";
+            SessionData.setDeviceMaxVolume(nodeName, val);
+            return `Max volume for ${nodeName} set to ${SessionData.getDeviceMaxVolume(nodeName)}%`;
         }
 
         function cycleoutput(): string {

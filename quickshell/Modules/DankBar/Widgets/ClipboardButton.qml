@@ -111,10 +111,18 @@ BasePill {
             edge = barEdge ?? "top";
 
             visible = true;
+
+            if (contextMenuWindow.screen) {
+                TrayMenuManager.registerMenu(contextMenuWindow.screen.name, contextMenuWindow);
+            }
         }
 
         function closeMenu() {
             visible = false;
+
+            if (contextMenuWindow.screen) {
+                TrayMenuManager.unregisterMenu(contextMenuWindow.screen.name);
+            }
         }
 
         screen: null
@@ -128,6 +136,19 @@ BasePill {
             left: true
             right: true
             bottom: true
+        }
+
+        Component.onDestruction: {
+            if (contextMenuWindow.screen) {
+                TrayMenuManager.unregisterMenu(contextMenuWindow.screen.name);
+            }
+        }
+
+        Connections {
+            target: PopoutManager
+            function onPopoutOpening() {
+                contextMenuWindow.closeMenu();
+            }
         }
 
         MouseArea {

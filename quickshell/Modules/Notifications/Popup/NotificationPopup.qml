@@ -718,7 +718,7 @@ PanelWindow {
             target: content
             property: "swipeOffset"
             to: isTopCenter ? -content.height : (SettingsData.notificationPopupPosition === SettingsData.Position.Left || SettingsData.notificationPopupPosition === SettingsData.Position.Bottom ? -content.width : content.width)
-            duration: Anims.durShort
+            duration: Theme.shortDuration
             easing.type: Easing.OutCubic
             onStopped: {
                 NotificationService.dismissNotification(notificationData);
@@ -757,9 +757,9 @@ PanelWindow {
             return isLeft ? -Anims.slidePx : Anims.slidePx;
         }
         to: 0
-        duration: Anims.durMed
+        duration: Theme.mediumDuration
         easing.type: Easing.BezierSpline
-        easing.bezierCurve: isTopCenter ? Anims.standardDecel : Anims.emphasizedDecel
+        easing.bezierCurve: isTopCenter ? Theme.expressiveCurves.standardDecel : Theme.expressiveCurves.emphasizedDecel
         onStopped: {
             if (!win.exiting && !win._isDestroying) {
                 if (isTopCenter) {
@@ -788,9 +788,9 @@ PanelWindow {
                 const isLeft = SettingsData.notificationPopupPosition === SettingsData.Position.Left || SettingsData.notificationPopupPosition === SettingsData.Position.Bottom;
                 return isLeft ? -Anims.slidePx : Anims.slidePx;
             }
-            duration: Anims.durShort
+            duration: Theme.shortDuration
             easing.type: Easing.BezierSpline
-            easing.bezierCurve: Anims.emphasizedAccel
+            easing.bezierCurve: Theme.expressiveCurves.emphasizedAccel
         }
 
         NumberAnimation {
@@ -798,9 +798,9 @@ PanelWindow {
             property: "opacity"
             from: 1
             to: 0
-            duration: Anims.durShort
+            duration: Theme.shortDuration
             easing.type: Easing.BezierSpline
-            easing.bezierCurve: Anims.standardAccel
+            easing.bezierCurve: Theme.expressiveCurves.standardAccel
         }
 
         NumberAnimation {
@@ -808,9 +808,9 @@ PanelWindow {
             property: "scale"
             from: 1
             to: 0.98
-            duration: Anims.durShort
+            duration: Theme.shortDuration
             easing.type: Easing.BezierSpline
-            easing.bezierCurve: Anims.emphasizedAccel
+            easing.bezierCurve: Theme.expressiveCurves.emphasizedAccel
         }
     }
 
@@ -867,9 +867,9 @@ PanelWindow {
         enabled: !exiting && !_isDestroying
 
         NumberAnimation {
-            duration: Anims.durShort
+            duration: Theme.shortDuration
             easing.type: Easing.BezierSpline
-            easing.bezierCurve: Anims.standardDecel
+            easing.bezierCurve: Theme.expressiveCurves.standardDecel
         }
     }
 }

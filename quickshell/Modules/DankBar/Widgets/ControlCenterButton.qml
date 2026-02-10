@@ -30,6 +30,70 @@ BasePill {
     property real volumeAccumulator: 0
     property real brightnessAccumulator: 0
     readonly property real vIconSize: Theme.barIconSize(root.barThickness, -4, root.barConfig?.noBackground)
+    property var _hRow: null
+    property var _vCol: null
+    property var _hAudio: null
+    property var _hBrightness: null
+    property var _hMic: null
+    property var _vAudio: null
+    property var _vBrightness: null
+    property var _vMic: null
+
+    onWheel: function (wheelEvent) {
+        const delta = wheelEvent.angleDelta.y;
+        if (delta === 0)
+            return;
+
+        const rootX = wheelEvent.x - root.leftMargin;
+        const rootY = wheelEvent.y - root.topMargin;
+
+        if (root.isVerticalOrientation && _vCol) {
+            const pos = root.mapToItem(_vCol, rootX, rootY);
+            if (_vBrightness?.visible && pos.y >= _vBrightness.y && pos.y < _vBrightness.y + _vBrightness.height) {
+                root.handleBrightnessWheel(delta);
+            } else if (_vMic?.visible && pos.y >= _vMic.y && pos.y < _vMic.y + _vMic.height) {
+                root.handleMicWheel(delta);
+            } else {
+                root.handleVolumeWheel(delta);
+            }
+        } else if (_hRow) {
+            const pos = root.mapToItem(_hRow, rootX, rootY);
+            if (_hBrightness?.visible && pos.x >= _hBrightness.x && pos.x < _hBrightness.x + _hBrightness.width) {
+                root.handleBrightnessWheel(delta);
+            } else if (_hMic?.visible && pos.x >= _hMic.x && pos.x < _hMic.x + _hMic.width) {
+                root.handleMicWheel(delta);
+            } else {
+                root.handleVolumeWheel(delta);
+            }
+        } else {
+            root.handleVolumeWheel(delta);
+        }
+        wheelEvent.accepted = true;
+    }
+
+    onRightClicked: function (rootX, rootY) {
+        if (root.isVerticalOrientation && _vCol) {
+            const pos = root.mapToItem(_vCol, rootX, rootY);
+            if (_vAudio?.visible && pos.y >= _vAudio.y && pos.y < _vAudio.y + _vAudio.height) {
+                AudioService.toggleMute();
+                return;
+            }
+            if (_vMic?.visible && pos.y >= _vMic.y && pos.y < _vMic.y + _vMic.height) {
+                AudioService.toggleMicMute();
+                return;
+            }
+        } else if (_hRow) {
+            const pos = root.mapToItem(_hRow, rootX, rootY);
+            if (_hAudio?.visible && pos.x >= _hAudio.x && pos.x < _hAudio.x + _hAudio.width) {
+                AudioService.toggleMute();
+                return;
+            }
+            if (_hMic?.visible && pos.x >= _hMic.x && pos.x < _hMic.x + _hMic.width) {
+                AudioService.toggleMicMute();
+                return;
+            }
+        }
+    }
 
     Loader {
         active: root.showPrinterIcon
@@ -140,8 +204,9 @@ BasePill {
             volumeAccumulator = 0;
         }
 
+        const maxVol = AudioService.sinkMaxVolume;
         const currentVolume = AudioService.sink.audio.volume * 100;
-        const newVolume = delta > 0 ? Math.min(100, currentVolume + step) : Math.max(0, currentVolume - step);
+        const newVolume = delta > 0 ? Math.min(maxVol, currentVolume + step) : Math.max(0, currentVolume - step);
         AudioService.sink.audio.muted = false;
         AudioService.sink.audio.volume = newVolume / 100;
         AudioService.playVolumeChangeSoundIfEnabled();
@@ -241,15 +306,26 @@ BasePill {
             implicitWidth: root.isVerticalOrientation ? (root.widgetThickness - root.horizontalPadding * 2) : controlIndicators.implicitWidth
             implicitHeight: root.isVerticalOrientation ? controlColumn.implicitHeight : (root.widgetThickness - root.horizontalPadding * 2)
 
+            Component.onCompleted: {
+                root._hRow = controlIndicators;
+                root._vCol = controlColumn;
+                root._hAudio = audioIcon.parent;
+                root._hBrightness = brightnessIcon.parent;
+                root._hMic = micIcon.parent;
+                root._vAudio = audioIconV.parent;
+                root._vBrightness = brightnessIconV.parent;
+                root._vMic = micIconV.parent;
+            }
+
             Column {
                 id: controlColumn
                 visible: root.isVerticalOrientation
-                width: root.vIconSize
+                width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
                 spacing: Theme.spacingXS
 
                 Item {
-                    width: root.vIconSize
+                    width: parent.width
                     height: root.vIconSize
                     visible: root.showScreenSharingIcon && NiriService.hasCasts
 
@@ -262,7 +338,7 @@ BasePill {
                 }
 
                 Item {
-                    width: root.vIconSize
+                    width: parent.width
                     height: root.vIconSize
                     visible: root.showNetworkIcon && NetworkService.networkAvailable
 
@@ -275,7 +351,7 @@ BasePill {
                 }
 
                 Item {
-                    width: root.vIconSize
+                    width: parent.width
                     height: root.vIconSize
                     visible: root.showVpnIcon && NetworkService.vpnAvailable && NetworkService.vpnConnected
 
@@ -288,7 +364,7 @@ BasePill {
                 }
 
                 Item {
-                    width: root.vIconSize
+                    width: parent.width
                     height: root.vIconSize
                     visible: root.showBluetoothIcon && BluetoothService.available && BluetoothService.enabled
 
@@ -301,7 +377,7 @@ BasePill {
                 }
 
                 Item {
-                    width: root.vIconSize
+                    width: parent.width
                     height: root.vIconSize + (root.showAudioPercent ? audioPercentV.implicitHeight + 2 : 0)
                     visible: root.showAudioIcon
 
@@ -324,22 +400,10 @@ BasePill {
                         anchors.top: audioIconV.bottom
                         anchors.topMargin: 2
                     }
-
-                    MouseArea {
-                        anchors.fill: parent
-                        acceptedButtons: Qt.RightButton
-                        onWheel: function (wheelEvent) {
-                            root.handleVolumeWheel(wheelEvent.angleDelta.y);
-                            wheelEvent.accepted = true;
-                        }
-                        onClicked: {
-                            AudioService.toggleMute();
-                        }
-                    }
                 }
 
                 Item {
-                    width: root.vIconSize
+                    width: parent.width
                     height: root.vIconSize + (root.showMicPercent ? micPercentV.implicitHeight + 2 : 0)
                     visible: root.showMicIcon
 
@@ -362,22 +426,10 @@ BasePill {
                         anchors.top: micIconV.bottom
                         anchors.topMargin: 2
                     }
-
-                    MouseArea {
-                        anchors.fill: parent
-                        acceptedButtons: Qt.RightButton
-                        onWheel: function (wheelEvent) {
-                            root.handleMicWheel(wheelEvent.angleDelta.y);
-                            wheelEvent.accepted = true;
-                        }
-                        onClicked: {
-                            AudioService.toggleMicMute();
-                        }
-                    }
                 }
 
                 Item {
-                    width: root.vIconSize
+                    width: parent.width
                     height: root.vIconSize + (root.showBrightnessPercent ? brightnessPercentV.implicitHeight + 2 : 0)
                     visible: root.showBrightnessIcon && DisplayService.brightnessAvailable && root.hasPinnedBrightnessDevice()
 
@@ -400,19 +452,10 @@ BasePill {
                         anchors.top: brightnessIconV.bottom
                         anchors.topMargin: 2
                     }
-
-                    MouseArea {
-                        anchors.fill: parent
-                        acceptedButtons: Qt.NoButton
-                        onWheel: function (wheelEvent) {
-                            root.handleBrightnessWheel(wheelEvent.angleDelta.y);
-                            wheelEvent.accepted = true;
-                        }
-                    }
                 }
 
                 Item {
-                    width: root.vIconSize
+                    width: parent.width
                     height: root.vIconSize
                     visible: root.showBatteryIcon && BatteryService.batteryAvailable
 
@@ -425,7 +468,7 @@ BasePill {
                 }
 
                 Item {
-                    width: root.vIconSize
+                    width: parent.width
                     height: root.vIconSize
                     visible: root.showPrinterIcon && CupsService.cupsAvailable && root.hasPrintJobs()
 
@@ -438,7 +481,7 @@ BasePill {
                 }
 
                 Item {
-                    width: root.vIconSize
+                    width: parent.width
                     height: root.vIconSize
                     visible: root.hasNoVisibleIcons()
 
@@ -494,7 +537,7 @@ BasePill {
 
                 Rectangle {
                     width: audioIcon.implicitWidth + (root.showAudioPercent ? audioPercent.implicitWidth : 0) + 4
-                    height: audioIcon.implicitHeight + 4
+                    height: root.widgetThickness - root.horizontalPadding * 2
                     color: "transparent"
                     anchors.verticalCenter: parent.verticalCenter
                     visible: root.showAudioIcon
@@ -519,24 +562,11 @@ BasePill {
                         anchors.left: audioIcon.right
                         anchors.leftMargin: 2
                     }
-
-                    MouseArea {
-                        id: audioWheelArea
-                        anchors.fill: parent
-                        acceptedButtons: Qt.RightButton
-                        onWheel: function (wheelEvent) {
-                            root.handleVolumeWheel(wheelEvent.angleDelta.y);
-                            wheelEvent.accepted = true;
-                        }
-                        onClicked: {
-                            AudioService.toggleMute();
-                        }
-                    }
                 }
 
                 Rectangle {
                     width: micIcon.implicitWidth + (root.showMicPercent ? micPercent.implicitWidth : 0) + 4
-                    height: micIcon.implicitHeight + 4
+                    height: root.widgetThickness - root.horizontalPadding * 2
                     color: "transparent"
                     anchors.verticalCenter: parent.verticalCenter
                     visible: root.showMicIcon
@@ -561,24 +591,11 @@ BasePill {
                         anchors.left: micIcon.right
                         anchors.leftMargin: 2
                     }
-
-                    MouseArea {
-                        id: micWheelArea
-                        anchors.fill: parent
-                        acceptedButtons: Qt.RightButton
-                        onWheel: function (wheelEvent) {
-                            root.handleMicWheel(wheelEvent.angleDelta.y);
-                            wheelEvent.accepted = true;
-                        }
-                        onClicked: {
-                            AudioService.toggleMicMute();
-                        }
-                    }
                 }
 
                 Rectangle {
                     width: brightnessIcon.implicitWidth + (root.showBrightnessPercent ? brightnessPercent.implicitWidth : 0) + 4
-                    height: brightnessIcon.implicitHeight + 4
+                    height: root.widgetThickness - root.horizontalPadding * 2
                     color: "transparent"
                     anchors.verticalCenter: parent.verticalCenter
                     visible: root.showBrightnessIcon && DisplayService.brightnessAvailable && root.hasPinnedBrightnessDevice()
@@ -602,16 +619,6 @@ BasePill {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: brightnessIcon.right
                         anchors.leftMargin: 2
-                    }
-
-                    MouseArea {
-                        id: brightnessWheelArea
-                        anchors.fill: parent
-                        acceptedButtons: Qt.NoButton
-                        onWheel: function (wheelEvent) {
-                            root.handleBrightnessWheel(wheelEvent.angleDelta.y);
-                            wheelEvent.accepted = true;
-                        }
                     }
                 }
 

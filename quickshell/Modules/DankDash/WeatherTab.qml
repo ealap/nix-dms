@@ -964,7 +964,7 @@ Item {
                     property var cardWidth: ((hourlyList.width + hourlyList.spacing) / hourlyList.visibleCount) - hourlyList.spacing
                     property int initialIndex: (new Date()).getHours()
                     property bool dense: !SessionData.weatherHourlyDetailed
-                    property int visibleCount: 8
+                    property int visibleCount: dense ? 10 : 5
 
                     model: WeatherService.weather.hourlyForecast?.length ?? 0
 

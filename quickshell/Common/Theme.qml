@@ -769,6 +769,9 @@ Singleton {
     readonly property int popoutAnimationDuration: {
         if (typeof SettingsData === "undefined")
             return 150;
+        if (SettingsData.syncComponentAnimationSpeeds) {
+            return Math.min(currentAnimationBaseDuration, 1000);
+        }
         const presetMap = [0, 150, 300, 500];
         if (SettingsData.popoutAnimationSpeed === SettingsData.AnimationSpeed.Custom)
             return SettingsData.popoutCustomAnimationDuration;
@@ -778,6 +781,9 @@ Singleton {
     readonly property int modalAnimationDuration: {
         if (typeof SettingsData === "undefined")
             return 150;
+        if (SettingsData.syncComponentAnimationSpeeds) {
+            return Math.min(currentAnimationBaseDuration, 1000);
+        }
         const presetMap = [0, 150, 300, 500];
         if (SettingsData.modalAnimationSpeed === SettingsData.AnimationSpeed.Custom)
             return SettingsData.modalCustomAnimationDuration;

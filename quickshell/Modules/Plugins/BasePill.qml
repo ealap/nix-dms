@@ -35,7 +35,7 @@ Item {
     readonly property real bottomMargin: isVerticalOrientation ? (isBottomBarEdge && isLast ? barEdgeExtension : (isLast ? gapExtension : gapExtension / 2)) : 0
 
     signal clicked
-    signal rightClicked
+    signal rightClicked(real rootX, real rootY)
     signal wheel(var wheelEvent)
 
     width: isVerticalOrientation ? barThickness : visualWidth
@@ -125,7 +125,8 @@ Item {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         onPressed: function (mouse) {
             if (mouse.button === Qt.RightButton) {
-                root.rightClicked();
+                const rPos = mouseArea.mapToItem(root, mouse.x, mouse.y);
+                root.rightClicked(rPos.x, rPos.y);
                 return;
             }
             if (popoutTarget) {

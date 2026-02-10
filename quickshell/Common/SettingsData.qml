@@ -154,10 +154,14 @@ Singleton {
     property bool nightModeEnabled: false
     property int animationSpeed: SettingsData.AnimationSpeed.Short
     property int customAnimationDuration: 500
+    property bool syncComponentAnimationSpeeds: true
+    onSyncComponentAnimationSpeedsChanged: saveSettings()
     property int popoutAnimationSpeed: SettingsData.AnimationSpeed.Short
     property int popoutCustomAnimationDuration: 150
     property int modalAnimationSpeed: SettingsData.AnimationSpeed.Short
     property int modalCustomAnimationDuration: 150
+    property bool enableRippleEffects: true
+    onEnableRippleEffectsChanged: saveSettings()
     property string wallpaperFillMode: "Fill"
     property bool blurredWallpaperLayer: false
     property bool blurWallpaperOnOverview: false

@@ -192,6 +192,8 @@ Item {
                 iconName: "timer"
                 title: I18n.tr("Notification Timeouts")
                 settingKey: "notificationTimeouts"
+                collapsible: true
+                expanded: false
 
                 SettingsDropdownRow {
                     settingKey: "notificationTimeoutLow"

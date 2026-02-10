@@ -473,6 +473,8 @@ Item {
                 iconName: "space_bar"
                 title: I18n.tr("Spacing")
                 settingKey: "dockSpacing"
+                collapsible: true
+                expanded: false
 
                 SettingsSliderRow {
                     text: I18n.tr("Padding")
@@ -524,6 +526,8 @@ Item {
                 iconName: "border_style"
                 title: I18n.tr("Border")
                 settingKey: "dockBorder"
+                collapsible: true
+                expanded: false
 
                 SettingsToggleRow {
                     text: I18n.tr("Border")

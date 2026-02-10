@@ -102,8 +102,8 @@ Rectangle {
             width: parent.width - (Theme.iconSize + Theme.spacingS * 2)
             enabled: AudioService.sink && AudioService.sink.audio
             minimum: 0
-            maximum: 100
-            value: AudioService.sink && AudioService.sink.audio ? Math.min(100, Math.round(AudioService.sink.audio.volume * 100)) : 0
+            maximum: AudioService.sinkMaxVolume
+            value: AudioService.sink && AudioService.sink.audio ? Math.min(AudioService.sinkMaxVolume, Math.round(AudioService.sink.audio.volume * 100)) : 0
             showValue: true
             unit: "%"
             valueOverride: actualVolumePercent
@@ -136,15 +136,15 @@ Rectangle {
 
         function normalizePinList(value) {
             if (Array.isArray(value))
-                return value.filter(v => v)
+                return value.filter(v => v);
             if (typeof value === "string" && value.length > 0)
-                return [value]
-            return []
+                return [value];
+            return [];
         }
 
         function getPinnedOutputs() {
-            const pins = SettingsData.audioOutputDevicePins || {}
-            return normalizePinList(pins["preferredOutput"])
+            const pins = SettingsData.audioOutputDevicePins || {};
+            return normalizePinList(pins["preferredOutput"]);
         }
 
         Column {
@@ -163,14 +163,14 @@ Rectangle {
                         let sorted = [...nodes];
                         sorted.sort((a, b) => {
                             // Pinned device first
-                            const aPinnedIndex = pinnedList.indexOf(a.name)
-                            const bPinnedIndex = pinnedList.indexOf(b.name)
+                            const aPinnedIndex = pinnedList.indexOf(a.name);
+                            const bPinnedIndex = pinnedList.indexOf(b.name);
                             if (aPinnedIndex !== -1 || bPinnedIndex !== -1) {
                                 if (aPinnedIndex === -1)
-                                    return 1
+                                    return 1;
                                 if (bPinnedIndex === -1)
-                                    return -1
-                                return aPinnedIndex - bPinnedIndex
+                                    return -1;
+                                return aPinnedIndex - bPinnedIndex;
                             }
                             // Then active device
                             if (a === AudioService.sink && b !== AudioService.sink)
@@ -292,24 +292,24 @@ Rectangle {
                             anchors.fill: parent
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
-                                const pins = JSON.parse(JSON.stringify(SettingsData.audioOutputDevicePins || {}))
-                                let pinnedList = audioContent.normalizePinList(pins["preferredOutput"])
-                                const pinIndex = pinnedList.indexOf(modelData.name)
+                                const pins = JSON.parse(JSON.stringify(SettingsData.audioOutputDevicePins || {}));
+                                let pinnedList = audioContent.normalizePinList(pins["preferredOutput"]);
+                                const pinIndex = pinnedList.indexOf(modelData.name);
 
                                 if (pinIndex !== -1) {
-                                    pinnedList.splice(pinIndex, 1)
+                                    pinnedList.splice(pinIndex, 1);
                                 } else {
-                                    pinnedList.unshift(modelData.name)
+                                    pinnedList.unshift(modelData.name);
                                     if (pinnedList.length > audioContent.maxPinnedOutputs)
-                                        pinnedList = pinnedList.slice(0, audioContent.maxPinnedOutputs)
+                                        pinnedList = pinnedList.slice(0, audioContent.maxPinnedOutputs);
                                 }
 
                                 if (pinnedList.length > 0)
-                                    pins["preferredOutput"] = pinnedList
+                                    pins["preferredOutput"] = pinnedList;
                                 else
-                                    delete pins["preferredOutput"]
+                                    delete pins["preferredOutput"];
 
-                                SettingsData.set("audioOutputDevicePins", pins)
+                                SettingsData.set("audioOutputDevicePins", pins);
                             }
                         }
                     }

@@ -1028,6 +1028,8 @@ Item {
                 iconName: "rounded_corner"
                 title: I18n.tr("Corners & Background")
                 settingKey: "barCorners"
+                collapsible: true
+                expanded: false
                 visible: selectedBarConfig?.enabled
 
                 SettingsToggleRow {
@@ -1103,6 +1105,9 @@ Item {
                 id: shadowCard
                 iconName: "layers"
                 title: I18n.tr("Shadow", "bar shadow settings card")
+                settingKey: "barShadow"
+                collapsible: true
+                expanded: false
                 visible: selectedBarConfig?.enabled
 
                 readonly property bool shadowActive: (selectedBarConfig?.shadowIntensity ?? 0) > 0

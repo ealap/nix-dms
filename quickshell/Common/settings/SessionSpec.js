@@ -72,7 +72,9 @@ var SPEC = {
     appOverrides: { def: {} },
     searchAppActions: { def: true },
 
-    vpnLastConnected: { def: "" }
+    vpnLastConnected: { def: "" },
+
+    deviceMaxVolumes: { def: {} }
 };
 
 function getValidKeys() {

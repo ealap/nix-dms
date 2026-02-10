@@ -62,8 +62,6 @@ Item {
     readonly property real currentVolume: usePlayerVolume ? activePlayer.volume : (AudioService.sink?.audio?.volume ?? 0)
 
     property bool isSwitching: false
-    property string _lastArtUrl: ""
-    property string _bgArtSource: ""
 
     // Derived "no players" state: always correct, no timers.
     readonly property int _playerCount: allPlayers ? allPlayers.length : 0
@@ -88,28 +86,7 @@ Item {
         isSwitching = true;
         _switchHold = true;
         _switchHoldTimer.restart();
-        if (activePlayer.trackArtUrl)
-            loadArtwork(activePlayer.trackArtUrl);
-    }
-
-    property string activeTrackArtFile: ""
-
-    function loadArtwork(url) {
-        if (!url)
-            return;
-        if (url.startsWith("http://") || url.startsWith("https://")) {
-            const filename = "/tmp/.dankshell/trackart_" + Date.now() + ".jpg";
-            activeTrackArtFile = filename;
-
-            cleanupProcess.command = ["sh", "-c", "mkdir -p /tmp/.dankshell && find /tmp/.dankshell -name 'trackart_*' ! -name '" + filename.split('/').pop() + "' -delete"];
-            cleanupProcess.running = true;
-
-            imageDownloader.command = ["curl", "-L", "-s", "--user-agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36", "-o", filename, url];
-            imageDownloader.targetFile = filename;
-            imageDownloader.running = true;
-            return;
-        }
-        _bgArtSource = url;
+        TrackArtService.loadArtwork(activePlayer.trackArtUrl);
     }
 
     function maybeFinishSwitch() {
@@ -138,10 +115,7 @@ Item {
             maybeFinishSwitch();
         }
         function onTrackArtUrlChanged() {
-            if (activePlayer?.trackArtUrl) {
-                _lastArtUrl = activePlayer.trackArtUrl;
-                loadArtwork(activePlayer.trackArtUrl);
-            }
+            TrackArtService.loadArtwork(activePlayer.trackArtUrl);
         }
     }
 
@@ -201,8 +175,9 @@ Item {
     function adjustVolume(step) {
         if (!volumeAvailable)
             return;
+        const maxVol = usePlayerVolume ? 100 : AudioService.sinkMaxVolume;
         const current = Math.round(currentVolume * 100);
-        const newVolume = Math.min(100, Math.max(0, current + step));
+        const newVolume = Math.min(maxVol, Math.max(0, current + step));
 
         SessionData.suppressOSDTemporarily();
         if (usePlayerVolume) {
@@ -210,22 +185,6 @@ Item {
         } else if (AudioService.sink?.audio) {
             AudioService.sink.audio.volume = newVolume / 100;
         }
-    }
-
-    Process {
-        id: imageDownloader
-        running: false
-        property string targetFile: ""
-
-        onExited: exitCode => {
-            if (exitCode === 0 && targetFile)
-                _bgArtSource = "file://" + targetFile;
-        }
-    }
-
-    Process {
-        id: cleanupProcess
-        running: false
     }
 
     property bool isSeeking: false
@@ -240,14 +199,14 @@ Item {
     Item {
         id: bgContainer
         anchors.fill: parent
-        visible: _bgArtSource !== ""
+        visible: TrackArtService._bgArtSource !== ""
 
         Image {
             id: bgImage
             anchors.centerIn: parent
             width: Math.max(parent.width, parent.height) * 1.1
             height: width
-            source: _bgArtSource
+            source: TrackArtService._bgArtSource
             fillMode: Image.PreserveAspectCrop
             asynchronous: true
             cache: true
@@ -778,7 +737,8 @@ Item {
                 SessionData.suppressOSDTemporarily();
                 const delta = wheelEvent.angleDelta.y;
                 const current = (currentVolume * 100) || 0;
-                const newVolume = delta > 0 ? Math.min(100, current + 5) : Math.max(0, current - 5);
+                const maxVol = usePlayerVolume ? 100 : AudioService.sinkMaxVolume;
+                const newVolume = delta > 0 ? Math.min(maxVol, current + 5) : Math.max(0, current - 5);
 
                 if (usePlayerVolume) {
                     activePlayer.volume = newVolume / 100;

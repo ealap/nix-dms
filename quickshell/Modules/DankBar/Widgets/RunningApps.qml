@@ -855,12 +855,20 @@ Item {
                 edge = barEdge ?? "top";
                 isVisible = true;
                 visible = true;
+
+                if (screen) {
+                    TrayMenuManager.registerMenu(screen.name, contextMenuWindow);
+                }
             }
 
             function close() {
                 isVisible = false;
                 visible = false;
                 windowContextMenuLoader.active = false;
+
+                if (screen) {
+                    TrayMenuManager.unregisterMenu(screen.name);
+                }
             }
 
             implicitWidth: 100
@@ -877,6 +885,19 @@ Item {
                 left: true
                 right: true
                 bottom: true
+            }
+
+            Component.onDestruction: {
+                if (screen) {
+                    TrayMenuManager.unregisterMenu(screen.name);
+                }
+            }
+
+            Connections {
+                target: PopoutManager
+                function onPopoutOpening() {
+                    contextMenuWindow.close();
+                }
             }
 
             MouseArea {

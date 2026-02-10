@@ -624,28 +624,40 @@ Singleton {
         const result = {};
         const lines = content.split("\n");
         for (const line of lines) {
-            const match = line.match(/^\s*monitorrule=([^,]+),([^,]+),([^,]+),([^,]+),(\d+),([\d.]+),(-?\d+),(-?\d+),(\d+),(\d+),(\d+)/);
-            if (!match)
+            const trimmed = line.trim();
+            if (!trimmed.startsWith("monitorrule="))
                 continue;
-            const name = match[1].trim();
+
+            const params = {};
+            for (const pair of trimmed.substring("monitorrule=".length).split(",")) {
+                const colonIdx = pair.indexOf(":");
+                if (colonIdx < 0)
+                    continue;
+                params[pair.substring(0, colonIdx).trim()] = pair.substring(colonIdx + 1).trim();
+            }
+
+            const name = params.name;
+            if (!name)
+                continue;
+
             result[name] = {
                 "name": name,
                 "logical": {
-                    "x": parseInt(match[7]),
-                    "y": parseInt(match[8]),
-                    "scale": parseFloat(match[6]),
-                    "transform": mangoToTransform(parseInt(match[5]))
+                    "x": parseInt(params.x || "0"),
+                    "y": parseInt(params.y || "0"),
+                    "scale": parseFloat(params.scale || "1"),
+                    "transform": mangoToTransform(parseInt(params.rr || "0"))
                 },
                 "modes": [
                     {
-                        "width": parseInt(match[9]),
-                        "height": parseInt(match[10]),
-                        "refresh_rate": parseInt(match[11]) * 1000
+                        "width": parseInt(params.width || "1920"),
+                        "height": parseInt(params.height || "1080"),
+                        "refresh_rate": parseFloat(params.refresh || "60") * 1000
                     }
                 ],
                 "current_mode": 0,
-                "vrr_enabled": false,
-                "vrr_supported": false
+                "vrr_enabled": parseInt(params.vrr || "0") === 1,
+                "vrr_supported": true
             };
         }
         return result;

@@ -69,7 +69,7 @@ Row {
         width: parent.width - (Theme.iconSize + Theme.spacingS * 2)
         enabled: defaultSink !== null
         minimum: 0
-        maximum: 100
+        maximum: AudioService.sinkMaxVolume
         showValue: true
         unit: "%"
         valueOverride: actualVolumePercent
@@ -91,7 +91,7 @@ Row {
     Binding {
         target: volumeSlider
         property: "value"
-        value: defaultSink ? Math.min(100, Math.round(defaultSink.audio.volume * 100)) : 0
+        value: defaultSink ? Math.min(AudioService.sinkMaxVolume, Math.round(defaultSink.audio.volume * 100)) : 0
         when: !volumeSlider.isDragging
     }
 }

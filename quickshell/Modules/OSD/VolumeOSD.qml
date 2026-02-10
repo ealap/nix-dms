@@ -95,7 +95,7 @@ DankOSD {
                 x: parent.gap * 2 + Theme.iconSize
                 anchors.verticalCenter: parent.verticalCenter
                 minimum: 0
-                maximum: 100
+                maximum: AudioService.sinkMaxVolume
                 enabled: AudioService.sink && AudioService.sink.audio
                 showValue: true
                 unit: "%"
@@ -105,7 +105,7 @@ DankOSD {
 
                 Component.onCompleted: {
                     if (AudioService.sink && AudioService.sink.audio) {
-                        value = Math.min(100, Math.round(AudioService.sink.audio.volume * 100));
+                        value = Math.min(AudioService.sinkMaxVolume, Math.round(AudioService.sink.audio.volume * 100));
                     }
                 }
 
@@ -126,7 +126,7 @@ DankOSD {
 
                     function onVolumeChanged() {
                         if (volumeSlider && !volumeSlider.pressed) {
-                            volumeSlider.value = Math.min(100, Math.round(AudioService.sink.audio.volume * 100));
+                            volumeSlider.value = Math.min(AudioService.sinkMaxVolume, Math.round(AudioService.sink.audio.volume * 100));
                         }
                     }
                 }
@@ -179,7 +179,7 @@ DankOSD {
                 y: gap * 2 + Theme.iconSize
 
                 property bool dragging: false
-                property int value: AudioService.sink && AudioService.sink.audio ? Math.min(100, Math.round(AudioService.sink.audio.volume * 100)) : 0
+                property int value: AudioService.sink && AudioService.sink.audio ? Math.min(AudioService.sinkMaxVolume, Math.round(AudioService.sink.audio.volume * 100)) : 0
 
                 Rectangle {
                     id: vertTrack
@@ -193,7 +193,7 @@ DankOSD {
                 Rectangle {
                     id: vertFill
                     width: parent.width
-                    height: (vertSlider.value / 100) * parent.height
+                    height: (vertSlider.value / AudioService.sinkMaxVolume) * parent.height
                     anchors.bottom: parent.bottom
                     anchors.horizontalCenter: parent.horizontalCenter
                     color: Theme.primary
@@ -206,7 +206,7 @@ DankOSD {
                     height: 8
                     radius: Theme.cornerRadius
                     y: {
-                        const ratio = vertSlider.value / 100;
+                        const ratio = vertSlider.value / AudioService.sinkMaxVolume;
                         const travel = parent.height - height;
                         return Math.max(0, Math.min(travel, travel * (1 - ratio)));
                     }
@@ -249,8 +249,9 @@ DankOSD {
 
                     function updateVolume(mouse) {
                         if (AudioService.sink && AudioService.sink.audio) {
+                            const maxVol = AudioService.sinkMaxVolume;
                             const ratio = 1.0 - (mouse.y / height);
-                            const volume = Math.max(0, Math.min(100, Math.round(ratio * 100)));
+                            const volume = Math.max(0, Math.min(maxVol, Math.round(ratio * maxVol)));
                             SessionData.suppressOSDTemporarily();
                             AudioService.sink.audio.volume = volume / 100;
                             resetHideTimer();
@@ -262,7 +263,7 @@ DankOSD {
                     target: AudioService.sink && AudioService.sink.audio ? AudioService.sink.audio : null
 
                     function onVolumeChanged() {
-                        vertSlider.value = Math.min(100, Math.round(AudioService.sink.audio.volume * 100));
+                        vertSlider.value = Math.min(AudioService.sinkMaxVolume, Math.round(AudioService.sink.audio.volume * 100));
                     }
                 }
             }
@@ -284,7 +285,7 @@ DankOSD {
             if (!useVertical) {
                 const slider = contentLoader.item.item.children[0].children[1];
                 if (slider && slider.value !== undefined) {
-                    slider.value = Math.min(100, Math.round(AudioService.sink.audio.volume * 100));
+                    slider.value = Math.min(AudioService.sinkMaxVolume, Math.round(AudioService.sink.audio.volume * 100));
                 }
             }
         }

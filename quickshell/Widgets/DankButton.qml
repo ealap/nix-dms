@@ -15,6 +15,8 @@ Rectangle {
     property color textColor: Theme.buttonText
     property int buttonHeight: 40
     property int horizontalPadding: Theme.spacingL
+    property bool enableScaleAnimation: false
+    property bool enableRipple: false
 
     signal clicked
 
@@ -23,6 +25,15 @@ Rectangle {
     radius: Theme.cornerRadius
     color: backgroundColor
     opacity: enabled ? 1 : 0.4
+    scale: (enableScaleAnimation && pressed) ? 0.98 : 1.0
+
+    Behavior on scale {
+        enabled: enableScaleAnimation && Theme.currentAnimationSpeed !== SettingsData.AnimationSpeed.None
+        DankAnim {
+            duration: 100
+            easing.bezierCurve: Theme.expressiveCurves.standard
+        }
+    }
 
     Rectangle {
         id: stateLayer

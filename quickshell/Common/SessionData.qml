@@ -121,6 +121,8 @@ Singleton {
 
     property string vpnLastConnected: ""
 
+    property var deviceMaxVolumes: ({})
+
     Component.onCompleted: {
         if (!isGreeterMode) {
             loadSettings();
@@ -1049,6 +1051,35 @@ Singleton {
 
     function setVpnLastConnected(uuid) {
         vpnLastConnected = uuid || "";
+        saveSettings();
+    }
+
+    function setDeviceMaxVolume(nodeName, maxPercent) {
+        if (!nodeName)
+            return;
+        const updated = Object.assign({}, deviceMaxVolumes);
+        const clamped = Math.max(100, Math.min(200, Math.round(maxPercent)));
+        if (clamped === 100) {
+            delete updated[nodeName];
+        } else {
+            updated[nodeName] = clamped;
+        }
+        deviceMaxVolumes = updated;
+        saveSettings();
+    }
+
+    function getDeviceMaxVolume(nodeName) {
+        if (!nodeName)
+            return 100;
+        return deviceMaxVolumes[nodeName] ?? 100;
+    }
+
+    function removeDeviceMaxVolume(nodeName) {
+        if (!nodeName)
+            return;
+        const updated = Object.assign({}, deviceMaxVolumes);
+        delete updated[nodeName];
+        deviceMaxVolumes = updated;
         saveSettings();
     }
 

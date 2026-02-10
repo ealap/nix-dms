@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Controls
 import Quickshell.Services.Pipewire
 import qs.Common
 import qs.Services
@@ -131,21 +130,64 @@ Item {
                     Repeater {
                         model: root.outputDevices
 
-                        delegate: DeviceAliasRow {
+                        delegate: Column {
                             required property var modelData
+                            width: parent?.width ?? 0
+                            spacing: 0
 
-                            deviceNode: modelData
-                            deviceType: "output"
+                            DeviceAliasRow {
+                                deviceNode: modelData
+                                deviceType: "output"
 
-                            onEditRequested: device => {
-                                root.editingDevice = device;
-                                root.editingDeviceType = "output";
-                                root.newDeviceName = AudioService.displayName(device);
-                                root.showEditDialog = true;
+                                onEditRequested: device => {
+                                    root.editingDevice = device;
+                                    root.editingDeviceType = "output";
+                                    root.newDeviceName = AudioService.displayName(device);
+                                    root.showEditDialog = true;
+                                }
+
+                                onResetRequested: device => {
+                                    AudioService.removeDeviceAlias(device.name);
+                                }
                             }
 
-                            onResetRequested: device => {
-                                AudioService.removeDeviceAlias(device.name);
+                            Item {
+                                width: parent.width
+                                height: 36
+
+                                StyledText {
+                                    id: maxVolLabel
+                                    text: I18n.tr("Max Volume", "Audio settings: maximum volume limit per device")
+                                    x: Theme.spacingM + Theme.iconSize + Theme.spacingM
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    font.pixelSize: Theme.fontSizeSmall
+                                    color: Theme.surfaceVariantText
+                                }
+
+                                DankSlider {
+                                    id: maxVolSlider
+                                    anchors.left: maxVolLabel.right
+                                    anchors.leftMargin: Theme.spacingS
+                                    anchors.right: parent.right
+                                    anchors.rightMargin: Theme.spacingM
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    height: 36
+                                    minimum: 100
+                                    maximum: 200
+                                    step: 5
+                                    showValue: true
+                                    unit: "%"
+                                    onSliderValueChanged: newValue => {
+                                        SessionData.setDeviceMaxVolume(modelData.name, newValue);
+                                    }
+                                }
+
+                                Binding {
+                                    target: maxVolSlider
+                                    property: "value"
+                                    value: SessionData.deviceMaxVolumes[modelData.name] ?? 100
+                                    when: !maxVolSlider.isDragging
+                                }
                             }
                         }
                     }

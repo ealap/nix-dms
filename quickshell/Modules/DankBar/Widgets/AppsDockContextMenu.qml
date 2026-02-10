@@ -37,10 +37,18 @@ PanelWindow {
         desktopEntry = entry || null;
 
         visible = true;
+
+        if (targetScreen) {
+            TrayMenuManager.registerMenu(targetScreen.name, root);
+        }
     }
 
     function close() {
         visible = false;
+
+        if (root.screen) {
+            TrayMenuManager.unregisterMenu(root.screen.name);
+        }
     }
 
     screen: null
@@ -54,6 +62,19 @@ PanelWindow {
         left: true
         right: true
         bottom: true
+    }
+
+    Component.onDestruction: {
+        if (root.screen) {
+            TrayMenuManager.unregisterMenu(root.screen.name);
+        }
+    }
+
+    Connections {
+        target: PopoutManager
+        function onPopoutOpening() {
+            root.close();
+        }
     }
 
     Rectangle {
