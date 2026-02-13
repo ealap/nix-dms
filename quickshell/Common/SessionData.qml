@@ -58,6 +58,7 @@ Singleton {
     property string wallpaperPathDark: ""
     property var monitorWallpapersLight: ({})
     property var monitorWallpapersDark: ({})
+    property var monitorWallpaperFillModes: ({})
     property string wallpaperTransition: "fade"
     readonly property var availableWallpaperTransitions: ["none", "fade", "wipe", "disc", "stripes", "iris bloom", "pixelate", "portal"]
     property var includedTransitions: availableWallpaperTransitions.filter(t => t !== "none")
@@ -1094,11 +1095,7 @@ Singleton {
         wallpaperPath = isLightMode ? wallpaperPathLight : wallpaperPathDark;
     }
 
-    function getMonitorWallpaper(screenName) {
-        if (!perMonitorWallpaper) {
-            return wallpaperPath;
-        }
-
+    function _findMonitorValue(map, screenName) {
         var screen = null;
         var screens = Quickshell.screens;
         for (var i = 0; i < screens.length; i++) {
@@ -1108,52 +1105,72 @@ Singleton {
             }
         }
 
-        if (!screen) {
-            return monitorWallpapers[screenName] || wallpaperPath;
+        if (!screen)
+            return map[screenName];
+
+        if (map[screen.name] !== undefined)
+            return map[screen.name];
+        if (screen.model && map[screen.model] !== undefined)
+            return map[screen.model];
+        if (typeof SettingsData !== "undefined") {
+            var displayName = SettingsData.getScreenDisplayName(screen);
+            if (displayName && map[displayName] !== undefined)
+                return map[displayName];
+        }
+        return undefined;
+    }
+
+    function getMonitorWallpaper(screenName) {
+        if (!perMonitorWallpaper)
+            return wallpaperPath;
+        var value = _findMonitorValue(monitorWallpapers, screenName);
+        return value !== undefined ? value : wallpaperPath;
+    }
+
+    function getMonitorWallpaperFillMode(screenName) {
+        var globalFillMode = (typeof SettingsData !== "undefined") ? SettingsData.wallpaperFillMode : "Fill";
+        if (!perMonitorWallpaper)
+            return globalFillMode;
+        var value = _findMonitorValue(monitorWallpaperFillModes, screenName);
+        return value !== undefined ? value : globalFillMode;
+    }
+
+    function setMonitorWallpaperFillMode(screenName, mode) {
+        var screen = null;
+        var screens = Quickshell.screens;
+        for (var i = 0; i < screens.length; i++) {
+            if (screens[i].name === screenName) {
+                screen = screens[i];
+                break;
+            }
         }
 
-        if (monitorWallpapers[screen.name]) {
-            return monitorWallpapers[screen.name];
-        }
-        if (screen.model && monitorWallpapers[screen.model]) {
-            return monitorWallpapers[screen.model];
+        if (!screen)
+            return;
+
+        var identifier = typeof SettingsData !== "undefined" ? SettingsData.getScreenDisplayName(screen) : screen.name;
+
+        var newModes = {};
+        for (var key in monitorWallpaperFillModes) {
+            var isThisScreen = key === screen.name || (screen.model && key === screen.model);
+            if (!isThisScreen)
+                newModes[key] = monitorWallpaperFillModes[key];
         }
 
-        return wallpaperPath;
+        newModes[identifier] = mode;
+        monitorWallpaperFillModes = newModes;
+        saveSettings();
     }
 
     function getMonitorCyclingSettings(screenName) {
-        var screen = null;
-        var screens = Quickshell.screens;
-        for (var i = 0; i < screens.length; i++) {
-            if (screens[i].name === screenName) {
-                screen = screens[i];
-                break;
-            }
-        }
-
-        if (!screen) {
-            return monitorCyclingSettings[screenName] || {
-                "enabled": false,
-                "mode": "interval",
-                "interval": 300,
-                "time": "06:00"
-            };
-        }
-
-        if (monitorCyclingSettings[screen.name]) {
-            return monitorCyclingSettings[screen.name];
-        }
-        if (screen.model && monitorCyclingSettings[screen.model]) {
-            return monitorCyclingSettings[screen.model];
-        }
-
-        return {
+        var defaults = {
             "enabled": false,
             "mode": "interval",
             "interval": 300,
             "time": "06:00"
         };
+        var value = _findMonitorValue(monitorCyclingSettings, screenName);
+        return value !== undefined ? value : defaults;
     }
 
     FileView {

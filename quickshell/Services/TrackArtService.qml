@@ -24,8 +24,6 @@ Singleton {
         if (url === _lastArtUrl)
             return;
         _lastArtUrl = url;
-
-        _bgArtSource = "";
         loading = true;
 
         if (!url.startsWith("http://") && !url.startsWith("https://")) {
@@ -34,8 +32,7 @@ Singleton {
             Proc.runCommand("trackart", ["test", "-f", filePath], (output, exitCode) => {
                 if (_lastArtUrl !== localUrl)
                     return;
-                if (exitCode === 0)
-                    _bgArtSource = localUrl;
+                _bgArtSource = exitCode === 0 ? localUrl : "";
                 loading = false;
             }, 200);
             return;
@@ -50,8 +47,7 @@ Singleton {
             const resultPath = output.trim();
             if (resultPath !== filename)
                 return;
-            if (exitCode === 0)
-                _bgArtSource = "file://" + resultPath;
+            _bgArtSource = exitCode === 0 ? "file://" + resultPath : "";
             loading = false;
         }, 200);
     }

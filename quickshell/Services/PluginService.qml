@@ -33,10 +33,17 @@ Singleton {
     property var pluginInstances: ({})
     property var globalVars: ({})
 
+    property var _stateCache: ({})
+    property var _stateLoaded: ({})
+    property var _stateWriters: ({})
+    property var _stateDirtyPlugins: ({})
+    property bool _stateDirCreated: false
+
     signal pluginLoaded(string pluginId)
     signal pluginUnloaded(string pluginId)
     signal pluginLoadFailed(string pluginId, string error)
     signal pluginDataChanged(string pluginId)
+    signal pluginStateChanged(string pluginId)
     signal pluginListUpdated
     signal globalVarChanged(string pluginId, string varName)
     signal requestLauncherUpdate(string pluginId)
@@ -46,6 +53,13 @@ Singleton {
         interval: 120
         repeat: false
         onTriggered: resyncAll()
+    }
+
+    Timer {
+        id: _stateWriteTimer
+        interval: 150
+        repeat: false
+        onTriggered: root._flushDirtyStates()
     }
 
     Component.onCompleted: {
@@ -374,6 +388,7 @@ Singleton {
             delete newLoaded[pluginId];
             loadedPlugins = newLoaded;
 
+            _cleanupPluginStateWriter(pluginId);
             pluginUnloaded(pluginId);
             return true;
         } catch (error) {
@@ -601,6 +616,111 @@ Singleton {
 
     function saveAllPluginSettings() {
         SettingsData.savePluginSettings();
+    }
+
+    function getPluginStatePath(pluginId) {
+        return Paths.strip(Paths.state) + "/plugins/" + pluginId + "_state.json";
+    }
+
+    function loadPluginState(pluginId, key, defaultValue) {
+        if (!_stateLoaded[pluginId])
+            _loadStateFromDisk(pluginId);
+        const state = _stateCache[pluginId];
+        if (!state)
+            return defaultValue;
+        return state[key] !== undefined ? state[key] : defaultValue;
+    }
+
+    function savePluginState(pluginId, key, value) {
+        if (!_stateLoaded[pluginId])
+            _loadStateFromDisk(pluginId);
+        if (!_stateCache[pluginId])
+            _stateCache[pluginId] = {};
+        _stateCache[pluginId][key] = value;
+        _stateDirtyPlugins[pluginId] = true;
+        _stateWriteTimer.restart();
+        pluginStateChanged(pluginId);
+    }
+
+    function clearPluginState(pluginId) {
+        _stateCache[pluginId] = {};
+        _stateLoaded[pluginId] = true;
+        _flushStateToDisk(pluginId);
+        pluginStateChanged(pluginId);
+    }
+
+    function removePluginStateKey(pluginId, key) {
+        if (!_stateCache[pluginId])
+            return;
+        delete _stateCache[pluginId][key];
+        _stateDirtyPlugins[pluginId] = true;
+        _stateWriteTimer.restart();
+        pluginStateChanged(pluginId);
+    }
+
+    function _ensureStateDir() {
+        if (_stateDirCreated)
+            return;
+        _stateDirCreated = true;
+        Paths.mkdir(Paths.state + "/plugins");
+    }
+
+    function _loadStateFromDisk(pluginId) {
+        _stateLoaded[pluginId] = true;
+        _ensureStateDir();
+        const path = getPluginStatePath(pluginId);
+        const escapedPath = path.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+        try {
+            const qml = 'import QtQuick; import Quickshell.Io; FileView { path: "' + escapedPath + '"; blockLoading: true; blockWrites: true; atomicWrites: true }';
+            const fv = Qt.createQmlObject(qml, root, "sf_" + pluginId);
+            const raw = fv.text();
+            if (raw && raw.trim()) {
+                _stateCache[pluginId] = JSON.parse(raw);
+            } else {
+                _stateCache[pluginId] = {};
+            }
+            _stateWriters[pluginId] = fv;
+        } catch (e) {
+            _stateCache[pluginId] = {};
+        }
+    }
+
+    function _flushStateToDisk(pluginId) {
+        _ensureStateDir();
+        const content = JSON.stringify(_stateCache[pluginId] || {}, null, 2);
+        if (_stateWriters[pluginId]) {
+            _stateWriters[pluginId].setText(content);
+            return;
+        }
+        const path = getPluginStatePath(pluginId);
+        const escapedPath = path.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+        try {
+            const qml = 'import QtQuick; import Quickshell.Io; FileView { path: "' + escapedPath + '"; blockWrites: true; atomicWrites: true }';
+            const fv = Qt.createQmlObject(qml, root, "sw_" + pluginId);
+            _stateWriters[pluginId] = fv;
+            fv.loaded.connect(function () {
+                fv.setText(content);
+            });
+            fv.loadFailed.connect(function () {
+                fv.setText(content);
+            });
+        } catch (e) {
+            console.warn("PluginService: Failed to write state for", pluginId, e.message);
+        }
+    }
+
+    function _flushDirtyStates() {
+        const dirty = _stateDirtyPlugins;
+        _stateDirtyPlugins = {};
+        for (const pluginId in dirty)
+            _flushStateToDisk(pluginId);
+    }
+
+    function _cleanupPluginStateWriter(pluginId) {
+        if (!_stateWriters[pluginId])
+            return;
+        _stateWriters[pluginId].destroy();
+        delete _stateWriters[pluginId];
     }
 
     function scanPlugins() {

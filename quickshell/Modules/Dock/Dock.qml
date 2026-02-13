@@ -303,22 +303,21 @@ Variants {
             id: maskItem
             parent: dock.contentItem
             visible: false
+            readonly property bool expanded: dock.reveal
             x: {
                 const baseX = dockCore.x + dockMouseArea.x;
-                if (isVertical && SettingsData.dockPosition === SettingsData.Position.Right) {
-                    return baseX - animationHeadroom - borderThickness;
-                }
-                return baseX - borderThickness;
+                if (isVertical && SettingsData.dockPosition === SettingsData.Position.Right)
+                    return baseX - (expanded ? animationHeadroom + borderThickness : 0);
+                return baseX - (expanded ? borderThickness : 0);
             }
             y: {
                 const baseY = dockCore.y + dockMouseArea.y;
-                if (!isVertical && SettingsData.dockPosition === SettingsData.Position.Bottom) {
-                    return baseY - animationHeadroom - borderThickness;
-                }
-                return baseY - borderThickness;
+                if (!isVertical && SettingsData.dockPosition === SettingsData.Position.Bottom)
+                    return baseY - (expanded ? animationHeadroom + borderThickness : 0);
+                return baseY - (expanded ? borderThickness : 0);
             }
-            width: dockMouseArea.width + (isVertical ? animationHeadroom : 0) + borderThickness * 2
-            height: dockMouseArea.height + (!isVertical ? animationHeadroom : 0) + borderThickness * 2
+            width: dockMouseArea.width + (isVertical && expanded ? animationHeadroom : 0) + (expanded ? borderThickness * 2 : 0)
+            height: dockMouseArea.height + (!isVertical && expanded ? animationHeadroom : 0) + (expanded ? borderThickness * 2 : 0)
         }
 
         mask: Region {

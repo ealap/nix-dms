@@ -75,6 +75,7 @@ Item {
     readonly property color dimColor: Theme.surfaceVariantText
 
     property string currentGpuPciIdRef: ""
+    property var activeModuleRefs: []
 
     property var cpuHistory: []
     property var memHistory: []
@@ -140,12 +141,13 @@ Item {
             modules.push("disk", "diskmounts");
         if (showTopProcesses)
             modules.push("processes");
+        activeModuleRefs = modules;
         DgopService.addRef(modules);
         updateGpuRef();
     }
 
     Component.onDestruction: {
-        DgopService.removeRef();
+        DgopService.removeRef(activeModuleRefs);
         if (currentGpuPciIdRef)
             DgopService.removeGpuPciId(currentGpuPciIdRef);
     }
@@ -153,8 +155,13 @@ Item {
     onShowGpuTempChanged: updateGpuRef()
     onSelectedGpuPciIdChanged: updateGpuRef()
     onShowTopProcessesChanged: {
-        if (showTopProcesses)
+        if (showTopProcesses) {
+            activeModuleRefs = activeModuleRefs.concat(["processes"]);
             DgopService.addRef(["processes"]);
+        } else {
+            DgopService.removeRef(["processes"]);
+            activeModuleRefs = activeModuleRefs.filter(m => m !== "processes");
+        }
     }
 
     function updateGpuRef() {

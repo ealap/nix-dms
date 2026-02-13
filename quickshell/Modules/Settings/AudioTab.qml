@@ -8,6 +8,9 @@ import qs.Modules.Settings.Widgets
 Item {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property var outputDevices: []
     property var inputDevices: []
     property bool showEditDialog: false
@@ -118,6 +121,7 @@ Item {
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.surfaceVariantText
                         wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignLeft
                     }
 
                     Rectangle {
@@ -158,10 +162,12 @@ Item {
                                 StyledText {
                                     id: maxVolLabel
                                     text: I18n.tr("Max Volume", "Audio settings: maximum volume limit per device")
-                                    x: Theme.spacingM + Theme.iconSize + Theme.spacingM
+                                    anchors.left: parent.left
+                                    anchors.leftMargin: Theme.spacingM + Theme.iconSize + Theme.spacingM
                                     anchors.verticalCenter: parent.verticalCenter
                                     font.pixelSize: Theme.fontSizeSmall
                                     color: Theme.surfaceVariantText
+                                    horizontalAlignment: Text.AlignLeft
                                 }
 
                                 DankSlider {
@@ -221,6 +227,7 @@ Item {
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.surfaceVariantText
                         wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignLeft
                     }
 
                     Rectangle {
@@ -311,6 +318,7 @@ Item {
                     font.pixelSize: Theme.fontSizeLarge
                     font.weight: Font.Medium
                     color: Theme.surfaceText
+                    horizontalAlignment: Text.AlignHCenter
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
 
@@ -318,6 +326,7 @@ Item {
                     text: I18n.tr("This may take a few seconds", "Loading overlay subtitle")
                     font.pixelSize: Theme.fontSizeMedium
                     color: Theme.surfaceVariantText
+                    horizontalAlignment: Text.AlignHCenter
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
             }
@@ -388,6 +397,7 @@ Item {
                             color: Theme.surfaceText
                             width: parent.width
                             wrapMode: Text.Wrap
+                            horizontalAlignment: Text.AlignLeft
                         }
 
                         StyledText {
@@ -396,6 +406,7 @@ Item {
                             color: Theme.surfaceVariantText
                             width: parent.width
                             elide: Text.ElideRight
+                            horizontalAlignment: Text.AlignLeft
                         }
 
                         StyledText {
@@ -406,6 +417,7 @@ Item {
                             width: parent.width
                             elide: Text.ElideRight
                             opacity: 0.7
+                            horizontalAlignment: Text.AlignLeft
                         }
                     }
                 }
@@ -419,6 +431,8 @@ Item {
                         font.pixelSize: Theme.fontSizeMedium
                         font.weight: Font.Medium
                         color: Theme.surfaceText
+                        width: parent.width
+                        horizontalAlignment: Text.AlignLeft
                     }
 
                     DankTextField {
@@ -458,10 +472,12 @@ Item {
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.surfaceVariantText
                         wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignLeft
                     }
                 }
 
                 Row {
+                    LayoutMirroring.enabled: false
                     width: parent.width
                     spacing: Theme.spacingM
                     layoutDirection: Qt.RightToLeft

@@ -12,6 +12,7 @@ var SPEC = {
     wallpaperPathDark: { def: "" },
     monitorWallpapersLight: { def: {} },
     monitorWallpapersDark: { def: {} },
+    monitorWallpaperFillModes: { def: {} },
     wallpaperTransition: { def: "fade" },
     includedTransitions: { def: ["fade", "wipe", "disc", "stripes", "iris bloom", "pixelate", "portal"] },
 

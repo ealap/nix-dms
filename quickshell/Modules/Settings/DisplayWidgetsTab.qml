@@ -282,6 +282,7 @@ Item {
                                         }
 
                                         Row {
+                                            width: parent.width
                                             spacing: Theme.spacingS
 
                                             property var wlrOutput: WlrOutputService.wlrOutputAvailable ? WlrOutputService.getOutput(modelData.name) : null

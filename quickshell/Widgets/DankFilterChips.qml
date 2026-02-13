@@ -64,6 +64,12 @@ Flow {
                 }
             }
 
+            DankRipple {
+                id: chipRipple
+                cornerRadius: chip.radius
+                rippleColor: chip.selected ? Theme.primaryText : Theme.surfaceVariantText
+            }
+
             Row {
                 id: contentRow
                 anchors.centerIn: parent
@@ -91,6 +97,7 @@ Flow {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
+                onPressed: mouse => chipRipple.trigger(mouse.x, mouse.y)
                 onClicked: {
                     root.currentIndex = chip.index;
                     root.selectionChanged(chip.index);

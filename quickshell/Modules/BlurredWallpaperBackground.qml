@@ -189,7 +189,7 @@ Variants {
                 smooth: true
                 cache: true
                 sourceSize: Qt.size(root.textureWidth, root.textureHeight)
-                fillMode: root.getFillMode(SessionData.isGreeterMode ? GreetdSettings.wallpaperFillMode : SettingsData.wallpaperFillMode)
+                fillMode: root.getFillMode(SessionData.isGreeterMode ? GreetdSettings.wallpaperFillMode : SessionData.getMonitorWallpaperFillMode(modelData.name))
             }
 
             Image {
@@ -201,7 +201,7 @@ Variants {
                 smooth: true
                 cache: true
                 sourceSize: Qt.size(root.textureWidth, root.textureHeight)
-                fillMode: root.getFillMode(SessionData.isGreeterMode ? GreetdSettings.wallpaperFillMode : SettingsData.wallpaperFillMode)
+                fillMode: root.getFillMode(SessionData.isGreeterMode ? GreetdSettings.wallpaperFillMode : SessionData.getMonitorWallpaperFillMode(modelData.name))
 
                 onStatusChanged: {
                     if (status !== Image.Ready)

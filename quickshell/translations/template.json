@@ -602,6 +602,13 @@
     "comment": ""
   },
   {
+    "term": "Adjust volume per scroll indent",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Advanced",
     "translation": "",
     "context": "",
@@ -742,6 +749,13 @@
     "comment": ""
   },
   {
+    "term": "Animation Duration",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Animation Speed",
     "translation": "",
     "context": "",
@@ -793,7 +807,7 @@
   {
     "term": "App Names",
     "translation": "",
-    "context": "lock screen notification mode option",
+    "context": "lock screen notification mode option | notification rule match field option",
     "reference": "",
     "comment": ""
   },
@@ -1204,6 +1218,13 @@
     "comment": ""
   },
   {
+    "term": "Automatically lock the screen when DMS starts",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Automatically lock the screen when the system prepares to suspend",
     "translation": "",
     "context": "",
@@ -1477,6 +1498,13 @@
     "comment": ""
   },
   {
+    "term": "Body",
+    "translation": "",
+    "context": "notification rule match field option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Border",
     "translation": "",
     "context": "launcher border option",
@@ -1730,6 +1758,13 @@
   },
   {
     "term": "Cancel",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Cancel all jobs for \"%1\"?",
     "translation": "",
     "context": "",
     "reference": "",
@@ -2471,6 +2506,13 @@
     "comment": ""
   },
   {
+    "term": "Configure which displays show \"%1\"",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Configure which displays show shell components",
     "translation": "",
     "context": "",
@@ -2572,6 +2614,13 @@
     "term": "Connecting...",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Contains",
+    "translation": "",
+    "context": "notification rule match type option",
     "reference": "",
     "comment": ""
   },
@@ -2814,6 +2863,13 @@
     "comment": ""
   },
   {
+    "term": "Create rules to mute, ignore, hide from history, or override notification priority.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Creating...",
     "translation": "",
     "context": "",
@@ -2823,7 +2879,7 @@
   {
     "term": "Critical Priority",
     "translation": "",
-    "context": "",
+    "context": "notification rule urgency option",
     "reference": "",
     "comment": ""
   },
@@ -3136,7 +3192,7 @@
     "comment": ""
   },
   {
-    "term": "Daily Forecast",
+    "term": "Daily",
     "translation": "",
     "context": "",
     "reference": "",
@@ -3264,7 +3320,7 @@
   {
     "term": "Default",
     "translation": "",
-    "context": "widget style option",
+    "context": "notification rule action option | notification rule urgency option | widget style option",
     "reference": "",
     "comment": ""
   },
@@ -3311,6 +3367,13 @@
     "comment": ""
   },
   {
+    "term": "Delete \"%1\"?",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Delete Class",
     "translation": "",
     "context": "",
@@ -3339,6 +3402,20 @@
     "comment": ""
   },
   {
+    "term": "Delete class \"%1\"?",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Delete profile \"%1\"?",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Derives colors that closely match the underlying image.",
     "translation": "",
     "context": "",
@@ -3356,6 +3433,13 @@
     "term": "Desktop Clock",
     "translation": "",
     "context": "Desktop clock widget name",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Desktop Entry",
+    "translation": "",
+    "context": "notification rule match field option",
     "reference": "",
     "comment": ""
   },
@@ -3969,6 +4053,13 @@
     "comment": ""
   },
   {
+    "term": "Enable Ripple Effects",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Enable System Sounds",
     "translation": "",
     "context": "",
@@ -4196,6 +4287,13 @@
     "term": "Ethernet",
     "translation": "",
     "context": "network status",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Exact",
+    "translation": "",
+    "context": "notification rule match type option",
     "reference": "",
     "comment": ""
   },
@@ -4802,6 +4900,13 @@
     "comment": ""
   },
   {
+    "term": "Field",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "File",
     "translation": "",
     "context": "",
@@ -4830,7 +4935,7 @@
     "comment": ""
   },
   {
-    "term": "File search requires dsearch\\nInstall from github.com/morelazers/dsearch",
+    "term": "File search requires dsearch\nInstall from github.com/morelazers/dsearch",
     "translation": "",
     "context": "",
     "reference": "",
@@ -4866,13 +4971,6 @@
   },
   {
     "term": "Find in note...",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
-    "term": "Fine-tune animation timing in milliseconds",
     "translation": "",
     "context": "",
     "reference": "",
@@ -5096,6 +5194,13 @@
     "comment": ""
   },
   {
+    "term": "Forget \"%1\"?",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Forget Device",
     "translation": "",
     "context": "",
@@ -5167,6 +5272,13 @@
   },
   {
     "term": "Fullscreen",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Fullscreen Only",
     "translation": "",
     "context": "",
     "reference": "",
@@ -5258,6 +5370,13 @@
   },
   {
     "term": "GitHub",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Globally scale all animation durations",
     "translation": "",
     "context": "",
     "reference": "",
@@ -5509,6 +5628,13 @@
     "comment": ""
   },
   {
+    "term": "Hide 3rd Party",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Hide App",
     "translation": "",
     "context": "",
@@ -5677,7 +5803,7 @@
     "comment": ""
   },
   {
-    "term": "Hourly Forecast",
+    "term": "Hourly",
     "translation": "",
     "context": "",
     "reference": "",
@@ -5806,6 +5932,13 @@
     "term": "If the field is hidden, it will appear as soon as a key is pressed.",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Ignore Completely",
+    "translation": "",
+    "context": "notification rule action option",
     "reference": "",
     "comment": ""
   },
@@ -6482,6 +6615,13 @@
     "comment": ""
   },
   {
+    "term": "Lock at startup",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Lock before suspend",
     "translation": "",
     "context": "",
@@ -6540,7 +6680,7 @@
   {
     "term": "Low Priority",
     "translation": "",
-    "context": "",
+    "context": "notification rule urgency option",
     "reference": "",
     "comment": ""
   },
@@ -6762,6 +6902,13 @@
     "comment": ""
   },
   {
+    "term": "Max Volume",
+    "translation": "",
+    "context": "Audio settings: maximum volume limit per device",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Max W",
     "translation": "",
     "context": "",
@@ -6889,6 +7036,13 @@
   },
   {
     "term": "Media Needed",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Media Playback",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7199,6 +7353,13 @@
     "term": "Multi-Monitor",
     "translation": "",
     "context": "greeter feature card title",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Mute Popups",
+    "translation": "",
+    "context": "notification rule action option",
     "reference": "",
     "comment": ""
   },
@@ -7518,6 +7679,13 @@
     "comment": ""
   },
   {
+    "term": "No History",
+    "translation": "",
+    "context": "notification rule action option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No Media",
     "translation": "",
     "context": "",
@@ -7596,6 +7764,13 @@
   },
   {
     "term": "No apps found",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No apps have been launched yet.",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7889,9 +8064,23 @@
     "comment": ""
   },
   {
+    "term": "No wallpapers found\n\nClick the folder icon below to browse",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "No warnings",
     "translation": "",
     "context": "greeter doctor page empty state",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No widgets added. Click \"Add Widget\" to get started.",
+    "translation": "",
+    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -7940,7 +8129,7 @@
   {
     "term": "Normal Priority",
     "translation": "",
-    "context": "",
+    "context": "notification rule urgency option",
     "reference": "",
     "comment": ""
   },
@@ -8037,6 +8226,13 @@
   },
   {
     "term": "Notification Popups",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Notification Rules",
     "translation": "",
     "context": "",
     "reference": "",
@@ -8151,6 +8347,20 @@
     "term": "Older",
     "translation": "",
     "context": "notification history filter for content older than other filters",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "On",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "On-Demand",
+    "translation": "",
+    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -8869,6 +9079,20 @@
     "comment": ""
   },
   {
+    "term": "Popouts and Modals follow global Animation Speed (disable to customize independently)",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Popup Only",
+    "translation": "",
+    "context": "notification rule action option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Popup Position",
     "translation": "",
     "context": "",
@@ -9016,6 +9240,13 @@
     "comment": ""
   },
   {
+    "term": "Precipitation",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Precipitation Chance",
     "translation": "",
     "context": "",
@@ -9152,6 +9383,13 @@
     "term": "Prioritize performance",
     "translation": "",
     "context": "power profile description",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Priority",
+    "translation": "",
+    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -9390,6 +9628,13 @@
     "term": "Refresh Weather",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Regex",
+    "translation": "",
+    "context": "notification rule match type option",
     "reference": "",
     "comment": ""
   },
@@ -9677,6 +9922,13 @@
     "term": "Ringing",
     "translation": "",
     "context": "KDE Connect ring action | Phone Connect ring action",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Ripple Effects",
+    "translation": "",
+    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -10017,7 +10269,7 @@
     "comment": ""
   },
   {
-    "term": "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.",
+    "term": "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.",
     "translation": "",
     "context": "",
     "reference": "",
@@ -10535,6 +10787,13 @@
     "comment": ""
   },
   {
+    "term": "Show 3rd Party",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Show All Tags",
     "translation": "",
     "context": "",
@@ -10683,6 +10942,13 @@
   },
   {
     "term": "Show Log Out",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show Material Design ripple animations on interactive elements",
     "translation": "",
     "context": "",
     "reference": "",
@@ -10991,6 +11257,13 @@
   },
   {
     "term": "Show on-screen display when idle inhibitor state changes",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show on-screen display when media player status changes",
     "translation": "",
     "context": "",
     "reference": "",
@@ -11375,6 +11648,13 @@
     "comment": ""
   },
   {
+    "term": "Summary",
+    "translation": "",
+    "context": "notification rule match field option",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Sunrise",
     "translation": "",
     "context": "",
@@ -11446,6 +11726,13 @@
   },
   {
     "term": "Sync Mode with Portal",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Sync Popouts & Modals",
     "translation": "",
     "context": "",
     "reference": "",
@@ -11634,7 +11921,7 @@
     "comment": ""
   },
   {
-    "term": "The 'dgop' tool is required for system monitoring.\\nPlease install dgop to use this feature.",
+    "term": "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.",
     "translation": "",
     "context": "dgop unavailable error message",
     "reference": "",
@@ -11704,7 +11991,7 @@
     "comment": ""
   },
   {
-    "term": "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.",
+    "term": "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.",
     "translation": "",
     "context": "",
     "reference": "",
@@ -11721,6 +12008,13 @@
     "term": "This may take a few seconds",
     "translation": "",
     "context": "Loading overlay subtitle",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json",
+    "translation": "",
+    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -12201,6 +12495,13 @@
     "comment": ""
   },
   {
+    "term": "Unknown Artist",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Unknown Config",
     "translation": "",
     "context": "",
@@ -12230,6 +12531,13 @@
   },
   {
     "term": "Unknown Network",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Unknown Title",
     "translation": "",
     "context": "",
     "reference": "",
@@ -12628,14 +12936,14 @@
     "comment": ""
   },
   {
-    "term": "VRR On-Demand",
+    "term": "VRR Fullscreen Only",
     "translation": "",
     "context": "",
     "reference": "",
     "comment": ""
   },
   {
-    "term": "VRR activates only when applications request it",
+    "term": "VRR On-Demand",
     "translation": "",
     "context": "",
     "reference": "",
@@ -13476,6 +13784,13 @@
   },
   {
     "term": "update dms for NM integration.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "v%1 by %2",
     "translation": "",
     "context": "",
     "reference": "",

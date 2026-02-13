@@ -68,7 +68,8 @@ Rectangle {
 
     readonly property var values: daily ? [] : [
         {
-            //     'name': "Temperature",
+            "name"//     'name': "Temperature",
+            :
             //     'text': root.tempText,
             //     'icon': "thermometer"
             // }, {
@@ -76,34 +77,34 @@ Rectangle {
             //     'text': root.feelsLikeText,
             //     'icon': "thermostat"
             // }, {
-            'name': I18n.tr("Humidity"),
-            'text': root.humidityText,
-            'icon': "humidity_low"
+            I18n.tr("Humidity"),
+            "text": root.humidityText,
+            "icon": "humidity_low"
         },
         {
-            'name': I18n.tr("Wind Speed"),
-            'text': root.windText,
-            'icon': "air"
+            "name": I18n.tr("Wind Speed"),
+            "text": root.windText,
+            "icon": "air"
         },
         {
-            'name': I18n.tr("Pressure"),
-            'text': root.pressureText,
-            'icon': "speed"
+            "name": I18n.tr("Pressure"),
+            "text": root.pressureText,
+            "icon": "speed"
         },
         {
-            'name': I18n.tr("Precipitation Chance"),
-            'text': root.precipitationText,
-            'icon': "rainy"
+            "name": I18n.tr("Precipitation Chance"),
+            "text": root.precipitationText,
+            "icon": "rainy"
         },
         {
-            'name': I18n.tr("Visibility"),
-            'text': root.visibilityText,
-            'icon': "wb_sunny"
+            "name": I18n.tr("Visibility"),
+            "text": root.visibilityText,
+            "icon": "wb_sunny"
         }
     ]
 
-    color: isCurrent ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.1) : Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
-    border.color: isCurrent ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.3) : "transparent"
+    color: isCurrent ? Theme.withAlpha(Theme.primary, 0.1) : Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+    border.color: isCurrent ? Theme.withAlpha(Theme.primary, 0.3) : "transparent"
     border.width: isCurrent ? 1 : 0
 
     Column {
@@ -129,7 +130,7 @@ Rectangle {
                 DankIcon {
                     name: root.forecastData ? WeatherService.getWeatherIcon(root.forecastData.wCode || 0, root.forecastData.isDay ?? true) : "cloud"
                     size: Theme.iconSize
-                    color: root.isCurrent ? Theme.primary : Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.8)
+                    color: root.isCurrent ? Theme.primary : Theme.withAlpha(Theme.primary, 0.8)
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
 
@@ -187,14 +188,14 @@ Rectangle {
                         DankIcon {
                             name: root.values[index].icon
                             size: 8
-                            color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.6)
+                            color: Theme.withAlpha(Theme.surfaceText, 0.6)
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
                         StyledText {
                             text: root.values[index].text
                             font.pixelSize: Theme.fontSizeSmall - 2
-                            color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.6)
+                            color: Theme.withAlpha(Theme.surfaceText, 0.6)
                             anchors.verticalCenter: parent.verticalCenter
                         }
                     }

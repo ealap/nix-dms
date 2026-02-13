@@ -400,6 +400,7 @@ BasePill {
     Component.onCompleted: updateModel()
 
     visible: dockItems.length > 0
+    readonly property real iconCellSize: Theme.barIconSize(root.barThickness, undefined, root.barConfig?.noBackground) + 6
 
     content: Component {
         Item {
@@ -460,7 +461,7 @@ BasePill {
             readonly property bool isOverflowToggle: modelData.type === "overflow-toggle"
             readonly property bool isInOverflow: modelData.isInOverflow === true
 
-            readonly property real visualSize: isSeparator ? 8 : ((widgetData?.runningAppsCompactMode !== undefined ? widgetData.runningAppsCompactMode : SettingsData.runningAppsCompactMode) ? 24 : (24 + Theme.spacingXS + 120))
+            readonly property real visualSize: isSeparator ? 8 : ((widgetData?.runningAppsCompactMode !== undefined ? widgetData.runningAppsCompactMode : SettingsData.runningAppsCompactMode) ? root.iconCellSize : (root.iconCellSize + Theme.spacingXS + 120))
             readonly property real visualWidth: root.isVerticalOrientation ? root.barThickness : visualSize
             readonly property real visualHeight: root.isVerticalOrientation ? visualSize : root.barThickness
 
@@ -620,8 +621,8 @@ BasePill {
 
                 Rectangle {
                     id: visualContent
-                    width: root.isVerticalOrientation ? 24 : delegateItem.visualSize
-                    height: root.isVerticalOrientation ? delegateItem.visualSize : 24
+                    width: root.isVerticalOrientation ? root.iconCellSize : delegateItem.visualSize
+                    height: root.isVerticalOrientation ? delegateItem.visualSize : root.iconCellSize
                     anchors.centerIn: parent
                     radius: Theme.cornerRadius
                     color: {
@@ -937,18 +938,15 @@ BasePill {
                                 const globalPos = delegateItem.mapToGlobal(0, delegateItem.height / 2);
                                 const screenX = root.parentScreen ? root.parentScreen.x : 0;
                                 const screenY = root.parentScreen ? root.parentScreen.y : 0;
-                                const barThickness = root.effectiveBarThickness;
-                                const spacing = barConfig?.spacing ?? 4;
                                 const isLeft = root.axis?.edge === "left";
-                                const tooltipOffset = barThickness + spacing + Theme.spacingM;
-                                const tooltipX = isLeft ? tooltipOffset : (root.parentScreen.width - tooltipOffset);
-                                const screenRelativeY = globalPos.y - screenY + root.barY;
+                                const tooltipX = isLeft ? (root.barThickness + root.barSpacing + Theme.spacingXS) : (root.parentScreen.width - root.barThickness - root.barSpacing - Theme.spacingXS);
+                                const screenRelativeY = globalPos.y - screenY + root.minTooltipY;
                                 tooltipLoader.item.show(appItem.tooltipText, screenX + tooltipX, screenRelativeY, root.parentScreen, isLeft, !isLeft);
                             } else {
                                 const globalPos = delegateItem.mapToGlobal(delegateItem.width / 2, delegateItem.height);
                                 const screenHeight = root.parentScreen ? root.parentScreen.height : Screen.height;
                                 const isBottom = root.axis?.edge === "bottom";
-                                const tooltipY = isBottom ? (screenHeight - Theme.barHeight - (barConfig?.spacing ?? 4) - Theme.spacingXS - 35) : (Theme.barHeight + (barConfig?.spacing ?? 4) + Theme.spacingXS);
+                                const tooltipY = isBottom ? (screenHeight - root.barThickness - root.barSpacing - Theme.spacingXS - 35) : (root.barThickness + root.barSpacing + Theme.spacingXS);
                                 tooltipLoader.item.show(appItem.tooltipText, globalPos.x, tooltipY, root.parentScreen, false, false);
                             }
                         }
@@ -972,21 +970,27 @@ BasePill {
 
                             if (contextMenuLoader.item) {
                                 const globalPos = delegateItem.mapToGlobal(delegateItem.width / 2, delegateItem.height / 2);
-
+                                const screenX = root.parentScreen ? root.parentScreen.x : 0;
+                                const screenY = root.parentScreen ? root.parentScreen.y : 0;
                                 const isBarVertical = root.axis?.isVertical ?? false;
                                 const barEdge = root.axis?.edge ?? "top";
 
-                                let x = globalPos.x;
-                                let y = globalPos.y;
+                                let x = globalPos.x - screenX;
+                                let y = globalPos.y - screenY;
 
-                                if (barEdge === "bottom") {
-                                    y = (root.parentScreen ? root.parentScreen.height : Screen.height) - root.effectiveBarThickness;
-                                } else if (barEdge === "top") {
-                                    y = root.effectiveBarThickness;
-                                } else if (barEdge === "left") {
-                                    x = root.effectiveBarThickness;
-                                } else if (barEdge === "right") {
-                                    x = (root.parentScreen ? root.parentScreen.width : Screen.width) - root.effectiveBarThickness;
+                                switch (barEdge) {
+                                case "bottom":
+                                    y = (root.parentScreen ? root.parentScreen.height : Screen.height) - root.barThickness - root.barSpacing;
+                                    break;
+                                case "top":
+                                    y = root.barThickness + root.barSpacing;
+                                    break;
+                                case "left":
+                                    x = root.barThickness + root.barSpacing;
+                                    break;
+                                case "right":
+                                    x = (root.parentScreen ? root.parentScreen.width : Screen.width) - root.barThickness - root.barSpacing;
+                                    break;
                                 }
 
                                 const shouldHidePin = modelData.appId === "org.quickshell";

@@ -242,6 +242,9 @@
   "Adjust the number of columns in grid view mode.": {
     "Adjust the number of columns in grid view mode.": "Oszlopok számának beállítása rácsnézet módban."
   },
+  "Adjust volume per scroll indent": {
+    "Adjust volume per scroll indent": ""
+  },
   "Advanced": {
     "Advanced": "Speciális"
   },
@@ -292,6 +295,9 @@
   },
   "Analog": {
     "Analog": "Analóg"
+  },
+  "Animation Duration": {
+    "Animation Duration": ""
   },
   "Animation Speed": {
     "Animation Speed": "Animáció sebessége"
@@ -400,6 +406,9 @@
     "No input devices found": "",
     "No output devices found": ""
   },
+  "Audio settings: maximum volume limit per device": {
+    "Max Volume": ""
+  },
   "Audio settings: speaker/headphone devices": {
     "Output Devices": ""
   },
@@ -498,6 +507,9 @@
   },
   "Automatically lock after": {
     "Automatically lock after": "Automatikus zárolás"
+  },
+  "Automatically lock the screen when DMS starts": {
+    "Automatically lock the screen when DMS starts": ""
   },
   "Automatically lock the screen when the system prepares to suspend": {
     "Automatically lock the screen when the system prepares to suspend": "A képernyő automatikus zárolása, amikor a rendszer felfüggesztésre készül"
@@ -705,6 +717,9 @@
   },
   "Cancel": {
     "Cancel": "Mégse"
+  },
+  "Cancel all jobs for \"%1\"?": {
+    "Cancel all jobs for \"%1\"?": ""
   },
   "Canceled": {
     "Canceled": "Törölve"
@@ -1000,6 +1015,9 @@
   "Configure match criteria and actions": {
     "Configure match criteria and actions": "Illesztési feltételek és műveletek konfigurálása"
   },
+  "Configure which displays show \"%1": {
+    "Configure which displays show \"%1\"": ""
+  },
   "Configure which displays show shell components": {
     "Configure which displays show shell components": "Konfiguráld, melyik kijelzők mutassák a shell összetevőket"
   },
@@ -1141,6 +1159,9 @@
   "Create rule for:": {
     "Create rule for:": "Szabály létrehozása ehhez:"
   },
+  "Create rules to mute, ignore, hide from history, or override notification priority.": {
+    "Create rules to mute, ignore, hide from history, or override notification priority.": ""
+  },
   "Creating...": {
     "Creating...": "Létrehozás…"
   },
@@ -1255,6 +1276,9 @@
   "DWL service not available": {
     "DWL service not available": "A DWL szolgáltatás nem elérhető"
   },
+  "Daily": {
+    "Daily": ""
+  },
   "Daily Forecast": {
     "Daily Forecast": "Napi előrejelzés"
   },
@@ -1321,6 +1345,9 @@
   "Delete": {
     "Delete": "Törlés"
   },
+  "Delete \"%1\"?": {
+    "Delete \"%1\"?": ""
+  },
   "Delete Class": {
     "Delete Class": "Osztály törlése"
   },
@@ -1332,6 +1359,12 @@
   },
   "Delete VPN": {
     "Delete VPN": "VPN törlése"
+  },
+  "Delete class \"%1\"?": {
+    "Delete class \"%1\"?": ""
+  },
+  "Delete profile \"%1\"?": {
+    "Delete profile \"%1\"?": ""
   },
   "Derives colors that closely match the underlying image.": {
     "Derives colors that closely match the underlying image.": "Az alapul szolgáló képhez szorosan illeszkedő színek levezetése."
@@ -1587,6 +1620,9 @@
   },
   "Enable Overview Overlay": {
     "Enable Overview Overlay": "Áttekintő átfedés engedélyezése"
+  },
+  "Enable Ripple Effects": {
+    "Enable Ripple Effects": ""
   },
   "Enable System Monitor": {
     "Enable System Monitor": "Rendszerfigyelő engedélyezése"
@@ -1912,6 +1948,9 @@
   "Feels Like": {
     "Feels Like": "Hőérzet"
   },
+  "Field": {
+    "Field": ""
+  },
   "File": {
     "File": "Fájl"
   },
@@ -1920,6 +1959,9 @@
   },
   "File Information": {
     "File Information": "Fájlinformáció"
+  },
+  "File search requires dsearch\nInstall from github.com/morelazers/dsearch": {
+    "File search requires dsearch\nInstall from github.com/morelazers/dsearch": ""
   },
   "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": {
     "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": "A fájlkereséshez dsearch szükséges\\nTelepítsd innen: github.com/morelazers/dsearch"
@@ -2026,6 +2068,9 @@
   "Forget": {
     "Forget": "Elfelejtés"
   },
+  "Forget \"%1\"?": {
+    "Forget \"%1\"?": ""
+  },
   "Forget Device": {
     "Forget Device": "Eszköz elfelejtése"
   },
@@ -2043,6 +2088,9 @@
   },
   "Fullscreen": {
     "Fullscreen": "Teljes képernyő"
+  },
+  "Fullscreen Only": {
+    "Fullscreen Only": ""
   },
   "Fun": {
     "Fun": "Szórakozás"
@@ -2067,6 +2115,9 @@
   },
   "GitHub": {
     "GitHub": "GitHub"
+  },
+  "Globally scale all animation durations": {
+    "Globally scale all animation durations": ""
   },
   "Golden Hour": {
     "Golden Hour": "Aranyóra"
@@ -2167,6 +2218,9 @@
   "Hide": {
     "Hide": "Elrejtés"
   },
+  "Hide 3rd Party": {
+    "Hide 3rd Party": ""
+  },
   "Hide App": {
     "Hide App": "Alkalmazás elrejtése"
   },
@@ -2229,6 +2283,9 @@
   },
   "Hour": {
     "Hour": "Óra"
+  },
+  "Hourly": {
+    "Hourly": ""
   },
   "Hourly Forecast": {
     "Hourly Forecast": "Óránkénti előrejelzés"
@@ -2721,6 +2778,9 @@
   "Lock Screen layout": {
     "Lock Screen layout": "Zárolási képernyő elrendezés"
   },
+  "Lock at startup": {
+    "Lock at startup": ""
+  },
   "Lock before suspend": {
     "Lock before suspend": "Zárolás felfüggesztés előtt"
   },
@@ -2882,6 +2942,9 @@
   },
   "Media Needed": {
     "Media Needed": "Adathordozó szükséges"
+  },
+  "Media Playback": {
+    "Media Playback": ""
   },
   "Media Player": {
     "Media Player": "Médialejátszó"
@@ -3147,6 +3210,9 @@
   "No apps found": {
     "No apps found": "Nem találhatók alkalmazások"
   },
+  "No apps have been launched yet.": {
+    "No apps have been launched yet.": ""
+  },
   "No battery": {
     "No battery": "Nincs akkumulátor"
   },
@@ -3231,6 +3297,12 @@
   "No variants created. Click Add to create a new monitor widget.": {
     "No variants created. Click Add to create a new monitor widget.": "Nincsenek létrehozott variánsok. Kattints a Hozzáadás gombra új monitor widget létrehozásához."
   },
+  "No wallpapers found\n\nClick the folder icon below to browse": {
+    "No wallpapers found\n\nClick the folder icon below to browse": ""
+  },
+  "No widgets added. Click \"Add Widget\" to get started.": {
+    "No widgets added. Click \"Add Widget\" to get started.": ""
+  },
   "No widgets available": {
     "No widgets available": "Nincsenek elérhető widgetek"
   },
@@ -3285,6 +3357,9 @@
   "Notification Popups": {
     "Notification Popups": "Felugró értesítések"
   },
+  "Notification Rules": {
+    "Notification Rules": ""
+  },
   "Notification Settings": {
     "Notification Settings": "Értesítési beállítások"
   },
@@ -3317,6 +3392,12 @@
   },
   "Offline Report": {
     "Offline Report": "Offline jelentés"
+  },
+  "On": {
+    "On": ""
+  },
+  "On-Demand": {
+    "On-Demand": ""
   },
   "On-Screen Displays": {
     "On-Screen Displays": "Képernyőn megjelenő kijelzők"
@@ -3617,6 +3698,9 @@
   "Popouts": {
     "Popouts": ""
   },
+  "Popouts and Modals follow global Animation Speed (disable to customize independently)": {
+    "Popouts and Modals follow global Animation Speed (disable to customize independently)": ""
+  },
   "Popup Position": {
     "Popup Position": "Felugró ablak pozíciója"
   },
@@ -3668,6 +3752,9 @@
   "Precip": {
     "Precip": "Csapadék"
   },
+  "Precipitation": {
+    "Precipitation": ""
+  },
   "Precipitation Chance": {
     "Precipitation Chance": "Csapadék esélye"
   },
@@ -3718,6 +3805,9 @@
   },
   "Printers: ": {
     "Printers: ": "Nyomtatók: "
+  },
+  "Priority": {
+    "Priority": ""
   },
   "Privacy Indicator": {
     "Privacy Indicator": "Adatvédelmi jelző"
@@ -3908,6 +3998,9 @@
   "Right-click bar widget to cycle": {
     "Right-click bar widget to cycle": "Kattints jobb gombbal a sáv widgetre a váltáshoz"
   },
+  "Ripple Effects": {
+    "Ripple Effects": ""
+  },
   "Root Filesystem": {
     "Root Filesystem": "Root fájlrendszer"
   },
@@ -4045,6 +4138,9 @@
   },
   "Search Options": {
     "Search Options": "Keresési beállítások"
+  },
+  "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
+    "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": ""
   },
   "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
     "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": "Keresés billentyűkombináció, leírás vagy műveletnév szerint.\\n\\nAlapértelmezés szerint a vágólapra másolja a gyorsbillentyűt.\\nKattints jobb gombbal vagy nyomd meg a jobbra nyilat a gyakran használt gyorsbillentyűk rögzítéséhez – ezek a keresésen kívül felül jelennek meg."
@@ -4199,6 +4295,9 @@
   "Show": {
     "Show": "Megjelenítés"
   },
+  "Show 3rd Party": {
+    "Show 3rd Party": ""
+  },
   "Show All Tags": {
     "Show All Tags": "Összes címke megjelenítése"
   },
@@ -4261,6 +4360,9 @@
   },
   "Show Log Out": {
     "Show Log Out": "Kijelentkezés megjelenítése"
+  },
+  "Show Material Design ripple animations on interactive elements": {
+    "Show Material Design ripple animations on interactive elements": ""
   },
   "Show Memory": {
     "Show Memory": "Memória megjelenítése"
@@ -4369,6 +4471,9 @@
   },
   "Show on-screen display when idle inhibitor state changes": {
     "Show on-screen display when idle inhibitor state changes": "Képernyőn megjelenő kijelző megjelenítése, amikor az inaktivitás megakadályozó állapota változik"
+  },
+  "Show on-screen display when media player status changes": {
+    "Show on-screen display when media player status changes": ""
   },
   "Show on-screen display when media player volume changes": {
     "Show on-screen display when media player volume changes": "Képernyőn megjelenő kijelző megjelenítése, amikor a médialejátszó hangereje változik"
@@ -4562,6 +4667,9 @@
   "Sync Mode with Portal": {
     "Sync Mode with Portal": "Mód szinkronizálása a portállal"
   },
+  "Sync Popouts & Modals": {
+    "Sync Popouts & Modals": ""
+  },
   "Sync Position Across Screens": {
     "Sync Position Across Screens": "Pozíció szinkronizálása a képernyők között"
   },
@@ -4661,11 +4769,17 @@
   "Third-Party Plugin Warning": {
     "Third-Party Plugin Warning": "Harmadik féltől származó bővítmény figyelmeztetés"
   },
+  "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": {
+    "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": ""
+  },
   "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": {
     "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": "Harmadik féltől származó bővítményeket a közösség készíti, és a DankMaterialShell hivatalosan nem támogatja azokat.\\n\\nEzek a bővítmények biztonsági és adatvédelmi kockázatokat jelenthetnek – saját felelősségre telepítsd őket."
   },
   "This bind is overridden by config.kdl": {
     "This bind is overridden by config.kdl": "Ezt a billentyűt felülírja a config.kdl"
+  },
+  "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": {
+    "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": ""
   },
   "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": {
     "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": "Ez a widget megakadályozza a GPU kikapcsolt állapotát, ami jelentősen befolyásolhatja a laptopok akkumulátor élettartamát. Nem ajánlott hibrid grafikus kártyával rendelkező laptopokon használni."
@@ -4844,6 +4958,9 @@
   "Unknown": {
     "Unknown": "Ismeretlen"
   },
+  "Unknown Artist": {
+    "Unknown Artist": ""
+  },
   "Unknown Config": {
     "Unknown Config": "Ismeretlen konfiguráció"
   },
@@ -4855,6 +4972,9 @@
   },
   "Unknown Network": {
     "Unknown Network": "Ismeretlen hálózat"
+  },
+  "Unknown Title": {
+    "Unknown Title": ""
   },
   "Unnamed Rule": {
     "Unnamed Rule": "Névtelen szabály"
@@ -5017,6 +5137,9 @@
   },
   "VRR": {
     "VRR": "VRR"
+  },
+  "VRR Fullscreen Only": {
+    "VRR Fullscreen Only": ""
   },
   "VRR On-Demand": {
     "VRR On-Demand": "VRR igény szerint"
@@ -5382,6 +5505,7 @@
     "dgop not available": "dgop nem elérhető"
   },
   "dgop unavailable error message": {
+    "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "",
     "The 'dgop' tool is required for system monitoring.\\nPlease install dgop to use this feature.": "A rendszerfigyeléshez a 'dgop' eszköz szükséges.\\nTelepítsd a dgop-ot a funkció használatához."
   },
   "disk io header in system monitor": {
@@ -5651,6 +5775,9 @@
     "Disabled": "Letiltva",
     "Full Content": "Teljes tartalom"
   },
+  "lock screen notification mode option | notification rule match field option": {
+    "App Names": ""
+  },
   "lock screen notification privacy setting": {
     "Control what notification information is shown on the lock screen": "Annak szabályozása, hogy milyen értesítési információk jelenjenek meg a zárolási képernyőn",
     "Notification Display": "Értesítések megjelenítése"
@@ -5757,6 +5884,30 @@
   },
   "notification history toggle label": {
     "Enable History": "Előzmények engedélyezése"
+  },
+  "notification rule action option": {
+    "Ignore Completely": "",
+    "Mute Popups": "",
+    "No History": "",
+    "Popup Only": ""
+  },
+  "notification rule action option | notification rule urgency option | widget style option": {
+    "Default": ""
+  },
+  "notification rule match field option": {
+    "Body": "",
+    "Desktop Entry": "",
+    "Summary": ""
+  },
+  "notification rule match type option": {
+    "Contains": "",
+    "Exact": "",
+    "Regex": ""
+  },
+  "notification rule urgency option": {
+    "Critical Priority": "",
+    "Low Priority": "",
+    "Normal Priority": ""
   },
   "now": {
     "now": "most"
@@ -5910,6 +6061,9 @@
   },
   "uptime label in footer": {
     "Uptime:": "Működési idő:"
+  },
+  "v%1 by %2": {
+    "v%1 by %2": ""
   },
   "version requirement": {
     "Requires %1": "%1 szükséges"

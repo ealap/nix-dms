@@ -268,7 +268,7 @@ func buildOnce(opts *Options) error {
 		refreshQt6ct()
 	}
 
-	signalTerminals()
+	signalTerminals(opts)
 
 	return nil
 }
@@ -692,11 +692,15 @@ func refreshQt6ct() {
 	}
 }
 
-func signalTerminals() {
-	signalByName("kitty", syscall.SIGUSR1)
-	signalByName("ghostty", syscall.SIGUSR2)
-	signalByName(".kitty-wrapped", syscall.SIGUSR1)
-	signalByName(".ghostty-wrappe", syscall.SIGUSR2)
+func signalTerminals(opts *Options) {
+	if !opts.ShouldSkipTemplate("kitty") && appExists(opts.AppChecker, []string{"kitty"}, nil) {
+		signalByName("kitty", syscall.SIGUSR1)
+		signalByName(".kitty-wrapped", syscall.SIGUSR1)
+	}
+	if !opts.ShouldSkipTemplate("ghostty") && appExists(opts.AppChecker, []string{"ghostty"}, nil) {
+		signalByName("ghostty", syscall.SIGUSR2)
+		signalByName(".ghostty-wrappe", syscall.SIGUSR2)
+	}
 }
 
 func signalByName(name string, sig syscall.Signal) {

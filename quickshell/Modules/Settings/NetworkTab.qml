@@ -12,6 +12,9 @@ import qs.Widgets
 Item {
     id: networkTab
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property string expandedVpnUuid: ""
     property string expandedWifiSsid: ""
     property string expandedEthDevice: ""
@@ -137,12 +140,16 @@ Item {
                                 font.pixelSize: Theme.fontSizeLarge
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
                                 text: I18n.tr("Overview of your network connections")
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Theme.surfaceVariantText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
                     }
@@ -322,6 +329,8 @@ Item {
                                 font.pixelSize: Theme.fontSizeLarge
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
@@ -336,6 +345,8 @@ Item {
                                 }
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: NetworkService.ethernetConnected ? Theme.primary : Theme.surfaceVariantText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
                     }
@@ -356,6 +367,8 @@ Item {
                             font.pixelSize: Theme.fontSizeMedium
                             font.weight: Font.Medium
                             color: Theme.surfaceText
+                            width: parent.width
+                            horizontalAlignment: Text.AlignLeft
                         }
 
                         Repeater {
@@ -419,9 +432,11 @@ Item {
                                                     font.weight: isConnected ? Font.Medium : Font.Normal
                                                     elide: Text.ElideRight
                                                     width: parent.width
+                                                    horizontalAlignment: Text.AlignLeft
                                                 }
 
                                                 Row {
+                                                    anchors.left: parent.left
                                                     spacing: Theme.spacingXS
 
                                                     StyledText {
@@ -691,6 +706,8 @@ Item {
                             font.pixelSize: Theme.fontSizeMedium
                             font.weight: Font.Medium
                             color: Theme.surfaceText
+                            width: parent.width
+                            horizontalAlignment: Text.AlignLeft
                         }
 
                         Repeater {
@@ -792,6 +809,8 @@ Item {
                                 font.pixelSize: Theme.fontSizeLarge
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
@@ -806,6 +825,8 @@ Item {
                                 }
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: NetworkService.wifiConnected ? Theme.primary : Theme.surfaceVariantText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
 
@@ -1142,6 +1163,7 @@ Item {
                                                     width: parent.width - 20 - Theme.spacingS
 
                                                     Row {
+                                                        anchors.left: parent.left
                                                         spacing: Theme.spacingXS
 
                                                         StyledText {
@@ -1170,6 +1192,7 @@ Item {
                                                     }
 
                                                     Row {
+                                                        anchors.left: parent.left
                                                         spacing: Theme.spacingXS
 
                                                         StyledText {
@@ -1511,6 +1534,8 @@ Item {
                                 font.pixelSize: Theme.fontSizeLarge
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
@@ -1524,6 +1549,8 @@ Item {
                                 }
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: DMSNetworkService.connected ? Theme.primary : Theme.surfaceVariantText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
 
@@ -1715,12 +1742,14 @@ Item {
                                                 color: isActive ? Theme.primary : Theme.surfaceText
                                                 elide: Text.ElideRight
                                                 width: parent.width
+                                                horizontalAlignment: Text.AlignLeft
                                             }
 
                                             StyledText {
                                                 text: VPNService.getVpnTypeFromProfile(modelData)
                                                 font.pixelSize: Theme.fontSizeSmall
                                                 color: Theme.surfaceVariantText
+                                                anchors.left: parent.left
                                             }
                                         }
 

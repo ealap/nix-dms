@@ -130,9 +130,25 @@ Item {
         if (!entry || entry.isHeader)
             return;
         var rowIndex = _flatIndexToRowMap[index];
-        if (rowIndex === undefined)
+        if (rowIndex === undefined || rowIndex >= _cumulativeHeights.length)
             return;
-        mainListView.positionViewAtIndex(rowIndex, ListView.Contain);
+        var row = _visualRows[rowIndex];
+        if (!row)
+            return;
+
+        var rowY = _cumulativeHeights[rowIndex];
+        var rowHeight = row.height;
+        var scrollY = mainListView.contentY - mainListView.originY;
+        var viewHeight = mainListView.height;
+        var headerH = stickyHeader.height;
+
+        if (rowY < scrollY + headerH) {
+            mainListView.contentY = Math.max(mainListView.originY, rowY - headerH + mainListView.originY);
+            return;
+        }
+        if (rowY + rowHeight > scrollY + viewHeight) {
+            mainListView.contentY = rowY + rowHeight - viewHeight + mainListView.originY;
+        }
     }
 
     function getSelectedItemPosition() {

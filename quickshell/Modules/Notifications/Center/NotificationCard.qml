@@ -341,9 +341,7 @@ Rectangle {
             Repeater {
                 id: notificationRepeater
                 objectName: "notificationRepeater"
-                model: ScriptModel {
-                    values: notificationGroup?.notifications?.slice(0, 10) || []
-                }
+                model: notificationGroup?.notifications?.slice(0, 10) || []
 
                 delegate: Rectangle {
                     required property var modelData

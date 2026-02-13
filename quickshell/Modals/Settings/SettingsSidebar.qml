@@ -17,8 +17,9 @@ Rectangle {
     property var parentModal: null
 
     signal tabChangeRequested(int tabIndex)
-    property var expandedCategories: ({})
-    property var autoExpandedCategories: ({})
+    property string _expandedIds: ","
+    property string _collapsedIds: ","
+    property string _autoExpandedIds: ","
     property bool searchActive: searchField.text.length > 0
     property int searchSelectedIndex: 0
     property int keyboardHighlightIndex: -1
@@ -340,24 +341,46 @@ Rectangle {
         return true;
     }
 
-    function toggleCategory(categoryId) {
-        var newExpanded = Object.assign({}, expandedCategories);
-        newExpanded[categoryId] = !isCategoryExpanded(categoryId);
-        expandedCategories = newExpanded;
+    function _setExpanded(id, expanded) {
+        var marker = "," + id + ",";
+        if (expanded) {
+            if (_expandedIds.indexOf(marker) < 0)
+                _expandedIds = _expandedIds + id + ",";
+            _collapsedIds = _collapsedIds.replace(marker, ",");
+        } else {
+            _expandedIds = _expandedIds.replace(marker, ",");
+            if (_collapsedIds.indexOf(marker) < 0)
+                _collapsedIds = _collapsedIds + id + ",";
+        }
+    }
 
-        var newAutoExpanded = Object.assign({}, autoExpandedCategories);
-        delete newAutoExpanded[categoryId];
-        autoExpandedCategories = newAutoExpanded;
+    function _setAutoExpanded(id, value) {
+        var marker = "," + id + ",";
+        if (value) {
+            if (_autoExpandedIds.indexOf(marker) < 0)
+                _autoExpandedIds = _autoExpandedIds + id + ",";
+        } else {
+            _autoExpandedIds = _autoExpandedIds.replace(marker, ",");
+        }
+    }
+
+    function _isAutoExpanded(id) {
+        return _autoExpandedIds.indexOf("," + id + ",") >= 0;
+    }
+
+    function toggleCategory(categoryId) {
+        _setExpanded(categoryId, !isCategoryExpanded(categoryId));
+        _setAutoExpanded(categoryId, false);
     }
 
     function isCategoryExpanded(categoryId) {
-        if (expandedCategories[categoryId] !== undefined) {
-            return expandedCategories[categoryId];
-        }
-        var category = categoryStructure.find(cat => cat.id === categoryId);
-        if (category && category.collapsedByDefault) {
+        if (_collapsedIds.indexOf("," + categoryId + ",") >= 0)
             return false;
-        }
+        if (_expandedIds.indexOf("," + categoryId + ",") >= 0)
+            return true;
+        var category = categoryStructure.find(cat => cat.id === categoryId);
+        if (category && category.collapsedByDefault)
+            return false;
         return true;
     }
 
@@ -387,13 +410,8 @@ Rectangle {
             return;
 
         if (!isCategoryExpanded(parent.id)) {
-            var newExpanded = Object.assign({}, expandedCategories);
-            newExpanded[parent.id] = true;
-            expandedCategories = newExpanded;
-
-            var newAutoExpanded = Object.assign({}, autoExpandedCategories);
-            newAutoExpanded[parent.id] = true;
-            autoExpandedCategories = newAutoExpanded;
+            _setExpanded(parent.id, true);
+            _setAutoExpanded(parent.id, true);
         }
     }
 
@@ -401,14 +419,9 @@ Rectangle {
         var oldParent = findParentCategory(oldTabIndex);
         var newParent = findParentCategory(newTabIndex);
 
-        if (oldParent && oldParent !== newParent && autoExpandedCategories[oldParent.id]) {
-            var newExpanded = Object.assign({}, expandedCategories);
-            newExpanded[oldParent.id] = false;
-            expandedCategories = newExpanded;
-
-            var newAutoExpanded = Object.assign({}, autoExpandedCategories);
-            delete newAutoExpanded[oldParent.id];
-            autoExpandedCategories = newAutoExpanded;
+        if (oldParent && oldParent !== newParent && _isAutoExpanded(oldParent.id)) {
+            _setExpanded(oldParent.id, false);
+            _setAutoExpanded(oldParent.id, false);
         }
     }
 

@@ -10,6 +10,9 @@ import qs.Widgets
 Item {
     id: printerTab
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     property bool showAddPrinter: false
     property string newPrinterName: ""
     property string selectedDeviceUri: ""
@@ -110,6 +113,8 @@ Item {
                                 font.pixelSize: Theme.fontSizeLarge
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
                     }
@@ -212,12 +217,16 @@ Item {
                                 font.pixelSize: Theme.fontSizeLarge
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
                                 text: I18n.tr("Configure a new printer")
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Theme.surfaceVariantText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
 
@@ -471,6 +480,7 @@ Item {
                         }
 
                         Row {
+                            LayoutMirroring.enabled: false
                             width: parent.width
                             spacing: Theme.spacingS
                             layoutDirection: Qt.RightToLeft
@@ -529,6 +539,8 @@ Item {
                                 font.pixelSize: Theme.fontSizeLarge
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
@@ -540,6 +552,8 @@ Item {
                                 }
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Theme.surfaceVariantText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
 
@@ -652,9 +666,11 @@ Item {
                                                     font.weight: CupsService.selectedPrinter === modelData ? Font.Medium : Font.Normal
                                                     elide: Text.ElideRight
                                                     width: parent.width
+                                                    horizontalAlignment: Text.AlignLeft
                                                 }
 
                                                 Row {
+                                                    anchors.left: parent.left
                                                     spacing: Theme.spacingXS
 
                                                     StyledText {
@@ -1085,6 +1101,7 @@ Item {
                                                                         color: Theme.surfaceText
                                                                         elide: Text.ElideRight
                                                                         width: parent.width
+                                                                        horizontalAlignment: Text.AlignLeft
                                                                     }
 
                                                                     StyledText {
@@ -1095,6 +1112,7 @@ Item {
                                                                         }
                                                                         font.pixelSize: Theme.fontSizeSmall - 1
                                                                         color: Theme.surfaceVariantText
+                                                                        anchors.left: parent.left
                                                                     }
                                                                 }
                                                             }
@@ -1222,12 +1240,16 @@ Item {
                                 font.pixelSize: Theme.fontSizeLarge
                                 font.weight: Font.Medium
                                 color: Theme.surfaceText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
 
                             StyledText {
                                 text: I18n.tr("%1 class(es)").arg(CupsService.printerClasses.length)
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Theme.surfaceVariantText
+                                width: parent.width
+                                horizontalAlignment: Text.AlignLeft
                             }
                         }
 

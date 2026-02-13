@@ -135,6 +135,20 @@ BasePill {
         }
     }
     readonly property int windowCount: _groupByApp ? (groupedWindows?.length || 0) : (sortedToplevels?.length || 0)
+    readonly property real iconCellSize: Theme.barIconSize(root.barThickness, undefined, root.barConfig?.noBackground) + 6
+
+    readonly property string focusedAppId: {
+        const toplevels = CompositorService.sortedToplevels;
+        if (!toplevels)
+            return "";
+        let result = "";
+        for (let i = 0; i < toplevels.length; i++) {
+            if (toplevels[i].activated)
+                result = toplevels[i].appId || "";
+        }
+        return result;
+    }
+
     visible: windowCount > 0
 
     property real scrollAccumulator: 0
@@ -226,7 +240,7 @@ BasePill {
                     property bool isGrouped: root._groupByApp
                     property var groupData: isGrouped ? modelData : null
                     property var toplevelData: isGrouped ? (modelData.windows.length > 0 ? modelData.windows[0].toplevel : null) : modelData
-                    property bool isFocused: toplevelData ? toplevelData.activated : false
+                    property bool isFocused: isGrouped ? (root.focusedAppId === appId) : (toplevelData ? toplevelData.activated : false)
                     property string appId: isGrouped ? modelData.appId : (modelData.appId || "")
                     property string windowTitle: toplevelData ? (toplevelData.title || "(Unnamed)") : "(Unnamed)"
                     property var toplevelObject: toplevelData
@@ -242,7 +256,7 @@ BasePill {
                         }
                         return appName + (windowTitle ? " • " + windowTitle : "");
                     }
-                    readonly property real visualWidth: (widgetData?.runningAppsCompactMode !== undefined ? widgetData.runningAppsCompactMode : SettingsData.runningAppsCompactMode) ? 24 : (24 + Theme.spacingXS + 120)
+                    readonly property real visualWidth: (widgetData?.runningAppsCompactMode !== undefined ? widgetData.runningAppsCompactMode : SettingsData.runningAppsCompactMode) ? root.iconCellSize : (root.iconCellSize + Theme.spacingXS + 120)
 
                     width: visualWidth
                     height: root.barThickness
@@ -250,7 +264,7 @@ BasePill {
                     Rectangle {
                         id: visualContent
                         width: delegateItem.visualWidth
-                        height: 24
+                        height: root.iconCellSize
                         anchors.centerIn: parent
                         radius: Theme.cornerRadius
                         color: {
@@ -433,7 +447,7 @@ BasePill {
                                     const screenX = root.parentScreen ? root.parentScreen.x : 0;
                                     const screenY = root.parentScreen ? root.parentScreen.y : 0;
                                     const relativeY = globalPos.y - screenY;
-                                    const tooltipX = root.axis?.edge === "left" ? (Theme.barHeight + (barConfig?.spacing ?? 4) + Theme.spacingXS) : (root.parentScreen.width - Theme.barHeight - (barConfig?.spacing ?? 4) - Theme.spacingXS);
+                                    const tooltipX = root.axis?.edge === "left" ? (root.barThickness + root.barSpacing + Theme.spacingXS) : (root.parentScreen.width - root.barThickness - root.barSpacing - Theme.spacingXS);
                                     const isLeft = root.axis?.edge === "left";
                                     const adjustedY = relativeY + root.minTooltipY;
                                     const finalX = screenX + tooltipX;
@@ -442,7 +456,7 @@ BasePill {
                                     const globalPos = delegateItem.mapToGlobal(delegateItem.width / 2, delegateItem.height);
                                     const screenHeight = root.parentScreen ? root.parentScreen.height : Screen.height;
                                     const isBottom = root.axis?.edge === "bottom";
-                                    const tooltipY = isBottom ? (screenHeight - Theme.barHeight - (barConfig?.spacing ?? 4) - Theme.spacingXS - 35) : (Theme.barHeight + (barConfig?.spacing ?? 4) + Theme.spacingXS);
+                                    const tooltipY = isBottom ? (screenHeight - root.barThickness - root.barSpacing - Theme.spacingXS - 35) : (root.barThickness + root.barSpacing + Theme.spacingXS);
                                     tooltipLoader.item.show(delegateItem.tooltipText, globalPos.x, tooltipY, root.parentScreen, false, false);
                                 }
                             }
@@ -481,7 +495,7 @@ BasePill {
                     property bool isGrouped: root._groupByApp
                     property var groupData: isGrouped ? modelData : null
                     property var toplevelData: isGrouped ? (modelData.windows.length > 0 ? modelData.windows[0].toplevel : null) : modelData
-                    property bool isFocused: toplevelData ? toplevelData.activated : false
+                    property bool isFocused: isGrouped ? (root.focusedAppId === appId) : (toplevelData ? toplevelData.activated : false)
                     property string appId: isGrouped ? modelData.appId : (modelData.appId || "")
                     property string windowTitle: toplevelData ? (toplevelData.title || "(Unnamed)") : "(Unnamed)"
                     property var toplevelObject: toplevelData
@@ -497,15 +511,15 @@ BasePill {
                         }
                         return appName + (windowTitle ? " • " + windowTitle : "");
                     }
-                    readonly property real visualWidth: (widgetData?.runningAppsCompactMode !== undefined ? widgetData.runningAppsCompactMode : SettingsData.runningAppsCompactMode) ? 24 : (24 + Theme.spacingXS + 120)
+                    readonly property real visualWidth: (widgetData?.runningAppsCompactMode !== undefined ? widgetData.runningAppsCompactMode : SettingsData.runningAppsCompactMode) ? root.iconCellSize : (root.iconCellSize + Theme.spacingXS + 120)
 
                     width: root.barThickness
-                    height: 24
+                    height: root.iconCellSize
 
                     Rectangle {
                         id: visualContent
                         width: delegateItem.visualWidth
-                        height: 24
+                        height: root.iconCellSize
                         anchors.centerIn: parent
                         radius: Theme.cornerRadius
                         color: {

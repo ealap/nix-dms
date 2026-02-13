@@ -14,6 +14,8 @@ Item {
     implicitWidth: 700
     implicitHeight: root.available ? mainColumn.implicitHeight : unavailableColumn.implicitHeight + Theme.spacingXL * 2
     property bool syncing: false
+    property bool showHourly: false
+    property bool available: WeatherService.weather.available
 
     function syncFrom(type) {
         if (!dailyLoader.item || !hourlyLoader.item)
@@ -49,7 +51,66 @@ Item {
         syncing = false;
     }
 
-    property bool available: WeatherService.weather.available
+    readonly property string sunriseTimeText: {
+        if (!WeatherService.weather.rawSunrise)
+            return WeatherService.weather.sunrise || "";
+        try {
+            const date = new Date(WeatherService.weather.rawSunrise);
+            const format = SettingsData.use24HourClock ? "HH:mm" : "h:mm AP";
+            return date.toLocaleTimeString(Qt.locale(), format);
+        } catch (e) {
+            return WeatherService.weather.sunrise || "";
+        }
+    }
+
+    readonly property string sunsetTimeText: {
+        if (!WeatherService.weather.rawSunset)
+            return WeatherService.weather.sunset || "";
+        try {
+            const date = new Date(WeatherService.weather.rawSunset);
+            const format = SettingsData.use24HourClock ? "HH:mm" : "h:mm AP";
+            return date.toLocaleTimeString(Qt.locale(), format);
+        } catch (e) {
+            return WeatherService.weather.sunset || "";
+        }
+    }
+
+    readonly property var heroMetrics: {
+        SettingsData.useFahrenheit;
+        SettingsData.windSpeedUnit;
+        return [
+            {
+                "icon": "humidity_low",
+                "label": I18n.tr("Humidity"),
+                "value": WeatherService.formatPercent(WeatherService.weather.humidity) ?? "--"
+            },
+            {
+                "icon": "air",
+                "label": I18n.tr("Wind"),
+                "value": WeatherService.formatSpeed(WeatherService.weather.wind) ?? "--"
+            },
+            {
+                "icon": "speed",
+                "label": I18n.tr("Pressure"),
+                "value": WeatherService.formatPressure(WeatherService.weather.pressure) ?? "--"
+            },
+            {
+                "icon": "rainy",
+                "label": I18n.tr("Precipitation"),
+                "value": (WeatherService.weather.precipitationProbability ?? 0) + "%"
+            },
+            {
+                "icon": "wb_twilight",
+                "label": I18n.tr("Sunrise"),
+                "value": root.sunriseTimeText || "--"
+            },
+            {
+                "icon": "bedtime",
+                "label": I18n.tr("Sunset"),
+                "value": root.sunsetTimeText || "--"
+            }
+        ];
+    }
 
     Column {
         id: unavailableColumn
@@ -60,7 +121,7 @@ Item {
         DankIcon {
             name: "cloud_off"
             size: Theme.iconSize * 2
-            color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.5)
+            color: Theme.withAlpha(Theme.surfaceText, 0.5)
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
@@ -73,7 +134,7 @@ Item {
                 id: refreshText
                 text: I18n.tr("No Weather Data Available")
                 font.pixelSize: Theme.fontSizeLarge
-                color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.7)
+                color: Theme.withAlpha(Theme.surfaceText, 0.7)
                 anchors.verticalCenter: parent.verticalCenter
             }
 
@@ -81,7 +142,7 @@ Item {
                 id: refreshButtonTwo
                 name: "refresh"
                 size: Theme.iconSize - 4
-                color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.4)
+                color: Theme.withAlpha(Theme.surfaceText, 0.4)
                 anchors.top: parent.top
                 anchors.verticalCenter: parent.verticalCenter
 
@@ -145,344 +206,330 @@ Item {
         id: mainColumn
         anchors.fill: parent
         visible: root.available
-        spacing: Theme.spacingXS
+        spacing: Theme.spacingS
 
-        Item {
-            id: weatherContainer
-
-            LayoutMirroring.enabled: false
-            LayoutMirroring.childrenInherit: true
-
+        Rectangle {
+            id: heroCard
             width: parent.width
-            height: weatherColumn.height
+            height: heroContent.height + Theme.spacingL * 2
+            radius: Theme.cornerRadius
+            color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
+            border.color: Theme.withAlpha(Theme.outline, 0.08)
+            border.width: 1
 
             Column {
-                id: weatherColumn
-                height: weatherInfo.height + dateStepper.height
-                width: Math.max(weatherInfo.width, dateStepper.width)
+                id: heroContent
+                x: Theme.spacingL
+                y: Theme.spacingL
+                width: parent.width - Theme.spacingL * 2
+                spacing: Theme.spacingM
 
                 Item {
-                    id: weatherInfo
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    // anchors.verticalCenter: parent.verticalCenter
-                    width: weatherIcon.width + tempColumn.width + sunriseColumn.width + Theme.spacingM * 2
-                    height: Math.max(weatherIcon.height, tempColumn.height, sunriseColumn.height)
+                    width: parent.width
+                    height: Math.max(heroLeft.height, heroMetricsGrid.height)
 
-                    DankIcon {
-                        id: weatherIcon
-                        name: WeatherService.getWeatherIcon(WeatherService.weather.wCode)
-                        size: Theme.iconSize * 1.5
-                        color: Theme.primary
+                    Row {
+                        id: heroLeft
                         anchors.left: parent.left
                         anchors.verticalCenter: parent.verticalCenter
+                        spacing: Theme.spacingL
 
-                        layer.enabled: true
-                        layer.effect: MultiEffect {
-                            shadowEnabled: true
-                            shadowHorizontalOffset: 0
-                            shadowVerticalOffset: 4
-                            shadowBlur: 0.8
-                            shadowColor: Qt.rgba(0, 0, 0, 0.2)
-                            shadowOpacity: 0.2
-                        }
-                    }
+                        DankIcon {
+                            id: weatherIcon
+                            name: WeatherService.getWeatherIcon(WeatherService.weather.wCode)
+                            size: Theme.iconSize * 2
+                            color: Theme.primary
+                            anchors.verticalCenter: parent.verticalCenter
 
-                    Column {
-                        id: tempColumn
-                        spacing: Theme.spacingXS
-                        anchors.left: weatherIcon.right
-                        anchors.leftMargin: Theme.spacingM
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        Item {
-                            width: tempText.width + unitText.width + Theme.spacingXS
-                            height: tempText.height
-
-                            StyledText {
-                                id: tempText
-                                text: (SettingsData.useFahrenheit ? WeatherService.weather.tempF : WeatherService.weather.temp) + "°"
-                                font.pixelSize: Theme.fontSizeLarge + 4
-                                color: Theme.surfaceText
-                                font.weight: Font.Light
-                                anchors.left: parent.left
-                                anchors.verticalCenter: parent.verticalCenter
+                            layer.enabled: true
+                            layer.effect: MultiEffect {
+                                shadowEnabled: true
+                                shadowHorizontalOffset: 0
+                                shadowVerticalOffset: 4
+                                shadowBlur: 0.8
+                                shadowColor: Qt.rgba(0, 0, 0, 0.2)
+                                shadowOpacity: 0.2
                             }
+                        }
 
-                            StyledText {
-                                id: unitText
-                                text: SettingsData.useFahrenheit ? "F" : "C"
-                                font.pixelSize: Theme.fontSizeMedium
-                                color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.7)
-                                anchors.left: tempText.right
-                                anchors.leftMargin: Theme.spacingXS
-                                anchors.verticalCenter: parent.verticalCenter
+                        Column {
+                            id: tempColumn
+                            spacing: Theme.spacingXS
+                            anchors.verticalCenter: parent.verticalCenter
 
-                                MouseArea {
-                                    anchors.fill: parent
-                                    hoverEnabled: true
-                                    cursorShape: Qt.PointingHandCursor
-                                    onClicked: {
-                                        if (WeatherService.weather.available) {
-                                            SettingsData.set("useFahrenheit", !SettingsData.useFahrenheit);
+                            Item {
+                                anchors.left: parent.left
+                                width: tempText.width + unitText.width + Theme.spacingXS
+                                height: tempText.height
+
+                                StyledText {
+                                    id: tempText
+                                    LayoutMirroring.enabled: false
+                                    text: (SettingsData.useFahrenheit ? WeatherService.weather.tempF : WeatherService.weather.temp) + "°"
+                                    font.pixelSize: Theme.fontSizeXLarge + 8
+                                    color: Theme.surfaceText
+                                    font.weight: Font.Light
+                                    anchors.left: parent.left
+                                    anchors.verticalCenter: parent.verticalCenter
+                                }
+
+                                StyledText {
+                                    id: unitText
+                                    LayoutMirroring.enabled: false
+                                    text: SettingsData.useFahrenheit ? "F" : "C"
+                                    font.pixelSize: Theme.fontSizeMedium
+                                    color: Theme.withAlpha(Theme.surfaceText, 0.7)
+                                    anchors.left: tempText.right
+                                    anchors.leftMargin: Theme.spacingXS
+                                    anchors.verticalCenter: parent.verticalCenter
+
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: {
+                                            if (WeatherService.weather.available)
+                                                SettingsData.set("useFahrenheit", !SettingsData.useFahrenheit);
                                         }
+                                        enabled: WeatherService.weather.available
                                     }
-                                    enabled: WeatherService.weather.available
                                 }
                             }
-                        }
 
-                        StyledText {
-                            property var feelsLike: SettingsData.useFahrenheit ? (WeatherService.weather.feelsLikeF || WeatherService.weather.tempF) : (WeatherService.weather.feelsLike || WeatherService.weather.temp)
-                            text: I18n.tr("Feels Like %1°", "weather feels like temperature").arg(feelsLike)
-                            font.pixelSize: Theme.fontSizeSmall
-                            color: Theme.withAlpha(Theme.surfaceText, 0.7)
-                        }
+                            StyledText {
+                                text: WeatherService.getWeatherCondition(WeatherService.weather.wCode)
+                                font.pixelSize: Theme.fontSizeMedium
+                                color: Theme.withAlpha(Theme.surfaceText, 0.7)
+                                anchors.left: parent.left
+                            }
 
-                        StyledText {
-                            text: WeatherService.weather.city || ""
-                            font.pixelSize: Theme.fontSizeMedium
-                            color: Theme.withAlpha(Theme.surfaceText, 0.7)
-                            visible: text.length > 0
+                            StyledText {
+                                property var feelsLike: SettingsData.useFahrenheit ? (WeatherService.weather.feelsLikeF || WeatherService.weather.tempF) : (WeatherService.weather.feelsLike || WeatherService.weather.temp)
+                                text: I18n.tr("Feels Like %1°", "weather feels like temperature").arg(feelsLike)
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.withAlpha(Theme.surfaceText, 0.5)
+                                anchors.left: parent.left
+                            }
+
+                            StyledText {
+                                text: WeatherService.weather.city || ""
+                                font.pixelSize: Theme.fontSizeSmall
+                                color: Theme.withAlpha(Theme.surfaceText, 0.5)
+                                visible: text.length > 0
+                                anchors.left: parent.left
+                            }
                         }
                     }
 
-                    Column {
-                        id: sunriseColumn
-                        spacing: Theme.spacingXS
-                        anchors.left: tempColumn.right
-                        anchors.leftMargin: Theme.spacingM
+                    Grid {
+                        id: heroMetricsGrid
+                        anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        visible: WeatherService.weather.sunrise && WeatherService.weather.sunset
+                        columns: 3
+                        columnSpacing: Theme.spacingXL
+                        rowSpacing: Theme.spacingS
 
-                        Item {
-                            width: sunriseIcon.width + sunriseText.width + Theme.spacingXS
-                            height: sunriseIcon.height
+                        Repeater {
+                            model: root.heroMetrics
 
-                            DankIcon {
-                                id: sunriseIcon
-                                name: "wb_twilight"
-                                size: Theme.iconSize - 6
-                                color: Theme.withAlpha(Theme.surfaceText, 0.6)
-                                anchors.left: parent.left
-                                anchors.verticalCenter: parent.verticalCenter
-                            }
+                            Row {
+                                spacing: Theme.spacingXS
 
-                            StyledText {
-                                id: sunriseText
-                                text: {
-                                    if (!WeatherService.weather.rawSunrise)
-                                        return WeatherService.weather.sunrise || "";
-                                    try {
-                                        const date = new Date(WeatherService.weather.rawSunrise);
-                                        const format = SettingsData.use24HourClock ? "HH:mm" : "h:mm AP";
-                                        return date.toLocaleTimeString(Qt.locale(), format);
-                                    } catch (e) {
-                                        return WeatherService.weather.sunrise || "";
+                                DankIcon {
+                                    name: modelData.icon
+                                    size: Theme.iconSizeSmall - 2
+                                    color: Theme.withAlpha(Theme.surfaceText, 0.5)
+                                    anchors.verticalCenter: parent.verticalCenter
+                                }
+
+                                Column {
+                                    spacing: 2
+
+                                    StyledText {
+                                        text: modelData.label
+                                        font.pixelSize: Theme.fontSizeSmall
+                                        color: Theme.withAlpha(Theme.surfaceText, 0.5)
+                                        anchors.left: parent.left
+                                    }
+
+                                    StyledText {
+                                        text: modelData.value
+                                        font.pixelSize: Theme.fontSizeMedium
+                                        color: Theme.surfaceText
+                                        anchors.left: parent.left
                                     }
                                 }
-                                font.pixelSize: Theme.fontSizeSmall
-                                color: Theme.withAlpha(Theme.surfaceText, 0.6)
-                                anchors.left: sunriseIcon.right
-                                anchors.leftMargin: Theme.spacingXS
-                                anchors.verticalCenter: parent.verticalCenter
-                            }
-                        }
-
-                        Item {
-                            width: sunsetIcon.width + sunsetText.width + Theme.spacingXS
-                            height: sunsetIcon.height
-
-                            DankIcon {
-                                id: sunsetIcon
-                                name: "bedtime"
-                                size: Theme.iconSize - 6
-                                color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.6)
-                                anchors.left: parent.left
-                                anchors.verticalCenter: parent.verticalCenter
-                            }
-
-                            StyledText {
-                                id: sunsetText
-                                text: {
-                                    if (!WeatherService.weather.rawSunset)
-                                        return WeatherService.weather.sunset || "";
-                                    try {
-                                        const date = new Date(WeatherService.weather.rawSunset);
-                                        const format = SettingsData.use24HourClock ? "HH:mm" : "h:mm AP";
-                                        return date.toLocaleTimeString(Qt.locale(), format);
-                                    } catch (e) {
-                                        return WeatherService.weather.sunset || "";
-                                    }
-                                }
-                                font.pixelSize: Theme.fontSizeSmall
-                                color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.6)
-                                anchors.left: sunsetIcon.right
-                                anchors.leftMargin: Theme.spacingXS
-                                anchors.verticalCenter: parent.verticalCenter
                             }
                         }
                     }
                 }
+            }
+        }
+
+        Item {
+            id: skyDateRow
+            width: parent.width
+            height: dateStepper.height
+
+            Item {
+                id: dateStepper
+                height: dateStepperInner.height + Theme.spacingM * 2
+                width: dateStepperInner.width
+
+                property var currentDate: new Date()
+
+                readonly property var changeDate: (magnitudeIndex, sign) => {
+                    switch (magnitudeIndex) {
+                    case 0:
+                        break;
+                    case 1:
+                        var newDate = new Date(dateStepper.currentDate);
+                        newDate.setMonth(dateStepper.currentDate.getMonth() + sign * 1);
+                        dateStepper.currentDate = newDate;
+                        break;
+                    case 2:
+                        dateStepper.currentDate = new Date(dateStepper.currentDate.getTime() + sign * 24 * 3600 * 1000);
+                        break;
+                    case 3:
+                        dateStepper.currentDate = new Date(dateStepper.currentDate.getTime() + sign * 3600 * 1000);
+                        break;
+                    case 4:
+                        dateStepper.currentDate = new Date(dateStepper.currentDate.getTime() + sign * 5 * 60 * 1000);
+                        break;
+                    }
+                }
+                readonly property var splitDate: Qt.formatDateTime(dateStepper.currentDate, SettingsData.use24HourClock ? "yyyy.MM.dd.HH.mm" : "yyyy.MM.dd.hh.mm.AP").split('.')
 
                 Item {
-                    id: dateStepper
+                    id: dateStepperInner
                     anchors.horizontalCenter: parent.horizontalCenter
-                    height: dateStepperInner.height + Theme.spacingM * 2
-                    width: dateStepperInner.width
-
-                    property var currentDate: new Date()
-
-                    readonly property var changeDate: (magnitudeIndex, sign) => {
-                        switch (magnitudeIndex) {
-                        case 0:
-                            break;
-                        case 1:
-                            var newDate = new Date(dateStepper.currentDate);
-                            newDate.setMonth(dateStepper.currentDate.getMonth() + sign * 1);
-                            dateStepper.currentDate = newDate;
-                            break;
-                        case 2:
-                            dateStepper.currentDate = new Date(dateStepper.currentDate.getTime() + sign * 24 * 3600 * 1000);
-                            break;
-                        case 3:
-                            dateStepper.currentDate = new Date(dateStepper.currentDate.getTime() + sign * 3600 * 1000);
-                            break;
-                        case 4:
-                            dateStepper.currentDate = new Date(dateStepper.currentDate.getTime() + sign * 5 * 60 * 1000);
-                            break;
-                        }
-                    }
-                    readonly property var splitDate: Qt.formatDateTime(dateStepper.currentDate, SettingsData.use24HourClock ? "yyyy.MM.dd.HH.mm" : "yyyy.MM.dd.hh.mm.AP").split('.')
+                    anchors.verticalCenter: parent.verticalCenter
+                    readonly property var space: Theme.spacingXS
+                    width: yearStepper.width + monthStepper.width + dayStepper.width + hourStepper.width + minuteStepper.width + (suffix.visible ? suffix.width : 0) + 10.5 * space + 2 * dateStepperInnerPadding.width
+                    height: Math.max(yearStepper.height, monthStepper.height, dayStepper.height, hourStepper.height, minuteStepper.height)
 
                     Item {
-                        id: dateStepperInner
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.verticalCenter: parent.verticalCenter
-                        readonly property var space: Theme.spacingXS
-                        width: yearStepper.width + monthStepper.width + dayStepper.width + hourStepper.width + minuteStepper.width + (suffix.visible ? suffix.width : 0) + 10.5 * space + 2 * dateStepperInnerPadding.width
-                        height: Math.max(yearStepper.height, monthStepper.height, dayStepper.height, hourStepper.height, minuteStepper.height)
-
-                        Item {
-                            id: dateStepperInnerPadding
-                            width: dateResetButton.width
-                        }
-
-                        DankNumberStepper {
-                            id: yearStepper
-                            anchors.left: dateStepperInnerPadding.right
-                            anchors.leftMargin: parent.space
-                            width: implicitWidth
-                            text: dateStepper.splitDate[0]
-                            // onIncrement: () => dateStepper.changeDate(0, +1)
-                            // onDecrement: () => dateStepper.changeDate(0, -1)
-                        }
-
-                        DankNumberStepper {
-                            id: monthStepper
-                            width: implicitWidth
-                            anchors.left: yearStepper.right
-                            anchors.leftMargin: parent.space
-                            text: dateStepper.splitDate[1]
-                            onIncrement: () => dateStepper.changeDate(1, +1)
-                            onDecrement: () => dateStepper.changeDate(1, -1)
-                        }
-
-                        DankNumberStepper {
-                            id: dayStepper
-                            width: implicitWidth
-                            anchors.left: monthStepper.right
-                            anchors.leftMargin: parent.space
-                            text: dateStepper.splitDate[2]
-                            onIncrement: () => dateStepper.changeDate(2, +1)
-                            onDecrement: () => dateStepper.changeDate(2, -1)
-                        }
-
-                        DankNumberStepper {
-                            id: hourStepper
-                            width: implicitWidth
-                            anchors.left: dayStepper.right
-                            anchors.leftMargin: 1.5 * parent.space
-                            text: dateStepper.splitDate[3]
-                            onIncrement: () => dateStepper.changeDate(3, +1)
-                            onDecrement: () => dateStepper.changeDate(3, -1)
-                        }
-
-                        DankNumberStepper {
-                            id: minuteStepper
-                            width: implicitWidth
-                            anchors.left: hourStepper.right
-                            anchors.leftMargin: parent.space
-                            text: dateStepper.splitDate[4]
-                            onIncrement: () => dateStepper.changeDate(4, +1)
-                            onDecrement: () => dateStepper.changeDate(4, -1)
-                        }
-
-                        Item {
-                            anchors.verticalCenter: parent.verticalCenter
-                            anchors.left: yearStepper.right
-                            anchors.right: monthStepper.left
-                            StyledText {
-                                anchors.verticalCenter: parent.verticalCenter
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                text: "-"
-                            }
-                        }
-                        Item {
-                            anchors.verticalCenter: parent.verticalCenter
-                            anchors.left: monthStepper.right
-                            anchors.right: dayStepper.left
-                            StyledText {
-                                anchors.verticalCenter: parent.verticalCenter
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                text: "-"
-                            }
-                        }
-                        Item {
-                            anchors.verticalCenter: parent.verticalCenter
-                            anchors.left: hourStepper.right
-                            anchors.right: minuteStepper.left
-                            StyledText {
-                                anchors.verticalCenter: parent.verticalCenter
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                text: ":"
-                            }
-                        }
-                        StyledText {
-                            id: suffix
-                            visible: !SettingsData.use24HourClock
-                            anchors.verticalCenter: minuteStepper.verticalCenter
-                            anchors.left: minuteStepper.right
-                            anchors.leftMargin: 2 * parent.space
-                            isMonospace: true
-                            text: dateStepper.splitDate[5] ?? ""
-                            font.pixelSize: Theme.fontSizeSmall
-                        }
-                        DankActionButton {
-                            id: dateResetButton
-                            anchors.verticalCenter: parent.verticalCenter
-                            anchors.right: parent.right
-                            enabled: Math.abs(dateStepper.currentDate - new Date()) > 1000
-                            iconColor: enabled ? Theme.blendAlpha(Theme.surfaceText, 0.5) : "transparent"
-                            iconSize: 12
-                            buttonSize: 20
-                            iconName: "replay"
-                            onClicked: {
-                                dateStepper.currentDate = new Date();
-                            }
-                        }
+                        id: dateStepperInnerPadding
+                        width: dateResetButton.width
                     }
 
-                    onCurrentDateChanged: if (!syncing)
-                        root.syncFrom("date")
+                    DankNumberStepper {
+                        id: yearStepper
+                        anchors.left: dateStepperInnerPadding.right
+                        anchors.leftMargin: parent.space
+                        width: implicitWidth
+                        text: dateStepper.splitDate[0]
+                    }
+
+                    DankNumberStepper {
+                        id: monthStepper
+                        width: implicitWidth
+                        anchors.left: yearStepper.right
+                        anchors.leftMargin: parent.space
+                        text: dateStepper.splitDate[1]
+                        onIncrement: () => dateStepper.changeDate(1, +1)
+                        onDecrement: () => dateStepper.changeDate(1, -1)
+                    }
+
+                    DankNumberStepper {
+                        id: dayStepper
+                        width: implicitWidth
+                        anchors.left: monthStepper.right
+                        anchors.leftMargin: parent.space
+                        text: dateStepper.splitDate[2]
+                        onIncrement: () => dateStepper.changeDate(2, +1)
+                        onDecrement: () => dateStepper.changeDate(2, -1)
+                    }
+
+                    DankNumberStepper {
+                        id: hourStepper
+                        width: implicitWidth
+                        anchors.left: dayStepper.right
+                        anchors.leftMargin: 1.5 * parent.space
+                        text: dateStepper.splitDate[3]
+                        onIncrement: () => dateStepper.changeDate(3, +1)
+                        onDecrement: () => dateStepper.changeDate(3, -1)
+                    }
+
+                    DankNumberStepper {
+                        id: minuteStepper
+                        width: implicitWidth
+                        anchors.left: hourStepper.right
+                        anchors.leftMargin: parent.space
+                        text: dateStepper.splitDate[4]
+                        onIncrement: () => dateStepper.changeDate(4, +1)
+                        onDecrement: () => dateStepper.changeDate(4, -1)
+                    }
+
+                    Item {
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: yearStepper.right
+                        anchors.right: monthStepper.left
+                        StyledText {
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            text: "-"
+                        }
+                    }
+                    Item {
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: monthStepper.right
+                        anchors.right: dayStepper.left
+                        StyledText {
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            text: "-"
+                        }
+                    }
+                    Item {
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: hourStepper.right
+                        anchors.right: minuteStepper.left
+                        StyledText {
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            text: ":"
+                        }
+                    }
+                    StyledText {
+                        id: suffix
+                        visible: !SettingsData.use24HourClock
+                        anchors.verticalCenter: minuteStepper.verticalCenter
+                        anchors.left: minuteStepper.right
+                        anchors.leftMargin: 2 * parent.space
+                        isMonospace: true
+                        text: dateStepper.splitDate[5] ?? ""
+                        font.pixelSize: Theme.fontSizeSmall
+                    }
+                    DankActionButton {
+                        id: dateResetButton
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+                        enabled: Math.abs(dateStepper.currentDate - new Date()) > 1000
+                        iconColor: enabled ? Theme.blendAlpha(Theme.surfaceText, 0.5) : "transparent"
+                        iconSize: 12
+                        buttonSize: 20
+                        iconName: "replay"
+                        onClicked: {
+                            dateStepper.currentDate = new Date();
+                        }
+                    }
                 }
+
+                onCurrentDateChanged: if (!syncing)
+                    root.syncFrom("date")
             }
 
             Rectangle {
                 id: skyBox
-                height: weatherColumn.height
-                anchors.left: weatherColumn.right
-                anchors.right: parent.right
+                anchors.left: dateStepper.right
                 anchors.leftMargin: Theme.spacingM
+                anchors.right: parent.right
+                height: parent.height
+
+                LayoutMirroring.enabled: false
+                LayoutMirroring.childrenInherit: true
+
                 property var backgroundOpacity: 0.3
                 property var sunTime: WeatherService.getCurrentSunTime(dateStepper.currentDate)
                 property var periodIndex: sunTime?.periodIndex
@@ -494,40 +541,12 @@ Item {
                     return Theme.blend(blackColor, blueColor, r);
                 }
                 property var topColor: {
-                    const colorMap = [blackColor                             // "night"
-                        , Theme.withAlpha(blackBlue(0.0), 0.8)   // "astronomicalTwilight"
-                        , Theme.withAlpha(blackBlue(0.2), 0.7)   // "nauticalTwilight"
-                        , Theme.withAlpha(blackBlue(0.5), 0.6)   // "civilTwilight"
-                        , Theme.withAlpha(blackBlue(0.7), 0.6)   // "sunrise"
-                        , Theme.withAlpha(blackBlue(0.9), 0.6)   // "goldenHourMorning"
-                        , Theme.withAlpha(blackBlue(1.0), 0.6)   // "daytime"
-                        , Theme.withAlpha(blackBlue(0.9), 0.6)   // "afternoon"
-                        , Theme.withAlpha(blackBlue(0.7), 0.6)   // "goldenHourEvening"
-                        , Theme.withAlpha(blackBlue(0.5), 0.6)   // "sunset"
-                        , Theme.withAlpha(blackBlue(0.2), 0.7)   // "civilTwilight"
-                        , Theme.withAlpha(blackBlue(0.0), 0.8)   // "nauticalTwilightEvening"
-                        , blackColor                             // "astronomicalTwilightEvening"
-                        , blackColor                             // "night"
-                        ,];
+                    const colorMap = [blackColor, Theme.withAlpha(blackBlue(0.0), 0.8), Theme.withAlpha(blackBlue(0.2), 0.7), Theme.withAlpha(blackBlue(0.5), 0.6), Theme.withAlpha(blackBlue(0.7), 0.6), Theme.withAlpha(blackBlue(0.9), 0.6), Theme.withAlpha(blackBlue(1.0), 0.6), Theme.withAlpha(blackBlue(0.9), 0.6), Theme.withAlpha(blackBlue(0.7), 0.6), Theme.withAlpha(blackBlue(0.5), 0.6), Theme.withAlpha(blackBlue(0.2), 0.7), Theme.withAlpha(blackBlue(0.0), 0.8), blackColor, blackColor];
                     const index = periodIndex ?? 0;
                     return Theme.blend(colorMap[index], colorMap[index + 1], periodPercent ?? 0);
                 }
                 property var sunColor: {
-                    const colorMap = [Theme.withAlpha(redColor, 0.05)   // "night"
-                        , Theme.withAlpha(redColor, 0.1)    // "astronomicalTwilight"
-                        , Theme.withAlpha(redColor, 0.3)    // "nauticalTwilight"
-                        , Theme.withAlpha(redColor, 0.4)    // "civilTwilight"
-                        , Theme.withAlpha(redColor, 0.5)    // "sunrise"
-                        , Theme.withAlpha(blueColor, 0.2)   // "goldenHourMorning"
-                        , Theme.withAlpha(blueColor, 0.0)   // "daytime"
-                        , Theme.withAlpha(blueColor, 0.2)   // "afternoon"
-                        , Theme.withAlpha(redColor, 0.5)    // "goldenHourEvening"
-                        , Theme.withAlpha(redColor, 0.4)    // "sunset"
-                        , Theme.withAlpha(redColor, 0.3)    // "civilTwilight"
-                        , Theme.withAlpha(redColor, 0.1)    // "nauticalTwilightEvening"
-                        , Theme.withAlpha(redColor, 0.05)   // "astronomicalTwilightEvening"
-                        , Theme.withAlpha(redColor, 0.0)    // "night"
-                        ,];
+                    const colorMap = [Theme.withAlpha(redColor, 0.05), Theme.withAlpha(redColor, 0.1), Theme.withAlpha(redColor, 0.3), Theme.withAlpha(redColor, 0.4), Theme.withAlpha(redColor, 0.5), Theme.withAlpha(blueColor, 0.2), Theme.withAlpha(blueColor, 0.0), Theme.withAlpha(blueColor, 0.2), Theme.withAlpha(redColor, 0.5), Theme.withAlpha(redColor, 0.4), Theme.withAlpha(redColor, 0.3), Theme.withAlpha(redColor, 0.1), Theme.withAlpha(redColor, 0.05), Theme.withAlpha(redColor, 0.0)];
                     const index = periodIndex ?? 0;
                     return Theme.blend(colorMap[index], colorMap[index + 1], periodPercent ?? 0);
                 }
@@ -742,7 +761,6 @@ Item {
                 }
 
                 Rectangle {
-                    // Rightmost Line
                     height: 1
                     anchors.leftMargin: Theme.spacingS
                     anchors.rightMargin: Theme.spacingS
@@ -753,7 +771,6 @@ Item {
                 }
 
                 Rectangle {
-                    // Middle Right Line
                     height: 1
                     anchors.leftMargin: Theme.spacingS
                     anchors.rightMargin: Theme.spacingS
@@ -764,7 +781,6 @@ Item {
                 }
 
                 Rectangle {
-                    // Middle Left Line
                     height: 1
                     anchors.leftMargin: Theme.spacingS
                     anchors.rightMargin: Theme.spacingS
@@ -775,7 +791,6 @@ Item {
                 }
 
                 Rectangle {
-                    // Leftmost Line
                     height: 1
                     anchors.leftMargin: Theme.spacingS
                     anchors.rightMargin: Theme.spacingS
@@ -830,14 +845,42 @@ Item {
                     }
                 }
             }
+        }
+
+        Item {
+            width: parent.width
+            height: forecastChips.height
+
+            DankFilterChips {
+                id: forecastChips
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                model: [I18n.tr("Daily"), I18n.tr("Hourly")]
+                currentIndex: root.showHourly ? 1 : 0
+                showCheck: false
+                showCounts: false
+                onSelectionChanged: index => {
+                    root.showHourly = index === 1;
+                }
+            }
+
+            DankActionButton {
+                id: denseButton
+                anchors.right: refreshButton.left
+                anchors.rightMargin: Theme.spacingXS
+                anchors.verticalCenter: parent.verticalCenter
+                visible: root.showHourly && hourlyLoader.item !== null
+                iconName: SessionData.weatherHourlyDetailed ? "tile_large" : "tile_medium"
+                onClicked: SessionData.setWeatherHourlyDetailed(!SessionData.weatherHourlyDetailed)
+            }
 
             DankIcon {
                 id: refreshButton
                 name: "refresh"
                 size: Theme.iconSize - 4
-                color: Qt.rgba(Theme.surfaceText.r, Theme.surfaceText.g, Theme.surfaceText.b, 0.4)
+                color: Theme.withAlpha(Theme.surfaceText, 0.4)
                 anchors.right: parent.right
-                anchors.top: parent.top
+                anchors.verticalCenter: parent.verticalCenter
 
                 property bool isRefreshing: false
                 enabled: !isRefreshing
@@ -894,177 +937,16 @@ Item {
             }
         }
 
-        Row {
-            width: parent.width
-            height: Math.max(hourlyHeader.height, denseButton.height) + Theme.spacingS
-            spacing: Theme.spacingS
-
-            StyledText {
-                id: hourlyHeader
-                anchors.verticalCenter: parent.verticalCenter
-                text: I18n.tr("Hourly Forecast")
-                font.pixelSize: Theme.fontSizeMedium
-                color: Theme.surfaceText
-                font.weight: Font.Medium
-            }
-
-            Rectangle {
-                anchors.verticalCenter: parent.verticalCenter
-                width: parent.width - denseButton.width - hourlyHeader.width - 2 * parent.spacing
-                height: 1
-                color: Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.1)
-            }
-
-            DankActionButton {
-                id: denseButton
-                anchors.verticalCenter: parent.verticalCenter
-                visible: hourlyLoader.item !== null
-                iconName: SessionData.weatherHourlyDetailed ? "tile_large" : "tile_medium"
-                onClicked: SessionData.setWeatherHourlyDetailed(!SessionData.weatherHourlyDetailed)
-            }
-        }
-
         Item {
             width: parent.width
-            height: (hourlyLoader.item?.cardHeight ?? (Theme.fontSizeLarge * 6)) + Theme.spacingXS
-
-            Loader {
-                id: hourlyLoader
-                anchors.fill: parent
-                sourceComponent: hourlyComponent
-                active: root.visible && root.available
-                asynchronous: true
-                opacity: 0
-                onLoaded: {
-                    root.syncing = true;
-                    item.currentIndex = item.initialIndex;
-                    item.positionViewAtIndex(item.initialIndex, ListView.SnapPosition);
-                    root.syncing = false;
-                    opacity = 1;
-                }
-            }
-
-            Component {
-                id: hourlyComponent
-                ListView {
-                    id: hourlyList
-                    width: parent.width
-                    height: cardHeight + Theme.spacingXS
-                    orientation: ListView.Horizontal
-                    spacing: Theme.spacingS
-                    clip: true
-                    snapMode: ListView.SnapToItem
-                    highlightRangeMode: ListView.StrictlyEnforceRange
-                    highlightMoveDuration: 0
-                    interactive: true
-                    contentHeight: cardHeight
-                    contentWidth: cardWidth
-
-                    property var cardHeight: Theme.fontSizeLarge * 6
-                    property var cardWidth: ((hourlyList.width + hourlyList.spacing) / hourlyList.visibleCount) - hourlyList.spacing
-                    property int initialIndex: (new Date()).getHours()
-                    property bool dense: !SessionData.weatherHourlyDetailed
-                    property int visibleCount: dense ? 10 : 5
-
-                    model: WeatherService.weather.hourlyForecast?.length ?? 0
-
-                    delegate: WeatherForecastCard {
-                        width: hourlyList.cardWidth
-                        height: hourlyList.cardHeight
-                        dense: hourlyList.dense
-                        daily: false
-
-                        date: {
-                            const d = new Date();
-                            d.setHours(index);
-                            return d;
-                        }
-                        forecastData: WeatherService.weather.hourlyForecast?.[index]
-                    }
-
-                    onCurrentIndexChanged: if (!syncing)
-                        root.syncFrom("hour")
-
-                    states: [
-                        State {
-                            name: "denseState"
-                            when: hourlyList.dense
-                            PropertyChanges {
-                                target: hourlyList
-                                visibleCount: 10
-                            }
-                        },
-                        State {
-                            name: "normalState"
-                            when: !hourlyList.dense
-                            PropertyChanges {
-                                target: hourlyList
-                                visibleCount: 5
-                            }
-                        }
-                    ]
-
-                    transitions: [
-                        Transition {
-                            NumberAnimation {
-                                properties: "visibleCount"
-                                duration: Theme.shortDuration
-                                easing.type: Theme.standardEasing
-                            }
-                        }
-                    ]
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onWheel: wheel => {
-                            if (wheel.modifiers & Qt.ShiftModifier) {
-                                if (wheel.angleDelta.y % 120 == 0 && wheel.angleDelta.x == 0) {
-                                    const newIndex = hourlyList.currentIndex - Math.sign(wheel.angleDelta.y);
-                                    if (newIndex < hourlyList.model && newIndex >= 0) {
-                                        hourlyList.currentIndex = newIndex;
-                                        wheel.accepted = true;
-                                        return;
-                                    }
-                                }
-                            }
-                            wheel.accepted = false;
-                        }
-                    }
-                }
-            }
-        }
-
-        Row {
-            width: parent.width
-            height: dailyHeader.height + Theme.spacingS
-            spacing: Theme.spacingS
-
-            StyledText {
-                id: dailyHeader
-                anchors.verticalCenter: parent.verticalCenter
-                text: I18n.tr("Daily Forecast")
-                font.pixelSize: Theme.fontSizeMedium
-                color: Theme.surfaceText
-                font.weight: Font.Medium
-            }
-
-            Rectangle {
-                anchors.verticalCenter: parent.verticalCenter
-                width: parent.width - denseButton.width - dailyHeader.width - 2 * parent.spacing
-                height: 1
-                color: Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.1)
-            }
-        }
-
-        Item {
-            width: parent.width
-            height: (dailyLoader.item?.cardHeight ?? (Theme.fontSizeLarge * 6)) + Theme.spacingXS
+            height: root.showHourly ? ((hourlyLoader.item?.cardHeight ?? (Theme.fontSizeLarge * 6)) + Theme.spacingXS) : ((dailyLoader.item?.cardHeight ?? (Theme.fontSizeLarge * 6)) + Theme.spacingXS)
 
             Loader {
                 id: dailyLoader
                 anchors.fill: parent
                 sourceComponent: dailyComponent
                 active: root.visible && root.available
+                visible: !root.showHourly
                 asynchronous: true
                 opacity: 0
                 onLoaded: {
@@ -1076,63 +958,169 @@ Item {
                 }
             }
 
-            Component {
-                id: dailyComponent
-                ListView {
-                    id: dailyList
-                    width: parent.width
-                    height: cardHeight + Theme.spacingXS
-                    orientation: ListView.Horizontal
-                    spacing: Theme.spacingS
-                    clip: true
-                    snapMode: ListView.SnapToItem
-                    highlightRangeMode: ListView.StrictlyEnforceRange
-                    highlightMoveDuration: 0
-                    interactive: true
-                    contentHeight: cardHeight
-                    contentWidth: cardWidth
+            Loader {
+                id: hourlyLoader
+                anchors.fill: parent
+                sourceComponent: hourlyComponent
+                active: root.visible && root.available
+                visible: root.showHourly
+                asynchronous: true
+                opacity: 0
+                onLoaded: {
+                    root.syncing = true;
+                    item.currentIndex = item.initialIndex;
+                    item.positionViewAtIndex(item.initialIndex, ListView.SnapPosition);
+                    root.syncing = false;
+                    opacity = 1;
+                }
+            }
+        }
+    }
 
-                    property var cardHeight: Theme.fontSizeLarge * 6
-                    property var cardWidth: ((dailyList.width + dailyList.spacing) / dailyList.visibleCount) - dailyList.spacing
-                    property int initialIndex: 0
-                    property bool dense: false
-                    property int visibleCount: 7
+    Component {
+        id: hourlyComponent
+        ListView {
+            id: hourlyList
+            width: parent.width
+            height: cardHeight + Theme.spacingXS
+            orientation: ListView.Horizontal
+            spacing: Theme.spacingS
+            clip: true
+            snapMode: ListView.SnapToItem
+            highlightRangeMode: ListView.StrictlyEnforceRange
+            highlightMoveDuration: 0
+            interactive: true
+            contentHeight: cardHeight
+            contentWidth: cardWidth
 
-                    model: WeatherService.weather.forecast?.length ?? 0
+            property var cardHeight: Theme.fontSizeLarge * 6
+            property var cardWidth: ((hourlyList.width + hourlyList.spacing) / hourlyList.visibleCount) - hourlyList.spacing
+            property int initialIndex: (new Date()).getHours()
+            property bool dense: !SessionData.weatherHourlyDetailed
+            property int visibleCount: dense ? 10 : 5
 
-                    delegate: WeatherForecastCard {
-                        width: dailyList.cardWidth
-                        height: dailyList.cardHeight
-                        dense: true
-                        daily: true
+            model: WeatherService.weather.hourlyForecast?.length ?? 0
 
-                        date: {
-                            const date = new Date();
-                            date.setDate(date.getDate() + index);
-                            return date;
-                        }
-                        forecastData: WeatherService.weather.forecast?.[index]
+            delegate: WeatherForecastCard {
+                width: hourlyList.cardWidth
+                height: hourlyList.cardHeight
+                dense: hourlyList.dense
+                daily: false
+
+                date: {
+                    const d = new Date();
+                    d.setHours(index);
+                    return d;
+                }
+                forecastData: WeatherService.weather.hourlyForecast[index]
+            }
+
+            onCurrentIndexChanged: if (!syncing)
+                root.syncFrom("hour")
+
+            states: [
+                State {
+                    name: "denseState"
+                    when: hourlyList.dense
+                    PropertyChanges {
+                        target: hourlyList
+                        visibleCount: 10
                     }
+                },
+                State {
+                    name: "normalState"
+                    when: !hourlyList.dense
+                    PropertyChanges {
+                        target: hourlyList
+                        visibleCount: 5
+                    }
+                }
+            ]
 
-                    onCurrentIndexChanged: if (!syncing)
-                        root.syncFrom("day")
+            transitions: [
+                Transition {
+                    NumberAnimation {
+                        properties: "visibleCount"
+                        duration: Theme.shortDuration
+                        easing.type: Theme.standardEasing
+                    }
+                }
+            ]
 
-                    MouseArea {
-                        anchors.fill: parent
-                        onWheel: wheel => {
-                            if (wheel.modifiers & Qt.ShiftModifier) {
-                                if (wheel.angleDelta.y % 120 == 0 && wheel.angleDelta.x == 0) {
-                                    const newIndex = dailyList.currentIndex - Math.sign(wheel.angleDelta.y);
-                                    if (newIndex < dailyList.model && newIndex >= 0) {
-                                        dailyList.currentIndex = newIndex;
-                                        wheel.accepted = true;
-                                        return;
-                                    }
-                                }
+            MouseArea {
+                anchors.fill: parent
+                onWheel: wheel => {
+                    if (wheel.modifiers & Qt.ShiftModifier) {
+                        if (wheel.angleDelta.y % 120 == 0 && wheel.angleDelta.x == 0) {
+                            const newIndex = hourlyList.currentIndex - Math.sign(wheel.angleDelta.y);
+                            if (newIndex < hourlyList.model && newIndex >= 0) {
+                                hourlyList.currentIndex = newIndex;
+                                wheel.accepted = true;
+                                return;
                             }
-                            wheel.accepted = false;
                         }
                     }
+                    wheel.accepted = false;
+                }
+            }
+        }
+    }
+
+    Component {
+        id: dailyComponent
+        ListView {
+            id: dailyList
+            width: parent.width
+            height: cardHeight + Theme.spacingXS
+            orientation: ListView.Horizontal
+            spacing: Theme.spacingS
+            clip: true
+            snapMode: ListView.SnapToItem
+            highlightRangeMode: ListView.StrictlyEnforceRange
+            highlightMoveDuration: 0
+            interactive: true
+            contentHeight: cardHeight
+            contentWidth: cardWidth
+
+            property var cardHeight: Theme.fontSizeLarge * 6
+            property var cardWidth: ((dailyList.width + dailyList.spacing) / dailyList.visibleCount) - dailyList.spacing
+            property int initialIndex: 0
+            property bool dense: false
+            property int visibleCount: 7
+
+            model: WeatherService.weather.forecast?.length ?? 0
+
+            delegate: WeatherForecastCard {
+                width: dailyList.cardWidth
+                height: dailyList.cardHeight
+                dense: true
+                daily: true
+
+                date: {
+                    const date = new Date();
+                    date.setDate(date.getDate() + index);
+                    return date;
+                }
+                forecastData: WeatherService.weather.forecast[index]
+            }
+
+            onCurrentIndexChanged: if (!syncing)
+                root.syncFrom("day")
+
+            MouseArea {
+                anchors.fill: parent
+                onWheel: wheel => {
+                    if (wheel.modifiers & Qt.ShiftModifier) {
+                        if (wheel.angleDelta.y % 120 == 0 && wheel.angleDelta.x == 0) {
+                            const newIndex = dailyList.currentIndex - Math.sign(wheel.angleDelta.y);
+                            if (newIndex < dailyList.model && newIndex >= 0) {
+                                dailyList.currentIndex = newIndex;
+                                wheel.accepted = true;
+                                return;
+                            }
+                        }
+                    }
+                    wheel.accepted = false;
                 }
             }
         }

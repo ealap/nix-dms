@@ -99,6 +99,7 @@ BasePill {
     property bool suppressShiftAnimation: false
     readonly property bool hasHiddenItems: allTrayItems.length > mainBarItems.length
     visible: allTrayItems.length > 0
+    readonly property real trayItemSize: Theme.barIconSize(root.barThickness, undefined, root.barConfig?.noBackground) + 6
 
     readonly property real minTooltipY: {
         if (!parentScreen || !isVerticalOrientation) {
@@ -172,7 +173,7 @@ BasePill {
                         return "";
                     }
 
-                    width: 24
+                    width: root.trayItemSize
                     height: root.barThickness
                     z: dragHandler.dragging ? 100 : 0
 
@@ -183,7 +184,7 @@ BasePill {
                             return 0;
                         const dragIdx = root.draggedIndex;
                         const dropIdx = root.dropTargetIndex;
-                        const shiftAmount = 24;
+                        const shiftAmount = root.trayItemSize;
                         if (dropIdx < 0)
                             return 0;
                         if (dragIdx < dropIdx && index > dragIdx && index <= dropIdx)
@@ -222,8 +223,8 @@ BasePill {
 
                     Rectangle {
                         id: visualContent
-                        width: 24
-                        height: 24
+                        width: root.trayItemSize
+                        height: root.trayItemSize
                         anchors.centerIn: parent
                         radius: Theme.cornerRadius
                         color: trayItemArea.containsMouse ? Theme.widgetBaseHoverColor : "transparent"
@@ -328,7 +329,7 @@ BasePill {
 
                             const axisOffset = mouse.x - dragHandler.dragStartPos.x;
                             dragHandler.dragAxisOffset = axisOffset;
-                            const itemSize = 24;
+                            const itemSize = root.trayItemSize;
                             const slotOffset = Math.round(axisOffset / itemSize);
                             const newTargetIndex = Math.max(0, Math.min(root.mainBarItems.length - 1, index + slotOffset));
                             if (newTargetIndex !== root.dropTargetIndex) {
@@ -351,14 +352,14 @@ BasePill {
             }
 
             Item {
-                width: 24
+                width: root.trayItemSize
                 height: root.barThickness
                 visible: root.hasHiddenItems
 
                 Rectangle {
                     id: caretButton
-                    width: 24
-                    height: 24
+                    width: root.trayItemSize
+                    height: root.trayItemSize
                     anchors.centerIn: parent
                     radius: Theme.cornerRadius
                     color: caretArea.containsMouse ? Theme.widgetBaseHoverColor : "transparent"
@@ -430,7 +431,7 @@ BasePill {
                     }
 
                     width: root.barThickness
-                    height: 24
+                    height: root.trayItemSize
                     z: dragHandler.dragging ? 100 : 0
 
                     property real shiftOffset: {
@@ -440,7 +441,7 @@ BasePill {
                             return 0;
                         const dragIdx = root.draggedIndex;
                         const dropIdx = root.dropTargetIndex;
-                        const shiftAmount = 24;
+                        const shiftAmount = root.trayItemSize;
                         if (dropIdx < 0)
                             return 0;
                         if (dragIdx < dropIdx && index > dragIdx && index <= dropIdx)
@@ -479,8 +480,8 @@ BasePill {
 
                     Rectangle {
                         id: visualContent
-                        width: 24
-                        height: 24
+                        width: root.trayItemSize
+                        height: root.trayItemSize
                         anchors.centerIn: parent
                         radius: Theme.cornerRadius
                         color: trayItemArea.containsMouse ? Theme.widgetBaseHoverColor : "transparent"
@@ -585,7 +586,7 @@ BasePill {
 
                             const axisOffset = mouse.y - dragHandler.dragStartPos.y;
                             dragHandler.dragAxisOffset = axisOffset;
-                            const itemSize = 24;
+                            const itemSize = root.trayItemSize;
                             const slotOffset = Math.round(axisOffset / itemSize);
                             const newTargetIndex = Math.max(0, Math.min(root.mainBarItems.length - 1, index + slotOffset));
                             if (newTargetIndex !== root.dropTargetIndex) {
@@ -609,13 +610,13 @@ BasePill {
 
             Item {
                 width: root.barThickness
-                height: 24
+                height: root.trayItemSize
                 visible: root.hasHiddenItems
 
                 Rectangle {
                     id: caretButtonVert
-                    width: 24
-                    height: 24
+                    width: root.trayItemSize
+                    height: root.trayItemSize
                     anchors.centerIn: parent
                     radius: Theme.cornerRadius
                     color: caretAreaVert.containsMouse ? Theme.widgetBaseHoverColor : "transparent"
@@ -835,7 +836,7 @@ BasePill {
             readonly property real rawWidth: {
                 const itemCount = root.hiddenBarItems.length;
                 const cols = Math.min(5, itemCount);
-                const itemSize = 28;
+                const itemSize = root.trayItemSize + 4;
                 const spacing = 2;
                 return cols * itemSize + (cols - 1) * spacing + Theme.spacingS * 2;
             }
@@ -843,7 +844,7 @@ BasePill {
                 const itemCount = root.hiddenBarItems.length;
                 const cols = Math.min(5, itemCount);
                 const rows = Math.ceil(itemCount / cols);
-                const itemSize = 28;
+                const itemSize = root.trayItemSize + 4;
                 const spacing = 2;
                 return rows * itemSize + (rows - 1) * spacing + Theme.spacingS * 2;
             }
@@ -982,8 +983,8 @@ BasePill {
                             return "";
                         }
 
-                        width: 28
-                        height: 28
+                        width: root.trayItemSize + 4
+                        height: root.trayItemSize + 4
                         radius: Theme.cornerRadius
                         color: itemArea.containsMouse ? Theme.widgetBaseHoverColor : Theme.withAlpha(Theme.surfaceContainer, 0)
 

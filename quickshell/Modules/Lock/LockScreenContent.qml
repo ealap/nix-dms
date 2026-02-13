@@ -166,7 +166,7 @@ Item {
             var currentWallpaper = SessionData.getMonitorWallpaper(screenName);
             return (currentWallpaper && !currentWallpaper.startsWith("#")) ? encodeFileUrl(currentWallpaper) : "";
         }
-        fillMode: Theme.getFillMode(SettingsData.wallpaperFillMode)
+        fillMode: Theme.getFillMode(SessionData.getMonitorWallpaperFillMode(screenName))
         smooth: true
         asynchronous: false
         cache: true

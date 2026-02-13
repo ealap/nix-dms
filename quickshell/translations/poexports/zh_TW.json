@@ -242,6 +242,9 @@
   "Adjust the number of columns in grid view mode.": {
     "Adjust the number of columns in grid view mode.": "調整網格檢視模式中的欄數。"
   },
+  "Adjust volume per scroll indent": {
+    "Adjust volume per scroll indent": ""
+  },
   "Advanced": {
     "Advanced": "進階"
   },
@@ -292,6 +295,9 @@
   },
   "Analog": {
     "Analog": "類比"
+  },
+  "Animation Duration": {
+    "Animation Duration": ""
   },
   "Animation Speed": {
     "Animation Speed": "動畫速度"
@@ -400,6 +406,9 @@
     "No input devices found": "",
     "No output devices found": ""
   },
+  "Audio settings: maximum volume limit per device": {
+    "Max Volume": ""
+  },
   "Audio settings: speaker/headphone devices": {
     "Output Devices": ""
   },
@@ -498,6 +507,9 @@
   },
   "Automatically lock after": {
     "Automatically lock after": "指定時間後自動鎖定"
+  },
+  "Automatically lock the screen when DMS starts": {
+    "Automatically lock the screen when DMS starts": ""
   },
   "Automatically lock the screen when the system prepares to suspend": {
     "Automatically lock the screen when the system prepares to suspend": "睡眠時自動鎖定螢幕"
@@ -705,6 +717,9 @@
   },
   "Cancel": {
     "Cancel": "取消"
+  },
+  "Cancel all jobs for \"%1\"?": {
+    "Cancel all jobs for \"%1\"?": ""
   },
   "Canceled": {
     "Canceled": "已取消"
@@ -1000,6 +1015,9 @@
   "Configure match criteria and actions": {
     "Configure match criteria and actions": "設定符合條件與動作"
   },
+  "Configure which displays show \"%1": {
+    "Configure which displays show \"%1\"": ""
+  },
   "Configure which displays show shell components": {
     "Configure which displays show shell components": "配置哪些顯示器顯示 shell 元件"
   },
@@ -1141,6 +1159,9 @@
   "Create rule for:": {
     "Create rule for:": "建立規則："
   },
+  "Create rules to mute, ignore, hide from history, or override notification priority.": {
+    "Create rules to mute, ignore, hide from history, or override notification priority.": ""
+  },
   "Creating...": {
     "Creating...": "建立中..."
   },
@@ -1255,6 +1276,9 @@
   "DWL service not available": {
     "DWL service not available": "DWL 服務不可用"
   },
+  "Daily": {
+    "Daily": ""
+  },
   "Daily Forecast": {
     "Daily Forecast": "每日預報"
   },
@@ -1321,6 +1345,9 @@
   "Delete": {
     "Delete": "刪除"
   },
+  "Delete \"%1\"?": {
+    "Delete \"%1\"?": ""
+  },
   "Delete Class": {
     "Delete Class": "刪除類別"
   },
@@ -1332,6 +1359,12 @@
   },
   "Delete VPN": {
     "Delete VPN": "刪除 VPN"
+  },
+  "Delete class \"%1\"?": {
+    "Delete class \"%1\"?": ""
+  },
+  "Delete profile \"%1\"?": {
+    "Delete profile \"%1\"?": ""
   },
   "Derives colors that closely match the underlying image.": {
     "Derives colors that closely match the underlying image.": "提取與底層圖像高度匹配的顏色。"
@@ -1587,6 +1620,9 @@
   },
   "Enable Overview Overlay": {
     "Enable Overview Overlay": "啟用概覽疊加層"
+  },
+  "Enable Ripple Effects": {
+    "Enable Ripple Effects": ""
   },
   "Enable System Monitor": {
     "Enable System Monitor": "啟用系統監視器"
@@ -1912,6 +1948,9 @@
   "Feels Like": {
     "Feels Like": "體感溫度"
   },
+  "Field": {
+    "Field": ""
+  },
   "File": {
     "File": "檔案"
   },
@@ -1920,6 +1959,9 @@
   },
   "File Information": {
     "File Information": "檔案資訊"
+  },
+  "File search requires dsearch\nInstall from github.com/morelazers/dsearch": {
+    "File search requires dsearch\nInstall from github.com/morelazers/dsearch": ""
   },
   "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": {
     "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": "檔案搜尋需要 dsearch\\n請從 github.com/morelazers/dsearch 安裝"
@@ -2026,6 +2068,9 @@
   "Forget": {
     "Forget": "忘記"
   },
+  "Forget \"%1\"?": {
+    "Forget \"%1\"?": ""
+  },
   "Forget Device": {
     "Forget Device": "忘記設備"
   },
@@ -2043,6 +2088,9 @@
   },
   "Fullscreen": {
     "Fullscreen": "全螢幕"
+  },
+  "Fullscreen Only": {
+    "Fullscreen Only": ""
   },
   "Fun": {
     "Fun": "有趣的"
@@ -2067,6 +2115,9 @@
   },
   "GitHub": {
     "GitHub": "GitHub"
+  },
+  "Globally scale all animation durations": {
+    "Globally scale all animation durations": ""
   },
   "Golden Hour": {
     "Golden Hour": "黃金時段"
@@ -2167,6 +2218,9 @@
   "Hide": {
     "Hide": "隱藏"
   },
+  "Hide 3rd Party": {
+    "Hide 3rd Party": ""
+  },
   "Hide App": {
     "Hide App": "隱藏應用程式"
   },
@@ -2229,6 +2283,9 @@
   },
   "Hour": {
     "Hour": "小時"
+  },
+  "Hourly": {
+    "Hourly": ""
   },
   "Hourly Forecast": {
     "Hourly Forecast": "每小時預報"
@@ -2721,6 +2778,9 @@
   "Lock Screen layout": {
     "Lock Screen layout": "鎖定螢幕版面配置"
   },
+  "Lock at startup": {
+    "Lock at startup": ""
+  },
   "Lock before suspend": {
     "Lock before suspend": "鎖定後睡眠"
   },
@@ -2882,6 +2942,9 @@
   },
   "Media Needed": {
     "Media Needed": "需要媒體"
+  },
+  "Media Playback": {
+    "Media Playback": ""
   },
   "Media Player": {
     "Media Player": "媒體播放器"
@@ -3147,6 +3210,9 @@
   "No apps found": {
     "No apps found": "未找到應用程式"
   },
+  "No apps have been launched yet.": {
+    "No apps have been launched yet.": ""
+  },
   "No battery": {
     "No battery": "無電池"
   },
@@ -3231,6 +3297,12 @@
   "No variants created. Click Add to create a new monitor widget.": {
     "No variants created. Click Add to create a new monitor widget.": "尚未建立任何變體。按一下「新增」以建立新的顯示器小工具。"
   },
+  "No wallpapers found\n\nClick the folder icon below to browse": {
+    "No wallpapers found\n\nClick the folder icon below to browse": ""
+  },
+  "No widgets added. Click \"Add Widget\" to get started.": {
+    "No widgets added. Click \"Add Widget\" to get started.": ""
+  },
   "No widgets available": {
     "No widgets available": "沒有可用的小工具"
   },
@@ -3285,6 +3357,9 @@
   "Notification Popups": {
     "Notification Popups": "通知彈窗"
   },
+  "Notification Rules": {
+    "Notification Rules": ""
+  },
   "Notification Settings": {
     "Notification Settings": "通知設定"
   },
@@ -3317,6 +3392,12 @@
   },
   "Offline Report": {
     "Offline Report": "離線報告"
+  },
+  "On": {
+    "On": ""
+  },
+  "On-Demand": {
+    "On-Demand": ""
   },
   "On-Screen Displays": {
     "On-Screen Displays": "螢幕顯示"
@@ -3617,6 +3698,9 @@
   "Popouts": {
     "Popouts": ""
   },
+  "Popouts and Modals follow global Animation Speed (disable to customize independently)": {
+    "Popouts and Modals follow global Animation Speed (disable to customize independently)": ""
+  },
   "Popup Position": {
     "Popup Position": "彈窗位置"
   },
@@ -3668,6 +3752,9 @@
   "Precip": {
     "Precip": "降水"
   },
+  "Precipitation": {
+    "Precipitation": ""
+  },
   "Precipitation Chance": {
     "Precipitation Chance": "降水機率"
   },
@@ -3718,6 +3805,9 @@
   },
   "Printers: ": {
     "Printers: ": "印表機："
+  },
+  "Priority": {
+    "Priority": ""
   },
   "Privacy Indicator": {
     "Privacy Indicator": "隱私指示器"
@@ -3908,6 +3998,9 @@
   "Right-click bar widget to cycle": {
     "Right-click bar widget to cycle": "右鍵點擊長條小工具以循環"
   },
+  "Ripple Effects": {
+    "Ripple Effects": ""
+  },
   "Root Filesystem": {
     "Root Filesystem": "根檔案系統"
   },
@@ -4045,6 +4138,9 @@
   },
   "Search Options": {
     "Search Options": "搜尋選項"
+  },
+  "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
+    "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": ""
   },
   "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
     "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": "依按鍵組合、描述或動作名稱搜尋。\n\n預設動作會將快捷鍵複製到剪貼簿。\n右鍵點擊或按下右方向鍵可釘選常用快捷鍵 — 釘選後，它們會在未搜尋時顯示在頂部。"
@@ -4199,6 +4295,9 @@
   "Show": {
     "Show": "顯示"
   },
+  "Show 3rd Party": {
+    "Show 3rd Party": ""
+  },
   "Show All Tags": {
     "Show All Tags": "顯示所有標籤"
   },
@@ -4261,6 +4360,9 @@
   },
   "Show Log Out": {
     "Show Log Out": "顯示登出"
+  },
+  "Show Material Design ripple animations on interactive elements": {
+    "Show Material Design ripple animations on interactive elements": ""
   },
   "Show Memory": {
     "Show Memory": "顯示記憶體"
@@ -4369,6 +4471,9 @@
   },
   "Show on-screen display when idle inhibitor state changes": {
     "Show on-screen display when idle inhibitor state changes": "閒置抑制器狀態改變時顯示螢幕顯示"
+  },
+  "Show on-screen display when media player status changes": {
+    "Show on-screen display when media player status changes": ""
   },
   "Show on-screen display when media player volume changes": {
     "Show on-screen display when media player volume changes": "媒體播放器音量變化時顯示螢幕疊加"
@@ -4562,6 +4667,9 @@
   "Sync Mode with Portal": {
     "Sync Mode with Portal": "透過 Portal 同步主題模式"
   },
+  "Sync Popouts & Modals": {
+    "Sync Popouts & Modals": ""
+  },
   "Sync Position Across Screens": {
     "Sync Position Across Screens": "跨螢幕同步位置"
   },
@@ -4661,11 +4769,17 @@
   "Third-Party Plugin Warning": {
     "Third-Party Plugin Warning": "第三方插件警告"
   },
+  "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": {
+    "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": ""
+  },
   "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": {
     "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": "第三方插件由社群創建，不受 DankMaterialShell 官方支援。\\n\\n這些插件可能會帶來安全性和隱私風險 - 安裝後風險自負。"
   },
   "This bind is overridden by config.kdl": {
     "This bind is overridden by config.kdl": "此綁定已被 config.kdl 覆蓋"
+  },
+  "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": {
+    "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": ""
   },
   "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": {
     "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": "此部件可防止 GPU 電源關閉，這會嚴重影響筆記型電腦的電池續航時間。不建議在配備混合顯示卡的筆記型電腦上使用此功能。"
@@ -4844,6 +4958,9 @@
   "Unknown": {
     "Unknown": "未知"
   },
+  "Unknown Artist": {
+    "Unknown Artist": ""
+  },
   "Unknown Config": {
     "Unknown Config": "未知組態"
   },
@@ -4855,6 +4972,9 @@
   },
   "Unknown Network": {
     "Unknown Network": "未知網路"
+  },
+  "Unknown Title": {
+    "Unknown Title": ""
   },
   "Unnamed Rule": {
     "Unnamed Rule": "未命名規則"
@@ -5017,6 +5137,9 @@
   },
   "VRR": {
     "VRR": "VRR"
+  },
+  "VRR Fullscreen Only": {
+    "VRR Fullscreen Only": ""
   },
   "VRR On-Demand": {
     "VRR On-Demand": "VRR 隨選啟用"
@@ -5382,6 +5505,7 @@
     "dgop not available": "dgop 無法使用"
   },
   "dgop unavailable error message": {
+    "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "",
     "The 'dgop' tool is required for system monitoring.\\nPlease install dgop to use this feature.": "系統監控需要使用 'dgop' 工具。\n請安裝 dgop 以使用此功能。"
   },
   "disk io header in system monitor": {
@@ -5651,6 +5775,9 @@
     "Disabled": "已停用",
     "Full Content": "完整內容"
   },
+  "lock screen notification mode option | notification rule match field option": {
+    "App Names": ""
+  },
   "lock screen notification privacy setting": {
     "Control what notification information is shown on the lock screen": "控制鎖定畫面上顯示的通知資訊",
     "Notification Display": "通知顯示"
@@ -5757,6 +5884,30 @@
   },
   "notification history toggle label": {
     "Enable History": "啟用歷史記錄"
+  },
+  "notification rule action option": {
+    "Ignore Completely": "",
+    "Mute Popups": "",
+    "No History": "",
+    "Popup Only": ""
+  },
+  "notification rule action option | notification rule urgency option | widget style option": {
+    "Default": ""
+  },
+  "notification rule match field option": {
+    "Body": "",
+    "Desktop Entry": "",
+    "Summary": ""
+  },
+  "notification rule match type option": {
+    "Contains": "",
+    "Exact": "",
+    "Regex": ""
+  },
+  "notification rule urgency option": {
+    "Critical Priority": "",
+    "Low Priority": "",
+    "Normal Priority": ""
   },
   "now": {
     "now": "現在"
@@ -5910,6 +6061,9 @@
   },
   "uptime label in footer": {
     "Uptime:": "開機時間："
+  },
+  "v%1 by %2": {
+    "v%1 by %2": ""
   },
   "version requirement": {
     "Requires %1": "需要 %1"

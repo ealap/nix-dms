@@ -1,6 +1,6 @@
 {
   "%1 Animation Speed": {
-    "%1 Animation Speed": ""
+    "%1 Animation Speed": "%1 animatiesnelheid"
   },
   "%1 DMS bind(s) may be overridden by config binds that come after the include.": {
     "%1 DMS bind(s) may be overridden by config binds that come after the include.": "%1 DMS-bind(s) worden mogelijk overschreven door config-binds die na de include komen."
@@ -18,7 +18,7 @@
     "%1 connected": "%1 verbonden"
   },
   "%1 custom animation duration": {
-    "%1 custom animation duration": ""
+    "%1 custom animation duration": "%1 aangepaste animatieduur"
   },
   "%1 days ago": {
     "%1 days ago": "%1 dagen geleden"
@@ -192,7 +192,7 @@
     "Active": "Actief"
   },
   "Active Color": {
-    "Active Color": ""
+    "Active Color": "Actieve kleur"
   },
   "Active Lock Screen Monitor": {
     "Active Lock Screen Monitor": "Actief vergrendelscherm-beeldscherm"
@@ -241,6 +241,9 @@
   },
   "Adjust the number of columns in grid view mode.": {
     "Adjust the number of columns in grid view mode.": "Pas het aantal kolommen in rasterweergave aan."
+  },
+  "Adjust volume per scroll indent": {
+    "Adjust volume per scroll indent": ""
   },
   "Advanced": {
     "Advanced": "Geavanceerd"
@@ -293,6 +296,9 @@
   "Analog": {
     "Analog": "Analoog"
   },
+  "Animation Duration": {
+    "Animation Duration": ""
+  },
   "Animation Speed": {
     "Animation Speed": "Animatiesnelheid"
   },
@@ -339,7 +345,7 @@
     "Apps Dock": "Apps-dock"
   },
   "Apps Dock Settings": {
-    "Apps Dock Settings": ""
+    "Apps Dock Settings": "App-dockinstellingen"
   },
   "Apps Icon": {
     "Apps Icon": "Apps-pictogram"
@@ -381,30 +387,33 @@
     "Audio Visualizer": "Audiovisualisatie"
   },
   "Audio device rename dialog field label": {
-    "Custom Name": ""
+    "Custom Name": "Aangepaste naam"
   },
   "Audio device rename dialog hint": {
-    "Press Enter and the audio system will restart to apply the change": ""
+    "Press Enter and the audio system will restart to apply the change": "Druk op Enter om het audiosysteem te herstarten en de wijziging toe te passen"
   },
   "Audio device rename dialog placeholder": {
-    "Enter device name...": ""
+    "Enter device name...": "Voer apparaatnaam in..."
   },
   "Audio device rename dialog title": {
-    "Set Custom Device Name": ""
+    "Set Custom Device Name": "Aangepaste apparaatnaam instellen"
   },
   "Audio settings description": {
-    "Set custom names for your audio input devices": "",
-    "Set custom names for your audio output devices": ""
+    "Set custom names for your audio input devices": "Stel aangepaste namen in voor uw audio-invoerapparaten",
+    "Set custom names for your audio output devices": "Stel aangepaste namen in voor uw audio-uitvoerapparaten"
   },
   "Audio settings empty state": {
-    "No input devices found": "",
-    "No output devices found": ""
+    "No input devices found": "Geen invoerapparaten gevonden",
+    "No output devices found": "Geen uitvoerapparaten gevonden"
+  },
+  "Audio settings: maximum volume limit per device": {
+    "Max Volume": ""
   },
   "Audio settings: speaker/headphone devices": {
-    "Output Devices": ""
+    "Output Devices": "Uitvoerapparaten"
   },
   "Audio system restarted": {
-    "Audio system restarted": ""
+    "Audio system restarted": "Audiosysteem herstart"
   },
   "Audio volume control": {
     "Audio volume control": "Audio-volumeregeling"
@@ -498,6 +507,9 @@
   },
   "Automatically lock after": {
     "Automatically lock after": "Automatisch vergrendelen na"
+  },
+  "Automatically lock the screen when DMS starts": {
+    "Automatically lock the screen when DMS starts": ""
   },
   "Automatically lock the screen when the system prepares to suspend": {
     "Automatically lock the screen when the system prepares to suspend": "Het scherm automatisch vergrendelen wanneer het systeem in slaapstand gaat"
@@ -662,7 +674,7 @@
     "Browse or search plugins": "Plug-ins bladeren of zoeken"
   },
   "Button Color": {
-    "Button Color": ""
+    "Button Color": "Knopkleur"
   },
   "CPU": {
     "CPU": "CPU"
@@ -705,6 +717,9 @@
   },
   "Cancel": {
     "Cancel": "Annuleren"
+  },
+  "Cancel all jobs for \"%1\"?": {
+    "Cancel all jobs for \"%1\"?": ""
   },
   "Canceled": {
     "Canceled": "Geannuleerd"
@@ -917,7 +932,7 @@
     "Color displayed on monitors without the lock screen": "Kleur weergegeven op beeldschermen zonder vergrendelscherm"
   },
   "Color for primary action buttons": {
-    "Color for primary action buttons": ""
+    "Color for primary action buttons": "Kleur voor primaire actieknoppen"
   },
   "Color temperature for day time": {
     "Color temperature for day time": "Kleurtemperatuur voor overdag"
@@ -935,7 +950,7 @@
     "Colorful mix of bright contrasting accents.": "Kleurrijke mix van heldere contrasterende accenten."
   },
   "Colorize Active": {
-    "Colorize Active": ""
+    "Colorize Active": "Actieve items kleuren"
   },
   "Column": {
     "Column": "Kolom"
@@ -999,6 +1014,9 @@
   },
   "Configure match criteria and actions": {
     "Configure match criteria and actions": "Criteria en acties configureren"
+  },
+  "Configure which displays show \"%1": {
+    "Configure which displays show \"%1\"": ""
   },
   "Configure which displays show shell components": {
     "Configure which displays show shell components": "Configureer welke beeldschermen shell-onderdelen tonen"
@@ -1141,6 +1159,9 @@
   "Create rule for:": {
     "Create rule for:": "Regel aanmaken voor:"
   },
+  "Create rules to mute, ignore, hide from history, or override notification priority.": {
+    "Create rules to mute, ignore, hide from history, or override notification priority.": ""
+  },
   "Creating...": {
     "Creating...": "Aanmaken..."
   },
@@ -1255,6 +1276,9 @@
   "DWL service not available": {
     "DWL service not available": "DWL-service niet beschikbaar"
   },
+  "Daily": {
+    "Daily": ""
+  },
   "Daily Forecast": {
     "Daily Forecast": "Dagelijkse voorspelling"
   },
@@ -1321,6 +1345,9 @@
   "Delete": {
     "Delete": "Verwijderen"
   },
+  "Delete \"%1\"?": {
+    "Delete \"%1\"?": ""
+  },
   "Delete Class": {
     "Delete Class": "Klasse verwijderen"
   },
@@ -1332,6 +1359,12 @@
   },
   "Delete VPN": {
     "Delete VPN": "VPN verwijderen"
+  },
+  "Delete class \"%1\"?": {
+    "Delete class \"%1\"?": ""
+  },
+  "Delete profile \"%1\"?": {
+    "Delete profile \"%1\"?": ""
   },
   "Derives colors that closely match the underlying image.": {
     "Derives colors that closely match the underlying image.": "Leidt kleuren af die nauw aansluiten bij de onderliggende afbeelding."
@@ -1370,7 +1403,7 @@
     "Device connections": "Apparaatverbindingen"
   },
   "Device names updated": {
-    "Device names updated": ""
+    "Device names updated": "Apparaatnamen bijgewerkt"
   },
   "Device paired": {
     "Device paired": "Apparaat gekoppeld"
@@ -1523,13 +1556,13 @@
     "Door Open": "Deur open"
   },
   "Drag to Reorder": {
-    "Drag to Reorder": ""
+    "Drag to Reorder": "Sleep om te rangschikken"
   },
   "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": {
     "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": "Sleep widgets om ze te herschikken binnen secties. Gebruik het oog-pictogram om widgets te verbergen/tonen (behoudt tussenruimte), of X om ze volledig te verwijderen."
   },
   "Drag workspace indicators to reorder them": {
-    "Drag workspace indicators to reorder them": ""
+    "Drag workspace indicators to reorder them": "Sleep werkbladindicatoren om ze te rangschikken"
   },
   "Driver": {
     "Driver": "Stuurprogramma"
@@ -1588,6 +1621,9 @@
   "Enable Overview Overlay": {
     "Enable Overview Overlay": "Overzicht-overlay inschakelen"
   },
+  "Enable Ripple Effects": {
+    "Enable Ripple Effects": ""
+  },
   "Enable System Monitor": {
     "Enable System Monitor": "Systeemmonitor inschakelen"
   },
@@ -1640,10 +1676,10 @@
     "End": "Einde"
   },
   "Enlarge on Hover": {
-    "Enlarge on Hover": ""
+    "Enlarge on Hover": "Vergroten bij aanwijzen"
   },
   "Enlargement %": {
-    "Enlargement %": ""
+    "Enlargement %": "Vergroting %"
   },
   "Enter 6-digit passkey": {
     "Enter 6-digit passkey": "Voer 6-cijferige toegangscode in"
@@ -1844,7 +1880,7 @@
     "Failed to remove printer from class": "Verwijderen van printer uit klasse mislukt"
   },
   "Failed to restart audio system": {
-    "Failed to restart audio system": ""
+    "Failed to restart audio system": "Audiosysteem herstarten mislukt"
   },
   "Failed to restart job": {
     "Failed to restart job": "Herstarten van taak mislukt"
@@ -1853,7 +1889,7 @@
     "Failed to resume printer": "Hervatten van printer mislukt"
   },
   "Failed to save audio config": {
-    "Failed to save audio config": ""
+    "Failed to save audio config": "Audio-configuratie opslaan mislukt"
   },
   "Failed to save clipboard setting": {
     "Failed to save clipboard setting": "Opslaan van klembordinstelling mislukt"
@@ -1912,6 +1948,9 @@
   "Feels Like": {
     "Feels Like": "Gevoelstemperatuur"
   },
+  "Field": {
+    "Field": ""
+  },
   "File": {
     "File": "Bestand"
   },
@@ -1920,6 +1959,9 @@
   },
   "File Information": {
     "File Information": "Bestandsinformatie"
+  },
+  "File search requires dsearch\nInstall from github.com/morelazers/dsearch": {
+    "File search requires dsearch\nInstall from github.com/morelazers/dsearch": ""
   },
   "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": {
     "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": "Bestandszoeken vereist dsearch\\nInstalleer via github.com/morelazers/dsearch"
@@ -2026,6 +2068,9 @@
   "Forget": {
     "Forget": "Vergeten"
   },
+  "Forget \"%1\"?": {
+    "Forget \"%1\"?": ""
+  },
   "Forget Device": {
     "Forget Device": "Apparaat vergeten"
   },
@@ -2043,6 +2088,9 @@
   },
   "Fullscreen": {
     "Fullscreen": "Volledig scherm"
+  },
+  "Fullscreen Only": {
+    "Fullscreen Only": ""
   },
   "Fun": {
     "Fun": "Plezier"
@@ -2067,6 +2115,9 @@
   },
   "GitHub": {
     "GitHub": "GitHub"
+  },
+  "Globally scale all animation durations": {
+    "Globally scale all animation durations": ""
   },
   "Golden Hour": {
     "Golden Hour": "Gouden uur"
@@ -2167,6 +2218,9 @@
   "Hide": {
     "Hide": "Verbergen"
   },
+  "Hide 3rd Party": {
+    "Hide 3rd Party": ""
+  },
   "Hide App": {
     "Hide App": "App verbergen"
   },
@@ -2174,7 +2228,7 @@
     "Hide Delay": "Verbergvertraging"
   },
   "Hide Indicators": {
-    "Hide Indicators": ""
+    "Hide Indicators": "Indicatoren verbergen"
   },
   "Hide When Typing": {
     "Hide When Typing": "Verbergen tijdens typen"
@@ -2230,6 +2284,9 @@
   "Hour": {
     "Hour": "Uur"
   },
+  "Hourly": {
+    "Hourly": ""
+  },
   "Hourly Forecast": {
     "Hourly Forecast": "Voorspelling per uur"
   },
@@ -2264,7 +2321,7 @@
     "Icon Size": "Pictogramgrootte"
   },
   "Icon Size %": {
-    "Icon Size %": ""
+    "Icon Size %": "Pictogramgrootte %"
   },
   "Icon Theme": {
     "Icon Theme": "Pictogramthema"
@@ -2324,7 +2381,7 @@
     "Inherit": "Overnemen"
   },
   "Inhibitable": {
-    "Inhibitable": ""
+    "Inhibitable": "Onderdrukbaar"
   },
   "Input Devices": {
     "Input Devices": "Invoerapparaten"
@@ -2680,10 +2737,10 @@
     "Loading keybinds...": "Sneltoetsen laden..."
   },
   "Loading overlay subtitle": {
-    "This may take a few seconds": ""
+    "This may take a few seconds": "Dit kan enkele seconden duren"
   },
   "Loading overlay while WirePlumber restarts": {
-    "Restarting audio system...": ""
+    "Restarting audio system...": "Audiosysteem herstarten..."
   },
   "Loading plugins...": {
     "Loading plugins...": "Plug-ins laden..."
@@ -2720,6 +2777,9 @@
   },
   "Lock Screen layout": {
     "Lock Screen layout": "Indeling vergrendelscherm"
+  },
+  "Lock at startup": {
+    "Lock at startup": ""
   },
   "Lock before suspend": {
     "Lock before suspend": "Vergrendelen voor opschorten"
@@ -2883,6 +2943,9 @@
   "Media Needed": {
     "Media Needed": "Media nodig"
   },
+  "Media Playback": {
+    "Media Playback": ""
+  },
   "Media Player": {
     "Media Player": "Mediaspeler"
   },
@@ -2947,7 +3010,7 @@
     "Modal Background": "Modale achtergrond"
   },
   "Modals": {
-    "Modals": ""
+    "Modals": "Modale vensters"
   },
   "Mode": {
     "Mode": "Modus"
@@ -3147,6 +3210,9 @@
   "No apps found": {
     "No apps found": "Geen apps gevonden"
   },
+  "No apps have been launched yet.": {
+    "No apps have been launched yet.": ""
+  },
   "No battery": {
     "No battery": "Geen batterij"
   },
@@ -3231,6 +3297,12 @@
   "No variants created. Click Add to create a new monitor widget.": {
     "No variants created. Click Add to create a new monitor widget.": "Geen varianten aangemaakt. Klik op Toevoegen om een nieuwe monitorwidget te maken."
   },
+  "No wallpapers found\n\nClick the folder icon below to browse": {
+    "No wallpapers found\n\nClick the folder icon below to browse": ""
+  },
+  "No widgets added. Click \"Add Widget\" to get started.": {
+    "No widgets added. Click \"Add Widget\" to get started.": ""
+  },
   "No widgets available": {
     "No widgets available": "Geen widgets beschikbaar"
   },
@@ -3285,6 +3357,9 @@
   "Notification Popups": {
     "Notification Popups": "Meldingen-popups"
   },
+  "Notification Rules": {
+    "Notification Rules": ""
+  },
   "Notification Settings": {
     "Notification Settings": "Meldinginstellingen"
   },
@@ -3318,6 +3393,12 @@
   "Offline Report": {
     "Offline Report": "Offline-rapport"
   },
+  "On": {
+    "On": ""
+  },
+  "On-Demand": {
+    "On-Demand": ""
+  },
   "On-Screen Displays": {
     "On-Screen Displays": "On-screen displays"
   },
@@ -3346,7 +3427,7 @@
     "Open Notepad File": "Kladblok-bestand openen"
   },
   "Open a new note": {
-    "Open a new note": ""
+    "Open a new note": "Een nieuwe notitie openen"
   },
   "Open folder": {
     "Open folder": "Map openen"
@@ -3537,7 +3618,7 @@
     "Ping sent to": "Ping verzonden naar"
   },
   "Phone Connect refresh tooltip": {
-    "Refresh": ""
+    "Refresh": "Verversen"
   },
   "Phone Connect service unavailable message": {
     "Phone Connect unavailable": "Phone Connect niet beschikbaar"
@@ -3615,7 +3696,10 @@
     "Pointer": "Aanwijzer"
   },
   "Popouts": {
-    "Popouts": ""
+    "Popouts": "Pop-outs"
+  },
+  "Popouts and Modals follow global Animation Speed (disable to customize independently)": {
+    "Popouts and Modals follow global Animation Speed (disable to customize independently)": ""
   },
   "Popup Position": {
     "Popup Position": "Popup-positie"
@@ -3668,6 +3752,9 @@
   "Precip": {
     "Precip": "Neerslag"
   },
+  "Precipitation": {
+    "Precipitation": ""
+  },
   "Precipitation Chance": {
     "Precipitation Chance": "Neerslagkans"
   },
@@ -3718,6 +3805,9 @@
   },
   "Printers: ": {
     "Printers: ": "Printers: "
+  },
+  "Priority": {
+    "Priority": ""
   },
   "Privacy Indicator": {
     "Privacy Indicator": "Privacy-indicator"
@@ -3864,7 +3954,7 @@
     "Reset Size": "Grootte herstellen"
   },
   "Reset to default name": {
-    "Reset to default name": ""
+    "Reset to default name": "Terugzetten naar standaardnaam"
   },
   "Resize Widget": {
     "Resize Widget": "Widgetgrootte wijzigen"
@@ -3907,6 +3997,9 @@
   },
   "Right-click bar widget to cycle": {
     "Right-click bar widget to cycle": "Klik rechts op de widget in de balk om te wisselen"
+  },
+  "Ripple Effects": {
+    "Ripple Effects": ""
   },
   "Root Filesystem": {
     "Root Filesystem": "Root-bestandssysteem"
@@ -3951,10 +4044,10 @@
     "Running Apps Settings": "Instellingen actieve apps"
   },
   "Running apps filter: only show apps from the active workspace": {
-    "Current Workspace": ""
+    "Current Workspace": "Huidig werkblad"
   },
   "Running apps filter: only show apps from the same monitor": {
-    "Current Monitor": ""
+    "Current Monitor": "Huidige monitor"
   },
   "SDR Brightness": {
     "SDR Brightness": "SDR-helderheid"
@@ -3981,7 +4074,7 @@
     "Saved Configurations": "Opgeslagen configuraties"
   },
   "Saved Note": {
-    "Saved Note": ""
+    "Saved Note": "Opgeslagen notitie"
   },
   "Saved item deleted": {
     "Saved item deleted": "Opgeslagen item verwijderd"
@@ -4045,6 +4138,9 @@
   },
   "Search Options": {
     "Search Options": "Zoekopties"
+  },
+  "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
+    "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": ""
   },
   "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
     "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": "Zoeken op toetscombinatie, beschrijving of actienaam.\\n\\nStandaardactie kopieert de sneltoets naar klembord.\\nKlik rechts of druk op Pijl Rechts om veelgebruikte sneltoetsen vast te maken - ze verschijnen bovenaan wanneer niet wordt gezocht."
@@ -4158,7 +4254,7 @@
     "Server": "Server"
   },
   "Set custom name": {
-    "Set custom name": ""
+    "Set custom name": "Aangepaste naam instellen"
   },
   "Set different wallpapers for each connected monitor": {
     "Set different wallpapers for each connected monitor": "Stel verschillende achtergronden in voor elk aangesloten beeldscherm"
@@ -4198,6 +4294,9 @@
   },
   "Show": {
     "Show": "Tonen"
+  },
+  "Show 3rd Party": {
+    "Show 3rd Party": ""
   },
   "Show All Tags": {
     "Show All Tags": "Alle tags tonen"
@@ -4262,6 +4361,9 @@
   "Show Log Out": {
     "Show Log Out": "Afmelden tonen"
   },
+  "Show Material Design ripple animations on interactive elements": {
+    "Show Material Design ripple animations on interactive elements": ""
+  },
   "Show Memory": {
     "Show Memory": "Geheugen tonen"
   },
@@ -4296,7 +4398,7 @@
     "Show Restart DMS": "DMS herstarten tonen"
   },
   "Show Saved Items": {
-    "Show Saved Items": ""
+    "Show Saved Items": "Toon opgeslagen items"
   },
   "Show Seconds": {
     "Show Seconds": "Seconden tonen"
@@ -4370,6 +4472,9 @@
   "Show on-screen display when idle inhibitor state changes": {
     "Show on-screen display when idle inhibitor state changes": "On-screen display tonen wanneer status inactiviteitspreventie wijzigt"
   },
+  "Show on-screen display when media player status changes": {
+    "Show on-screen display when media player status changes": ""
+  },
   "Show on-screen display when media player volume changes": {
     "Show on-screen display when media player volume changes": "On-screen display tonen wanneer volume mediaspeler wijzigt"
   },
@@ -4410,7 +4515,7 @@
     "Shows current workspace and allows switching": "Toont huidig werkblad en maakt wisselen mogelijk"
   },
   "Shows the original device name before renaming": {
-    "Original: %1": ""
+    "Original: %1": "Origineel: %1"
   },
   "Shows when caps lock is active": {
     "Shows when caps lock is active": "Toont wanneer Caps Lock actief is"
@@ -4440,7 +4545,7 @@
     "Sizing": "Formaat"
   },
   "Skip confirmation": {
-    "Skip confirmation": ""
+    "Skip confirmation": "Bevestiging overslaan"
   },
   "Small": {
     "Small": "Klein"
@@ -4562,6 +4667,9 @@
   "Sync Mode with Portal": {
     "Sync Mode with Portal": "Modus synchroniseren met portaal"
   },
+  "Sync Popouts & Modals": {
+    "Sync Popouts & Modals": ""
+  },
   "Sync Position Across Screens": {
     "Sync Position Across Screens": "Positie synchroniseren over schermen"
   },
@@ -4661,11 +4769,17 @@
   "Third-Party Plugin Warning": {
     "Third-Party Plugin Warning": "Waarschuwing plug-ins van derden"
   },
+  "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": {
+    "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": ""
+  },
   "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": {
     "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": "Plug-ins van derden worden gemaakt door de community en worden niet officieel ondersteund door DankMaterialShell.\\n\\nDeze plug-ins kunnen veiligheids- en privacyrisico's met zich meebrengen - installatie op eigen risico."
   },
   "This bind is overridden by config.kdl": {
     "This bind is overridden by config.kdl": "Deze bind wordt overschreven door config.kdl"
+  },
+  "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": {
+    "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": ""
   },
   "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": {
     "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": "Deze widget voorkomt dat de GPU wordt uitgeschakeld, wat de batterijduur op laptops aanzienlijk kan beïnvloeden. Het wordt niet aanbevolen dit te gebruiken op laptops met hybride graphics."
@@ -4844,6 +4958,9 @@
   "Unknown": {
     "Unknown": "Onbekend"
   },
+  "Unknown Artist": {
+    "Unknown Artist": ""
+  },
   "Unknown Config": {
     "Unknown Config": "Onbekende configuratie"
   },
@@ -4855,6 +4972,9 @@
   },
   "Unknown Network": {
     "Unknown Network": "Onbekend netwerk"
+  },
+  "Unknown Title": {
+    "Unknown Title": ""
   },
   "Unnamed Rule": {
     "Unnamed Rule": "Naamloze regel"
@@ -5018,6 +5138,9 @@
   "VRR": {
     "VRR": "VRR"
   },
+  "VRR Fullscreen Only": {
+    "VRR Fullscreen Only": ""
+  },
   "VRR On-Demand": {
     "VRR On-Demand": "VRR op aanvraag"
   },
@@ -5058,7 +5181,7 @@
     "Visibility": "Zichtbaarheid"
   },
   "Visual Effects": {
-    "Visual Effects": ""
+    "Visual Effects": "Visuele effecten"
   },
   "Visual divider between widgets": {
     "Visual divider between widgets": "Visuele scheiding tussen widgets"
@@ -5109,7 +5232,7 @@
     "When enabled, apps are sorted alphabetically. When disabled, apps are sorted by usage frequency.": "Indien ingeschakeld, worden apps alfabetisch gesorteerd. Indien uitgeschakeld, worden apps gesorteerd op gebruiksfrequentie."
   },
   "When locked": {
-    "When locked": ""
+    "When locked": "Indien vergrendeld"
   },
   "When updater widget is used, then hide it if no update found": {
     "Hide Updater Widget": "Updater-widget verbergen",
@@ -5324,14 +5447,14 @@
     "Browse Themes": "Thema's doorbladeren"
   },
   "button color option | color option | primary color | tile color option": {
-    "Primary": ""
+    "Primary": "Primair"
   },
   "button color option | color option | secondary color | tile color option": {
-    "Secondary": ""
+    "Secondary": "Secundair"
   },
   "button color option | tile color option": {
-    "Primary Container": "",
-    "Surface Variant": ""
+    "Primary Container": "Primaire container",
+    "Surface Variant": "Oppervlakvariant"
   },
   "catppuccin theme description": {
     "Soothing pastel theme based on Catppuccin": "Rustgevend pastelthema gebaseerd op Catppuccin"
@@ -5382,6 +5505,7 @@
     "dgop not available": "dgop niet beschikbaar"
   },
   "dgop unavailable error message": {
+    "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "",
     "The 'dgop' tool is required for system monitoring.\\nPlease install dgop to use this feature.": "De 'dgop'-tool is vereist voor systeembewaking.\nInstalleer dgop om deze functie te gebruiken."
   },
   "disk io header in system monitor": {
@@ -5455,7 +5579,7 @@
     "Unknown GPU": "Onbekende GPU"
   },
   "featured": {
-    "featured": ""
+    "featured": "uitgelicht"
   },
   "files": {
     "files": "bestanden"
@@ -5651,6 +5775,9 @@
     "Disabled": "Uitgeschakeld",
     "Full Content": "Volledige inhoud"
   },
+  "lock screen notification mode option | notification rule match field option": {
+    "App Names": ""
+  },
   "lock screen notification privacy setting": {
     "Control what notification information is shown on the lock screen": "Bepaal welke meldinginformatie op het vergrendelscherm wordt getoond",
     "Notification Display": "Meldingweergave"
@@ -5699,7 +5826,7 @@
     "nav": "navigatie"
   },
   "network status": {
-    "Connected": "",
+    "Connected": "Verbonden",
     "Disabling WiFi...": "Wifi uitschakelen...",
     "Enabling WiFi...": "Wifi inschakelen...",
     "Ethernet": "Ethernet",
@@ -5757,6 +5884,30 @@
   },
   "notification history toggle label": {
     "Enable History": "Geschiedenis inschakelen"
+  },
+  "notification rule action option": {
+    "Ignore Completely": "",
+    "Mute Popups": "",
+    "No History": "",
+    "Popup Only": ""
+  },
+  "notification rule action option | notification rule urgency option | widget style option": {
+    "Default": ""
+  },
+  "notification rule match field option": {
+    "Body": "",
+    "Desktop Entry": "",
+    "Summary": ""
+  },
+  "notification rule match type option": {
+    "Contains": "",
+    "Exact": "",
+    "Regex": ""
+  },
+  "notification rule urgency option": {
+    "Critical Priority": "",
+    "Low Priority": "",
+    "Normal Priority": ""
   },
   "now": {
     "now": "nu"
@@ -5910,6 +6061,9 @@
   },
   "uptime label in footer": {
     "Uptime:": "Uptime:"
+  },
+  "v%1 by %2": {
+    "v%1 by %2": ""
   },
   "version requirement": {
     "Requires %1": "Vereist %1"

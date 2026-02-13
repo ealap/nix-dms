@@ -346,6 +346,8 @@ Item {
                             font.pixelSize: Theme.fontSizeMedium
                             font.weight: Font.Medium
                             color: Theme.warning
+                            width: parent.width
+                            horizontalAlignment: Text.AlignLeft
                         }
 
                         StyledText {
@@ -355,6 +357,7 @@ Item {
                             color: Theme.surfaceVariantText
                             wrapMode: Text.WordWrap
                             width: parent.width
+                            horizontalAlignment: Text.AlignLeft
                         }
                     }
 

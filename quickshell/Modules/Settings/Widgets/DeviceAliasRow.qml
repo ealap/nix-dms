@@ -1,13 +1,15 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
-import QtQuick.Controls
 import qs.Common
 import qs.Services
 import qs.Widgets
 
 Rectangle {
     id: root
+
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
 
     required property var deviceNode
     property string deviceType: "output"
@@ -51,6 +53,7 @@ Rectangle {
                 color: Theme.surfaceText
                 width: parent.width
                 elide: Text.ElideRight
+                horizontalAlignment: Text.AlignLeft
             }
 
             Column {
@@ -68,6 +71,7 @@ Rectangle {
                         width: parent.width - (customAliasLabel.visible ? customAliasLabel.width + Theme.spacingS : 0)
                         elide: Text.ElideRight
                         anchors.verticalCenter: parent.verticalCenter
+                        horizontalAlignment: Text.AlignLeft
                     }
 
                     Rectangle {
@@ -98,6 +102,7 @@ Rectangle {
                     width: parent.width
                     elide: Text.ElideRight
                     opacity: 0.6
+                    horizontalAlignment: Text.AlignLeft
                 }
             }
         }

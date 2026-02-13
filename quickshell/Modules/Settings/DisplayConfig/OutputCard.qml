@@ -6,6 +6,9 @@ import qs.Widgets
 StyledRect {
     id: root
 
+    LayoutMirroring.enabled: I18n.isRtl
+    LayoutMirroring.childrenInherit: true
+
     required property string outputName
     required property var outputData
     property bool isConnected: outputData?.connected ?? false
@@ -44,12 +47,16 @@ StyledRect {
                     font.pixelSize: Theme.fontSizeMedium
                     font.weight: Font.Medium
                     color: root.isConnected ? Theme.surfaceText : Theme.surfaceVariantText
+                    width: parent.width
+                    horizontalAlignment: Text.AlignLeft
                 }
 
                 StyledText {
                     text: (root.outputData?.model ?? "") + (root.outputData?.make ? " - " + root.outputData.make : "")
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.surfaceVariantText
+                    width: parent.width
+                    horizontalAlignment: Text.AlignLeft
                 }
             }
 
@@ -131,6 +138,7 @@ StyledRect {
             color: Theme.surfaceVariantText
             wrapMode: Text.WordWrap
             width: parent.width
+            horizontalAlignment: Text.AlignLeft
         }
 
         Row {
@@ -146,6 +154,8 @@ StyledRect {
                     text: I18n.tr("Scale")
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.surfaceVariantText
+                    width: parent.width
+                    horizontalAlignment: Text.AlignLeft
                 }
 
                 Item {
@@ -230,6 +240,8 @@ StyledRect {
                     text: I18n.tr("Transform")
                     font.pixelSize: Theme.fontSizeSmall
                     color: Theme.surfaceVariantText
+                    width: parent.width
+                    horizontalAlignment: Text.AlignLeft
                 }
 
                 DankDropdown {
@@ -264,7 +276,6 @@ StyledRect {
         DankDropdown {
             width: parent.width
             text: I18n.tr("Variable Refresh Rate")
-            addHorizontalPadding: true
             visible: root.isConnected && CompositorService.isHyprland && (DisplayConfigState.outputs[root.outputName]?.vrr_supported ?? false)
             options: [I18n.tr("Off"), I18n.tr("On"), I18n.tr("Fullscreen Only")]
             currentValue: {
@@ -288,7 +299,6 @@ StyledRect {
         DankDropdown {
             width: parent.width
             text: I18n.tr("Variable Refresh Rate")
-            addHorizontalPadding: true
             visible: root.isConnected && CompositorService.isNiri && (DisplayConfigState.outputs[root.outputName]?.vrr_supported ?? false)
             options: [I18n.tr("Off"), I18n.tr("On"), I18n.tr("On-Demand")]
             currentValue: {

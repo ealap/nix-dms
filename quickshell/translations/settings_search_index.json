@@ -3850,6 +3850,33 @@
     "description": "Automatically lock the screen when DMS starts"
   },
   {
+    "section": "lockScreenNotificationMode",
+    "label": "Notification Display",
+    "tabIndex": 11,
+    "category": "Lock Screen",
+    "keywords": [
+      "alert",
+      "control",
+      "display",
+      "information",
+      "lock",
+      "lockscreen",
+      "login",
+      "monitor",
+      "notif",
+      "notification",
+      "notifications",
+      "output",
+      "password",
+      "privacy",
+      "screen",
+      "security",
+      "shown",
+      "what"
+    ],
+    "description": "Control what notification information is shown on the lock screen"
+  },
+  {
     "section": "_tab_11",
     "label": "Power & Security",
     "tabIndex": 11,
@@ -4896,35 +4923,6 @@
     "description": "Timeout for normal priority notifications"
   },
   {
-    "section": "lockScreenNotificationMode",
-    "label": "Notification Display",
-    "tabIndex": 17,
-    "category": "Notifications",
-    "keywords": [
-      "alert",
-      "alerts",
-      "control",
-      "display",
-      "information",
-      "lock",
-      "lockscreen",
-      "login",
-      "messages",
-      "monitor",
-      "notif",
-      "notification",
-      "notifications",
-      "output",
-      "privacy",
-      "screen",
-      "security",
-      "shown",
-      "toast",
-      "what"
-    ],
-    "description": "Control what notification information is shown on the lock screen"
-  },
-  {
     "section": "notificationOverlayEnabled",
     "label": "Notification Overlay",
     "tabIndex": 17,
@@ -4974,6 +4972,28 @@
     ],
     "icon": "notifications",
     "description": "Choose where notification popups appear on screen"
+  },
+  {
+    "section": "notificationRules",
+    "label": "Notification Rules",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alert",
+      "alerts",
+      "history",
+      "ignore",
+      "messages",
+      "mute",
+      "notif",
+      "notification",
+      "notifications",
+      "priority",
+      "regex",
+      "rules",
+      "toast"
+    ],
+    "icon": "rule_settings"
   },
   {
     "section": "notificationTimeouts",

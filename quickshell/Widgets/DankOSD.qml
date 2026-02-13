@@ -105,7 +105,7 @@ PanelWindow {
     }
 
     readonly property real dockOffset: {
-        if (!SettingsData.showDock || SettingsData.dockAutoHide)
+        if (!SettingsData.showDock || SettingsData.dockAutoHide || SettingsData.dockSmartAutoHide)
             return 0;
         return dockThickness + SettingsData.dockSpacing + SettingsData.dockBottomGap + SettingsData.dockMargin;
     }

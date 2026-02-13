@@ -191,6 +191,11 @@ jobs:
           git fetch origin --force tag ${TAG}
           git checkout ${TAG}
 
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: ./core/go.mod
+
       - name: Download core artifacts
         uses: actions/download-artifact@v4
         with:
@@ -229,6 +234,7 @@ jobs:
           - **`dms-distropkg-arm64.gz`** - DMS CLI binary built with distro_package tag for ARM64 systems
           - **`dankinstall-amd64.gz`** - Installer binary for x86_64 systems
           - **`dankinstall-arm64.gz`** - Installer binary for ARM64 systems
+          - **`dms-cli-<version>.tar.gz`** - Go source code with vendored modules (for distro packaging)
           - **`dms-qml.tar.gz`** - QML source code only
 
           ### Checksums
@@ -386,6 +392,19 @@ jobs:
             # Cleanup
             rm -rf _temp_full
           done
+
+      - name: Generate vendored source tarball
+        run: |
+          set -euxo pipefail
+          VERSION_NUM=${TAG#v}
+          cd core
+          go mod vendor
+          cd ..
+          tar czf "_release_assets/dms-cli-${VERSION_NUM}.tar.gz" \
+            --transform "s,^core/,dms-cli-${VERSION_NUM}/," \
+            --exclude='core/.git' \
+            core/
+          (cd _release_assets && sha256sum "dms-cli-${VERSION_NUM}.tar.gz" > "dms-cli-${VERSION_NUM}.tar.gz.sha256")
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

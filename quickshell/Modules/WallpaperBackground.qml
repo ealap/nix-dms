@@ -71,7 +71,7 @@ Variants {
             }
 
             property real transitionProgress: 0
-            property real shaderFillMode: getFillMode(SettingsData.wallpaperFillMode)
+            property real shaderFillMode: getFillMode(SessionData.getMonitorWallpaperFillMode(modelData.name))
             property vector4d fillColor: Qt.vector4d(0, 0, 0, 1)
             property real edgeSmoothness: 0.1
 
@@ -236,7 +236,7 @@ Variants {
                 smooth: true
                 cache: true
                 sourceSize: Qt.size(root.textureWidth, root.textureHeight)
-                fillMode: root.getFillMode(SettingsData.wallpaperFillMode)
+                fillMode: root.getFillMode(SessionData.getMonitorWallpaperFillMode(modelData.name))
             }
 
             Image {
@@ -249,7 +249,7 @@ Variants {
                 smooth: true
                 cache: true
                 sourceSize: Qt.size(root.textureWidth, root.textureHeight)
-                fillMode: root.getFillMode(SettingsData.wallpaperFillMode)
+                fillMode: root.getFillMode(SessionData.getMonitorWallpaperFillMode(modelData.name))
 
                 onStatusChanged: {
                     if (status !== Image.Ready)

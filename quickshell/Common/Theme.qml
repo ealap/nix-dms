@@ -45,11 +45,12 @@ Singleton {
         if (typeof SessionData === "undefined")
             return "";
 
+        var monitors = SessionData.monitorWallpapers;
         if (SessionData.perMonitorWallpaper) {
             var screens = Quickshell.screens;
             if (screens.length > 0) {
-                var firstMonitorWallpaper = SessionData.getMonitorWallpaper(screens[0].name);
-                return firstMonitorWallpaper || SessionData.wallpaperPath;
+                var s = screens[0];
+                return monitors[s.name] || (s.model ? monitors[s.model] : "") || SessionData.wallpaperPath;
             }
         }
 
@@ -59,6 +60,7 @@ Singleton {
         if (typeof SessionData === "undefined")
             return "";
 
+        var monitors = SessionData.monitorWallpapers;
         if (SessionData.perMonitorWallpaper) {
             var screens = Quickshell.screens;
             if (screens.length > 0) {
@@ -72,12 +74,20 @@ Singleton {
                     }
                 }
 
-                if (!targetMonitorExists) {
+                if (!targetMonitorExists)
                     targetMonitor = screens[0].name;
+
+                var s = null;
+                for (var j = 0; j < screens.length; j++) {
+                    if (screens[j].name === targetMonitor) {
+                        s = screens[j];
+                        break;
+                    }
                 }
 
-                var targetMonitorWallpaper = SessionData.getMonitorWallpaper(targetMonitor);
-                return targetMonitorWallpaper || SessionData.wallpaperPath;
+                if (s)
+                    return monitors[s.name] || (s.model ? monitors[s.model] : "") || SessionData.wallpaperPath;
+                return monitors[targetMonitor] || SessionData.wallpaperPath;
             }
         }
 

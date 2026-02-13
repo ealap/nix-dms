@@ -18,6 +18,26 @@ Item {
         var screens = Quickshell.screens;
         return screens.length > 0 ? screens[0].name : "";
     }
+    property string currentWallpaper: {
+        if (!SessionData.perMonitorWallpaper)
+            return SessionData.wallpaperPath;
+        var map = SessionData.monitorWallpapers;
+        var screens = Quickshell.screens;
+        for (var i = 0; i < screens.length; i++) {
+            if (screens[i].name !== selectedMonitorName)
+                continue;
+            var screen = screens[i];
+            if (map[screen.name] !== undefined)
+                return map[screen.name];
+            if (screen.model && map[screen.model] !== undefined)
+                return map[screen.model];
+            var displayName = SettingsData.getScreenDisplayName(screen);
+            if (displayName && map[displayName] !== undefined)
+                return map[displayName];
+            break;
+        }
+        return SessionData.wallpaperPath;
+    }
 
     Component.onCompleted: {
         WallpaperCyclingService.cyclingActive;
@@ -55,19 +75,22 @@ Item {
                         radius: Theme.cornerRadius
                         color: Theme.surfaceVariant
 
-                        CachingImage {
+                        Image {
                             anchors.fill: parent
                             anchors.margins: 1
-                            imagePath: {
-                                var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                                return (currentWallpaper !== "" && !currentWallpaper.startsWith("#")) ? currentWallpaper : "";
+                            source: {
+                                var wp = root.currentWallpaper;
+                                if (wp === "" || wp.startsWith("#"))
+                                    return "";
+                                if (wp.startsWith("file://"))
+                                    wp = wp.substring(7);
+                                return "file://" + wp.split('/').map(s => encodeURIComponent(s)).join('/');
                             }
                             fillMode: Image.PreserveAspectCrop
-                            visible: {
-                                var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                                return currentWallpaper !== "" && !currentWallpaper.startsWith("#");
-                            }
-                            maxCacheSize: 160
+                            visible: root.currentWallpaper !== "" && !root.currentWallpaper.startsWith("#")
+                            sourceSize.width: 160
+                            sourceSize.height: 160
+                            asynchronous: true
                             layer.enabled: true
                             layer.effect: MultiEffect {
                                 maskEnabled: true
@@ -81,14 +104,8 @@ Item {
                             anchors.fill: parent
                             anchors.margins: 1
                             radius: Theme.cornerRadius - 1
-                            color: {
-                                var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                                return currentWallpaper.startsWith("#") ? currentWallpaper : "transparent";
-                            }
-                            visible: {
-                                var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                                return currentWallpaper !== "" && currentWallpaper.startsWith("#");
-                            }
+                            color: root.currentWallpaper.startsWith("#") ? root.currentWallpaper : "transparent"
+                            visible: root.currentWallpaper !== "" && root.currentWallpaper.startsWith("#")
                         }
 
                         Rectangle {
@@ -106,10 +123,7 @@ Item {
                             name: "image"
                             size: Theme.iconSizeLarge + 8
                             color: Theme.surfaceVariantText
-                            visible: {
-                                var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                                return currentWallpaper === "";
-                            }
+                            visible: root.currentWallpaper === ""
                         }
 
                         Rectangle {
@@ -162,8 +176,7 @@ Item {
                                         onClicked: {
                                             if (!PopoutService.colorPickerModal)
                                                 return;
-                                            var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                                            PopoutService.colorPickerModal.selectedColor = currentWallpaper.startsWith("#") ? currentWallpaper : Theme.primary;
+                                            PopoutService.colorPickerModal.selectedColor = root.currentWallpaper.startsWith("#") ? root.currentWallpaper : Theme.primary;
                                             PopoutService.colorPickerModal.pickerTitle = "Choose Wallpaper Color";
                                             PopoutService.colorPickerModal.onColorSelectedCallback = function (selectedColor) {
                                                 if (SessionData.perMonitorWallpaper) {
@@ -182,10 +195,7 @@ Item {
                                     height: 32
                                     radius: 16
                                     color: Qt.rgba(255, 255, 255, 0.9)
-                                    visible: {
-                                        var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                                        return currentWallpaper !== "";
-                                    }
+                                    visible: root.currentWallpaper !== ""
 
                                     DankIcon {
                                         anchors.centerIn: parent
@@ -227,10 +237,7 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter
 
                         StyledText {
-                            text: {
-                                var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                                return currentWallpaper ? currentWallpaper.split('/').pop() : "No wallpaper selected";
-                            }
+                            text: root.currentWallpaper ? root.currentWallpaper.split('/').pop() : "No wallpaper selected"
                             font.pixelSize: Theme.fontSizeLarge
                             color: Theme.surfaceText
                             elide: Text.ElideMiddle
@@ -240,39 +247,27 @@ Item {
                         }
 
                         StyledText {
-                            text: {
-                                var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                                return currentWallpaper ? currentWallpaper : "";
-                            }
+                            text: root.currentWallpaper
                             font.pixelSize: Theme.fontSizeSmall
                             color: Theme.surfaceVariantText
                             elide: Text.ElideMiddle
                             maximumLineCount: 1
                             width: parent.width
                             horizontalAlignment: Text.AlignLeft
-                            visible: {
-                                var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                                return currentWallpaper !== "";
-                            }
+                            visible: root.currentWallpaper !== ""
                         }
 
                         Row {
                             anchors.left: parent.left
                             spacing: Theme.spacingS
                             layoutDirection: I18n.isRtl ? Qt.RightToLeft : Qt.LeftToRight
-                            visible: {
-                                var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                                return currentWallpaper !== "";
-                            }
+                            visible: root.currentWallpaper !== ""
 
                             DankActionButton {
                                 buttonSize: 32
                                 iconName: "skip_previous"
                                 iconSize: Theme.iconSizeSmall
-                                enabled: {
-                                    var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                                    return currentWallpaper && !currentWallpaper.startsWith("#") && !currentWallpaper.startsWith("we");
-                                }
+                                enabled: root.currentWallpaper && !root.currentWallpaper.startsWith("#") && !root.currentWallpaper.startsWith("we")
                                 opacity: enabled ? 1 : 0.5
                                 backgroundColor: Theme.surfaceContainerHigh
                                 iconColor: Theme.surfaceText
@@ -289,10 +284,7 @@ Item {
                                 buttonSize: 32
                                 iconName: "skip_next"
                                 iconSize: Theme.iconSizeSmall
-                                enabled: {
-                                    var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                                    return currentWallpaper && !currentWallpaper.startsWith("#") && !currentWallpaper.startsWith("we");
-                                }
+                                enabled: root.currentWallpaper && !root.currentWallpaper.startsWith("#") && !root.currentWallpaper.startsWith("we")
                                 opacity: enabled ? 1 : 0.5
                                 backgroundColor: Theme.surfaceContainerHigh
                                 iconColor: Theme.surfaceText
@@ -311,10 +303,7 @@ Item {
                 Item {
                     width: parent.width
                     height: fillModeGroup.height
-                    visible: {
-                        var currentWallpaper = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaper(selectedMonitorName) : SessionData.wallpaperPath;
-                        return currentWallpaper !== "" && !currentWallpaper.startsWith("#");
-                    }
+                    visible: root.currentWallpaper !== "" && !root.currentWallpaper.startsWith("#")
 
                     DankButtonGroup {
                         id: fillModeGroup
@@ -329,18 +318,37 @@ Item {
                         textSize: Theme.fontSizeSmall
                         checkEnabled: false
                         currentIndex: {
-                            return internalModes.indexOf(SettingsData.wallpaperFillMode);
+                            var mode = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaperFillMode(selectedMonitorName) : SettingsData.wallpaperFillMode;
+                            return internalModes.indexOf(mode);
                         }
                         onSelectionChanged: (index, selected) => {
                             if (!selected)
                                 return;
-                            SettingsData.set("wallpaperFillMode", internalModes[index]);
+                            if (SessionData.perMonitorWallpaper) {
+                                SessionData.setMonitorWallpaperFillMode(selectedMonitorName, internalModes[index]);
+                            } else {
+                                SettingsData.set("wallpaperFillMode", internalModes[index]);
+                            }
                         }
 
                         Connections {
                             target: SettingsData
                             function onWallpaperFillModeChanged() {
+                                if (SessionData.perMonitorWallpaper)
+                                    return;
                                 fillModeGroup.currentIndex = fillModeGroup.internalModes.indexOf(SettingsData.wallpaperFillMode);
+                            }
+                        }
+
+                        Connections {
+                            target: root
+                            function onSelectedMonitorNameChanged() {
+                                if (!SessionData.perMonitorWallpaper)
+                                    return;
+                                fillModeGroup.currentIndex = Qt.binding(() => {
+                                    var mode = SessionData.perMonitorWallpaper ? SessionData.getMonitorWallpaperFillMode(selectedMonitorName) : SettingsData.wallpaperFillMode;
+                                    return fillModeGroup.internalModes.indexOf(mode);
+                                });
                             }
                         }
                     }

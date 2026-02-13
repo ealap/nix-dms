@@ -242,6 +242,9 @@
   "Adjust the number of columns in grid view mode.": {
     "Adjust the number of columns in grid view mode.": "Ajustar cuántas columnas se muestran en la cuadrícula."
   },
+  "Adjust volume per scroll indent": {
+    "Adjust volume per scroll indent": ""
+  },
   "Advanced": {
     "Advanced": "Avanzado"
   },
@@ -292,6 +295,9 @@
   },
   "Analog": {
     "Analog": "Analogico"
+  },
+  "Animation Duration": {
+    "Animation Duration": ""
   },
   "Animation Speed": {
     "Animation Speed": "Velocidad de animación"
@@ -400,6 +406,9 @@
     "No input devices found": "",
     "No output devices found": ""
   },
+  "Audio settings: maximum volume limit per device": {
+    "Max Volume": ""
+  },
   "Audio settings: speaker/headphone devices": {
     "Output Devices": ""
   },
@@ -498,6 +507,9 @@
   },
   "Automatically lock after": {
     "Automatically lock after": "Bloquear después de"
+  },
+  "Automatically lock the screen when DMS starts": {
+    "Automatically lock the screen when DMS starts": ""
   },
   "Automatically lock the screen when the system prepares to suspend": {
     "Automatically lock the screen when the system prepares to suspend": "Bloquear pantalla cuando el sistema se vaya a suspender"
@@ -705,6 +717,9 @@
   },
   "Cancel": {
     "Cancel": "Cancelar"
+  },
+  "Cancel all jobs for \"%1\"?": {
+    "Cancel all jobs for \"%1\"?": ""
   },
   "Canceled": {
     "Canceled": "Cancelado"
@@ -1000,6 +1015,9 @@
   "Configure match criteria and actions": {
     "Configure match criteria and actions": ""
   },
+  "Configure which displays show \"%1": {
+    "Configure which displays show \"%1\"": ""
+  },
   "Configure which displays show shell components": {
     "Configure which displays show shell components": "Configurar qué pantallas muestran los componentes del sistema"
   },
@@ -1141,6 +1159,9 @@
   "Create rule for:": {
     "Create rule for:": ""
   },
+  "Create rules to mute, ignore, hide from history, or override notification priority.": {
+    "Create rules to mute, ignore, hide from history, or override notification priority.": ""
+  },
   "Creating...": {
     "Creating...": "Creando..."
   },
@@ -1255,6 +1276,9 @@
   "DWL service not available": {
     "DWL service not available": "Servicio DWL no disponible"
   },
+  "Daily": {
+    "Daily": ""
+  },
   "Daily Forecast": {
     "Daily Forecast": "El Tiempo Diario"
   },
@@ -1321,6 +1345,9 @@
   "Delete": {
     "Delete": "Eliminar"
   },
+  "Delete \"%1\"?": {
+    "Delete \"%1\"?": ""
+  },
   "Delete Class": {
     "Delete Class": "Eliminar clase"
   },
@@ -1332,6 +1359,12 @@
   },
   "Delete VPN": {
     "Delete VPN": "Eliminar VPN"
+  },
+  "Delete class \"%1\"?": {
+    "Delete class \"%1\"?": ""
+  },
+  "Delete profile \"%1\"?": {
+    "Delete profile \"%1\"?": ""
   },
   "Derives colors that closely match the underlying image.": {
     "Derives colors that closely match the underlying image.": "Colores que reflejan fielmente la imagen original."
@@ -1587,6 +1620,9 @@
   },
   "Enable Overview Overlay": {
     "Enable Overview Overlay": "Activar el overlay en la vista general"
+  },
+  "Enable Ripple Effects": {
+    "Enable Ripple Effects": ""
   },
   "Enable System Monitor": {
     "Enable System Monitor": "Habilitar monitor del sistema"
@@ -1912,6 +1948,9 @@
   "Feels Like": {
     "Feels Like": "Temperatura"
   },
+  "Field": {
+    "Field": ""
+  },
   "File": {
     "File": "Archivo"
   },
@@ -1920,6 +1959,9 @@
   },
   "File Information": {
     "File Information": "Información del archivo"
+  },
+  "File search requires dsearch\nInstall from github.com/morelazers/dsearch": {
+    "File search requires dsearch\nInstall from github.com/morelazers/dsearch": ""
   },
   "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": {
     "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": ""
@@ -2026,6 +2068,9 @@
   "Forget": {
     "Forget": "Olvidar"
   },
+  "Forget \"%1\"?": {
+    "Forget \"%1\"?": ""
+  },
   "Forget Device": {
     "Forget Device": "Olvidar dispositivo"
   },
@@ -2043,6 +2088,9 @@
   },
   "Fullscreen": {
     "Fullscreen": ""
+  },
+  "Fullscreen Only": {
+    "Fullscreen Only": ""
   },
   "Fun": {
     "Fun": "Diversión"
@@ -2067,6 +2115,9 @@
   },
   "GitHub": {
     "GitHub": "GitHub"
+  },
+  "Globally scale all animation durations": {
+    "Globally scale all animation durations": ""
   },
   "Golden Hour": {
     "Golden Hour": "Crepúsculo"
@@ -2167,6 +2218,9 @@
   "Hide": {
     "Hide": ""
   },
+  "Hide 3rd Party": {
+    "Hide 3rd Party": ""
+  },
   "Hide App": {
     "Hide App": ""
   },
@@ -2229,6 +2283,9 @@
   },
   "Hour": {
     "Hour": "Hora"
+  },
+  "Hourly": {
+    "Hourly": ""
   },
   "Hourly Forecast": {
     "Hourly Forecast": "Previsión horaria"
@@ -2721,6 +2778,9 @@
   "Lock Screen layout": {
     "Lock Screen layout": "Disposicion de la pantalla de bloqueo"
   },
+  "Lock at startup": {
+    "Lock at startup": ""
+  },
   "Lock before suspend": {
     "Lock before suspend": "Bloquear pantalla antes de suspender"
   },
@@ -2882,6 +2942,9 @@
   },
   "Media Needed": {
     "Media Needed": "Medio necesario"
+  },
+  "Media Playback": {
+    "Media Playback": ""
   },
   "Media Player": {
     "Media Player": "Reproductor de multimedia"
@@ -3147,6 +3210,9 @@
   "No apps found": {
     "No apps found": ""
   },
+  "No apps have been launched yet.": {
+    "No apps have been launched yet.": ""
+  },
   "No battery": {
     "No battery": "Sin bateria"
   },
@@ -3231,6 +3297,12 @@
   "No variants created. Click Add to create a new monitor widget.": {
     "No variants created. Click Add to create a new monitor widget.": "No hay variantes creadas. Haga clic en Añadir para crear un nuevo widget de monitor."
   },
+  "No wallpapers found\n\nClick the folder icon below to browse": {
+    "No wallpapers found\n\nClick the folder icon below to browse": ""
+  },
+  "No widgets added. Click \"Add Widget\" to get started.": {
+    "No widgets added. Click \"Add Widget\" to get started.": ""
+  },
   "No widgets available": {
     "No widgets available": "No hay widgets disponibles"
   },
@@ -3285,6 +3357,9 @@
   "Notification Popups": {
     "Notification Popups": "Notificaciones emergentes"
   },
+  "Notification Rules": {
+    "Notification Rules": ""
+  },
   "Notification Settings": {
     "Notification Settings": "Ajustes de notificaciones"
   },
@@ -3317,6 +3392,12 @@
   },
   "Offline Report": {
     "Offline Report": "Reporte sin conexión"
+  },
+  "On": {
+    "On": ""
+  },
+  "On-Demand": {
+    "On-Demand": ""
   },
   "On-Screen Displays": {
     "On-Screen Displays": "Indicadores en pantalla"
@@ -3617,6 +3698,9 @@
   "Popouts": {
     "Popouts": ""
   },
+  "Popouts and Modals follow global Animation Speed (disable to customize independently)": {
+    "Popouts and Modals follow global Animation Speed (disable to customize independently)": ""
+  },
   "Popup Position": {
     "Popup Position": "Posición"
   },
@@ -3668,6 +3752,9 @@
   "Precip": {
     "Precip": ""
   },
+  "Precipitation": {
+    "Precipitation": ""
+  },
   "Precipitation Chance": {
     "Precipitation Chance": "Probabilidad de lluvia"
   },
@@ -3718,6 +3805,9 @@
   },
   "Printers: ": {
     "Printers: ": "Impresoras: "
+  },
+  "Priority": {
+    "Priority": ""
   },
   "Privacy Indicator": {
     "Privacy Indicator": "Indicador de privacidad"
@@ -3908,6 +3998,9 @@
   "Right-click bar widget to cycle": {
     "Right-click bar widget to cycle": "Clic derecho en la barra para cambiar"
   },
+  "Ripple Effects": {
+    "Ripple Effects": ""
+  },
   "Root Filesystem": {
     "Root Filesystem": "Raíz del sistema de archivos"
   },
@@ -4045,6 +4138,9 @@
   },
   "Search Options": {
     "Search Options": ""
+  },
+  "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
+    "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": ""
   },
   "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
     "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": ""
@@ -4199,6 +4295,9 @@
   "Show": {
     "Show": ""
   },
+  "Show 3rd Party": {
+    "Show 3rd Party": ""
+  },
   "Show All Tags": {
     "Show All Tags": "Mostrar todas las etiquetas"
   },
@@ -4261,6 +4360,9 @@
   },
   "Show Log Out": {
     "Show Log Out": "Mostrar Cerrar sesión"
+  },
+  "Show Material Design ripple animations on interactive elements": {
+    "Show Material Design ripple animations on interactive elements": ""
   },
   "Show Memory": {
     "Show Memory": "Mostrar memoria"
@@ -4369,6 +4471,9 @@
   },
   "Show on-screen display when idle inhibitor state changes": {
     "Show on-screen display when idle inhibitor state changes": "Mostrar en pantalla cuando el estado del inhibidor cambia"
+  },
+  "Show on-screen display when media player status changes": {
+    "Show on-screen display when media player status changes": ""
   },
   "Show on-screen display when media player volume changes": {
     "Show on-screen display when media player volume changes": "Mostrar en pantalla cuando el volumen multimedia cambia"
@@ -4562,6 +4667,9 @@
   "Sync Mode with Portal": {
     "Sync Mode with Portal": "Sincronizar modo con los portales"
   },
+  "Sync Popouts & Modals": {
+    "Sync Popouts & Modals": ""
+  },
   "Sync Position Across Screens": {
     "Sync Position Across Screens": ""
   },
@@ -4661,11 +4769,17 @@
   "Third-Party Plugin Warning": {
     "Third-Party Plugin Warning": "Aviso sobre complemento externo"
   },
+  "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": {
+    "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": ""
+  },
   "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": {
     "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": "Los complementos de terceros son creados por la comunidad y no cuentan con soporte oficial de DankMaterialShell.\\n\\nEstos complementos pueden representar riesgos de seguridad y privacidad - instálalos bajo tu propia responsabilidad."
   },
   "This bind is overridden by config.kdl": {
     "This bind is overridden by config.kdl": "La combinacion de teclas ha sido sobreescrita por config.kdl"
+  },
+  "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": {
+    "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": ""
   },
   "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": {
     "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": "Este widget evita que la GPU entre en estados de apagado y puede afectar significativamente la batería en portátiles. No se recomienda usarlo en portátiles con gráficos híbridos."
@@ -4844,6 +4958,9 @@
   "Unknown": {
     "Unknown": "Desconocido"
   },
+  "Unknown Artist": {
+    "Unknown Artist": ""
+  },
   "Unknown Config": {
     "Unknown Config": "Configuración desconocida"
   },
@@ -4855,6 +4972,9 @@
   },
   "Unknown Network": {
     "Unknown Network": "Red desconocida"
+  },
+  "Unknown Title": {
+    "Unknown Title": ""
   },
   "Unnamed Rule": {
     "Unnamed Rule": ""
@@ -5017,6 +5137,9 @@
   },
   "VRR": {
     "VRR": "VRR"
+  },
+  "VRR Fullscreen Only": {
+    "VRR Fullscreen Only": ""
   },
   "VRR On-Demand": {
     "VRR On-Demand": "VRR a la carta"
@@ -5382,6 +5505,7 @@
     "dgop not available": "dgop no disponible"
   },
   "dgop unavailable error message": {
+    "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "",
     "The 'dgop' tool is required for system monitoring.\\nPlease install dgop to use this feature.": ""
   },
   "disk io header in system monitor": {
@@ -5651,6 +5775,9 @@
     "Disabled": "",
     "Full Content": ""
   },
+  "lock screen notification mode option | notification rule match field option": {
+    "App Names": ""
+  },
   "lock screen notification privacy setting": {
     "Control what notification information is shown on the lock screen": "",
     "Notification Display": ""
@@ -5757,6 +5884,30 @@
   },
   "notification history toggle label": {
     "Enable History": ""
+  },
+  "notification rule action option": {
+    "Ignore Completely": "",
+    "Mute Popups": "",
+    "No History": "",
+    "Popup Only": ""
+  },
+  "notification rule action option | notification rule urgency option | widget style option": {
+    "Default": ""
+  },
+  "notification rule match field option": {
+    "Body": "",
+    "Desktop Entry": "",
+    "Summary": ""
+  },
+  "notification rule match type option": {
+    "Contains": "",
+    "Exact": "",
+    "Regex": ""
+  },
+  "notification rule urgency option": {
+    "Critical Priority": "",
+    "Low Priority": "",
+    "Normal Priority": ""
   },
   "now": {
     "now": ""
@@ -5910,6 +6061,9 @@
   },
   "uptime label in footer": {
     "Uptime:": ""
+  },
+  "v%1 by %2": {
+    "v%1 by %2": ""
   },
   "version requirement": {
     "Requires %1": ""

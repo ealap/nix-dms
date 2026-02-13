@@ -147,6 +147,24 @@ Item {
         return defaultValue;
     }
 
+    function saveState(key, value) {
+        if (!pluginService)
+            return;
+        if (pluginService.savePluginState)
+            pluginService.savePluginState(pluginId, key, value);
+    }
+
+    function loadState(key, defaultValue) {
+        if (pluginService && pluginService.loadPluginState)
+            return pluginService.loadPluginState(pluginId, key, defaultValue);
+        return defaultValue;
+    }
+
+    function clearState() {
+        if (pluginService && pluginService.clearPluginState)
+            pluginService.clearPluginState(pluginId);
+    }
+
     function findFlickable(item) {
         var current = item?.parent;
         while (current) {

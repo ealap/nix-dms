@@ -242,6 +242,9 @@
   "Adjust the number of columns in grid view mode.": {
     "Adjust the number of columns in grid view mode.": "グリッド表示モードでの列数を調整します。"
   },
+  "Adjust volume per scroll indent": {
+    "Adjust volume per scroll indent": ""
+  },
   "Advanced": {
     "Advanced": ""
   },
@@ -292,6 +295,9 @@
   },
   "Analog": {
     "Analog": ""
+  },
+  "Animation Duration": {
+    "Animation Duration": ""
   },
   "Animation Speed": {
     "Animation Speed": "アニメーション速度"
@@ -400,6 +406,9 @@
     "No input devices found": "",
     "No output devices found": ""
   },
+  "Audio settings: maximum volume limit per device": {
+    "Max Volume": ""
+  },
   "Audio settings: speaker/headphone devices": {
     "Output Devices": ""
   },
@@ -498,6 +507,9 @@
   },
   "Automatically lock after": {
     "Automatically lock after": "自動的にロック"
+  },
+  "Automatically lock the screen when DMS starts": {
+    "Automatically lock the screen when DMS starts": ""
   },
   "Automatically lock the screen when the system prepares to suspend": {
     "Automatically lock the screen when the system prepares to suspend": "システムが一時停止の準備中に自動的に画面をロック"
@@ -705,6 +717,9 @@
   },
   "Cancel": {
     "Cancel": "キャンセル"
+  },
+  "Cancel all jobs for \"%1\"?": {
+    "Cancel all jobs for \"%1\"?": ""
   },
   "Canceled": {
     "Canceled": ""
@@ -1000,6 +1015,9 @@
   "Configure match criteria and actions": {
     "Configure match criteria and actions": ""
   },
+  "Configure which displays show \"%1": {
+    "Configure which displays show \"%1\"": ""
+  },
   "Configure which displays show shell components": {
     "Configure which displays show shell components": "シェルコンポーネントを表示するディスプレイを配置"
   },
@@ -1141,6 +1159,9 @@
   "Create rule for:": {
     "Create rule for:": ""
   },
+  "Create rules to mute, ignore, hide from history, or override notification priority.": {
+    "Create rules to mute, ignore, hide from history, or override notification priority.": ""
+  },
   "Creating...": {
     "Creating...": ""
   },
@@ -1255,6 +1276,9 @@
   "DWL service not available": {
     "DWL service not available": "DWLサービスが利用できません"
   },
+  "Daily": {
+    "Daily": ""
+  },
   "Daily Forecast": {
     "Daily Forecast": ""
   },
@@ -1321,6 +1345,9 @@
   "Delete": {
     "Delete": ""
   },
+  "Delete \"%1\"?": {
+    "Delete \"%1\"?": ""
+  },
   "Delete Class": {
     "Delete Class": ""
   },
@@ -1332,6 +1359,12 @@
   },
   "Delete VPN": {
     "Delete VPN": ""
+  },
+  "Delete class \"%1\"?": {
+    "Delete class \"%1\"?": ""
+  },
+  "Delete profile \"%1\"?": {
+    "Delete profile \"%1\"?": ""
   },
   "Derives colors that closely match the underlying image.": {
     "Derives colors that closely match the underlying image.": "下にある画像に密接に一致する色を導き出します。"
@@ -1587,6 +1620,9 @@
   },
   "Enable Overview Overlay": {
     "Enable Overview Overlay": ""
+  },
+  "Enable Ripple Effects": {
+    "Enable Ripple Effects": ""
   },
   "Enable System Monitor": {
     "Enable System Monitor": ""
@@ -1912,6 +1948,9 @@
   "Feels Like": {
     "Feels Like": "どうやら"
   },
+  "Field": {
+    "Field": ""
+  },
   "File": {
     "File": ""
   },
@@ -1920,6 +1959,9 @@
   },
   "File Information": {
     "File Information": "ファイル情報"
+  },
+  "File search requires dsearch\nInstall from github.com/morelazers/dsearch": {
+    "File search requires dsearch\nInstall from github.com/morelazers/dsearch": ""
   },
   "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": {
     "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": ""
@@ -2026,6 +2068,9 @@
   "Forget": {
     "Forget": ""
   },
+  "Forget \"%1\"?": {
+    "Forget \"%1\"?": ""
+  },
   "Forget Device": {
     "Forget Device": "デバイスを忘れる"
   },
@@ -2043,6 +2088,9 @@
   },
   "Fullscreen": {
     "Fullscreen": ""
+  },
+  "Fullscreen Only": {
+    "Fullscreen Only": ""
   },
   "Fun": {
     "Fun": "娯楽"
@@ -2067,6 +2115,9 @@
   },
   "GitHub": {
     "GitHub": ""
+  },
+  "Globally scale all animation durations": {
+    "Globally scale all animation durations": ""
   },
   "Golden Hour": {
     "Golden Hour": ""
@@ -2167,6 +2218,9 @@
   "Hide": {
     "Hide": ""
   },
+  "Hide 3rd Party": {
+    "Hide 3rd Party": ""
+  },
   "Hide App": {
     "Hide App": ""
   },
@@ -2229,6 +2283,9 @@
   },
   "Hour": {
     "Hour": "時間"
+  },
+  "Hourly": {
+    "Hourly": ""
   },
   "Hourly Forecast": {
     "Hourly Forecast": ""
@@ -2721,6 +2778,9 @@
   "Lock Screen layout": {
     "Lock Screen layout": ""
   },
+  "Lock at startup": {
+    "Lock at startup": ""
+  },
   "Lock before suspend": {
     "Lock before suspend": "一時停止前にロック"
   },
@@ -2882,6 +2942,9 @@
   },
   "Media Needed": {
     "Media Needed": "メディアが必要"
+  },
+  "Media Playback": {
+    "Media Playback": ""
   },
   "Media Player": {
     "Media Player": ""
@@ -3147,6 +3210,9 @@
   "No apps found": {
     "No apps found": ""
   },
+  "No apps have been launched yet.": {
+    "No apps have been launched yet.": ""
+  },
   "No battery": {
     "No battery": ""
   },
@@ -3231,6 +3297,12 @@
   "No variants created. Click Add to create a new monitor widget.": {
     "No variants created. Click Add to create a new monitor widget.": ""
   },
+  "No wallpapers found\n\nClick the folder icon below to browse": {
+    "No wallpapers found\n\nClick the folder icon below to browse": ""
+  },
+  "No widgets added. Click \"Add Widget\" to get started.": {
+    "No widgets added. Click \"Add Widget\" to get started.": ""
+  },
   "No widgets available": {
     "No widgets available": ""
   },
@@ -3285,6 +3357,9 @@
   "Notification Popups": {
     "Notification Popups": "通知ポップアップ"
   },
+  "Notification Rules": {
+    "Notification Rules": ""
+  },
   "Notification Settings": {
     "Notification Settings": "通知設定"
   },
@@ -3317,6 +3392,12 @@
   },
   "Offline Report": {
     "Offline Report": "オフライン報告"
+  },
+  "On": {
+    "On": ""
+  },
+  "On-Demand": {
+    "On-Demand": ""
   },
   "On-Screen Displays": {
     "On-Screen Displays": "オンスクリーンディスプレイ"
@@ -3617,6 +3698,9 @@
   "Popouts": {
     "Popouts": ""
   },
+  "Popouts and Modals follow global Animation Speed (disable to customize independently)": {
+    "Popouts and Modals follow global Animation Speed (disable to customize independently)": ""
+  },
   "Popup Position": {
     "Popup Position": "ポップアップの位置"
   },
@@ -3668,6 +3752,9 @@
   "Precip": {
     "Precip": ""
   },
+  "Precipitation": {
+    "Precipitation": ""
+  },
   "Precipitation Chance": {
     "Precipitation Chance": ""
   },
@@ -3718,6 +3805,9 @@
   },
   "Printers: ": {
     "Printers: ": "プリンター: "
+  },
+  "Priority": {
+    "Priority": ""
   },
   "Privacy Indicator": {
     "Privacy Indicator": "プライバシーインジケーター"
@@ -3908,6 +3998,9 @@
   "Right-click bar widget to cycle": {
     "Right-click bar widget to cycle": "バーウィジェットを右クリックして循環"
   },
+  "Ripple Effects": {
+    "Ripple Effects": ""
+  },
   "Root Filesystem": {
     "Root Filesystem": ""
   },
@@ -4045,6 +4138,9 @@
   },
   "Search Options": {
     "Search Options": ""
+  },
+  "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
+    "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": ""
   },
   "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
     "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": ""
@@ -4199,6 +4295,9 @@
   "Show": {
     "Show": ""
   },
+  "Show 3rd Party": {
+    "Show 3rd Party": ""
+  },
   "Show All Tags": {
     "Show All Tags": "すべてのタグを表示"
   },
@@ -4261,6 +4360,9 @@
   },
   "Show Log Out": {
     "Show Log Out": "ログアウトを表示"
+  },
+  "Show Material Design ripple animations on interactive elements": {
+    "Show Material Design ripple animations on interactive elements": ""
   },
   "Show Memory": {
     "Show Memory": ""
@@ -4369,6 +4471,9 @@
   },
   "Show on-screen display when idle inhibitor state changes": {
     "Show on-screen display when idle inhibitor state changes": "アイドルインヒビターの状態が変化した時にOSDを表示"
+  },
+  "Show on-screen display when media player status changes": {
+    "Show on-screen display when media player status changes": ""
   },
   "Show on-screen display when media player volume changes": {
     "Show on-screen display when media player volume changes": "メディアプレーヤーの音量が変化したときにOSDを表示"
@@ -4562,6 +4667,9 @@
   "Sync Mode with Portal": {
     "Sync Mode with Portal": "ポータルとの同期モード"
   },
+  "Sync Popouts & Modals": {
+    "Sync Popouts & Modals": ""
+  },
   "Sync Position Across Screens": {
     "Sync Position Across Screens": ""
   },
@@ -4661,11 +4769,17 @@
   "Third-Party Plugin Warning": {
     "Third-Party Plugin Warning": "サードパーティ製プラグインの警告"
   },
+  "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": {
+    "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": ""
+  },
   "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": {
     "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": "サードパーティプラグインはコミュニティによって作成されており、DankMaterialShellによる公式サポートはありません。\\n\\nこれらのプラグインはセキュリティやプライバシーのリスクをもたらす可能性があります - 自己責任でインストールしてください。"
   },
   "This bind is overridden by config.kdl": {
     "This bind is overridden by config.kdl": ""
+  },
+  "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": {
+    "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": ""
   },
   "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": {
     "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": "このウィジェットはGPUの省電力状態を防ぎ、ノートパソコンのバッテリー寿命に大きな影響を与える可能性があります。ハイブリッドグラフィックス搭載のノートパソコンでの使用は推奨されません。"
@@ -4844,6 +4958,9 @@
   "Unknown": {
     "Unknown": ""
   },
+  "Unknown Artist": {
+    "Unknown Artist": ""
+  },
   "Unknown Config": {
     "Unknown Config": ""
   },
@@ -4855,6 +4972,9 @@
   },
   "Unknown Network": {
     "Unknown Network": ""
+  },
+  "Unknown Title": {
+    "Unknown Title": ""
   },
   "Unnamed Rule": {
     "Unnamed Rule": ""
@@ -5017,6 +5137,9 @@
   },
   "VRR": {
     "VRR": ""
+  },
+  "VRR Fullscreen Only": {
+    "VRR Fullscreen Only": ""
   },
   "VRR On-Demand": {
     "VRR On-Demand": ""
@@ -5382,6 +5505,7 @@
     "dgop not available": ""
   },
   "dgop unavailable error message": {
+    "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "",
     "The 'dgop' tool is required for system monitoring.\\nPlease install dgop to use this feature.": ""
   },
   "disk io header in system monitor": {
@@ -5651,6 +5775,9 @@
     "Disabled": "",
     "Full Content": ""
   },
+  "lock screen notification mode option | notification rule match field option": {
+    "App Names": ""
+  },
   "lock screen notification privacy setting": {
     "Control what notification information is shown on the lock screen": "",
     "Notification Display": ""
@@ -5757,6 +5884,30 @@
   },
   "notification history toggle label": {
     "Enable History": ""
+  },
+  "notification rule action option": {
+    "Ignore Completely": "",
+    "Mute Popups": "",
+    "No History": "",
+    "Popup Only": ""
+  },
+  "notification rule action option | notification rule urgency option | widget style option": {
+    "Default": ""
+  },
+  "notification rule match field option": {
+    "Body": "",
+    "Desktop Entry": "",
+    "Summary": ""
+  },
+  "notification rule match type option": {
+    "Contains": "",
+    "Exact": "",
+    "Regex": ""
+  },
+  "notification rule urgency option": {
+    "Critical Priority": "",
+    "Low Priority": "",
+    "Normal Priority": ""
   },
   "now": {
     "now": ""
@@ -5910,6 +6061,9 @@
   },
   "uptime label in footer": {
     "Uptime:": ""
+  },
+  "v%1 by %2": {
+    "v%1 by %2": ""
   },
   "version requirement": {
     "Requires %1": ""

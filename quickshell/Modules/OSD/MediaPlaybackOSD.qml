@@ -38,6 +38,14 @@ DankOSD {
 
     property bool _pendingShow: false
 
+    Image {
+        id: artPreloader
+        source: TrackArtService._bgArtSource
+        visible: false
+        asynchronous: true
+        cache: true
+    }
+
     onPlayerChanged: {
         if (!player) {
             _pendingShow = false;
@@ -48,7 +56,21 @@ DankOSD {
     Connections {
         target: TrackArtService
         function onLoadingChanged() {
-            if (!TrackArtService.loading && root._pendingShow) {
+            if (TrackArtService.loading || !root._pendingShow)
+                return;
+            if (!TrackArtService._bgArtSource || artPreloader.status !== Image.Loading) {
+                root._pendingShow = false;
+                root.show();
+            }
+        }
+    }
+
+    Connections {
+        target: artPreloader
+        function onStatusChanged() {
+            if (!root._pendingShow || TrackArtService.loading)
+                return;
+            if (artPreloader.status !== Image.Loading) {
                 root._pendingShow = false;
                 root.show();
             }
