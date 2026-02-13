@@ -80,6 +80,7 @@ func (c *ColorMode) GTKTheme() string {
 var (
 	matugenVersionOnce sync.Once
 	matugenSupportsCOE bool
+	matugenIsV4        bool
 )
 
 type Options struct {
@@ -537,8 +538,12 @@ func checkMatugenVersion() {
 		}
 
 		matugenSupportsCOE = major > 3 || (major == 3 && minor >= 1)
+		matugenIsV4 = major >= 4
 		if matugenSupportsCOE {
 			log.Infof("Matugen %s supports --continue-on-error", versionStr)
+		}
+		if matugenIsV4 {
+			log.Infof("Matugen %s: using v4 flags", versionStr)
 		}
 	})
 }
@@ -549,6 +554,9 @@ func runMatugen(args []string) error {
 	if matugenSupportsCOE {
 		args = append([]string{"--continue-on-error"}, args...)
 	}
+	if matugenIsV4 {
+		args = append(args, "--source-color-index", "0")
+	}
 
 	cmd := exec.Command("matugen", args...)
 	cmd.Stdout = os.Stdout
@@ -557,6 +565,8 @@ func runMatugen(args []string) error {
 }
 
 func runMatugenDryRun(opts *Options) (string, error) {
+	checkMatugenVersion()
+
 	var args []string
 	switch opts.Kind {
 	case "hex":
@@ -565,6 +575,9 @@ func runMatugenDryRun(opts *Options) (string, error) {
 		args = []string{opts.Kind, opts.Value}
 	}
 	args = append(args, "-m", "dark", "-t", opts.MatugenType, "--json", "hex", "--dry-run")
+	if matugenIsV4 {
+		args = append(args, "--source-color-index", "0", "--old-json-output")
+	}
 
 	cmd := exec.Command("matugen", args...)
 	output, err := cmd.Output()

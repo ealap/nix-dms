@@ -92,21 +92,13 @@ func HandleListInstalled(conn net.Conn, req models.Request) {
 		return
 	}
 
-	registry, err := themes.NewRegistry()
-	if err != nil {
-		models.RespondError(conn, req.ID, fmt.Sprintf("failed to create registry: %v", err))
-		return
-	}
-
-	allThemes, err := registry.List()
-	if err != nil {
-		models.RespondError(conn, req.ID, fmt.Sprintf("failed to list themes: %v", err))
-		return
-	}
-
 	themeMap := make(map[string]themes.Theme)
-	for _, t := range allThemes {
-		themeMap[t.ID] = t
+	if registry, err := themes.NewRegistry(); err == nil {
+		if allThemes, err := registry.List(); err == nil {
+			for _, t := range allThemes {
+				themeMap[t.ID] = t
+			}
+		}
 	}
 
 	result := make([]ThemeInfo, 0, len(installedIDs))

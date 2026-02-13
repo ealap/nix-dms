@@ -777,13 +777,26 @@ Item {
                                     return {};
                                 return activeThemeVariants.defaults[colorMode] || activeThemeVariants.defaults.dark || {};
                             }
-                            property var storedMulti: activeThemeId ? SettingsData.getRegistryThemeMultiVariant(activeThemeId, multiDefaults) : multiDefaults
-                            property string selectedFlavor: storedMulti.flavor || multiDefaults.flavor || ""
+                            property var storedMulti: activeThemeId ? SettingsData.getRegistryThemeMultiVariant(activeThemeId, multiDefaults, colorMode) : multiDefaults
+                            property string selectedFlavor: {
+                                var sf = storedMulti.flavor || multiDefaults.flavor || "";
+                                for (var i = 0; i < flavorOptions.length; i++) {
+                                    if (flavorOptions[i].id === sf)
+                                        return sf;
+                                }
+                                if (flavorOptions.length > 0)
+                                    return flavorOptions[0].id;
+                                return sf;
+                            }
                             property string selectedAccent: storedMulti.accent || multiDefaults.accent || ""
                             property var flavorOptions: {
                                 if (!isMultiVariant || !activeThemeVariants?.flavors)
                                     return [];
-                                return activeThemeVariants.flavors.filter(f => f.mode === colorMode || f.mode === "both");
+                                return activeThemeVariants.flavors.filter(f => {
+                                    if (f.mode)
+                                        return f.mode === colorMode || f.mode === "both";
+                                    return !!f[colorMode];
+                                });
                             }
                             property var flavorNames: flavorOptions.map(f => f.name)
                             property int flavorIndex: {
@@ -818,9 +831,12 @@ Item {
                                 DankButtonGroup {
                                     id: flavorButtonGroup
                                     anchors.horizontalCenter: parent.horizontalCenter
-                                    buttonPadding: parent.width < 400 ? Theme.spacingS : Theme.spacingL
-                                    minButtonWidth: parent.width < 400 ? 44 : 64
-                                    textSize: parent.width < 400 ? Theme.fontSizeSmall : Theme.fontSizeMedium
+                                    property int _count: variantSelector.flavorNames.length
+                                    property real _maxPerItem: _count > 1 ? (parent.width - (_count - 1) * spacing) / _count : parent.width
+                                    buttonPadding: _maxPerItem < 55 ? Theme.spacingXS : (_maxPerItem < 75 ? Theme.spacingS : Theme.spacingL)
+                                    minButtonWidth: Math.min(_maxPerItem < 55 ? 28 : (_maxPerItem < 75 ? 44 : 64), Math.max(28, Math.floor(_maxPerItem)))
+                                    textSize: _maxPerItem < 55 ? Theme.fontSizeSmall - 2 : (_maxPerItem < 75 ? Theme.fontSizeSmall : Theme.fontSizeMedium)
+                                    checkEnabled: _maxPerItem >= 55
                                     property int pendingIndex: -1
                                     model: variantSelector.flavorNames
                                     currentIndex: pendingIndex >= 0 ? pendingIndex : variantSelector.flavorIndex
@@ -839,7 +855,7 @@ Item {
                                         if (!flavorId || flavorId === variantSelector.selectedFlavor)
                                             return;
                                         Theme.screenTransition();
-                                        SettingsData.setRegistryThemeMultiVariant(variantSelector.activeThemeId, flavorId, variantSelector.selectedAccent);
+                                        SettingsData.setRegistryThemeMultiVariant(variantSelector.activeThemeId, flavorId, variantSelector.selectedAccent, variantSelector.colorMode);
                                     }
                                 }
                             }
@@ -902,7 +918,7 @@ Item {
                                                     if (parent.isSelected)
                                                         return;
                                                     Theme.screenTransition();
-                                                    SettingsData.setRegistryThemeMultiVariant(variantSelector.activeThemeId, variantSelector.selectedFlavor, parent.accentId);
+                                                    SettingsData.setRegistryThemeMultiVariant(variantSelector.activeThemeId, variantSelector.selectedFlavor, parent.accentId, variantSelector.colorMode);
                                                 }
                                             }
 
@@ -926,9 +942,12 @@ Item {
                                 DankButtonGroup {
                                     id: variantButtonGroup
                                     anchors.horizontalCenter: parent.horizontalCenter
-                                    buttonPadding: parent.width < 400 ? Theme.spacingS : Theme.spacingL
-                                    minButtonWidth: parent.width < 400 ? 44 : 64
-                                    textSize: parent.width < 400 ? Theme.fontSizeSmall : Theme.fontSizeMedium
+                                    property int _count: variantSelector.variantNames.length
+                                    property real _maxPerItem: _count > 1 ? (parent.width - (_count - 1) * spacing) / _count : parent.width
+                                    buttonPadding: _maxPerItem < 55 ? Theme.spacingXS : (_maxPerItem < 75 ? Theme.spacingS : Theme.spacingL)
+                                    minButtonWidth: Math.min(_maxPerItem < 55 ? 28 : (_maxPerItem < 75 ? 44 : 64), Math.max(28, Math.floor(_maxPerItem)))
+                                    textSize: _maxPerItem < 55 ? Theme.fontSizeSmall - 2 : (_maxPerItem < 75 ? Theme.fontSizeSmall : Theme.fontSizeMedium)
+                                    checkEnabled: _maxPerItem >= 55
                                     property int pendingIndex: -1
                                     model: variantSelector.variantNames
                                     currentIndex: pendingIndex >= 0 ? pendingIndex : variantSelector.selectedIndex

@@ -971,7 +971,7 @@ Singleton {
             if (themeData.variants.type === "multi" && themeData.variants.flavors && themeData.variants.accents) {
                 const defaults = themeData.variants.defaults || {};
                 const modeDefaults = defaults[colorMode] || defaults.dark || {};
-                const stored = typeof SettingsData !== "undefined" ? SettingsData.getRegistryThemeMultiVariant(themeId, modeDefaults) : modeDefaults;
+                const stored = typeof SettingsData !== "undefined" ? SettingsData.getRegistryThemeMultiVariant(themeId, modeDefaults, colorMode) : modeDefaults;
                 var flavorId = stored.flavor || modeDefaults.flavor || "";
                 const accentId = stored.accent || modeDefaults.accent || "";
                 var flavor = findVariant(themeData.variants.flavors, flavorId);
@@ -1365,8 +1365,8 @@ Singleton {
                         const defaults = customThemeRawData.variants.defaults || {};
                         const darkDefaults = defaults.dark || {};
                         const lightDefaults = defaults.light || defaults.dark || {};
-                        const storedDark = typeof SettingsData !== "undefined" ? SettingsData.getRegistryThemeMultiVariant(themeId, darkDefaults) : darkDefaults;
-                        const storedLight = typeof SettingsData !== "undefined" ? SettingsData.getRegistryThemeMultiVariant(themeId, lightDefaults) : lightDefaults;
+                        const storedDark = typeof SettingsData !== "undefined" ? SettingsData.getRegistryThemeMultiVariant(themeId, darkDefaults, "dark") : darkDefaults;
+                        const storedLight = typeof SettingsData !== "undefined" ? SettingsData.getRegistryThemeMultiVariant(themeId, lightDefaults, "light") : lightDefaults;
                         const darkFlavorId = storedDark.flavor || darkDefaults.flavor || "";
                         const lightFlavorId = storedLight.flavor || lightDefaults.flavor || "";
                         const accentId = storedDark.accent || darkDefaults.accent || "";

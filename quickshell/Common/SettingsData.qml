@@ -2210,19 +2210,34 @@ Singleton {
             Theme.reloadCustomThemeVariant();
     }
 
-    function getRegistryThemeMultiVariant(themeId, defaults) {
+    function getRegistryThemeMultiVariant(themeId, defaults, mode) {
         var stored = registryThemeVariants[themeId];
-        if (stored && typeof stored === "object")
-            return stored;
-        return defaults || {};
+        if (!stored || typeof stored !== "object")
+            return defaults || {};
+        if ((stored.dark && typeof stored.dark === "object") || (stored.light && typeof stored.light === "object")) {
+            if (!mode)
+                return stored.dark || stored.light || defaults || {};
+            var modeData = stored[mode];
+            if (modeData && typeof modeData === "object")
+                return modeData;
+            return defaults || {};
+        }
+        return stored;
     }
 
-    function setRegistryThemeMultiVariant(themeId, flavor, accent) {
+    function setRegistryThemeMultiVariant(themeId, flavor, accent, mode) {
         var variants = JSON.parse(JSON.stringify(registryThemeVariants));
-        variants[themeId] = {
-            flavor: flavor,
-            accent: accent
-        };
+        var existing = variants[themeId];
+        var perMode = {};
+        if (existing && typeof existing === "object") {
+            if ((existing.dark && typeof existing.dark === "object") || (existing.light && typeof existing.light === "object")) {
+                perMode = existing;
+            } else if (typeof existing.flavor === "string") {
+                perMode.dark = {flavor: existing.flavor, accent: existing.accent || ""};
+            }
+        }
+        perMode[mode || "dark"] = {flavor: flavor, accent: accent};
+        variants[themeId] = perMode;
         registryThemeVariants = variants;
         saveSettings();
         if (typeof Theme !== "undefined")
