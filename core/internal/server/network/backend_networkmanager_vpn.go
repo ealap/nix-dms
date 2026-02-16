@@ -412,16 +412,6 @@ func (b *NetworkManagerBackend) handleOpenVPNUsernameAuth(targetConn gonetworkma
 	}
 	data["username"] = username
 
-	if reply.Save && password != "" {
-		data["password-flags"] = "0"
-		secs := make(map[string]string)
-		secs["password"] = password
-		vpn["secrets"] = dbus.MakeVariant(secs)
-		log.Infof("[ConnectVPN] Saving username and password to vpn.data")
-	} else {
-		log.Infof("[ConnectVPN] Saving username to vpn.data (password will be prompted)")
-	}
-
 	vpn["data"] = dbus.MakeVariant(data)
 	settings["vpn"] = vpn
 
@@ -432,7 +422,7 @@ func (b *NetworkManagerBackend) handleOpenVPNUsernameAuth(targetConn gonetworkma
 	}
 	log.Infof("[ConnectVPN] Username saved to connection")
 
-	if password != "" && !reply.Save {
+	if password != "" {
 		b.cachedVPNCredsMu.Lock()
 		b.cachedVPNCreds = &cachedVPNCredentials{
 			ConnectionUUID: targetUUID,
@@ -614,11 +604,7 @@ func (b *NetworkManagerBackend) ClearVPNCredentials(uuidOrName string) error {
 						dataMap["password-flags"] = "1"
 						vpnSettings["data"] = dataMap
 					}
-
-					vpnSettings["password-flags"] = uint32(1)
 				}
-
-				settings["vpn-secrets"] = make(map[string]any)
 			}
 
 			if err := conn.Update(settings); err != nil {

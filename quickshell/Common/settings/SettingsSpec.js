@@ -173,6 +173,7 @@ var SPEC = {
     dankLauncherV2BorderThickness: { def: 2 },
     dankLauncherV2BorderColor: { def: "primary" },
     dankLauncherV2ShowFooter: { def: true },
+    dankLauncherV2UnloadOnClose: { def: true },
 
     useAutoLocation: { def: false },
     weatherEnabled: { def: true },
@@ -469,6 +470,8 @@ var SPEC = {
     desktopWidgetGroups: { def: [] },
 
     builtInPluginSettings: { def: {} },
+    clipboardEnterToPaste: { def: false },
+
     launcherPluginVisibility: { def: {} },
     launcherPluginOrder: { def: [] }
 };

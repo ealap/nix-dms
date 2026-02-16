@@ -5998,6 +5998,24 @@
     "conditionKey": "dmsConnected"
   },
   {
+    "section": "clipboardEnterToPaste",
+    "label": "Enter to Paste",
+    "tabIndex": 23,
+    "category": "System",
+    "keywords": [
+      "behavior",
+      "clipboard",
+      "copy",
+      "enter",
+      "linux",
+      "os",
+      "paste",
+      "press",
+      "system"
+    ],
+    "description": "Press Enter to paste, Shift+Enter to copy"
+  },
+  {
     "section": "maxHistory",
     "label": "History Settings",
     "tabIndex": 23,

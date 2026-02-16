@@ -212,32 +212,28 @@ func (b *NetworkManagerBackend) updateWiFiState() error {
 		}
 	}
 
+	var forgetSSID string
+
 	b.stateMutex.Lock()
-	defer b.stateMutex.Unlock()
 
 	wasConnecting = b.state.IsConnecting
 	connectingSSID = b.state.ConnectingSSID
 
 	if wasConnecting && connectingSSID != "" {
-		if connected && ssid == connectingSSID {
+		switch {
+		case connected && ssid == connectingSSID:
 			log.Infof("[updateWiFiState] Connection successful: %s", ssid)
 			b.state.IsConnecting = false
 			b.state.ConnectingSSID = ""
 			b.state.LastError = ""
-		} else if failed || (disconnected && !connected) {
+		case failed || (disconnected && !connected):
 			log.Warnf("[updateWiFiState] Connection failed: SSID=%s, state=%d", connectingSSID, state)
 			b.state.IsConnecting = false
 			b.state.ConnectingSSID = ""
 			b.state.LastError = reasonCode
 
-			// If user cancelled, delete the connection profile that was just created
 			if reasonCode == errdefs.ErrUserCanceled {
-				log.Infof("[updateWiFiState] User cancelled authentication, removing connection profile for %s", connectingSSID)
-				b.stateMutex.Unlock()
-				if err := b.ForgetWiFiNetwork(connectingSSID); err != nil {
-					log.Warnf("[updateWiFiState] Failed to remove cancelled connection: %v", err)
-				}
-				b.stateMutex.Lock()
+				forgetSSID = connectingSSID
 			}
 
 			b.failedMutex.Lock()
@@ -253,6 +249,15 @@ func (b *NetworkManagerBackend) updateWiFiState() error {
 	b.state.WiFiSSID = ssid
 	b.state.WiFiBSSID = bssid
 	b.state.WiFiSignal = signal
+
+	b.stateMutex.Unlock()
+
+	if forgetSSID != "" {
+		log.Infof("[updateWiFiState] User cancelled authentication, removing connection profile for %s", forgetSSID)
+		if err := b.ForgetWiFiNetwork(forgetSSID); err != nil {
+			log.Warnf("[updateWiFiState] Failed to remove cancelled connection: %v", err)
+		}
+	}
 
 	return nil
 }

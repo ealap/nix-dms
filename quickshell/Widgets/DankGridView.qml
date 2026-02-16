@@ -1,18 +1,17 @@
 import QtQuick
 import QtQuick.Controls
 import qs.Widgets
+import "ScrollConstants.js" as Scroll
 
 GridView {
     id: gridView
 
     property real momentumVelocity: 0
     property bool isMomentumActive: false
-    property real friction: 0.95
-    property real minMomentumVelocity: 50
-    property real maxMomentumVelocity: 2500
+    property real friction: Scroll.friction
 
-    flickDeceleration: 1500
-    maximumFlickVelocity: 2000
+    flickDeceleration: Scroll.flickDeceleration
+    maximumFlickVelocity: Scroll.maximumFlickVelocity
     boundsBehavior: Flickable.StopAtBounds
     boundsMovement: Flickable.FollowBoundsBehavior
     pressDelay: 0
@@ -27,9 +26,9 @@ GridView {
     WheelHandler {
         id: wheelHandler
 
-        property real mouseWheelSpeed: 60
-        property real touchpadSpeed: 2.8
-        property real momentumRetention: 0.92
+        property real mouseWheelSpeed: Scroll.mouseWheelSpeed
+        property real touchpadSpeed: Scroll.touchpadSpeed
+        property real momentumRetention: Scroll.momentumRetention
         property real lastWheelTime: 0
         property real momentum: 0
         property var velocitySamples: []
@@ -37,7 +36,7 @@ GridView {
 
         function startMomentum() {
             isMomentumActive = true;
-            momentumTimer.start();
+            momentumAnim.running = true;
         }
 
         acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
@@ -57,7 +56,7 @@ GridView {
 
             if (isTraditionalMouse) {
                 sessionUsedMouseWheel = true;
-                momentumTimer.stop();
+                momentumAnim.running = false;
                 isMomentumActive = false;
                 velocitySamples = [];
                 momentum = 0;
@@ -75,7 +74,7 @@ GridView {
                 contentY = newY;
             } else if (isHighDpiMouse) {
                 sessionUsedMouseWheel = true;
-                momentumTimer.stop();
+                momentumAnim.running = false;
                 isMomentumActive = false;
                 velocitySamples = [];
                 momentum = 0;
@@ -92,7 +91,7 @@ GridView {
                 contentY = newY;
             } else if (isTouchpad) {
                 sessionUsedMouseWheel = false;
-                momentumTimer.stop();
+                momentumAnim.running = false;
                 isMomentumActive = false;
 
                 let delta = event.pixelDelta.y * touchpadSpeed;
@@ -101,18 +100,18 @@ GridView {
                     "delta": delta,
                     "time": currentTime
                 });
-                velocitySamples = velocitySamples.filter(s => currentTime - s.time < 100);
+                velocitySamples = velocitySamples.filter(s => currentTime - s.time < Scroll.velocitySampleWindowMs);
 
                 if (velocitySamples.length > 1) {
                     const totalDelta = velocitySamples.reduce((sum, s) => sum + s.delta, 0);
                     const timeSpan = currentTime - velocitySamples[0].time;
                     if (timeSpan > 0) {
-                        momentumVelocity = Math.max(-maxMomentumVelocity, Math.min(maxMomentumVelocity, totalDelta / timeSpan * 1000));
+                        momentumVelocity = Math.max(-Scroll.maxMomentumVelocity, Math.min(Scroll.maxMomentumVelocity, totalDelta / timeSpan * 1000));
                     }
                 }
 
-                if (timeDelta < 50) {
-                    momentum = momentum * momentumRetention + delta * 0.15;
+                if (timeDelta < Scroll.momentumTimeThreshold) {
+                    momentum = momentum * momentumRetention + delta * Scroll.momentumDeltaFactor;
                     delta += momentum;
                 } else {
                     momentum = 0;
@@ -132,7 +131,7 @@ GridView {
         }
         onActiveChanged: {
             if (!active) {
-                if (!sessionUsedMouseWheel && Math.abs(momentumVelocity) >= minMomentumVelocity) {
+                if (!sessionUsedMouseWheel && Math.abs(momentumVelocity) >= Scroll.minMomentumVelocity) {
                     startMomentum();
                 } else {
                     velocitySamples = [];
@@ -142,39 +141,32 @@ GridView {
         }
     }
 
-    Timer {
-        id: momentumTimer
-        interval: 16
-        repeat: true
+    FrameAnimation {
+        id: momentumAnim
+        running: false
+
         onTriggered: {
-            const newY = contentY - momentumVelocity * 0.016;
+            const dt = frameTime;
+            const newY = contentY - momentumVelocity * dt;
             const maxY = Math.max(0, contentHeight - height);
 
             if (newY < 0 || newY > maxY) {
                 contentY = newY < 0 ? 0 : maxY;
-                stop();
+                running = false;
                 isMomentumActive = false;
                 momentumVelocity = 0;
                 return;
             }
 
             contentY = newY;
-            momentumVelocity *= friction;
+            momentumVelocity *= Math.pow(friction, dt / 0.016);
 
-            if (Math.abs(momentumVelocity) < 5) {
-                stop();
+            if (Math.abs(momentumVelocity) < Scroll.momentumStopThreshold) {
+                running = false;
                 isMomentumActive = false;
                 momentumVelocity = 0;
             }
         }
-    }
-
-    NumberAnimation {
-        id: returnToBoundsAnimation
-        target: gridView
-        property: "contentY"
-        duration: 300
-        easing.type: Easing.OutQuad
     }
 
     ScrollBar.vertical: DankScrollbar {

@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Common
 import qs.Services
 
 QtObject {
@@ -133,7 +134,11 @@ QtObject {
             case Qt.Key_Return:
             case Qt.Key_Enter:
                 if (ClipboardService.keyboardNavigationActive) {
-                    modal.pasteSelected();
+                    if (SettingsData.clipboardEnterToPaste) {
+                        copySelected();
+                    } else {
+                        modal.pasteSelected();
+                    }
                     event.accepted = true;
                 }
                 return;
@@ -144,7 +149,11 @@ QtObject {
             switch (event.key) {
             case Qt.Key_Return:
             case Qt.Key_Enter:
-                copySelected();
+                if (SettingsData.clipboardEnterToPaste) {
+                    modal.pasteSelected();
+                } else {
+                    copySelected();
+                }
                 event.accepted = true;
                 return;
             case Qt.Key_Delete:

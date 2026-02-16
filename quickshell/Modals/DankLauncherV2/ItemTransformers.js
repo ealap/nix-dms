@@ -112,7 +112,7 @@ function transformBuiltInLauncherItem(item, pluginId, openLabel) {
         _hName: "",
         _hSub: "",
         _hRich: false,
-        _preScored: undefined
+        _preScored: item._preScored
     };
 }
 
@@ -186,7 +186,7 @@ function transformPluginItem(item, pluginId, selectLabel) {
         _hName: "",
         _hSub: "",
         _hRich: false,
-        _preScored: undefined
+        _preScored: item._preScored
     };
 }
 

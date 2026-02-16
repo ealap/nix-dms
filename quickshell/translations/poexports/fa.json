@@ -243,7 +243,7 @@
     "Adjust the number of columns in grid view mode.": "تعداد ستون‌ها در حالت نمای جدولی را تنظیم کنید."
   },
   "Adjust volume per scroll indent": {
-    "Adjust volume per scroll indent": ""
+    "Adjust volume per scroll indent": "تنظیم حجم صدا به‌ازای هر پله اسکرول"
   },
   "Advanced": {
     "Advanced": "پیشرفته"
@@ -297,7 +297,7 @@
     "Analog": "آنالوگ"
   },
   "Animation Duration": {
-    "Animation Duration": ""
+    "Animation Duration": "مدت زمان انیمیشن"
   },
   "Animation Speed": {
     "Animation Speed": "سرعت انیمیشن"
@@ -407,7 +407,7 @@
     "No output devices found": "هیچ دستگاه خروجی‌ای یافت نشد"
   },
   "Audio settings: maximum volume limit per device": {
-    "Max Volume": ""
+    "Max Volume": "حجم صدای بیشینه"
   },
   "Audio settings: speaker/headphone devices": {
     "Output Devices": "دستگاه‌های خروجی"
@@ -509,7 +509,7 @@
     "Automatically lock after": "قفل خودکار پس از"
   },
   "Automatically lock the screen when DMS starts": {
-    "Automatically lock the screen when DMS starts": ""
+    "Automatically lock the screen when DMS starts": "به طور خودکار صفحه را هنگامی که DMS شروع می‌شود قفل کن"
   },
   "Automatically lock the screen when the system prepares to suspend": {
     "Automatically lock the screen when the system prepares to suspend": "صفحه را هنگام آماده‌شدن سیستم برای تعلیق به صورت خودکار قفل کن"
@@ -719,7 +719,7 @@
     "Cancel": "لغو"
   },
   "Cancel all jobs for \"%1\"?": {
-    "Cancel all jobs for \"%1\"?": ""
+    "Cancel all jobs for \"%1\"?": "تمام کار‌ها برای «%1» لغو شود؟"
   },
   "Canceled": {
     "Canceled": "لغو شد"
@@ -767,7 +767,7 @@
     "Choose Color": "انتخاب رنگ"
   },
   "Choose Dock Launcher Logo Color": {
-    "Choose Dock Launcher Logo Color": ""
+    "Choose Dock Launcher Logo Color": "رنگ لوگوی لانجر دَنک را انتخاب کنید"
   },
   "Choose Launcher Logo Color": {
     "Choose Launcher Logo Color": "انتخاب رنگ لوگوی لانچر"
@@ -791,7 +791,7 @@
     "Choose the border accent color": "انتخاب رنگ تأکیدی حاشیه"
   },
   "Choose the logo displayed on the launcher button in DankBar": {
-    "Choose the logo displayed on the launcher button in DankBar": "لوگوی نمایش‌داده شده بر دکمه‌ی لانچر در DankBar را انتخاب کنید"
+    "Choose the logo displayed on the launcher button in DankBar": "لوگوی نمایش‌داده شده بر دکمه‌ی لانچر در نوار دَنک را انتخاب کنید"
   },
   "Choose where notification popups appear on screen": {
     "Choose where notification popups appear on screen": "انتخاب کنید پاپ‌آپ اعلان کجای صفحه ظاهر شود"
@@ -869,10 +869,10 @@
     "Click to capture": "برای ضبط کلیک کنید"
   },
   "Clip": {
-    "Clip": ""
+    "Clip": "برش"
   },
   "Clip to Geometry": {
-    "Clip to Geometry": ""
+    "Clip to Geometry": "برش براساس ابعاد"
   },
   "Clipboard": {
     "Clipboard": "کلیپ‌بورد"
@@ -882,6 +882,9 @@
   },
   "Clipboard Manager": {
     "Clipboard Manager": "مدیریت کلیپ‌بورد"
+  },
+  "Clipboard behavior setting description": {
+    "Press Enter to paste, Shift+Enter to copy": ""
   },
   "Clipboard service not available": {
     "Clipboard service not available": "سرویس کلیپ‌بورد در دسترس نیست"
@@ -956,10 +959,10 @@
     "Column": "ستون"
   },
   "Column Display": {
-    "Column Display": ""
+    "Column Display": "نمایشگر ستون"
   },
   "Column Width": {
-    "Column Width": ""
+    "Column Width": "طول ستون"
   },
   "Command": {
     "Command": "دستور"
@@ -1013,10 +1016,10 @@
     "Configure icons for named workspaces. Icons take priority over numbers when both are enabled.": "آیکون‌ها را برای محیط‌کارهای نام‌دار تنظیم کنید. آیکون‌ها بر شماره‌ها هنگامی که هر دو فعال باشند اولویت دارند."
   },
   "Configure match criteria and actions": {
-    "Configure match criteria and actions": ""
+    "Configure match criteria and actions": "پیکربندی معیارهای انطباق و اقدامات"
   },
   "Configure which displays show \"%1": {
-    "Configure which displays show \"%1\"": ""
+    "Configure which displays show \"%1\"": "تنظیم کنید که کدام نمایشگر‌ها «%1» را نشان دهند"
   },
   "Configure which displays show shell components": {
     "Configure which displays show shell components": "تنظیم کنید که کدام نمایشگر‌ها اجزای پوسته را نمایش دهند"
@@ -1160,13 +1163,13 @@
     "Create rule for:": "ایجاد قاعده برای:"
   },
   "Create rules to mute, ignore, hide from history, or override notification priority.": {
-    "Create rules to mute, ignore, hide from history, or override notification priority.": ""
+    "Create rules to mute, ignore, hide from history, or override notification priority.": "برای بی‌صدا کردن، نادیده گرفتن، پنهان‌سازی از تاریخچه و یا تغییر اولویت اعلان قاعده ایجاد کنید."
   },
   "Creating...": {
     "Creating...": "درحال ایجاد..."
   },
   "Critical Priority": {
-    "Critical Priority": "اولویت بحرانی"
+    "Critical Priority": "اولویت حیاتی"
   },
   "Current Items": {
     "Current Items": "آیتم‌های کنونی"
@@ -1193,7 +1196,7 @@
     "Current: %1": "کنونی: %1"
   },
   "Cursor Config Not Configured": {
-    "Cursor Config Not Configured": ""
+    "Cursor Config Not Configured": "پیکربندی اشاره‌گر موس تنظیم نشده"
   },
   "Cursor Include Missing": {
     "Cursor Include Missing": ""
@@ -1289,7 +1292,7 @@
     "Dank": "Dank"
   },
   "Dank Bar": {
-    "Dank Bar": "Dank Bar"
+    "Dank Bar": "نوار دَنک"
   },
   "DankSearch not available": {
     "DankSearch not available": "DankSearch در دسترس نیست"
@@ -1337,7 +1340,7 @@
     "Defaults": "پیش‌فرض‌ها"
   },
   "Define rules for window behavior. Saves to %1": {
-    "Define rules for window behavior. Saves to %1": ""
+    "Define rules for window behavior. Saves to %1": "برای رفتار پنجره قواعد تعریف کنید. در %1 ذخیره می‌شود"
   },
   "Del: Clear • Shift+Del: Clear All • 1-9: Actions • F10: Help • Esc: Close": {
     "Del: Clear • Shift+Del: Clear All • 1-9: Actions • F10: Help • Esc: Close": "Del: پاک‌کردن • Shift+Del: پاک‌کردن همه • 1-9: اقدامات • F10: راهنما • Esc: بستن"
@@ -1346,7 +1349,7 @@
     "Delete": "حذف"
   },
   "Delete \"%1\"?": {
-    "Delete \"%1\"?": ""
+    "Delete \"%1\"?": "«%1» حذف شود؟"
   },
   "Delete Class": {
     "Delete Class": "حذف کلاس"
@@ -1361,10 +1364,10 @@
     "Delete VPN": "حذف VPN"
   },
   "Delete class \"%1\"?": {
-    "Delete class \"%1\"?": ""
+    "Delete class \"%1\"?": "کلاس «%1» حذف شود؟"
   },
   "Delete profile \"%1\"?": {
-    "Delete profile \"%1\"?": ""
+    "Delete profile \"%1\"?": "پروفایل «%1» حذف شود؟"
   },
   "Derives colors that closely match the underlying image.": {
     "Derives colors that closely match the underlying image.": "رنگ‌هایی را استخراج می‌کند که با تصویر زیرین مطابقت نزدیکی دارند."
@@ -1481,7 +1484,7 @@
     "Display and switch DWL layouts": "نمایش و تغییر چیدمان‌های DWL"
   },
   "Display application icons in workspace indicators": {
-    "Display application icons in workspace indicators": "نمایش آیکون برنامه‌ها در نشانگر‌های محیط‌کار"
+    "Display application icons in workspace indicators": "آیکون برنامه‌ها را در نشانگر‌های محیط‌کار نمایش بده"
   },
   "Display brightness control": {
     "Display brightness control": "کنترل روشنایی نمایشگر"
@@ -1496,7 +1499,7 @@
     "Display hourly weather predictions": "نمایش پیش‌بینی‌های ساعتی آب و هوا"
   },
   "Display only workspaces that contain windows": {
-    "Display only workspaces that contain windows": "نمایش فقط محیط‌کارهایی که شامل پنجره هستند"
+    "Display only workspaces that contain windows": "فقط محیط‌کارهایی که شامل پنجره هستند را نمایش بده"
   },
   "Display power menu actions in a grid instead of a list": {
     "Display power menu actions in a grid instead of a list": "اقدامات منوی پاور را در جدول به جای فهرست نمایش بده"
@@ -1622,7 +1625,7 @@
     "Enable Overview Overlay": "فعال‌کردن overlay نمای کلی"
   },
   "Enable Ripple Effects": {
-    "Enable Ripple Effects": ""
+    "Enable Ripple Effects": "فعال کردن افکت موجی"
   },
   "Enable System Monitor": {
     "Enable System Monitor": "فعال‌کردن ناظر سیستم"
@@ -1722,6 +1725,9 @@
   },
   "Enter this passkey on ": {
     "Enter this passkey on ": "ورود این کلید عبور در "
+  },
+  "Enter to Paste": {
+    "Enter to Paste": ""
   },
   "Enterprise": {
     "Enterprise": "شرکت"
@@ -1847,7 +1853,7 @@
     "Failed to load VPN config": "بارگذاری پیکربندی VPN ناموفق بود"
   },
   "Failed to load clipboard configuration.": {
-    "Failed to load clipboard configuration.": "بارگیری پیکربندی کلیپ‌بورد ناموفق بود."
+    "Failed to load clipboard configuration.": "بارگذاری پیکربندی کلیپ‌بورد ناموفق بود."
   },
   "Failed to move job": {
     "Failed to move job": "انتقال کار چاپ ناموفق بود"
@@ -1949,7 +1955,7 @@
     "Feels Like": "دمای حسی"
   },
   "Field": {
-    "Field": ""
+    "Field": "فیلد"
   },
   "File": {
     "File": "فایل"
@@ -1961,7 +1967,7 @@
     "File Information": "اطلاعات فایل"
   },
   "File search requires dsearch\nInstall from github.com/morelazers/dsearch": {
-    "File search requires dsearch\nInstall from github.com/morelazers/dsearch": ""
+    "File search requires dsearch\nInstall from github.com/morelazers/dsearch": "جستجوی فایل به dsearch نیاز دارد\nاز github.com/morelazers/dsearch نصب کنید"
   },
   "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": {
     "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": "جستجوی نیاز به dsearch دارد\\nاز github.com/morelazers/dsearch نصب کنید"
@@ -2015,7 +2021,7 @@
     "Focus at Startup": "فوکوس در هنگام راه‌اندازی"
   },
   "Focused Border": {
-    "Focused Border": "حاشیه فوکوس شده"
+    "Focused Border": "حاشیه فوکوس"
   },
   "Focused Color": {
     "Focused Color": "رنگ فوکوس شده"
@@ -2069,7 +2075,7 @@
     "Forget": "فراموش کردن"
   },
   "Forget \"%1\"?": {
-    "Forget \"%1\"?": ""
+    "Forget \"%1\"?": "«%1» فراموش شود؟"
   },
   "Forget Device": {
     "Forget Device": "فراموش‌کردن دستگاه"
@@ -2090,7 +2096,7 @@
     "Fullscreen": "تمام‌صفحه"
   },
   "Fullscreen Only": {
-    "Fullscreen Only": ""
+    "Fullscreen Only": "فقط تمام‌صفحه"
   },
   "Fun": {
     "Fun": "سرگرمی"
@@ -2117,7 +2123,7 @@
     "GitHub": "گیت‌هاب"
   },
   "Globally scale all animation durations": {
-    "Globally scale all animation durations": ""
+    "Globally scale all animation durations": "مدت تمام انیمیشن‌ها را سراسری مقیاس کن"
   },
   "Golden Hour": {
     "Golden Hour": "ساعت طلایی"
@@ -2219,7 +2225,7 @@
     "Hide": "پنهان"
   },
   "Hide 3rd Party": {
-    "Hide 3rd Party": ""
+    "Hide 3rd Party": "پنهان کردن شخص ثالث"
   },
   "Hide App": {
     "Hide App": "پنهان کردن برنامه"
@@ -2285,7 +2291,7 @@
     "Hour": "ساعت"
   },
   "Hourly": {
-    "Hourly": ""
+    "Hourly": "ساعتی"
   },
   "Hourly Forecast": {
     "Hourly Forecast": "پیش‌بینی ساعتی"
@@ -2449,7 +2455,7 @@
     "Opening files": "باز کردن فایل‌ها"
   },
   "KDE Connect browse tooltip": {
-    "Browse Files": "مرور کردن فایل‌ها"
+    "Browse Files": "مرور فایل‌ها"
   },
   "KDE Connect clipboard action": {
     "Clipboard sent": "کلیپ‌بورد ارسال شد"
@@ -2510,7 +2516,7 @@
     "Offline": "آفلاین"
   },
   "KDE Connect offline status | Phone Connect offline status": {
-    "Offline": ""
+    "Offline": "آفلاین"
   },
   "KDE Connect open SMS app button": {
     "Open App": "باز کردن برنامه"
@@ -2649,6 +2655,10 @@
   "Keyboard Shortcuts": {
     "Keyboard Shortcuts": "میانبر‌های صفحه‌کلید"
   },
+  "Keyboard hints when enter-to-paste is enabled": {
+    "Shift+Enter: Copy • Shift+Del: Clear All • Esc: Close": "",
+    "↑/↓: Navigate • Enter: Paste • Del: Delete • F10: Help": ""
+  },
   "Keys": {
     "Keys": "کلیدها"
   },
@@ -2779,7 +2789,7 @@
     "Lock Screen layout": "چیدمان صفحه قفل"
   },
   "Lock at startup": {
-    "Lock at startup": ""
+    "Lock at startup": "قفل در هنگام راه‌اندازی"
   },
   "Lock before suspend": {
     "Lock before suspend": "قفل‌کردن قبل از تعلیق"
@@ -3211,7 +3221,7 @@
     "No apps found": "هیچ برنامه‌ای یافت نشد"
   },
   "No apps have been launched yet.": {
-    "No apps have been launched yet.": ""
+    "No apps have been launched yet.": "هیچ برنامه‌ای هنوز اجرا نشده است."
   },
   "No battery": {
     "No battery": "بدون باتری"
@@ -3298,10 +3308,10 @@
     "No variants created. Click Add to create a new monitor widget.": "هیچ گونه‌ی دیگری ایجاد نشد. برای ایجاد یک ابزارک مانیتور جدید، روی افزودن کلیک کنید."
   },
   "No wallpapers found\n\nClick the folder icon below to browse": {
-    "No wallpapers found\n\nClick the folder icon below to browse": ""
+    "No wallpapers found\n\nClick the folder icon below to browse": "هیچ تصویر پس‌زمینه‌ای یافت نشد\n\nروی آیکون پوشه زیر برای مرور کلیک کنید"
   },
   "No widgets added. Click \"Add Widget\" to get started.": {
-    "No widgets added. Click \"Add Widget\" to get started.": ""
+    "No widgets added. Click \"Add Widget\" to get started.": "هیچ ابزارکی افزوده نشده است. برای شروع روی «افزودن ابزارک» کلیک کنید."
   },
   "No widgets available": {
     "No widgets available": "هیچ ابزارکی موجود نیست"
@@ -3310,7 +3320,7 @@
     "No widgets match your search": "هیچ ابزارکی با جستجوی شما مطابقت ندارد"
   },
   "No window rules configured": {
-    "No window rules configured": ""
+    "No window rules configured": "هیچ قاعده پنجره‌ای پیکربندی نشده"
   },
   "None": {
     "None": "هیچکدام"
@@ -3358,7 +3368,7 @@
     "Notification Popups": "پاپ‌آپ اعلان‌ها"
   },
   "Notification Rules": {
-    "Notification Rules": ""
+    "Notification Rules": "قواعد اعلان‌ها"
   },
   "Notification Settings": {
     "Notification Settings": "تنظیمات اعلان‌ها"
@@ -3394,10 +3404,10 @@
     "Offline Report": "گزارش آفلاین"
   },
   "On": {
-    "On": ""
+    "On": "روشن"
   },
   "On-Demand": {
-    "On-Demand": ""
+    "On-Demand": "هنگام درخواست"
   },
   "On-Screen Displays": {
     "On-Screen Displays": "نمایشگر‌های بر صفحه"
@@ -3457,7 +3467,7 @@
     "Other": "دیگر"
   },
   "Output": {
-    "Output": ""
+    "Output": "خروجی"
   },
   "Output Area Almost Full": {
     "Output Area Almost Full": "محل خروج تقریبا پر است"
@@ -3472,7 +3482,7 @@
     "Outputs Include Missing": "Include خروجی‌ها یافت نشد"
   },
   "Overflow": {
-    "Overflow": ""
+    "Overflow": "سرریزی"
   },
   "Overridden by config": {
     "Overridden by config": "جایگزین شده توسط پیکربندی"
@@ -3571,10 +3581,10 @@
     "Personalization": "شخصی‌سازی"
   },
   "Phone Connect SMS action": {
-    "Opening SMS app": ""
+    "Opening SMS app": "باز کردن برنامه SMS"
   },
   "Phone Connect browse action": {
-    "Opening file browser": ""
+    "Opening file browser": "باز کردن مرورگر فایل"
   },
   "Phone Connect daemon hint": {
     "Start KDE Connect or Valent to use this plugin": "برنامه KDE Connect یا Valent را برای استفاده از این افزونه آغاز کنید"
@@ -3589,7 +3599,7 @@
     "Failed to send file": "ارسال فایل ناموفق بود",
     "Failed to send ping": "ارسال پینگ ناموفق بود",
     "Failed to share": "اشتراک‌گذاری ناموفق بود",
-    "Pairing failed": "",
+    "Pairing failed": "جفت‌سازی ناموفق بود",
     "Unpair failed": ""
   },
   "Phone Connect file send": {
@@ -3606,13 +3616,13 @@
   },
   "Phone Connect pairing action": {
     "Device paired": "دستگاه جفت شد",
-    "Pairing request sent": ""
+    "Pairing request sent": "درخواست جفت‌سازی فرستاده شد"
   },
   "Phone Connect pairing request notification": {
-    "Pairing request from": ""
+    "Pairing request from": "درخواست جفت‌سازی از"
   },
   "Phone Connect pairing verification key label": {
-    "Verification": ""
+    "Verification": "تأیید"
   },
   "Phone Connect ping action": {
     "Ping sent to": "پینگ فرستاده شد به"
@@ -3633,7 +3643,7 @@
     "Phone Connect Not Available": "Phone Connect دردسترس نیست"
   },
   "Phone Connect unavailable status": {
-    "Unavailable": ""
+    "Unavailable": "دردسترس نیست"
   },
   "Pin": {
     "Pin": "سنجاق"
@@ -3699,7 +3709,7 @@
     "Popouts": "پاپ‌آپ‌ها"
   },
   "Popouts and Modals follow global Animation Speed (disable to customize independently)": {
-    "Popouts and Modals follow global Animation Speed (disable to customize independently)": ""
+    "Popouts and Modals follow global Animation Speed (disable to customize independently)": "پاپ‌آپ‌ها و مودال‌ها از سرعت انیمیشن سراسری پیروی کنند (برای سفارشی‌سازی جداگانه غیرفعال کنید)"
   },
   "Popup Position": {
     "Popup Position": "مکان پاپ‌آپ"
@@ -3729,7 +3739,7 @@
     "Power Menu Customization": "سفارشی‌سازی منوی پاور"
   },
   "Power Off": {
-    "Power Off": "خاموش کردن"
+    "Power Off": "خاموش"
   },
   "Power Options": {
     "Power Options": "گزینه‌های پاور"
@@ -3753,7 +3763,7 @@
     "Precip": "بارش"
   },
   "Precipitation": {
-    "Precipitation": ""
+    "Precipitation": "احتمال بارش"
   },
   "Precipitation Chance": {
     "Precipitation Chance": "احتمال بارش"
@@ -3807,7 +3817,7 @@
     "Printers: ": "چاپگر‌ها: "
   },
   "Priority": {
-    "Priority": ""
+    "Priority": "اولویت"
   },
   "Privacy Indicator": {
     "Privacy Indicator": "نشانگر حریم خصوصی"
@@ -3906,7 +3916,7 @@
     "Release": "رها کردن"
   },
   "Reload Plugin": {
-    "Reload Plugin": "بارگیری مجدد افزونه"
+    "Reload Plugin": "بارگذاری مجدد افزونه"
   },
   "Remove": {
     "Remove": "حذف"
@@ -3930,7 +3940,7 @@
     "Report": "گزارش"
   },
   "Require holding button/key to confirm power off, restart, suspend, hibernate and logout": {
-    "Require holding button/key to confirm power off, restart, suspend, hibernate and logout": "برای تأیید خاموش کردن، راه‌اندازی مجدد، تعلیق، هایبرنیت و خروج، نگه داشتن دکمه/کلید را الزام کن"
+    "Require holding button/key to confirm power off, restart, suspend, hibernate and logout": "برای تأیید خاموش، راه‌اندازی مجدد، تعلیق، هایبرنیت و خروج، نگه داشتن دکمه/کلید را الزام کن"
   },
   "Requires 'dgop' tool": {
     "Requires 'dgop' tool": "به ابزار 'dgop' نیاز دارد"
@@ -3966,7 +3976,7 @@
     "Restart DMS": "راه‌اندازی مجدد DMS"
   },
   "Restart the DankMaterialShell": {
-    "Restart the DankMaterialShell": "راه‌اندازی مجدد DankMaterialShell"
+    "Restart the DankMaterialShell": "دَنک متریال شل را مجدد راه بینداز"
   },
   "Resume": {
     "Resume": "ازسرگیری"
@@ -3999,7 +4009,7 @@
     "Right-click bar widget to cycle": "برای تغییر چیدمان، روی ابزارک نوار راست‌کلیک کنید"
   },
   "Ripple Effects": {
-    "Ripple Effects": ""
+    "Ripple Effects": "افکت موجی"
   },
   "Root Filesystem": {
     "Root Filesystem": "سیستم‌فایل ریشه"
@@ -4086,10 +4096,10 @@
     "Scale": "بزرگنمایی"
   },
   "Scale DankBar font sizes independently": {
-    "Scale DankBar font sizes independently": "بزرگنمایی اندازه فونت DankBar به صورت مستقل"
+    "Scale DankBar font sizes independently": "اندازه فونت نوار دَنک را به صورت مستقل مقیاس کن"
   },
   "Scale all font sizes throughout the shell": {
-    "Scale all font sizes throughout the shell": "بزرگنمایی تمام اندازه‌های فونت در سراسر شِل"
+    "Scale all font sizes throughout the shell": "تمام اندازه‌های فونت در سراسر شِل مقیاس کن"
   },
   "Scan": {
     "Scan": "اسکن"
@@ -4113,7 +4123,7 @@
     "Scroll": "اسکرول"
   },
   "Scroll Factor": {
-    "Scroll Factor": ""
+    "Scroll Factor": "ضریب اسکرول"
   },
   "Scroll Wheel": {
     "Scroll Wheel": "چرخ اسکرول"
@@ -4190,6 +4200,9 @@
   "Select Bar": {
     "Select Bar": "انتخاب نوار"
   },
+  "Select Dock Launcher Logo": {
+    "Select Dock Launcher Logo": ""
+  },
   "Select Launcher Logo": {
     "Select Launcher Logo": "انتخاب لوگوی لانچر"
   },
@@ -4218,19 +4231,19 @@
     "Select driver...": "انتخاب درایور..."
   },
   "Select font weight for UI text": {
-    "Select font weight for UI text": "انتخاب وزن فونت برای متن UI"
+    "Select font weight for UI text": "وزن فونت برای متن UI انتخاب کنید"
   },
   "Select monitor to configure wallpaper": {
     "Select monitor to configure wallpaper": "مانیتور برای پیکربندی تصویر پس‌زمینه انتخاب کنید"
   },
   "Select monospace font for process list and technical displays": {
-    "Select monospace font for process list and technical displays": "انتخاب فونت monospace برای فهرست فرایند‌ها و نمایشگر‌های فنی"
+    "Select monospace font for process list and technical displays": "فونت monospace را برای فهرست فرایند‌ها و نمایشگر‌های فنی انتخاب کنید"
   },
   "Select system sound theme": {
     "Select system sound theme": "انتخاب تم صدای سیستم"
   },
   "Select the font family for UI text": {
-    "Select the font family for UI text": "انتخاب خانواده فونت برای متن UI"
+    "Select the font family for UI text": "خانواده فونت را برای متن UI انتخاب کنید"
   },
   "Select the palette algorithm used for wallpaper-based colors": {
     "Select the palette algorithm used for wallpaper-based colors": "انتخاب الگوریتم پالت رنگی استفاده شده برای رنگ‌های بر اساس تصویر پس‌زمینه"
@@ -4296,7 +4309,7 @@
     "Show": "نمایش"
   },
   "Show 3rd Party": {
-    "Show 3rd Party": ""
+    "Show 3rd Party": "نمایش شخص ثالث"
   },
   "Show All Tags": {
     "Show All Tags": "نمایش همه برچسب‌ها"
@@ -4362,7 +4375,7 @@
     "Show Log Out": "نمایش خروج"
   },
   "Show Material Design ripple animations on interactive elements": {
-    "Show Material Design ripple animations on interactive elements": ""
+    "Show Material Design ripple animations on interactive elements": "انیمیشن موجی متریال دیزاین روی عناصر تعاملی نمایش بده"
   },
   "Show Memory": {
     "Show Memory": "نمایش حافظه"
@@ -4473,7 +4486,7 @@
     "Show on-screen display when idle inhibitor state changes": "نمایشگر بر صفحه را هنگام تغیر وضعیت مهارگر بیکاری نمایش بده"
   },
   "Show on-screen display when media player status changes": {
-    "Show on-screen display when media player status changes": ""
+    "Show on-screen display when media player status changes": "نمایشگر بر صفحه را هنگامی که وضعیت پخش‌کننده رسانه تغییر می‌کند نمایش بده"
   },
   "Show on-screen display when media player volume changes": {
     "Show on-screen display when media player volume changes": "نمایشگر بر صفحه را هنگام تغییر حجم صدای پخش‌کننده رسانه نمایش بده"
@@ -4491,22 +4504,22 @@
     "Show only apps running in current workspace": "فقط برنامه‌های درحال اجرا را در محیط‌کار کنونی نمایش بده"
   },
   "Show only workspaces belonging to each specific monitor.": {
-    "Show only workspaces belonging to each specific monitor.": "نمایش فقط محیط‌کارهایی که به هر مانیتور خاص تعلق دارند."
+    "Show only workspaces belonging to each specific monitor.": "فقط محیط‌کارهایی که به هر مانیتور خاص تعلق دارند را نمایش بده."
   },
   "Show password": {
     "Show password": "نمایش گذرواژه"
   },
   "Show weather information in top bar and control center": {
-    "Show weather information in top bar and control center": "نمایش اطلاعات آب و هوا در نوار بالا و مرکز کنترل"
+    "Show weather information in top bar and control center": "اطلاعات آب و هوا را در نوار بالا و مرکز کنترل نمایش بده"
   },
   "Show workspace index numbers in the top bar workspace switcher": {
-    "Show workspace index numbers in the top bar workspace switcher": "نمایش شماره شاخص محیط‌‎کار در تغییردهنده محیط‌کار نوار بالا"
+    "Show workspace index numbers in the top bar workspace switcher": "شماره شاخص محیط‌‎کار را در تغییردهنده محیط‌کار نوار بالا نمایش بده"
   },
   "Show workspace name on horizontal bars, and first letter on vertical bars": {
-    "Show workspace name on horizontal bars, and first letter on vertical bars": "نام  محیط‌کار را در نوارهای افقی و اولین حرف را در نوار‌های عمودی نمایش بده"
+    "Show workspace name on horizontal bars, and first letter on vertical bars": "نام محیط‌کار را در نوارهای افقی و اولین حرف را در نوار‌های عمودی نمایش بده"
   },
   "Show workspaces of the currently focused monitor": {
-    "Show workspaces of the currently focused monitor": "نمایش محیط‌کارهای مانیتور فوکوس شده کنونی"
+    "Show workspaces of the currently focused monitor": "محیط‌کارهای مانیتور فوکوس شده کنونی را نمایش بده"
   },
   "Shows all running applications with focus indication": {
     "Shows all running applications with focus indication": "همه برنامه‌های درحال اجرا را با نشانگر متمرکز نمایش می‌دهد"
@@ -4668,7 +4681,7 @@
     "Sync Mode with Portal": "همگام‌سازی حالت با پورتال"
   },
   "Sync Popouts & Modals": {
-    "Sync Popouts & Modals": ""
+    "Sync Popouts & Modals": "همگام‌سازی پاپ‌آپ‌ها و مودال‌ها"
   },
   "Sync Position Across Screens": {
     "Sync Position Across Screens": "همگام‌سازی مکان در تمامی صفحات"
@@ -4770,16 +4783,16 @@
     "Third-Party Plugin Warning": "اخطار افزونه شخص ثالث"
   },
   "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": {
-    "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": ""
+    "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": "افزونه‌های شخص‌ثالث توسط کامیونیتی ساخته شده‌اند و به‌طور رسمی توسط دَنک متریال شل پشتیبانی نمی‌شوند.\n\nاین افزونه‌ها ممکن است خطرات امنیتی و حریم خصوصی داشته باشند - با مسئولیت خودتان نصب کنید."
   },
   "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": {
-    "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": "افزونه‌های شخص ثالث توسط کامیونیتی ایجاد شده و به طور رسمی توسط DankMaterialShell پشتیبانی نمی‌شوند.\\n\\nاین افزونه‌ها ممکن است خطرات امنیتی و حریم خصوصی ایجاد کنند - با مسئولیت خودتان نصب کنید."
+    "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": "افزونه‌های شخص ثالث توسط کامیونیتی ایجاد شده و به طور رسمی توسط دَنک متریال شل پشتیبانی نمی‌شوند.\\n\\nاین افزونه‌ها ممکن است خطرات امنیتی و حریم خصوصی ایجاد کنند - با مسئولیت خودتان نصب کنید."
   },
   "This bind is overridden by config.kdl": {
     "This bind is overridden by config.kdl": "این نگاشت توسط config.kdl بازنویسی شده"
   },
   "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": {
-    "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": ""
+    "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": "این افزونه اجازه «settings_write» را ندارد.\n\nبه plugins.json خط \"permissions\": [\"settings_read\", \"settings_write\"] را اضافه کنید"
   },
   "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": {
     "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": "این ابزارک از حالت‌های خاموش شدن GPU جلوگیری می‌کند، که ​​می‌تواند به طور قابل توجهی بر عمر باتری لپ‌تاپ‌ها تأثیر بگذارد. استفاده از این ابزارک در لپ‌تاپ‌هایی با گرافیک هیبریدی توصیه نمی‌شود."
@@ -4818,7 +4831,7 @@
     "Timed Out": "زمان تمام شد"
   },
   "Timeout for critical priority notifications": {
-    "Timeout for critical priority notifications": "وقفه اعلان‌ها با اولویت بحرانی"
+    "Timeout for critical priority notifications": "وقفه اعلان‌ها با اولویت حیاتی"
   },
   "Timeout for low priority notifications": {
     "Timeout for low priority notifications": "وقفه اعلان‌ها با اولویت پایین"
@@ -4959,7 +4972,7 @@
     "Unknown": "ناشناخته"
   },
   "Unknown Artist": {
-    "Unknown Artist": ""
+    "Unknown Artist": "هنرمند ناشناس"
   },
   "Unknown Config": {
     "Unknown Config": "پیکربندی ناشناخته"
@@ -4974,7 +4987,7 @@
     "Unknown Network": "شبکه ناشناخته"
   },
   "Unknown Title": {
-    "Unknown Title": ""
+    "Unknown Title": "عنوان ناشناس"
   },
   "Unnamed Rule": {
     "Unnamed Rule": "قاعده بی‌نام"
@@ -5016,7 +5029,7 @@
     "Usage Tips": "راهنمای استفاده"
   },
   "Use 24-hour time format instead of 12-hour AM/PM": {
-    "Use 24-hour time format instead of 12-hour AM/PM": "استفاده از قالب 24 ساعته به جای 12 ساعته ق.ظ/ب.ظ"
+    "Use 24-hour time format instead of 12-hour AM/PM": "از قالب 24 ساعته به جای 12 ساعته ق.ظ/ب.ظ استفاده کن"
   },
   "Use Custom Command": {
     "Use Custom Command": "استفاده از دستور سفارشی"
@@ -5088,7 +5101,7 @@
     "Used": "استفاده شده"
   },
   "Used when accent color is set to Custom": {
-    "Used when accent color is set to Custom": ""
+    "Used when accent color is set to Custom": "وقتی رنگ تأکیدی سفارشی تنظیم شده استفاده می‌شود"
   },
   "User": {
     "User": "کاربر"
@@ -5139,7 +5152,7 @@
     "VRR": "VRR"
   },
   "VRR Fullscreen Only": {
-    "VRR Fullscreen Only": ""
+    "VRR Fullscreen Only": "VRR فقط تمام‌صفحه"
   },
   "VRR On-Demand": {
     "VRR On-Demand": "VRR بر اساس تقاضا"
@@ -5303,13 +5316,13 @@
     "Width": "طول"
   },
   "Width of window border (borderpx)": {
-    "Width of window border (borderpx)": ""
+    "Width of window border (borderpx)": "ضخامت حاشیه پنجره (borderpx)"
   },
   "Width of window border (general.border_size)": {
-    "Width of window border (general.border_size)": ""
+    "Width of window border (general.border_size)": "ضخامت حاشیه پنجره (general.border_size)"
   },
   "Width of window border and focus ring": {
-    "Width of window border and focus ring": ""
+    "Width of window border and focus ring": "ضخامت حاشیه پنجره و حلقه فوکوس"
   },
   "Wind": {
     "Wind": "باد"
@@ -5505,7 +5518,7 @@
     "dgop not available": "dgop در دسترس نیست"
   },
   "dgop unavailable error message": {
-    "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "",
+    "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "ابزار «dgop» برای نظارت سیستم نیاز است.\nلطفا برای استفاده از این قابلیت dgop را نصب کنید.",
     "The 'dgop' tool is required for system monitoring.\\nPlease install dgop to use this feature.": "ابزار «dgop» برای نظارت سیستم نیاز است.\\nلطفا dgop را برای استفاده از این قابلیت نصب کنید."
   },
   "disk io header in system monitor": {
@@ -5594,7 +5607,7 @@
     "Back": "بازگشت"
   },
   "greeter completion page subtitle": {
-    "DankMaterialShell is ready to use": "DankMaterialShell آماده استفاده می‌باشد"
+    "DankMaterialShell is ready to use": "دَنک متریال شل آماده استفاده می‌باشد"
   },
   "greeter completion page title": {
     "You're All Set!": "همه چیز آماده است!"
@@ -5606,7 +5619,7 @@
     "Widgets, layout, style": "ابزارک‌ها، چیدمان، استایل"
   },
   "greeter displays description": {
-    "Resolution, position, scale": "وضوح، مکان، مقیاس"
+    "Resolution, position, scale": "وضوح، مکان، بزرگنمایی"
   },
   "greeter dock description": {
     "Position, pinned apps": "مکاان، برنامه‌های سنجاق شده"
@@ -5617,7 +5630,7 @@
   "greeter doctor page empty state": {
     "No checks passed": "هیچ‌یک از بررسی‌ها موفق نبود",
     "No errors": "بدون خطا",
-    "No info items": "",
+    "No info items": "مورد اطلاعاتی وجود ندارد",
     "No warnings": "بدون اخطار"
   },
   "greeter doctor page error count": {
@@ -5669,7 +5682,7 @@
     "Plugins": "افزونه‌ها"
   },
   "greeter feature card title | greeter settings link": {
-    "DankBar": "DankBar"
+    "DankBar": "نوار دَنک"
   },
   "greeter feature card title | lock screen notifications settings card": {
     "Lock Screen": "صفحه قفل"
@@ -5731,7 +5744,7 @@
     "A modern desktop shell for Wayland compositors": "یک پوسته دسکتاپ مدرن برای کامپازیتورهای وِیلند"
   },
   "greeter welcome page title": {
-    "Welcome to DankMaterialShell": "به DankMaterialShell خوش آمدید"
+    "Welcome to DankMaterialShell": "به دَنک متریال شل خوش آمدید"
   },
   "install action button": {
     "Install": "نصب"
@@ -5776,7 +5789,7 @@
     "Full Content": "محتوای کامل"
   },
   "lock screen notification mode option | notification rule match field option": {
-    "App Names": ""
+    "App Names": "نام برنامه‌ها"
   },
   "lock screen notification privacy setting": {
     "Control what notification information is shown on the lock screen": "مشخص کنید که کدام اطلاعات اعلان در صفحه قفل نمایش داده شود",
@@ -5790,14 +5803,14 @@
   },
   "matugen color scheme option": {
     "Content": "محتوا",
-    "Expressive": "",
-    "Fidelity": "",
-    "Fruit Salad": "",
-    "Monochrome": "",
-    "Neutral": "",
+    "Expressive": "پررنگ",
+    "Fidelity": "دقیق",
+    "Fruit Salad": "رنگارنگ",
+    "Monochrome": "تک‌رنگ",
+    "Neutral": "خنثی",
     "Rainbow": "رنگین‌کمان",
-    "Tonal Spot": "",
-    "Vibrant": ""
+    "Tonal Spot": "تُن برجسته",
+    "Vibrant": "زنده"
   },
   "matugen error": {
     "matugen not found - install matugen package for dynamic theming": "matugen یافت نشد - بسته matugen را برای تم پویا نصب کنید"
@@ -5875,7 +5888,7 @@
   },
   "notification history setting": {
     "Auto-delete notifications older than this": "اعلان‌های قدیمی تر از این را خودکار حذف کن",
-    "Save critical priority notifications to history": "اعلان‌ها با اولویت بحرانی را در تاریخچه ذخیره کن",
+    "Save critical priority notifications to history": "اعلان‌ها با اولویت حیاتی را در تاریخچه ذخیره کن",
     "Save low priority notifications to history": "اعلان‌ها با اولویت پایین را در تاریخچه ذخیره کن",
     "Save normal priority notifications to history": "اعلان‌ها با اولویت عادی را در تاریخچه ذخیره کن"
   },
@@ -5886,28 +5899,28 @@
     "Enable History": "فعال‌کردن تاریخچه"
   },
   "notification rule action option": {
-    "Ignore Completely": "",
-    "Mute Popups": "",
-    "No History": "",
-    "Popup Only": ""
+    "Ignore Completely": "کلاً نادیده بگیر",
+    "Mute Popups": "پاپ‌آپ‌ها بی‌صدا شوند",
+    "No History": "بدون تاریخچه",
+    "Popup Only": "فقط پاپ‌آپ"
   },
   "notification rule action option | notification rule urgency option | widget style option": {
-    "Default": ""
+    "Default": "پیش‌فرض"
   },
   "notification rule match field option": {
-    "Body": "",
+    "Body": "بدنه",
     "Desktop Entry": "",
-    "Summary": ""
+    "Summary": "خلاصه"
   },
   "notification rule match type option": {
-    "Contains": "",
-    "Exact": "",
-    "Regex": ""
+    "Contains": "شامل",
+    "Exact": "دقیق",
+    "Regex": "رجکس"
   },
   "notification rule urgency option": {
-    "Critical Priority": "",
-    "Low Priority": "",
-    "Normal Priority": ""
+    "Critical Priority": "اولویت حیاتی",
+    "Low Priority": "اولویت پایین",
+    "Normal Priority": "اولویت عادی"
   },
   "now": {
     "now": "اکنون"
@@ -6001,7 +6014,7 @@
     "Intensity": "شدت"
   },
   "short for processes": {
-    "procs": "فرایندها"
+    "procs": "فرایند"
   },
   "source code link": {
     "source": "منبع"
@@ -6024,7 +6037,7 @@
   },
   "theme category option": {
     "Auto": "خودکار",
-    "Browse": "مرور کردن",
+    "Browse": "مرور",
     "Custom": "سفارشی",
     "Generic": "عمومی"
   },
@@ -6063,7 +6076,7 @@
     "Uptime:": "زمان اجرا:"
   },
   "v%1 by %2": {
-    "v%1 by %2": ""
+    "v%1 by %2": "نسخه %1 توسط %2"
   },
   "version requirement": {
     "Requires %1": "به %1 نیاز دارد"

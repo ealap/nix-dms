@@ -79,6 +79,8 @@ Singleton {
         saveSettings();
     }
 
+    property bool clipboardEnterToPaste: false
+
     property var launcherPluginVisibility: ({})
 
     function getPluginAllowWithoutTrigger(pluginId) {
@@ -312,6 +314,7 @@ Singleton {
     property int dankLauncherV2BorderThickness: 2
     property string dankLauncherV2BorderColor: "primary"
     property bool dankLauncherV2ShowFooter: true
+    property bool dankLauncherV2UnloadOnClose: true
 
     property string _legacyWeatherLocation: "New York, NY"
     property string _legacyWeatherCoordinates: "40.7128,-74.0060"
@@ -2233,10 +2236,16 @@ Singleton {
             if ((existing.dark && typeof existing.dark === "object") || (existing.light && typeof existing.light === "object")) {
                 perMode = existing;
             } else if (typeof existing.flavor === "string") {
-                perMode.dark = {flavor: existing.flavor, accent: existing.accent || ""};
+                perMode.dark = {
+                    flavor: existing.flavor,
+                    accent: existing.accent || ""
+                };
             }
         }
-        perMode[mode || "dark"] = {flavor: flavor, accent: accent};
+        perMode[mode || "dark"] = {
+            flavor: flavor,
+            accent: accent
+        };
         variants[themeId] = perMode;
         registryThemeVariants = variants;
         saveSettings();

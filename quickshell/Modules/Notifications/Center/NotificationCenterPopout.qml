@@ -132,9 +132,6 @@ DankPopout {
             }
 
             color: "transparent"
-            radius: Theme.cornerRadius
-            border.color: Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.08)
-            border.width: 0
             focus: true
 
             Component.onCompleted: {

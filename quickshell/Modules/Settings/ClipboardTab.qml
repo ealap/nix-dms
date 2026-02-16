@@ -427,6 +427,16 @@ Item {
                     checked: root.config.clearAtStartup ?? false
                     onToggled: checked => root.saveConfig("clearAtStartup", checked)
                 }
+
+                SettingsToggleRow {
+                    tab: "clipboard"
+                    tags: ["clipboard", "enter", "paste", "behavior"]
+                    settingKey: "clipboardEnterToPaste"
+                    text: I18n.tr("Enter to Paste")
+                    description: I18n.tr("Press Enter to paste, Shift+Enter to copy", "Clipboard behavior setting description")
+                    checked: SettingsData.clipboardEnterToPaste
+                    onToggled: checked => SettingsData.set("clipboardEnterToPaste", checked)
+                }
             }
 
             SettingsCard {

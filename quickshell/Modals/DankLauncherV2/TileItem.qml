@@ -64,7 +64,7 @@ Rectangle {
         if (!path)
             return false;
         var ext = path.split('.').pop().toLowerCase();
-        return ["jpg", "jpeg", "png", "gif", "webp", "svg", "bmp"].indexOf(ext) >= 0;
+        return ["jpg", "jpeg", "png", "gif", "webp", "svg", "bmp", "jxl", "avif", "heif", "exr"].indexOf(ext) >= 0;
     }
 
     DankRipple {

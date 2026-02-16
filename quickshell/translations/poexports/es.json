@@ -883,6 +883,9 @@
   "Clipboard Manager": {
     "Clipboard Manager": "Gestor de portapapeles"
   },
+  "Clipboard behavior setting description": {
+    "Press Enter to paste, Shift+Enter to copy": ""
+  },
   "Clipboard service not available": {
     "Clipboard service not available": "Servicioi de portapapeles no disponible"
   },
@@ -1722,6 +1725,9 @@
   },
   "Enter this passkey on ": {
     "Enter this passkey on ": "Introduzca esta clave en "
+  },
+  "Enter to Paste": {
+    "Enter to Paste": ""
   },
   "Enterprise": {
     "Enterprise": "Empresa"
@@ -2648,6 +2654,10 @@
   },
   "Keyboard Shortcuts": {
     "Keyboard Shortcuts": "Atajos de teclado"
+  },
+  "Keyboard hints when enter-to-paste is enabled": {
+    "Shift+Enter: Copy • Shift+Del: Clear All • Esc: Close": "",
+    "↑/↓: Navigate • Enter: Paste • Del: Delete • F10: Help": ""
   },
   "Keys": {
     "Keys": "Teclas"
@@ -4189,6 +4199,9 @@
   },
   "Select Bar": {
     "Select Bar": "Seleccionar barra"
+  },
+  "Select Dock Launcher Logo": {
+    "Select Dock Launcher Logo": ""
   },
   "Select Launcher Logo": {
     "Select Launcher Logo": "Seleccionar logo del lanzador"

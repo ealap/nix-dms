@@ -251,13 +251,20 @@ Item {
         active: false
         asynchronous: false
 
+        Component.onCompleted: {
+            PopoutService.dankDashPopoutLoader = dankDashPopoutLoader;
+        }
+
+        onLoaded: {
+            if (item) {
+                PopoutService.dankDashPopout = item;
+                PopoutService._onDankDashPopoutLoaded();
+            }
+        }
+
         sourceComponent: Component {
             DankDashPopout {
                 id: dankDashPopout
-
-                Component.onCompleted: {
-                    PopoutService.dankDashPopout = dankDashPopout;
-                }
             }
         }
     }

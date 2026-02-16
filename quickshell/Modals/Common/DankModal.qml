@@ -3,7 +3,6 @@ import Quickshell
 import Quickshell.Wayland
 import qs.Common
 import qs.Services
-import qs.Widgets
 
 Item {
     id: root
@@ -378,11 +377,11 @@ Item {
                         }
                     }
 
-                    DankRectangle {
+                    Rectangle {
                         anchors.fill: parent
                         color: root.backgroundColor
-                        borderColor: root.borderColor
-                        borderWidth: root.borderWidth
+                        border.color: root.borderColor
+                        border.width: root.borderWidth
                         radius: root.cornerRadius
                     }
 

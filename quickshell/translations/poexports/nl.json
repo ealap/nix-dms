@@ -243,7 +243,7 @@
     "Adjust the number of columns in grid view mode.": "Pas het aantal kolommen in rasterweergave aan."
   },
   "Adjust volume per scroll indent": {
-    "Adjust volume per scroll indent": ""
+    "Adjust volume per scroll indent": "Volume per scrollstap aanpassen"
   },
   "Advanced": {
     "Advanced": "Geavanceerd"
@@ -297,7 +297,7 @@
     "Analog": "Analoog"
   },
   "Animation Duration": {
-    "Animation Duration": ""
+    "Animation Duration": "Animatieduur"
   },
   "Animation Speed": {
     "Animation Speed": "Animatiesnelheid"
@@ -407,7 +407,7 @@
     "No output devices found": "Geen uitvoerapparaten gevonden"
   },
   "Audio settings: maximum volume limit per device": {
-    "Max Volume": ""
+    "Max Volume": "Max. volume"
   },
   "Audio settings: speaker/headphone devices": {
     "Output Devices": "Uitvoerapparaten"
@@ -509,7 +509,7 @@
     "Automatically lock after": "Automatisch vergrendelen na"
   },
   "Automatically lock the screen when DMS starts": {
-    "Automatically lock the screen when DMS starts": ""
+    "Automatically lock the screen when DMS starts": "Scherm automatisch vergrendelen wanneer DMS start"
   },
   "Automatically lock the screen when the system prepares to suspend": {
     "Automatically lock the screen when the system prepares to suspend": "Het scherm automatisch vergrendelen wanneer het systeem in slaapstand gaat"
@@ -719,7 +719,7 @@
     "Cancel": "Annuleren"
   },
   "Cancel all jobs for \"%1\"?": {
-    "Cancel all jobs for \"%1\"?": ""
+    "Cancel all jobs for \"%1\"?": "Alle taken voor \"%1\" annuleren?"
   },
   "Canceled": {
     "Canceled": "Geannuleerd"
@@ -883,6 +883,9 @@
   "Clipboard Manager": {
     "Clipboard Manager": "Klembordbeheer"
   },
+  "Clipboard behavior setting description": {
+    "Press Enter to paste, Shift+Enter to copy": ""
+  },
   "Clipboard service not available": {
     "Clipboard service not available": "Klembord-service niet beschikbaar"
   },
@@ -1016,7 +1019,7 @@
     "Configure match criteria and actions": "Criteria en acties configureren"
   },
   "Configure which displays show \"%1": {
-    "Configure which displays show \"%1\"": ""
+    "Configure which displays show \"%1\"": "Configureren op welke schermen \"%1\" wordt getoond"
   },
   "Configure which displays show shell components": {
     "Configure which displays show shell components": "Configureer welke beeldschermen shell-onderdelen tonen"
@@ -1160,7 +1163,7 @@
     "Create rule for:": "Regel aanmaken voor:"
   },
   "Create rules to mute, ignore, hide from history, or override notification priority.": {
-    "Create rules to mute, ignore, hide from history, or override notification priority.": ""
+    "Create rules to mute, ignore, hide from history, or override notification priority.": "Maak regels om meldingen te dempen, te negeren, uit de geschiedenis te verbergen of de prioriteit te overschrijven."
   },
   "Creating...": {
     "Creating...": "Aanmaken..."
@@ -1277,7 +1280,7 @@
     "DWL service not available": "DWL-service niet beschikbaar"
   },
   "Daily": {
-    "Daily": ""
+    "Daily": "Dagelijks"
   },
   "Daily Forecast": {
     "Daily Forecast": "Dagelijkse voorspelling"
@@ -1346,7 +1349,7 @@
     "Delete": "Verwijderen"
   },
   "Delete \"%1\"?": {
-    "Delete \"%1\"?": ""
+    "Delete \"%1\"?": "\"%1\" verwijderen?"
   },
   "Delete Class": {
     "Delete Class": "Klasse verwijderen"
@@ -1361,10 +1364,10 @@
     "Delete VPN": "VPN verwijderen"
   },
   "Delete class \"%1\"?": {
-    "Delete class \"%1\"?": ""
+    "Delete class \"%1\"?": "Klasse \"%1\" verwijderen?"
   },
   "Delete profile \"%1\"?": {
-    "Delete profile \"%1\"?": ""
+    "Delete profile \"%1\"?": "Profiel \"%1\" verwijderen?"
   },
   "Derives colors that closely match the underlying image.": {
     "Derives colors that closely match the underlying image.": "Leidt kleuren af die nauw aansluiten bij de onderliggende afbeelding."
@@ -1622,7 +1625,7 @@
     "Enable Overview Overlay": "Overzicht-overlay inschakelen"
   },
   "Enable Ripple Effects": {
-    "Enable Ripple Effects": ""
+    "Enable Ripple Effects": "Rimpel-effecten inschakelen"
   },
   "Enable System Monitor": {
     "Enable System Monitor": "Systeemmonitor inschakelen"
@@ -1722,6 +1725,9 @@
   },
   "Enter this passkey on ": {
     "Enter this passkey on ": "Voer deze toegangscode in op "
+  },
+  "Enter to Paste": {
+    "Enter to Paste": ""
   },
   "Enterprise": {
     "Enterprise": "Enterprise"
@@ -1949,7 +1955,7 @@
     "Feels Like": "Gevoelstemperatuur"
   },
   "Field": {
-    "Field": ""
+    "Field": "Veld"
   },
   "File": {
     "File": "Bestand"
@@ -1961,7 +1967,7 @@
     "File Information": "Bestandsinformatie"
   },
   "File search requires dsearch\nInstall from github.com/morelazers/dsearch": {
-    "File search requires dsearch\nInstall from github.com/morelazers/dsearch": ""
+    "File search requires dsearch\nInstall from github.com/morelazers/dsearch": "Bestandszoeken vereist dsearch\nInstalleer via github.com/morelazers/dsearch"
   },
   "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": {
     "File search requires dsearch\\nInstall from github.com/morelazers/dsearch": "Bestandszoeken vereist dsearch\\nInstalleer via github.com/morelazers/dsearch"
@@ -2069,7 +2075,7 @@
     "Forget": "Vergeten"
   },
   "Forget \"%1\"?": {
-    "Forget \"%1\"?": ""
+    "Forget \"%1\"?": "\"%1\" vergeten?"
   },
   "Forget Device": {
     "Forget Device": "Apparaat vergeten"
@@ -2090,7 +2096,7 @@
     "Fullscreen": "Volledig scherm"
   },
   "Fullscreen Only": {
-    "Fullscreen Only": ""
+    "Fullscreen Only": "Alleen volledig scherm"
   },
   "Fun": {
     "Fun": "Plezier"
@@ -2117,7 +2123,7 @@
     "GitHub": "GitHub"
   },
   "Globally scale all animation durations": {
-    "Globally scale all animation durations": ""
+    "Globally scale all animation durations": "Alle animatieduren globaal schalen"
   },
   "Golden Hour": {
     "Golden Hour": "Gouden uur"
@@ -2219,7 +2225,7 @@
     "Hide": "Verbergen"
   },
   "Hide 3rd Party": {
-    "Hide 3rd Party": ""
+    "Hide 3rd Party": "Derde partijen verbergen"
   },
   "Hide App": {
     "Hide App": "App verbergen"
@@ -2285,7 +2291,7 @@
     "Hour": "Uur"
   },
   "Hourly": {
-    "Hourly": ""
+    "Hourly": "Per uur"
   },
   "Hourly Forecast": {
     "Hourly Forecast": "Voorspelling per uur"
@@ -2649,6 +2655,10 @@
   "Keyboard Shortcuts": {
     "Keyboard Shortcuts": "Sneltoetsen"
   },
+  "Keyboard hints when enter-to-paste is enabled": {
+    "Shift+Enter: Copy • Shift+Del: Clear All • Esc: Close": "",
+    "↑/↓: Navigate • Enter: Paste • Del: Delete • F10: Help": ""
+  },
   "Keys": {
     "Keys": "Toetsen"
   },
@@ -2779,7 +2789,7 @@
     "Lock Screen layout": "Indeling vergrendelscherm"
   },
   "Lock at startup": {
-    "Lock at startup": ""
+    "Lock at startup": "Vergrendelen bij opstarten"
   },
   "Lock before suspend": {
     "Lock before suspend": "Vergrendelen voor opschorten"
@@ -2944,7 +2954,7 @@
     "Media Needed": "Media nodig"
   },
   "Media Playback": {
-    "Media Playback": ""
+    "Media Playback": "Media-weergave"
   },
   "Media Player": {
     "Media Player": "Mediaspeler"
@@ -3211,7 +3221,7 @@
     "No apps found": "Geen apps gevonden"
   },
   "No apps have been launched yet.": {
-    "No apps have been launched yet.": ""
+    "No apps have been launched yet.": "Er zijn nog geen apps gestart."
   },
   "No battery": {
     "No battery": "Geen batterij"
@@ -3298,10 +3308,10 @@
     "No variants created. Click Add to create a new monitor widget.": "Geen varianten aangemaakt. Klik op Toevoegen om een nieuwe monitorwidget te maken."
   },
   "No wallpapers found\n\nClick the folder icon below to browse": {
-    "No wallpapers found\n\nClick the folder icon below to browse": ""
+    "No wallpapers found\n\nClick the folder icon below to browse": "Geen achtergronden gevonden\n\nKlik op het map-pictogram hieronder om te bladeren"
   },
   "No widgets added. Click \"Add Widget\" to get started.": {
-    "No widgets added. Click \"Add Widget\" to get started.": ""
+    "No widgets added. Click \"Add Widget\" to get started.": "Geen widgets toegevoegd. Klik op \"Widget toevoegen\" om te beginnen."
   },
   "No widgets available": {
     "No widgets available": "Geen widgets beschikbaar"
@@ -3358,7 +3368,7 @@
     "Notification Popups": "Meldingen-popups"
   },
   "Notification Rules": {
-    "Notification Rules": ""
+    "Notification Rules": "Meldingsregels"
   },
   "Notification Settings": {
     "Notification Settings": "Meldinginstellingen"
@@ -3394,10 +3404,10 @@
     "Offline Report": "Offline-rapport"
   },
   "On": {
-    "On": ""
+    "On": "Aan"
   },
   "On-Demand": {
-    "On-Demand": ""
+    "On-Demand": "Op aanvraag"
   },
   "On-Screen Displays": {
     "On-Screen Displays": "On-screen displays"
@@ -3699,7 +3709,7 @@
     "Popouts": "Pop-outs"
   },
   "Popouts and Modals follow global Animation Speed (disable to customize independently)": {
-    "Popouts and Modals follow global Animation Speed (disable to customize independently)": ""
+    "Popouts and Modals follow global Animation Speed (disable to customize independently)": "Pop-outs en modalen volgen de globale animatiesnelheid (uitschakelen om onafhankelijk aan te passen)"
   },
   "Popup Position": {
     "Popup Position": "Popup-positie"
@@ -3753,7 +3763,7 @@
     "Precip": "Neerslag"
   },
   "Precipitation": {
-    "Precipitation": ""
+    "Precipitation": "Neerslag"
   },
   "Precipitation Chance": {
     "Precipitation Chance": "Neerslagkans"
@@ -3807,7 +3817,7 @@
     "Printers: ": "Printers: "
   },
   "Priority": {
-    "Priority": ""
+    "Priority": "Prioriteit"
   },
   "Privacy Indicator": {
     "Privacy Indicator": "Privacy-indicator"
@@ -3999,7 +4009,7 @@
     "Right-click bar widget to cycle": "Klik rechts op de widget in de balk om te wisselen"
   },
   "Ripple Effects": {
-    "Ripple Effects": ""
+    "Ripple Effects": "Rimpel-effecten"
   },
   "Root Filesystem": {
     "Root Filesystem": "Root-bestandssysteem"
@@ -4140,7 +4150,7 @@
     "Search Options": "Zoekopties"
   },
   "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
-    "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": ""
+    "Search by key combo, description, or action name.\n\nDefault action copies the keybind to clipboard.\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": "Zoek op toetsencombinatie, beschrijving of actienaam.\n\nDe standaardactie kopieert de sneltoets naar het klembord.\nKlik met rechts of druk op Pijl-rechts om veelgebruikte sneltoetsen vast te pinnen - ze verschijnen bovenaan als u niet zoekt."
   },
   "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": {
     "Search by key combo, description, or action name.\\n\\nDefault action copies the keybind to clipboard.\\nRight-click or press Right Arrow to pin frequently used keybinds - they'll appear at the top when not searching.": "Zoeken op toetscombinatie, beschrijving of actienaam.\\n\\nStandaardactie kopieert de sneltoets naar klembord.\\nKlik rechts of druk op Pijl Rechts om veelgebruikte sneltoetsen vast te maken - ze verschijnen bovenaan wanneer niet wordt gezocht."
@@ -4189,6 +4199,9 @@
   },
   "Select Bar": {
     "Select Bar": "Balk selecteren"
+  },
+  "Select Dock Launcher Logo": {
+    "Select Dock Launcher Logo": ""
   },
   "Select Launcher Logo": {
     "Select Launcher Logo": "Startlogo selecteren"
@@ -4296,7 +4309,7 @@
     "Show": "Tonen"
   },
   "Show 3rd Party": {
-    "Show 3rd Party": ""
+    "Show 3rd Party": "Derde partijen tonen"
   },
   "Show All Tags": {
     "Show All Tags": "Alle tags tonen"
@@ -4362,7 +4375,7 @@
     "Show Log Out": "Afmelden tonen"
   },
   "Show Material Design ripple animations on interactive elements": {
-    "Show Material Design ripple animations on interactive elements": ""
+    "Show Material Design ripple animations on interactive elements": "Material Design rimpel-animaties tonen op interactieve elementen"
   },
   "Show Memory": {
     "Show Memory": "Geheugen tonen"
@@ -4473,7 +4486,7 @@
     "Show on-screen display when idle inhibitor state changes": "On-screen display tonen wanneer status inactiviteitspreventie wijzigt"
   },
   "Show on-screen display when media player status changes": {
-    "Show on-screen display when media player status changes": ""
+    "Show on-screen display when media player status changes": "On-screen display (OSD) tonen wanneer de status van de mediaspeler wijzigt"
   },
   "Show on-screen display when media player volume changes": {
     "Show on-screen display when media player volume changes": "On-screen display tonen wanneer volume mediaspeler wijzigt"
@@ -4668,7 +4681,7 @@
     "Sync Mode with Portal": "Modus synchroniseren met portaal"
   },
   "Sync Popouts & Modals": {
-    "Sync Popouts & Modals": ""
+    "Sync Popouts & Modals": "Pop-outs & modalen synchroniseren"
   },
   "Sync Position Across Screens": {
     "Sync Position Across Screens": "Positie synchroniseren over schermen"
@@ -4770,7 +4783,7 @@
     "Third-Party Plugin Warning": "Waarschuwing plug-ins van derden"
   },
   "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": {
-    "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": ""
+    "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\n\nThese plugins may pose security and privacy risks - install at your own risk.": "Plugins van derden zijn gemaakt door de gemeenschap en worden niet officieel ondersteund door DankMaterialShell.\n\nDeze plugins kunnen veiligheids- en privacyrisico's met zich meebrengen - installatie is op eigen risico."
   },
   "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": {
     "Third-party plugins are created by the community and are not officially supported by DankMaterialShell.\\n\\nThese plugins may pose security and privacy risks - install at your own risk.": "Plug-ins van derden worden gemaakt door de community en worden niet officieel ondersteund door DankMaterialShell.\\n\\nDeze plug-ins kunnen veiligheids- en privacyrisico's met zich meebrengen - installatie op eigen risico."
@@ -4779,7 +4792,7 @@
     "This bind is overridden by config.kdl": "Deze bind wordt overschreven door config.kdl"
   },
   "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": {
-    "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": ""
+    "This plugin does not have 'settings_write' permission.\n\nAdd \"permissions\": [\"settings_read\", \"settings_write\"] to plugin.json": "Deze plugin heeft geen 'settings_write' rechten.\n\nVoeg \"permissions\": [\"settings_read\", \"settings_write\"] toe aan plugin.json"
   },
   "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": {
     "This widget prevents GPU power off states, which can significantly impact battery life on laptops. It is not recommended to use this on laptops with hybrid graphics.": "Deze widget voorkomt dat de GPU wordt uitgeschakeld, wat de batterijduur op laptops aanzienlijk kan beïnvloeden. Het wordt niet aanbevolen dit te gebruiken op laptops met hybride graphics."
@@ -4959,7 +4972,7 @@
     "Unknown": "Onbekend"
   },
   "Unknown Artist": {
-    "Unknown Artist": ""
+    "Unknown Artist": "Onbekende artiest"
   },
   "Unknown Config": {
     "Unknown Config": "Onbekende configuratie"
@@ -4974,7 +4987,7 @@
     "Unknown Network": "Onbekend netwerk"
   },
   "Unknown Title": {
-    "Unknown Title": ""
+    "Unknown Title": "Onbekende titel"
   },
   "Unnamed Rule": {
     "Unnamed Rule": "Naamloze regel"
@@ -5139,7 +5152,7 @@
     "VRR": "VRR"
   },
   "VRR Fullscreen Only": {
-    "VRR Fullscreen Only": ""
+    "VRR Fullscreen Only": "VRR alleen volledig scherm"
   },
   "VRR On-Demand": {
     "VRR On-Demand": "VRR op aanvraag"
@@ -5505,7 +5518,7 @@
     "dgop not available": "dgop niet beschikbaar"
   },
   "dgop unavailable error message": {
-    "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "",
+    "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "De tool 'dgop' is vereist voor systeembewaking.\nInstalleer dgop om deze functie te gebruiken.",
     "The 'dgop' tool is required for system monitoring.\\nPlease install dgop to use this feature.": "De 'dgop'-tool is vereist voor systeembewaking.\nInstalleer dgop om deze functie te gebruiken."
   },
   "disk io header in system monitor": {
@@ -5776,7 +5789,7 @@
     "Full Content": "Volledige inhoud"
   },
   "lock screen notification mode option | notification rule match field option": {
-    "App Names": ""
+    "App Names": "App-namen"
   },
   "lock screen notification privacy setting": {
     "Control what notification information is shown on the lock screen": "Bepaal welke meldinginformatie op het vergrendelscherm wordt getoond",
@@ -5886,28 +5899,28 @@
     "Enable History": "Geschiedenis inschakelen"
   },
   "notification rule action option": {
-    "Ignore Completely": "",
-    "Mute Popups": "",
-    "No History": "",
-    "Popup Only": ""
+    "Ignore Completely": "Volledig negeren",
+    "Mute Popups": "Pop-ups dempen",
+    "No History": "Geen geschiedenis",
+    "Popup Only": "Alleen pop-up"
   },
   "notification rule action option | notification rule urgency option | widget style option": {
-    "Default": ""
+    "Default": "Standaard"
   },
   "notification rule match field option": {
-    "Body": "",
-    "Desktop Entry": "",
-    "Summary": ""
+    "Body": "Inhoud",
+    "Desktop Entry": "Desktop-item",
+    "Summary": "Samenvatting"
   },
   "notification rule match type option": {
-    "Contains": "",
-    "Exact": "",
-    "Regex": ""
+    "Contains": "Bevat",
+    "Exact": "Exact",
+    "Regex": "Regex"
   },
   "notification rule urgency option": {
-    "Critical Priority": "",
-    "Low Priority": "",
-    "Normal Priority": ""
+    "Critical Priority": "Kritieke prioriteit",
+    "Low Priority": "Lage prioriteit",
+    "Normal Priority": "Normale prioriteit"
   },
   "now": {
     "now": "nu"
@@ -6063,7 +6076,7 @@
     "Uptime:": "Uptime:"
   },
   "v%1 by %2": {
-    "v%1 by %2": ""
+    "v%1 by %2": "v%1 door %2"
   },
   "version requirement": {
     "Requires %1": "Vereist %1"

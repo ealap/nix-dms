@@ -37,38 +37,6 @@ DankPopout {
             id: updaterPanel
 
             color: "transparent"
-            radius: Theme.cornerRadius
-            antialiasing: true
-            smooth: true
-
-            Repeater {
-                model: [
-                    {
-                        "margin": -3,
-                        "color": Qt.rgba(0, 0, 0, 0.05),
-                        "z": -3
-                    },
-                    {
-                        "margin": -2,
-                        "color": Qt.rgba(0, 0, 0, 0.08),
-                        "z": -2
-                    },
-                    {
-                        "margin": 0,
-                        "color": Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.12),
-                        "z": -1
-                    }
-                ]
-                Rectangle {
-                    anchors.fill: parent
-                    anchors.margins: modelData.margin
-                    color: "transparent"
-                    radius: parent.radius + Math.abs(modelData.margin)
-                    border.color: modelData.color
-                    border.width: 0
-                    z: modelData.z
-                }
-            }
 
             Column {
                 width: parent.width - Theme.spacingL * 2

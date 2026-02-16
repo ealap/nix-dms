@@ -169,7 +169,8 @@ func syncGreeter() error {
 		return fmt.Errorf("greeter cache directory not found at %s\nPlease install the greeter first", cacheDir)
 	}
 
-	greeterGroupExists := checkGroupExists("greeter")
+	greeterGroup := greeter.DetectGreeterGroup()
+	greeterGroupExists := utils.HasGroup(greeterGroup)
 	if greeterGroupExists {
 		currentUser, err := user.Current()
 		if err != nil {
@@ -182,25 +183,27 @@ func syncGreeter() error {
 			return fmt.Errorf("failed to check groups: %w", err)
 		}
 
-		inGreeterGroup := strings.Contains(string(groupsOutput), "greeter")
+		inGreeterGroup := strings.Contains(string(groupsOutput), greeterGroup)
 		if !inGreeterGroup {
-			fmt.Println("\n⚠ Warning: You are not in the greeter group.")
-			fmt.Print("Would you like to add your user to the greeter group? (y/N): ")
+			fmt.Printf("\n⚠ Warning: You are not in the %s group.\n", greeterGroup)
+			fmt.Printf("Would you like to add your user to the %s group? (Y/n): ", greeterGroup)
 
 			var response string
 			fmt.Scanln(&response)
 			response = strings.ToLower(strings.TrimSpace(response))
 
-			if response == "y" || response == "yes" {
-				fmt.Println("\nAdding user to greeter group...")
-				addUserCmd := exec.Command("sudo", "usermod", "-aG", "greeter", currentUser.Username)
+			if response != "n" && response != "no" {
+				fmt.Printf("\nAdding user to %s group...\n", greeterGroup)
+				addUserCmd := exec.Command("sudo", "usermod", "-aG", greeterGroup, currentUser.Username)
 				addUserCmd.Stdout = os.Stdout
 				addUserCmd.Stderr = os.Stderr
 				if err := addUserCmd.Run(); err != nil {
-					return fmt.Errorf("failed to add user to greeter group: %w", err)
+					return fmt.Errorf("failed to add user to %s group: %w", greeterGroup, err)
 				}
-				fmt.Println("✓ User added to greeter group")
+				fmt.Printf("✓ User added to %s group\n", greeterGroup)
 				fmt.Println("⚠ You will need to log out and back in for the group change to take effect")
+			} else {
+				return fmt.Errorf("aborted: user must be in the greeter group before syncing")
 			}
 		}
 	}
@@ -241,21 +244,6 @@ func syncGreeter() error {
 	fmt.Println("The changes will be visible on the next login screen.")
 
 	return nil
-}
-
-func checkGroupExists(groupName string) bool {
-	data, err := os.ReadFile("/etc/group")
-	if err != nil {
-		return false
-	}
-
-	lines := strings.SplitSeq(string(data), "\n")
-	for line := range lines {
-		if strings.HasPrefix(line, groupName+":") {
-			return true
-		}
-	}
-	return false
 }
 
 func disableDisplayManager(dmName string) (bool, error) {
@@ -389,7 +377,7 @@ func ensureGraphicalTarget() error {
 func handleConflictingDisplayManagers() error {
 	fmt.Println("\n=== Checking for Conflicting Display Managers ===")
 
-	conflictingDMs := []string{"gdm", "gdm3", "lightdm", "sddm", "lxdm", "xdm"}
+	conflictingDMs := []string{"gdm", "gdm3", "lightdm", "sddm", "lxdm", "xdm", "cosmic-greeter"}
 
 	disabledAny := false
 	var errors []string

@@ -13,6 +13,7 @@ Singleton {
     property var appDrawerPopout: null
     property var processListPopout: null
     property var dankDashPopout: null
+    property var dankDashPopoutLoader: null
     property var batteryPopout: null
     property var vpnPopout: null
     property var systemUpdatePopout: null
@@ -119,31 +120,87 @@ Singleton {
         }
     }
 
+    property bool _dankDashWantsOpen: false
+    property bool _dankDashWantsToggle: false
+    property int _dankDashPendingTab: 0
+    property real _dankDashPendingX: 0
+    property real _dankDashPendingY: 0
+    property real _dankDashPendingWidth: 0
+    property string _dankDashPendingSection: ""
+    property var _dankDashPendingScreen: null
+    property bool _dankDashHasPosition: false
+
+    function _storeDankDashPosition(x, y, width, section, screen, hasPos) {
+        _dankDashPendingX = x;
+        _dankDashPendingY = y;
+        _dankDashPendingWidth = width;
+        _dankDashPendingSection = section;
+        _dankDashPendingScreen = screen;
+        _dankDashHasPosition = hasPos;
+    }
+
     function openDankDash(tabIndex, x, y, width, section, screen) {
+        _dankDashPendingTab = tabIndex || 0;
         if (dankDashPopout) {
-            if (arguments.length >= 6) {
+            if (arguments.length >= 6)
                 setPosition(dankDashPopout, x, y, width, section, screen);
-            }
-            dankDashPopout.currentTabIndex = tabIndex || 0;
+            dankDashPopout.currentTabIndex = _dankDashPendingTab;
             dankDashPopout.dashVisible = true;
+            return;
         }
+        if (!dankDashPopoutLoader)
+            return;
+        _storeDankDashPosition(x, y, width, section, screen, arguments.length >= 6);
+        _dankDashWantsOpen = true;
+        _dankDashWantsToggle = false;
+        dankDashPopoutLoader.active = true;
     }
 
     function closeDankDash() {
-        if (dankDashPopout) {
+        if (dankDashPopout)
             dankDashPopout.dashVisible = false;
-        }
     }
 
     function toggleDankDash(tabIndex, x, y, width, section, screen) {
+        _dankDashPendingTab = tabIndex || 0;
         if (dankDashPopout) {
-            if (arguments.length >= 6) {
+            if (arguments.length >= 6)
                 setPosition(dankDashPopout, x, y, width, section, screen);
-            }
             if (dankDashPopout.dashVisible) {
                 dankDashPopout.dashVisible = false;
             } else {
-                dankDashPopout.currentTabIndex = tabIndex || 0;
+                dankDashPopout.currentTabIndex = _dankDashPendingTab;
+                dankDashPopout.dashVisible = true;
+            }
+            return;
+        }
+        if (!dankDashPopoutLoader)
+            return;
+        _storeDankDashPosition(x, y, width, section, screen, arguments.length >= 6);
+        _dankDashWantsToggle = true;
+        _dankDashWantsOpen = false;
+        dankDashPopoutLoader.active = true;
+    }
+
+    function _onDankDashPopoutLoaded() {
+        if (!dankDashPopout)
+            return;
+
+        if (_dankDashHasPosition)
+            setPosition(dankDashPopout, _dankDashPendingX, _dankDashPendingY, _dankDashPendingWidth, _dankDashPendingSection, _dankDashPendingScreen);
+
+        if (_dankDashWantsOpen) {
+            _dankDashWantsOpen = false;
+            dankDashPopout.currentTabIndex = _dankDashPendingTab;
+            dankDashPopout.dashVisible = true;
+            return;
+        }
+        if (_dankDashWantsToggle) {
+            _dankDashWantsToggle = false;
+            if (dankDashPopout.dashVisible) {
+                dankDashPopout.dashVisible = false;
+            } else {
+                dankDashPopout.currentTabIndex = _dankDashPendingTab;
                 dankDashPopout.dashVisible = true;
             }
         }
@@ -395,6 +452,13 @@ Singleton {
 
     function closeDankLauncherV2() {
         dankLauncherV2Modal?.hide();
+    }
+
+    function unloadDankLauncherV2() {
+        if (dankLauncherV2ModalLoader) {
+            dankLauncherV2Modal = null;
+            dankLauncherV2ModalLoader.active = false;
+        }
     }
 
     function toggleDankLauncherV2() {

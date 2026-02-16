@@ -37,9 +37,6 @@ DankPopout {
 
             implicitHeight: contentColumn.height + Theme.spacingL * 2
             color: "transparent"
-            radius: Theme.cornerRadius
-            border.color: Theme.outlineMedium
-            border.width: 0
             focus: true
 
             Keys.onPressed: event => {

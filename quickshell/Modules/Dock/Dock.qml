@@ -551,10 +551,18 @@ Variants {
                         layer.enabled: true
                         clip: false
 
-                        DankRectangle {
+                        Rectangle {
                             anchors.fill: parent
                             color: Qt.rgba(Theme.surfaceContainer.r, Theme.surfaceContainer.g, Theme.surfaceContainer.b, backgroundTransparency)
-                            overlayColor: Qt.rgba(Theme.surfaceTint.r, Theme.surfaceTint.g, Theme.surfaceTint.b, 0.04)
+                            border.color: Theme.outlineMedium
+                            border.width: 1
+                            radius: Theme.cornerRadius
+                        }
+
+                        Rectangle {
+                            anchors.fill: parent
+                            color: Qt.rgba(Theme.surfaceTint.r, Theme.surfaceTint.g, Theme.surfaceTint.b, 0.04)
+                            radius: Theme.cornerRadius
                         }
                     }
 

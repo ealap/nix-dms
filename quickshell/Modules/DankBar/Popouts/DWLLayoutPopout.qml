@@ -111,11 +111,6 @@ DankPopout {
 
             implicitHeight: contentColumn.implicitHeight + Theme.spacingL * 2
             color: "transparent"
-            radius: Theme.cornerRadius
-            border.color: Theme.outlineMedium
-            border.width: 0
-            antialiasing: true
-            smooth: true
             focus: true
 
             Component.onCompleted: {
@@ -140,15 +135,6 @@ DankPopout {
                         });
                     }
                 }
-            }
-
-            Rectangle {
-                anchors.fill: parent
-                color: "transparent"
-                border.color: Theme.outlineStrong
-                border.width: 0
-                radius: parent.radius
-                z: -1
             }
 
             Column {

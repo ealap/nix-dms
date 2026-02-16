@@ -65,7 +65,7 @@ Column {
                         StyledText {
                             id: codenameText
                             anchors.centerIn: parent
-                            text: "Spicy Miso"
+                            text: "Saffron Bloom"
                             font.pixelSize: Theme.fontSizeSmall
                             font.weight: Font.Medium
                             color: Theme.primary
@@ -74,7 +74,7 @@ Column {
                 }
 
                 StyledText {
-                    text: "Desktop widgets, theme registry, native clipboard & more"
+                    text: "New launcher, enhanced plugin system, KDE Connect, & more"
                     font.pixelSize: Theme.fontSizeMedium
                     color: Theme.surfaceVariantText
                 }
@@ -108,67 +108,76 @@ Column {
 
             ChangelogFeatureCard {
                 width: (parent.width - Theme.spacingS) / 2
-                iconName: "widgets"
-                title: "Desktop Widgets"
-                description: "Widgets on your desktop"
-                onClicked: PopoutService.openSettingsWithTab("desktop_widgets")
+                iconName: "space_dashboard"
+                title: "Dank Launcher V2"
+                description: "New capabilities & plugins"
+                onClicked: PopoutService.openDankLauncherV2()
             }
 
             ChangelogFeatureCard {
                 width: (parent.width - Theme.spacingS) / 2
-                iconName: "palette"
-                title: "Theme Registry"
-                description: "Community themes"
-                onClicked: PopoutService.openSettingsWithTab("theme")
+                iconName: "smartphone"
+                title: "Phone Connect"
+                description: "KDE Connect & Valent"
+                onClicked: Qt.openUrlExternally("https://github.com/AvengeMedia/dms-plugins/tree/master/DankKDEConnect")
             }
 
             ChangelogFeatureCard {
                 width: (parent.width - Theme.spacingS) / 2
-                iconName: "content_paste"
-                title: "Native Clipboard"
-                description: "Zero-dependency history"
-                onClicked: PopoutService.openSettingsWithTab("clipboard")
+                iconName: "monitor_heart"
+                title: "System Monitor"
+                description: "Redesigned process list"
+                onClicked: PopoutService.showProcessListModal()
             }
 
             ChangelogFeatureCard {
                 width: (parent.width - Theme.spacingS) / 2
-                iconName: "display_settings"
-                title: "Monitor Config"
-                description: "Full display setup"
-                onClicked: PopoutService.openSettingsWithTab("display_config")
+                iconName: "window"
+                title: "Window Rules"
+                description: "niri window rule manager"
+                visible: CompositorService.isNiri
+                onClicked: PopoutService.openSettingsWithTab("window_rules")
             }
 
             ChangelogFeatureCard {
                 width: (parent.width - Theme.spacingS) / 2
                 iconName: "notifications_active"
-                title: "Notifications"
-                description: "History & gestures"
+                title: "Enhanced Notifications"
+                description: "Configurable rules & styling"
+                visible: !CompositorService.isNiri
                 onClicked: PopoutService.openSettingsWithTab("notifications")
             }
 
             ChangelogFeatureCard {
                 width: (parent.width - Theme.spacingS) / 2
-                iconName: "healing"
-                title: "DMS Doctor"
-                description: "Diagnose issues"
-                onClicked: FirstLaunchService.showDoctor()
+                iconName: "dock_to_bottom"
+                title: "Dock Enhancements"
+                description: "Bar dock widget & more"
+                onClicked: PopoutService.openSettingsWithTab("dock")
             }
 
             ChangelogFeatureCard {
                 width: (parent.width - Theme.spacingS) / 2
-                iconName: "keyboard"
-                title: "Keybinds Editor"
-                description: "niri, Hyprland, & MangoWC"
-                visible: KeybindsService.available
-                onClicked: PopoutService.openSettingsWithTab("keybinds")
+                iconName: "volume_up"
+                title: "Audio Aliases"
+                description: "Custom device names"
+                onClicked: PopoutService.openSettingsWithTab("audio")
             }
 
             ChangelogFeatureCard {
                 width: (parent.width - Theme.spacingS) / 2
-                iconName: "search"
-                title: "Settings Search"
-                description: "Find settings fast"
-                onClicked: PopoutService.openSettings()
+                iconName: "extension"
+                title: "Enhanced Plugin System"
+                description: "Enables new types of plugins"
+                onClicked: PopoutService.openSettingsWithTab("plugins")
+            }
+
+            ChangelogFeatureCard {
+                width: (parent.width - Theme.spacingS) / 2
+                iconName: "light_mode"
+                title: "Auto Light/Dark"
+                description: "Automatic mode switching"
+                onClicked: PopoutService.openSettingsWithTab("theme")
             }
         }
     }
@@ -221,17 +230,12 @@ Column {
 
                 ChangelogUpgradeNote {
                     width: parent.width
-                    text: "Ghostty theme path changed to ~/.config/ghostty/themes/danktheme"
+                    text: "Spotlight replaced by Dank Launcher V2 — check settings for new options"
                 }
 
                 ChangelogUpgradeNote {
                     width: parent.width
-                    text: "VS Code theme reinstall required"
-                }
-
-                ChangelogUpgradeNote {
-                    width: parent.width
-                    text: "Clipboard history migration available from cliphist"
+                    text: "Plugin API updated — third-party plugins may need updates"
                 }
             }
         }

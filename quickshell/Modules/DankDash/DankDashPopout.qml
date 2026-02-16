@@ -170,7 +170,6 @@ DankPopout {
 
             implicitHeight: contentColumn.height + Theme.spacingM * 2
             color: "transparent"
-            radius: Theme.cornerRadius
             focus: true
 
             Component.onCompleted: {

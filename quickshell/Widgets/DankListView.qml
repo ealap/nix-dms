@@ -2,23 +2,22 @@ import QtQuick
 import QtQuick.Controls
 import qs.Common
 import qs.Widgets
+import "ScrollConstants.js" as Scroll
 
 ListView {
     id: listView
 
     property real scrollBarTopMargin: 0
-    property real mouseWheelSpeed: 60
+    property real mouseWheelSpeed: Scroll.mouseWheelSpeed
     property real savedY: 0
     property bool justChanged: false
     property bool isUserScrolling: false
     property real momentumVelocity: 0
     property bool isMomentumActive: false
-    property real friction: 0.95
-    property real minMomentumVelocity: 50
-    property real maxMomentumVelocity: 2500
+    property real friction: Scroll.friction
 
-    flickDeceleration: 1500
-    maximumFlickVelocity: 2000
+    flickDeceleration: Scroll.flickDeceleration
+    maximumFlickVelocity: Scroll.maximumFlickVelocity
     boundsBehavior: Flickable.StopAtBounds
     boundsMovement: Flickable.FollowBoundsBehavior
     pressDelay: 0
@@ -53,7 +52,7 @@ ListView {
 
     WheelHandler {
         id: wheelHandler
-        property real touchpadSpeed: 2.8
+        property real touchpadSpeed: Scroll.touchpadSpeed
         property real lastWheelTime: 0
         property real momentum: 0
         property var velocitySamples: []
@@ -61,7 +60,7 @@ ListView {
 
         function startMomentum() {
             isMomentumActive = true;
-            momentumTimer.start();
+            momentumAnim.running = true;
         }
 
         acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
@@ -83,7 +82,7 @@ ListView {
 
             if (isTraditionalMouse) {
                 sessionUsedMouseWheel = true;
-                momentumTimer.stop();
+                momentumAnim.running = false;
                 isMomentumActive = false;
                 velocitySamples = [];
                 momentum = 0;
@@ -103,7 +102,7 @@ ListView {
                 savedY = newY;
             } else if (isHighDpiMouse) {
                 sessionUsedMouseWheel = true;
-                momentumTimer.stop();
+                momentumAnim.running = false;
                 isMomentumActive = false;
                 velocitySamples = [];
                 momentum = 0;
@@ -122,7 +121,7 @@ ListView {
                 savedY = newY;
             } else if (isTouchpad) {
                 sessionUsedMouseWheel = false;
-                momentumTimer.stop();
+                momentumAnim.running = false;
                 isMomentumActive = false;
 
                 let delta = event.pixelDelta.y * touchpadSpeed;
@@ -131,18 +130,18 @@ ListView {
                     "delta": delta,
                     "time": currentTime
                 });
-                velocitySamples = velocitySamples.filter(s => currentTime - s.time < 100);
+                velocitySamples = velocitySamples.filter(s => currentTime - s.time < Scroll.velocitySampleWindowMs);
 
                 if (velocitySamples.length > 1) {
                     const totalDelta = velocitySamples.reduce((sum, s) => sum + s.delta, 0);
                     const timeSpan = currentTime - velocitySamples[0].time;
                     if (timeSpan > 0) {
-                        momentumVelocity = Math.max(-maxMomentumVelocity, Math.min(maxMomentumVelocity, totalDelta / timeSpan * 1000));
+                        momentumVelocity = Math.max(-Scroll.maxMomentumVelocity, Math.min(Scroll.maxMomentumVelocity, totalDelta / timeSpan * 1000));
                     }
                 }
 
-                if (timeDelta < 50) {
-                    momentum = momentum * 0.92 + delta * 0.15;
+                if (timeDelta < Scroll.momentumTimeThreshold) {
+                    momentum = momentum * Scroll.momentumRetention + delta * Scroll.momentumDeltaFactor;
                     delta += momentum;
                 } else {
                     momentum = 0;
@@ -166,7 +165,7 @@ ListView {
         onActiveChanged: {
             if (!active) {
                 isUserScrolling = false;
-                if (!sessionUsedMouseWheel && Math.abs(momentumVelocity) >= minMomentumVelocity) {
+                if (!sessionUsedMouseWheel && Math.abs(momentumVelocity) >= Scroll.minMomentumVelocity) {
                     startMomentum();
                 } else {
                     velocitySamples = [];
@@ -176,20 +175,20 @@ ListView {
         }
     }
 
-    Timer {
-        id: momentumTimer
-        interval: 16
-        repeat: true
+    FrameAnimation {
+        id: momentumAnim
+        running: false
 
         onTriggered: {
-            const newY = contentY - momentumVelocity * 0.016;
+            const dt = frameTime;
+            const newY = contentY - momentumVelocity * dt;
             const maxY = Math.max(0, contentHeight - height + originY);
             const minY = originY;
 
             if (newY < minY || newY > maxY) {
                 contentY = newY < minY ? minY : maxY;
                 savedY = contentY;
-                stop();
+                running = false;
                 isMomentumActive = false;
                 momentumVelocity = 0;
                 return;
@@ -197,10 +196,10 @@ ListView {
 
             contentY = newY;
             savedY = newY;
-            momentumVelocity *= friction;
+            momentumVelocity *= Math.pow(friction, dt / 0.016);
 
-            if (Math.abs(momentumVelocity) < 5) {
-                stop();
+            if (Math.abs(momentumVelocity) < Scroll.momentumStopThreshold) {
+                running = false;
                 isMomentumActive = false;
                 momentumVelocity = 0;
             }

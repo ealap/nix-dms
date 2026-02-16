@@ -1302,7 +1302,7 @@ Item {
             browserIcon: "wallpaper"
             browserType: "wallpaper"
             showHiddenFiles: true
-            fileExtensions: ["*.jpg", "*.jpeg", "*.png", "*.bmp", "*.gif", "*.webp"]
+            fileExtensions: ["*.jpg", "*.jpeg", "*.png", "*.bmp", "*.gif", "*.webp", "*.jxl", "*.avif", "*.heif", "*.exr"]
             onFileSelected: path => {
                 if (SessionData.perMonitorWallpaper) {
                     SessionData.setMonitorWallpaper(selectedMonitorName, path);
@@ -1324,7 +1324,7 @@ Item {
             browserIcon: "light_mode"
             browserType: "wallpaper"
             showHiddenFiles: true
-            fileExtensions: ["*.jpg", "*.jpeg", "*.png", "*.bmp", "*.gif", "*.webp"]
+            fileExtensions: ["*.jpg", "*.jpeg", "*.png", "*.bmp", "*.gif", "*.webp", "*.jxl", "*.avif", "*.heif", "*.exr"]
             onFileSelected: path => {
                 SessionData.wallpaperPathLight = path;
                 SessionData.syncWallpaperForCurrentMode();
@@ -1344,7 +1344,7 @@ Item {
             browserIcon: "dark_mode"
             browserType: "wallpaper"
             showHiddenFiles: true
-            fileExtensions: ["*.jpg", "*.jpeg", "*.png", "*.bmp", "*.gif", "*.webp"]
+            fileExtensions: ["*.jpg", "*.jpeg", "*.png", "*.bmp", "*.gif", "*.webp", "*.jxl", "*.avif", "*.heif", "*.exr"]
             onFileSelected: path => {
                 SessionData.wallpaperPathDark = path;
                 SessionData.syncWallpaperForCurrentMode();

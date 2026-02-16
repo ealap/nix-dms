@@ -115,11 +115,6 @@ DankPopout {
             property alias bluetoothCodecSelector: bluetoothCodecSelector
 
             color: "transparent"
-            radius: Theme.cornerRadius
-            border.color: Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.08)
-            border.width: 0
-            antialiasing: true
-            smooth: true
 
             Rectangle {
                 anchors.fill: parent

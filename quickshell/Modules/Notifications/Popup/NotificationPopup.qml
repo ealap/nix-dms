@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Effects
-import QtQuick.Shapes
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Services.Notifications
@@ -268,65 +267,13 @@ PanelWindow {
                 }
             }
 
-            Shape {
+            Rectangle {
                 id: backgroundShape
                 anchors.fill: parent
-                preferredRendererType: Shape.CurveRenderer
-
-                readonly property real radius: Theme.cornerRadius
-                readonly property color fillColor: Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
-                readonly property color strokeColor: notificationData && notificationData.urgency === NotificationUrgency.Critical ? Theme.withAlpha(Theme.primary, 0.3) : Theme.withAlpha(Theme.outline, 0.08)
-                readonly property real strokeWidth: notificationData && notificationData.urgency === NotificationUrgency.Critical ? 2 : 0
-
-                ShapePath {
-                    fillColor: backgroundShape.fillColor
-                    strokeColor: backgroundShape.strokeColor
-                    strokeWidth: backgroundShape.strokeWidth
-
-                    startX: backgroundShape.radius
-                    startY: 0
-
-                    PathLine {
-                        x: backgroundShape.width - backgroundShape.radius
-                        y: 0
-                    }
-                    PathQuad {
-                        x: backgroundShape.width
-                        y: backgroundShape.radius
-                        controlX: backgroundShape.width
-                        controlY: 0
-                    }
-                    PathLine {
-                        x: backgroundShape.width
-                        y: backgroundShape.height - backgroundShape.radius
-                    }
-                    PathQuad {
-                        x: backgroundShape.width - backgroundShape.radius
-                        y: backgroundShape.height
-                        controlX: backgroundShape.width
-                        controlY: backgroundShape.height
-                    }
-                    PathLine {
-                        x: backgroundShape.radius
-                        y: backgroundShape.height
-                    }
-                    PathQuad {
-                        x: 0
-                        y: backgroundShape.height - backgroundShape.radius
-                        controlX: 0
-                        controlY: backgroundShape.height
-                    }
-                    PathLine {
-                        x: 0
-                        y: backgroundShape.radius
-                    }
-                    PathQuad {
-                        x: backgroundShape.radius
-                        y: 0
-                        controlX: 0
-                        controlY: 0
-                    }
-                }
+                radius: Theme.cornerRadius
+                color: Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
+                border.color: notificationData && notificationData.urgency === NotificationUrgency.Critical ? Theme.withAlpha(Theme.primary, 0.3) : Theme.withAlpha(Theme.outline, 0.08)
+                border.width: notificationData && notificationData.urgency === NotificationUrgency.Critical ? 2 : 0
             }
 
             Rectangle {

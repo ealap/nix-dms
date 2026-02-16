@@ -306,7 +306,8 @@ Item {
         showDirsFirst: false
         showDotAndDotDot: false
         showHidden: false
-        nameFilters: ["*.jpg", "*.jpeg", "*.png", "*.bmp", "*.gif", "*.webp"]
+        caseSensitive: false
+        nameFilters: ["*.jpg", "*.jpeg", "*.png", "*.bmp", "*.gif", "*.webp", "*.jxl", "*.avif", "*.heif", "*.exr"]
         showFiles: true
         showDirs: false
         sortField: FolderListModel.Name
@@ -320,7 +321,7 @@ Item {
         browserIcon: "folder_open"
         browserType: "wallpaper"
         showHiddenFiles: false
-        fileExtensions: ["*.jpg", "*.jpeg", "*.png", "*.bmp", "*.gif", "*.webp"]
+        fileExtensions: ["*.jpg", "*.jpeg", "*.png", "*.bmp", "*.gif", "*.webp", "*.jxl", "*.avif", "*.heif", "*.exr"]
         parentPopout: root.parentPopout
 
         onFileSelected: path => {

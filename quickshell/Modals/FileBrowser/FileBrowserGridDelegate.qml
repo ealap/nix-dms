@@ -31,7 +31,7 @@ StyledRect {
     function determineFileType(fileName) {
         const ext = getFileExtension(fileName);
 
-        const imageExts = ["png", "jpg", "jpeg", "gif", "bmp", "webp", "svg", "ico"];
+        const imageExts = ["png", "jpg", "jpeg", "gif", "bmp", "webp", "svg", "ico", "jxl", "avif", "heif", "exr"];
         if (imageExts.includes(ext)) {
             return "image";
         }
@@ -119,7 +119,7 @@ StyledRect {
                 id: gridPreviewImage
                 anchors.fill: parent
                 anchors.margins: 2
-                property var weExtensions: [".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".tga"]
+                property var weExtensions: [".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".tga", ".jxl", ".avif", ".heif", ".exr"]
                 property int weExtIndex: 0
                 property string imagePath: {
                     if (weMode && delegateRoot.fileIsDir)

@@ -1,21 +1,20 @@
 import QtQuick
 import QtQuick.Controls
 import qs.Widgets
+import "ScrollConstants.js" as Scroll
 
 Flickable {
     id: flickable
 
     property alias verticalScrollBar: vbar
-    property real mouseWheelSpeed: 60
+    property real mouseWheelSpeed: Scroll.mouseWheelSpeed
     property real momentumVelocity: 0
     property bool isMomentumActive: false
-    property real friction: 0.95
-    property real minMomentumVelocity: 50
-    property real maxMomentumVelocity: 2500
+    property real friction: Scroll.friction
     property bool _scrollBarActive: false
 
-    flickDeceleration: 1500
-    maximumFlickVelocity: 2000
+    flickDeceleration: Scroll.flickDeceleration
+    maximumFlickVelocity: Scroll.maximumFlickVelocity
     boundsBehavior: Flickable.StopAtBounds
     boundsMovement: Flickable.FollowBoundsBehavior
     pressDelay: 0
@@ -24,8 +23,8 @@ Flickable {
     WheelHandler {
         id: wheelHandler
 
-        property real touchpadSpeed: 2.8
-        property real momentumRetention: 0.92
+        property real touchpadSpeed: Scroll.touchpadSpeed
+        property real momentumRetention: Scroll.momentumRetention
         property real lastWheelTime: 0
         property real momentum: 0
         property var velocitySamples: []
@@ -33,7 +32,7 @@ Flickable {
 
         function startMomentum() {
             flickable.isMomentumActive = true;
-            momentumTimer.start();
+            momentumAnim.running = true;
         }
 
         acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
@@ -54,7 +53,7 @@ Flickable {
 
             if (isTraditionalMouse) {
                 sessionUsedMouseWheel = true;
-                momentumTimer.stop();
+                momentumAnim.running = false;
                 flickable.isMomentumActive = false;
                 velocitySamples = [];
                 momentum = 0;
@@ -72,7 +71,7 @@ Flickable {
                 flickable.contentY = newY;
             } else if (isHighDpiMouse) {
                 sessionUsedMouseWheel = true;
-                momentumTimer.stop();
+                momentumAnim.running = false;
                 flickable.isMomentumActive = false;
                 velocitySamples = [];
                 momentum = 0;
@@ -89,7 +88,7 @@ Flickable {
                 flickable.contentY = newY;
             } else if (isTouchpad) {
                 sessionUsedMouseWheel = false;
-                momentumTimer.stop();
+                momentumAnim.running = false;
                 flickable.isMomentumActive = false;
 
                 let delta = event.pixelDelta.y * touchpadSpeed;
@@ -98,18 +97,18 @@ Flickable {
                     "delta": delta,
                     "time": currentTime
                 });
-                velocitySamples = velocitySamples.filter(s => currentTime - s.time < 100);
+                velocitySamples = velocitySamples.filter(s => currentTime - s.time < Scroll.velocitySampleWindowMs);
 
                 if (velocitySamples.length > 1) {
                     const totalDelta = velocitySamples.reduce((sum, s) => sum + s.delta, 0);
                     const timeSpan = currentTime - velocitySamples[0].time;
                     if (timeSpan > 0) {
-                        flickable.momentumVelocity = Math.max(-flickable.maxMomentumVelocity, Math.min(flickable.maxMomentumVelocity, totalDelta / timeSpan * 1000));
+                        flickable.momentumVelocity = Math.max(-Scroll.maxMomentumVelocity, Math.min(Scroll.maxMomentumVelocity, totalDelta / timeSpan * 1000));
                     }
                 }
 
-                if (timeDelta < 50) {
-                    momentum = momentum * momentumRetention + delta * 0.15;
+                if (timeDelta < Scroll.momentumTimeThreshold) {
+                    momentum = momentum * momentumRetention + delta * Scroll.momentumDeltaFactor;
                     delta += momentum;
                 } else {
                     momentum = 0;
@@ -130,7 +129,7 @@ Flickable {
 
         onActiveChanged: {
             if (!active) {
-                if (!sessionUsedMouseWheel && Math.abs(flickable.momentumVelocity) >= flickable.minMomentumVelocity) {
+                if (!sessionUsedMouseWheel && Math.abs(flickable.momentumVelocity) >= Scroll.minMomentumVelocity) {
                     startMomentum();
                 } else {
                     velocitySamples = [];
@@ -146,40 +145,32 @@ Flickable {
     }
     onMovementEnded: vbar.hideTimer.restart()
 
-    Timer {
-        id: momentumTimer
-        interval: 16
-        repeat: true
+    FrameAnimation {
+        id: momentumAnim
+        running: false
 
         onTriggered: {
-            const newY = flickable.contentY - flickable.momentumVelocity * 0.016;
+            const dt = frameTime;
+            const newY = flickable.contentY - flickable.momentumVelocity * dt;
             const maxY = Math.max(0, flickable.contentHeight - flickable.height);
 
             if (newY < 0 || newY > maxY) {
                 flickable.contentY = newY < 0 ? 0 : maxY;
-                stop();
+                running = false;
                 flickable.isMomentumActive = false;
                 flickable.momentumVelocity = 0;
                 return;
             }
 
             flickable.contentY = newY;
-            flickable.momentumVelocity *= flickable.friction;
+            flickable.momentumVelocity *= Math.pow(flickable.friction, dt / 0.016);
 
-            if (Math.abs(flickable.momentumVelocity) < 5) {
-                stop();
+            if (Math.abs(flickable.momentumVelocity) < Scroll.momentumStopThreshold) {
+                running = false;
                 flickable.isMomentumActive = false;
                 flickable.momentumVelocity = 0;
             }
         }
-    }
-
-    NumberAnimation {
-        id: returnToBoundsAnimation
-        target: flickable
-        property: "contentY"
-        duration: 300
-        easing.type: Easing.OutQuad
     }
 
     ScrollBar.vertical: DankScrollbar {

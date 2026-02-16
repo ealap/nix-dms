@@ -30,7 +30,7 @@ StyledRect {
     function determineFileType(fileName) {
         const ext = getFileExtension(fileName);
 
-        const imageExts = ["png", "jpg", "jpeg", "gif", "bmp", "webp", "svg", "ico"];
+        const imageExts = ["png", "jpg", "jpeg", "gif", "bmp", "webp", "svg", "ico", "jxl", "avif", "heif", "exr"];
         if (imageExts.includes(ext)) {
             return "image";
         }

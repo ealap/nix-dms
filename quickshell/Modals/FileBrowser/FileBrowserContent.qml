@@ -280,6 +280,7 @@ FocusScope {
         showDirsFirst: true
         showDotAndDotDot: false
         showHidden: root.showHiddenFiles
+        caseSensitive: false
         nameFilters: fileExtensions
         showFiles: true
         showDirs: true

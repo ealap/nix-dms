@@ -649,6 +649,76 @@ func checkI2CAvailability() checkResult {
 	return checkResult{catOptionalFeatures, "I2C/DDC", statusOK, fmt.Sprintf("%d monitor(s) detected", len(devices)), "External monitor brightness control", doctorDocsURL + "#optional-features"}
 }
 
+func checkKImageFormats() checkResult {
+	url := doctorDocsURL + "#optional-features"
+	desc := "Extra image format support (AVIF, HEIF, JXL)"
+
+	pluginDir := findQtPluginDir()
+	if pluginDir == "" {
+		return checkResult{catOptionalFeatures, "kimageformats", statusInfo, "Cannot detect (qtpaths not found)", desc, url}
+	}
+
+	imageFormatsDir := filepath.Join(pluginDir, "imageformats")
+	keyPlugins := []struct{ file, format string }{
+		{"kimg_avif.so", "AVIF"},
+		{"kimg_heif.so", "HEIF"},
+		{"kimg_jxl.so", "JXL"},
+		{"kimg_exr.so", "EXR"},
+	}
+
+	var found []string
+	for _, p := range keyPlugins {
+		if _, err := os.Stat(filepath.Join(imageFormatsDir, p.file)); err == nil {
+			found = append(found, p.format)
+		}
+	}
+
+	if len(found) == 0 {
+		return checkResult{catOptionalFeatures, "kimageformats", statusWarn, "Not installed", desc, url}
+	}
+
+	details := ""
+	if doctorVerbose {
+		details = fmt.Sprintf("Formats: %s (%s)", strings.Join(found, ", "), imageFormatsDir)
+	}
+
+	return checkResult{catOptionalFeatures, "kimageformats", statusOK, fmt.Sprintf("Installed (%d formats)", len(found)), details, url}
+}
+
+func findQtPluginDir() string {
+	// Check QT_PLUGIN_PATH env var first (used by NixOS and custom setups)
+	if envPath := os.Getenv("QT_PLUGIN_PATH"); envPath != "" {
+		for dir := range strings.SplitSeq(envPath, ":") {
+			if _, err := os.Stat(filepath.Join(dir, "imageformats")); err == nil {
+				return dir
+			}
+		}
+	}
+
+	// Try qtpaths
+	for _, cmd := range []string{"qtpaths6", "qtpaths"} {
+		if output, err := exec.Command(cmd, "-query", "QT_INSTALL_PLUGINS").Output(); err == nil {
+			if dir := strings.TrimSpace(string(output)); dir != "" {
+				return dir
+			}
+		}
+	}
+
+	// Fallback: common distro paths
+	for _, dir := range []string{
+		"/usr/lib/qt6/plugins",
+		"/usr/lib64/qt6/plugins",
+		"/usr/lib/x86_64-linux-gnu/qt6/plugins",
+		"/usr/lib/aarch64-linux-gnu/qt6/plugins",
+	} {
+		if _, err := os.Stat(filepath.Join(dir, "imageformats")); err == nil {
+			return dir
+		}
+	}
+
+	return ""
+}
+
 func detectNetworkBackend(stackResult *network.DetectResult) string {
 	switch stackResult.Backend {
 	case network.BackendNetworkManager:
@@ -689,7 +759,21 @@ func checkOptionalDependencies() []checkResult {
 	logindStatus, logindMsg := getOptionalDBusStatus("org.freedesktop.login1")
 	results = append(results, checkResult{catOptionalFeatures, "logind", logindStatus, logindMsg, "Session management", optionalFeaturesURL})
 
+	cupsPkHelperBus := "org.opensuse.CupsPkHelper.Mechanism"
+	var cupsPkStatus status
+	var cupsPkMsg string
+	switch {
+	case utils.IsDBusServiceAvailable(cupsPkHelperBus):
+		cupsPkStatus, cupsPkMsg = statusOK, "Running"
+	case utils.IsDBusServiceActivatable(cupsPkHelperBus):
+		cupsPkStatus, cupsPkMsg = statusOK, "Available"
+	default:
+		cupsPkStatus, cupsPkMsg = statusWarn, "Not available (install cups-pk-helper)"
+	}
+	results = append(results, checkResult{catOptionalFeatures, "cups-pk-helper", cupsPkStatus, cupsPkMsg, "Printer management", optionalFeaturesURL})
+
 	results = append(results, checkI2CAvailability())
+	results = append(results, checkKImageFormats())
 
 	terminals := []string{"ghostty", "kitty", "alacritty", "foot", "wezterm"}
 	if idx := slices.IndexFunc(terminals, utils.CommandExists); idx >= 0 {

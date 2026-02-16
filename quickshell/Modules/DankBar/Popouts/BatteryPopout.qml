@@ -48,11 +48,6 @@ DankPopout {
 
             implicitHeight: contentColumn.implicitHeight + Theme.spacingL * 2
             color: "transparent"
-            radius: Theme.cornerRadius
-            border.color: Theme.outlineMedium
-            border.width: 0
-            antialiasing: true
-            smooth: true
             focus: true
             Component.onCompleted: {
                 if (root.shouldBeVisible) {
@@ -76,35 +71,6 @@ DankPopout {
                 }
 
                 target: root
-            }
-
-            Rectangle {
-                anchors.fill: parent
-                anchors.margins: -3
-                color: "transparent"
-                radius: parent.radius + 3
-                border.color: Qt.rgba(0, 0, 0, 0.05)
-                border.width: 0
-                z: -3
-            }
-
-            Rectangle {
-                anchors.fill: parent
-                anchors.margins: -2
-                color: "transparent"
-                radius: parent.radius + 2
-                border.color: Theme.shadowMedium
-                border.width: 0
-                z: -2
-            }
-
-            Rectangle {
-                anchors.fill: parent
-                color: "transparent"
-                border.color: Theme.outlineStrong
-                border.width: 0
-                radius: parent.radius
-                z: -1
             }
 
             Column {

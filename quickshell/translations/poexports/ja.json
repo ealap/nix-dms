@@ -883,6 +883,9 @@
   "Clipboard Manager": {
     "Clipboard Manager": "クリップボード管理"
   },
+  "Clipboard behavior setting description": {
+    "Press Enter to paste, Shift+Enter to copy": ""
+  },
   "Clipboard service not available": {
     "Clipboard service not available": ""
   },
@@ -1722,6 +1725,9 @@
   },
   "Enter this passkey on ": {
     "Enter this passkey on ": "ここでパスキーを入力してください "
+  },
+  "Enter to Paste": {
+    "Enter to Paste": ""
   },
   "Enterprise": {
     "Enterprise": ""
@@ -2648,6 +2654,10 @@
   },
   "Keyboard Shortcuts": {
     "Keyboard Shortcuts": ""
+  },
+  "Keyboard hints when enter-to-paste is enabled": {
+    "Shift+Enter: Copy • Shift+Del: Clear All • Esc: Close": "",
+    "↑/↓: Navigate • Enter: Paste • Del: Delete • F10: Help": ""
   },
   "Keys": {
     "Keys": ""
@@ -4189,6 +4199,9 @@
   },
   "Select Bar": {
     "Select Bar": ""
+  },
+  "Select Dock Launcher Logo": {
+    "Select Dock Launcher Logo": ""
   },
   "Select Launcher Logo": {
     "Select Launcher Logo": "ランチャーロゴを選ぶ"

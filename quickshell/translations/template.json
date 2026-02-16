@@ -4242,6 +4242,13 @@
     "comment": ""
   },
   {
+    "term": "Enter to Paste",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Enterprise",
     "translation": "",
     "context": "",
@@ -9275,6 +9282,13 @@
     "comment": ""
   },
   {
+    "term": "Press Enter to paste, Shift+Enter to copy",
+    "translation": "",
+    "context": "Clipboard behavior setting description",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Press key...",
     "translation": "",
     "context": "",
@@ -10395,6 +10409,13 @@
     "comment": ""
   },
   {
+    "term": "Select Dock Launcher Logo",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Select File to Send",
     "translation": "",
     "context": "KDE Connect file browser title",
@@ -10748,6 +10769,13 @@
     "term": "Shift+Enter to paste",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Shift+Enter: Copy • Shift+Del: Clear All • Esc: Close",
+    "translation": "",
+    "context": "Keyboard hints when enter-to-paste is enabled",
     "reference": "",
     "comment": ""
   },
@@ -13898,6 +13926,13 @@
     "term": "• yyyy - Year (2024)",
     "translation": "",
     "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "↑/↓: Navigate • Enter: Paste • Del: Delete • F10: Help",
+    "translation": "",
+    "context": "Keyboard hints when enter-to-paste is enabled",
     "reference": "",
     "comment": ""
   }

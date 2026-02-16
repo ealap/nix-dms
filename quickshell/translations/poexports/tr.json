@@ -883,6 +883,9 @@
   "Clipboard Manager": {
     "Clipboard Manager": "Pano Yöneticisi"
   },
+  "Clipboard behavior setting description": {
+    "Press Enter to paste, Shift+Enter to copy": ""
+  },
   "Clipboard service not available": {
     "Clipboard service not available": "Pano hizmeti kullanılamıyor"
   },
@@ -1722,6 +1725,9 @@
   },
   "Enter this passkey on ": {
     "Enter this passkey on ": "Bu şifreyi şuraya gir: "
+  },
+  "Enter to Paste": {
+    "Enter to Paste": ""
   },
   "Enterprise": {
     "Enterprise": "Kurumsal"
@@ -2648,6 +2654,10 @@
   },
   "Keyboard Shortcuts": {
     "Keyboard Shortcuts": "Klavye Kısayolları"
+  },
+  "Keyboard hints when enter-to-paste is enabled": {
+    "Shift+Enter: Copy • Shift+Del: Clear All • Esc: Close": "",
+    "↑/↓: Navigate • Enter: Paste • Del: Delete • F10: Help": ""
   },
   "Keys": {
     "Keys": "Tuşlar"
@@ -4189,6 +4199,9 @@
   },
   "Select Bar": {
     "Select Bar": "Bar Seç"
+  },
+  "Select Dock Launcher Logo": {
+    "Select Dock Launcher Logo": ""
   },
   "Select Launcher Logo": {
     "Select Launcher Logo": "Başlatıcı Logosu Seç"

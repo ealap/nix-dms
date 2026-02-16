@@ -122,7 +122,7 @@ func (a *SecretAgent) GetSecrets(
 
 	connType, displayName, vpnSvc := readConnTypeAndName(conn)
 	ssid := readSSID(conn)
-	fields := fieldsNeeded(settingName, hints)
+	fields := fieldsNeeded(settingName, hints, conn)
 	vpnPasswordFlags := readVPNPasswordFlags(conn, settingName)
 
 	log.Infof("[SecretAgent] connType=%s, name=%s, vpnSvc=%s, fields=%v, flags=%d, vpnPasswordFlags=%d", connType, displayName, vpnSvc, fields, flags, vpnPasswordFlags)
@@ -218,8 +218,16 @@ func (a *SecretAgent) GetSecrets(
 				out[settingName] = nmVariantMap{}
 				return out, nil
 			} else if passwordFlags&NM_SETTING_SECRET_FLAG_AGENT_OWNED != 0 {
-				log.Warnf("[SecretAgent] Secrets are agent-owned but we don't store secrets (flags=%d) - returning NoSecrets error", passwordFlags)
-				return nil, dbus.NewError("org.freedesktop.NetworkManager.SecretAgent.Error.NoSecrets", nil)
+				switch settingName {
+				case "802-11-wireless-security":
+					fields = []string{"psk"}
+				case "802-1x":
+					fields = infer8021xFields(conn)
+				default:
+					log.Warnf("[SecretAgent] Agent-owned secrets for unhandled setting %s (flags=%d)", settingName, passwordFlags)
+					return nil, dbus.NewError("org.freedesktop.NetworkManager.SecretAgent.Error.NoSecrets", nil)
+				}
+				log.Infof("[SecretAgent] Agent-owned secrets, inferred fields: %v", fields)
 			} else {
 				log.Infof("[SecretAgent] No secrets needed, using system stored secrets (flags=%d)", passwordFlags)
 				out := nmSettingMap{}
@@ -418,8 +426,19 @@ func (a *SecretAgent) GetSecrets(
 			log.Infof("[SecretAgent] Cached PKCS11 PIN for potential re-request")
 		}
 	case "802-1x":
-		out[settingName] = sec
-		log.Infof("[SecretAgent] Returning 802-1x enterprise secrets with %d fields", len(sec))
+		secretsOnly := nmVariantMap{}
+		for k, v := range reply.Secrets {
+			switch k {
+			case "password", "private-key-password", "phase2-private-key-password", "pin":
+				secretsOnly[k] = dbus.MakeVariant(v)
+			}
+		}
+		out[settingName] = secretsOnly
+
+		if identity, ok := reply.Secrets["identity"]; ok && identity != "" {
+			a.save8021xIdentity(path, identity)
+		}
+		log.Infof("[SecretAgent] Returning 802-1x enterprise secrets with %d fields", len(secretsOnly))
 	default:
 		out[settingName] = sec
 	}
@@ -434,63 +453,6 @@ func (a *SecretAgent) GetSecrets(
 		}
 		a.backend.pendingVPNSaveMu.Unlock()
 		log.Infof("[SecretAgent] Queued credentials persist for after connection succeeds")
-	} else if reply.Save && settingName != "vpn" {
-		// Non-VPN save logic
-		go func() {
-			log.Infof("[SecretAgent] Persisting secrets with Update2: path=%s, setting=%s", path, settingName)
-
-			connObj := a.conn.Object("org.freedesktop.NetworkManager", path)
-			var existingSettings map[string]map[string]dbus.Variant
-			if err := connObj.Call("org.freedesktop.NetworkManager.Settings.Connection.GetSettings", 0).Store(&existingSettings); err != nil {
-				log.Warnf("[SecretAgent] GetSettings failed: %v", err)
-				return
-			}
-
-			settings := make(map[string]map[string]dbus.Variant)
-			if connSection, ok := existingSettings["connection"]; ok {
-				settings["connection"] = connSection
-			}
-
-			switch settingName {
-			case "802-11-wireless-security":
-				wifiSec, ok := existingSettings["802-11-wireless-security"]
-				if !ok {
-					wifiSec = make(map[string]dbus.Variant)
-				}
-				wifiSec["psk-flags"] = dbus.MakeVariant(uint32(0))
-
-				if psk, ok := reply.Secrets["psk"]; ok {
-					wifiSec["psk"] = dbus.MakeVariant(psk)
-					log.Infof("[SecretAgent] Updated WiFi settings: psk-flags=0")
-				}
-				settings["802-11-wireless-security"] = wifiSec
-
-			case "802-1x":
-				dot1x, ok := existingSettings["802-1x"]
-				if !ok {
-					dot1x = make(map[string]dbus.Variant)
-				}
-				dot1x["password-flags"] = dbus.MakeVariant(uint32(0))
-
-				if password, ok := reply.Secrets["password"]; ok {
-					dot1x["password"] = dbus.MakeVariant(password)
-					log.Infof("[SecretAgent] Updated 802.1x settings: password-flags=0")
-				}
-				settings["802-1x"] = dot1x
-			}
-
-			// Call Update2 with correct signature:
-			// Update2(IN settings, IN flags, IN args) -> OUT result
-			// flags: 0x1 = to-disk
-			var result map[string]dbus.Variant
-			err := connObj.Call("org.freedesktop.NetworkManager.Settings.Connection.Update2", 0,
-				settings, uint32(0x1), map[string]dbus.Variant{}).Store(&result)
-			if err != nil {
-				log.Warnf("[SecretAgent] Update2(to-disk) failed: %v", err)
-			} else {
-				log.Infof("[SecretAgent] Successfully persisted secrets to disk for %s", settingName)
-			}
-		}()
 	}
 
 	return out, nil
@@ -521,6 +483,35 @@ func (a *SecretAgent) CancelGetSecrets(path dbus.ObjectPath, settingName string)
 
 func (a *SecretAgent) Introspect() (string, *dbus.Error) {
 	return introspectXML, nil
+}
+
+func (a *SecretAgent) save8021xIdentity(path dbus.ObjectPath, identity string) {
+	connObj := a.conn.Object("org.freedesktop.NetworkManager", path)
+	var existing map[string]map[string]dbus.Variant
+	if err := connObj.Call("org.freedesktop.NetworkManager.Settings.Connection.GetSettings", 0).Store(&existing); err != nil {
+		log.Warnf("[SecretAgent] Failed to get settings for identity save: %v", err)
+		return
+	}
+
+	settings := make(map[string]map[string]dbus.Variant)
+	if connSection, ok := existing["connection"]; ok {
+		settings["connection"] = connSection
+	}
+
+	dot1x, ok := existing["802-1x"]
+	if !ok {
+		dot1x = make(map[string]dbus.Variant)
+	}
+	dot1x["identity"] = dbus.MakeVariant(identity)
+	settings["802-1x"] = dot1x
+
+	var result map[string]dbus.Variant
+	if err := connObj.Call("org.freedesktop.NetworkManager.Settings.Connection.Update2", 0,
+		settings, uint32(0x1), map[string]dbus.Variant{}).Store(&result); err != nil {
+		log.Warnf("[SecretAgent] Failed to save 802.1x identity: %v", err)
+		return
+	}
+	log.Infof("[SecretAgent] Saved 802.1x identity to connection profile")
 }
 
 func readSSID(conn map[string]nmVariantMap) string {
@@ -564,17 +555,55 @@ func readConnTypeAndName(conn map[string]nmVariantMap) (string, string, string) 
 	return connType, name, svc
 }
 
-func fieldsNeeded(setting string, hints []string) []string {
+func fieldsNeeded(setting string, hints []string, conn map[string]nmVariantMap) []string {
 	switch setting {
 	case "802-11-wireless-security":
 		return []string{"psk"}
 	case "802-1x":
-		return []string{"identity", "password"}
+		if len(hints) > 0 {
+			return hints
+		}
+		return infer8021xFields(conn)
 	case "vpn":
 		return hints
 	default:
 		return []string{}
 	}
+}
+
+func infer8021xFields(conn map[string]nmVariantMap) []string {
+	dot1x, ok := conn["802-1x"]
+	if !ok {
+		return []string{"identity", "password"}
+	}
+
+	var fields []string
+
+	if v, ok := dot1x["identity"]; ok {
+		if id, ok := v.Value().(string); ok && id != "" {
+			// identity already stored, don't ask again
+		} else {
+			fields = append(fields, "identity")
+		}
+	} else {
+		fields = append(fields, "identity")
+	}
+
+	var eapMethods []string
+	if v, ok := dot1x["eap"]; ok {
+		if methods, ok := v.Value().([]string); ok {
+			eapMethods = methods
+		}
+	}
+
+	switch {
+	case len(eapMethods) > 0 && eapMethods[0] == "tls":
+		fields = append(fields, "private-key-password")
+	default:
+		fields = append(fields, "password")
+	}
+
+	return fields
 }
 
 func buildFieldsInfo(setting string, fields []string, vpnService string) []FieldInfo {

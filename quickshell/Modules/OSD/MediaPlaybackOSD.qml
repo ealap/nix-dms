@@ -16,18 +16,28 @@ DankOSD {
     autoHideInterval: 3000
     enableMouseInteraction: true
 
-    function getPlaybackIcon() {
-        if (!player)
-            return "music_note";
+    property string _displayIcon: "music_note"
+
+    function updatePlaybackIcon() {
+        if (!player) {
+            _displayIcon = "music_note";
+            iconDebounce.stop();
+            return;
+        }
+        let icon = "music_note";
         switch (player.playbackState) {
         case MprisPlaybackState.Playing:
-            return "play_arrow";
+            icon = "play_arrow";
+            break;
         case MprisPlaybackState.Paused:
         case MprisPlaybackState.Stopped:
-            return "pause";
-        default:
-            return "music_note";
+            icon = "pause";
+            break;
         }
+        if (icon === _displayIcon)
+            return;
+        iconDebounce.pendingIcon = icon;
+        iconDebounce.restart();
     }
 
     function togglePlaying() {
@@ -37,6 +47,13 @@ DankOSD {
     }
 
     property bool _pendingShow: false
+
+    Timer {
+        id: iconDebounce
+        interval: 150
+        property string pendingIcon: "music_note"
+        onTriggered: root._displayIcon = pendingIcon
+    }
 
     Image {
         id: artPreloader
@@ -58,7 +75,7 @@ DankOSD {
         function onLoadingChanged() {
             if (TrackArtService.loading || !root._pendingShow)
                 return;
-            if (!TrackArtService._bgArtSource || artPreloader.status !== Image.Loading) {
+            if (!TrackArtService._bgArtSource || artPreloader.status === Image.Ready) {
                 root._pendingShow = false;
                 root.show();
             }
@@ -70,9 +87,12 @@ DankOSD {
         function onStatusChanged() {
             if (!root._pendingShow || TrackArtService.loading)
                 return;
-            if (artPreloader.status !== Image.Loading) {
+            switch (artPreloader.status) {
+            case Image.Ready:
+            case Image.Error:
                 root._pendingShow = false;
                 root.show();
+                break;
             }
         }
     }
@@ -86,13 +106,18 @@ DankOSD {
             if (!SettingsData.osdMediaPlaybackEnabled)
                 return;
 
+            root.updatePlaybackIcon();
             TrackArtService.loadArtwork(player.trackArtUrl);
 
             if (!player.trackArtUrl || player.trackArtUrl === "") {
                 root.show();
                 return;
             }
-            if (!TrackArtService.loading) {
+            if (TrackArtService.loading) {
+                root._pendingShow = true;
+                return;
+            }
+            if (!TrackArtService._bgArtSource || artPreloader.status === Image.Ready) {
                 root.show();
                 return;
             }
@@ -202,7 +227,7 @@ DankOSD {
 
                 DankIcon {
                     anchors.centerIn: parent
-                    name: getPlaybackIcon()
+                    name: root._displayIcon
                     size: Theme.iconSize
                     color: playPauseButton.containsMouse ? Theme.primary : Theme.surfaceText
                 }
@@ -272,7 +297,7 @@ DankOSD {
 
                 DankIcon {
                     anchors.centerIn: parent
-                    name: getPlaybackIcon()
+                    name: root._displayIcon
                     size: Theme.iconSize
                     color: playPauseButtonVert.containsMouse ? Theme.primary : Theme.surfaceText
                 }

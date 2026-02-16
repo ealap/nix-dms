@@ -883,6 +883,9 @@
   "Clipboard Manager": {
     "Clipboard Manager": "剪貼簿管理"
   },
+  "Clipboard behavior setting description": {
+    "Press Enter to paste, Shift+Enter to copy": ""
+  },
   "Clipboard service not available": {
     "Clipboard service not available": "剪貼簿服務無法使用"
   },
@@ -1722,6 +1725,9 @@
   },
   "Enter this passkey on ": {
     "Enter this passkey on ": "輸入此密碼 "
+  },
+  "Enter to Paste": {
+    "Enter to Paste": ""
   },
   "Enterprise": {
     "Enterprise": "企業"
@@ -2648,6 +2654,10 @@
   },
   "Keyboard Shortcuts": {
     "Keyboard Shortcuts": "鍵盤快捷鍵"
+  },
+  "Keyboard hints when enter-to-paste is enabled": {
+    "Shift+Enter: Copy • Shift+Del: Clear All • Esc: Close": "",
+    "↑/↓: Navigate • Enter: Paste • Del: Delete • F10: Help": ""
   },
   "Keys": {
     "Keys": "按鍵"
@@ -4189,6 +4199,9 @@
   },
   "Select Bar": {
     "Select Bar": "選取列"
+  },
+  "Select Dock Launcher Logo": {
+    "Select Dock Launcher Logo": ""
   },
   "Select Launcher Logo": {
     "Select Launcher Logo": "選擇啟動器 Logo"
