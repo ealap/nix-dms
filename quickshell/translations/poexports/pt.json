@@ -356,6 +356,9 @@
   "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": {
     "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": ""
   },
+  "Apps with notification popups muted. Unmute or delete to remove.": {
+    "Apps with notification popups muted. Unmute or delete to remove.": ""
+  },
   "Arrange displays and configure resolution, refresh rate, and VRR": {
     "Arrange displays and configure resolution, refresh rate, and VRR": ""
   },
@@ -558,6 +561,9 @@
   },
   "Bar Transparency": {
     "Bar Transparency": "Trasparência da Barra"
+  },
+  "Base duration for animations (drag to use Custom)": {
+    "Base duration for animations (drag to use Custom)": ""
   },
   "Battery": {
     "Battery": "Bateria"
@@ -1075,6 +1081,9 @@
   "Control Center Tile Color": {
     "Control Center Tile Color": ""
   },
+  "Control animation duration for notification popups and history": {
+    "Control animation duration for notification popups and history": ""
+  },
   "Control currently playing media": {
     "Control currently playing media": "Controlar mídia que está sendo reproduzida"
   },
@@ -1164,6 +1173,9 @@
   },
   "Create rules to mute, ignore, hide from history, or override notification priority.": {
     "Create rules to mute, ignore, hide from history, or override notification priority.": ""
+  },
+  "Create rules to mute, ignore, hide from history, or override notification priority. Default only overrides priority; notifications still show normally.": {
+    "Create rules to mute, ignore, hide from history, or override notification priority. Default only overrides priority; notifications still show normally.": ""
   },
   "Creating...": {
     "Creating...": "Criando..."
@@ -1575,6 +1587,9 @@
   },
   "Duplicate Wallpaper with Blur": {
     "Duplicate Wallpaper with Blur": "Duplicar Papel de Parede com Blur"
+  },
+  "Duration": {
+    "Duration": ""
   },
   "Dusk (Astronomical Twilight)": {
     "Dusk (Astronomical Twilight)": "Escurecer (Crepúsculo Astronômico)"
@@ -2089,6 +2104,9 @@
   "Format Legend": {
     "Format Legend": "Formatar Legenda"
   },
+  "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening.": {
+    "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening.": ""
+  },
   "Frequency": {
     "Frequency": "Frequência"
   },
@@ -2212,6 +2230,9 @@
   "Hidden": {
     "Hidden": ""
   },
+  "Hidden (%1)": {
+    "Hidden (%1)": ""
+  },
   "Hidden Apps": {
     "Hidden Apps": ""
   },
@@ -2250,6 +2271,15 @@
   },
   "Hide cursor when using touch input": {
     "Hide cursor when using touch input": ""
+  },
+  "Hide device": {
+    "Hide device": ""
+  },
+  "Hide notification content until expanded": {
+    "Hide notification content until expanded": ""
+  },
+  "Hide notification content until expanded; popups show collapsed by default": {
+    "Hide notification content until expanded; popups show collapsed by default": ""
   },
   "Hide on Touch": {
     "Hide on Touch": ""
@@ -3073,6 +3103,12 @@
   "Moving to Paused": {
     "Moving to Paused": "Movendo para Pausado"
   },
+  "Mute popups for %1": {
+    "Mute popups for %1": ""
+  },
+  "Muted Apps": {
+    "Muted Apps": ""
+  },
   "Muted palette with subdued, calming tones.": {
     "Muted palette with subdued, calming tones.": "Paleta suave com tons sutis e calmantes."
   },
@@ -3222,6 +3258,9 @@
   },
   "No apps have been launched yet.": {
     "No apps have been launched yet.": ""
+  },
+  "No apps muted. Right-click a notification and choose \"Mute popups\" to add one here.": {
+    "No apps muted. Right-click a notification and choose \"Mute popups\" to add one here.": ""
   },
   "No battery": {
     "No battery": ""
@@ -3714,6 +3753,9 @@
   "Popup Position": {
     "Popup Position": "Posição do Popup"
   },
+  "Popup Shadow": {
+    "Popup Shadow": ""
+  },
   "Popup Transparency": {
     "Popup Transparency": "Transparência do Popup"
   },
@@ -3821,6 +3863,9 @@
   },
   "Privacy Indicator": {
     "Privacy Indicator": "Indicador de Privacidade"
+  },
+  "Privacy Mode": {
+    "Privacy Mode": ""
   },
   "Private Key Password": {
     "Private Key Password": "Senha da Chave Privada"
@@ -4278,6 +4323,9 @@
   "Set key and action to save": {
     "Set key and action to save": "Definir chave e ação para salvar"
   },
+  "Set notification rules": {
+    "Set notification rules": ""
+  },
   "Setup": {
     "Setup": ""
   },
@@ -4449,8 +4497,14 @@
   "Show darkened overlay behind modal dialogs": {
     "Show darkened overlay behind modal dialogs": "Exibir sobreposição escurecida atrás de diálogos modais"
   },
+  "Show device": {
+    "Show device": ""
+  },
   "Show dock when floating windows don't overlap its area": {
     "Show dock when floating windows don't overlap its area": ""
+  },
+  "Show drop shadow on notification popups": {
+    "Show drop shadow on notification popups": ""
   },
   "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": {
     "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": "Mostrar sobreposição do iniciador ao digitar na visão geral do Niri. Desative para usar outro iniciador."
@@ -4989,6 +5043,15 @@
   "Unknown Title": {
     "Unknown Title": ""
   },
+  "Unload on Close": {
+    "Unload on Close": ""
+  },
+  "Unmute": {
+    "Unmute": ""
+  },
+  "Unmute popups for %1": {
+    "Unmute popups for %1": ""
+  },
   "Unnamed Rule": {
     "Unnamed Rule": ""
   },
@@ -5484,6 +5547,9 @@
   "control center tile color setting description": {
     "Active tile background and icon color": ""
   },
+  "count of hidden audio devices": {
+    "Hidden (%1)": ""
+  },
   "current theme label": {
     "Current Theme: %1": ""
   },
@@ -5898,6 +5964,9 @@
   "notification history toggle label": {
     "Enable History": ""
   },
+  "notification privacy mode placeholder": {
+    "Message Content": ""
+  },
   "notification rule action option": {
     "Ignore Completely": "",
     "Mute Popups": "",
@@ -6049,6 +6118,9 @@
   },
   "theme search placeholder": {
     "Search themes...": ""
+  },
+  "this app": {
+    "this app": ""
   },
   "tile color option": {
     "Primary Container": "",

@@ -42,12 +42,6 @@
     "comment": ""
   },
   {
-    "term": "%1 days ago",
-    "context": "%1 days ago",
-    "reference": "Services/NotificationService.qml:256",
-    "comment": ""
-  },
-  {
     "term": "%1 disconnected",
     "context": "%1 disconnected",
     "reference": "Modules/Settings/DisplayConfigTab.qml:464",
@@ -122,7 +116,7 @@
   {
     "term": "%1m ago",
     "context": "%1m ago",
-    "reference": "Services/NotificationService.qml:246",
+    "reference": "Services/NotificationService.qml:243",
     "comment": ""
   },
   {
@@ -146,7 +140,7 @@
   {
     "term": "1 day",
     "context": "notification history retention option",
-    "reference": "Modules/Settings/NotificationsTab.qml:603, Modules/Settings/NotificationsTab.qml:616, Modules/Settings/NotificationsTab.qml:621, Modules/Settings/ClipboardTab.qml:103",
+    "reference": "Modules/Settings/NotificationsTab.qml:819, Modules/Settings/NotificationsTab.qml:832, Modules/Settings/NotificationsTab.qml:837, Modules/Settings/ClipboardTab.qml:103",
     "comment": ""
   },
   {
@@ -164,7 +158,7 @@
   {
     "term": "1 minute",
     "context": "1 minute",
-    "reference": "Modules/Settings/NotificationsTab.qml:43",
+    "reference": "Modules/Settings/NotificationsTab.qml:62",
     "comment": ""
   },
   {
@@ -176,19 +170,19 @@
   {
     "term": "1 second",
     "context": "1 second",
-    "reference": "Modules/Settings/NotificationsTab.qml:15",
+    "reference": "Modules/Settings/NotificationsTab.qml:34",
     "comment": ""
   },
   {
     "term": "10 minutes",
     "context": "10 minutes",
-    "reference": "Modules/Settings/NotificationsTab.qml:55",
+    "reference": "Modules/Settings/NotificationsTab.qml:74",
     "comment": ""
   },
   {
     "term": "10 seconds",
     "context": "10 seconds",
-    "reference": "Modules/Settings/NotificationsTab.qml:31",
+    "reference": "Modules/Settings/NotificationsTab.qml:50",
     "comment": ""
   },
   {
@@ -200,25 +194,25 @@
   {
     "term": "14 days",
     "context": "notification history retention option",
-    "reference": "Modules/Settings/NotificationsTab.qml:609, Modules/Settings/NotificationsTab.qml:616, Modules/Settings/NotificationsTab.qml:627, Modules/Settings/ClipboardTab.qml:115",
+    "reference": "Modules/Settings/NotificationsTab.qml:825, Modules/Settings/NotificationsTab.qml:832, Modules/Settings/NotificationsTab.qml:843, Modules/Settings/ClipboardTab.qml:115",
     "comment": ""
   },
   {
     "term": "15 seconds",
     "context": "15 seconds",
-    "reference": "Modules/Settings/NotificationsTab.qml:35",
+    "reference": "Modules/Settings/NotificationsTab.qml:54",
     "comment": ""
   },
   {
     "term": "180°",
     "context": "180°",
-    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1787, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1808",
+    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1791, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1812",
     "comment": ""
   },
   {
     "term": "2 minutes",
     "context": "2 minutes",
-    "reference": "Modules/Settings/NotificationsTab.qml:47",
+    "reference": "Modules/Settings/NotificationsTab.qml:66",
     "comment": ""
   },
   {
@@ -236,31 +230,31 @@
   {
     "term": "270°",
     "context": "270°",
-    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1789, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1810",
+    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1793, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1814",
     "comment": ""
   },
   {
     "term": "3 days",
     "context": "notification history retention option",
-    "reference": "Modules/Settings/NotificationsTab.qml:605, Modules/Settings/NotificationsTab.qml:616, Modules/Settings/NotificationsTab.qml:623, Modules/Settings/ClipboardTab.qml:107",
+    "reference": "Modules/Settings/NotificationsTab.qml:821, Modules/Settings/NotificationsTab.qml:832, Modules/Settings/NotificationsTab.qml:839, Modules/Settings/ClipboardTab.qml:107",
     "comment": ""
   },
   {
     "term": "3 seconds",
     "context": "3 seconds",
-    "reference": "Modules/Settings/NotificationsTab.qml:19",
+    "reference": "Modules/Settings/NotificationsTab.qml:38",
     "comment": ""
   },
   {
     "term": "30 days",
     "context": "notification history filter | notification history retention option",
-    "reference": "Modules/Settings/NotificationsTab.qml:611, Modules/Settings/NotificationsTab.qml:616, Modules/Settings/NotificationsTab.qml:629, Modules/Settings/ClipboardTab.qml:119, Modules/Notifications/Center/HistoryNotificationList.qml:112",
+    "reference": "Modules/Settings/NotificationsTab.qml:827, Modules/Settings/NotificationsTab.qml:832, Modules/Settings/NotificationsTab.qml:845, Modules/Settings/ClipboardTab.qml:119, Modules/Notifications/Center/HistoryNotificationList.qml:112",
     "comment": ""
   },
   {
     "term": "30 seconds",
     "context": "30 seconds",
-    "reference": "Modules/Settings/NotificationsTab.qml:39",
+    "reference": "Modules/Settings/NotificationsTab.qml:58",
     "comment": ""
   },
   {
@@ -272,25 +266,25 @@
   {
     "term": "5 minutes",
     "context": "5 minutes",
-    "reference": "Modules/Settings/NotificationsTab.qml:51",
+    "reference": "Modules/Settings/NotificationsTab.qml:70",
     "comment": ""
   },
   {
     "term": "5 seconds",
     "context": "5 seconds",
-    "reference": "Modules/Settings/NotificationsTab.qml:23, Modules/Settings/NotificationsTab.qml:138",
+    "reference": "Modules/Settings/NotificationsTab.qml:42, Modules/Settings/NotificationsTab.qml:157",
     "comment": ""
   },
   {
     "term": "7 days",
     "context": "notification history filter | notification history retention option",
-    "reference": "Modules/Settings/NotificationsTab.qml:607, Modules/Settings/NotificationsTab.qml:616, Modules/Settings/NotificationsTab.qml:625, Modules/Settings/ClipboardTab.qml:111, Modules/Notifications/Center/HistoryNotificationList.qml:107",
+    "reference": "Modules/Settings/NotificationsTab.qml:823, Modules/Settings/NotificationsTab.qml:832, Modules/Settings/NotificationsTab.qml:841, Modules/Settings/ClipboardTab.qml:111, Modules/Notifications/Center/HistoryNotificationList.qml:107",
     "comment": ""
   },
   {
     "term": "8 seconds",
     "context": "8 seconds",
-    "reference": "Modules/Settings/NotificationsTab.qml:27",
+    "reference": "Modules/Settings/NotificationsTab.qml:46",
     "comment": ""
   },
   {
@@ -302,7 +296,7 @@
   {
     "term": "90°",
     "context": "90°",
-    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1785, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1806",
+    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1789, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1810",
     "comment": ""
   },
   {
@@ -320,7 +314,7 @@
   {
     "term": "API",
     "context": "API",
-    "reference": "Modules/Settings/AboutTab.qml:666",
+    "reference": "Modules/Settings/AboutTab.qml:675",
     "comment": ""
   },
   {
@@ -332,7 +326,7 @@
   {
     "term": "About",
     "context": "About",
-    "reference": "Modals/Settings/SettingsSidebar.qml:304, Modules/Settings/AboutTab.qml:567",
+    "reference": "Modals/Settings/SettingsSidebar.qml:304, Modules/Settings/AboutTab.qml:576",
     "comment": ""
   },
   {
@@ -380,7 +374,7 @@
   {
     "term": "Action",
     "context": "Action",
-    "reference": "Widgets/KeybindItem.qml:941, Widgets/KeybindItem.qml:1136, Modules/Settings/NotificationsTab.qml:441",
+    "reference": "Widgets/KeybindItem.qml:941, Widgets/KeybindItem.qml:1136, Modules/Settings/NotificationsTab.qml:566",
     "comment": ""
   },
   {
@@ -392,7 +386,7 @@
   {
     "term": "Activate",
     "context": "Activate",
-    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:388",
+    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:403",
     "comment": ""
   },
   {
@@ -494,13 +488,13 @@
   {
     "term": "Add a border around the dock",
     "context": "Add a border around the dock",
-    "reference": "Modules/Settings/DockTab.qml:578",
+    "reference": "Modules/Settings/DockTab.qml:581",
     "comment": ""
   },
   {
     "term": "Add a custom prefix to all application launches. This can be used for things like 'uwsm-app', 'systemd-run', or other command wrappers.",
     "context": "Add a custom prefix to all application launches. This can be used for things like 'uwsm-app', 'systemd-run', or other command wrappers.",
-    "reference": "Modules/Settings/LauncherTab.qml:314",
+    "reference": "Modules/Settings/LauncherTab.qml:316",
     "comment": ""
   },
   {
@@ -512,7 +506,7 @@
   {
     "term": "Adjust the number of columns in grid view mode.",
     "context": "Adjust the number of columns in grid view mode.",
-    "reference": "Modules/Settings/LauncherTab.qml:347",
+    "reference": "Modules/Settings/LauncherTab.qml:349",
     "comment": ""
   },
   {
@@ -536,7 +530,7 @@
   {
     "term": "All",
     "context": "notification history filter",
-    "reference": "Services/AppSearchService.qml:684, Services/AppSearchService.qml:699, dms-plugins/DankStickerSearch/DankStickerSearch.qml:101, Modals/DankLauncherV2/LauncherContent.qml:307, Modules/Settings/WidgetsTabSection.qml:1768, Modules/Settings/WidgetsTabSection.qml:1822, Modules/Settings/KeybindsTab.qml:386, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:94, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:97, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:109, Modules/Notifications/Center/HistoryNotificationList.qml:87",
+    "reference": "Modals/ProcessListModal.qml:377, Services/AppSearchService.qml:684, Services/AppSearchService.qml:699, dms-plugins/DankStickerSearch/DankStickerSearch.qml:101, Modals/DankLauncherV2/LauncherContent.qml:307, Modules/ProcessList/ProcessListPopout.qml:155, Modules/Settings/WidgetsTabSection.qml:1768, Modules/Settings/WidgetsTabSection.qml:1822, Modules/Settings/KeybindsTab.qml:386, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:94, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:97, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:109, Modules/Notifications/Center/HistoryNotificationList.qml:87",
     "comment": ""
   },
   {
@@ -650,7 +644,7 @@
   {
     "term": "Animation Speed",
     "context": "Animation Speed",
-    "reference": "Modules/Settings/TypographyMotionTab.qml:197",
+    "reference": "Modules/Settings/TypographyMotionTab.qml:197, Modules/Settings/NotificationsTab.qml:304",
     "comment": ""
   },
   {
@@ -668,7 +662,7 @@
   {
     "term": "App Customizations",
     "context": "App Customizations",
-    "reference": "Modules/Settings/LauncherTab.qml:947",
+    "reference": "Modules/Settings/LauncherTab.qml:958",
     "comment": ""
   },
   {
@@ -692,7 +686,7 @@
   {
     "term": "App Names",
     "context": "lock screen notification mode option | notification rule match field option",
-    "reference": "Modules/Settings/LockScreenTab.qml:92, Modules/Settings/NotificationsTab.qml:63, Modules/Settings/NotificationsTab.qml:493",
+    "reference": "Modules/Settings/LockScreenTab.qml:92, Modules/Settings/NotificationsTab.qml:82, Modules/Settings/NotificationsTab.qml:709",
     "comment": ""
   },
   {
@@ -704,7 +698,7 @@
   {
     "term": "Appearance",
     "context": "launcher appearance settings",
-    "reference": "Modules/Settings/LauncherTab.qml:359",
+    "reference": "Modules/Settings/LauncherTab.qml:361",
     "comment": ""
   },
   {
@@ -716,7 +710,7 @@
   {
     "term": "Applications",
     "context": "Applications",
-    "reference": "Modals/DankLauncherV2/Controller.qml:143, Modules/Settings/ThemeColorsTab.qml:1928, Modules/Dock/DockLauncherButton.qml:25",
+    "reference": "Modals/DankLauncherV2/Controller.qml:144, Modules/Settings/ThemeColorsTab.qml:1928, Modules/Dock/DockLauncherButton.qml:25",
     "comment": ""
   },
   {
@@ -770,13 +764,19 @@
   {
     "term": "Apps are ordered by usage frequency, then last used, then alphabetically.",
     "context": "Apps are ordered by usage frequency, then last used, then alphabetically.",
-    "reference": "Modules/Settings/LauncherTab.qml:1093",
+    "reference": "Modules/Settings/LauncherTab.qml:1104",
     "comment": ""
   },
   {
     "term": "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.",
     "context": "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.",
-    "reference": "Modules/Settings/LauncherTab.qml:970",
+    "reference": "Modules/Settings/LauncherTab.qml:981",
+    "comment": ""
+  },
+  {
+    "term": "Apps with notification popups muted. Unmute or delete to remove.",
+    "context": "Apps with notification popups muted. Unmute or delete to remove.",
+    "reference": "Modules/Settings/NotificationsTab.qml:621",
     "comment": ""
   },
   {
@@ -914,7 +914,7 @@
   {
     "term": "Auto",
     "context": "theme category option",
-    "reference": "Modules/Settings/ThemeColorsTab.qml:284, Modules/Settings/ThemeColorsTab.qml:284, Modules/Settings/NetworkTab.qml:260, Modules/Settings/NetworkTab.qml:881, Modules/Settings/NetworkTab.qml:885, Modules/Settings/NetworkTab.qml:886, Modules/Settings/NetworkTab.qml:889, Modules/Settings/DisplayConfigTab.qml:150, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:351, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:359, Modules/ControlCenter/Details/NetworkDetail.qml:114, Modules/ControlCenter/Details/NetworkDetail.qml:115, Modules/ControlCenter/Details/NetworkDetail.qml:118, Modules/ControlCenter/Details/NetworkDetail.qml:121",
+    "reference": "Modules/Settings/ThemeColorsTab.qml:284, Modules/Settings/ThemeColorsTab.qml:284, Modules/Settings/NetworkTab.qml:260, Modules/Settings/NetworkTab.qml:881, Modules/Settings/NetworkTab.qml:885, Modules/Settings/NetworkTab.qml:886, Modules/Settings/NetworkTab.qml:889, Modules/Settings/DisplayConfigTab.qml:150, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:351, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:359, Modules/ControlCenter/Details/NetworkDetail.qml:117, Modules/ControlCenter/Details/NetworkDetail.qml:118, Modules/ControlCenter/Details/NetworkDetail.qml:121, Modules/ControlCenter/Details/NetworkDetail.qml:124",
     "comment": ""
   },
   {
@@ -950,13 +950,13 @@
   {
     "term": "Auto-close Niri overview when launching apps.",
     "context": "Auto-close Niri overview when launching apps.",
-    "reference": "Modules/Settings/LauncherTab.qml:489",
+    "reference": "Modules/Settings/LauncherTab.qml:500",
     "comment": ""
   },
   {
     "term": "Auto-delete notifications older than this",
     "context": "notification history setting",
-    "reference": "Modules/Settings/NotificationsTab.qml:597",
+    "reference": "Modules/Settings/NotificationsTab.qml:813",
     "comment": ""
   },
   {
@@ -1112,7 +1112,7 @@
   {
     "term": "Backend",
     "context": "Backend",
-    "reference": "Modules/Settings/AboutTab.qml:625, Modules/Settings/NetworkTab.qml:170",
+    "reference": "Modules/Settings/AboutTab.qml:634, Modules/Settings/NetworkTab.qml:170",
     "comment": ""
   },
   {
@@ -1136,19 +1136,19 @@
   {
     "term": "Balance power and performance",
     "context": "power profile description",
-    "reference": "Common/Theme.qml:1206",
+    "reference": "Common/Theme.qml:1258",
     "comment": ""
   },
   {
     "term": "Balanced",
     "context": "power profile option",
-    "reference": "Common/Theme.qml:1193",
+    "reference": "Common/Theme.qml:1245",
     "comment": ""
   },
   {
     "term": "Balanced palette with focused accents (default).",
     "context": "Balanced palette with focused accents (default).",
-    "reference": "Common/Theme.qml:466",
+    "reference": "Common/Theme.qml:468",
     "comment": ""
   },
   {
@@ -1161,6 +1161,12 @@
     "term": "Bar Transparency",
     "context": "Bar Transparency",
     "reference": "Modules/Settings/DankBarTab.qml:1416",
+    "comment": ""
+  },
+  {
+    "term": "Base duration for animations (drag to use Custom)",
+    "context": "Base duration for animations (drag to use Custom)",
+    "reference": "Modules/Settings/NotificationsTab.qml:346",
     "comment": ""
   },
   {
@@ -1286,25 +1292,25 @@
   {
     "term": "Body",
     "context": "notification rule match field option",
-    "reference": "Modules/Settings/NotificationsTab.qml:75",
+    "reference": "Modules/Settings/NotificationsTab.qml:94",
     "comment": ""
   },
   {
     "term": "Border",
     "context": "launcher border option",
-    "reference": "Modules/Settings/DockTab.qml:571, Modules/Settings/DockTab.qml:577, Modules/Settings/LauncherTab.qml:421, Modules/Settings/DankBarTab.qml:1234",
+    "reference": "Modules/Settings/DockTab.qml:574, Modules/Settings/DockTab.qml:580, Modules/Settings/LauncherTab.qml:432, Modules/Settings/DankBarTab.qml:1234",
     "comment": ""
   },
   {
     "term": "Border Color",
     "context": "Border Color",
-    "reference": "Modules/Settings/DockTab.qml:584, Modules/Settings/WorkspacesTab.qml:358",
+    "reference": "Modules/Settings/DockTab.qml:587, Modules/Settings/WorkspacesTab.qml:358",
     "comment": ""
   },
   {
     "term": "Border Opacity",
     "context": "Border Opacity",
-    "reference": "Modules/Settings/DockTab.qml:621",
+    "reference": "Modules/Settings/DockTab.qml:624",
     "comment": ""
   },
   {
@@ -1316,7 +1322,7 @@
   {
     "term": "Border Thickness",
     "context": "Border Thickness",
-    "reference": "Modules/Settings/DockTab.qml:632",
+    "reference": "Modules/Settings/DockTab.qml:635",
     "comment": ""
   },
   {
@@ -1334,19 +1340,19 @@
   {
     "term": "Bottom Center",
     "context": "screen position option",
-    "reference": "Modules/Settings/OSDTab.qml:45, Modules/Settings/OSDTab.qml:51, Modules/Settings/OSDTab.qml:54, Modules/Settings/OSDTab.qml:66",
+    "reference": "Modules/Settings/OSDTab.qml:45, Modules/Settings/OSDTab.qml:51, Modules/Settings/OSDTab.qml:54, Modules/Settings/OSDTab.qml:66, Modules/Settings/NotificationsTab.qml:224, Modules/Settings/NotificationsTab.qml:229, Modules/Settings/NotificationsTab.qml:241",
     "comment": ""
   },
   {
     "term": "Bottom Left",
     "context": "screen position option",
-    "reference": "Modules/Settings/OSDTab.qml:43, Modules/Settings/OSDTab.qml:54, Modules/Settings/OSDTab.qml:64, Modules/Settings/NotificationsTab.qml:199, Modules/Settings/NotificationsTab.qml:208, Modules/Settings/NotificationsTab.qml:218, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:144",
+    "reference": "Modules/Settings/OSDTab.qml:43, Modules/Settings/OSDTab.qml:54, Modules/Settings/OSDTab.qml:64, Modules/Settings/NotificationsTab.qml:218, Modules/Settings/NotificationsTab.qml:229, Modules/Settings/NotificationsTab.qml:247, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:144",
     "comment": ""
   },
   {
     "term": "Bottom Right",
     "context": "screen position option",
-    "reference": "Modules/Settings/OSDTab.qml:41, Modules/Settings/OSDTab.qml:54, Modules/Settings/OSDTab.qml:62, Modules/Settings/NotificationsTab.qml:203, Modules/Settings/NotificationsTab.qml:208, Modules/Settings/NotificationsTab.qml:216, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:144",
+    "reference": "Modules/Settings/OSDTab.qml:41, Modules/Settings/OSDTab.qml:54, Modules/Settings/OSDTab.qml:62, Modules/Settings/NotificationsTab.qml:222, Modules/Settings/NotificationsTab.qml:229, Modules/Settings/NotificationsTab.qml:244, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:144",
     "comment": ""
   },
   {
@@ -1364,7 +1370,7 @@
   {
     "term": "Brightness",
     "context": "Brightness",
-    "reference": "Modules/Settings/WidgetsTabSection.qml:869, Modules/Settings/DockTab.qml:472, Modules/Settings/LauncherTab.qml:274, Modules/Settings/OSDTab.qml:117",
+    "reference": "Modules/Settings/WidgetsTabSection.qml:869, Modules/Settings/DockTab.qml:474, Modules/Settings/LauncherTab.qml:276, Modules/Settings/OSDTab.qml:117",
     "comment": ""
   },
   {
@@ -1388,7 +1394,7 @@
   {
     "term": "Browse",
     "context": "theme category option",
-    "reference": "Modals/DankLauncherV2/Controller.qml:150, Modals/DankLauncherV2/Controller.qml:1058, Modules/Settings/ThemeColorsTab.qml:284, Modules/Settings/PluginsTab.qml:209",
+    "reference": "Modals/DankLauncherV2/Controller.qml:151, Modals/DankLauncherV2/Controller.qml:1059, Modules/Settings/ThemeColorsTab.qml:284, Modules/Settings/PluginsTab.qml:209",
     "comment": ""
   },
   {
@@ -1496,7 +1502,7 @@
   {
     "term": "Calculator",
     "context": "Calculator",
-    "reference": "Modals/DankLauncherV2/Controller.qml:129",
+    "reference": "Modals/DankLauncherV2/Controller.qml:130",
     "comment": ""
   },
   {
@@ -1508,7 +1514,7 @@
   {
     "term": "Cancel",
     "context": "Cancel",
-    "reference": "Modals/WindowRuleModal.qml:1130, Modals/WorkspaceRenameModal.qml:161, Modals/BluetoothPairingModal.qml:272, Modals/PolkitAuthModal.qml:270, Modals/WifiPasswordModal.qml:691, Widgets/KeybindItem.qml:1814, Modals/DankLauncherV2/LauncherContent.qml:839, Modals/FileBrowser/FileBrowserOverwriteDialog.qml:83, Modules/Settings/PluginBrowser.qml:122, Modules/Settings/PluginBrowser.qml:830, Modules/Settings/ThemeBrowser.qml:121, Modules/Settings/DisplayConfigTab.qml:256, Modules/Settings/DisplayConfigTab.qml:301, Modules/Settings/AudioTab.qml:540",
+    "reference": "Modals/WindowRuleModal.qml:1130, Modals/WorkspaceRenameModal.qml:161, Modals/BluetoothPairingModal.qml:272, Modals/PolkitAuthModal.qml:270, Modals/WifiPasswordModal.qml:691, Widgets/KeybindItem.qml:1814, Modals/DankLauncherV2/LauncherContent.qml:839, Modals/FileBrowser/FileBrowserOverwriteDialog.qml:83, Modules/Settings/PluginBrowser.qml:122, Modules/Settings/PluginBrowser.qml:830, Modules/Settings/ThemeBrowser.qml:121, Modules/Settings/DisplayConfigTab.qml:256, Modules/Settings/DisplayConfigTab.qml:301, Modules/Settings/AudioTab.qml:726",
     "comment": ""
   },
   {
@@ -1532,7 +1538,7 @@
   {
     "term": "Capabilities",
     "context": "Capabilities",
-    "reference": "Modules/Settings/AboutTab.qml:725",
+    "reference": "Modules/Settings/AboutTab.qml:734",
     "comment": ""
   },
   {
@@ -1622,13 +1628,13 @@
   {
     "term": "Choose Dock Launcher Logo Color",
     "context": "Choose Dock Launcher Logo Color",
-    "reference": "Modules/Settings/DockTab.qml:438",
+    "reference": "Modules/Settings/DockTab.qml:440",
     "comment": ""
   },
   {
     "term": "Choose Launcher Logo Color",
     "context": "Choose Launcher Logo Color",
-    "reference": "Modules/Settings/LauncherTab.qml:240",
+    "reference": "Modules/Settings/LauncherTab.qml:242",
     "comment": ""
   },
   {
@@ -1664,7 +1670,7 @@
   {
     "term": "Choose the border accent color",
     "context": "Choose the border accent color",
-    "reference": "Modules/Settings/DockTab.qml:585",
+    "reference": "Modules/Settings/DockTab.qml:588",
     "comment": ""
   },
   {
@@ -1676,7 +1682,7 @@
   {
     "term": "Choose where notification popups appear on screen",
     "context": "Choose where notification popups appear on screen",
-    "reference": "Modules/Settings/NotificationsTab.qml:191",
+    "reference": "Modules/Settings/NotificationsTab.qml:210",
     "comment": ""
   },
   {
@@ -1886,7 +1892,7 @@
   {
     "term": "Close Overview on Launch",
     "context": "Close Overview on Launch",
-    "reference": "Modules/Settings/LauncherTab.qml:488",
+    "reference": "Modules/Settings/LauncherTab.qml:499",
     "comment": ""
   },
   {
@@ -1898,7 +1904,7 @@
   {
     "term": "Color",
     "context": "border color",
-    "reference": "Modules/Settings/LauncherTab.qml:448, Modules/Settings/DankBarTab.qml:1145, Modules/Settings/DankBarTab.qml:1219, Modules/Settings/DankBarTab.qml:1242, Modules/Settings/DankBarTab.qml:1330, Modules/Settings/Widgets/SettingsColorPicker.qml:29",
+    "reference": "Modules/Settings/LauncherTab.qml:459, Modules/Settings/DankBarTab.qml:1145, Modules/Settings/DankBarTab.qml:1219, Modules/Settings/DankBarTab.qml:1242, Modules/Settings/DankBarTab.qml:1330, Modules/Settings/Widgets/SettingsColorPicker.qml:29",
     "comment": ""
   },
   {
@@ -1922,7 +1928,7 @@
   {
     "term": "Color Override",
     "context": "Color Override",
-    "reference": "Modules/Settings/DockTab.qml:355, Modules/Settings/LauncherTab.qml:157",
+    "reference": "Modules/Settings/DockTab.qml:357, Modules/Settings/LauncherTab.qml:159",
     "comment": ""
   },
   {
@@ -1988,7 +1994,7 @@
   {
     "term": "Colorful mix of bright contrasting accents.",
     "context": "Colorful mix of bright contrasting accents.",
-    "reference": "Common/Theme.qml:486",
+    "reference": "Common/Theme.qml:488",
     "comment": ""
   },
   {
@@ -2030,7 +2036,7 @@
   {
     "term": "Commands",
     "context": "Commands",
-    "reference": "Modals/DankLauncherV2/Controller.qml:164",
+    "reference": "Modals/DankLauncherV2/Controller.qml:165",
     "comment": ""
   },
   {
@@ -2048,7 +2054,7 @@
   {
     "term": "Compact",
     "context": "Compact",
-    "reference": "dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:15, Modules/Settings/NotificationsTab.qml:237",
+    "reference": "dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:15, Modules/Settings/NotificationsTab.qml:267",
     "comment": ""
   },
   {
@@ -2066,7 +2072,7 @@
   {
     "term": "Compositor",
     "context": "Compositor",
-    "reference": "Modules/Settings/DockTab.qml:268, Modules/Settings/LauncherTab.qml:71",
+    "reference": "Modules/Settings/DockTab.qml:270, Modules/Settings/LauncherTab.qml:73",
     "comment": ""
   },
   {
@@ -2192,7 +2198,7 @@
   {
     "term": "Connect",
     "context": "Connect",
-    "reference": "Modals/WifiPasswordModal.qml:733, Modules/ControlCenter/Details/BluetoothDetail.qml:616, Modules/ControlCenter/Details/NetworkDetail.qml:774",
+    "reference": "Modals/WifiPasswordModal.qml:733, Modules/ControlCenter/Details/BluetoothDetail.qml:616, Modules/ControlCenter/Details/NetworkDetail.qml:768",
     "comment": ""
   },
   {
@@ -2216,7 +2222,7 @@
   {
     "term": "Connected",
     "context": "network status",
-    "reference": "Modules/Settings/AboutTab.qml:709, Modules/Settings/NetworkTab.qml:446, Modules/Settings/NetworkTab.qml:1199, Modules/Settings/NetworkTab.qml:1547, Modules/ControlCenter/Details/BluetoothDetail.qml:301, Modules/ControlCenter/Details/BluetoothDetail.qml:302, Modules/ControlCenter/Details/NetworkDetail.qml:601, Modules/ControlCenter/BuiltinPlugins/VpnWidget.qml:21, Modules/ControlCenter/Components/DragDropGrid.qml:321, Modules/ControlCenter/Components/DragDropGrid.qml:324, Modules/ControlCenter/Components/DragDropGrid.qml:326, Modules/ControlCenter/Components/DragDropGrid.qml:329",
+    "reference": "Modules/Settings/AboutTab.qml:718, Modules/Settings/NetworkTab.qml:446, Modules/Settings/NetworkTab.qml:1199, Modules/Settings/NetworkTab.qml:1547, Modules/ControlCenter/Details/BluetoothDetail.qml:301, Modules/ControlCenter/Details/BluetoothDetail.qml:302, Modules/ControlCenter/Details/NetworkDetail.qml:609, Modules/ControlCenter/BuiltinPlugins/VpnWidget.qml:21, Modules/ControlCenter/Components/DragDropGrid.qml:321, Modules/ControlCenter/Components/DragDropGrid.qml:324, Modules/ControlCenter/Components/DragDropGrid.qml:326, Modules/ControlCenter/Components/DragDropGrid.qml:329",
     "comment": ""
   },
   {
@@ -2246,13 +2252,13 @@
   {
     "term": "Contains",
     "context": "notification rule match type option",
-    "reference": "Modules/Settings/NotificationsTab.qml:82",
+    "reference": "Modules/Settings/NotificationsTab.qml:101",
     "comment": ""
   },
   {
     "term": "Content",
     "context": "matugen color scheme option",
-    "reference": "Common/Theme.qml:473",
+    "reference": "Common/Theme.qml:475",
     "comment": ""
   },
   {
@@ -2264,7 +2270,7 @@
   {
     "term": "Contrast",
     "context": "Contrast",
-    "reference": "Modules/Settings/DockTab.qml:484, Modules/Settings/LauncherTab.qml:286",
+    "reference": "Modules/Settings/DockTab.qml:486, Modules/Settings/LauncherTab.qml:288",
     "comment": ""
   },
   {
@@ -2280,6 +2286,12 @@
     "comment": ""
   },
   {
+    "term": "Control animation duration for notification popups and history",
+    "context": "Control animation duration for notification popups and history",
+    "reference": "Modules/Settings/NotificationsTab.qml:312",
+    "comment": ""
+  },
+  {
     "term": "Control currently playing media",
     "context": "Control currently playing media",
     "reference": "Modules/Settings/WidgetsTab.qml:95",
@@ -2288,13 +2300,13 @@
   {
     "term": "Control what notification information is shown on the lock screen",
     "context": "lock screen notification privacy setting",
-    "reference": "Modules/Settings/LockScreenTab.qml:91, Modules/Settings/NotificationsTab.qml:492",
+    "reference": "Modules/Settings/LockScreenTab.qml:91, Modules/Settings/NotificationsTab.qml:708",
     "comment": ""
   },
   {
     "term": "Control which plugins appear in 'All' mode without requiring a trigger prefix. Drag to reorder.",
     "context": "Control which plugins appear in 'All' mode without requiring a trigger prefix. Drag to reorder.",
-    "reference": "Modules/Settings/LauncherTab.qml:638",
+    "reference": "Modules/Settings/LauncherTab.qml:649",
     "comment": ""
   },
   {
@@ -2348,7 +2360,7 @@
   {
     "term": "Copy",
     "context": "Copy",
-    "reference": "dms-plugins/DankLauncherKeys/DankLauncherKeys.qml:170, Modals/DankLauncherV2/Controller.qml:937",
+    "reference": "dms-plugins/DankLauncherKeys/DankLauncherKeys.qml:170, Modals/DankLauncherV2/Controller.qml:938",
     "comment": ""
   },
   {
@@ -2390,7 +2402,7 @@
   {
     "term": "Copy path",
     "context": "Copy path",
-    "reference": "Modals/DankLauncherV2/Controller.qml:930",
+    "reference": "Modals/DankLauncherV2/Controller.qml:931",
     "comment": ""
   },
   {
@@ -2414,7 +2426,7 @@
   {
     "term": "Count Only",
     "context": "lock screen notification mode option",
-    "reference": "Modules/Settings/LockScreenTab.qml:92, Modules/Settings/NotificationsTab.qml:493",
+    "reference": "Modules/Settings/LockScreenTab.qml:92, Modules/Settings/NotificationsTab.qml:709",
     "comment": ""
   },
   {
@@ -2454,9 +2466,9 @@
     "comment": ""
   },
   {
-    "term": "Create rules to mute, ignore, hide from history, or override notification priority.",
-    "context": "Create rules to mute, ignore, hide from history, or override notification priority.",
-    "reference": "Modules/Settings/NotificationsTab.qml:294",
+    "term": "Create rules to mute, ignore, hide from history, or override notification priority. Default only overrides priority; notifications still show normally.",
+    "context": "Create rules to mute, ignore, hide from history, or override notification priority. Default only overrides priority; notifications still show normally.",
+    "reference": "Modules/Settings/NotificationsTab.qml:418",
     "comment": ""
   },
   {
@@ -2468,7 +2480,7 @@
   {
     "term": "Critical Priority",
     "context": "notification rule urgency option",
-    "reference": "Modules/Settings/NotificationsTab.qml:132, Modules/Settings/NotificationsTab.qml:549, Modules/Settings/NotificationsTab.qml:656, Modules/Notifications/Center/NotificationSettings.qml:201, Modules/Notifications/Center/NotificationSettings.qml:364",
+    "reference": "Modules/Settings/NotificationsTab.qml:151, Modules/Settings/NotificationsTab.qml:765, Modules/Settings/NotificationsTab.qml:872, Modules/Notifications/Center/NotificationSettings.qml:201, Modules/Notifications/Center/NotificationSettings.qml:408",
     "comment": ""
   },
   {
@@ -2570,7 +2582,7 @@
   {
     "term": "Custom",
     "context": "theme category option",
-    "reference": "Widgets/KeybindItem.qml:1403, dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:47, Modules/Settings/ThemeColorsTab.qml:284, Modules/Settings/ThemeColorsTab.qml:284, Modules/Settings/TypographyMotionTab.qml:212, Modules/Settings/TypographyMotionTab.qml:315, Modules/Settings/TypographyMotionTab.qml:399, Modules/Settings/DockTab.qml:270, Modules/Settings/DockTab.qml:377, Modules/Settings/LauncherTab.qml:73, Modules/Settings/LauncherTab.qml:179, Modules/Settings/DankBarTab.qml:1163, Modules/Settings/Widgets/SettingsColorPicker.qml:52, Modules/Settings/Widgets/DeviceAliasRow.qml:88",
+    "reference": "Widgets/KeybindItem.qml:1403, dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:47, Modules/Settings/ThemeColorsTab.qml:284, Modules/Settings/ThemeColorsTab.qml:284, Modules/Settings/TypographyMotionTab.qml:212, Modules/Settings/TypographyMotionTab.qml:315, Modules/Settings/TypographyMotionTab.qml:399, Modules/Settings/DockTab.qml:272, Modules/Settings/DockTab.qml:379, Modules/Settings/LauncherTab.qml:75, Modules/Settings/LauncherTab.qml:181, Modules/Settings/DankBarTab.qml:1163, Modules/Settings/NotificationsTab.qml:325, Modules/Settings/Widgets/SettingsColorPicker.qml:52, Modules/Settings/Widgets/DeviceAliasRow.qml:92",
     "comment": ""
   },
   {
@@ -2612,7 +2624,7 @@
   {
     "term": "Custom Name",
     "context": "Audio device rename dialog field label",
-    "reference": "Modules/Settings/AudioTab.qml:430",
+    "reference": "Modules/Settings/AudioTab.qml:616",
     "comment": ""
   },
   {
@@ -2648,7 +2660,7 @@
   {
     "term": "Custom power profile",
     "context": "power profile description",
-    "reference": "Common/Theme.qml:1210",
+    "reference": "Common/Theme.qml:1262",
     "comment": ""
   },
   {
@@ -2738,7 +2750,7 @@
   {
     "term": "Daily",
     "context": "Daily",
-    "reference": "Modules/DankDash/WeatherTab.qml:858",
+    "reference": "Modules/DankDash/WeatherTab.qml:859",
     "comment": ""
   },
   {
@@ -2846,7 +2858,7 @@
   {
     "term": "Default",
     "context": "notification rule action option | notification rule urgency option | widget style option",
-    "reference": "Modules/Settings/ThemeColorsTab.qml:1462, Modules/Settings/DockTab.qml:377, Modules/Settings/LauncherTab.qml:179, Modules/Settings/NotificationsTab.qml:97, Modules/Settings/NotificationsTab.qml:120",
+    "reference": "Modules/Settings/ThemeColorsTab.qml:1462, Modules/Settings/DockTab.qml:379, Modules/Settings/LauncherTab.qml:181, Modules/Settings/NotificationsTab.qml:116, Modules/Settings/NotificationsTab.qml:139",
     "comment": ""
   },
   {
@@ -2930,7 +2942,7 @@
   {
     "term": "Derives colors that closely match the underlying image.",
     "context": "Derives colors that closely match the underlying image.",
-    "reference": "Common/Theme.qml:474",
+    "reference": "Common/Theme.qml:476",
     "comment": ""
   },
   {
@@ -2948,7 +2960,7 @@
   {
     "term": "Desktop Entry",
     "context": "notification rule match field option",
-    "reference": "Modules/Settings/NotificationsTab.qml:67",
+    "reference": "Modules/Settings/NotificationsTab.qml:86",
     "comment": ""
   },
   {
@@ -3020,7 +3032,7 @@
   {
     "term": "Disable Autoconnect",
     "context": "Disable Autoconnect",
-    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:831",
+    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:822",
     "comment": ""
   },
   {
@@ -3044,13 +3056,13 @@
   {
     "term": "Disabled",
     "context": "bluetooth status | lock screen notification mode option",
-    "reference": "Modules/Settings/ThemeColorsTab.qml:1343, Modules/Settings/LockScreenTab.qml:92, Modules/Settings/NetworkTab.qml:821, Modules/Settings/DankBarTab.qml:457, Modules/Settings/NotificationsTab.qml:493, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1220, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1226, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1228, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1240, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1254, Modules/ControlCenter/Components/DragDropGrid.qml:301",
+    "reference": "Modules/Settings/ThemeColorsTab.qml:1343, Modules/Settings/LockScreenTab.qml:92, Modules/Settings/NetworkTab.qml:821, Modules/Settings/DankBarTab.qml:457, Modules/Settings/NotificationsTab.qml:709, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1220, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1226, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1228, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1240, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1254, Modules/ControlCenter/Components/DragDropGrid.qml:301",
     "comment": ""
   },
   {
     "term": "Disabling WiFi...",
     "context": "network status",
-    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:188, Modules/ControlCenter/Components/DragDropGrid.qml:277",
+    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:192, Modules/ControlCenter/Components/DragDropGrid.qml:277",
     "comment": ""
   },
   {
@@ -3074,7 +3086,7 @@
   {
     "term": "Disconnect",
     "context": "Disconnect",
-    "reference": "Widgets/VpnDetailContent.qml:124, Modules/Settings/NetworkTab.qml:1618, Modules/ControlCenter/Details/BluetoothDetail.qml:616, Modules/ControlCenter/Details/NetworkDetail.qml:413, Modules/ControlCenter/Details/NetworkDetail.qml:774",
+    "reference": "Widgets/VpnDetailContent.qml:124, Modules/Settings/NetworkTab.qml:1618, Modules/ControlCenter/Details/BluetoothDetail.qml:616, Modules/ControlCenter/Details/NetworkDetail.qml:427, Modules/ControlCenter/Details/NetworkDetail.qml:768",
     "comment": ""
   },
   {
@@ -3110,13 +3122,13 @@
   {
     "term": "Disks",
     "context": "Disks",
-    "reference": "Modals/ProcessListModal.qml:312",
+    "reference": "Modals/ProcessListModal.qml:315",
     "comment": ""
   },
   {
     "term": "Dismiss",
     "context": "Dismiss",
-    "reference": "Modules/Notifications/Popup/NotificationPopup.qml:23, Modules/Notifications/Center/NotificationCard.qml:580, Modules/Notifications/Center/NotificationCard.qml:674",
+    "reference": "Modules/Notifications/Popup/NotificationPopup.qml:25, Modules/Notifications/Popup/NotificationPopup.qml:1058, Modules/Notifications/Center/NotificationCard.qml:708, Modules/Notifications/Center/NotificationCard.qml:845, Modules/Notifications/Center/NotificationCard.qml:990",
     "comment": ""
   },
   {
@@ -3164,7 +3176,7 @@
   {
     "term": "Display all priorities over fullscreen apps",
     "context": "Display all priorities over fullscreen apps",
-    "reference": "Modules/Settings/NotificationsTab.qml:229, Modules/Notifications/Center/NotificationSettings.qml:249",
+    "reference": "Modules/Settings/NotificationsTab.qml:259, Modules/Notifications/Center/NotificationSettings.qml:249",
     "comment": ""
   },
   {
@@ -3260,13 +3272,13 @@
   {
     "term": "Diverse palette spanning the full spectrum.",
     "context": "Diverse palette spanning the full spectrum.",
-    "reference": "Common/Theme.qml:498",
+    "reference": "Common/Theme.qml:500",
     "comment": ""
   },
   {
     "term": "Do Not Disturb",
     "context": "Do Not Disturb",
-    "reference": "Modules/Settings/NotificationsTab.qml:247, Modules/ControlCenter/Models/WidgetModel.qml:85, Modules/ControlCenter/Components/DragDropGrid.qml:606, Modules/Notifications/Center/NotificationHeader.qml:63, Modules/Notifications/Center/NotificationSettings.qml:141",
+    "reference": "Modules/Settings/NotificationsTab.qml:366, Modules/ControlCenter/Models/WidgetModel.qml:85, Modules/ControlCenter/Components/DragDropGrid.qml:606, Modules/Notifications/Center/NotificationHeader.qml:63, Modules/Notifications/Center/NotificationSettings.qml:141",
     "comment": ""
   },
   {
@@ -3284,7 +3296,7 @@
   {
     "term": "Dock Transparency",
     "context": "Dock Transparency",
-    "reference": "Modules/Settings/DockTab.qml:558",
+    "reference": "Modules/Settings/DockTab.qml:561",
     "comment": ""
   },
   {
@@ -3296,7 +3308,7 @@
   {
     "term": "Docs",
     "context": "greeter documentation link",
-    "reference": "Modals/Greeter/GreeterCompletePage.qml:468, Modules/Settings/AboutTab.qml:265, Modules/Settings/AboutTab.qml:273",
+    "reference": "Modals/Greeter/GreeterCompletePage.qml:468, Modules/Settings/AboutTab.qml:274, Modules/Settings/AboutTab.qml:282",
     "comment": ""
   },
   {
@@ -3357,6 +3369,12 @@
     "term": "Duplicate Wallpaper with Blur",
     "context": "Duplicate Wallpaper with Blur",
     "reference": "Modules/Settings/WallpaperTab.qml:1268",
+    "comment": ""
+  },
+  {
+    "term": "Duration",
+    "context": "Duration",
+    "reference": "Modules/Settings/NotificationsTab.qml:345",
     "comment": ""
   },
   {
@@ -3446,7 +3464,7 @@
   {
     "term": "Enable Autoconnect",
     "context": "Enable Autoconnect",
-    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:831",
+    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:822",
     "comment": ""
   },
   {
@@ -3458,19 +3476,19 @@
   {
     "term": "Enable Do Not Disturb",
     "context": "Enable Do Not Disturb",
-    "reference": "Modules/Settings/NotificationsTab.qml:253",
+    "reference": "Modules/Settings/NotificationsTab.qml:372",
     "comment": ""
   },
   {
     "term": "Enable History",
     "context": "notification history toggle label",
-    "reference": "Modules/Settings/NotificationsTab.qml:573",
+    "reference": "Modules/Settings/NotificationsTab.qml:789",
     "comment": ""
   },
   {
     "term": "Enable Overview Overlay",
     "context": "Enable Overview Overlay",
-    "reference": "Modules/Settings/LauncherTab.qml:497",
+    "reference": "Modules/Settings/LauncherTab.qml:508",
     "comment": ""
   },
   {
@@ -3494,7 +3512,7 @@
   {
     "term": "Enable WiFi",
     "context": "Enable WiFi",
-    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:238",
+    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:244",
     "comment": ""
   },
   {
@@ -3524,7 +3542,7 @@
   {
     "term": "Enabling WiFi...",
     "context": "network status",
-    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:188, Modules/ControlCenter/Components/DragDropGrid.qml:277",
+    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:192, Modules/ControlCenter/Components/DragDropGrid.qml:277",
     "comment": ""
   },
   {
@@ -3596,7 +3614,7 @@
   {
     "term": "Enter device name...",
     "context": "Audio device rename dialog placeholder",
-    "reference": "Modules/Settings/AudioTab.qml:441",
+    "reference": "Modules/Settings/AudioTab.qml:627",
     "comment": ""
   },
   {
@@ -3608,7 +3626,7 @@
   {
     "term": "Enter launch prefix (e.g., 'uwsm-app')",
     "context": "Enter launch prefix (e.g., 'uwsm-app')",
-    "reference": "Modules/Settings/LauncherTab.qml:323",
+    "reference": "Modules/Settings/LauncherTab.qml:325",
     "comment": ""
   },
   {
@@ -3680,19 +3698,19 @@
   {
     "term": "Ethernet",
     "context": "network status",
-    "reference": "Modules/Settings/NetworkTab.qml:211, Modules/Settings/NetworkTab.qml:260, Modules/Settings/NetworkTab.qml:328, Modules/ControlCenter/Details/NetworkDetail.qml:133, Modules/ControlCenter/Components/DragDropGrid.qml:281, Modules/ControlCenter/Components/DragDropGrid.qml:284",
+    "reference": "Modules/Settings/NetworkTab.qml:211, Modules/Settings/NetworkTab.qml:260, Modules/Settings/NetworkTab.qml:328, Modules/ControlCenter/Details/NetworkDetail.qml:136, Modules/ControlCenter/Components/DragDropGrid.qml:281, Modules/ControlCenter/Components/DragDropGrid.qml:284",
     "comment": ""
   },
   {
     "term": "Exact",
     "context": "notification rule match type option",
-    "reference": "Modules/Settings/NotificationsTab.qml:86",
+    "reference": "Modules/Settings/NotificationsTab.qml:105",
     "comment": ""
   },
   {
     "term": "Exclusive Zone Offset",
     "context": "Exclusive Zone Offset",
-    "reference": "Modules/Settings/DockTab.qml:533, Modules/Settings/DankBarTab.qml:935",
+    "reference": "Modules/Settings/DockTab.qml:536, Modules/Settings/DankBarTab.qml:935",
     "comment": ""
   },
   {
@@ -3716,13 +3734,13 @@
   {
     "term": "Expressive",
     "context": "matugen color scheme option",
-    "reference": "Common/Theme.qml:477",
+    "reference": "Common/Theme.qml:479",
     "comment": ""
   },
   {
     "term": "Extend battery life",
     "context": "power profile description",
-    "reference": "Common/Theme.qml:1204",
+    "reference": "Common/Theme.qml:1256",
     "comment": ""
   },
   {
@@ -3962,19 +3980,19 @@
   {
     "term": "Failed to parse plugin_settings.json",
     "context": "Failed to parse plugin_settings.json",
-    "reference": "Common/SettingsData.qml:1195",
+    "reference": "Common/SettingsData.qml:1236",
     "comment": ""
   },
   {
     "term": "Failed to parse session.json",
     "context": "Failed to parse session.json",
-    "reference": "Common/SessionData.qml:191, Common/SessionData.qml:270",
+    "reference": "Common/SessionData.qml:193, Common/SessionData.qml:272",
     "comment": ""
   },
   {
     "term": "Failed to parse settings.json",
     "context": "Failed to parse settings.json",
-    "reference": "Common/SettingsData.qml:1133, Common/SettingsData.qml:2489",
+    "reference": "Common/SettingsData.qml:1174, Common/SettingsData.qml:2626",
     "comment": ""
   },
   {
@@ -4202,13 +4220,13 @@
   {
     "term": "Fidelity",
     "context": "matugen color scheme option",
-    "reference": "Common/Theme.qml:481",
+    "reference": "Common/Theme.qml:483",
     "comment": ""
   },
   {
     "term": "Field",
     "context": "Field",
-    "reference": "Modules/Settings/NotificationsTab.qml:401",
+    "reference": "Modules/Settings/NotificationsTab.qml:525",
     "comment": ""
   },
   {
@@ -4244,7 +4262,7 @@
   {
     "term": "Files",
     "context": "Files",
-    "reference": "Modals/DankLauncherV2/Controller.qml:157, Modals/DankLauncherV2/Controller.qml:865, Modals/DankLauncherV2/LauncherContent.qml:317",
+    "reference": "Modals/DankLauncherV2/Controller.qml:158, Modals/DankLauncherV2/Controller.qml:866, Modals/DankLauncherV2/LauncherContent.qml:317",
     "comment": ""
   },
   {
@@ -4310,25 +4328,25 @@
   {
     "term": "Flipped",
     "context": "Flipped",
-    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1791, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1812",
+    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1795, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1816",
     "comment": ""
   },
   {
     "term": "Flipped 180°",
     "context": "Flipped 180°",
-    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1795, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1816",
+    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1799, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1820",
     "comment": ""
   },
   {
     "term": "Flipped 270°",
     "context": "Flipped 270°",
-    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1797, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1818",
+    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1801, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1822",
     "comment": ""
   },
   {
     "term": "Flipped 90°",
     "context": "Flipped 90°",
-    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1793, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1814",
+    "reference": "Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1797, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1818",
     "comment": ""
   },
   {
@@ -4448,7 +4466,7 @@
   {
     "term": "Forever",
     "context": "notification history retention option",
-    "reference": "Modules/Settings/NotificationsTab.qml:601, Modules/Settings/NotificationsTab.qml:616, Modules/Settings/NotificationsTab.qml:619",
+    "reference": "Modules/Settings/NotificationsTab.qml:817, Modules/Settings/NotificationsTab.qml:832, Modules/Settings/NotificationsTab.qml:835",
     "comment": ""
   },
   {
@@ -4472,7 +4490,7 @@
   {
     "term": "Forget Network",
     "context": "Forget Network",
-    "reference": "Modules/Settings/NetworkTab.qml:1300, Modules/ControlCenter/Details/NetworkDetail.qml:854",
+    "reference": "Modules/Settings/NetworkTab.qml:1300, Modules/ControlCenter/Details/NetworkDetail.qml:845",
     "comment": ""
   },
   {
@@ -4488,6 +4506,12 @@
     "comment": ""
   },
   {
+    "term": "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening.",
+    "context": "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening.",
+    "reference": "Modules/Settings/LauncherTab.qml:424",
+    "comment": ""
+  },
+  {
     "term": "Frequency",
     "context": "Frequency",
     "reference": "Modules/Settings/NetworkTab.qml:1412",
@@ -4496,19 +4520,19 @@
   {
     "term": "Fruit Salad",
     "context": "matugen color scheme option",
-    "reference": "Common/Theme.qml:485",
+    "reference": "Common/Theme.qml:487",
     "comment": ""
   },
   {
     "term": "Full Command:",
     "context": "process detail label",
-    "reference": "Modules/ProcessList/ProcessesView.qml:674",
+    "reference": "Modules/ProcessList/ProcessesView.qml:681",
     "comment": ""
   },
   {
     "term": "Full Content",
     "context": "lock screen notification mode option",
-    "reference": "Modules/Settings/LockScreenTab.qml:92, Modules/Settings/NotificationsTab.qml:493",
+    "reference": "Modules/Settings/LockScreenTab.qml:92, Modules/Settings/NotificationsTab.qml:709",
     "comment": ""
   },
   {
@@ -4610,7 +4634,7 @@
   {
     "term": "GitHub",
     "context": "GitHub",
-    "reference": "Modules/Settings/AboutTab.qml:297",
+    "reference": "Modules/Settings/AboutTab.qml:306",
     "comment": ""
   },
   {
@@ -4676,7 +4700,7 @@
   {
     "term": "Grid Columns",
     "context": "Grid Columns",
-    "reference": "Modules/Settings/LauncherTab.qml:346",
+    "reference": "Modules/Settings/LauncherTab.qml:348",
     "comment": ""
   },
   {
@@ -4806,9 +4830,15 @@
     "comment": ""
   },
   {
+    "term": "Hidden (%1)",
+    "context": "count of hidden audio devices",
+    "reference": "Modules/Settings/AudioTab.qml:265, Modules/Settings/AudioTab.qml:409",
+    "comment": ""
+  },
+  {
     "term": "Hidden Apps",
     "context": "Hidden Apps",
-    "reference": "Modules/Settings/LauncherTab.qml:829",
+    "reference": "Modules/Settings/LauncherTab.qml:840",
     "comment": ""
   },
   {
@@ -4820,7 +4850,7 @@
   {
     "term": "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.",
     "context": "Hidden apps won't appear in the launcher. Right-click an app and select 'Hide App' to hide it.",
-    "reference": "Modules/Settings/LauncherTab.qml:859",
+    "reference": "Modules/Settings/LauncherTab.qml:870",
     "comment": ""
   },
   {
@@ -4890,6 +4920,24 @@
     "comment": ""
   },
   {
+    "term": "Hide device",
+    "context": "Hide device",
+    "reference": "Modules/Settings/Widgets/DeviceAliasRow.qml:142",
+    "comment": ""
+  },
+  {
+    "term": "Hide notification content until expanded",
+    "context": "Hide notification content until expanded",
+    "reference": "Modules/Notifications/Center/NotificationSettings.qml:293",
+    "comment": ""
+  },
+  {
+    "term": "Hide notification content until expanded; popups show collapsed by default",
+    "context": "Hide notification content until expanded; popups show collapsed by default",
+    "reference": "Modules/Settings/NotificationsTab.qml:286",
+    "comment": ""
+  },
+  {
     "term": "Hide on Touch",
     "context": "Hide on Touch",
     "reference": "Modules/Settings/ThemeColorsTab.qml:2089",
@@ -4898,7 +4946,7 @@
   {
     "term": "High-fidelity palette that preserves source hues.",
     "context": "High-fidelity palette that preserves source hues.",
-    "reference": "Common/Theme.qml:482",
+    "reference": "Common/Theme.qml:484",
     "comment": ""
   },
   {
@@ -4910,13 +4958,13 @@
   {
     "term": "History Retention",
     "context": "notification history retention settings label",
-    "reference": "Modules/Settings/NotificationsTab.qml:596",
+    "reference": "Modules/Settings/NotificationsTab.qml:812",
     "comment": ""
   },
   {
     "term": "History Settings",
     "context": "History Settings",
-    "reference": "Modules/Settings/NotificationsTab.qml:567, Modules/Settings/ClipboardTab.qml:278, Modules/Notifications/Center/NotificationSettings.qml:272",
+    "reference": "Modules/Settings/NotificationsTab.qml:783, Modules/Settings/ClipboardTab.qml:278, Modules/Notifications/Center/NotificationSettings.qml:316",
     "comment": ""
   },
   {
@@ -4982,7 +5030,7 @@
   {
     "term": "Hourly",
     "context": "Hourly",
-    "reference": "Modules/DankDash/WeatherTab.qml:858",
+    "reference": "Modules/DankDash/WeatherTab.qml:859",
     "comment": ""
   },
   {
@@ -5048,7 +5096,7 @@
   {
     "term": "Icon Size",
     "context": "Icon Size",
-    "reference": "Modules/Settings/DockTab.qml:506, Modules/Settings/WorkspacesTab.qml:109",
+    "reference": "Modules/Settings/DockTab.qml:508, Modules/Settings/WorkspacesTab.qml:109",
     "comment": ""
   },
   {
@@ -5096,7 +5144,7 @@
   {
     "term": "Ignore Completely",
     "context": "notification rule action option",
-    "reference": "Modules/Settings/NotificationsTab.qml:105",
+    "reference": "Modules/Settings/NotificationsTab.qml:124",
     "comment": ""
   },
   {
@@ -5138,7 +5186,7 @@
   {
     "term": "Include desktop actions (shortcuts) in search results.",
     "context": "Include desktop actions (shortcuts) in search results.",
-    "reference": "Modules/Settings/LauncherTab.qml:819",
+    "reference": "Modules/Settings/LauncherTab.qml:830",
     "comment": ""
   },
   {
@@ -5192,7 +5240,7 @@
   {
     "term": "Input Devices",
     "context": "Input Devices",
-    "reference": "Modules/Settings/AudioTab.qml:216, Modules/ControlCenter/Details/AudioInputDetail.qml:37",
+    "reference": "Modules/Settings/AudioTab.qml:319, Modules/ControlCenter/Details/AudioInputDetail.qml:37",
     "comment": ""
   },
   {
@@ -5318,7 +5366,7 @@
   {
     "term": "Invert on mode change",
     "context": "Invert on mode change",
-    "reference": "Modules/Settings/LauncherTab.qml:298",
+    "reference": "Modules/Settings/LauncherTab.qml:300",
     "comment": ""
   },
   {
@@ -5426,7 +5474,7 @@
   {
     "term": "Ko-fi",
     "context": "Ko-fi",
-    "reference": "Modules/Settings/AboutTab.qml:313, Modules/Settings/AboutTab.qml:321",
+    "reference": "Modules/Settings/AboutTab.qml:322, Modules/Settings/AboutTab.qml:330",
     "comment": ""
   },
   {
@@ -5456,31 +5504,31 @@
   {
     "term": "Last launched %1",
     "context": "Last launched %1",
-    "reference": "Modules/Settings/LauncherTab.qml:1186",
+    "reference": "Modules/Settings/LauncherTab.qml:1197",
     "comment": ""
   },
   {
     "term": "Last launched %1 day%2 ago",
     "context": "Last launched %1 day%2 ago",
-    "reference": "Modules/Settings/LauncherTab.qml:1185",
+    "reference": "Modules/Settings/LauncherTab.qml:1196",
     "comment": ""
   },
   {
     "term": "Last launched %1 hour%2 ago",
     "context": "Last launched %1 hour%2 ago",
-    "reference": "Modules/Settings/LauncherTab.qml:1183",
+    "reference": "Modules/Settings/LauncherTab.qml:1194",
     "comment": ""
   },
   {
     "term": "Last launched %1 minute%2 ago",
     "context": "Last launched %1 minute%2 ago",
-    "reference": "Modules/Settings/LauncherTab.qml:1181",
+    "reference": "Modules/Settings/LauncherTab.qml:1192",
     "comment": ""
   },
   {
     "term": "Last launched just now",
     "context": "Last launched just now",
-    "reference": "Modules/Settings/LauncherTab.qml:1179",
+    "reference": "Modules/Settings/LauncherTab.qml:1190",
     "comment": ""
   },
   {
@@ -5492,13 +5540,13 @@
   {
     "term": "Launch",
     "context": "Launch",
-    "reference": "Modals/DankLauncherV2/LauncherContextMenu.qml:154, Modals/DankLauncherV2/Controller.qml:918",
+    "reference": "Modals/DankLauncherV2/LauncherContextMenu.qml:154, Modals/DankLauncherV2/Controller.qml:919",
     "comment": ""
   },
   {
     "term": "Launch Prefix",
     "context": "Launch Prefix",
-    "reference": "Modules/Settings/LauncherTab.qml:309",
+    "reference": "Modules/Settings/LauncherTab.qml:311",
     "comment": ""
   },
   {
@@ -5588,7 +5636,7 @@
   {
     "term": "Lively palette with saturated accents.",
     "context": "Lively palette with saturated accents.",
-    "reference": "Common/Theme.qml:470",
+    "reference": "Common/Theme.qml:472",
     "comment": ""
   },
   {
@@ -5648,7 +5696,7 @@
   {
     "term": "Lock Screen",
     "context": "greeter feature card title | lock screen notifications settings card",
-    "reference": "Modals/Greeter/GreeterWelcomePage.qml:158, Modals/Settings/SettingsSidebar.qml:280, Modules/Settings/NotificationsTab.qml:485",
+    "reference": "Modals/Greeter/GreeterWelcomePage.qml:158, Modals/Settings/SettingsSidebar.qml:280, Modules/Settings/NotificationsTab.qml:701",
     "comment": ""
   },
   {
@@ -5708,7 +5756,7 @@
   {
     "term": "Long",
     "context": "Long",
-    "reference": "Modules/Settings/TypographyMotionTab.qml:212, Modules/Settings/TypographyMotionTab.qml:315, Modules/Settings/TypographyMotionTab.qml:399",
+    "reference": "Modules/Settings/TypographyMotionTab.qml:212, Modules/Settings/TypographyMotionTab.qml:315, Modules/Settings/TypographyMotionTab.qml:399, Modules/Settings/NotificationsTab.qml:325",
     "comment": ""
   },
   {
@@ -5732,7 +5780,7 @@
   {
     "term": "Low Priority",
     "context": "notification rule urgency option",
-    "reference": "Modules/Settings/NotificationsTab.qml:124, Modules/Settings/NotificationsTab.qml:515, Modules/Settings/NotificationsTab.qml:638, Modules/Notifications/Center/NotificationSettings.qml:171, Modules/Notifications/Center/NotificationSettings.qml:296",
+    "reference": "Modules/Settings/NotificationsTab.qml:143, Modules/Settings/NotificationsTab.qml:731, Modules/Settings/NotificationsTab.qml:854, Modules/Notifications/Center/NotificationSettings.qml:171, Modules/Notifications/Center/NotificationSettings.qml:340",
     "comment": ""
   },
   {
@@ -5804,7 +5852,7 @@
   {
     "term": "Margin",
     "context": "Margin",
-    "reference": "Modules/Settings/DockTab.qml:542",
+    "reference": "Modules/Settings/DockTab.qml:545",
     "comment": ""
   },
   {
@@ -5924,7 +5972,7 @@
   {
     "term": "Max Volume",
     "context": "Audio settings: maximum volume limit per device",
-    "reference": "Modules/Settings/AudioTab.qml:164",
+    "reference": "Modules/Settings/AudioTab.qml:187",
     "comment": ""
   },
   {
@@ -5966,7 +6014,7 @@
   {
     "term": "Maximum History",
     "context": "Maximum History",
-    "reference": "Modules/Settings/NotificationsTab.qml:582, Modules/Settings/ClipboardTab.qml:287",
+    "reference": "Modules/Settings/NotificationsTab.qml:798, Modules/Settings/ClipboardTab.qml:287",
     "comment": ""
   },
   {
@@ -5990,7 +6038,7 @@
   {
     "term": "Maximum number of notifications to keep",
     "context": "notification history limit",
-    "reference": "Modules/Settings/NotificationsTab.qml:583",
+    "reference": "Modules/Settings/NotificationsTab.qml:799",
     "comment": ""
   },
   {
@@ -6074,13 +6122,13 @@
   {
     "term": "Medium",
     "context": "Medium",
-    "reference": "Modules/Settings/TypographyMotionTab.qml:212, Modules/Settings/TypographyMotionTab.qml:315, Modules/Settings/TypographyMotionTab.qml:399, Modules/Settings/WidgetsTabSection.qml:1350",
+    "reference": "Modules/Settings/TypographyMotionTab.qml:212, Modules/Settings/TypographyMotionTab.qml:315, Modules/Settings/TypographyMotionTab.qml:399, Modules/Settings/WidgetsTabSection.qml:1350, Modules/Settings/NotificationsTab.qml:325",
     "comment": ""
   },
   {
     "term": "Memory",
     "context": "Memory",
-    "reference": "Modules/ProcessList/ProcessListPopout.qml:287, Modules/ProcessList/ProcessesView.qml:261, Modules/ProcessList/PerformanceView.qml:91, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:210",
+    "reference": "Modules/ProcessList/ProcessListPopout.qml:316, Modules/ProcessList/ProcessesView.qml:268, Modules/ProcessList/PerformanceView.qml:91, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:210",
     "comment": ""
   },
   {
@@ -6105,6 +6153,12 @@
     "term": "Message",
     "context": "KDE Connect SMS message input placeholder",
     "reference": "dms-plugins/DankKDEConnect/components/SmsDialog.qml:73",
+    "comment": ""
+  },
+  {
+    "term": "Message Content",
+    "context": "notification privacy mode placeholder",
+    "reference": "Modules/Notifications/Popup/NotificationPopup.qml:585",
     "comment": ""
   },
   {
@@ -6158,7 +6212,7 @@
   {
     "term": "Minimal palette built around a single hue.",
     "context": "Minimal palette built around a single hue.",
-    "reference": "Common/Theme.qml:490",
+    "reference": "Common/Theme.qml:492",
     "comment": ""
   },
   {
@@ -6242,7 +6296,7 @@
   {
     "term": "Monochrome",
     "context": "matugen color scheme option",
-    "reference": "Common/Theme.qml:489",
+    "reference": "Common/Theme.qml:491",
     "comment": ""
   },
   {
@@ -6314,7 +6368,13 @@
   {
     "term": "Mute Popups",
     "context": "notification rule action option",
-    "reference": "Modules/Settings/NotificationsTab.qml:101",
+    "reference": "Modules/Settings/NotificationsTab.qml:120",
+    "comment": ""
+  },
+  {
+    "term": "Mute popups for %1",
+    "context": "Mute popups for %1",
+    "reference": "Modules/Notifications/Popup/NotificationPopup.qml:1029, Modules/Notifications/Center/NotificationCard.qml:962",
     "comment": ""
   },
   {
@@ -6324,9 +6384,15 @@
     "comment": ""
   },
   {
+    "term": "Muted Apps",
+    "context": "Muted Apps",
+    "reference": "Modules/Settings/NotificationsTab.qml:612",
+    "comment": ""
+  },
+  {
     "term": "Muted palette with subdued, calming tones.",
     "context": "Muted palette with subdued, calming tones.",
-    "reference": "Common/Theme.qml:494",
+    "reference": "Common/Theme.qml:496",
     "comment": ""
   },
   {
@@ -6338,7 +6404,7 @@
   {
     "term": "Name",
     "context": "Name",
-    "reference": "Modals/DankLauncherV2/LauncherContent.qml:698, Modules/ProcessList/ProcessesView.qml:242, Modules/Settings/DisplayWidgetsTab.qml:225, Modules/Settings/DesktopWidgetInstanceCard.qml:203, Modules/Settings/PrinterTab.qml:423, Modules/Settings/DisplayConfigTab.qml:422, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1205, Modules/Settings/Widgets/SystemMonitorVariantCard.qml:144",
+    "reference": "Modals/DankLauncherV2/LauncherContent.qml:698, Modules/ProcessList/ProcessesView.qml:249, Modules/Settings/DisplayWidgetsTab.qml:225, Modules/Settings/DesktopWidgetInstanceCard.qml:203, Modules/Settings/PrinterTab.qml:423, Modules/Settings/DisplayConfigTab.qml:422, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1205, Modules/Settings/Widgets/SystemMonitorVariantCard.qml:144",
     "comment": ""
   },
   {
@@ -6356,7 +6422,7 @@
   {
     "term": "Network",
     "context": "Network",
-    "reference": "Services/CupsService.qml:134, Modals/Settings/SettingsSidebar.qml:232, Modules/ProcessList/PerformanceView.qml:112, Modules/Settings/WidgetsTabSection.qml:834, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:229, Modules/ControlCenter/Details/NetworkDetail.qml:85, Modules/ControlCenter/Models/WidgetModel.qml:101",
+    "reference": "Services/CupsService.qml:134, Modals/Settings/SettingsSidebar.qml:232, Modules/ProcessList/PerformanceView.qml:112, Modules/Settings/WidgetsTabSection.qml:834, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:229, Modules/ControlCenter/Details/NetworkDetail.qml:88, Modules/ControlCenter/Models/WidgetModel.qml:101",
     "comment": ""
   },
   {
@@ -6368,7 +6434,7 @@
   {
     "term": "Network Info",
     "context": "Network Info",
-    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:436, Modules/ControlCenter/Details/NetworkDetail.qml:808",
+    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:450, Modules/ControlCenter/Details/NetworkDetail.qml:798",
     "comment": ""
   },
   {
@@ -6404,13 +6470,13 @@
   {
     "term": "Neutral",
     "context": "matugen color scheme option",
-    "reference": "Common/Theme.qml:493",
+    "reference": "Common/Theme.qml:495",
     "comment": ""
   },
   {
     "term": "Never",
     "context": "Never",
-    "reference": "Modules/Settings/NotificationsTab.qml:11, Modules/Settings/NotificationsTab.qml:144, Modules/Settings/ClipboardTab.qml:99",
+    "reference": "Modules/Settings/NotificationsTab.qml:30, Modules/Settings/NotificationsTab.qml:163, Modules/Settings/ClipboardTab.qml:99",
     "comment": ""
   },
   {
@@ -6494,7 +6560,7 @@
   {
     "term": "Niri Integration",
     "context": "Niri Integration",
-    "reference": "Modules/Settings/LauncherTab.qml:482",
+    "reference": "Modules/Settings/LauncherTab.qml:493",
     "comment": ""
   },
   {
@@ -6590,7 +6656,7 @@
   {
     "term": "No History",
     "context": "notification rule action option",
-    "reference": "Modules/Settings/NotificationsTab.qml:113",
+    "reference": "Modules/Settings/NotificationsTab.qml:132",
     "comment": ""
   },
   {
@@ -6656,7 +6722,7 @@
   {
     "term": "No app customizations.",
     "context": "No app customizations.",
-    "reference": "Modules/Settings/LauncherTab.qml:1044",
+    "reference": "Modules/Settings/LauncherTab.qml:1055",
     "comment": ""
   },
   {
@@ -6668,7 +6734,13 @@
   {
     "term": "No apps have been launched yet.",
     "context": "No apps have been launched yet.",
-    "reference": "Modules/Settings/LauncherTab.qml:1214",
+    "reference": "Modules/Settings/LauncherTab.qml:1225",
+    "comment": ""
+  },
+  {
+    "term": "No apps muted. Right-click a notification and choose \"Mute popups\" to add one here.",
+    "context": "No apps muted. Right-click a notification and choose \"Mute popups\" to add one here.",
+    "reference": "Modules/Settings/NotificationsTab.qml:621",
     "comment": ""
   },
   {
@@ -6758,7 +6830,7 @@
   {
     "term": "No hidden apps.",
     "context": "No hidden apps.",
-    "reference": "Modules/Settings/LauncherTab.qml:934",
+    "reference": "Modules/Settings/LauncherTab.qml:945",
     "comment": ""
   },
   {
@@ -6776,7 +6848,7 @@
   {
     "term": "No input devices found",
     "context": "Audio settings empty state",
-    "reference": "Modules/Settings/AudioTab.qml:264",
+    "reference": "Modules/Settings/AudioTab.qml:372",
     "comment": ""
   },
   {
@@ -6794,7 +6866,7 @@
   {
     "term": "No launcher plugins installed.",
     "context": "No launcher plugins installed.",
-    "reference": "Modules/Settings/LauncherTab.qml:800",
+    "reference": "Modules/Settings/LauncherTab.qml:811",
     "comment": ""
   },
   {
@@ -6812,7 +6884,7 @@
   {
     "term": "No matching processes",
     "context": "empty state in process list",
-    "reference": "Modules/ProcessList/ProcessesView.qml:354",
+    "reference": "Modules/ProcessList/ProcessesView.qml:361",
     "comment": ""
   },
   {
@@ -6830,7 +6902,7 @@
   {
     "term": "No output devices found",
     "context": "Audio settings empty state",
-    "reference": "Modules/Settings/AudioTab.qml:203",
+    "reference": "Modules/Settings/AudioTab.qml:228",
     "comment": ""
   },
   {
@@ -6908,7 +6980,7 @@
   {
     "term": "No trigger",
     "context": "No trigger",
-    "reference": "Modals/DankLauncherV2/Controller.qml:1060, Modules/Settings/LauncherTab.qml:731",
+    "reference": "Modals/DankLauncherV2/Controller.qml:1061, Modules/Settings/LauncherTab.qml:742",
     "comment": ""
   },
   {
@@ -6920,7 +6992,7 @@
   {
     "term": "No wallpapers found\n\nClick the folder icon below to browse",
     "context": "No wallpapers found\n\nClick the folder icon below to browse",
-    "reference": "Modules/DankDash/WallpaperTab.qml:498",
+    "reference": "Modules/DankDash/WallpaperTab.qml:499",
     "comment": ""
   },
   {
@@ -6956,13 +7028,13 @@
   {
     "term": "None",
     "context": "wallpaper transition option",
-    "reference": "Modals/WindowRuleModal.qml:740, Services/CupsService.qml:769, Modules/Settings/TypographyMotionTab.qml:212, Modules/Settings/TypographyMotionTab.qml:315, Modules/Settings/TypographyMotionTab.qml:399, Modules/Settings/WallpaperTab.qml:1149, Modules/Settings/DesktopWidgetInstanceCard.qml:258, Modules/Settings/DesktopWidgetInstanceCard.qml:274, Modules/Settings/DankBarTab.qml:835, Modules/Settings/DankBarTab.qml:835, Modules/Settings/DankBarTab.qml:872, Modules/Settings/DisplayConfig/HyprlandOutputSettings.qml:87, Modules/Settings/DisplayConfig/HyprlandOutputSettings.qml:100, Modules/Settings/DisplayConfig/HyprlandOutputSettings.qml:104",
+    "reference": "Modals/WindowRuleModal.qml:740, Services/CupsService.qml:769, Modules/Settings/TypographyMotionTab.qml:212, Modules/Settings/TypographyMotionTab.qml:315, Modules/Settings/TypographyMotionTab.qml:399, Modules/Settings/WallpaperTab.qml:1149, Modules/Settings/DesktopWidgetInstanceCard.qml:258, Modules/Settings/DesktopWidgetInstanceCard.qml:274, Modules/Settings/DankBarTab.qml:835, Modules/Settings/DankBarTab.qml:835, Modules/Settings/DankBarTab.qml:872, Modules/Settings/NotificationsTab.qml:325, Modules/Settings/DisplayConfig/HyprlandOutputSettings.qml:87, Modules/Settings/DisplayConfig/HyprlandOutputSettings.qml:100, Modules/Settings/DisplayConfig/HyprlandOutputSettings.qml:104",
     "comment": ""
   },
   {
     "term": "Normal",
     "context": "Normal",
-    "reference": "Modals/WindowRuleModal.qml:762, Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1783, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1799, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1804",
+    "reference": "Modals/WindowRuleModal.qml:762, Modules/Settings/DisplayConfig/OutputCard.qml:257, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1787, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1803, Modules/Settings/DisplayConfig/DisplayConfigState.qml:1808",
     "comment": ""
   },
   {
@@ -6974,7 +7046,7 @@
   {
     "term": "Normal Priority",
     "context": "notification rule urgency option",
-    "reference": "Modules/Settings/NotificationsTab.qml:128, Modules/Settings/NotificationsTab.qml:532, Modules/Settings/NotificationsTab.qml:647, Modules/Notifications/Center/NotificationSettings.qml:186, Modules/Notifications/Center/NotificationSettings.qml:330",
+    "reference": "Modules/Settings/NotificationsTab.qml:147, Modules/Settings/NotificationsTab.qml:748, Modules/Settings/NotificationsTab.qml:863, Modules/Notifications/Center/NotificationSettings.qml:186, Modules/Notifications/Center/NotificationSettings.qml:374",
     "comment": ""
   },
   {
@@ -7046,25 +7118,25 @@
   {
     "term": "Notification Display",
     "context": "lock screen notification privacy setting",
-    "reference": "Modules/Settings/LockScreenTab.qml:90, Modules/Settings/NotificationsTab.qml:491",
+    "reference": "Modules/Settings/LockScreenTab.qml:90, Modules/Settings/NotificationsTab.qml:707",
     "comment": ""
   },
   {
     "term": "Notification Overlay",
     "context": "Notification Overlay",
-    "reference": "Modules/Settings/NotificationsTab.qml:228, Modules/Notifications/Center/NotificationSettings.qml:243",
+    "reference": "Modules/Settings/NotificationsTab.qml:258, Modules/Notifications/Center/NotificationSettings.qml:243",
     "comment": ""
   },
   {
     "term": "Notification Popups",
     "context": "Notification Popups",
-    "reference": "Modules/Settings/DisplayWidgetsTab.qml:37, Modules/Settings/NotificationsTab.qml:184",
+    "reference": "Modules/Settings/DisplayWidgetsTab.qml:37, Modules/Settings/NotificationsTab.qml:203",
     "comment": ""
   },
   {
     "term": "Notification Rules",
     "context": "Notification Rules",
-    "reference": "Modules/Settings/NotificationsTab.qml:263",
+    "reference": "Modules/Settings/NotificationsTab.qml:383",
     "comment": ""
   },
   {
@@ -7076,7 +7148,7 @@
   {
     "term": "Notification Timeouts",
     "context": "Notification Timeouts",
-    "reference": "Modules/Settings/NotificationsTab.qml:507, Modules/Notifications/Center/NotificationSettings.qml:164",
+    "reference": "Modules/Settings/NotificationsTab.qml:723, Modules/Notifications/Center/NotificationSettings.qml:164",
     "comment": ""
   },
   {
@@ -7220,7 +7292,7 @@
   {
     "term": "Open",
     "context": "Open",
-    "reference": "Modals/DankLauncherV2/Controller.qml:922, Modals/DankLauncherV2/Controller.qml:926, Modals/DankLauncherV2/Controller.qml:930, Modules/Notepad/NotepadTextEditor.qml:779, Modules/Settings/NetworkTab.qml:1199, Modules/Settings/NetworkTab.qml:1437, Modules/ControlCenter/Details/NetworkDetail.qml:601",
+    "reference": "Modals/DankLauncherV2/Controller.qml:923, Modals/DankLauncherV2/Controller.qml:927, Modals/DankLauncherV2/Controller.qml:931, Modules/Notepad/NotepadTextEditor.qml:779, Modules/Settings/NetworkTab.qml:1199, Modules/Settings/NetworkTab.qml:1437, Modules/ControlCenter/Details/NetworkDetail.qml:609",
     "comment": ""
   },
   {
@@ -7250,7 +7322,7 @@
   {
     "term": "Open folder",
     "context": "Open folder",
-    "reference": "Modals/DankLauncherV2/Controller.qml:930",
+    "reference": "Modals/DankLauncherV2/Controller.qml:931",
     "comment": ""
   },
   {
@@ -7322,7 +7394,7 @@
   {
     "term": "Original: %1",
     "context": "Shows the original device name before renaming",
-    "reference": "Modules/Settings/AudioTab.qml:414, Modules/Settings/Widgets/DeviceAliasRow.qml:99",
+    "reference": "Modules/Settings/AudioTab.qml:600, Modules/Settings/Widgets/DeviceAliasRow.qml:103",
     "comment": ""
   },
   {
@@ -7334,7 +7406,7 @@
   {
     "term": "Outline",
     "context": "outline color",
-    "reference": "Modules/Settings/LauncherTab.qml:466",
+    "reference": "Modules/Settings/LauncherTab.qml:477",
     "comment": ""
   },
   {
@@ -7358,7 +7430,7 @@
   {
     "term": "Output Devices",
     "context": "Audio settings: speaker/headphone devices",
-    "reference": "Modules/Settings/AudioTab.qml:110",
+    "reference": "Modules/Settings/AudioTab.qml:128",
     "comment": ""
   },
   {
@@ -7460,7 +7532,7 @@
   {
     "term": "Padding",
     "context": "Padding",
-    "reference": "Modules/Settings/DockTab.qml:524",
+    "reference": "Modules/Settings/DockTab.qml:527",
     "comment": ""
   },
   {
@@ -7538,7 +7610,7 @@
   {
     "term": "Pattern",
     "context": "Pattern",
-    "reference": "Modules/Settings/RunningAppsTab.qml:87, Modules/Settings/NotificationsTab.qml:378, Modules/Settings/NotificationsTab.qml:387",
+    "reference": "Modules/Settings/RunningAppsTab.qml:87, Modules/Settings/NotificationsTab.qml:502, Modules/Settings/NotificationsTab.qml:511",
     "comment": ""
   },
   {
@@ -7598,7 +7670,7 @@
   {
     "term": "Performance",
     "context": "power profile option",
-    "reference": "Modals/ProcessListModal.qml:308, Common/Theme.qml:1195",
+    "reference": "Modals/ProcessListModal.qml:311, Common/Theme.qml:1247",
     "comment": ""
   },
   {
@@ -7664,7 +7736,7 @@
   {
     "term": "Pinned",
     "context": "Pinned",
-    "reference": "Modals/DankLauncherV2/Controller.qml:136, Modules/ControlCenter/Details/BluetoothDetail.qml:357, Modules/ControlCenter/Details/BrightnessDetail.qml:207, Modules/ControlCenter/Details/AudioInputDetail.qml:274, Modules/ControlCenter/Details/AudioOutputDetail.qml:292, Modules/ControlCenter/Details/NetworkDetail.qml:675",
+    "reference": "Modals/DankLauncherV2/Controller.qml:137, Modules/ControlCenter/Details/BluetoothDetail.qml:357, Modules/ControlCenter/Details/BrightnessDetail.qml:207, Modules/ControlCenter/Details/AudioInputDetail.qml:274, Modules/ControlCenter/Details/AudioOutputDetail.qml:292, Modules/ControlCenter/Details/NetworkDetail.qml:675",
     "comment": ""
   },
   {
@@ -7760,7 +7832,7 @@
   {
     "term": "Plugin Visibility",
     "context": "Plugin Visibility",
-    "reference": "Modules/Settings/LauncherTab.qml:592",
+    "reference": "Modules/Settings/LauncherTab.qml:603",
     "comment": ""
   },
   {
@@ -7772,7 +7844,7 @@
   {
     "term": "Plugins",
     "context": "greeter feature card title | greeter plugins link",
-    "reference": "Modals/Greeter/GreeterWelcomePage.qml:122, Modals/Greeter/GreeterCompletePage.qml:476, Modals/DankLauncherV2/LauncherContent.qml:322, Modals/Settings/SettingsSidebar.qml:294, Modules/Settings/AboutTab.qml:281, Modules/Settings/AboutTab.qml:289",
+    "reference": "Modals/Greeter/GreeterWelcomePage.qml:122, Modals/Greeter/GreeterCompletePage.qml:476, Modals/DankLauncherV2/LauncherContent.qml:322, Modals/Settings/SettingsSidebar.qml:294, Modules/Settings/AboutTab.qml:290, Modules/Settings/AboutTab.qml:298",
     "comment": ""
   },
   {
@@ -7796,13 +7868,19 @@
   {
     "term": "Popup Only",
     "context": "notification rule action option",
-    "reference": "Modules/Settings/NotificationsTab.qml:109",
+    "reference": "Modules/Settings/NotificationsTab.qml:128",
     "comment": ""
   },
   {
     "term": "Popup Position",
     "context": "Popup Position",
-    "reference": "Modules/Settings/NotificationsTab.qml:190",
+    "reference": "Modules/Settings/NotificationsTab.qml:209",
+    "comment": ""
+  },
+  {
+    "term": "Popup Shadow",
+    "context": "Popup Shadow",
+    "reference": "Modules/Settings/NotificationsTab.qml:276",
     "comment": ""
   },
   {
@@ -7898,7 +7976,7 @@
   {
     "term": "Power Saver",
     "context": "power profile option",
-    "reference": "Common/Theme.qml:1191",
+    "reference": "Common/Theme.qml:1243",
     "comment": ""
   },
   {
@@ -7952,7 +8030,7 @@
   {
     "term": "Press Enter and the audio system will restart to apply the change",
     "context": "Audio device rename dialog hint",
-    "reference": "Modules/Settings/AudioTab.qml:471",
+    "reference": "Modules/Settings/AudioTab.qml:657",
     "comment": ""
   },
   {
@@ -7988,7 +8066,7 @@
   {
     "term": "Primary",
     "context": "button color option | color option | primary color | tile color option",
-    "reference": "dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:39, Modules/Settings/ThemeColorsTab.qml:1512, Modules/Settings/ThemeColorsTab.qml:1522, Modules/Settings/ThemeColorsTab.qml:1544, Modules/Settings/ThemeColorsTab.qml:1554, Modules/Settings/DockTab.qml:377, Modules/Settings/DockTab.qml:587, Modules/Settings/LauncherTab.qml:179, Modules/Settings/LauncherTab.qml:466, Modules/Settings/WorkspacesTab.qml:359, Modules/Settings/NetworkTab.qml:227, Modules/Settings/DankBarTab.qml:1163, Modules/Settings/Widgets/SettingsColorPicker.qml:42",
+    "reference": "dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:39, Modules/Settings/ThemeColorsTab.qml:1512, Modules/Settings/ThemeColorsTab.qml:1522, Modules/Settings/ThemeColorsTab.qml:1544, Modules/Settings/ThemeColorsTab.qml:1554, Modules/Settings/DockTab.qml:379, Modules/Settings/DockTab.qml:590, Modules/Settings/LauncherTab.qml:181, Modules/Settings/LauncherTab.qml:477, Modules/Settings/WorkspacesTab.qml:359, Modules/Settings/NetworkTab.qml:227, Modules/Settings/DankBarTab.qml:1163, Modules/Settings/Widgets/SettingsColorPicker.qml:42",
     "comment": ""
   },
   {
@@ -8054,19 +8132,25 @@
   {
     "term": "Prioritize performance",
     "context": "power profile description",
-    "reference": "Common/Theme.qml:1208",
+    "reference": "Common/Theme.qml:1260",
     "comment": ""
   },
   {
     "term": "Priority",
     "context": "Priority",
-    "reference": "Modules/Settings/NotificationsTab.qml:461",
+    "reference": "Modules/Settings/NotificationsTab.qml:587",
     "comment": ""
   },
   {
     "term": "Privacy Indicator",
     "context": "Privacy Indicator",
     "reference": "Modules/Settings/WidgetsTab.qml:155",
+    "comment": ""
+  },
+  {
+    "term": "Privacy Mode",
+    "context": "Privacy Mode",
+    "reference": "Modules/Settings/NotificationsTab.qml:285, Modules/Notifications/Center/NotificationSettings.qml:287",
     "comment": ""
   },
   {
@@ -8084,13 +8168,13 @@
   {
     "term": "Processes",
     "context": "Processes",
-    "reference": "Modals/ProcessListModal.qml:304, Modules/ProcessList/ProcessListPopout.qml:137, Modules/ProcessList/SystemView.qml:88",
+    "reference": "Modals/ProcessListModal.qml:307, Modules/ProcessList/ProcessListPopout.qml:140, Modules/ProcessList/SystemView.qml:88",
     "comment": ""
   },
   {
     "term": "Processes:",
     "context": "process count label in footer",
-    "reference": "Modals/ProcessListModal.qml:456",
+    "reference": "Modals/ProcessListModal.qml:488",
     "comment": ""
   },
   {
@@ -8204,7 +8288,7 @@
   {
     "term": "Rainbow",
     "context": "matugen color scheme option",
-    "reference": "Common/Theme.qml:497",
+    "reference": "Common/Theme.qml:499",
     "comment": ""
   },
   {
@@ -8246,7 +8330,7 @@
   {
     "term": "Recently Used Apps",
     "context": "Recently Used Apps",
-    "reference": "Modules/Settings/LauncherTab.qml:1057",
+    "reference": "Modules/Settings/LauncherTab.qml:1068",
     "comment": ""
   },
   {
@@ -8264,13 +8348,13 @@
   {
     "term": "Refresh Weather",
     "context": "Refresh Weather",
-    "reference": "Modules/DankDash/WeatherTab.qml:164, Modules/DankDash/WeatherTab.qml:900",
+    "reference": "Modules/DankDash/WeatherTab.qml:164, Modules/DankDash/WeatherTab.qml:901",
     "comment": ""
   },
   {
     "term": "Regex",
     "context": "notification rule match type option",
-    "reference": "Modules/Settings/NotificationsTab.qml:90",
+    "reference": "Modules/Settings/NotificationsTab.qml:109",
     "comment": ""
   },
   {
@@ -8402,7 +8486,7 @@
   {
     "term": "Reset to default name",
     "context": "Reset to default name",
-    "reference": "Modules/Settings/Widgets/DeviceAliasRow.qml:123",
+    "reference": "Modules/Settings/Widgets/DeviceAliasRow.qml:127",
     "comment": ""
   },
   {
@@ -8438,7 +8522,7 @@
   {
     "term": "Restarting audio system...",
     "context": "Loading overlay while WirePlumber restarts",
-    "reference": "Modules/Settings/AudioTab.qml:317",
+    "reference": "Modules/Settings/AudioTab.qml:503",
     "comment": ""
   },
   {
@@ -8552,7 +8636,7 @@
   {
     "term": "Rule",
     "context": "Rule",
-    "reference": "Modals/WindowRuleModal.qml:254, Modules/Settings/NotificationsTab.qml:324",
+    "reference": "Modals/WindowRuleModal.qml:254, Modules/Settings/NotificationsTab.qml:448",
     "comment": ""
   },
   {
@@ -8630,7 +8714,7 @@
   {
     "term": "Save",
     "context": "Save",
-    "reference": "Modals/DankColorPickerModal.qml:750, Widgets/KeybindItem.qml:1365, Widgets/KeybindItem.qml:1830, Modals/DankLauncherV2/LauncherContent.qml:863, Modals/FileBrowser/FileBrowserSaveRow.qml:55, Modules/Notepad/NotepadTextEditor.qml:763, Modules/Notepad/Notepad.qml:472, Modules/Settings/AudioTab.qml:507",
+    "reference": "Modals/DankColorPickerModal.qml:750, Widgets/KeybindItem.qml:1365, Widgets/KeybindItem.qml:1830, Modals/DankLauncherV2/LauncherContent.qml:863, Modals/FileBrowser/FileBrowserSaveRow.qml:55, Modules/Notepad/NotepadTextEditor.qml:763, Modules/Notepad/Notepad.qml:472, Modules/Settings/AudioTab.qml:693",
     "comment": ""
   },
   {
@@ -8648,25 +8732,25 @@
   {
     "term": "Save critical priority notifications to history",
     "context": "notification history setting",
-    "reference": "Modules/Settings/NotificationsTab.qml:657",
+    "reference": "Modules/Settings/NotificationsTab.qml:873",
     "comment": ""
   },
   {
     "term": "Save dismissed notifications to history",
     "context": "notification history toggle description",
-    "reference": "Modules/Settings/NotificationsTab.qml:574",
+    "reference": "Modules/Settings/NotificationsTab.qml:790",
     "comment": ""
   },
   {
     "term": "Save low priority notifications to history",
     "context": "notification history setting",
-    "reference": "Modules/Settings/NotificationsTab.qml:639",
+    "reference": "Modules/Settings/NotificationsTab.qml:855",
     "comment": ""
   },
   {
     "term": "Save normal priority notifications to history",
     "context": "notification history setting",
-    "reference": "Modules/Settings/NotificationsTab.qml:648",
+    "reference": "Modules/Settings/NotificationsTab.qml:864",
     "comment": ""
   },
   {
@@ -8678,7 +8762,7 @@
   {
     "term": "Saved",
     "context": "Saved",
-    "reference": "Modals/Clipboard/ClipboardHeader.qml:52, Modules/Notepad/NotepadTextEditor.qml:861, Modules/Settings/NetworkTab.qml:1212, Modules/ControlCenter/Details/NetworkDetail.qml:607",
+    "reference": "Modals/Clipboard/ClipboardHeader.qml:52, Modules/Notepad/NotepadTextEditor.qml:861, Modules/Settings/NetworkTab.qml:1212, Modules/ControlCenter/Details/NetworkDetail.qml:615",
     "comment": ""
   },
   {
@@ -8804,13 +8888,13 @@
   {
     "term": "Search App Actions",
     "context": "Search App Actions",
-    "reference": "Modules/Settings/LauncherTab.qml:818",
+    "reference": "Modules/Settings/LauncherTab.qml:829",
     "comment": ""
   },
   {
     "term": "Search Options",
     "context": "Search Options",
-    "reference": "Modules/Settings/LauncherTab.qml:812",
+    "reference": "Modules/Settings/LauncherTab.qml:823",
     "comment": ""
   },
   {
@@ -8846,7 +8930,7 @@
   {
     "term": "Search processes...",
     "context": "process search placeholder",
-    "reference": "Modals/ProcessListModal.qml:375",
+    "reference": "Modals/ProcessListModal.qml:406",
     "comment": ""
   },
   {
@@ -8864,7 +8948,7 @@
   {
     "term": "Search...",
     "context": "Search...",
-    "reference": "Widgets/DankDropdown.qml:279, Modals/Settings/SettingsSidebar.qml:617, Modules/ProcessList/ProcessListPopout.qml:153",
+    "reference": "Widgets/DankDropdown.qml:283, Modals/Settings/SettingsSidebar.qml:617, Modules/ProcessList/ProcessListPopout.qml:182",
     "comment": ""
   },
   {
@@ -8876,13 +8960,13 @@
   {
     "term": "Secondary",
     "context": "button color option | color option | secondary color | tile color option",
-    "reference": "dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:43, Modules/Settings/ThemeColorsTab.qml:1512, Modules/Settings/ThemeColorsTab.qml:1518, Modules/Settings/ThemeColorsTab.qml:1528, Modules/Settings/ThemeColorsTab.qml:1544, Modules/Settings/ThemeColorsTab.qml:1550, Modules/Settings/ThemeColorsTab.qml:1560, Modules/Settings/DockTab.qml:587, Modules/Settings/LauncherTab.qml:466, Modules/Settings/WorkspacesTab.qml:359, Modules/Settings/DankBarTab.qml:1163, Modules/Settings/Widgets/SettingsColorPicker.qml:47",
+    "reference": "dms-plugins/DankDesktopWeather/DankDesktopWeatherSettings.qml:43, Modules/Settings/ThemeColorsTab.qml:1512, Modules/Settings/ThemeColorsTab.qml:1518, Modules/Settings/ThemeColorsTab.qml:1528, Modules/Settings/ThemeColorsTab.qml:1544, Modules/Settings/ThemeColorsTab.qml:1550, Modules/Settings/ThemeColorsTab.qml:1560, Modules/Settings/DockTab.qml:590, Modules/Settings/LauncherTab.qml:477, Modules/Settings/WorkspacesTab.qml:359, Modules/Settings/DankBarTab.qml:1163, Modules/Settings/Widgets/SettingsColorPicker.qml:47",
     "comment": ""
   },
   {
     "term": "Secured",
     "context": "Secured",
-    "reference": "Modules/Settings/NetworkTab.qml:1199, Modules/ControlCenter/Details/NetworkDetail.qml:601",
+    "reference": "Modules/Settings/NetworkTab.qml:1199, Modules/ControlCenter/Details/NetworkDetail.qml:609",
     "comment": ""
   },
   {
@@ -8900,7 +8984,7 @@
   {
     "term": "Select",
     "context": "Select",
-    "reference": "Modals/DankLauncherV2/Controller.qml:1193",
+    "reference": "Modals/DankLauncherV2/Controller.qml:1194",
     "comment": ""
   },
   {
@@ -8954,7 +9038,7 @@
   {
     "term": "Select Wallpaper Directory",
     "context": "wallpaper directory file browser title",
-    "reference": "Modules/DankDash/WallpaperTab.qml:319",
+    "reference": "Modules/DankDash/WallpaperTab.qml:320",
     "comment": ""
   },
   {
@@ -8984,7 +9068,7 @@
   {
     "term": "Select an image file...",
     "context": "Select an image file...",
-    "reference": "Modules/Settings/DockTab.qml:328, Modules/Settings/LauncherTab.qml:130",
+    "reference": "Modules/Settings/DockTab.qml:330, Modules/Settings/LauncherTab.qml:132",
     "comment": ""
   },
   {
@@ -9122,25 +9206,25 @@
   {
     "term": "Set Custom Device Name",
     "context": "Audio device rename dialog title",
-    "reference": "Modules/Settings/AudioTab.qml:394",
+    "reference": "Modules/Settings/AudioTab.qml:580",
     "comment": ""
   },
   {
     "term": "Set custom name",
     "context": "Set custom name",
-    "reference": "Modules/Settings/Widgets/DeviceAliasRow.qml:137",
+    "reference": "Modules/Settings/Widgets/DeviceAliasRow.qml:156",
     "comment": ""
   },
   {
     "term": "Set custom names for your audio input devices",
     "context": "Audio settings description",
-    "reference": "Modules/Settings/AudioTab.qml:226",
+    "reference": "Modules/Settings/AudioTab.qml:329",
     "comment": ""
   },
   {
     "term": "Set custom names for your audio output devices",
     "context": "Audio settings description",
-    "reference": "Modules/Settings/AudioTab.qml:120",
+    "reference": "Modules/Settings/AudioTab.qml:138",
     "comment": ""
   },
   {
@@ -9159,6 +9243,12 @@
     "term": "Set key and action to save",
     "context": "Set key and action to save",
     "reference": "Widgets/KeybindItem.qml:1807",
+    "comment": ""
+  },
+  {
+    "term": "Set notification rules",
+    "context": "Set notification rules",
+    "reference": "Modules/Notifications/Popup/NotificationPopup.qml:1003, Modules/Notifications/Center/NotificationCard.qml:936",
     "comment": ""
   },
   {
@@ -9248,7 +9338,7 @@
   {
     "term": "Short",
     "context": "Short",
-    "reference": "Modules/Settings/TypographyMotionTab.qml:212, Modules/Settings/TypographyMotionTab.qml:315, Modules/Settings/TypographyMotionTab.qml:399",
+    "reference": "Modules/Settings/TypographyMotionTab.qml:212, Modules/Settings/TypographyMotionTab.qml:315, Modules/Settings/TypographyMotionTab.qml:399, Modules/Settings/NotificationsTab.qml:325",
     "comment": ""
   },
   {
@@ -9332,7 +9422,7 @@
   {
     "term": "Show Footer",
     "context": "launcher footer visibility",
-    "reference": "Modules/Settings/LauncherTab.qml:411",
+    "reference": "Modules/Settings/LauncherTab.qml:413",
     "comment": ""
   },
   {
@@ -9560,7 +9650,7 @@
   {
     "term": "Show Welcome",
     "context": "Show Welcome",
-    "reference": "Modules/Settings/AboutTab.qml:799",
+    "reference": "Modules/Settings/AboutTab.qml:808",
     "comment": ""
   },
   {
@@ -9600,21 +9690,33 @@
     "comment": ""
   },
   {
+    "term": "Show device",
+    "context": "Show device",
+    "reference": "Modules/Settings/Widgets/DeviceAliasRow.qml:142",
+    "comment": ""
+  },
+  {
     "term": "Show dock when floating windows don't overlap its area",
     "context": "Show dock when floating windows don't overlap its area",
     "reference": "Modules/Settings/DockTab.qml:117",
     "comment": ""
   },
   {
+    "term": "Show drop shadow on notification popups",
+    "context": "Show drop shadow on notification popups",
+    "reference": "Modules/Settings/NotificationsTab.qml:277",
+    "comment": ""
+  },
+  {
     "term": "Show launcher overlay when typing in Niri overview. Disable to use another launcher.",
     "context": "Show launcher overlay when typing in Niri overview. Disable to use another launcher.",
-    "reference": "Modules/Settings/LauncherTab.qml:498",
+    "reference": "Modules/Settings/LauncherTab.qml:509",
     "comment": ""
   },
   {
     "term": "Show mode tabs and keyboard hints at the bottom.",
     "context": "launcher footer description",
-    "reference": "Modules/Settings/LauncherTab.qml:412",
+    "reference": "Modules/Settings/LauncherTab.qml:414",
     "comment": ""
   },
   {
@@ -9776,7 +9878,7 @@
   {
     "term": "Size",
     "context": "launcher size option",
-    "reference": "Modals/WindowRuleModal.qml:989, Modules/Settings/LauncherTab.qml:367, Modules/Settings/DankBarTab.qml:955, Modules/Settings/WindowRulesTab.qml:565",
+    "reference": "Modals/WindowRuleModal.qml:989, Modules/Settings/LauncherTab.qml:369, Modules/Settings/DankBarTab.qml:955, Modules/Settings/WindowRulesTab.qml:565",
     "comment": ""
   },
   {
@@ -9788,13 +9890,13 @@
   {
     "term": "Size Offset",
     "context": "Size Offset",
-    "reference": "Modules/Settings/DockTab.qml:453, Modules/Settings/LauncherTab.qml:255",
+    "reference": "Modules/Settings/DockTab.qml:455, Modules/Settings/LauncherTab.qml:257",
     "comment": ""
   },
   {
     "term": "Sizing",
     "context": "Sizing",
-    "reference": "Modules/Settings/DockTab.qml:500",
+    "reference": "Modules/Settings/DockTab.qml:502",
     "comment": ""
   },
   {
@@ -9848,7 +9950,7 @@
   {
     "term": "Sort Alphabetically",
     "context": "Sort Alphabetically",
-    "reference": "Modules/Settings/LauncherTab.qml:337",
+    "reference": "Modules/Settings/LauncherTab.qml:339",
     "comment": ""
   },
   {
@@ -9860,7 +9962,7 @@
   {
     "term": "Sorting & Layout",
     "context": "Sorting & Layout",
-    "reference": "Modules/Settings/LauncherTab.qml:331",
+    "reference": "Modules/Settings/LauncherTab.qml:333",
     "comment": ""
   },
   {
@@ -9902,7 +10004,7 @@
   {
     "term": "Spacing",
     "context": "Spacing",
-    "reference": "Modules/Settings/DockTab.qml:518, Modules/Settings/DankBarTab.qml:909",
+    "reference": "Modules/Settings/DockTab.qml:521, Modules/Settings/DankBarTab.qml:909",
     "comment": ""
   },
   {
@@ -9974,7 +10076,7 @@
   {
     "term": "Status",
     "context": "Status",
-    "reference": "Widgets/DankIconPicker.qml:56, Modules/Settings/AboutTab.qml:691, Modules/Settings/PrinterTab.qml:135, Modules/Settings/NetworkTab.qml:182",
+    "reference": "Widgets/DankIconPicker.qml:56, Modules/Settings/AboutTab.qml:700, Modules/Settings/PrinterTab.qml:135, Modules/Settings/NetworkTab.qml:182",
     "comment": ""
   },
   {
@@ -10010,7 +10112,7 @@
   {
     "term": "Summary",
     "context": "notification rule match field option",
-    "reference": "Modules/Settings/NotificationsTab.qml:71",
+    "reference": "Modules/Settings/NotificationsTab.qml:90",
     "comment": ""
   },
   {
@@ -10028,13 +10130,13 @@
   {
     "term": "Suppress notification popups while enabled",
     "context": "Suppress notification popups while enabled",
-    "reference": "Modules/Settings/NotificationsTab.qml:254",
+    "reference": "Modules/Settings/NotificationsTab.qml:373",
     "comment": ""
   },
   {
     "term": "Surface",
     "context": "color option | shadow color option",
-    "reference": "Modules/Settings/DockTab.qml:377, Modules/Settings/DockTab.qml:587, Modules/Settings/LauncherTab.qml:179, Modules/Settings/WorkspacesTab.qml:359, Modules/Settings/DankBarTab.qml:1163",
+    "reference": "Modules/Settings/DockTab.qml:379, Modules/Settings/DockTab.qml:590, Modules/Settings/LauncherTab.qml:181, Modules/Settings/WorkspacesTab.qml:359, Modules/Settings/DankBarTab.qml:1163",
     "comment": ""
   },
   {
@@ -10100,7 +10202,7 @@
   {
     "term": "System",
     "context": "System",
-    "reference": "Modals/ProcessListModal.qml:316, Services/AppSearchService.qml:641, Widgets/DankIconPicker.qml:44, Modals/Settings/SettingsSidebar.qml:239",
+    "reference": "Modals/ProcessListModal.qml:319, Modals/ProcessListModal.qml:377, Services/AppSearchService.qml:641, Widgets/DankIconPicker.qml:44, Modals/Settings/SettingsSidebar.qml:239, Modules/ProcessList/ProcessListPopout.qml:155",
     "comment": ""
   },
   {
@@ -10112,7 +10214,7 @@
   {
     "term": "System Check",
     "context": "greeter doctor page title",
-    "reference": "Modals/Greeter/GreeterDoctorPage.qml:157, Modals/Greeter/GreeterDoctorPage.qml:221, Modules/Settings/AboutTab.qml:807",
+    "reference": "Modals/Greeter/GreeterDoctorPage.qml:157, Modals/Greeter/GreeterDoctorPage.qml:221, Modules/Settings/AboutTab.qml:816",
     "comment": ""
   },
   {
@@ -10130,13 +10232,13 @@
   {
     "term": "System Monitor",
     "context": "System monitor widget name | sysmon window title",
-    "reference": "Modals/ProcessListModal.qml:50, Modals/ProcessListModal.qml:84, Modals/ProcessListModal.qml:258, Services/AppSearchService.qml:190, Services/DesktopWidgetRegistry.qml:54",
+    "reference": "Modals/ProcessListModal.qml:51, Modals/ProcessListModal.qml:85, Modals/ProcessListModal.qml:261, Services/AppSearchService.qml:190, Services/DesktopWidgetRegistry.qml:54",
     "comment": ""
   },
   {
     "term": "System Monitor Unavailable",
     "context": "System Monitor Unavailable",
-    "reference": "Modals/ProcessListModal.qml:211",
+    "reference": "Modals/ProcessListModal.qml:214",
     "comment": ""
   },
   {
@@ -10238,13 +10340,13 @@
   {
     "term": "Text",
     "context": "shadow color option | text color",
-    "reference": "Modals/Clipboard/ClipboardEntry.qml:119, Modules/Settings/LauncherTab.qml:466, Modules/Settings/DankBarTab.qml:1163",
+    "reference": "Modals/Clipboard/ClipboardEntry.qml:119, Modules/Settings/LauncherTab.qml:477, Modules/Settings/DankBarTab.qml:1163",
     "comment": ""
   },
   {
     "term": "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.",
     "context": "dgop unavailable error message",
-    "reference": "Modals/ProcessListModal.qml:219",
+    "reference": "Modals/ProcessListModal.qml:222",
     "comment": ""
   },
   {
@@ -10292,7 +10394,7 @@
   {
     "term": "Thickness",
     "context": "border thickness",
-    "reference": "Modules/Settings/LauncherTab.qml:434, Modules/Settings/WorkspacesTab.qml:393, Modules/Settings/DankBarTab.qml:1300, Modules/Settings/DankBarTab.qml:1388",
+    "reference": "Modules/Settings/LauncherTab.qml:445, Modules/Settings/WorkspacesTab.qml:393, Modules/Settings/DankBarTab.qml:1300, Modules/Settings/DankBarTab.qml:1388",
     "comment": ""
   },
   {
@@ -10316,7 +10418,7 @@
   {
     "term": "This may take a few seconds",
     "context": "Loading overlay subtitle",
-    "reference": "Modules/Settings/AudioTab.qml:326",
+    "reference": "Modules/Settings/AudioTab.qml:512",
     "comment": ""
   },
   {
@@ -10418,19 +10520,19 @@
   {
     "term": "Timeout for critical priority notifications",
     "context": "Timeout for critical priority notifications",
-    "reference": "Modules/Settings/NotificationsTab.qml:550",
+    "reference": "Modules/Settings/NotificationsTab.qml:766",
     "comment": ""
   },
   {
     "term": "Timeout for low priority notifications",
     "context": "Timeout for low priority notifications",
-    "reference": "Modules/Settings/NotificationsTab.qml:516",
+    "reference": "Modules/Settings/NotificationsTab.qml:732",
     "comment": ""
   },
   {
     "term": "Timeout for normal priority notifications",
     "context": "Timeout for normal priority notifications",
-    "reference": "Modules/Settings/NotificationsTab.qml:533",
+    "reference": "Modules/Settings/NotificationsTab.qml:749",
     "comment": ""
   },
   {
@@ -10496,7 +10598,7 @@
   {
     "term": "Tonal Spot",
     "context": "matugen color scheme option",
-    "reference": "Common/Theme.qml:465",
+    "reference": "Common/Theme.qml:467",
     "comment": ""
   },
   {
@@ -10514,7 +10616,7 @@
   {
     "term": "Tools",
     "context": "Tools",
-    "reference": "Modules/Settings/AboutTab.qml:786",
+    "reference": "Modules/Settings/AboutTab.qml:795",
     "comment": ""
   },
   {
@@ -10532,13 +10634,13 @@
   {
     "term": "Top Center",
     "context": "screen position option",
-    "reference": "Modules/Settings/OSDTab.qml:39, Modules/Settings/OSDTab.qml:54, Modules/Settings/OSDTab.qml:60, Modules/Settings/NotificationsTab.qml:194, Modules/Settings/NotificationsTab.qml:208, Modules/Settings/NotificationsTab.qml:214",
+    "reference": "Modules/Settings/OSDTab.qml:39, Modules/Settings/OSDTab.qml:54, Modules/Settings/OSDTab.qml:60, Modules/Settings/NotificationsTab.qml:213, Modules/Settings/NotificationsTab.qml:229, Modules/Settings/NotificationsTab.qml:238",
     "comment": ""
   },
   {
     "term": "Top Left",
     "context": "screen position option",
-    "reference": "Modules/Settings/OSDTab.qml:37, Modules/Settings/OSDTab.qml:54, Modules/Settings/OSDTab.qml:58, Modules/Settings/NotificationsTab.qml:201, Modules/Settings/NotificationsTab.qml:208, Modules/Settings/NotificationsTab.qml:212, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:144",
+    "reference": "Modules/Settings/OSDTab.qml:37, Modules/Settings/OSDTab.qml:54, Modules/Settings/OSDTab.qml:58, Modules/Settings/NotificationsTab.qml:220, Modules/Settings/NotificationsTab.qml:229, Modules/Settings/NotificationsTab.qml:235, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:144",
     "comment": ""
   },
   {
@@ -10550,7 +10652,7 @@
   {
     "term": "Top Right",
     "context": "screen position option",
-    "reference": "Modules/Settings/OSDTab.qml:35, Modules/Settings/OSDTab.qml:54, Modules/Settings/OSDTab.qml:56, Modules/Settings/NotificationsTab.qml:197, Modules/Settings/NotificationsTab.qml:205, Modules/Settings/NotificationsTab.qml:208, Modules/Settings/NotificationsTab.qml:210, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:144",
+    "reference": "Modules/Settings/OSDTab.qml:35, Modules/Settings/OSDTab.qml:54, Modules/Settings/OSDTab.qml:56, Modules/Settings/NotificationsTab.qml:216, Modules/Settings/NotificationsTab.qml:226, Modules/Settings/NotificationsTab.qml:229, Modules/Settings/NotificationsTab.qml:232, Modules/Settings/DisplayConfig/NiriOutputSettings.qml:144",
     "comment": ""
   },
   {
@@ -10580,7 +10682,7 @@
   {
     "term": "Transparency",
     "context": "Transparency",
-    "reference": "Modules/Settings/DockTab.qml:554, Modules/Settings/DankBarTab.qml:1410, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:379, Modules/Settings/DesktopWidgetSettings/ClockSettings.qml:98, Modules/Settings/Widgets/SystemMonitorVariantCard.qml:342",
+    "reference": "Modules/Settings/DockTab.qml:557, Modules/Settings/DankBarTab.qml:1410, Modules/Settings/DesktopWidgetSettings/SystemMonitorSettings.qml:379, Modules/Settings/DesktopWidgetSettings/ClockSettings.qml:98, Modules/Settings/Widgets/SystemMonitorVariantCard.qml:342",
     "comment": ""
   },
   {
@@ -10598,7 +10700,7 @@
   {
     "term": "Trigger",
     "context": "Trigger",
-    "reference": "Modules/Settings/LauncherTab.qml:571",
+    "reference": "Modules/Settings/LauncherTab.qml:582",
     "comment": ""
   },
   {
@@ -10610,7 +10712,7 @@
   {
     "term": "Trigger: %1",
     "context": "Trigger: %1",
-    "reference": "Modals/DankLauncherV2/Controller.qml:1059, Modules/Settings/LauncherTab.qml:731",
+    "reference": "Modals/DankLauncherV2/Controller.qml:1060, Modules/Settings/LauncherTab.qml:742",
     "comment": ""
   },
   {
@@ -10634,7 +10736,7 @@
   {
     "term": "Type",
     "context": "Type",
-    "reference": "Widgets/KeybindItem.qml:834, Modules/Settings/RunningAppsTab.qml:154, Modules/Settings/NotificationsTab.qml:421",
+    "reference": "Widgets/KeybindItem.qml:834, Modules/Settings/RunningAppsTab.qml:154, Modules/Settings/NotificationsTab.qml:546",
     "comment": ""
   },
   {
@@ -10730,7 +10832,7 @@
   {
     "term": "Unknown",
     "context": "KDE Connect unknown device status | battery status | power profile option | unknown author | widget status",
-    "reference": "Common/Theme.qml:1197, Services/BatteryService.qml:148, dms-plugins/DankKDEConnect/components/DeviceCard.qml:208, dms-plugins/DankKDEConnect/components/KDEConnectDetailContent.qml:197, Modules/Lock/LockScreenContent.qml:364, Modules/Lock/LockScreenContent.qml:484, Modules/Lock/LockScreenContent.qml:580, Modules/Settings/PluginBrowser.qml:537, Modules/Settings/PrinterTab.qml:1307, Modules/Settings/ThemeBrowser.qml:527, Modules/Settings/NetworkTab.qml:175, Modules/Settings/NetworkTab.qml:217, Modules/Settings/NetworkTab.qml:429, Modules/Settings/NetworkTab.qml:452, Modules/Settings/NetworkTab.qml:600, Modules/Settings/NetworkTab.qml:745, Modules/Settings/NetworkTab.qml:1170, Modules/ControlCenter/Details/BatteryDetail.qml:183, Modules/ControlCenter/Components/HeaderPane.qml:63, Modules/ControlCenter/Components/DragDropGrid.qml:309, Modules/ControlCenter/Components/DragDropGrid.qml:610",
+    "reference": "Common/Theme.qml:1249, Services/BatteryService.qml:148, dms-plugins/DankKDEConnect/components/DeviceCard.qml:208, dms-plugins/DankKDEConnect/components/KDEConnectDetailContent.qml:197, Modules/Lock/LockScreenContent.qml:364, Modules/Lock/LockScreenContent.qml:484, Modules/Lock/LockScreenContent.qml:580, Modules/Settings/PluginBrowser.qml:537, Modules/Settings/PrinterTab.qml:1307, Modules/Settings/ThemeBrowser.qml:527, Modules/Settings/NetworkTab.qml:175, Modules/Settings/NetworkTab.qml:217, Modules/Settings/NetworkTab.qml:429, Modules/Settings/NetworkTab.qml:452, Modules/Settings/NetworkTab.qml:600, Modules/Settings/NetworkTab.qml:745, Modules/Settings/NetworkTab.qml:1170, Modules/Settings/NotificationsTab.qml:646, Modules/ControlCenter/Details/BatteryDetail.qml:183, Modules/ControlCenter/Components/HeaderPane.qml:63, Modules/ControlCenter/Components/DragDropGrid.qml:309, Modules/ControlCenter/Components/DragDropGrid.qml:610",
     "comment": ""
   },
   {
@@ -10742,7 +10844,7 @@
   {
     "term": "Unknown Config",
     "context": "Unknown Config",
-    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:318",
+    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:306",
     "comment": ""
   },
   {
@@ -10766,13 +10868,31 @@
   {
     "term": "Unknown Network",
     "context": "Unknown Network",
-    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:589",
+    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:562",
     "comment": ""
   },
   {
     "term": "Unknown Title",
     "context": "Unknown Title",
     "reference": "Modules/OSD/MediaPlaybackOSD.qml:257",
+    "comment": ""
+  },
+  {
+    "term": "Unload on Close",
+    "context": "Unload on Close",
+    "reference": "Modules/Settings/LauncherTab.qml:423",
+    "comment": ""
+  },
+  {
+    "term": "Unmute",
+    "context": "Unmute",
+    "reference": "Modules/Settings/NotificationsTab.qml:659",
+    "comment": ""
+  },
+  {
+    "term": "Unmute popups for %1",
+    "context": "Unmute popups for %1",
+    "reference": "Modules/Notifications/Popup/NotificationPopup.qml:1029, Modules/Notifications/Center/NotificationCard.qml:962",
     "comment": ""
   },
   {
@@ -10856,7 +10976,7 @@
   {
     "term": "Uptime:",
     "context": "uptime label in footer",
-    "reference": "Modals/ProcessListModal.qml:473",
+    "reference": "Modals/ProcessListModal.qml:505",
     "comment": ""
   },
   {
@@ -10988,7 +11108,7 @@
   {
     "term": "Use smaller notification cards",
     "context": "Use smaller notification cards",
-    "reference": "Modules/Settings/NotificationsTab.qml:238",
+    "reference": "Modules/Settings/NotificationsTab.qml:268",
     "comment": ""
   },
   {
@@ -11018,7 +11138,7 @@
   {
     "term": "User",
     "context": "User",
-    "reference": "Modules/ControlCenter/Components/HeaderPane.qml:57",
+    "reference": "Modals/ProcessListModal.qml:377, Modules/ProcessList/ProcessListPopout.qml:155, Modules/ControlCenter/Components/HeaderPane.qml:57",
     "comment": ""
   },
   {
@@ -11138,7 +11258,7 @@
   {
     "term": "Version",
     "context": "Version",
-    "reference": "Modules/Settings/AboutTab.qml:641",
+    "reference": "Modules/Settings/AboutTab.qml:650",
     "comment": ""
   },
   {
@@ -11168,13 +11288,13 @@
   {
     "term": "Vibrant",
     "context": "matugen color scheme option",
-    "reference": "Common/Theme.qml:469",
+    "reference": "Common/Theme.qml:471",
     "comment": ""
   },
   {
     "term": "Vibrant palette with playful saturation.",
     "context": "Vibrant palette with playful saturation.",
-    "reference": "Common/Theme.qml:478",
+    "reference": "Common/Theme.qml:480",
     "comment": ""
   },
   {
@@ -11324,7 +11444,7 @@
   {
     "term": "When enabled, apps are sorted alphabetically. When disabled, apps are sorted by usage frequency.",
     "context": "When enabled, apps are sorted alphabetically. When disabled, apps are sorted by usage frequency.",
-    "reference": "Modules/Settings/LauncherTab.qml:338",
+    "reference": "Modules/Settings/LauncherTab.qml:340",
     "comment": ""
   },
   {
@@ -11360,7 +11480,7 @@
   {
     "term": "WiFi",
     "context": "WiFi",
-    "reference": "Modules/Settings/NetworkTab.qml:213, Modules/Settings/NetworkTab.qml:260, Modules/Settings/NetworkTab.qml:808, Modules/ControlCenter/Details/NetworkDetail.qml:133",
+    "reference": "Modules/Settings/NetworkTab.qml:213, Modules/Settings/NetworkTab.qml:260, Modules/Settings/NetworkTab.qml:808, Modules/ControlCenter/Details/NetworkDetail.qml:136",
     "comment": ""
   },
   {
@@ -11384,7 +11504,7 @@
   {
     "term": "WiFi is off",
     "context": "WiFi is off",
-    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:220",
+    "reference": "Modules/ControlCenter/Details/NetworkDetail.qml:225",
     "comment": ""
   },
   {
@@ -11696,7 +11816,7 @@
   {
     "term": "days",
     "context": "days",
-    "reference": "Modules/Settings/NotificationsTab.qml:613, Modules/Settings/ClipboardTab.qml:179",
+    "reference": "Modules/Settings/NotificationsTab.qml:829, Modules/Settings/ClipboardTab.qml:179",
     "comment": ""
   },
   {
@@ -11780,7 +11900,7 @@
   {
     "term": "minutes",
     "context": "minutes",
-    "reference": "Modules/Settings/NotificationsTab.qml:149",
+    "reference": "Modules/Settings/NotificationsTab.qml:168",
     "comment": ""
   },
   {
@@ -11804,7 +11924,7 @@
   {
     "term": "now",
     "context": "now",
-    "reference": "Services/NotificationService.qml:245",
+    "reference": "Services/NotificationService.qml:242",
     "comment": ""
   },
   {
@@ -11822,19 +11942,25 @@
   {
     "term": "procs",
     "context": "short for processes",
-    "reference": "Modules/ProcessList/ProcessListPopout.qml:256",
+    "reference": "Modules/ProcessList/ProcessListPopout.qml:285",
     "comment": ""
   },
   {
     "term": "seconds",
     "context": "seconds",
-    "reference": "Modules/Settings/NotificationsTab.qml:148",
+    "reference": "Modules/Settings/NotificationsTab.qml:167",
     "comment": ""
   },
   {
     "term": "source",
     "context": "source code link",
     "reference": "Modules/Settings/PluginBrowser.qml:538",
+    "comment": ""
+  },
+  {
+    "term": "this app",
+    "context": "this app",
+    "reference": "Modules/Notifications/Popup/NotificationPopup.qml:1029, Modules/Notifications/Popup/NotificationPopup.qml:1029, Modules/Notifications/Center/NotificationCard.qml:962, Modules/Notifications/Center/NotificationCard.qml:962",
     "comment": ""
   },
   {
@@ -11853,12 +11979,6 @@
     "term": "wtype not available - install wtype for paste support",
     "context": "wtype not available - install wtype for paste support",
     "reference": "Services/ClipboardService.qml:118",
-    "comment": ""
-  },
-  {
-    "term": "yesterday",
-    "context": "yesterday",
-    "reference": "Services/NotificationService.qml:255",
     "comment": ""
   },
   {

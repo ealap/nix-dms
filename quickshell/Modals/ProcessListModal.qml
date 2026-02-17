@@ -14,6 +14,7 @@ FloatingWindow {
     property int currentTab: 0
     property string searchText: ""
     property string expandedPid: ""
+    property string processFilter: "all"
     property bool shouldHaveFocus: visible
     property alias shouldBeVisible: processListModal.visible
 
@@ -98,6 +99,8 @@ FloatingWindow {
             closingModal();
             searchText = "";
             expandedPid = "";
+            processFilter = "all";
+            processFilterGroup.currentIndex = 0;
             if (processesTabLoader.item)
                 processesTabLoader.item.reset();
             DgopService.removeRef(["cpu", "memory", "network", "disk", "system"]);
@@ -368,9 +371,37 @@ FloatingWindow {
                     Layout.fillWidth: true
                 }
 
+                DankButtonGroup {
+                    id: processFilterGroup
+                    Layout.minimumWidth: implicitWidth + 8
+                    model: [I18n.tr("All"), I18n.tr("User"), I18n.tr("System")]
+                    currentIndex: 0
+                    checkEnabled: false
+                    buttonHeight: 36
+                    visible: currentTab === 0
+                    onSelectionChanged: (index, selected) => {
+                        if (!selected)
+                            return;
+                        currentIndex = index;
+                        switch (index) {
+                        case 0:
+                            processListModal.processFilter = "all";
+                            return;
+                        case 1:
+                            processListModal.processFilter = "user";
+                            return;
+                        case 2:
+                            processListModal.processFilter = "system";
+                            return;
+                        }
+                    }
+                }
+
                 DankTextField {
                     id: searchField
-                    Layout.preferredWidth: 250
+                    Layout.fillWidth: true
+                    Layout.maximumWidth: 250
+                    Layout.minimumWidth: 120
                     Layout.preferredHeight: 40
                     placeholderText: I18n.tr("Search processes...", "process search placeholder")
                     leftIconName: "search"
@@ -403,6 +434,7 @@ FloatingWindow {
                     sourceComponent: ProcessesView {
                         searchText: processListModal.searchText
                         expandedPid: processListModal.expandedPid
+                        processFilter: processListModal.processFilter
                         contextMenu: processContextMenu
                         onExpandedPidChanged: processListModal.expandedPid = expandedPid
                     }

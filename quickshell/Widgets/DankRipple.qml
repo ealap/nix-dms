@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Effects
 import qs.Common
 
 Item {
@@ -11,7 +10,7 @@ Item {
 
     property real _rippleX: 0
     property real _rippleY: 0
-    property real _rippleSize: 0
+    property real _rippleMaxRadius: 0
     readonly property alias animating: rippleAnim.running
 
     anchors.fill: parent
@@ -24,7 +23,7 @@ Item {
         _rippleY = y;
 
         const dist = (ox, oy) => ox * ox + oy * oy;
-        _rippleSize = Math.sqrt(Math.max(dist(x, y), dist(x, height - y), dist(width - x, y), dist(width - x, height - y))) * 2;
+        _rippleMaxRadius = Math.sqrt(Math.max(dist(x, y), dist(x, height - y), dist(width - x, y), dist(width - x, height - y)));
 
         rippleAnim.restart();
     }
@@ -33,45 +32,32 @@ Item {
         id: rippleAnim
 
         PropertyAction {
-            target: ripple
-            property: "x"
+            target: rippleFx
+            property: "rippleCenterX"
             value: root._rippleX
         }
         PropertyAction {
-            target: ripple
-            property: "y"
+            target: rippleFx
+            property: "rippleCenterY"
             value: root._rippleY
         }
         PropertyAction {
-            target: ripple
-            property: "implicitWidth"
+            target: rippleFx
+            property: "rippleRadius"
             value: 0
         }
         PropertyAction {
-            target: ripple
-            property: "implicitHeight"
-            value: 0
-        }
-        PropertyAction {
-            target: ripple
-            property: "opacity"
+            target: rippleFx
+            property: "rippleOpacity"
             value: 0.10
         }
 
         ParallelAnimation {
             DankAnim {
-                target: ripple
-                property: "implicitWidth"
+                target: rippleFx
+                property: "rippleRadius"
                 from: 0
-                to: root._rippleSize
-                duration: Theme.expressiveDurations.expressiveDefaultSpatial
-                easing.bezierCurve: Theme.expressiveCurves.standardDecel
-            }
-            DankAnim {
-                target: ripple
-                property: "implicitHeight"
-                from: 0
-                to: root._rippleSize
+                to: root._rippleMaxRadius
                 duration: Theme.expressiveDurations.expressiveDefaultSpatial
                 easing.bezierCurve: Theme.expressiveCurves.standardDecel
             }
@@ -80,8 +66,8 @@ Item {
                     duration: Math.round(Theme.expressiveDurations.expressiveDefaultSpatial * 0.6)
                 }
                 DankAnim {
-                    target: ripple
-                    property: "opacity"
+                    target: rippleFx
+                    property: "rippleOpacity"
                     to: 0
                     duration: Theme.expressiveDurations.expressiveDefaultSpatial
                     easing.bezierCurve: Theme.expressiveCurves.standard
@@ -90,27 +76,29 @@ Item {
         }
     }
 
-    // VRAM optimization: Use clip instead of layer+MultiEffect for rounded corners
-    // The layer.enabled approach creates an offscreen texture for every clickable element
-    // with rounded corners, which adds 200-400MB VRAM across the UI.
-    // Using clip: true is GPU-native and much cheaper.
-    Rectangle {
-        anchors.fill: parent
-        radius: root.cornerRadius
-        color: "transparent"
-        clip: root.cornerRadius > 0
+    ShaderEffect {
+        id: rippleFx
+        visible: rippleAnim.running
 
-        Rectangle {
-            id: ripple
+        property real rippleCenterX: 0
+        property real rippleCenterY: 0
+        property real rippleRadius: 0
+        property real rippleOpacity: 0
 
-            radius: Math.min(width, height) / 2
-            color: root.rippleColor
-            opacity: 0
+        x: Math.max(0, rippleCenterX - rippleRadius)
+        y: Math.max(0, rippleCenterY - rippleRadius)
+        width: Math.max(0, Math.min(root.width, rippleCenterX + rippleRadius) - x)
+        height: Math.max(0, Math.min(root.height, rippleCenterY + rippleRadius) - y)
 
-            transform: Translate {
-                x: -ripple.width / 2
-                y: -ripple.height / 2
-            }
-        }
+        property real widthPx: width
+        property real heightPx: height
+        property real cornerRadiusPx: root.cornerRadius
+        property real offsetX: x
+        property real offsetY: y
+        property real parentWidth: root.width
+        property real parentHeight: root.height
+        property vector4d rippleCol: Qt.vector4d(root.rippleColor.r, root.rippleColor.g, root.rippleColor.b, root.rippleColor.a)
+
+        fragmentShader: Qt.resolvedUrl("../Shaders/qsb/ripple.frag.qsb")
     }
 }

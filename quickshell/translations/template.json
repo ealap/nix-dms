@@ -49,13 +49,6 @@
     "comment": ""
   },
   {
-    "term": "%1 days ago",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
     "term": "%1 disconnected",
     "translation": "",
     "context": "",
@@ -910,6 +903,13 @@
     "comment": ""
   },
   {
+    "term": "Apps with notification popups muted. Unmute or delete to remove.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Architecture",
     "translation": "",
     "context": "system info label",
@@ -1352,6 +1352,13 @@
   },
   {
     "term": "Bar Transparency",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Base duration for animations (drag to use Custom)",
     "translation": "",
     "context": "",
     "reference": "",
@@ -2660,6 +2667,13 @@
     "comment": ""
   },
   {
+    "term": "Control animation duration for notification popups and history",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Control currently playing media",
     "translation": "",
     "context": "",
@@ -2863,7 +2877,7 @@
     "comment": ""
   },
   {
-    "term": "Create rules to mute, ignore, hide from history, or override notification priority.",
+    "term": "Create rules to mute, ignore, hide from history, or override notification priority. Default only overrides priority; notifications still show normally.",
     "translation": "",
     "context": "",
     "reference": "",
@@ -3914,6 +3928,13 @@
   },
   {
     "term": "Duplicate Wallpaper with Blur",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Duration",
     "translation": "",
     "context": "",
     "reference": "",
@@ -5236,6 +5257,13 @@
     "comment": ""
   },
   {
+    "term": "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Frequency",
     "translation": "",
     "context": "",
@@ -5607,6 +5635,13 @@
     "comment": ""
   },
   {
+    "term": "Hidden (%1)",
+    "translation": "",
+    "context": "count of hidden audio devices",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Hidden Apps",
     "translation": "",
     "context": "",
@@ -5699,6 +5734,27 @@
   },
   {
     "term": "Hide cursor when using touch input",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Hide device",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Hide notification content until expanded",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Hide notification content until expanded; popups show collapsed by default",
     "translation": "",
     "context": "",
     "reference": "",
@@ -7126,6 +7182,13 @@
     "comment": ""
   },
   {
+    "term": "Message Content",
+    "translation": "",
+    "context": "notification privacy mode placeholder",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Microphone",
     "translation": "",
     "context": "",
@@ -7371,9 +7434,23 @@
     "comment": ""
   },
   {
+    "term": "Mute popups for %1",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Muted",
     "translation": "",
     "context": "audio status",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Muted Apps",
+    "translation": "",
+    "context": "",
     "reference": "",
     "comment": ""
   },
@@ -7778,6 +7855,13 @@
   },
   {
     "term": "No apps have been launched yet.",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "No apps muted. Right-click a notification and choose \"Mute popups\" to add one here.",
     "translation": "",
     "context": "",
     "reference": "",
@@ -9107,6 +9191,13 @@
     "comment": ""
   },
   {
+    "term": "Popup Shadow",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Popup Transparency",
     "translation": "",
     "context": "",
@@ -9409,6 +9500,13 @@
   },
   {
     "term": "Privacy Indicator",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Privacy Mode",
     "translation": "",
     "context": "",
     "reference": "",
@@ -10689,6 +10787,13 @@
     "comment": ""
   },
   {
+    "term": "Set notification rules",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Settings",
     "translation": "",
     "context": "settings window title",
@@ -11200,7 +11305,21 @@
     "comment": ""
   },
   {
+    "term": "Show device",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Show dock when floating windows don't overlap its area",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Show drop shadow on notification popups",
     "translation": "",
     "context": "",
     "reference": "",
@@ -12572,6 +12691,27 @@
     "comment": ""
   },
   {
+    "term": "Unload on Close",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Unmute",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
+    "term": "Unmute popups for %1",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Unnamed Rule",
     "translation": "",
     "context": "",
@@ -13811,6 +13951,13 @@
     "comment": ""
   },
   {
+    "term": "this app",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "update dms for NM integration.",
     "translation": "",
     "context": "",
@@ -13826,13 +13973,6 @@
   },
   {
     "term": "wtype not available - install wtype for paste support",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
-    "term": "yesterday",
     "translation": "",
     "context": "",
     "reference": "",

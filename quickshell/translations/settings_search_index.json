@@ -2110,6 +2110,35 @@
     ]
   },
   {
+    "section": "dankLauncherV2UnloadOnClose",
+    "label": "Unload on Close",
+    "tabIndex": 9,
+    "category": "Launcher",
+    "keywords": [
+      "app drawer",
+      "app menu",
+      "applications",
+      "cause",
+      "close",
+      "closed",
+      "day",
+      "delay",
+      "drawer",
+      "free",
+      "launcher",
+      "light mode",
+      "memory",
+      "menu",
+      "reopening",
+      "slight",
+      "start",
+      "start menu",
+      "unload",
+      "vram"
+    ],
+    "description": "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening."
+  },
+  {
     "section": "matugenTemplateAlacritty",
     "label": "Alacritty",
     "tabIndex": 10,
@@ -4717,6 +4746,29 @@
     "description": "Suppress notification popups while enabled"
   },
   {
+    "section": "notificationCustomAnimationDuration",
+    "label": "Duration",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alerts",
+      "animate",
+      "animation",
+      "animations",
+      "base",
+      "custom",
+      "duration",
+      "messages",
+      "motion",
+      "notification",
+      "notifications",
+      "speed",
+      "toast",
+      "transition"
+    ],
+    "description": "Base duration for animations (drag to use Custom)"
+  },
+  {
     "section": "notificationHistoryEnabled",
     "label": "Enable History",
     "tabIndex": 17,
@@ -4879,6 +4931,25 @@
       "toast"
     ],
     "description": "Maximum number of notifications to keep"
+  },
+  {
+    "section": "mutedApps",
+    "label": "Muted Apps",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alerts",
+      "apps",
+      "messages",
+      "mute",
+      "muted",
+      "notification",
+      "notifications",
+      "popup",
+      "toast",
+      "unmute"
+    ],
+    "icon": "volume_off"
   },
   {
     "section": "notificationHistorySaveNormal",
@@ -5057,6 +5128,56 @@
       "where"
     ],
     "description": "Choose where notification popups appear on screen"
+  },
+  {
+    "section": "notificationPopupShadowEnabled",
+    "label": "Popup Shadow",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alert",
+      "alerts",
+      "drop",
+      "messages",
+      "notif",
+      "notification",
+      "notifications",
+      "popup",
+      "popups",
+      "radius",
+      "rounded",
+      "shadow",
+      "show",
+      "toast"
+    ],
+    "description": "Show drop shadow on notification popups"
+  },
+  {
+    "section": "notificationPopupPrivacyMode",
+    "label": "Privacy Mode",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alert",
+      "alerts",
+      "body",
+      "collapsed",
+      "content",
+      "default",
+      "hide",
+      "messages",
+      "mode",
+      "notif",
+      "notification",
+      "notifications",
+      "popup",
+      "popups",
+      "privacy",
+      "show",
+      "toast",
+      "until"
+    ],
+    "description": "Hide notification content until expanded; popups show collapsed by default"
   },
   {
     "section": "osdAlwaysShowValue",

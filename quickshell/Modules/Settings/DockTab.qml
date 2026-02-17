@@ -264,6 +264,8 @@ Item {
                                         modes.push("Sway");
                                     } else if (CompositorService.isScroll) {
                                         modes.push("Scroll");
+                                    } else if (CompositorService.isMiracle) {
+                                        modes.push("Miracle");
                                     } else {
                                         modes.push(I18n.tr("Compositor"));
                                     }
@@ -507,6 +509,7 @@ Item {
                     value: SettingsData.dockIconSize
                     minimum: 24
                     maximum: 96
+                    unit: "px"
                     defaultValue: 48
                     onSliderValueChanged: newValue => SettingsData.set("dockIconSize", newValue)
                 }

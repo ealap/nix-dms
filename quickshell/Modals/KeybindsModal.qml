@@ -1,4 +1,6 @@
+import QtQml
 import QtQuick
+import QtQuick.Layouts
 import Quickshell.Hyprland
 import qs.Common
 import qs.Modals.Common
@@ -18,7 +20,11 @@ DankModal {
     modalHeight: _maxH
     onBackgroundClicked: close()
     onOpened: {
-        Qt.callLater(() => modalFocusScope.forceActiveFocus());
+        Qt.callLater(() => {
+            modalFocusScope.forceActiveFocus();
+            if (contentLoader.item?.searchField)
+                contentLoader.item.searchField.forceActiveFocus();
+        });
         if (!Object.keys(KeybindsService.cheatsheet).length && KeybindsService.cheatsheetAvailable)
             KeybindsService.loadCheatsheet();
     }
@@ -63,17 +69,39 @@ DankModal {
     content: Component {
         Item {
             anchors.fill: parent
+            property alias searchField: searchField
 
             Column {
                 anchors.fill: parent
                 anchors.margins: Theme.spacingL
                 spacing: Theme.spacingL
 
-                StyledText {
-                    text: KeybindsService.cheatsheet.title || "Keybinds"
-                    font.pixelSize: Theme.fontSizeLarge
-                    font.weight: Font.Bold
-                    color: Theme.primary
+                RowLayout {
+                    width: parent.width
+
+                    StyledText {
+                        Layout.alignment: Qt.AlignLeft
+                        text: KeybindsService.cheatsheet.title || "Keybinds"
+                        font.pixelSize: Theme.fontSizeLarge
+                        font.weight: Font.Bold
+                        color: Theme.primary
+                    }
+
+                    DankTextField {
+                        id: searchField
+                        Layout.alignment: Qt.AlignRight
+                        leftIconName: "search"
+                        onTextEdited: searchDebounce.restart()
+                    }
+                }
+
+                Timer {
+                    id: searchDebounce
+                    interval: 50
+                    repeat: false
+                    onTriggered: {
+                        mainFlickable.categories = mainFlickable.generateCategories(searchField.text);
+                    }
                 }
 
                 DankFlickable {
@@ -87,17 +115,26 @@ DankModal {
                     Component.onCompleted: root.activeFlickable = mainFlickable
 
                     property var rawBinds: KeybindsService.cheatsheet.binds || {}
-                    property var categories: {
+
+                    function generateCategories(query) {
+                        const lowerQuery = query ? query.toLowerCase().trim() : "";
                         const processed = {};
+
                         for (const cat in rawBinds) {
                             const binds = rawBinds[cat];
+                            const catLower = cat.toLowerCase();
                             const subcats = {};
                             let hasSubcats = false;
-
                             for (let i = 0; i < binds.length; i++) {
                                 const bind = binds[i];
+                                const keyLower = bind.key.toLowerCase();
+                                const descLower = bind.desc.toLowerCase();
+                                const actionLower = bind.action.toLowerCase();
+                                if (!(lowerQuery.length === 0 || keyLower.includes(lowerQuery) || descLower.includes(lowerQuery) || catLower.includes(lowerQuery) || actionLower.includes(lowerQuery)))
+                                    continue;
                                 if (bind.hideOnOverlay)
                                     continue;
+
                                 if (bind.subcat) {
                                     hasSubcats = true;
                                     if (!subcats[bind.subcat])
@@ -119,9 +156,11 @@ DankModal {
                                 subcatKeys: Object.keys(subcats)
                             };
                         }
+
                         return processed;
                     }
-                    property var categoryKeys: Object.keys(categories)
+
+                    property var categories: generateCategories("");
 
                     function estimateCategoryHeight(catName) {
                         const catData = categories[catName];
@@ -135,6 +174,8 @@ DankModal {
                         }
                         return 40 + bindCount * 28;
                     }
+
+                    property var categoryKeys: Object.keys(categories);
 
                     function distributeCategories(cols) {
                         const columns = [];

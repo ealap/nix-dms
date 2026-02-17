@@ -14,6 +14,7 @@ DankPopout {
     property var triggerScreen: null
     property string searchText: ""
     property string expandedPid: ""
+    property string processFilter: "all"
 
     function hide() {
         close();
@@ -42,6 +43,7 @@ DankPopout {
         if (!shouldBeVisible) {
             searchText = "";
             expandedPid = "";
+            processFilter = "all";
         }
     }
 
@@ -110,6 +112,7 @@ DankPopout {
                         Qt.callLater(() => searchField.forceActiveFocus());
                     } else {
                         processesView.reset();
+                        processFilterGroup.currentIndex = 0;
                     }
                 }
             }
@@ -144,6 +147,32 @@ DankPopout {
 
                     Item {
                         Layout.fillWidth: true
+                    }
+
+                    DankButtonGroup {
+                        id: processFilterGroup
+                        Layout.minimumWidth: implicitWidth + 8
+                        model: [I18n.tr("All"), I18n.tr("User"), I18n.tr("System")]
+                        currentIndex: 0
+                        checkEnabled: false
+                        buttonHeight: Math.round(Theme.fontSizeMedium * 2.2)
+                        textSize: Theme.fontSizeSmall
+                        onSelectionChanged: (index, selected) => {
+                            if (!selected)
+                                return;
+                            currentIndex = index;
+                            switch (index) {
+                            case 0:
+                                processListPopout.processFilter = "all";
+                                return;
+                            case 1:
+                                processListPopout.processFilter = "user";
+                                return;
+                            case 2:
+                                processListPopout.processFilter = "system";
+                                return;
+                            }
+                        }
                     }
 
                     DankTextField {
@@ -334,6 +363,7 @@ DankPopout {
                         anchors.margins: Theme.spacingS
                         searchText: processListPopout.searchText
                         expandedPid: processListPopout.expandedPid
+                        processFilter: processListPopout.processFilter
                         contextMenu: processContextMenu
                         onExpandedPidChanged: processListPopout.expandedPid = expandedPid
                     }

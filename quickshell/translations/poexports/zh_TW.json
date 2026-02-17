@@ -356,6 +356,9 @@
   "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": {
     "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": "具備自訂顯示名稱、圖示或啟動選項的應用程式。右鍵點擊應用程式並選擇「編輯應用程式」來自訂。"
   },
+  "Apps with notification popups muted. Unmute or delete to remove.": {
+    "Apps with notification popups muted. Unmute or delete to remove.": ""
+  },
   "Arrange displays and configure resolution, refresh rate, and VRR": {
     "Arrange displays and configure resolution, refresh rate, and VRR": "排列顯示器並設定解析度、重新整理頻率和 VRR"
   },
@@ -558,6 +561,9 @@
   },
   "Bar Transparency": {
     "Bar Transparency": "欄透明度"
+  },
+  "Base duration for animations (drag to use Custom)": {
+    "Base duration for animations (drag to use Custom)": ""
   },
   "Battery": {
     "Battery": "電池"
@@ -1075,6 +1081,9 @@
   "Control Center Tile Color": {
     "Control Center Tile Color": "控制中心磚顏色"
   },
+  "Control animation duration for notification popups and history": {
+    "Control animation duration for notification popups and history": ""
+  },
   "Control currently playing media": {
     "Control currently playing media": "控制目前播放器"
   },
@@ -1164,6 +1173,9 @@
   },
   "Create rules to mute, ignore, hide from history, or override notification priority.": {
     "Create rules to mute, ignore, hide from history, or override notification priority.": ""
+  },
+  "Create rules to mute, ignore, hide from history, or override notification priority. Default only overrides priority; notifications still show normally.": {
+    "Create rules to mute, ignore, hide from history, or override notification priority. Default only overrides priority; notifications still show normally.": ""
   },
   "Creating...": {
     "Creating...": "建立中..."
@@ -1575,6 +1587,9 @@
   },
   "Duplicate Wallpaper with Blur": {
     "Duplicate Wallpaper with Blur": "模糊化重複桌布"
+  },
+  "Duration": {
+    "Duration": ""
   },
   "Dusk (Astronomical Twilight)": {
     "Dusk (Astronomical Twilight)": "黃昏 (天文暮光)"
@@ -2089,6 +2104,9 @@
   "Format Legend": {
     "Format Legend": "格式說明"
   },
+  "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening.": {
+    "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening.": ""
+  },
   "Frequency": {
     "Frequency": "頻率"
   },
@@ -2212,6 +2230,9 @@
   "Hidden": {
     "Hidden": "隱藏的"
   },
+  "Hidden (%1)": {
+    "Hidden (%1)": ""
+  },
   "Hidden Apps": {
     "Hidden Apps": "隱藏的應用程式"
   },
@@ -2250,6 +2271,15 @@
   },
   "Hide cursor when using touch input": {
     "Hide cursor when using touch input": "使用觸控輸入時隱藏游標"
+  },
+  "Hide device": {
+    "Hide device": ""
+  },
+  "Hide notification content until expanded": {
+    "Hide notification content until expanded": ""
+  },
+  "Hide notification content until expanded; popups show collapsed by default": {
+    "Hide notification content until expanded; popups show collapsed by default": ""
   },
   "Hide on Touch": {
     "Hide on Touch": "觸控時隱藏"
@@ -3073,6 +3103,12 @@
   "Moving to Paused": {
     "Moving to Paused": "正在移至暫停"
   },
+  "Mute popups for %1": {
+    "Mute popups for %1": ""
+  },
+  "Muted Apps": {
+    "Muted Apps": ""
+  },
   "Muted palette with subdued, calming tones.": {
     "Muted palette with subdued, calming tones.": "柔和的調色板，柔和、平靜的色調。"
   },
@@ -3222,6 +3258,9 @@
   },
   "No apps have been launched yet.": {
     "No apps have been launched yet.": ""
+  },
+  "No apps muted. Right-click a notification and choose \"Mute popups\" to add one here.": {
+    "No apps muted. Right-click a notification and choose \"Mute popups\" to add one here.": ""
   },
   "No battery": {
     "No battery": "無電池"
@@ -3714,6 +3753,9 @@
   "Popup Position": {
     "Popup Position": "彈窗位置"
   },
+  "Popup Shadow": {
+    "Popup Shadow": ""
+  },
   "Popup Transparency": {
     "Popup Transparency": "彈窗透明度"
   },
@@ -3821,6 +3863,9 @@
   },
   "Privacy Indicator": {
     "Privacy Indicator": "隱私指示器"
+  },
+  "Privacy Mode": {
+    "Privacy Mode": ""
   },
   "Private Key Password": {
     "Private Key Password": "私鑰密碼"
@@ -4278,6 +4323,9 @@
   "Set key and action to save": {
     "Set key and action to save": "設定按鍵和動作以保存"
   },
+  "Set notification rules": {
+    "Set notification rules": ""
+  },
   "Setup": {
     "Setup": "設定"
   },
@@ -4449,8 +4497,14 @@
   "Show darkened overlay behind modal dialogs": {
     "Show darkened overlay behind modal dialogs": "在模態對話框後顯示暗化覆蓋層"
   },
+  "Show device": {
+    "Show device": ""
+  },
   "Show dock when floating windows don't overlap its area": {
     "Show dock when floating windows don't overlap its area": "當浮動視窗未覆蓋其區域時顯示工作列"
+  },
+  "Show drop shadow on notification popups": {
+    "Show drop shadow on notification popups": ""
   },
   "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": {
     "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": "在 Niri 總覽中輸入時顯示啟動器疊加。停用以使用其他啟動器。"
@@ -4989,6 +5043,15 @@
   "Unknown Title": {
     "Unknown Title": ""
   },
+  "Unload on Close": {
+    "Unload on Close": ""
+  },
+  "Unmute": {
+    "Unmute": ""
+  },
+  "Unmute popups for %1": {
+    "Unmute popups for %1": ""
+  },
   "Unnamed Rule": {
     "Unnamed Rule": "未命名規則"
   },
@@ -5484,6 +5547,9 @@
   "control center tile color setting description": {
     "Active tile background and icon color": "啟用磚背景與圖示顏色"
   },
+  "count of hidden audio devices": {
+    "Hidden (%1)": ""
+  },
   "current theme label": {
     "Current Theme: %1": "目前主題：%1"
   },
@@ -5898,6 +5964,9 @@
   "notification history toggle label": {
     "Enable History": "啟用歷史記錄"
   },
+  "notification privacy mode placeholder": {
+    "Message Content": ""
+  },
   "notification rule action option": {
     "Ignore Completely": "",
     "Mute Popups": "",
@@ -6049,6 +6118,9 @@
   },
   "theme search placeholder": {
     "Search themes...": "搜尋主題..."
+  },
+  "this app": {
+    "this app": ""
   },
   "tile color option": {
     "Primary Container": "主要容器",

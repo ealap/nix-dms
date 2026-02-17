@@ -395,6 +395,7 @@ Singleton {
                     "memoryKB": proc.memoryKB || proc.pssKB || 0,
                     "command": proc.command || "",
                     "fullCommand": proc.fullCommand || "",
+                    "username": proc.username || "",
                     "displayName": (proc.command && proc.command.length > 15) ? proc.command.substring(0, 15) + "..." : (proc.command || "")
                 });
             }

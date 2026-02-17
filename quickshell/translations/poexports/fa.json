@@ -356,6 +356,9 @@
   "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": {
     "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": "برنامه‌ها با نام نمایشی، آیکون و گزینه‌های اجرای سفارشی. روی یک برنامه راست‌کلیک کرده و «ویرایش برنامه» را برای سفارشی‌سازی انتخاب کنید."
   },
+  "Apps with notification popups muted. Unmute or delete to remove.": {
+    "Apps with notification popups muted. Unmute or delete to remove.": ""
+  },
   "Arrange displays and configure resolution, refresh rate, and VRR": {
     "Arrange displays and configure resolution, refresh rate, and VRR": "چیدمان نمایشگرها و پیکربندی وضوح، نرخ تازه‌سازی و VRR"
   },
@@ -558,6 +561,9 @@
   },
   "Bar Transparency": {
     "Bar Transparency": "شفافیت نوار"
+  },
+  "Base duration for animations (drag to use Custom)": {
+    "Base duration for animations (drag to use Custom)": ""
   },
   "Battery": {
     "Battery": "باتری"
@@ -1075,6 +1081,9 @@
   "Control Center Tile Color": {
     "Control Center Tile Color": "رنگ کاشی مرکز کنترل"
   },
+  "Control animation duration for notification popups and history": {
+    "Control animation duration for notification popups and history": ""
+  },
   "Control currently playing media": {
     "Control currently playing media": "کنترل رسانه درحال پخش"
   },
@@ -1164,6 +1173,9 @@
   },
   "Create rules to mute, ignore, hide from history, or override notification priority.": {
     "Create rules to mute, ignore, hide from history, or override notification priority.": "برای بی‌صدا کردن، نادیده گرفتن، پنهان‌سازی از تاریخچه و یا تغییر اولویت اعلان قاعده ایجاد کنید."
+  },
+  "Create rules to mute, ignore, hide from history, or override notification priority. Default only overrides priority; notifications still show normally.": {
+    "Create rules to mute, ignore, hide from history, or override notification priority. Default only overrides priority; notifications still show normally.": ""
   },
   "Creating...": {
     "Creating...": "درحال ایجاد..."
@@ -1575,6 +1587,9 @@
   },
   "Duplicate Wallpaper with Blur": {
     "Duplicate Wallpaper with Blur": "تصویر پس‌زمینه تکراری با تاری"
+  },
+  "Duration": {
+    "Duration": ""
   },
   "Dusk (Astronomical Twilight)": {
     "Dusk (Astronomical Twilight)": "غروب (گرگ و میش نجومی)"
@@ -2089,6 +2104,9 @@
   "Format Legend": {
     "Format Legend": "قالب فهرست علائم"
   },
+  "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening.": {
+    "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening.": ""
+  },
   "Frequency": {
     "Frequency": "فرکانس"
   },
@@ -2212,6 +2230,9 @@
   "Hidden": {
     "Hidden": "پنهان"
   },
+  "Hidden (%1)": {
+    "Hidden (%1)": ""
+  },
   "Hidden Apps": {
     "Hidden Apps": "برنامه‌های پنهان"
   },
@@ -2250,6 +2271,15 @@
   },
   "Hide cursor when using touch input": {
     "Hide cursor when using touch input": "اشاره‌گر موس را هنگام استفاده از ورودی لمسی پنهان کن"
+  },
+  "Hide device": {
+    "Hide device": ""
+  },
+  "Hide notification content until expanded": {
+    "Hide notification content until expanded": ""
+  },
+  "Hide notification content until expanded; popups show collapsed by default": {
+    "Hide notification content until expanded; popups show collapsed by default": ""
   },
   "Hide on Touch": {
     "Hide on Touch": "هنگام لمس پنهان کن"
@@ -3073,6 +3103,12 @@
   "Moving to Paused": {
     "Moving to Paused": "انتقال به حالت متوقف شده"
   },
+  "Mute popups for %1": {
+    "Mute popups for %1": ""
+  },
+  "Muted Apps": {
+    "Muted Apps": ""
+  },
   "Muted palette with subdued, calming tones.": {
     "Muted palette with subdued, calming tones.": "پالت رنگی ساکت با تن‌های ملایم و آرامش‌بخش."
   },
@@ -3222,6 +3258,9 @@
   },
   "No apps have been launched yet.": {
     "No apps have been launched yet.": "هیچ برنامه‌ای هنوز اجرا نشده است."
+  },
+  "No apps muted. Right-click a notification and choose \"Mute popups\" to add one here.": {
+    "No apps muted. Right-click a notification and choose \"Mute popups\" to add one here.": ""
   },
   "No battery": {
     "No battery": "بدون باتری"
@@ -3714,6 +3753,9 @@
   "Popup Position": {
     "Popup Position": "مکان پاپ‌آپ"
   },
+  "Popup Shadow": {
+    "Popup Shadow": ""
+  },
   "Popup Transparency": {
     "Popup Transparency": "شفافیت پاپ‌آپ"
   },
@@ -3821,6 +3863,9 @@
   },
   "Privacy Indicator": {
     "Privacy Indicator": "نشانگر حریم خصوصی"
+  },
+  "Privacy Mode": {
+    "Privacy Mode": ""
   },
   "Private Key Password": {
     "Private Key Password": "کلید خصوصی گذرواژه"
@@ -4278,6 +4323,9 @@
   "Set key and action to save": {
     "Set key and action to save": "کلید و اقدام را برای ذخیره تنظیم کنید"
   },
+  "Set notification rules": {
+    "Set notification rules": ""
+  },
   "Setup": {
     "Setup": "راه‌اندازی"
   },
@@ -4449,8 +4497,14 @@
   "Show darkened overlay behind modal dialogs": {
     "Show darkened overlay behind modal dialogs": "لایه overlay تیره پشت پنجره مودال نمایش بده"
   },
+  "Show device": {
+    "Show device": ""
+  },
   "Show dock when floating windows don't overlap its area": {
     "Show dock when floating windows don't overlap its area": "داک را هنگامی که پنجره‌های شناور با محیط آن همپوشانی ندارند نمایش بده"
+  },
+  "Show drop shadow on notification popups": {
+    "Show drop shadow on notification popups": ""
   },
   "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": {
     "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": "لایه overlay لانچر را هنگام تایپ در نمای کلی نیری نمایش بده. برای استفاده از لانچر دیگری غیرفعال کنید."
@@ -4989,6 +5043,15 @@
   "Unknown Title": {
     "Unknown Title": "عنوان ناشناس"
   },
+  "Unload on Close": {
+    "Unload on Close": ""
+  },
+  "Unmute": {
+    "Unmute": ""
+  },
+  "Unmute popups for %1": {
+    "Unmute popups for %1": ""
+  },
   "Unnamed Rule": {
     "Unnamed Rule": "قاعده بی‌نام"
   },
@@ -5484,6 +5547,9 @@
   "control center tile color setting description": {
     "Active tile background and icon color": "رنگ کاشی پس‌زمینه فعال و آیکون"
   },
+  "count of hidden audio devices": {
+    "Hidden (%1)": ""
+  },
   "current theme label": {
     "Current Theme: %1": "تم کنونی: %1"
   },
@@ -5898,6 +5964,9 @@
   "notification history toggle label": {
     "Enable History": "فعال‌کردن تاریخچه"
   },
+  "notification privacy mode placeholder": {
+    "Message Content": ""
+  },
   "notification rule action option": {
     "Ignore Completely": "کلاً نادیده بگیر",
     "Mute Popups": "پاپ‌آپ‌ها بی‌صدا شوند",
@@ -6049,6 +6118,9 @@
   },
   "theme search placeholder": {
     "Search themes...": "جستجوی تم‌ها..."
+  },
+  "this app": {
+    "this app": ""
   },
   "tile color option": {
     "Primary Container": "زمینه اصلی",

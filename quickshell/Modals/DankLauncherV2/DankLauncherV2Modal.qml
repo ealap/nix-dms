@@ -402,7 +402,6 @@ Item {
                     sourceComponent: LauncherContent {
                         focus: true
                         parentModal: root
-                        heavyContentActive: !SettingsData.dankLauncherV2UnloadOnClose || spotlightOpen || isClosing
                     }
 
                     onLoaded: {

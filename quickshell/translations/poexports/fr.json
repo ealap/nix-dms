@@ -356,6 +356,9 @@
   "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": {
     "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": "Les applis avec un nom, une icône ou des options de lancement personnalisées. Faites un clic droit sur une appli et sélectionnez 'Editer appli' pour customiser."
   },
+  "Apps with notification popups muted. Unmute or delete to remove.": {
+    "Apps with notification popups muted. Unmute or delete to remove.": ""
+  },
   "Arrange displays and configure resolution, refresh rate, and VRR": {
     "Arrange displays and configure resolution, refresh rate, and VRR": "Organiser les écrans et configurer la résolution, la fréquence de rafraîchissement et le VRR."
   },
@@ -558,6 +561,9 @@
   },
   "Bar Transparency": {
     "Bar Transparency": "Transparence de la barre"
+  },
+  "Base duration for animations (drag to use Custom)": {
+    "Base duration for animations (drag to use Custom)": ""
   },
   "Battery": {
     "Battery": "Batterie"
@@ -1075,6 +1081,9 @@
   "Control Center Tile Color": {
     "Control Center Tile Color": "Couleur de la tuile du centre de contrôle"
   },
+  "Control animation duration for notification popups and history": {
+    "Control animation duration for notification popups and history": ""
+  },
   "Control currently playing media": {
     "Control currently playing media": "Contrôle le média en lecture"
   },
@@ -1164,6 +1173,9 @@
   },
   "Create rules to mute, ignore, hide from history, or override notification priority.": {
     "Create rules to mute, ignore, hide from history, or override notification priority.": ""
+  },
+  "Create rules to mute, ignore, hide from history, or override notification priority. Default only overrides priority; notifications still show normally.": {
+    "Create rules to mute, ignore, hide from history, or override notification priority. Default only overrides priority; notifications still show normally.": ""
   },
   "Creating...": {
     "Creating...": "Création..."
@@ -1575,6 +1587,9 @@
   },
   "Duplicate Wallpaper with Blur": {
     "Duplicate Wallpaper with Blur": "Dupliquer le fond d’écran avec flou"
+  },
+  "Duration": {
+    "Duration": ""
   },
   "Dusk (Astronomical Twilight)": {
     "Dusk (Astronomical Twilight)": "Crépuscule (astronomique)"
@@ -2089,6 +2104,9 @@
   "Format Legend": {
     "Format Legend": "Légende du format"
   },
+  "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening.": {
+    "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening.": ""
+  },
   "Frequency": {
     "Frequency": "Fréquence"
   },
@@ -2212,6 +2230,9 @@
   "Hidden": {
     "Hidden": "Masqué"
   },
+  "Hidden (%1)": {
+    "Hidden (%1)": ""
+  },
   "Hidden Apps": {
     "Hidden Apps": "Applis masquées"
   },
@@ -2250,6 +2271,15 @@
   },
   "Hide cursor when using touch input": {
     "Hide cursor when using touch input": "Masquer le curseur lors de l’utilisation du tactile"
+  },
+  "Hide device": {
+    "Hide device": ""
+  },
+  "Hide notification content until expanded": {
+    "Hide notification content until expanded": ""
+  },
+  "Hide notification content until expanded; popups show collapsed by default": {
+    "Hide notification content until expanded; popups show collapsed by default": ""
   },
   "Hide on Touch": {
     "Hide on Touch": "Masquer au toucher"
@@ -3073,6 +3103,12 @@
   "Moving to Paused": {
     "Moving to Paused": "Mise en pause en cours"
   },
+  "Mute popups for %1": {
+    "Mute popups for %1": ""
+  },
+  "Muted Apps": {
+    "Muted Apps": ""
+  },
   "Muted palette with subdued, calming tones.": {
     "Muted palette with subdued, calming tones.": "Palette atténuée aux tons doux et apaisants."
   },
@@ -3222,6 +3258,9 @@
   },
   "No apps have been launched yet.": {
     "No apps have been launched yet.": ""
+  },
+  "No apps muted. Right-click a notification and choose \"Mute popups\" to add one here.": {
+    "No apps muted. Right-click a notification and choose \"Mute popups\" to add one here.": ""
   },
   "No battery": {
     "No battery": "Aucune batterie"
@@ -3714,6 +3753,9 @@
   "Popup Position": {
     "Popup Position": "Position du popup"
   },
+  "Popup Shadow": {
+    "Popup Shadow": ""
+  },
   "Popup Transparency": {
     "Popup Transparency": "Transparence du popup"
   },
@@ -3821,6 +3863,9 @@
   },
   "Privacy Indicator": {
     "Privacy Indicator": "Indicateur de confidentialité"
+  },
+  "Privacy Mode": {
+    "Privacy Mode": ""
   },
   "Private Key Password": {
     "Private Key Password": "Mot de passe de clé privée"
@@ -4278,6 +4323,9 @@
   "Set key and action to save": {
     "Set key and action to save": "Définir la touche et l’action à enregistrer"
   },
+  "Set notification rules": {
+    "Set notification rules": ""
+  },
   "Setup": {
     "Setup": "Configuration"
   },
@@ -4449,8 +4497,14 @@
   "Show darkened overlay behind modal dialogs": {
     "Show darkened overlay behind modal dialogs": "Afficher un arrière-plan sombre derrière les modaux"
   },
+  "Show device": {
+    "Show device": ""
+  },
   "Show dock when floating windows don't overlap its area": {
     "Show dock when floating windows don't overlap its area": "Montrer le dock lorsque les fenêtres flottantes ne passent pas devant"
+  },
+  "Show drop shadow on notification popups": {
+    "Show drop shadow on notification popups": ""
   },
   "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": {
     "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": "Afficher la superposition du lanceur lors de la saisie dans l’aperçu Niri. Désactiver pour utiliser un autre lanceur."
@@ -4989,6 +5043,15 @@
   "Unknown Title": {
     "Unknown Title": ""
   },
+  "Unload on Close": {
+    "Unload on Close": ""
+  },
+  "Unmute": {
+    "Unmute": ""
+  },
+  "Unmute popups for %1": {
+    "Unmute popups for %1": ""
+  },
   "Unnamed Rule": {
     "Unnamed Rule": "Règle non nommée"
   },
@@ -5484,6 +5547,9 @@
   "control center tile color setting description": {
     "Active tile background and icon color": "Activer l’arrière-plan de la tuile et la couleur de l’icône"
   },
+  "count of hidden audio devices": {
+    "Hidden (%1)": ""
+  },
   "current theme label": {
     "Current Theme: %1": "Thème actuel : %1"
   },
@@ -5898,6 +5964,9 @@
   "notification history toggle label": {
     "Enable History": "Activer l’historique"
   },
+  "notification privacy mode placeholder": {
+    "Message Content": ""
+  },
   "notification rule action option": {
     "Ignore Completely": "",
     "Mute Popups": "",
@@ -6049,6 +6118,9 @@
   },
   "theme search placeholder": {
     "Search themes...": "Rechercher des thèmes…"
+  },
+  "this app": {
+    "this app": ""
   },
   "tile color option": {
     "Primary Container": "Conteneur primaire",

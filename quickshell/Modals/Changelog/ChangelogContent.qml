@@ -240,11 +240,11 @@ Column {
             }
         }
 
-        StyledText {
-            text: "See full release notes for migration steps"
-            font.pixelSize: Theme.fontSizeSmall
-            color: Theme.surfaceVariantText
-            width: parent.width
-        }
+        // StyledText {
+        //     text: "See full release notes for migration steps"
+        //     font.pixelSize: Theme.fontSizeSmall
+        //     color: Theme.surfaceVariantText
+        //     width: parent.width
+        // }
     }
 }

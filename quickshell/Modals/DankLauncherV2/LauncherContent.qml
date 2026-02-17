@@ -12,11 +12,10 @@ FocusScope {
     LayoutMirroring.childrenInherit: true
 
     property var parentModal: null
-    property bool heavyContentActive: true
     property string viewModeContext: "spotlight"
     property alias searchField: searchField
     property alias controller: controller
-    property var resultsList: resultsLoader.item
+    property alias resultsList: resultsList
     property alias actionPanel: actionPanel
 
     property bool editMode: false
@@ -24,8 +23,7 @@ FocusScope {
     property string editAppId: ""
 
     function resetScroll() {
-        if (resultsList)
-            resultsList.resetScroll();
+        resultsList.resetScroll();
     }
 
     function focusSearchField() {
@@ -224,7 +222,7 @@ FocusScope {
             return;
         case Qt.Key_Menu:
         case Qt.Key_F10:
-            if (resultsList && contextMenu.hasContextMenuActions(controller.selectedItem)) {
+            if (contextMenu.hasContextMenuActions(controller.selectedItem)) {
                 var scenePos = resultsList.getSelectedItemPosition();
                 var localPos = root.mapFromItem(null, scenePos.x, scenePos.y);
                 showContextMenu(controller.selectedItem, localPos.x, localPos.y, true);
@@ -290,7 +288,7 @@ FocusScope {
             Rectangle {
                 anchors.fill: parent
                 anchors.topMargin: -Theme.cornerRadius
-                color: Theme.surfaceContainerHigh
+                color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
                 radius: Theme.cornerRadius
             }
 
@@ -553,15 +551,14 @@ FocusScope {
                 }
             }
 
-            Loader {
-                id: resultsLoader
+            Item {
                 width: parent.width
                 height: parent.height - searchField.height - categoryRow.height - actionPanel.height - Theme.spacingXS * (categoryRow.visible ? 3 : 2)
-                active: root.heavyContentActive
-                asynchronous: false
                 opacity: root.parentModal?.isClosing ? 0 : 1
 
-                sourceComponent: ResultsList {
+                ResultsList {
+                    id: resultsList
+                    anchors.fill: parent
                     controller: root.controller
 
                     onItemRightClicked: (index, item, sceneX, sceneY) => {

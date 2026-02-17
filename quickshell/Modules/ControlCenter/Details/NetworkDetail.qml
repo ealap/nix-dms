@@ -13,15 +13,12 @@ Rectangle {
     LayoutMirroring.childrenInherit: true
 
     implicitHeight: {
-        if (height > 0) {
+        if (height > 0)
             return height;
-        }
-        if (NetworkService.wifiToggling) {
+        if (NetworkService.wifiToggling)
             return headerRow.height + wifiToggleContent.height + Theme.spacingM;
-        }
-        if (NetworkService.wifiEnabled) {
+        if (NetworkService.wifiEnabled)
             return headerRow.height + wifiContent.height + Theme.spacingM;
-        }
         return headerRow.height + wifiOffContent.height + Theme.spacingM;
     }
     radius: Theme.cornerRadius
@@ -40,34 +37,40 @@ Rectangle {
     property bool hasEthernetAvailable: (NetworkService.ethernetDevices?.length ?? 0) > 0
     property bool hasWifiAvailable: (NetworkService.wifiDevices?.length ?? 0) > 0
     property bool hasBothConnectionTypes: hasEthernetAvailable && hasWifiAvailable
+    property int maxPinnedNetworks: 3
+
+    function normalizePinList(value) {
+        if (Array.isArray(value))
+            return value.filter(v => v);
+        if (typeof value === "string" && value.length > 0)
+            return [value];
+        return [];
+    }
+
+    function getPinnedNetworks() {
+        const pins = SettingsData.wifiNetworkPins || {};
+        return normalizePinList(pins["preferredWifi"]);
+    }
 
     property int currentPreferenceIndex: {
-        if (DMSService.apiVersion < 5) {
+        if (DMSService.apiVersion < 5)
             return 1;
-        }
-
-        if (NetworkService.backend !== "networkmanager" || DMSService.apiVersion <= 10) {
+        if (NetworkService.backend !== "networkmanager" || DMSService.apiVersion <= 10)
             return 1;
-        }
-
-        if (!hasEthernetAvailable) {
+        if (!hasEthernetAvailable)
             return 1;
-        }
-
-        if (!hasWifiAvailable) {
+        if (!hasWifiAvailable)
             return 0;
-        }
 
         const pref = NetworkService.userPreference;
-        const status = NetworkService.networkStatus;
-
-        if (pref === "ethernet") {
+        switch (pref) {
+        case "ethernet":
             return 0;
-        }
-        if (pref === "wifi") {
+        case "wifi":
             return 1;
+        default:
+            return NetworkService.networkStatus === "ethernet" ? 0 : 1;
         }
-        return status === "ethernet" ? 0 : 1;
     }
 
     Row {
@@ -78,7 +81,7 @@ Rectangle {
         anchors.leftMargin: Theme.spacingM
         anchors.rightMargin: Theme.spacingM
         anchors.topMargin: Theme.spacingS
-        height: 40
+        height: Math.max(headerLeft.implicitHeight, rightControls.implicitHeight) + Theme.spacingS * 2
 
         StyledText {
             id: headerLeft
@@ -162,9 +165,10 @@ Rectangle {
         anchors.margins: Theme.spacingM
         anchors.topMargin: Theme.spacingM
         visible: currentPreferenceIndex === 1 && NetworkService.wifiToggling
-        height: visible ? 80 : 0
+        height: visible ? wifiToggleColumn.implicitHeight + Theme.spacingM * 2 : 0
 
         Column {
+            id: wifiToggleColumn
             anchors.centerIn: parent
             spacing: Theme.spacingM
 
@@ -201,9 +205,10 @@ Rectangle {
         anchors.margins: Theme.spacingM
         anchors.topMargin: Theme.spacingM
         visible: currentPreferenceIndex === 1 && !NetworkService.wifiEnabled && !NetworkService.wifiToggling
-        height: visible ? 120 : 0
+        height: visible ? wifiOffColumn.implicitHeight + Theme.spacingM * 2 : 0
 
         Column {
+            id: wifiOffColumn
             anchors.centerIn: parent
             spacing: Theme.spacingL
             width: parent.width
@@ -226,14 +231,15 @@ Rectangle {
 
             Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: 120
-                height: 36
-                radius: 18
+                width: enableWifiLabel.implicitWidth + Theme.spacingL * 2
+                height: enableWifiLabel.implicitHeight + Theme.spacingM * 2
+                radius: height / 2
                 color: enableWifiButton.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.08)
                 border.width: 0
                 border.color: Theme.primary
 
                 StyledText {
+                    id: enableWifiLabel
                     anchors.centerIn: parent
                     text: I18n.tr("Enable WiFi")
                     color: Theme.primary
@@ -249,6 +255,25 @@ Rectangle {
                     onClicked: NetworkService.toggleWifiRadio()
                 }
             }
+        }
+    }
+
+    ScriptModel {
+        id: wiredConnectionsModel
+        objectProp: "uuid"
+        values: {
+            const networks = NetworkService.wiredConnections;
+            if (!networks)
+                return [];
+            let sorted = [...networks];
+            sorted.sort((a, b) => {
+                if (a.isActive && !b.isActive)
+                    return -1;
+                if (!a.isActive && b.isActive)
+                    return 1;
+                return a.id.localeCompare(b.id);
+            });
+            return sorted;
         }
     }
 
@@ -270,34 +295,25 @@ Rectangle {
             spacing: Theme.spacingS
 
             Repeater {
-                model: ScriptModel {
-                    values: {
-                        const currentUuid = NetworkService.ethernetConnectionUuid;
-                        const networks = NetworkService.wiredConnections;
-                        let sorted = [...networks];
-                        sorted.sort((a, b) => {
-                            if (a.isActive && !b.isActive)
-                                return -1;
-                            if (!a.isActive && b.isActive)
-                                return 1;
-                            return a.id.localeCompare(b.id);
-                        });
-                        return sorted;
-                    }
-                }
+                model: wiredConnectionsModel
 
                 delegate: Rectangle {
+                    id: wiredDelegate
                     required property var modelData
                     required property int index
 
+                    readonly property bool isActive: modelData.isActive
+                    readonly property string configName: modelData.id || I18n.tr("Unknown Config")
+
                     width: parent.width
-                    height: 50
+                    height: wiredContentRow.implicitHeight + Theme.spacingM * 2
                     radius: Theme.cornerRadius
                     color: wiredNetworkMouseArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.08) : Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency)
                     border.color: Theme.primary
                     border.width: 0
 
                     Row {
+                        id: wiredContentRow
                         anchors.left: parent.left
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.leftMargin: Theme.spacingM
@@ -306,7 +322,7 @@ Rectangle {
                         DankIcon {
                             name: "lan"
                             size: Theme.iconSize - 4
-                            color: modelData.isActive ? Theme.primary : Theme.surfaceText
+                            color: wiredDelegate.isActive ? Theme.primary : Theme.surfaceText
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
@@ -315,10 +331,10 @@ Rectangle {
                             width: 200
 
                             StyledText {
-                                text: modelData.id || I18n.tr("Unknown Config")
+                                text: wiredDelegate.configName
                                 font.pixelSize: Theme.fontSizeMedium
-                                color: modelData.isActive ? Theme.primary : Theme.surfaceText
-                                font.weight: modelData.isActive ? Font.Medium : Font.Normal
+                                color: wiredDelegate.isActive ? Theme.primary : Theme.surfaceText
+                                font.weight: wiredDelegate.isActive ? Font.Medium : Font.Normal
                                 elide: Text.ElideRight
                                 width: parent.width
                             }
@@ -335,12 +351,12 @@ Rectangle {
                         onClicked: {
                             if (wiredNetworkContextMenu.visible) {
                                 wiredNetworkContextMenu.close();
-                            } else {
-                                wiredNetworkContextMenu.currentID = modelData.id;
-                                wiredNetworkContextMenu.currentUUID = modelData.uuid;
-                                wiredNetworkContextMenu.currentConnected = modelData.isActive;
-                                wiredNetworkContextMenu.popup(wiredOptionsButton, -wiredNetworkContextMenu.width + wiredOptionsButton.width, wiredOptionsButton.height + Theme.spacingXS);
+                                return;
                             }
+                            wiredNetworkContextMenu.currentID = modelData.id;
+                            wiredNetworkContextMenu.currentUUID = modelData.uuid;
+                            wiredNetworkContextMenu.currentConnected = wiredDelegate.isActive;
+                            wiredNetworkContextMenu.popup(wiredOptionsButton, -wiredNetworkContextMenu.width + wiredOptionsButton.width, wiredOptionsButton.height + Theme.spacingXS);
                         }
                     }
 
@@ -357,9 +373,8 @@ Rectangle {
                         cursorShape: Qt.PointingHandCursor
                         onPressed: mouse => wiredRipple.trigger(mouse.x, mouse.y)
                         onClicked: function (event) {
-                            if (modelData.uuid !== NetworkService.ethernetConnectionUuid) {
+                            if (modelData.uuid !== NetworkService.ethernetConnectionUuid)
                                 NetworkService.connectToSpecificWiredConfig(modelData.uuid);
-                            }
                             event.accepted = true;
                         }
                     }
@@ -403,9 +418,8 @@ Rectangle {
             }
 
             onTriggered: {
-                if (!wiredNetworkContextMenu.currentConnected) {
+                if (!wiredNetworkContextMenu.currentConnected)
                     NetworkService.connectToSpecificWiredConfig(wiredNetworkContextMenu.currentUUID);
-                }
             }
         }
 
@@ -451,13 +465,46 @@ Rectangle {
             }
 
             onTriggered: {
-                let networkData = NetworkService.getWiredNetworkInfo(wiredNetworkContextMenu.currentUUID);
-                networkWiredInfoModal.showNetworkInfo(wiredNetworkContextMenu.currentID, networkData);
+                const networkData = NetworkService.getWiredNetworkInfo(wiredNetworkContextMenu.currentUUID);
+                networkWiredInfoModalLoader.active = true;
+                networkWiredInfoModalLoader.item.showNetworkInfo(wiredNetworkContextMenu.currentID, networkData);
             }
         }
     }
 
-    DankFlickable {
+    ScriptModel {
+        id: wifiNetworksModel
+        objectProp: "ssid"
+        values: wifiContent.menuOpen ? wifiContent.frozenNetworks : wifiContent.sortedNetworks
+    }
+
+    Item {
+        id: wifiScanningOverlay
+        anchors.top: headerRow.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.margins: Theme.spacingM
+        anchors.topMargin: Theme.spacingM
+        visible: currentPreferenceIndex === 1 && NetworkService.wifiEnabled && !NetworkService.wifiToggling && NetworkService.wifiInterface && (NetworkService.wifiNetworks?.length ?? 0) < 1 && NetworkService.isScanning
+
+        DankIcon {
+            anchors.centerIn: parent
+            name: "refresh"
+            size: 48
+            color: Qt.rgba(Theme.surfaceText.r || 0.8, Theme.surfaceText.g || 0.8, Theme.surfaceText.b || 0.8, 0.3)
+
+            RotationAnimation on rotation {
+                running: wifiScanningOverlay.visible
+                loops: Animation.Infinite
+                from: 0
+                to: 360
+                duration: 1000
+            }
+        }
+    }
+
+    DankListView {
         id: wifiContent
         anchors.top: headerRow.bottom
         anchors.left: parent.left
@@ -465,31 +512,17 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.margins: Theme.spacingM
         anchors.topMargin: Theme.spacingM
-        visible: currentPreferenceIndex === 1 && NetworkService.wifiEnabled && !NetworkService.wifiToggling
-        contentHeight: wifiColumn.height
+        visible: currentPreferenceIndex === 1 && NetworkService.wifiEnabled && !NetworkService.wifiToggling && !wifiScanningOverlay.visible
         clip: true
-
-        property int maxPinnedNetworks: 3
-
-        function normalizePinList(value) {
-            if (Array.isArray(value))
-                return value.filter(v => v);
-            if (typeof value === "string" && value.length > 0)
-                return [value];
-            return [];
-        }
-
-        function getPinnedNetworks() {
-            const pins = SettingsData.wifiNetworkPins || {};
-            return normalizePinList(pins["preferredWifi"]);
-        }
+        spacing: Theme.spacingS
+        model: wifiNetworksModel
 
         property var frozenNetworks: []
         property bool menuOpen: false
         property var sortedNetworks: {
             const ssid = NetworkService.currentWifiSSID;
             const networks = NetworkService.wifiNetworks;
-            const pinnedList = getPinnedNetworks();
+            const pinnedList = root.getPinnedNetworks();
 
             let sorted = [...networks];
             sorted.sort((a, b) => {
@@ -519,229 +552,188 @@ Rectangle {
                 frozenNetworks = sortedNetworks;
         }
 
-        Column {
-            id: wifiColumn
-            width: parent.width
-            spacing: Theme.spacingS
+        delegate: Rectangle {
+            id: wifiDelegate
+            required property var modelData
+            required property int index
 
-            Item {
-                width: parent.width
-                height: 200
-                visible: NetworkService.wifiInterface && NetworkService.wifiNetworks?.length < 1 && !NetworkService.wifiToggling && NetworkService.isScanning
+            readonly property bool isConnected: modelData.ssid === NetworkService.currentWifiSSID
+            readonly property bool isPinned: root.getPinnedNetworks().includes(modelData.ssid)
+            readonly property string networkName: modelData.ssid || I18n.tr("Unknown Network")
+            readonly property int signalStrength: modelData.signal || 0
+
+            width: wifiContent.width
+            height: wifiContentRow.implicitHeight + Theme.spacingM * 2
+            radius: Theme.cornerRadius
+            color: networkMouseArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.08) : Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency)
+            border.color: wifiDelegate.isConnected ? Theme.primary : Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.12)
+            border.width: 0
+
+            Row {
+                id: wifiContentRow
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.leftMargin: Theme.spacingM
+                spacing: Theme.spacingS
 
                 DankIcon {
-                    anchors.centerIn: parent
-                    name: "refresh"
-                    size: 48
-                    color: Qt.rgba(Theme.surfaceText.r || 0.8, Theme.surfaceText.g || 0.8, Theme.surfaceText.b || 0.8, 0.3)
+                    name: {
+                        if (wifiDelegate.signalStrength >= 50)
+                            return "wifi";
+                        if (wifiDelegate.signalStrength >= 25)
+                            return "wifi_2_bar";
+                        return "wifi_1_bar";
+                    }
+                    size: Theme.iconSize - 4
+                    color: wifiDelegate.isConnected ? Theme.primary : Theme.surfaceText
+                    anchors.verticalCenter: parent.verticalCenter
+                }
 
-                    RotationAnimation on rotation {
-                        running: NetworkService.isScanning
-                        loops: Animation.Infinite
-                        from: 0
-                        to: 360
-                        duration: 1000
+                Column {
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: 200
+
+                    StyledText {
+                        text: wifiDelegate.networkName
+                        font.pixelSize: Theme.fontSizeMedium
+                        color: Theme.surfaceText
+                        font.weight: wifiDelegate.isConnected ? Font.Medium : Font.Normal
+                        elide: Text.ElideRight
+                        width: parent.width
+                    }
+
+                    Row {
+                        spacing: Theme.spacingXS
+
+                        StyledText {
+                            text: wifiDelegate.isConnected ? I18n.tr("Connected") + " \u2022" : (modelData.secured ? I18n.tr("Secured") + " \u2022" : I18n.tr("Open") + " \u2022")
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceVariantText
+                        }
+
+                        StyledText {
+                            text: modelData.saved ? I18n.tr("Saved") : ""
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.primary
+                            visible: text.length > 0
+                        }
+
+                        StyledText {
+                            text: (modelData.saved ? "\u2022 " : "") + wifiDelegate.signalStrength + "%"
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.surfaceVariantText
+                        }
                     }
                 }
             }
 
-            Repeater {
-                model: ScriptModel {
-                    values: wifiContent.menuOpen ? wifiContent.frozenNetworks : wifiContent.sortedNetworks
+            DankActionButton {
+                id: optionsButton
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.spacingS
+                anchors.verticalCenter: parent.verticalCenter
+                iconName: "more_horiz"
+                buttonSize: 28
+                onClicked: {
+                    if (networkContextMenu.visible) {
+                        networkContextMenu.close();
+                        return;
+                    }
+                    wifiContent.menuOpen = true;
+                    networkContextMenu.currentSSID = modelData.ssid;
+                    networkContextMenu.currentSecured = modelData.secured;
+                    networkContextMenu.currentConnected = wifiDelegate.isConnected;
+                    networkContextMenu.currentSaved = modelData.saved;
+                    networkContextMenu.currentSignal = modelData.signal;
+                    networkContextMenu.currentAutoconnect = modelData.autoconnect || false;
+                    networkContextMenu.popup(optionsButton, -networkContextMenu.width + optionsButton.width, optionsButton.height + Theme.spacingXS);
+                }
+            }
+
+            Rectangle {
+                anchors.right: parent.right
+                anchors.rightMargin: optionsButton.width + Theme.spacingM + Theme.spacingS
+                anchors.verticalCenter: parent.verticalCenter
+                width: pinWifiRow.width + Theme.spacingS * 2
+                height: pinWifiRow.implicitHeight + Theme.spacingXS * 2
+                radius: height / 2
+                color: wifiDelegate.isPinned ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : Theme.withAlpha(Theme.surfaceText, 0.05)
+
+                Row {
+                    id: pinWifiRow
+                    anchors.centerIn: parent
+                    spacing: 4
+
+                    DankIcon {
+                        name: "push_pin"
+                        size: 16
+                        color: wifiDelegate.isPinned ? Theme.primary : Theme.surfaceText
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    StyledText {
+                        text: wifiDelegate.isPinned ? I18n.tr("Pinned") : I18n.tr("Pin")
+                        font.pixelSize: Theme.fontSizeSmall
+                        color: wifiDelegate.isPinned ? Theme.primary : Theme.surfaceText
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
                 }
 
-                delegate: Rectangle {
-                    required property var modelData
-                    required property int index
+                DankRipple {
+                    id: pinRipple
+                    cornerRadius: parent.radius
+                }
 
-                    width: parent.width
-                    height: 50
-                    radius: Theme.cornerRadius
-                    color: networkMouseArea.containsMouse ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.08) : Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency)
-                    border.color: modelData.ssid === NetworkService.currentWifiSSID ? Theme.primary : Qt.rgba(Theme.outline.r, Theme.outline.g, Theme.outline.b, 0.12)
-                    border.width: 0
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onPressed: mouse => pinRipple.trigger(mouse.x, mouse.y)
+                    onClicked: {
+                        const pins = JSON.parse(JSON.stringify(SettingsData.wifiNetworkPins || {}));
+                        let pinnedList = root.normalizePinList(pins["preferredWifi"]);
+                        const pinIndex = pinnedList.indexOf(modelData.ssid);
 
-                    Row {
-                        anchors.left: parent.left
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.leftMargin: Theme.spacingM
-                        spacing: Theme.spacingS
-
-                        DankIcon {
-                            name: {
-                                let strength = modelData.signal || 0;
-                                if (strength >= 50)
-                                    return "wifi";
-                                if (strength >= 25)
-                                    return "wifi_2_bar";
-                                return "wifi_1_bar";
-                            }
-                            size: Theme.iconSize - 4
-                            color: modelData.ssid === NetworkService.currentWifiSSID ? Theme.primary : Theme.surfaceText
-                            anchors.verticalCenter: parent.verticalCenter
+                        if (pinIndex !== -1) {
+                            pinnedList.splice(pinIndex, 1);
+                        } else {
+                            pinnedList.unshift(modelData.ssid);
+                            if (pinnedList.length > root.maxPinnedNetworks)
+                                pinnedList = pinnedList.slice(0, root.maxPinnedNetworks);
                         }
 
-                        Column {
-                            anchors.verticalCenter: parent.verticalCenter
-                            width: 200
+                        if (pinnedList.length > 0)
+                            pins["preferredWifi"] = pinnedList;
+                        else
+                            delete pins["preferredWifi"];
 
-                            StyledText {
-                                text: modelData.ssid || I18n.tr("Unknown Network")
-                                font.pixelSize: Theme.fontSizeMedium
-                                color: Theme.surfaceText
-                                font.weight: modelData.ssid === NetworkService.currentWifiSSID ? Font.Medium : Font.Normal
-                                elide: Text.ElideRight
-                                width: parent.width
-                            }
-
-                            Row {
-                                spacing: Theme.spacingXS
-
-                                StyledText {
-                                    text: modelData.ssid === NetworkService.currentWifiSSID ? I18n.tr("Connected") + " •" : (modelData.secured ? I18n.tr("Secured") + " •" : I18n.tr("Open") + " •")
-                                    font.pixelSize: Theme.fontSizeSmall
-                                    color: Theme.surfaceVariantText
-                                }
-
-                                StyledText {
-                                    text: modelData.saved ? I18n.tr("Saved") : ""
-                                    font.pixelSize: Theme.fontSizeSmall
-                                    color: Theme.primary
-                                    visible: text.length > 0
-                                }
-
-                                StyledText {
-                                    text: (modelData.saved ? "• " : "") + modelData.signal + "%"
-                                    font.pixelSize: Theme.fontSizeSmall
-                                    color: Theme.surfaceVariantText
-                                }
-                            }
-                        }
+                        SettingsData.set("wifiNetworkPins", pins);
                     }
+                }
+            }
 
-                    DankActionButton {
-                        id: optionsButton
-                        anchors.right: parent.right
-                        anchors.rightMargin: Theme.spacingS
-                        anchors.verticalCenter: parent.verticalCenter
-                        iconName: "more_horiz"
-                        buttonSize: 28
-                        onClicked: {
-                            if (networkContextMenu.visible) {
-                                networkContextMenu.close();
-                            } else {
-                                wifiContent.menuOpen = true;
-                                networkContextMenu.currentSSID = modelData.ssid;
-                                networkContextMenu.currentSecured = modelData.secured;
-                                networkContextMenu.currentConnected = modelData.ssid === NetworkService.currentWifiSSID;
-                                networkContextMenu.currentSaved = modelData.saved;
-                                networkContextMenu.currentSignal = modelData.signal;
-                                networkContextMenu.currentAutoconnect = modelData.autoconnect || false;
-                                networkContextMenu.popup(optionsButton, -networkContextMenu.width + optionsButton.width, optionsButton.height + Theme.spacingXS);
-                            }
-                        }
+            DankRipple {
+                id: wifiRipple
+                cornerRadius: parent.radius
+            }
+
+            MouseArea {
+                id: networkMouseArea
+                anchors.fill: parent
+                anchors.rightMargin: optionsButton.width + Theme.spacingM + Theme.spacingS + pinWifiRow.width + Theme.spacingS * 4
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onPressed: mouse => wifiRipple.trigger(mouse.x, mouse.y)
+                onClicked: function (event) {
+                    if (wifiDelegate.isConnected) {
+                        event.accepted = true;
+                        return;
                     }
-
-                    Rectangle {
-                        anchors.right: parent.right
-                        anchors.rightMargin: optionsButton.width + Theme.spacingM + Theme.spacingS
-                        anchors.verticalCenter: parent.verticalCenter
-                        width: pinWifiRow.width + Theme.spacingS * 2
-                        height: 28
-                        radius: height / 2
-                        color: {
-                            const isThisNetworkPinned = wifiContent.getPinnedNetworks().includes(modelData.ssid);
-                            return isThisNetworkPinned ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.12) : Theme.withAlpha(Theme.surfaceText, 0.05);
-                        }
-
-                        Row {
-                            id: pinWifiRow
-                            anchors.centerIn: parent
-                            spacing: 4
-
-                            DankIcon {
-                                name: "push_pin"
-                                size: 16
-                                color: {
-                                    const isThisNetworkPinned = wifiContent.getPinnedNetworks().includes(modelData.ssid);
-                                    return isThisNetworkPinned ? Theme.primary : Theme.surfaceText;
-                                }
-                                anchors.verticalCenter: parent.verticalCenter
-                            }
-
-                            StyledText {
-                                text: {
-                                    const isThisNetworkPinned = wifiContent.getPinnedNetworks().includes(modelData.ssid);
-                                    return isThisNetworkPinned ? I18n.tr("Pinned") : I18n.tr("Pin");
-                                }
-                                font.pixelSize: Theme.fontSizeSmall
-                                color: {
-                                    const isThisNetworkPinned = wifiContent.getPinnedNetworks().includes(modelData.ssid);
-                                    return isThisNetworkPinned ? Theme.primary : Theme.surfaceText;
-                                }
-                                anchors.verticalCenter: parent.verticalCenter
-                            }
-                        }
-
-                        DankRipple {
-                            id: pinRipple
-                            cornerRadius: parent.radius
-                        }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            cursorShape: Qt.PointingHandCursor
-                            onPressed: mouse => pinRipple.trigger(mouse.x, mouse.y)
-                            onClicked: {
-                                const pins = JSON.parse(JSON.stringify(SettingsData.wifiNetworkPins || {}));
-                                let pinnedList = wifiContent.normalizePinList(pins["preferredWifi"]);
-                                const pinIndex = pinnedList.indexOf(modelData.ssid);
-
-                                if (pinIndex !== -1) {
-                                    pinnedList.splice(pinIndex, 1);
-                                } else {
-                                    pinnedList.unshift(modelData.ssid);
-                                    if (pinnedList.length > wifiContent.maxPinnedNetworks)
-                                        pinnedList = pinnedList.slice(0, wifiContent.maxPinnedNetworks);
-                                }
-
-                                if (pinnedList.length > 0)
-                                    pins["preferredWifi"] = pinnedList;
-                                else
-                                    delete pins["preferredWifi"];
-
-                                SettingsData.set("wifiNetworkPins", pins);
-                            }
-                        }
+                    if (modelData.secured && !modelData.saved && DMSService.apiVersion < 7) {
+                        PopoutService.showWifiPasswordModal(modelData.ssid);
+                    } else {
+                        NetworkService.connectToWifi(modelData.ssid);
                     }
-
-                    DankRipple {
-                        id: wifiRipple
-                        cornerRadius: parent.radius
-                    }
-
-                    MouseArea {
-                        id: networkMouseArea
-                        anchors.fill: parent
-                        anchors.rightMargin: optionsButton.width + Theme.spacingM + Theme.spacingS + pinWifiRow.width + Theme.spacingS * 4
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onPressed: mouse => wifiRipple.trigger(mouse.x, mouse.y)
-                        onClicked: function (event) {
-                            if (modelData.ssid !== NetworkService.currentWifiSSID) {
-                                if (modelData.secured && !modelData.saved) {
-                                    if (DMSService.apiVersion >= 7) {
-                                        NetworkService.connectToWifi(modelData.ssid);
-                                    } else {
-                                        PopoutService.showWifiPasswordModal(modelData.ssid);
-                                    }
-                                } else {
-                                    NetworkService.connectToWifi(modelData.ssid);
-                                }
-                            }
-                            event.accepted = true;
-                        }
-                    }
+                    event.accepted = true;
                 }
             }
         }
@@ -758,6 +750,8 @@ Rectangle {
         property bool currentSaved: false
         property int currentSignal: 0
         property bool currentAutoconnect: false
+
+        readonly property bool showSavedOptions: currentSaved || currentConnected
 
         onClosed: {
             wifiContent.menuOpen = false;
@@ -790,17 +784,13 @@ Rectangle {
             onTriggered: {
                 if (networkContextMenu.currentConnected) {
                     NetworkService.disconnectWifi();
-                } else {
-                    if (networkContextMenu.currentSecured && !networkContextMenu.currentSaved) {
-                        if (DMSService.apiVersion >= 7) {
-                            NetworkService.connectToWifi(networkContextMenu.currentSSID);
-                        } else {
-                            PopoutService.showWifiPasswordModal(networkContextMenu.currentSSID);
-                        }
-                    } else {
-                        NetworkService.connectToWifi(networkContextMenu.currentSSID);
-                    }
+                    return;
                 }
+                if (networkContextMenu.currentSecured && !networkContextMenu.currentSaved && DMSService.apiVersion < 7) {
+                    PopoutService.showWifiPasswordModal(networkContextMenu.currentSSID);
+                    return;
+                }
+                NetworkService.connectToWifi(networkContextMenu.currentSSID);
             }
         }
 
@@ -822,15 +812,16 @@ Rectangle {
             }
 
             onTriggered: {
-                let networkData = NetworkService.getNetworkInfo(networkContextMenu.currentSSID);
-                networkInfoModal.showNetworkInfo(networkContextMenu.currentSSID, networkData);
+                const networkData = NetworkService.getNetworkInfo(networkContextMenu.currentSSID);
+                networkInfoModalLoader.active = true;
+                networkInfoModalLoader.item.showNetworkInfo(networkContextMenu.currentSSID, networkData);
             }
         }
 
         MenuItem {
             text: networkContextMenu.currentAutoconnect ? I18n.tr("Disable Autoconnect") : I18n.tr("Enable Autoconnect")
-            height: (networkContextMenu.currentSaved || networkContextMenu.currentConnected) && DMSService.apiVersion > 13 ? 32 : 0
-            visible: (networkContextMenu.currentSaved || networkContextMenu.currentConnected) && DMSService.apiVersion > 13
+            height: networkContextMenu.showSavedOptions && DMSService.apiVersion > 13 ? 32 : 0
+            visible: networkContextMenu.showSavedOptions && DMSService.apiVersion > 13
 
             contentItem: StyledText {
                 text: parent.text
@@ -852,8 +843,8 @@ Rectangle {
 
         MenuItem {
             text: I18n.tr("Forget Network")
-            height: networkContextMenu.currentSaved || networkContextMenu.currentConnected ? 32 : 0
-            visible: networkContextMenu.currentSaved || networkContextMenu.currentConnected
+            height: networkContextMenu.showSavedOptions ? 32 : 0
+            visible: networkContextMenu.showSavedOptions
 
             contentItem: StyledText {
                 text: parent.text
@@ -874,11 +865,15 @@ Rectangle {
         }
     }
 
-    NetworkInfoModal {
-        id: networkInfoModal
+    Loader {
+        id: networkInfoModalLoader
+        active: false
+        sourceComponent: NetworkInfoModal {}
     }
 
-    NetworkWiredInfoModal {
-        id: networkWiredInfoModal
+    Loader {
+        id: networkWiredInfoModalLoader
+        active: false
+        sourceComponent: NetworkWiredInfoModal {}
     }
 }

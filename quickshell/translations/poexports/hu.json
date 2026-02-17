@@ -356,6 +356,9 @@
   "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": {
     "Apps with custom display name, icon, or launch options. Right-click an app and select 'Edit App' to customize.": "Egyedi megjelenített névvel, ikonnal vagy indítási beállításokkal rendelkező alkalmazások. Kattints jobb gombbal egy alkalmazásra, és válaszd az „Alkalmazás szerkesztése” lehetőséget a testreszabáshoz."
   },
+  "Apps with notification popups muted. Unmute or delete to remove.": {
+    "Apps with notification popups muted. Unmute or delete to remove.": ""
+  },
   "Arrange displays and configure resolution, refresh rate, and VRR": {
     "Arrange displays and configure resolution, refresh rate, and VRR": "Képernyő-elrendezés és a felbontás, frissítési frekvencia, valamint VRR beállítása"
   },
@@ -558,6 +561,9 @@
   },
   "Bar Transparency": {
     "Bar Transparency": "Sáv átlátszósága"
+  },
+  "Base duration for animations (drag to use Custom)": {
+    "Base duration for animations (drag to use Custom)": ""
   },
   "Battery": {
     "Battery": "Akkumulátor"
@@ -884,7 +890,7 @@
     "Clipboard Manager": "Vágólapkezelő"
   },
   "Clipboard behavior setting description": {
-    "Press Enter to paste, Shift+Enter to copy": ""
+    "Press Enter to paste, Shift+Enter to copy": "Nyomd meg az Entert a beillesztéshez, Shift+Entert a másoláshoz"
   },
   "Clipboard service not available": {
     "Clipboard service not available": "A vágólap szolgáltatások nem elérhetők"
@@ -1075,6 +1081,9 @@
   "Control Center Tile Color": {
     "Control Center Tile Color": "Vezérlőközpont csempeszíne"
   },
+  "Control animation duration for notification popups and history": {
+    "Control animation duration for notification popups and history": ""
+  },
   "Control currently playing media": {
     "Control currently playing media": "Jelenleg játszott média vezérlése"
   },
@@ -1164,6 +1173,9 @@
   },
   "Create rules to mute, ignore, hide from history, or override notification priority.": {
     "Create rules to mute, ignore, hide from history, or override notification priority.": "Szabályok létrehozása az értesítések némításához, mellőzéséhez, az előzményekből való elrejtéséhez vagy prioritásuk felülbírálásához."
+  },
+  "Create rules to mute, ignore, hide from history, or override notification priority. Default only overrides priority; notifications still show normally.": {
+    "Create rules to mute, ignore, hide from history, or override notification priority. Default only overrides priority; notifications still show normally.": ""
   },
   "Creating...": {
     "Creating...": "Létrehozás…"
@@ -1576,6 +1588,9 @@
   "Duplicate Wallpaper with Blur": {
     "Duplicate Wallpaper with Blur": "Háttérkép megkettőzése elmosással"
   },
+  "Duration": {
+    "Duration": ""
+  },
   "Dusk (Astronomical Twilight)": {
     "Dusk (Astronomical Twilight)": "Szürkület (csillagászati szürkület)"
   },
@@ -1727,7 +1742,7 @@
     "Enter this passkey on ": "Írd be ezt a jelszót ehhez: "
   },
   "Enter to Paste": {
-    "Enter to Paste": ""
+    "Enter to Paste": "Enter a beillesztéshez"
   },
   "Enterprise": {
     "Enterprise": "Vállalati"
@@ -2089,6 +2104,9 @@
   "Format Legend": {
     "Format Legend": "Formátum magyarázat"
   },
+  "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening.": {
+    "Free VRAM/memory when the launcher is closed. May cause a slight delay when reopening.": ""
+  },
   "Frequency": {
     "Frequency": "Frekvencia"
   },
@@ -2212,6 +2230,9 @@
   "Hidden": {
     "Hidden": "Rejtett"
   },
+  "Hidden (%1)": {
+    "Hidden (%1)": ""
+  },
   "Hidden Apps": {
     "Hidden Apps": "Rejtett alkalmazások"
   },
@@ -2250,6 +2271,15 @@
   },
   "Hide cursor when using touch input": {
     "Hide cursor when using touch input": "Kurzor elrejtése érintéses bevitel használatakor"
+  },
+  "Hide device": {
+    "Hide device": ""
+  },
+  "Hide notification content until expanded": {
+    "Hide notification content until expanded": ""
+  },
+  "Hide notification content until expanded; popups show collapsed by default": {
+    "Hide notification content until expanded; popups show collapsed by default": ""
   },
   "Hide on Touch": {
     "Hide on Touch": "Elrejtés érintéskor"
@@ -2656,8 +2686,8 @@
     "Keyboard Shortcuts": "Gyorsbillentyűk"
   },
   "Keyboard hints when enter-to-paste is enabled": {
-    "Shift+Enter: Copy • Shift+Del: Clear All • Esc: Close": "",
-    "↑/↓: Navigate • Enter: Paste • Del: Delete • F10: Help": ""
+    "Shift+Enter: Copy • Shift+Del: Clear All • Esc: Close": "Shift+Enter: Másolás • Shift+Del: Összes törlése • Esc: Bezárás",
+    "↑/↓: Navigate • Enter: Paste • Del: Delete • F10: Help": "↑/↓: Navigálás • Enter: Beillesztés • Del: Törlés • F10: Súgó"
   },
   "Keys": {
     "Keys": "Billentyűk"
@@ -3073,6 +3103,12 @@
   "Moving to Paused": {
     "Moving to Paused": "Szüneteltetésre váltás"
   },
+  "Mute popups for %1": {
+    "Mute popups for %1": ""
+  },
+  "Muted Apps": {
+    "Muted Apps": ""
+  },
   "Muted palette with subdued, calming tones.": {
     "Muted palette with subdued, calming tones.": "Visszafogott paletta, tompa, nyugtató tónusokkal."
   },
@@ -3222,6 +3258,9 @@
   },
   "No apps have been launched yet.": {
     "No apps have been launched yet.": "Még nem indult el alkalmazás."
+  },
+  "No apps muted. Right-click a notification and choose \"Mute popups\" to add one here.": {
+    "No apps muted. Right-click a notification and choose \"Mute popups\" to add one here.": ""
   },
   "No battery": {
     "No battery": "Nincs akkumulátor"
@@ -3714,6 +3753,9 @@
   "Popup Position": {
     "Popup Position": "Felugró ablak pozíciója"
   },
+  "Popup Shadow": {
+    "Popup Shadow": ""
+  },
   "Popup Transparency": {
     "Popup Transparency": "Felugró ablak átlátszósága"
   },
@@ -3821,6 +3863,9 @@
   },
   "Privacy Indicator": {
     "Privacy Indicator": "Adatvédelmi jelző"
+  },
+  "Privacy Mode": {
+    "Privacy Mode": ""
   },
   "Private Key Password": {
     "Private Key Password": "Titkos kulcs jelszava"
@@ -4201,7 +4246,7 @@
     "Select Bar": "Sáv kiválasztása"
   },
   "Select Dock Launcher Logo": {
-    "Select Dock Launcher Logo": ""
+    "Select Dock Launcher Logo": "Dokkindító logó kiválasztása"
   },
   "Select Launcher Logo": {
     "Select Launcher Logo": "Indító logó kiválasztása"
@@ -4277,6 +4322,9 @@
   },
   "Set key and action to save": {
     "Set key and action to save": "Állítsd be a billentyűt és a műveletet a mentéshez"
+  },
+  "Set notification rules": {
+    "Set notification rules": ""
   },
   "Setup": {
     "Setup": "Beállítás"
@@ -4449,8 +4497,14 @@
   "Show darkened overlay behind modal dialogs": {
     "Show darkened overlay behind modal dialogs": "Sötétített átfedés megjelenítése a modális párbeszédablakok mögött"
   },
+  "Show device": {
+    "Show device": ""
+  },
   "Show dock when floating windows don't overlap its area": {
     "Show dock when floating windows don't overlap its area": "Dokk megjelenítése, ha a lebegő ablakok nem takarják el a területét"
+  },
+  "Show drop shadow on notification popups": {
+    "Show drop shadow on notification popups": ""
   },
   "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": {
     "Show launcher overlay when typing in Niri overview. Disable to use another launcher.": "Indító átfedés megjelenítése, amikor gépelsz a Niri-áttekintésben. Kapcsold ki, ha másik indítót használsz."
@@ -4989,6 +5043,15 @@
   "Unknown Title": {
     "Unknown Title": "Ismeretlen cím"
   },
+  "Unload on Close": {
+    "Unload on Close": ""
+  },
+  "Unmute": {
+    "Unmute": ""
+  },
+  "Unmute popups for %1": {
+    "Unmute popups for %1": ""
+  },
   "Unnamed Rule": {
     "Unnamed Rule": "Névtelen szabály"
   },
@@ -5484,6 +5547,9 @@
   "control center tile color setting description": {
     "Active tile background and icon color": "Aktív csempe háttér- és ikonszíne"
   },
+  "count of hidden audio devices": {
+    "Hidden (%1)": ""
+  },
   "current theme label": {
     "Current Theme: %1": "Jelenlegi téma: %1"
   },
@@ -5898,6 +5964,9 @@
   "notification history toggle label": {
     "Enable History": "Előzmények engedélyezése"
   },
+  "notification privacy mode placeholder": {
+    "Message Content": ""
+  },
   "notification rule action option": {
     "Ignore Completely": "Teljes mellőzés",
     "Mute Popups": "Felugró ablakok némítása",
@@ -6049,6 +6118,9 @@
   },
   "theme search placeholder": {
     "Search themes...": "Témák keresése…"
+  },
+  "this app": {
+    "this app": ""
   },
   "tile color option": {
     "Primary Container": "Elsődleges tároló",

@@ -500,10 +500,10 @@ Item {
             anchors.top: SettingsData.dockPosition === SettingsData.Position.Top ? parent.top : undefined
             anchors.left: SettingsData.dockPosition === SettingsData.Position.Left ? parent.left : undefined
             anchors.right: SettingsData.dockPosition === SettingsData.Position.Right ? parent.right : undefined
-            anchors.bottomMargin: SettingsData.dockPosition === SettingsData.Position.Bottom ? -(SettingsData.dockSpacing / 2) : 0
-            anchors.topMargin: SettingsData.dockPosition === SettingsData.Position.Top ? -(SettingsData.dockSpacing / 2) : 0
-            anchors.leftMargin: SettingsData.dockPosition === SettingsData.Position.Left ? -(SettingsData.dockSpacing / 2) : 0
-            anchors.rightMargin: SettingsData.dockPosition === SettingsData.Position.Right ? -(SettingsData.dockSpacing / 2) : 0
+            anchors.bottomMargin: SettingsData.dockPosition === SettingsData.Position.Bottom ? -(SettingsData.dockSpacing / 2 + 1.4) : 0
+            anchors.topMargin: SettingsData.dockPosition === SettingsData.Position.Top ? -(SettingsData.dockSpacing / 2 + 1.4) : 0
+            anchors.leftMargin: SettingsData.dockPosition === SettingsData.Position.Left ? -(SettingsData.dockSpacing / 2 + 1.4) : 0
+            anchors.rightMargin: SettingsData.dockPosition === SettingsData.Position.Right ? -(SettingsData.dockSpacing / 2 + 1.4) : 0
 
             sourceComponent: SettingsData.dockPosition === SettingsData.Position.Left || SettingsData.dockPosition === SettingsData.Position.Right ? columnIndicator : rowIndicator
 
