@@ -375,8 +375,10 @@ FocusScope {
             if (!plugin || !PluginService.isPluginLoaded(pluginId))
                 return;
             var isLauncher = plugin.type === "launcher" || (plugin.capabilities && plugin.capabilities.includes("launcher"));
-            if (isLauncher)
+            if (isLauncher) {
+                pluginsTab.isReloading = true;
                 PluginService.reloadPlugin(pluginId);
+            }
         }
     }
 
