@@ -1060,7 +1060,7 @@ Rectangle {
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
         background: Rectangle {
-            color: Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
+            color: BlurService.enabled ? Theme.surfaceContainer : Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
             radius: Theme.cornerRadius
             border.width: 0
             border.color: Theme.outlineStrong

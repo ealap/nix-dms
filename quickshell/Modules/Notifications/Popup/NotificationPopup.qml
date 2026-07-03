@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Wayland
 import Quickshell.Services.Notifications
 import qs.Common
+import qs.Modules.Notifications
 import qs.Services
 import qs.Widgets
 
@@ -1132,7 +1133,12 @@ PanelWindow {
                     if (!notificationData || win.exiting)
                         return;
                     if (mouse.button === Qt.RightButton) {
-                        popupContextMenu.popup();
+                        popupContextMenuLoader.active = true;
+                        const menu = popupContextMenuLoader.item;
+                        if (menu) {
+                            const p = mapToItem(null, mouse.x, mouse.y);
+                            menu.showAt(win.margins.left + p.x, win.margins.top + p.y, win.screen);
+                        }
                     } else if (mouse.button === Qt.LeftButton) {
                         const canExpand = bodyText.hasMoreText || win.descriptionExpanded || (SettingsData.notificationPopupPrivacyMode && win.hasExpandableBody);
                         if (canExpand) {
@@ -1376,95 +1382,19 @@ PanelWindow {
         }
     }
 
-    Menu {
-        id: popupContextMenu
-        width: 220
-        contentHeight: 130
-        margins: -1
-        popupType: Popup.Window
-        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+    Loader {
+        id: popupContextMenuLoader
+        active: false
 
-        background: Rectangle {
-            color: Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
-            radius: Theme.cornerRadius
-            border.width: 0
-            border.color: Theme.outlineStrong
-        }
-
-        MenuItem {
-            id: setNotificationRulesItem
-            text: I18n.tr("Set notification rules")
-
-            contentItem: StyledText {
-                text: parent.text
-                font.pixelSize: Theme.fontSizeSmall
-                color: Theme.surfaceText
-                leftPadding: Theme.spacingS
-                verticalAlignment: Text.AlignVCenter
+        sourceComponent: NotificationContextMenu {
+            appName: notificationData?.appName ?? ""
+            desktopEntry: notificationData?.desktopEntry ?? ""
+            onMuted: {
+                if (notificationData && !win.exiting)
+                    NotificationService.dismissNotification(notificationData);
             }
-
-            background: Rectangle {
-                color: parent.hovered ? Theme.primaryHoverLight : Theme.withAlpha(Theme.primaryHoverLight, 0)
-                radius: Theme.cornerRadius / 2
-            }
-
-            onTriggered: {
-                const appName = notificationData?.appName || "";
-                const desktopEntry = notificationData?.desktopEntry || "";
-                SettingsData.addNotificationRuleForNotification(appName, desktopEntry);
-                PopoutService.openSettingsWithTab("notifications");
-            }
-        }
-
-        MenuItem {
-            id: muteUnmuteItem
-            readonly property bool isMuted: SettingsData.isAppMuted(notificationData?.appName || "", notificationData?.desktopEntry || "")
-            text: isMuted ? I18n.tr("Unmute popups for %1").arg(notificationData?.appName || I18n.tr("this app")) : I18n.tr("Mute popups for %1").arg(notificationData?.appName || I18n.tr("this app"))
-
-            contentItem: StyledText {
-                text: parent.text
-                font.pixelSize: Theme.fontSizeSmall
-                color: Theme.surfaceText
-                leftPadding: Theme.spacingS
-                verticalAlignment: Text.AlignVCenter
-            }
-
-            background: Rectangle {
-                color: parent.hovered ? Theme.primaryHoverLight : Theme.withAlpha(Theme.primaryHoverLight, 0)
-                radius: Theme.cornerRadius / 2
-            }
-
-            onTriggered: {
-                const appName = notificationData?.appName || "";
-                const desktopEntry = notificationData?.desktopEntry || "";
-                if (isMuted) {
-                    SettingsData.removeMuteRuleForApp(appName, desktopEntry);
-                } else {
-                    SettingsData.addMuteRuleForApp(appName, desktopEntry);
-                    if (notificationData && !exiting)
-                        NotificationService.dismissNotification(notificationData);
-                }
-            }
-        }
-
-        MenuItem {
-            text: I18n.tr("Dismiss")
-
-            contentItem: StyledText {
-                text: parent.text
-                font.pixelSize: Theme.fontSizeSmall
-                color: Theme.surfaceText
-                leftPadding: Theme.spacingS
-                verticalAlignment: Text.AlignVCenter
-            }
-
-            background: Rectangle {
-                color: parent.hovered ? Theme.primaryHoverLight : Theme.withAlpha(Theme.primaryHoverLight, 0)
-                radius: Theme.cornerRadius / 2
-            }
-
-            onTriggered: {
-                if (notificationData && !exiting)
+            onDismissRequested: {
+                if (notificationData && !win.exiting)
                     NotificationService.dismissNotification(notificationData);
             }
         }
