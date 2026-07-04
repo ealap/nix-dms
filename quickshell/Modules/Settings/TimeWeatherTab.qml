@@ -565,6 +565,7 @@ Item {
                                                 if (text && longitudeInput.text) {
                                                     const coords = text + "," + longitudeInput.text;
                                                     SessionData.weatherCoordinates = coords;
+                                                    SessionData.weatherLocation = "";
                                                     SessionData.saveSettings();
                                                 }
                                             }
@@ -615,6 +616,7 @@ Item {
                                                 if (text && latitudeInput.text) {
                                                     const coords = latitudeInput.text + "," + text;
                                                     SessionData.weatherCoordinates = coords;
+                                                    SessionData.weatherLocation = "";
                                                     SessionData.saveSettings();
                                                 }
                                             }

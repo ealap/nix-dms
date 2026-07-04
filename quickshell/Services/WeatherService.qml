@@ -462,7 +462,7 @@ Singleton {
     }
 
     function getConfiguredLocationName() {
-        return SessionData.isGreeterMode ? GreetdSettings.weatherLocation : SettingsData.weatherLocation;
+        return SessionData.isGreeterMode ? SessionData.weatherLocation : SettingsData.weatherLocation;
     }
 
     function setLocation(lat, lon, city, country) {
@@ -516,8 +516,8 @@ Singleton {
 
     function updateLocation() {
         const useAuto = SessionData.isGreeterMode ? GreetdSettings.useAutoLocation : SettingsData.useAutoLocation;
-        const coords = SessionData.isGreeterMode ? GreetdSettings.weatherCoordinates : SettingsData.weatherCoordinates;
-        const cityName = SessionData.isGreeterMode ? GreetdSettings.weatherLocation : SettingsData.weatherLocation;
+        const coords = SessionData.isGreeterMode ? SessionData.weatherCoordinates : SettingsData.weatherCoordinates;
+        const cityName = SessionData.isGreeterMode ? SessionData.weatherLocation : SettingsData.weatherLocation;
 
         if (useAuto) {
             getLocationFromService();
@@ -803,7 +803,7 @@ Singleton {
         onExited: exitCode => {
             if (bigDataCloudFetcher.reqId !== root._geocodeReqId)
                 return;
-            // Final fallback; no further action needed
+        // Final fallback; no further action needed
         }
     }
 
