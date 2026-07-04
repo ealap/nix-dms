@@ -1437,6 +1437,8 @@ window-rule {
     }
 
     function getOutputIdentifier(output, outputName) {
+        if (output.explicitIdentifier)
+            return outputName;
         if (SettingsData.displayNameMode === "model" && output.make && output.model) {
             const serial = output.serial || "Unknown";
             return output.make + " " + output.model + " " + serial;
@@ -1490,7 +1492,9 @@ window-rule {
                 continue;
             }
 
-            if (output.current_mode !== undefined && output.modes && output.modes[output.current_mode]) {
+            if (output.configured_mode) {
+                kdlContent += `    mode "${output.configured_mode}"\n`;
+            } else if (output.current_mode !== undefined && output.modes && output.modes[output.current_mode]) {
                 const mode = output.modes[output.current_mode];
                 kdlContent += `    mode "${mode.width}x${mode.height}@${(mode.refresh_rate / 1000).toFixed(3)}"\n`;
             }

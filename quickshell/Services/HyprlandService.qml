@@ -105,8 +105,10 @@ Singleton {
     }
 
     function getOutputIdentifier(output, outputName) {
+        if (output.explicitIdentifier)
+            return outputName;
         if (SettingsData.displayNameMode === "model" && output.make && output.model)
-            return ("desc:" + output.make + " " + output.model + " " + (output.serial || "Unknown")).replace(/,/g, "");
+            return ("desc:" + [output.make, output.model, output.serial].filter(p => p).join(" ")).replace(/,/g, "");
         return outputName;
     }
 
@@ -194,8 +196,8 @@ Singleton {
                 continue;
             }
 
-            let resolution = "preferred";
-            if (output.modes && output.current_mode !== undefined) {
+            let resolution = output.configured_mode || "preferred";
+            if (!output.configured_mode && output.modes && output.current_mode !== undefined) {
                 const mode = output.modes[output.current_mode];
                 if (mode)
                     resolution = mode.width + "x" + mode.height + "@" + (mode.refresh_rate / 1000).toFixed(3);

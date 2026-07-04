@@ -402,6 +402,17 @@ Singleton {
     }
 
     // Convert monitors.json config entry → internal outputsData map
+    function profileKeyMatchesOutput(outputId, output, name) {
+        if (name === outputId || getOutputIdentifier(output, name) === outputId)
+            return true;
+        if (!outputId.startsWith("desc:") || !output?.make)
+            return false;
+        const want = outputId.slice(5).trim();
+        const full = [output.make, output.model, output.serial].filter(p => p).join(" ").replace(/,/g, "");
+        const noSerial = [output.make, output.model].filter(p => p).join(" ").replace(/,/g, "");
+        return want === full || want === noSerial || full.startsWith(want + " ");
+    }
+
     function generateOutputsDataFromConfig(configEntry) {
         const result = {};
         const cfgOutputs = configEntry.outputs || {};
@@ -410,20 +421,20 @@ Singleton {
             // Find matching live output to get modes list
             let liveOutput = null;
             for (const name in outputs) {
-                if (getOutputIdentifier(outputs[name], name) === outputId || name === outputId) {
+                if (profileKeyMatchesOutput(outputId, outputs[name], name)) {
                     liveOutput = outputs[name];
                     break;
                 }
             }
             const liveModes = liveOutput?.modes || [];
-            let currentMode = liveModes.findIndex(m => {
+            const currentMode = liveModes.findIndex(m => {
                 const s = m.width + "x" + m.height + "@" + (m.refresh_rate / 1000).toFixed(3);
                 return s === cfg.mode;
             });
-            if (currentMode < 0 && liveModes.length > 0)
-                currentMode = 0;
             const entry = {
                 "name": outputId,
+                "explicitIdentifier": true,
+                "configured_mode": cfg.mode || "",
                 "make": liveOutput?.make || "",
                 "model": liveOutput?.model || "",
                 "serial": liveOutput?.serial || "",
@@ -1846,7 +1857,7 @@ Singleton {
 
     function getHyprlandOutputIdentifier(output, outputName) {
         if (SettingsData.displayNameMode === "model" && output?.make && output?.model)
-            return ("desc:" + output.make + " " + output.model + " " + (output?.serial || "Unknown")).replace(/,/g, "");
+            return ("desc:" + [output.make, output.model, output.serial].filter(p => p).join(" ")).replace(/,/g, "");
         return outputName;
     }
 
