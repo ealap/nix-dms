@@ -175,7 +175,7 @@ BasePill {
     }
 
     function getBrightnessIconName() {
-        const deviceName = getPinnedBrightnessDevice();
+        const deviceName = getEffectiveBrightnessDevice();
         if (!deviceName)
             return "brightness_medium";
         const level = DisplayService.getDeviceBrightness(deviceName);
@@ -207,8 +207,8 @@ BasePill {
         return pins[pinKey] || "";
     }
 
-    function hasPinnedBrightnessDevice() {
-        return getPinnedBrightnessDevice().length > 0;
+    function getEffectiveBrightnessDevice() {
+        return getPinnedBrightnessDevice() || DisplayService.getDefaultDevice();
     }
 
     function handleVolumeWheel(delta) {
@@ -258,7 +258,7 @@ BasePill {
     }
 
     function handleBrightnessWheel(delta) {
-        const deviceName = getPinnedBrightnessDevice();
+        const deviceName = getEffectiveBrightnessDevice();
         if (!deviceName) {
             return;
         }
@@ -281,7 +281,7 @@ BasePill {
     }
 
     function getBrightness() {
-        const deviceName = getPinnedBrightnessDevice();
+        const deviceName = getEffectiveBrightnessDevice();
         if (!deviceName) {
             return;
         }
@@ -350,7 +350,7 @@ BasePill {
         case "microphone":
             return root.showMicIcon;
         case "brightness":
-            return root.showBrightnessIcon && DisplayService.brightnessAvailable && root.hasPinnedBrightnessDevice();
+            return root.showBrightnessIcon && DisplayService.brightnessAvailable && root.getEffectiveBrightnessDevice().length > 0;
         case "battery":
             return root.showBatteryIcon && BatteryService.batteryAvailable;
         case "printer":
