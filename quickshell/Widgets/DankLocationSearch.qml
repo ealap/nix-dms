@@ -33,6 +33,11 @@ Item {
         searchResultsModel.clear();
     }
 
+    // CJK city names are commonly two code points (北京, 東京, 서울).
+    function canSearch(t) {
+        return t.length > 2 || (t.length >= 2 && /[぀-ヿ㐀-䶿一-鿿豈-﫿가-힯]/.test(t));
+    }
+
     width: parent.width
     height: searchInputField.height + (searchDropdown.visible ? searchDropdown.height : 0)
 
@@ -47,7 +52,7 @@ Item {
         running: false
         repeat: false
         onTriggered: {
-            if (locationInput.text.length > 2) {
+            if (root.canSearch(locationInput.text)) {
                 searchResultsModel.clear();
                 root.isLoading = true;
                 const searchLocation = locationInput.text;
@@ -130,7 +135,7 @@ Item {
                 if (root._internalChange)
                     return;
                 if (getActiveFocus()) {
-                    if (text.length > 2) {
+                    if (root.canSearch(text)) {
                         root.isLoading = true;
                         locationSearchTimer.restart();
                     } else {
@@ -154,7 +159,7 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: Theme.spacingM
             anchors.verticalCenter: parent.verticalCenter
-            opacity: (locationInput.getActiveFocus() && locationInput.text.length > 2) ? 1 : 0
+            opacity: (locationInput.getActiveFocus() && root.canSearch(locationInput.text)) ? 1 : 0
 
             Behavior on opacity {
                 NumberAnimation {
@@ -177,7 +182,7 @@ Item {
         color: Theme.withAlpha(Theme.surfaceContainer, Theme.popupTransparency)
         border.color: Theme.primarySelected
         border.width: 1
-        visible: locationInput.getActiveFocus() && locationInput.text.length > 2 && (searchResultsModel.count > 0 || root.isLoading)
+        visible: locationInput.getActiveFocus() && root.canSearch(locationInput.text) && (searchResultsModel.count > 0 || root.isLoading)
 
         MouseArea {
             anchors.fill: parent
@@ -259,7 +264,7 @@ Item {
                 text: root.isLoading ? "Searching..." : "No locations found"
                 font.pixelSize: Theme.fontSizeMedium
                 color: Theme.surfaceVariantText
-                visible: searchResultsList.count === 0 && locationInput.text.length > 2
+                visible: searchResultsList.count === 0 && root.canSearch(locationInput.text)
             }
         }
     }
