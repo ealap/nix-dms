@@ -485,6 +485,8 @@ Item {
             widgetObj.showBatteryPercentOnlyOnBattery = SettingsData.showBatteryPercentOnlyOnBattery;
             widgetObj.showBatteryTime = SettingsData.showBatteryTime;
             widgetObj.showBatteryTimeOnlyOnBattery = SettingsData.showBatteryTimeOnlyOnBattery;
+            widgetObj.batteryPillStyle = SettingsData.batteryPillStyle;
+            widgetObj.batteryPillPercentSign = SettingsData.batteryPillPercentSign;
         }
         if (widgetId === "runningApps") {
             widgetObj.runningAppsCompactMode = SettingsData.runningAppsCompactMode;
@@ -524,7 +526,7 @@ Item {
             "id": widget.id,
             "enabled": widget.enabled
         };
-        var keys = ["size", "selectedGpuIndex", "pciId", "mountPath", "diskUsageMode", "minimumWidth", "showSwap", "showInGb", "mediaSize", "clockCompactMode", "focusedWindowSize", "focusedWindowCompactMode", "runningAppsCompactMode", "keyboardLayoutNameCompactMode", "keyboardLayoutNameShowIcon", "runningAppsGroupByApp", "runningAppsCurrentWorkspace", "runningAppsCurrentMonitor", "showNetworkIcon", "showBluetoothIcon", "showAudioIcon", "showAudioPercent", "showVpnIcon", "showBrightnessIcon", "showBrightnessPercent", "showMicIcon", "showMicPercent", "showBatteryIcon", "showBatteryPercent", "showBatteryPercentOnlyOnBattery", "showBatteryTime", "showBatteryTimeOnlyOnBattery", "showPrinterIcon", "showScreenSharingIcon", "showIdleInhibitorIcon", "showDoNotDisturbIcon", "controlCenterGroupOrder", "barMaxVisibleApps", "barMaxVisibleRunningApps", "barShowOverflowBadge", "trayUseInlineExpansion", "trayPopupSingleLine", "trayAutoOverflow", "trayMaxVisibleItems", "hideWhenIdle"];
+        var keys = ["size", "selectedGpuIndex", "pciId", "mountPath", "diskUsageMode", "minimumWidth", "showSwap", "showInGb", "mediaSize", "clockCompactMode", "focusedWindowSize", "focusedWindowCompactMode", "runningAppsCompactMode", "keyboardLayoutNameCompactMode", "keyboardLayoutNameShowIcon", "runningAppsGroupByApp", "runningAppsCurrentWorkspace", "runningAppsCurrentMonitor", "showNetworkIcon", "showBluetoothIcon", "showAudioIcon", "showAudioPercent", "showVpnIcon", "showBrightnessIcon", "showBrightnessPercent", "showMicIcon", "showMicPercent", "showBatteryIcon", "showBatteryPercent", "showBatteryPercentOnlyOnBattery", "showBatteryTime", "showBatteryTimeOnlyOnBattery", "batteryPillStyle", "batteryPillPercentSign", "showPrinterIcon", "showScreenSharingIcon", "showIdleInhibitorIcon", "showDoNotDisturbIcon", "controlCenterGroupOrder", "barMaxVisibleApps", "barMaxVisibleRunningApps", "barShowOverflowBadge", "trayUseInlineExpansion", "trayPopupSingleLine", "trayAutoOverflow", "trayMaxVisibleItems", "hideWhenIdle"];
         for (var i = 0; i < keys.length; i++) {
             if (widget[keys[i]] !== undefined)
                 result[keys[i]] = widget[keys[i]];
@@ -1023,6 +1025,10 @@ Item {
                     item.showBatteryTime = widget.showBatteryTime;
                 if (widget.showBatteryTimeOnlyOnBattery !== undefined)
                     item.showBatteryTimeOnlyOnBattery = widget.showBatteryTimeOnlyOnBattery;
+                if (widget.batteryPillStyle !== undefined)
+                    item.batteryPillStyle = widget.batteryPillStyle;
+                if (widget.batteryPillPercentSign !== undefined)
+                    item.batteryPillPercentSign = widget.batteryPillPercentSign;
                 if (widget.showPrinterIcon !== undefined)
                     item.showPrinterIcon = widget.showPrinterIcon;
                 if (widget.showScreenSharingIcon !== undefined)
