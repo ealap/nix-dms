@@ -714,6 +714,37 @@ Singleton {
         }
     }
 
+    function configEntryMatchesLiveLayout(configEntry) {
+        const cfgOutputs = configEntry.outputs || {};
+        for (const outputId in cfgOutputs) {
+            const cfg = cfgOutputs[outputId];
+            let live = null;
+            for (const name in outputs) {
+                if (profileKeyMatchesOutput(outputId, outputs[name], name)) {
+                    live = outputs[name];
+                    break;
+                }
+            }
+            if (!live)
+                return false;
+            if ((cfg.disabled ?? false) !== !(live.enabled ?? true))
+                return false;
+            if (cfg.disabled)
+                continue;
+            const mode = (live.modes && live.current_mode >= 0) ? live.modes[live.current_mode] : null;
+            const modeStr = mode ? mode.width + "x" + mode.height + "@" + (mode.refresh_rate / 1000).toFixed(3) : null;
+            if (cfg.mode && modeStr !== cfg.mode)
+                return false;
+            if ((cfg.position?.x ?? 0) !== (live.logical?.x ?? 0) || (cfg.position?.y ?? 0) !== (live.logical?.y ?? 0))
+                return false;
+            if (Math.abs((cfg.scale ?? 1.0) - (live.logical?.scale ?? 1.0)) > 0.001)
+                return false;
+            if ((cfg.transform ?? "Normal") !== (live.logical?.transform ?? "Normal"))
+                return false;
+        }
+        return true;
+    }
+
     function applyAutoConfig() {
         if (!profilesReady || !SettingsData.displayProfileAutoSelect || manualActivation || !currentOutputSet.length)
             return;
@@ -721,6 +752,10 @@ Singleton {
         readMonitorsJson(data => {
             const match = findConfigEntryByFingerprint(data, currentOutputSet, true);
             if (match) {
+                if (configEntryMatchesLiveLayout(match.entry)) {
+                    SettingsData.setActiveDisplayProfile(CompositorService.compositor, match.entry.id);
+                    return;
+                }
                 applyConfigEntry(match.entry, match.entry.id, "", false);
                 return;
             }
@@ -1498,6 +1533,7 @@ Singleton {
                     }));
             map[output.name] = {
                 "name": output.name,
+                "enabled": output.enabled ?? true,
                 "make": output.make || "",
                 "model": output.model || "",
                 "serial": output.serialNumber || "",
@@ -2206,19 +2242,17 @@ Singleton {
             outputs: outputConfigs
         };
 
-        if (profileId) {
-            readMonitorsJson(data => {
-                const match = findConfigEntryById(data, profileId);
-                if (match) {
-                    data.configurations[match.index] = {
-                        "id": match.entry.id,
-                        "name": match.entry.name || "",
-                        "outputs": outputConfigs
-                    };
-                    writeMonitorsJson(data, null);
-                }
-            });
-        }
+        readMonitorsJson(data => {
+            const match = profileId ? findConfigEntryById(data, profileId) : findConfigEntryByFingerprint(data, currentOutputSet, true);
+            if (!match)
+                return;
+            data.configurations[match.index] = {
+                "id": match.entry.id,
+                "name": match.entry.name || "",
+                "outputs": outputConfigs
+            };
+            writeMonitorsJson(data, null);
+        });
 
         clearPendingChanges();
         changesConfirmed();

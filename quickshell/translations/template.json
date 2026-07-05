@@ -10885,6 +10885,13 @@
     "comment": ""
   },
   {
+    "term": "Material Battery Style",
+    "translation": "",
+    "context": "",
+    "reference": "",
+    "comment": ""
+  },
+  {
     "term": "Material Colors",
     "translation": "",
     "context": "",
@@ -18466,13 +18473,6 @@
     "comment": ""
   },
   {
-    "term": "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
     "term": "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.",
     "translation": "",
     "context": "dgop unavailable error message",
@@ -20973,13 +20973,6 @@
   },
   {
     "term": "attached",
-    "translation": "",
-    "context": "",
-    "reference": "",
-    "comment": ""
-  },
-  {
-    "term": "boregard is required",
     "translation": "",
     "context": "",
     "reference": "",

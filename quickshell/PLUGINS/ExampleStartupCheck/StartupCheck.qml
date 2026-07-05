@@ -14,8 +14,8 @@ QtObject {
                 return;
             }
             done({
-                "title": I18n.tr("boregard is required"),
-                "details": I18n.tr("The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.")
+                "title": "boregard is required",
+                "details": "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin."
             });
         });
     }

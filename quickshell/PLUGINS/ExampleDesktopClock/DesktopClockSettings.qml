@@ -8,14 +8,14 @@ PluginSettings {
 
     SelectionSetting {
         settingKey: "clockStyle"
-        label: I18n.tr("Clock Style")
+        label: "Clock Style"
         options: [
             {
-                label: I18n.tr("Analog"),
+                label: "Analog",
                 value: "analog"
             },
             {
-                label: I18n.tr("Digital"),
+                label: "Digital",
                 value: "digital"
             }
         ]
@@ -24,19 +24,19 @@ PluginSettings {
 
     ToggleSetting {
         settingKey: "showSeconds"
-        label: I18n.tr("Show Seconds")
+        label: "Show Seconds"
         defaultValue: true
     }
 
     ToggleSetting {
         settingKey: "showDate"
-        label: I18n.tr("Show Date")
+        label: "Show Date"
         defaultValue: true
     }
 
     SliderSetting {
         settingKey: "backgroundOpacity"
-        label: I18n.tr("Background Opacity")
+        label: "Background Opacity"
         defaultValue: 50
         minimum: 0
         maximum: 100
