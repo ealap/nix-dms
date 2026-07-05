@@ -699,6 +699,7 @@ func redetectMatugenVersion(old matugenFlags) (matugenFlags, bool) {
 
 func detectMatugenVersionLocked() (matugenFlags, error) {
 	cmd := exec.Command("matugen", "--version")
+	cmd.Env = utils.EnvWithUserBinPath(nil)
 	output, err := cmd.Output()
 	if err != nil {
 		return matugenFlags{}, fmt.Errorf("failed to get matugen version: %w", err)
@@ -755,6 +756,7 @@ func runMatugen(baseArgs []string) error {
 
 	args := buildMatugenArgs(baseArgs, flags)
 	cmd := exec.Command("matugen", args...)
+	cmd.Env = utils.EnvWithUserBinPath(nil)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	runErr := cmd.Run()
@@ -772,6 +774,7 @@ func runMatugen(baseArgs []string) error {
 	log.Warnf("Matugen version changed (v4: %v -> %v), retrying", flags.isV4, newFlags.isV4)
 	args = buildMatugenArgs(baseArgs, newFlags)
 	retryCmd := exec.Command("matugen", args...)
+	retryCmd.Env = utils.EnvWithUserBinPath(nil)
 	retryCmd.Stdout = os.Stdout
 	retryCmd.Stderr = os.Stderr
 	return retryCmd.Run()
@@ -814,6 +817,7 @@ func execDryRun(opts *Options, flags matugenFlags) (string, error) {
 	}
 
 	cmd := exec.Command("matugen", baseArgs...)
+	cmd.Env = utils.EnvWithUserBinPath(nil)
 	var stderr strings.Builder
 	cmd.Stderr = &stderr
 	output, err := cmd.Output()
