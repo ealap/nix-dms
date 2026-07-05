@@ -638,7 +638,7 @@ Item {
                 NiriService.switchToWorkspace(data.id);
             break;
         case "hyprland":
-            if (data.id) {
+            if (data.id && data.id !== -1) {
                 HyprlandService.focusWorkspace(hyprlandWorkspaceSelector(data));
             }
             break;
@@ -663,7 +663,7 @@ Item {
 
         for (let i = 0; i < workspaceRepeater.count; i++) {
             const item = workspaceRepeater.itemAt(i);
-            if (!item)
+            if (!item || item.isPlaceholder)
                 continue;
             const center = item.mapToItem(root, item.width / 2, item.height / 2);
             const dist = isVertical ? Math.abs(localY - center.y) : Math.abs(localX - center.x);
