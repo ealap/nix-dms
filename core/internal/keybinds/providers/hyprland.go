@@ -1154,7 +1154,7 @@ func readLuaOrHyprlangOverride(path string) (map[string]*hyprlandOverrideBind, e
 	if err != nil {
 		return nil, err
 	}
-	lines := strings.Split(string(data), "\n")
+	lines := expandLuaConfigLines(strings.Split(string(data), "\n"))
 	parser := NewHyprlandParser("")
 	pendingUnbinds := make(map[string]string)
 	for _, line := range lines {

@@ -623,7 +623,7 @@ func (p *HyprlandParser) parseLuaLines(content string, baseDir, absPath, section
 	prevSource := p.currentSource
 	p.currentSource = absPath
 
-	lines := strings.Split(content, "\n")
+	lines := expandLuaConfigLines(strings.Split(content, "\n"))
 	boundInFile := make(map[string]bool)
 	for _, line := range lines {
 		trimmed := strings.TrimSpace(line)
