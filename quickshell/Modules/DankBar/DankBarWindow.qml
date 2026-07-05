@@ -240,7 +240,7 @@ PanelWindow {
         id: barBlur
         visible: false
 
-        readonly property bool barHasTransparency: barWindow._backgroundAlpha > 0 && barWindow._backgroundAlpha < 1
+        readonly property bool barHasTransparency: barWindow._backgroundAlpha < 1
 
         function rebuild() {
             teardown();
