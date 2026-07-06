@@ -50,7 +50,6 @@ Rectangle {
     }
     readonly property bool hasClipboardPreview: item?.type === "clipboard" && item?.data?.isImage === true && (item?.data?.mimeType ?? "").startsWith("image/")
     readonly property bool hasMediaPreview: previewSource.length > 0 || hasClipboardPreview
-    readonly property bool previewAnimated: previewSource.toLowerCase().indexOf(".gif") >= 0
 
     readonly property string typeLabel: {
         if (!item)
@@ -284,16 +283,10 @@ Rectangle {
             anchors.fill: parent
             source: root.previewSource
             asynchronous: true
+            sourceSize.width: 128
+            sourceSize.height: 128
             fillMode: Image.PreserveAspectCrop
-            visible: !root.hasClipboardPreview && !root.previewAnimated
-        }
-
-        AnimatedImage {
-            anchors.fill: parent
-            source: root.previewSource
-            fillMode: Image.PreserveAspectCrop
-            playing: visible
-            visible: !root.hasClipboardPreview && root.previewAnimated
+            visible: !root.hasClipboardPreview
         }
 
         ClipboardLauncherPreview {

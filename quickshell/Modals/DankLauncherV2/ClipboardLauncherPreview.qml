@@ -41,13 +41,18 @@ Rectangle {
     }
 
     function reloadPreview() {
-        cachedImageData = "";
-        cachedMimeType = "";
         if (!canLoadImage || !entry?.id) {
             _requestedEntryId = null;
+            cachedImageData = "";
+            cachedMimeType = "";
             return;
         }
+        // Entry objects are rebuilt per search; same id means same content
+        if (entry.id === _requestedEntryId)
+            return;
 
+        cachedImageData = "";
+        cachedMimeType = "";
         const entryId = entry.id;
         _requestedEntryId = entryId;
         DMSService.sendRequest("clipboard.getEntry", {
@@ -78,6 +83,8 @@ Rectangle {
         asynchronous: true
         cache: false
         smooth: true
+        sourceSize.width: 128
+        sourceSize.height: 128
         fillMode: Image.PreserveAspectCrop
         visible: status === Image.Ready
     }

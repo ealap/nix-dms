@@ -165,6 +165,9 @@ Rectangle {
                     anchors.margins: root.hasScreencopy ? 4 : 0
                     fillMode: Image.PreserveAspectFit
                     source: root.item?.data?.attribution || ""
+                    asynchronous: true
+                    sourceSize.width: 80
+                    sourceSize.height: 80
                     mipmap: true
                 }
             }

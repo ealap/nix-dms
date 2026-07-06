@@ -110,7 +110,7 @@ Item {
             if (query !== effectiveQuery)
                 return;
 
-            searchDebounce.restart();
+            root.requestSearch();
         }
     }
 
@@ -380,10 +380,29 @@ Item {
     property bool _pluginPhaseForceFirst: false
     property var _phase1Items: []
 
+    property bool _searchPending: false
+
+    // Leading-edge debounce: search immediately when idle, coalesce bursts
+    function requestSearch() {
+        if (searchDebounce.running) {
+            _searchPending = true;
+            searchDebounce.restart();
+            return;
+        }
+        _searchPending = false;
+        performSearch();
+        searchDebounce.restart();
+    }
+
     Timer {
         id: searchDebounce
         interval: 60
-        onTriggered: root.performSearch()
+        onTriggered: {
+            if (!root._searchPending)
+                return;
+            root._searchPending = false;
+            root.performSearch();
+        }
     }
 
     Timer {
@@ -409,7 +428,7 @@ Item {
         _phase1Items = [];
         pluginPhaseTimer.stop();
         searchQuery = query;
-        searchDebounce.restart();
+        requestSearch();
 
         if (searchMode !== "plugins" && query.startsWith("/")) {
             var prefix = Utils.parseFileSearchPrefix(query);
@@ -1871,7 +1890,8 @@ Item {
     }
 
     function executeSelected() {
-        if (searchDebounce.running) {
+        if (_searchPending) {
+            _searchPending = false;
             searchDebounce.stop();
             performSearch();
         }

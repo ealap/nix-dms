@@ -85,6 +85,7 @@ Item {
         anchors.fill: parent
         imagePath: root.imagePath
         maxCacheSize: root.iconSize * 2
+        animate: false
         visible: root.isImage && status === Image.Ready
     }
 
