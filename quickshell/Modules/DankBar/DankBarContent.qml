@@ -1129,12 +1129,13 @@ Item {
             parentScreen: barWindow.screen
             onClicked: {
                 const section = topBarContent.getWidgetSection(parent) || "center";
+                const tabIndex = SettingsData.dashTabIndexForId("media");
                 topBarContent.openWidgetPopout({
                     loader: dankDashPopoutLoader,
                     widgetItem: mediaWidget,
                     section,
-                    tabIndex: 1,
-                    triggerSource: topBarContent._dashTriggerSource(section, 1),
+                    tabIndex,
+                    triggerSource: topBarContent._dashTriggerSource(section, tabIndex),
                     mode: "click",
                     useCenterSection: true,
                     setTriggerScreen: true
@@ -1156,12 +1157,13 @@ Item {
             parentScreen: barWindow.screen
             onClicked: {
                 const section = topBarContent.getWidgetSection(parent) || "center";
+                const tabIndex = SettingsData.dashTabIndexForId("weather");
                 topBarContent.openWidgetPopout({
                     loader: dankDashPopoutLoader,
                     widgetItem: weatherWidget,
                     section,
-                    tabIndex: 3,
-                    triggerSource: topBarContent._dashTriggerSource(section, 3),
+                    tabIndex,
+                    triggerSource: topBarContent._dashTriggerSource(section, tabIndex),
                     mode: "click",
                     useCenterSection: true,
                     setTriggerScreen: true
