@@ -3,6 +3,7 @@ pragma ComponentBehavior: Bound
 
 import Quickshell
 import QtCore
+import QtQuick
 import qs.Services
 
 Singleton {
@@ -18,6 +19,8 @@ Singleton {
     readonly property url config: `${StandardPaths.standardLocations(StandardPaths.GenericConfigLocation)[0]}/DankMaterialShell`
 
     readonly property url imagecache: `${cache}/imagecache`
+
+    Component.onCompleted: mkdir(imagecache)
 
     function stringify(path: url): string {
         return path.toString().replace(/%20/g, " ");

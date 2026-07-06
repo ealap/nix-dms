@@ -1,7 +1,8 @@
 import Qt.labs.folderlistmodel
 import QtCore
 import QtQuick
-import QtQuick.Effects
+import Quickshell
+import Quickshell.Widgets
 import qs.Common
 import qs.Modals.FileBrowser
 import qs.Widgets
@@ -350,17 +351,6 @@ Item {
         }
     }
 
-    function collectWallpaperPaths() {
-        const paths = [];
-        for (var i = 0; i < wallpaperFolderModel.count; i++) {
-            const filePath = wallpaperFolderModel.get(i, "filePath");
-            if (filePath) {
-                paths.push(filePath.toString().replace(/^file:\/\//, ''));
-            }
-        }
-        return paths;
-    }
-
     Connections {
         target: wallpaperFolderModel
         function onCountChanged() {
@@ -369,7 +359,6 @@ Item {
                     setInitialSelection();
                 }
                 updateSelectedFileName();
-                thumbnailPreloader.paths = collectWallpaperPaths();
             }
         }
         function onStatusChanged() {
@@ -378,14 +367,8 @@ Item {
                     setInitialSelection();
                 }
                 updateSelectedFileName();
-                thumbnailPreloader.paths = collectWallpaperPaths();
             }
         }
-    }
-
-    WallpaperThumbnailPreloader {
-        id: thumbnailPreloader
-        cacheSize: 256
     }
 
     FolderListModel {
@@ -466,6 +449,7 @@ Item {
                 activeFocusOnTab: false
                 focus: false
                 cacheBuffer: Math.max(0, height * 2)
+                reuseItems: true
                 model: root.totalPages
 
                 onCurrentIndexChanged: {
@@ -517,18 +501,21 @@ Item {
                         }
                     }
 
-                    model: {
-                        root.gridRevision; // re-evaluate when sort order changes in place
-                        const startIndex = pageIndex * root.itemsPerPage;
-                        const endIndex = Math.min(startIndex + root.itemsPerPage, wallpaperFolderModel.count);
-                        const items = [];
-                        for (var i = startIndex; i < endIndex; i++) {
-                            const filePath = wallpaperFolderModel.get(i, "filePath");
-                            if (filePath) {
-                                items.push(filePath.toString().replace(/^file:\/\//, ''));
+                    reuseItems: true
+                    model: ScriptModel {
+                        values: {
+                            root.gridRevision; // re-evaluate when sort order changes in place
+                            const startIndex = pageGrid.pageIndex * root.itemsPerPage;
+                            const endIndex = Math.min(startIndex + root.itemsPerPage, wallpaperFolderModel.count);
+                            const items = [];
+                            for (var i = startIndex; i < endIndex; i++) {
+                                const filePath = wallpaperFolderModel.get(i, "filePath");
+                                if (filePath) {
+                                    items.push(filePath.toString().replace(/^file:\/\//, ''));
+                                }
                             }
+                            return items;
                         }
-                        return items;
                     }
 
                     onCountChanged: {
@@ -553,7 +540,6 @@ Item {
                             anchors.margins: Theme.spacingXS
                             color: Theme.withAlpha(Theme.surfaceContainerHighest, Theme.popupTransparency)
                             radius: Theme.cornerRadius
-                            clip: true
 
                             Rectangle {
                                 anchors.fill: parent
@@ -568,34 +554,24 @@ Item {
                                 }
                             }
 
-                            Rectangle {
-                                id: maskRect
-                                width: thumbnailImage.width
-                                height: thumbnailImage.height
-                                radius: Theme.cornerRadius
-                                visible: false
-                                layer.enabled: true
-                            }
-
-                            CachingImage {
-                                id: thumbnailImage
+                            ClippingRectangle {
                                 anchors.fill: parent
-                                imagePath: modelData || ""
-                                maxCacheSize: 256
-                                opacity: status === Image.Ready ? 1 : 0
+                                radius: wallpaperCard.radius
+                                color: "transparent"
 
-                                layer.enabled: true
-                                layer.effect: MultiEffect {
-                                    maskEnabled: true
-                                    maskThresholdMin: 0.5
-                                    maskSpreadAtMin: 1.0
-                                    maskSource: maskRect
-                                }
+                                CachingImage {
+                                    id: thumbnailImage
+                                    anchors.fill: parent
+                                    imagePath: modelData || ""
+                                    maxCacheSize: 256
+                                    animate: false
+                                    opacity: status === Image.Ready ? 1 : 0
 
-                                Behavior on opacity {
-                                    NumberAnimation {
-                                        duration: Theme.shortDuration
-                                        easing.type: Theme.standardEasing
+                                    Behavior on opacity {
+                                        NumberAnimation {
+                                            duration: Theme.shortDuration
+                                            easing.type: Theme.standardEasing
+                                        }
                                     }
                                 }
                             }
@@ -624,9 +600,15 @@ Item {
                 }
             }
 
+            DankSpinner {
+                anchors.centerIn: parent
+                size: 40
+                visible: wallpaperFolderModel.status === FolderListModel.Loading && wallpaperFolderModel.count === 0
+            }
+
             StyledText {
                 anchors.centerIn: parent
-                visible: wallpaperFolderModel.count === 0
+                visible: wallpaperFolderModel.status === FolderListModel.Ready && wallpaperFolderModel.count === 0
                 text: I18n.tr("No wallpapers found\n\nClick the folder icon below to browse")
                 font.pixelSize: 14
                 color: Theme.outline

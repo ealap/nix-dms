@@ -8,11 +8,14 @@ Item {
     property int maxCacheSize: 512
     property int status: isAnimated ? animatedImg.status : staticImg.status
     property int fillMode: Image.PreserveAspectCrop
+    // AnimatedImage decodes full-size on the GUI thread and is never cached;
+    // disable for thumbnail grids
+    property bool animate: true
     property bool _fromCache: false
 
     readonly property bool isRemoteUrl: imagePath.startsWith("http://") || imagePath.startsWith("https://")
     readonly property bool isAnimated: {
-        if (!imagePath)
+        if (!animate || !imagePath)
             return false;
         const lower = imagePath.toLowerCase();
         return lower.endsWith(".gif") || lower.endsWith(".webp");
@@ -75,7 +78,6 @@ Item {
                 if (!root._fromCache)
                     return;
                 root._fromCache = false;
-                CacheUtils.forgetCachedFile(root.cacheFileName);
                 source = root.encodedImagePath;
                 return;
             case Image.Ready:
@@ -83,19 +85,16 @@ Item {
                     return;
                 if (!visible || width <= 0 || height <= 0 || !Window.window?.visible)
                     return;
-                Paths.mkdir(Paths.imagecache);
                 const grabPath = root.cachePath;
-                const grabName = root.cacheFileName;
                 grabToImage(res => {
-                    if (res.saveToFile(grabPath))
-                        CacheUtils.recordCachedFile(grabName);
+                    res.saveToFile(grabPath);
                 });
                 return;
             }
         }
     }
 
-    onImagePathChanged: {
+    function resolveSource() {
         if (!imagePath) {
             _fromCache = false;
             staticImg.source = "";
@@ -113,14 +112,12 @@ Item {
             staticImg.source = encodedImagePath;
             return;
         }
-        Paths.mkdir(Paths.imagecache);
-        // Read cache only when present; else load source and cache it on Ready
-        if (CacheUtils.hasCachedFile(cacheFileName)) {
-            _fromCache = true;
-            staticImg.source = cachePath;
-        } else {
-            _fromCache = false;
-            staticImg.source = encodedImagePath;
-        }
+        // Cache-first; a miss errors and falls back to encodedImagePath
+        _fromCache = true;
+        staticImg.source = cachePath;
     }
+
+    onImagePathChanged: resolveSource()
+    // During creation onImagePathChanged fires before sibling properties (maxCacheSize) initialize
+    onCachePathChanged: resolveSource()
 }

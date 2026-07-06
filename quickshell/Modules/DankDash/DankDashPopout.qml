@@ -447,6 +447,7 @@ DankPopout {
                         anchors.fill: parent
                         active: root.currentTabId === "wallpaper"
                         visible: active
+                        asynchronous: true
                         sourceComponent: Component {
                             WallpaperTab {
                                 active: true
@@ -456,6 +457,12 @@ DankPopout {
                                 parentPopout: root
                             }
                         }
+                    }
+
+                    DankSpinner {
+                        anchors.centerIn: parent
+                        size: 40
+                        visible: wallpaperLoader.active && wallpaperLoader.status === Loader.Loading
                     }
 
                     Loader {
