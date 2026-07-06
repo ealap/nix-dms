@@ -39,7 +39,8 @@ Item {
     }
 
     readonly property string imageHash: normalizedPath ? djb2Hash(normalizedPath) : ""
-    readonly property string cachePath: imageHash && !isRemoteUrl && !isAnimated ? `${Paths.stringify(Paths.imagecache)}/${imageHash}@${maxCacheSize}x${maxCacheSize}.png` : ""
+    readonly property string cacheFileName: imageHash && !isRemoteUrl && !isAnimated ? `${imageHash}@${maxCacheSize}x${maxCacheSize}.png` : ""
+    readonly property string cachePath: cacheFileName ? `${Paths.stringify(Paths.imagecache)}/${cacheFileName}` : ""
     readonly property string encodedImagePath: {
         if (!normalizedPath)
             return "";
@@ -74,6 +75,7 @@ Item {
                 if (!root._fromCache)
                     return;
                 root._fromCache = false;
+                CacheUtils.forgetCachedFile(root.cacheFileName);
                 source = root.encodedImagePath;
                 return;
             case Image.Ready:
@@ -83,7 +85,11 @@ Item {
                     return;
                 Paths.mkdir(Paths.imagecache);
                 const grabPath = root.cachePath;
-                grabToImage(res => res.saveToFile(grabPath));
+                const grabName = root.cacheFileName;
+                grabToImage(res => {
+                    if (res.saveToFile(grabPath))
+                        CacheUtils.recordCachedFile(grabName);
+                });
                 return;
             }
         }
@@ -108,7 +114,13 @@ Item {
             return;
         }
         Paths.mkdir(Paths.imagecache);
-        _fromCache = true;
-        staticImg.source = cachePath;
+        // Read cache only when present; else load source and cache it on Ready
+        if (CacheUtils.hasCachedFile(cacheFileName)) {
+            _fromCache = true;
+            staticImg.source = cachePath;
+        } else {
+            _fromCache = false;
+            staticImg.source = encodedImagePath;
+        }
     }
 }
