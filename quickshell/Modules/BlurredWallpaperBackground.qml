@@ -108,16 +108,48 @@ Variants {
             function invalidate() {
                 _settleFrames = 3;
                 backingWindow?.update();
+                if (!_wedgeBounced)
+                    wedgeWatchdog.restart();
             }
 
             onRenderActiveChanged: invalidate()
             onBackingWindowChanged: invalidate()
+
+            // Same wedge recovery as WallpaperBackground
+            property bool _wedgeBounced: false
+
+            Timer {
+                id: wedgeWatchdog
+                interval: 3000
+                repeat: false
+                onTriggered: {
+                    if (!root.backingWindow || !blurWallpaperWindow.visible || IdleService.isShellLocked)
+                        return;
+                    log.warn("no frame swapped on", modelData.name, "since last invalidate, re-attaching surface");
+                    root._wedgeBounced = true;
+                    surfaceReattach.restart();
+                }
+            }
+
+            Timer {
+                id: surfaceReattach
+                interval: 0
+                repeat: false
+                onTriggered: {
+                    blurWallpaperWindow.visible = false;
+                    Qt.callLater(() => {
+                        blurWallpaperWindow.visible = true;
+                    });
+                }
+            }
 
             Connections {
                 target: root.backingWindow
                 function onFrameSwapped() {
                     if (root._settleFrames > 0)
                         root._settleFrames--;
+                    root._wedgeBounced = false;
+                    wedgeWatchdog.stop();
                 }
                 function onVisibleChanged() {
                     root.invalidate();
@@ -142,10 +174,29 @@ Variants {
                 function onWallpaperFillModeChanged() {
                     root.invalidate();
                 }
-                function onWallpaperBackgroundColorModeChanged() {
+                function onEffectiveWallpaperBackgroundColorChanged() {
                     root.invalidate();
                 }
-                function onWallpaperBackgroundCustomColorChanged() {
+            }
+
+            Connections {
+                target: SessionData
+                function onMonitorWallpaperFillModesChanged() {
+                    root.invalidate();
+                }
+                function onPerMonitorWallpaperChanged() {
+                    root.invalidate();
+                }
+            }
+
+            // Theme changes repaint DankBackdrop but nothing else wakes the render loop
+            Connections {
+                target: Theme
+                enabled: root.isColorSource || currentWallpaper.status === Image.Error
+                function onPrimaryChanged() {
+                    root.invalidate();
+                }
+                function onBackgroundChanged() {
                     root.invalidate();
                 }
             }
@@ -170,6 +221,7 @@ Variants {
             }
 
             onSourceChanged: {
+                invalidate();
                 if (!source || source.startsWith("#")) {
                     setWallpaperImmediate("");
                     return;
@@ -190,6 +242,7 @@ Variants {
             }
 
             function setWallpaperImmediate(newSource) {
+                transitionDelayTimer.stop();
                 transitionAnimation.stop();
                 root.transitionProgress = 0.0;
                 root.effectActive = false;
