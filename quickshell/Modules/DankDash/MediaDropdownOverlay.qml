@@ -44,6 +44,8 @@ Item {
 
     property int __panelHoverCount: 0
 
+    readonly property bool overlayBlurActive: dropdownBlur.active
+
     onDropdownTypeChanged: {
         if (dropdownType === 0) {
             __panelHoverCount = 0;
@@ -75,8 +77,10 @@ Item {
     }
 
     WindowBlur {
+        id: dropdownBlur
         targetWindow: root.targetWindow
         readonly property bool active: root.__activePanel !== null && root.__activePanel.visible && root.__activePanel.opacity > 0
+        blurEnabled: active && Theme.connectedSurfaceBlurEnabled
         readonly property real s: root.__activePanel ? Math.min(1, root.__activePanel.scale) : 1
         blurX: root.__activePanel ? root.__activePanel.x + root.__activePanel.width * (1 - s) * 0.5 : 0
         blurY: root.__activePanel ? root.__activePanel.y + root.__activePanel.height * (1 - s) * 0.5 : 0

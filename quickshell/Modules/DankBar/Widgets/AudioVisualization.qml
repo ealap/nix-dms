@@ -7,15 +7,24 @@ Item {
     id: root
 
     readonly property MprisPlayer activePlayer: MprisController.activePlayer
-    readonly property bool hasActiveMedia: activePlayer !== null
-    readonly property bool isPlaying: hasActiveMedia && activePlayer && activePlayer.playbackState === MprisPlaybackState.Playing
+    readonly property bool isPlaying: activePlayer !== null && activePlayer.playbackState === MprisPlaybackState.Playing
+    readonly property bool live: visible && isPlaying
 
     width: 20
     height: Theme.iconSize
 
-    Loader {
-        active: isPlaying
+    readonly property real maxBarHeight: Theme.iconSize - 2
+    readonly property real minBarHeight: 3
 
+    onLiveChanged: {
+        if (!live) {
+            bars.bandsA = Qt.vector4d(0, 0, 0, 0);
+            bars.bandsB = Qt.vector2d(0, 0);
+        }
+    }
+
+    Loader {
+        active: root.live
         sourceComponent: Component {
             Ref {
                 service: CavaService
@@ -23,15 +32,8 @@ Item {
         }
     }
 
-    readonly property real maxBarHeight: Theme.iconSize - 2
-    readonly property real minBarHeight: 3
-    readonly property real heightRange: maxBarHeight - minBarHeight
-    property var barHeights: [minBarHeight, minBarHeight, minBarHeight, minBarHeight, minBarHeight, minBarHeight]
-
     Timer {
-        id: fallbackTimer
-
-        running: !CavaService.cavaAvailable && isPlaying
+        running: !CavaService.cavaAvailable && root.live
         interval: 500
         repeat: true
         onTriggered: {
@@ -41,54 +43,32 @@ Item {
 
     Connections {
         target: CavaService
+        enabled: root.live
         function onValuesChanged() {
-            if (!root.isPlaying) {
-                root.barHeights = [root.minBarHeight, root.minBarHeight, root.minBarHeight, root.minBarHeight, root.minBarHeight, root.minBarHeight];
+            const v = CavaService.values;
+            if (v.length < 6)
                 return;
-            }
-
-            const newHeights = [];
-            for (let i = 0; i < 6; i++) {
-                if (CavaService.values.length <= i) {
-                    newHeights.push(root.minBarHeight);
-                    continue;
-                }
-
-                const rawLevel = CavaService.values[i];
-                if (rawLevel <= 0) {
-                    newHeights.push(root.minBarHeight);
-                } else if (rawLevel >= 100) {
-                    newHeights.push(root.maxBarHeight);
-                } else {
-                    newHeights.push(root.minBarHeight + Math.sqrt(rawLevel * 0.01) * root.heightRange);
-                }
-            }
-            root.barHeights = newHeights;
+            const n = i => {
+                const x = v[i];
+                return x <= 0 ? 0 : x >= 100 ? 1 : Math.sqrt(x * 0.01);
+            };
+            bars.bandsA = Qt.vector4d(n(0), n(1), n(2), n(3));
+            bars.bandsB = Qt.vector2d(n(4), n(5));
         }
     }
 
-    Row {
-        anchors.centerIn: parent
-        spacing: 1.5
+    ShaderEffect {
+        id: bars
+        anchors.fill: parent
 
-        Repeater {
-            model: 6
+        property real widthPx: width
+        property real heightPx: height
+        property real minH: root.minBarHeight
+        property real maxH: root.maxBarHeight
+        property vector4d bandsA: Qt.vector4d(0, 0, 0, 0)
+        property vector2d bandsB: Qt.vector2d(0, 0)
+        property vector4d fillColor: Qt.vector4d(Theme.primary.r, Theme.primary.g, Theme.primary.b, Theme.primary.a)
 
-            Rectangle {
-                width: 2
-                height: root.barHeights[index]
-                radius: 1.5
-                color: Theme.primary
-                anchors.verticalCenter: parent.verticalCenter
-
-                Behavior on height {
-                    enabled: root.isPlaying && !CavaService.cavaAvailable
-                    NumberAnimation {
-                        duration: 100
-                        easing.type: Easing.Linear
-                    }
-                }
-            }
-        }
+        fragmentShader: Qt.resolvedUrl("../../../Shaders/qsb/viz_bars.frag.qsb")
     }
 }

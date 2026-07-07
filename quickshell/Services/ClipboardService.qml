@@ -84,31 +84,30 @@ Singleton {
     }
 
     function updateFilteredModel() {
-        let filtered = internalEntries;
+        const query = searchText.trim().toLowerCase();
+        const filterAll = activeFilter === "all";
+        const unpinned = [];
+        const pinned = [];
 
-        if (activeFilter !== "all") {
-            filtered = filtered.filter(entry => getEntryType(entry) === activeFilter);
+        for (let i = 0; i < internalEntries.length; i++) {
+            const entry = internalEntries[i];
+            if (!filterAll && getEntryType(entry) !== activeFilter)
+                continue;
+            if (query.length > 0 && !entry.preview.toLowerCase().includes(query))
+                continue;
+            (entry.pinned ? pinned : unpinned).push(entry);
         }
 
-        const query = searchText.trim();
+        const byIdDesc = (a, b) => b.id - a.id;
+        pinned.sort(byIdDesc);
+        unpinned.sort(byIdDesc);
 
-        if (query.length > 0) {
-            const lowerQuery = query.toLowerCase();
-            filtered = filtered.filter(entry => entry.preview.toLowerCase().includes(lowerQuery));
-        }
-
-        filtered.sort((a, b) => {
-            if (a.pinned !== b.pinned)
-                return b.pinned ? 1 : -1;
-            return b.id - a.id;
-        });
-
-        clipboardEntries = filtered;
-        unpinnedEntries = filtered.filter(e => !e.pinned);
-        pinnedEntries = filtered.filter(e => e.pinned);
+        pinnedEntries = pinned;
+        unpinnedEntries = unpinned;
+        clipboardEntries = pinned.concat(unpinned);
         totalCount = clipboardEntries.length;
 
-        const activeCount = Math.max(unpinnedEntries.length, pinnedEntries.length);
+        const activeCount = Math.max(unpinned.length, pinned.length);
 
         if (activeCount === 0) {
             keyboardNavigationActive = false;
@@ -116,9 +115,8 @@ Singleton {
             return;
         }
 
-        if (selectedIndex >= activeCount) {
+        if (selectedIndex >= activeCount)
             selectedIndex = activeCount - 1;
-        }
     }
 
     function refresh() {

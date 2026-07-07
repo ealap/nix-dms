@@ -1,10 +1,10 @@
 import QtQuick
-import QtQuick.Effects
+import Quickshell.Widgets
 import qs.Common
 import qs.Services
 import qs.Widgets
 
-Item {
+ClippingRectangle {
     id: thumbnail
     readonly property var log: Log.scoped("ClipboardThumbnail")
 
@@ -14,6 +14,10 @@ Item {
     required property var listView
     required property int itemIndex
     property bool disposed: false
+
+    radius: Theme.cornerRadius / 2
+    color: "transparent"
+    antialiasing: true
 
     Image {
         id: thumbnailImage
@@ -34,7 +38,7 @@ Item {
         fillMode: Image.PreserveAspectCrop
         smooth: true
         cache: false
-        visible: false
+        visible: entryType === "image" && status === Image.Ready && source != ""
         asynchronous: true
         sourceSize.width: 128
         sourceSize.height: 128
@@ -233,33 +237,6 @@ Item {
                 }
                 visibilityTimer.restart();
             }
-        }
-    }
-
-    MultiEffect {
-        anchors.fill: parent
-        anchors.margins: 2
-        source: thumbnailImage
-        maskEnabled: true
-        maskSource: clipboardRoundedRectangularMask
-        visible: entryType === "image" && thumbnailImage.status === Image.Ready && thumbnailImage.source != ""
-        maskThresholdMin: 0.5
-        maskSpreadAtMin: 1
-    }
-
-    Item {
-        id: clipboardRoundedRectangularMask
-        width: ClipboardConstants.thumbnailSize
-        height: ClipboardConstants.itemHeight - 4
-        layer.enabled: true
-        layer.smooth: true
-        visible: false
-
-        Rectangle {
-            anchors.fill: parent
-            radius: Theme.cornerRadius / 2 // Thumbnail corner radius is divided by 2 so it doesnt look weird on large corner radius (eg: 32px)
-            color: "black"
-            antialiasing: true
         }
     }
 

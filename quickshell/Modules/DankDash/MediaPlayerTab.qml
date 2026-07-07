@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell.Services.Mpris
+import Quickshell.Widgets
 import qs.Common
 import qs.Services
 import qs.Widgets
@@ -70,7 +71,7 @@ Item {
     property bool _switchHold: false
     Timer {
         id: _switchHoldTimer
-        interval: 650
+        interval: 1500
         repeat: false
         onTriggered: _switchHold = false
     }
@@ -78,7 +79,8 @@ Item {
     onActivePlayerChanged: {
         if (!activePlayer) {
             isSwitching = false;
-            _switchHold = false;
+            _switchHold = true;
+            _switchHoldTimer.restart();
             return;
         }
         isSwitching = true;
@@ -117,14 +119,10 @@ Item {
     Connections {
         target: MprisController
         function onAvailablePlayersChanged() {
-            const count = (MprisController.availablePlayers?.length || 0);
-            if (count === 0) {
+            if ((MprisController.availablePlayers?.length || 0) === 0)
                 isSwitching = false;
-                _switchHold = false;
-            } else {
-                _switchHold = true;
-                _switchHoldTimer.restart();
-            }
+            _switchHold = true;
+            _switchHoldTimer.restart();
         }
     }
 
@@ -290,34 +288,64 @@ Item {
     Item {
         id: bgContainer
         anchors.fill: parent
-        visible: TrackArtService.resolvedArtUrl !== ""
 
-        Image {
-            id: bgImage
-            anchors.centerIn: parent
-            width: Math.max(parent.width, parent.height) * 1.1
-            height: width
-            source: TrackArtService.resolvedArtUrl
-            fillMode: Image.PreserveAspectCrop
-            asynchronous: true
-            cache: true
-            visible: false
-            onStatusChanged: {
-                if (status === Image.Ready)
-                    maybeFinishSwitch();
-            }
+        readonly property string curArt: TrackArtService.resolvedArtUrl
+        // Two layers crossfade: new art loads into the hidden one and fades in once decoded.
+        property bool _showA: true
+        visible: layerA.ready || layerB.ready
+
+        onCurArtChanged: syncArt()
+        Component.onCompleted: syncArt()
+
+        function syncArt() {
+            if (curArt === "" || layerA.art == curArt || layerB.art == curArt)
+                return;
+            if (_showA)
+                layerB.art = curArt;
+            else
+                layerA.art = curArt;
         }
 
-        Item {
-            id: blurredBg
+        component BgBlurLayer: ClippingRectangle {
+            id: layer
+            property alias art: layerImg.source
+            readonly property bool ready: layerImg.status === Image.Ready && layerImg.source != ""
+            property bool front: false
+            signal loaded
+
             anchors.fill: parent
-            visible: false
+            radius: Theme.cornerRadius
+            color: "transparent"
+            antialiasing: true
+            opacity: front ? 0.7 : 0
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 350
+                    easing.type: Easing.InOutQuad
+                }
+            }
+
+            Image {
+                id: layerImg
+                anchors.centerIn: parent
+                width: Math.max(parent.width, parent.height) * 1.1
+                height: width
+                fillMode: Image.PreserveAspectCrop
+                asynchronous: true
+                cache: true
+                visible: false
+                onStatusChanged: {
+                    if (status === Image.Ready && source != "")
+                        layer.loaded();
+                }
+            }
 
             MultiEffect {
                 anchors.centerIn: parent
-                width: bgImage.width
-                height: bgImage.height
-                source: bgImage
+                width: layerImg.width
+                height: layerImg.height
+                source: layerImg
                 blurEnabled: true
                 blurMax: 64
                 blur: 0.8
@@ -326,22 +354,26 @@ Item {
             }
         }
 
-        Rectangle {
-            id: bgMask
-            anchors.fill: parent
-            radius: Theme.cornerRadius
-            visible: false
-            layer.enabled: true
+        BgBlurLayer {
+            id: layerA
+            front: bgContainer._showA
+            onLoaded: {
+                if (!bgContainer._showA) {
+                    bgContainer._showA = true;
+                    root.maybeFinishSwitch();
+                }
+            }
         }
 
-        MultiEffect {
-            anchors.fill: parent
-            source: blurredBg
-            maskEnabled: true
-            maskSource: bgMask
-            maskThresholdMin: 0.5
-            maskSpreadAtMin: 1.0
-            opacity: 0.7
+        BgBlurLayer {
+            id: layerB
+            front: !bgContainer._showA
+            onLoaded: {
+                if (bgContainer._showA) {
+                    bgContainer._showA = false;
+                    root.maybeFinishSwitch();
+                }
+            }
         }
 
         Rectangle {
@@ -442,7 +474,8 @@ Item {
                         elide: Text.ElideRight
                         wrapMode: Text.WordWrap
                         maximumLineCount: 1
-                        visible: text.length > 0
+                        // Reserve the line so late album metadata doesn't shift the seekbar.
+                        height: Math.max(implicitHeight, Theme.fontSizeSmall * 1.4)
                     }
                 }
 

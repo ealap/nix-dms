@@ -1249,14 +1249,14 @@ Item {
                         // Fast fade duration for superseded close.
                         readonly property bool _supersededFade: root._supersededClose && !root.shouldBeVisible
                         readonly property real _targetOpacity: root._supersededClose ? (root.shouldBeVisible ? 1 : 0) : (Theme.isDirectionalEffect ? 1 : (root.shouldBeVisible ? 1 : 0))
-                        property real publishedOpacity: _targetOpacity
+                        readonly property real publishedOpacity: opacity
 
                         opacity: _targetOpacity
                         visible: _renderActive
 
                         scale: contentContainer.scaleValue
-                        x: Theme.snap(contentContainer.animX + (rollOutAdjuster.baseWidth - width) * (1 - scale) * 0.5, root.dpr)
-                        y: Theme.snap(contentContainer.animY + (rollOutAdjuster.baseHeight - height) * (1 - scale) * 0.5, root.dpr)
+                        x: Theme.snap(contentContainer.animX, root.dpr)
+                        y: Theme.snap(contentContainer.animY, root.dpr)
 
                         layer.enabled: _animating || (_fadeWithOpacity && publishedOpacity < 1)
                         layer.smooth: false
@@ -1273,15 +1273,6 @@ Item {
                                     if (!running && !root.shouldBeVisible)
                                         contentWrapper._renderActive = false;
                                 }
-                            }
-                        }
-
-                        Behavior on publishedOpacity {
-                            enabled: contentWrapper._fadeWithOpacity
-                            NumberAnimation {
-                                duration: contentWrapper._supersededFade ? Theme.shorterDuration : Math.round(Theme.variantDuration(animationDuration, shouldBeVisible) * Theme.variantOpacityDurationScale)
-                                easing.type: Easing.BezierSpline
-                                easing.bezierCurve: root.shouldBeVisible ? root.animationEnterCurve : root.animationExitCurve
                             }
                         }
 

@@ -1,6 +1,7 @@
 import QtQuick
 import qs.Common
 import qs.Modules.DankDash.Overview
+import qs.Widgets
 
 Item {
     id: root
@@ -17,7 +18,7 @@ Item {
     signal navFocusRequested
 
     function handleKeyEvent(event) {
-        return calendarCard.handleKeyEvent(event);
+        return calendarLoader.item ? calendarLoader.item.handleKeyEvent(event) : false;
     }
 
     Item {
@@ -57,16 +58,26 @@ Item {
             height: 220
         }
 
-        // Calendar - bottom middle (wider and taller)
-        CalendarOverviewCard {
-            id: calendarCard
+        // Calendar - bottom middle; deferred so the grid stays off the emerge frame.
+        Loader {
+            id: calendarLoader
             x: parent.width * 0.2 - Theme.spacingM
             y: 100 + Theme.spacingM
             width: parent.width * 0.6
             height: 300
+            asynchronous: true
+            sourceComponent: Component {
+                CalendarOverviewCard {
+                    onCloseDash: root.closeDash()
+                    onNavFocusRequested: root.navFocusRequested()
+                }
+            }
 
-            onCloseDash: root.closeDash()
-            onNavFocusRequested: root.navFocusRequested()
+            DankSpinner {
+                anchors.centerIn: parent
+                size: 32
+                visible: calendarLoader.status === Loader.Loading
+            }
         }
 
         // Media - bottom right (narrow and taller)

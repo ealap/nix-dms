@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Effects
-import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Widgets
@@ -234,16 +233,19 @@ BasePill {
                 color: Theme.widgetTextColor
             }
 
-            RowLayout {
+            Row {
                 id: contentRow
                 anchors.centerIn: parent
                 spacing: Theme.spacingS
                 visible: !root.isVerticalOrientation
 
+                readonly property real iconSize: Theme.barIconSize(root.barThickness, undefined, root.barConfig?.maximizeWidgetIcons, root.barConfig?.iconScale)
+
                 IconImage {
                     id: horizontalAppIcon
-                    Layout.preferredWidth: Theme.barIconSize(root.barThickness, undefined, root.barConfig?.maximizeWidgetIcons, root.barConfig?.iconScale)
-                    Layout.preferredHeight: Layout.preferredWidth
+                    width: contentRow.iconSize
+                    height: contentRow.iconSize
+                    anchors.verticalCenter: parent.verticalCenter
                     visible: root.showIcon && activeWindow && status === Image.Ready
                     source: {
                         if (!activeWindow || !activeWindow.appId)
@@ -264,8 +266,10 @@ BasePill {
                 }
 
                 DankIcon {
-                    Layout.preferredWidth: Theme.barIconSize(root.barThickness, undefined, root.barConfig?.maximizeWidgetIcons, root.barConfig?.iconScale)
-                    size: Layout.preferredWidth
+                    id: horizontalSteamIcon
+                    width: contentRow.iconSize
+                    size: contentRow.iconSize
+                    anchors.verticalCenter: parent.verticalCenter
                     name: "sports_esports"
                     color: Theme.widgetTextColor
                     visible: root.showIcon && activeWindow && activeWindow.appId && horizontalAppIcon.status !== Image.Ready && Paths.isSteamApp(activeWindow.appId)
@@ -280,9 +284,11 @@ BasePill {
                     }
                     font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale, root.barConfig?.maximizeWidgetText)
                     color: Theme.widgetTextColor
+                    anchors.verticalCenter: parent.verticalCenter
+                    wrapMode: Text.NoWrap
                     elide: Text.ElideRight
                     maximumLineCount: 1
-                    Layout.maximumWidth: compactMode ? 80 : 180
+                    width: Math.min(implicitWidth, compactMode ? 80 : 180)
                     visible: text.length > 0
                 }
 
@@ -291,6 +297,7 @@ BasePill {
                     text: compactMode ? "" : "•"
                     font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale, root.barConfig?.maximizeWidgetText)
                     color: Theme.outlineButton
+                    anchors.verticalCenter: parent.verticalCenter
                     visible: !compactMode && appText.text && titleText.text
                 }
 
@@ -318,9 +325,24 @@ BasePill {
                     }
                     font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale, root.barConfig?.maximizeWidgetText)
                     color: Theme.widgetTextColor
+                    anchors.verticalCenter: parent.verticalCenter
+                    wrapMode: Text.NoWrap
                     elide: Text.ElideRight
                     maximumLineCount: 1
-                    Layout.maximumWidth: maxWidth - appText.implicitWidth - appSeparator.implicitWidth
+                    width: {
+                        const sp = contentRow.spacing;
+                        let used = 0;
+                        if (horizontalAppIcon.visible)
+                            used += horizontalAppIcon.width + sp;
+                        else if (horizontalSteamIcon.visible)
+                            used += horizontalSteamIcon.width + sp;
+                        if (appText.visible)
+                            used += appText.width + sp;
+                        if (appSeparator.visible)
+                            used += appSeparator.width + sp;
+                        const budget = root.maxWidth - root.horizontalPadding * 2 - used;
+                        return Math.min(implicitWidth, Math.max(0, budget));
+                    }
                     visible: text.length > 0
                 }
             }

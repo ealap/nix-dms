@@ -48,7 +48,7 @@ Rectangle {
             return "file://" + raw;
         return raw;
     }
-    readonly property bool hasClipboardPreview: item?.type === "clipboard" && item?.data?.isImage === true && (item?.data?.mimeType ?? "").startsWith("image/")
+    readonly property bool hasClipboardPreview: item?.type === "clipboard" && !!item?.data?.isImage && String(item?.data?.mimeType ?? "").startsWith("image/")
     readonly property bool hasMediaPreview: previewSource.length > 0 || hasClipboardPreview
 
     readonly property string typeLabel: {

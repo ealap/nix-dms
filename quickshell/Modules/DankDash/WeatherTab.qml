@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Effects
 import QtQuick.Shapes
 import qs.Common
 import qs.Services
@@ -245,17 +244,6 @@ Item {
                             size: Theme.iconSize * 2
                             color: Theme.primary
                             anchors.verticalCenter: parent.verticalCenter
-
-                            layer.enabled: Theme.elevationEnabled
-                            layer.effect: MultiEffect {
-                                shadowEnabled: Theme.elevationEnabled
-                                shadowHorizontalOffset: Theme.elevationOffsetX(Theme.elevationLevel1)
-                                shadowVerticalOffset: Theme.elevationOffsetY(Theme.elevationLevel1, 1)
-                                shadowBlur: Theme.elevationEnabled ? Math.max(0, Math.min(1, (Theme.elevationLevel1 && Theme.elevationLevel1.blurPx !== undefined ? Theme.elevationLevel1.blurPx : 4) / Theme.elevationBlurMax)) : 0
-                                blurMax: Theme.elevationBlurMax
-                                shadowColor: Theme.elevationShadowColor(Theme.elevationLevel1)
-                                shadowOpacity: Theme.elevationLevel1 && Theme.elevationLevel1.alpha !== undefined ? Theme.elevationLevel1.alpha : 0.2
-                            }
                         }
 
                         Column {
@@ -820,16 +808,6 @@ Item {
                     property var pos: WeatherService.getSkyArcPosition(skyBox.currentDate, false)
                     x: (pos?.h ?? 0) * skyBox.effectiveWidth - (moonPhase.width / 2) + skyBox.hMargin
                     y: (pos?.v ?? 0) * -(skyBox.effectiveHeight / 2) + skyBox.effectiveHeight / 2 - (moonPhase.height / 2) + skyBox.vMargin
-
-                    layer.enabled: Theme.elevationEnabled
-                    layer.effect: MultiEffect {
-                        shadowEnabled: Theme.elevationEnabled
-                        shadowHorizontalOffset: Theme.elevationOffsetX(Theme.elevationLevel2)
-                        shadowVerticalOffset: Theme.elevationOffsetY(Theme.elevationLevel2, 4)
-                        shadowBlur: Theme.elevationEnabled ? Math.max(0, Math.min(1, (Theme.elevationLevel2 && Theme.elevationLevel2.blurPx !== undefined ? Theme.elevationLevel2.blurPx : 8) / Theme.elevationBlurMax)) : 0
-                        blurMax: Theme.elevationBlurMax
-                        shadowColor: Theme.elevationShadowColor(Theme.elevationLevel2)
-                    }
                 }
 
                 DankIcon {
@@ -842,16 +820,6 @@ Item {
                     property var pos: WeatherService.getSkyArcPosition(skyBox.currentDate, true)
                     x: (pos?.h ?? 0) * skyBox.effectiveWidth - (sun.width / 2) + skyBox.hMargin
                     y: (pos?.v ?? 0) * -(skyBox.effectiveHeight / 2) + skyBox.effectiveHeight / 2 - (sun.height / 2) + skyBox.vMargin
-
-                    layer.enabled: Theme.elevationEnabled
-                    layer.effect: MultiEffect {
-                        shadowEnabled: Theme.elevationEnabled
-                        shadowHorizontalOffset: Theme.elevationOffsetX(Theme.elevationLevel2)
-                        shadowVerticalOffset: Theme.elevationOffsetY(Theme.elevationLevel2, 4)
-                        shadowBlur: Theme.elevationEnabled ? Math.max(0, Math.min(1, (Theme.elevationLevel2 && Theme.elevationLevel2.blurPx !== undefined ? Theme.elevationLevel2.blurPx : 8) / Theme.elevationBlurMax)) : 0
-                        blurMax: Theme.elevationBlurMax
-                        shadowColor: Theme.elevationShadowColor(Theme.elevationLevel2)
-                    }
                 }
             }
         }
@@ -993,6 +961,7 @@ Item {
         ListView {
             id: hourlyList
             anchors.fill: parent
+            reuseItems: true
             orientation: ListView.Horizontal
             spacing: Theme.spacingS
             clip: true
@@ -1079,6 +1048,7 @@ Item {
         ListView {
             id: dailyList
             anchors.fill: parent
+            reuseItems: true
             orientation: ListView.Horizontal
             spacing: Theme.spacingS
             clip: true

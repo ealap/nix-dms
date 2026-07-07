@@ -220,6 +220,31 @@ Item {
         onTriggered: root._bgCommitWindow = false
     }
 
+    // An idle layer surface won't commit the cleared blur region on auto-close, so the
+    // blur sticks; pulse updatesEnabled false->true to force a re-commit.
+    property bool _blurCommitSuppress: false
+
+    Timer {
+        id: blurCommitPulseTimer
+        interval: 16
+        onTriggered: root._blurCommitSuppress = false
+    }
+
+    function _pulseBlurCommit() {
+        if (!backgroundWindow.visible)
+            return;
+        _blurCommitSuppress = true;
+        blurCommitPulseTimer.restart();
+    }
+
+    Connections {
+        target: overlayLoader.item
+        ignoreUnknownSignals: true
+        function onOverlayBlurActiveChanged() {
+            root._pulseBlurCommit();
+        }
+    }
+
     function _setSurfaceGeometry(bodyX, bodyY, bodyW, bodyH) {
         const newX = Theme.snap(bodyX, dpr);
         const newY = Theme.snap(bodyY, dpr);
@@ -540,7 +565,7 @@ Item {
         // Skip buffer updates when there's nothing to render. Briefly flipped
         // true via _bgCommitWindow when _surfaceBodyW/H changes so the
         // contentHoleRect mask carve-out actually commits to the compositor.
-        updatesEnabled: root.overlayContent !== null || root._bgCommitWindow
+        updatesEnabled: !root._blurCommitSuppress && (root.overlayContent !== null || root._bgCommitWindow)
 
         WlrLayershell.namespace: root.layerNamespace + ":background"
         WlrLayershell.layer: root.effectivePopoutLayer

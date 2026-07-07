@@ -33,7 +33,7 @@ Rectangle {
             return item.icon || "";
         }
     }
-    readonly property bool hasClipboardPreview: item?.type === "clipboard" && item?.data?.isImage === true && (item?.data?.mimeType ?? "").startsWith("image/")
+    readonly property bool hasClipboardPreview: item?.type === "clipboard" && !!item?.data?.isImage && String(item?.data?.mimeType ?? "").startsWith("image/")
 
     width: parent?.width ?? 200
     height: 52

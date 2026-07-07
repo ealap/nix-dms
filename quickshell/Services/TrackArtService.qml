@@ -56,18 +56,19 @@ Singleton {
 
     function loadArtwork(url) {
         if (!url || url === "") {
-            resolvedArtUrl = "";
+            // Keep stale art; only blank once the empty url debounce settles.
             _lastArtUrl = "";
             loading = false;
+            _clearDebounce.restart();
             return;
         }
+        _clearDebounce.stop();
         if (url === _lastArtUrl)
             return;
         _lastArtUrl = url;
 
         if (url.startsWith("http://") || url.startsWith("https://")) {
             loading = true;
-            resolvedArtUrl = ""; // Clear stale artwork immediately while loading
             const targetUrl = url;
             const hash = djb2Hash(url);
             const cacheDir = Paths.strip(Paths.imagecache);
@@ -134,18 +135,29 @@ Singleton {
         }
 
         loading = true;
-        resolvedArtUrl = ""; // Clear stale artwork immediately while verifying local file
         const localUrl = url;
         const filePath = url.startsWith("file://") ? url.substring(7) : url;
-        Proc.runCommand(null, ["test", "-f", filePath], (output, exitCode) => {
+        // Cover file often lands after the metadata update, so poll briefly.
+        Proc.runCommand(null, ["sh", "-c", "for i in $(seq 20); do [ -f \"$1\" ] && exit 0; sleep 0.15; done; exit 1", "sh", filePath], (output, exitCode) => {
             if (_lastArtUrl !== localUrl)
                 return;
             resolvedArtUrl = exitCode === 0 ? localUrl : "";
             loading = false;
-        }, 200);
+        }, 50, 5000);
+    }
+
+    Timer {
+        id: _clearDebounce
+        interval: 800
+        onTriggered: {
+            if (root._lastArtUrl === "")
+                root.resolvedArtUrl = "";
+        }
     }
 
     property MprisPlayer activePlayer: MprisController.activePlayer
+
+    property string _resolvedTrackKey: ""
 
     onActivePlayerChanged: _updateArtUrl()
 
@@ -157,8 +169,21 @@ Singleton {
         function onMetadataChanged() { root._updateArtUrl(); }
     }
 
+    function _trackKey() {
+        const p = activePlayer;
+        if (!p)
+            return "";
+        return (p.trackTitle || "") + "" + (p.trackArtist || "") + "" + (p.trackAlbum || "");
+    }
+
     function _updateArtUrl() {
         const url = getArtworkUrl(activePlayer);
+        const key = _trackKey();
+        // Ignore metadata jitter once resolved, but only when the url still matches
+        // (trackArtUrl can update before the title, and skipping then wedges old art).
+        if (key !== "" && key === _resolvedTrackKey && url === _lastArtUrl && resolvedArtUrl !== "")
+            return;
+        _resolvedTrackKey = key;
         loadArtwork(url);
     }
 }

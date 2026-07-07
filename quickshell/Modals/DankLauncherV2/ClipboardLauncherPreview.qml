@@ -13,7 +13,7 @@ Rectangle {
     property string cachedMimeType: ""
     property var _requestedEntryId: null
 
-    readonly property bool canLoadImage: !!entry?.isImage && (entry?.mimeType ?? "").startsWith("image/")
+    readonly property bool canLoadImage: typeof entry?.id === "number" && !!entry?.isImage && String(entry?.mimeType ?? "").startsWith("image/")
     readonly property string sourceUrl: resolvedSourceUrl(cachedImageData, cachedMimeType || (entry?.mimeType ?? ""))
 
     radius: Math.max(6, Theme.cornerRadius - 2)
@@ -41,7 +41,7 @@ Rectangle {
     }
 
     function reloadPreview() {
-        if (!canLoadImage || !entry?.id) {
+        if (!canLoadImage || typeof entry?.id !== "number") {
             _requestedEntryId = null;
             cachedImageData = "";
             cachedMimeType = "";

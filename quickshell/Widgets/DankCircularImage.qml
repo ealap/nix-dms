@@ -13,9 +13,17 @@ Rectangle {
     property bool cacheImages: true
     property bool hasImage: imageSource !== ""
     readonly property bool shouldProbe: imageSource !== "" && !imageSource.startsWith("image://")
-    // Probe with AnimatedImage first; once loaded, check frameCount to decide.
     readonly property bool isAnimated: shouldProbe && probe.status === Image.Ready && probe.frameCount > 1
-    readonly property var activeImage: isAnimated ? probe : staticImage
+    readonly property bool probeSettled: probe.status === Image.Ready || probe.status === Image.Error
+    readonly property var activeImage: {
+        if (isAnimated)
+            return probe;
+        if (staticImage.status === Image.Ready)
+            return staticImage;
+        if (probe.status === Image.Ready && probe.source !== "")
+            return probe;
+        return staticImage;
+    }
     property int imageStatus: activeImage.status
 
     signal imageSaved(string filePath)
@@ -57,7 +65,7 @@ Rectangle {
     border.color: "transparent"
     border.width: 0
 
-    // Probe: loads as AnimatedImage to detect frame count.
+    // Probes as AnimatedImage to read frameCount; retires once staticImage is ready.
     AnimatedImage {
         id: probe
         anchors.fill: parent
@@ -68,10 +76,10 @@ Rectangle {
         mipmap: true
         cache: root.cacheImages
         visible: false
-        source: root.shouldProbe ? root.imageSource : ""
+        source: root.shouldProbe && (root.isAnimated || staticImage.status !== Image.Ready) ? root.imageSource : ""
     }
 
-    // Static fallback: used once probe confirms the image is not animated.
+    // Takes over once the probe settles on a non-animated image, then latches.
     Image {
         id: staticImage
         anchors.fill: parent
@@ -84,38 +92,12 @@ Rectangle {
         visible: false
         sourceSize.width: Math.max(width * 2, 128)
         sourceSize.height: Math.max(height * 2, 128)
-        source: !root.shouldProbe ? root.imageSource : ""
-    }
-
-    // Once the probe loads, if not animated, hand off to Image and unload probe.
-    Connections {
-        target: probe
-        function onStatusChanged() {
+        source: {
             if (!root.shouldProbe)
-                return;
-            switch (probe.status) {
-            case Image.Ready:
-                if (probe.frameCount <= 1) {
-                    staticImage.source = root.imageSource;
-                    probe.source = "";
-                }
-                break;
-            case Image.Error:
-                staticImage.source = root.imageSource;
-                probe.source = "";
-                break;
-            }
-        }
-    }
-
-    // If imageSource changes, reset: re-probe with AnimatedImage.
-    onImageSourceChanged: {
-        if (root.shouldProbe) {
-            staticImage.source = "";
-            probe.source = root.imageSource;
-        } else {
-            probe.source = "";
-            staticImage.source = root.imageSource;
+                return root.imageSource;
+            if ((root.probeSettled && !root.isAnimated) || staticImage.status !== Image.Null)
+                return root.imageSource;
+            return "";
         }
     }
 
