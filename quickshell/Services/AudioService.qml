@@ -841,11 +841,30 @@ EOFCONFIG
     function setVolume(percentage) {
         if (!root.sink?.audio)
             return "No audio sink available";
+        if (isNaN(percentage))
+            return "Invalid percentage";
 
         const maxVol = root.sinkMaxVolume;
         const clampedVolume = Math.max(0, Math.min(maxVol, percentage));
-        root.sink.audio.volume = clampedVolume / 100;
+        Quickshell.execDetached(["wpctl", "set-volume", "-l", String(maxVol / 100), "@DEFAULT_AUDIO_SINK@", String(clampedVolume / 100)]);
         return `Volume set to ${clampedVolume}%`;
+    }
+
+    function outputVolumeStep(step) {
+        const parsed = parseInt(step || "5");
+        return isNaN(parsed) ? 5 : Math.max(0, parsed);
+    }
+
+    function adjustDefaultSinkVolume(step, direction) {
+        const maxVol = root.sinkMaxVolume;
+        const stepValue = outputVolumeStep(step);
+        const currentVolume = Math.round(root.sink.audio.volume * 100);
+        const newVolume = Math.max(0, Math.min(maxVol, currentVolume + direction * stepValue));
+        const suffix = direction > 0 ? "+" : "-";
+
+        Quickshell.execDetached(["wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "0"]);
+        Quickshell.execDetached(["wpctl", "set-volume", "-l", String(maxVol / 100), "@DEFAULT_AUDIO_SINK@", `${stepValue}%${suffix}`]);
+        return newVolume;
     }
 
     function toggleMute() {
@@ -939,15 +958,7 @@ EOFCONFIG
             if (!root.sink?.audio)
                 return "No audio sink available";
 
-            if (root.sink.audio.muted)
-                root.sink.audio.muted = false;
-
-            const maxVol = root.sinkMaxVolume;
-            const currentVolume = Math.round(root.sink.audio.volume * 100);
-            const stepValue = parseInt(step || "5");
-            const newVolume = Math.max(0, Math.min(maxVol, currentVolume + stepValue));
-
-            root.sink.audio.volume = newVolume / 100;
+            const newVolume = root.adjustDefaultSinkVolume(step, 1);
             return `Volume increased to ${newVolume}%`;
         }
 
@@ -955,15 +966,7 @@ EOFCONFIG
             if (!root.sink?.audio)
                 return "No audio sink available";
 
-            if (root.sink.audio.muted)
-                root.sink.audio.muted = false;
-
-            const maxVol = root.sinkMaxVolume;
-            const currentVolume = Math.round(root.sink.audio.volume * 100);
-            const stepValue = parseInt(step || "5");
-            const newVolume = Math.max(0, Math.min(maxVol, currentVolume - stepValue));
-
-            root.sink.audio.volume = newVolume / 100;
+            const newVolume = root.adjustDefaultSinkVolume(step, -1);
             return `Volume decreased to ${newVolume}%`;
         }
 
