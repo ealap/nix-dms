@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   update-stable:
@@ -77,3 +78,7 @@ jobs:
           fi
           git push "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" "HEAD:refs/heads/${branch}"
           echo "created ${branch} at ${GITHUB_REF_NAME}"
+          GH_TOKEN="${{ secrets.GITHUB_TOKEN }}" gh label create "port ${branch}" \
+            --repo "${{ github.repository }}" \
+            --description "Auto-port merged PR to ${branch}" --color 0e8a16 ||
+            echo "label 'port ${branch}' may already exist"
