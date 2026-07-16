@@ -5,6 +5,9 @@
   "%1 Animation Speed": {
     "%1 Animation Speed": "%1 animatiesnelheid"
   },
+  "%1 Layout Overrides": {
+    "%1 Layout Overrides": ""
+  },
   "%1 Sessions": {
     "%1 Sessions": "%1 sessies"
   },
@@ -35,9 +38,6 @@
   "%1 copied": {
     "%1 copied": "%1 gekopieerd"
   },
-  "%1 custom animation duration": {
-    "%1 custom animation duration": "%1 aangepaste animatieduur"
-  },
   "%1 disconnected": {
     "%1 disconnected": "%1 verbroken"
   },
@@ -49,9 +49,6 @@
   },
   "%1 displays": {
     "%1 displays": "%1 schermen"
-  },
-  "%1 exists but is not included. Window rules won't apply.": {
-    "%1 exists but is not included. Window rules won't apply.": "%1 bestaat maar is niet opgenomen. Vensterregels zijn niet van toepassing."
   },
   "%1 filtered": {
     "%1 filtered": "%1 gefilterd"
@@ -118,9 +115,6 @@
   },
   "'Alternative' lets the key unlock on its own. 'Second factor' requires password or fingerprint first, then the key.": {
     "'Alternative' lets the key unlock on its own. 'Second factor' requires password or fingerprint first, then the key.": "'Alternatief' laat de sleutel zelfstandig ontgrendelen. 'Tweede factor' vereist eerst een wachtwoord of vingerafdruk en daarna pas de sleutel."
-  },
-  "(Default)": {
-    "(Default)": "(Standaard)"
   },
   "(Unnamed)": {
     "(Unnamed)": "(Naamloos)"
@@ -211,9 +205,6 @@
   },
   "24-Hour Format": {
     "24-Hour Format": "24-uursnotatie"
-  },
-  "24-hour clock": {
-    "24-hour clock": "24-uursklok"
   },
   "25 seconds": {
     "25 seconds": "25 seconden"
@@ -509,6 +500,9 @@
   "Afternoon": {
     "Afternoon": "Middag"
   },
+  "Alerts": {
+    "Alerts": ""
+  },
   "All": {
     "All": "Alles"
   },
@@ -788,14 +782,14 @@
   "Authentication Required": {
     "Authentication Required": "Authenticatie vereist"
   },
+  "Authentication Source": {
+    "Authentication Source": ""
+  },
   "Authentication changes applied.": {
     "Authentication changes applied.": "Verificatiewijzigingen toegepast."
   },
   "Authentication changes apply automatically.": {
     "Authentication changes apply automatically.": "Verificatiewijzigingen worden automatisch toegepast."
-  },
-  "Authentication changes apply automatically. Fingerprint-only login may not unlock Keyring.": {
-    "Authentication changes apply automatically. Fingerprint-only login may not unlock Keyring.": "Verificatiewijzigingen worden automatisch toegepast. Inloggen met alleen een vingerafdruk ontgrendelt de sleutelbos mogelijk niet."
   },
   "Authentication changes need sudo. Opening terminal so you can use password or fingerprint.": {
     "Authentication changes need sudo. Opening terminal so you can use password or fingerprint.": "Verificatiewijzigingen vereisen sudo. Terminal wordt geopend zodat u een wachtwoord of vingerafdruk kunt gebruiken."
@@ -811,9 +805,6 @@
   },
   "Authentication failed - try again": {
     "Authentication failed - try again": ""
-  },
-  "Authentication failed, please try again": {
-    "Authentication failed, please try again": "Authenticatie mislukt, probeer het opnieuw"
   },
   "Authorize": {
     "Authorize": "Autoriseren"
@@ -848,20 +839,17 @@
   "Auto Power Saver": {
     "Auto Power Saver": "Automatische energiebesparing"
   },
-  "Auto matches bar spacing; Off leaves gaps to your Hyprland config": {
-    "Auto matches bar spacing; Off leaves gaps to your Hyprland config": ""
-  },
-  "Auto matches bar spacing; Off leaves gaps to your MangoWC config": {
-    "Auto matches bar spacing; Off leaves gaps to your MangoWC config": ""
-  },
-  "Auto matches bar spacing; Off leaves gaps to your niri config": {
-    "Auto matches bar spacing; Off leaves gaps to your niri config": ""
+  "Auto matches bar spacing; Off leaves gaps to your %1 config": {
+    "Auto matches bar spacing; Off leaves gaps to your %1 config": ""
   },
   "Auto mode is on. Manual profile selection is disabled.": {
     "Auto mode is on. Manual profile selection is disabled.": "Automatische modus staat aan. Handmatige profielselectie is uitgeschakeld."
   },
   "Auto saved": {
     "Auto saved": "Autom. opgeslagen"
+  },
+  "Auto uses an installed or bundled key-only service.": {
+    "Auto uses an installed or bundled key-only service.": ""
   },
   "Auto-Clear After": {
     "Auto-Clear After": "Automatisch wissen na"
@@ -983,9 +971,6 @@
   "Available in Detailed and Forecast view modes": {
     "Available in Detailed and Forecast view modes": "Beschikbaar in weergavemodi Gedetailleerd en Voorspelling"
   },
-  "Available.": {
-    "Available.": "Beschikbaar."
-  },
   "Awaiting fingerprint authentication": {
     "Awaiting fingerprint authentication": ""
   },
@@ -1006,9 +991,6 @@
   },
   "Backend": {
     "Backend": "Backend"
-  },
-  "Backends: %1": {
-    "Backends: %1": "Backends: %1"
   },
   "Background": {
     "Background": "Achtergrond"
@@ -1049,9 +1031,6 @@
   "Bar %1": {
     "Bar %1": "Balk %1"
   },
-  "Bar Configurations": {
-    "Bar Configurations": "Balkconfiguraties"
-  },
   "Bar Inset Padding": {
     "Bar Inset Padding": "Paneelinzet-opvulling"
   },
@@ -1070,9 +1049,6 @@
   "Bar shadow, border, and corners": {
     "Bar shadow, border, and corners": "Schaduw, rand en hoeken van de balk"
   },
-  "Bar spacing and size": {
-    "Bar spacing and size": "Afstand en grootte van de balk"
-  },
   "Base color for shadows (opacity is applied automatically)": {
     "Base color for shadows (opacity is applied automatically)": "Basiskleur voor schaduwen (dekking wordt automatisch toegepast)"
   },
@@ -1085,9 +1061,6 @@
   "Battery %1": {
     "Battery %1": "Accu %1"
   },
-  "Battery Alerts": {
-    "Battery Alerts": ""
-  },
   "Battery Charge Limit": {
     "Battery Charge Limit": "Batterijlaadlimiet"
   },
@@ -1096,15 +1069,6 @@
   },
   "Battery Power": {
     "Battery Power": "Accustroom"
-  },
-  "Battery Protection": {
-    "Battery Protection": ""
-  },
-  "Battery Protection & Charging": {
-    "Battery Protection & Charging": "Accubescherming & opladen"
-  },
-  "Battery Status": {
-    "Battery Status": "Batterijstatus"
   },
   "Battery and power management": {
     "Battery and power management": "Batterij- en energiebeheer"
@@ -1118,9 +1082,6 @@
   "Battery is at %1% - Consider charging soon": {
     "Battery is at %1% - Consider charging soon": "Accu op %1% - Overweeg om binnenkort op te laden"
   },
-  "Battery level and power management": {
-    "Battery level and power management": "Batterijniveau en energiebeheer"
-  },
   "Battery percentage to trigger a critical alert.": {
     "Battery percentage to trigger a critical alert.": "Accupercentage waarbij een kritieke waarschuwing wordt gegeven."
   },
@@ -1130,11 +1091,8 @@
   "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": {
     "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": "Vergrendelscherm koppelen aan dbus-signalen van loginctl. Uitschakelen indien een extern vergrendelscherm wordt gebruikt"
   },
-  "Bind the spotlight IPC action in your compositor config.": {
-    "Bind the spotlight IPC action in your compositor config.": "Koppel de spotlight IPC-actie in de configuratie van je compositor."
-  },
-  "Bind the spotlight-bar IPC action in your compositor config.": {
-    "Bind the spotlight-bar IPC action in your compositor config.": "Koppel de spotlight-balk IPC-actie in de configuratie van je compositor."
+  "Bind the %1 IPC action in your compositor config.": {
+    "Bind the %1 IPC action in your compositor config.": ""
   },
   "Binds include added": {
     "Binds include added": "Binds-include toegevoegd"
@@ -1175,20 +1133,11 @@
   "Blur": {
     "Blur": "Vervagen"
   },
-  "Blur Border Color": {
-    "Blur Border Color": "Kleur van vervagingsrand"
-  },
-  "Blur Border Opacity": {
-    "Blur Border Opacity": "Dekking van vervagingsrand"
-  },
   "Blur Wallpaper Layer": {
     "Blur Wallpaper Layer": "Achtergrondlaag vervagen"
   },
   "Blur on Overview": {
     "Blur on Overview": "Vervagen bij overzicht"
-  },
-  "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support and configuration.": {
-    "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support and configuration.": "Vervaag de achtergrond achter balken, pop-ups, modale vensters en meldingen. Vereist ondersteuning van de compositor en configuratie."
   },
   "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support. Adjust Opacity accordingly.": {
     "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support. Adjust Opacity accordingly.": "Vervaag de achtergrond achter balken, pop-outs, vensters en notificaties. Vereist ondersteuning van de compositor. Pas de dekking dienovereenkomstig aan."
@@ -1231,9 +1180,6 @@
   },
   "Border Width": {
     "Border Width": "Randdikte"
-  },
-  "Border color around blurred surfaces": {
-    "Border color around blurred surfaces": "Randkleur rondom vervaagde oppervlakken"
   },
   "Border color around popouts, modals, and other shell surfaces": {
     "Border color around popouts, modals, and other shell surfaces": ""
@@ -1294,9 +1240,6 @@
   },
   "Button Color": {
     "Button Color": "Knopkleur"
-  },
-  "By %1": {
-    "By %1": ""
   },
   "CPU": {
     "CPU": "CPU"
@@ -1436,9 +1379,6 @@
   "Check on startup": {
     "Check on startup": "Controleren bij opstarten"
   },
-  "Check sync status on demand. Sync (full) is for the main admin: it copies your theme to the login screen and sets up system greeter config. On multi-user systems, add other accounts in Settings → Users, then have each of them run dms greeter sync --profile after logging out and back in—not full sync. Authentication changes apply automatically.": {
-    "Check sync status on demand. Sync (full) is for the main admin: it copies your theme to the login screen and sets up system greeter config. On multi-user systems, add other accounts in Settings → Users, then have each of them run dms greeter sync --profile after logging out and back in—not full sync. Authentication changes apply automatically.": "Controleer de synchronisatiestatus op aanvraag. Sync (volledig) is voor de hoofdbeheerder: het kopieert je thema naar het inlogscherm en stelt de systeemconfiguratie van de greeter in. Op systemen met meerdere gebruikers voeg je andere accounts toe in Instellingen → Gebruikers en laat je hen elk 'dms greeter sync --profile' uitvoeren na het uit- en inloggen—geen volledige synchronisatie. Wijzigingen in authenticatie worden automatisch toegepast."
-  },
   "Check your custom command in Settings → Dock → Trash.": {
     "Check your custom command in Settings → Dock → Trash.": "Controleer je aangepaste opdracht in Instellingen → Dock → Prullenbak."
   },
@@ -1456,9 +1396,6 @@
   },
   "Choose Dark Mode Color": {
     "Choose Dark Mode Color": "Kleur donkere modus kiezen"
-  },
-  "Choose Dock Launcher Logo Color": {
-    "Choose Dock Launcher Logo Color": "Kies kleur dockstartlogo"
   },
   "Choose Launcher Logo Color": {
     "Choose Launcher Logo Color": "Kleur startpictogram kiezen"
@@ -1484,9 +1421,6 @@
   "Choose how this bar resolves shadow direction": {
     "Choose how this bar resolves shadow direction": "Kies hoe deze balk de schaduwrichting bepaalt"
   },
-  "Choose how to be notified about battery alerts.": {
-    "Choose how to be notified about battery alerts.": "Kies hoe je meldingen over de accu wilt ontvangen."
-  },
   "Choose how to be notified about critical battery alerts.": {
     "Choose how to be notified about critical battery alerts.": ""
   },
@@ -1504,12 +1438,6 @@
   },
   "Choose neutral or accent-colored widget text": {
     "Choose neutral or accent-colored widget text": "Kies voor neutrale of accentkleurige widgettekst"
-  },
-  "Choose the background color for widgets": {
-    "Choose the background color for widgets": "Kies de achtergrondkleur voor widgets"
-  },
-  "Choose the border accent color": {
-    "Choose the border accent color": "Kies de accentkleur voor de rand"
   },
   "Choose the logo displayed on the launcher button in DankBar": {
     "Choose the logo displayed on the launcher button in DankBar": "Kies het logo voor de startknop in DankBar"
@@ -1573,9 +1501,6 @@
   },
   "Click 'Setup' to create %1 and add include to your compositor config.": {
     "Click 'Setup' to create %1 and add include to your compositor config.": "Klik op 'Instellen' om %1 aan te maken en de include toe te voegen aan je compositor-configuratie."
-  },
-  "Click 'Setup' to create the outputs config and add include to your compositor config.": {
-    "Click 'Setup' to create the outputs config and add include to your compositor config.": "Klik op 'Instellen' om de outputs-configuratie te maken en include toe te voegen aan uw compositor-configuratie."
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "Klik op Importeren om een .ovpn of .conf toe te voegen"
@@ -1682,12 +1607,6 @@
   "Color shown for areas not covered by wallpaper": {
     "Color shown for areas not covered by wallpaper": "Kleur weergegeven voor gebieden die niet door de achtergrond worden bedekt"
   },
-  "Color shown for areas not covered by wallpaper (e.g. Fit or Pad modes)": {
-    "Color shown for areas not covered by wallpaper (e.g. Fit or Pad modes)": "Kleur weergegeven voor gebieden die niet door de achtergrond worden bedekt (bijv. 'Passend' of 'Opvullen')"
-  },
-  "Color temperature for day time": {
-    "Color temperature for day time": "Kleurtemperatuur voor overdag"
-  },
   "Color temperature for night mode": {
     "Color temperature for night mode": "Kleurtemperatuur voor nachtmodus"
   },
@@ -1772,6 +1691,9 @@
   "Configuration will be preserved when this display reconnects": {
     "Configuration will be preserved when this display reconnects": "Configuratie wordt bewaard wanneer dit beeldscherm opnieuw verbindt"
   },
+  "Configurations": {
+    "Configurations": ""
+  },
   "Configure": {
     "Configure": "Configureren"
   },
@@ -1853,9 +1775,6 @@
   "Connecting...": {
     "Connecting...": "Verbinden..."
   },
-  "Connecting…": {
-    "Connecting…": "Verbinden…"
-  },
   "Connection failed": {
     "Connection failed": "Verbinding mislukt"
   },
@@ -1904,24 +1823,6 @@
   "Controls opacity of shell surfaces, popouts, and modals": {
     "Controls opacity of shell surfaces, popouts, and modals": "Regelt de dekking van shell-oppervlakken, pop-outs en vensters"
   },
-  "Controls opacity of the bar background": {
-    "Controls opacity of the bar background": "Regelt de dekking van de balkachtergrond"
-  },
-  "Controls opacity of the border": {
-    "Controls opacity of the border": "Regelt de dekking van de rand"
-  },
-  "Controls opacity of the shadow layer": {
-    "Controls opacity of the shadow layer": "Regelt de dekking van de schaduwlaag"
-  },
-  "Controls opacity of the widget outline": {
-    "Controls opacity of the widget outline": "Regelt de dekking van de widget-omlijning"
-  },
-  "Controls opacity of widget backgrounds": {
-    "Controls opacity of widget backgrounds": "Regelt de dekking van widgetachtergronden"
-  },
-  "Controls outlines around blurred foreground cards, pills, and notification cards": {
-    "Controls outlines around blurred foreground cards, pills, and notification cards": "Bepaalt omlijningen rond vervaagde voorgrondkaarten, pillen en meldingskaarten"
-  },
   "Controls outlines around foreground cards, pills, and notification cards": {
     "Controls outlines around foreground cards, pills, and notification cards": "Regelt de omlijningen rondom voorgrondkaarten, pillen en meldingen"
   },
@@ -1931,17 +1832,8 @@
   "Controls the base blur radius and offset of shadows": {
     "Controls the base blur radius and offset of shadows": "Bepaalt de basisvervagingsstraal en verschuiving van schaduwen"
   },
-  "Controls the opacity of the shadow": {
-    "Controls the opacity of the shadow": "Regelt de dekking van de schaduw"
-  },
-  "Controls the outer edge of protocol-blurred windows": {
-    "Controls the outer edge of protocol-blurred windows": "Bepaalt de buitenrand van door het protocol vervaagde vensters"
-  },
   "Controls the outline of popouts, modals, and other shell surfaces": {
     "Controls the outline of popouts, modals, and other shell surfaces": ""
-  },
-  "Controls the transparency of the shadow": {
-    "Controls the transparency of the shadow": "Bepaalt de transparantie van de schaduw"
   },
   "Convenience options for the login screen. Sync to apply.": {
     "Convenience options for the login screen. Sync to apply.": "Gemaksopties voor het aanmeldscherm. Voer Sync uit om toe te passen."
@@ -2000,9 +1892,6 @@
   "Corners & Background": {
     "Corners & Background": "Hoeken & Achtergrond"
   },
-  "Couldn't open a terminal for the auto-login update.": {
-    "Couldn't open a terminal for the auto-login update.": "Kon geen terminal openen voor de update van automatisch inloggen."
-  },
   "Count Only": {
     "Count Only": "Alleen aantal"
   },
@@ -2026,9 +1915,6 @@
   },
   "Create a new %1 session (^N)": {
     "Create a new %1 session (^N)": ""
-  },
-  "Create a new %1 session (n)": {
-    "Create a new %1 session (n)": "Maak een nieuwe %1-sessie aan (n)"
   },
   "Create rule for:": {
     "Create rule for:": "Regel aanmaken voor:"
@@ -2192,9 +2078,6 @@
   "Custom...": {
     "Custom...": "Aangepast..."
   },
-  "Custom: ": {
-    "Custom: ": "Aangepast: "
-  },
   "Customizable empty space": {
     "Customizable empty space": "Aanpasbare lege ruimte"
   },
@@ -2225,14 +2108,11 @@
   "DMS Shortcuts": {
     "DMS Shortcuts": "DMS-sneltoetsen"
   },
-  "DMS greeter needs: greetd, dms-greeter. Fingerprint: fprintd, pam_fprintd. Security keys: pam_u2f. Add your user to the greeter group. Authentication changes apply automatically and may open a terminal when sudo authentication is required.": {
-    "DMS greeter needs: greetd, dms-greeter. Fingerprint: fprintd, pam_fprintd. Security keys: pam_u2f. Add your user to the greeter group. Authentication changes apply automatically and may open a terminal when sudo authentication is required.": "DMS-aanmeldscherm heeft nodig: greetd, dms-greeter. Vingerafdruk: fprintd, pam_fprintd. Beveiligingssleutels: pam_u2f. Voeg uw gebruiker toe aan de greeter-groep. Verificatiewijzigingen worden automatisch toegepast en kunnen een terminal openen wanneer sudo-verificatie vereist is."
-  },
-  "DMS needs administrator access. The terminal closes automatically when done.": {
-    "DMS needs administrator access. The terminal closes automatically when done.": "DMS heeft beheerdersrechten nodig. De terminal sluit automatisch wanneer voltooid."
-  },
   "DMS out of date": {
     "DMS out of date": "DMS verouderd"
+  },
+  "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it": {
+    "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it": ""
   },
   "DMS server is outdated (API v%1, expected v%2)": {
     "DMS server is outdated (API v%1, expected v%2)": "DMS-server is verouderd (API v%1, verwacht v%2)"
@@ -2404,9 +2284,6 @@
   },
   "Delete user": {
     "Delete user": "Gebruiker verwijderen"
-  },
-  "Delete user?": {
-    "Delete user?": "Gebruiker verwijderen?"
   },
   "Demi Bold": {
     "Demi Bold": "Halfvet"
@@ -2609,9 +2486,6 @@
   "Display power menu actions in a grid instead of a list": {
     "Display power menu actions in a grid instead of a list": "Energiemenu-acties weergeven in een raster in plaats van een lijst"
   },
-  "Display seconds in the clock": {
-    "Display seconds in the clock": "Seconden tonen in de klok"
-  },
   "Display setup failed": {
     "Display setup failed": "Scherminstelling mislukt"
   },
@@ -2623,9 +2497,6 @@
   },
   "Displays": {
     "Displays": "Beeldschermen"
-  },
-  "Displays count when overflow is active": {
-    "Displays count when overflow is active": "Toont aantal wanneer overloop actief is"
   },
   "Displays the active keyboard layout and allows switching": {
     "Displays the active keyboard layout and allows switching": "Toont de actieve toetsenbordindeling en maakt wisselen mogelijk"
@@ -2648,14 +2519,8 @@
   "Dock Opacity": {
     "Dock Opacity": "Dock-dekking"
   },
-  "Dock Visibility": {
-    "Dock Visibility": "Zichtbaarheid dock"
-  },
   "Dock margin, opacity, and border": {
     "Dock margin, opacity, and border": "Dock-marge, dekking en rand"
-  },
-  "Dock margin, transparency, and border": {
-    "Dock margin, transparency, and border": "Marge, transparantie en rand van het dock"
   },
   "Dock window": {
     "Dock window": "Venster docken"
@@ -2801,9 +2666,6 @@
   "Empty Trash (%1)": {
     "Empty Trash (%1)": "Prullenbak legen (%1)"
   },
-  "Empty Trash?": {
-    "Empty Trash?": "Prullenbak legen?"
-  },
   "Enable 10-bit color depth for wider color gamut and HDR support": {
     "Enable 10-bit color depth for wider color gamut and HDR support": "Schakel 10-bits kleurdiepte in voor een breder kleurengamma en HDR-ondersteuning"
   },
@@ -2866,36 +2728,6 @@
   },
   "Enabled": {
     "Enabled": "Ingeschakeld"
-  },
-  "Enabled, but fingerprint availability could not be confirmed.": {
-    "Enabled, but fingerprint availability could not be confirmed.": "Ingeschakeld, maar de beschikbaarheid van de vingerafdrukscanner kon niet worden bevestigd."
-  },
-  "Enabled, but no fingerprint reader was detected.": {
-    "Enabled, but no fingerprint reader was detected.": "Ingeschakeld, maar er is geen vingerafdrukscanner gedetecteerd."
-  },
-  "Enabled, but no prints are enrolled yet. Authentication changes apply automatically once you enroll fingerprints.": {
-    "Enabled, but no prints are enrolled yet. Authentication changes apply automatically once you enroll fingerprints.": "Ingeschakeld, maar er zijn nog geen afdrukken geregistreerd. Verificatiewijzigingen worden automatisch toegepast zodra u vingerafdrukken registreert."
-  },
-  "Enabled, but no prints are enrolled yet. Enroll fingerprints and run Sync.": {
-    "Enabled, but no prints are enrolled yet. Enroll fingerprints and run Sync.": "Ingeschakeld, maar er zijn nog geen afdrukken geregistreerd. Registreer vingerafdrukken en voer Sync uit."
-  },
-  "Enabled, but no registered security key was found yet. Authentication changes apply automatically once your key is registered or your U2F config is updated.": {
-    "Enabled, but no registered security key was found yet. Authentication changes apply automatically once your key is registered or your U2F config is updated.": "Ingeschakeld, maar er is nog geen geregistreerde beveiligingssleutel gevonden. Verificatiewijzigingen worden automatisch toegepast zodra uw sleutel is geregistreerd of uw U2F-configuratie is bijgewerkt."
-  },
-  "Enabled, but no registered security key was found yet. Register a key and run Sync.": {
-    "Enabled, but no registered security key was found yet. Register a key and run Sync.": "Ingeschakeld, maar er is nog geen geregistreerde beveiligingssleutel gevonden. Registreer een sleutel en voer Sync uit."
-  },
-  "Enabled, but security-key availability could not be confirmed.": {
-    "Enabled, but security-key availability could not be confirmed.": "Ingeschakeld, maar de beschikbaarheid van de beveiligingssleutel kon niet worden bevestigd."
-  },
-  "Enabled. PAM already provides fingerprint auth.": {
-    "Enabled. PAM already provides fingerprint auth.": "Ingeschakeld. PAM biedt al vingerafdrukauthenticatie."
-  },
-  "Enabled. PAM already provides security-key auth.": {
-    "Enabled. PAM already provides security-key auth.": "Ingeschakeld. PAM biedt al authenticatie via beveiligingssleutel."
-  },
-  "Enabled. PAM provides fingerprint auth, but no prints are enrolled yet.": {
-    "Enabled. PAM provides fingerprint auth, but no prints are enrolled yet.": "Ingeschakeld. PAM biedt vingerafdrukauthenticatie, maar er zijn nog geen afdrukken geregistreerd."
   },
   "Enabling WiFi...": {
     "Enabling WiFi...": "Wifi inschakelen..."
@@ -3011,8 +2843,8 @@
   "Exact": {
     "Exact": "Exact"
   },
-  "Excluded Media Players": {
-    "Excluded Media Players": "Uitgesloten mediaspelers"
+  "Excluded Players": {
+    "Excluded Players": ""
   },
   "Exclusive Zone Offset": {
     "Exclusive Zone Offset": "Verschuiving exclusieve zone"
@@ -3080,11 +2912,8 @@
   "Failed to add printer to class": {
     "Failed to add printer to class": "Toevoegen van printer aan klasse mislukt"
   },
-  "Failed to apply GTK colors": {
-    "Failed to apply GTK colors": "Toepassen van GTK-kleuren mislukt"
-  },
-  "Failed to apply Qt colors": {
-    "Failed to apply Qt colors": "Toepassen van Qt-kleuren mislukt"
+  "Failed to apply %1 colors": {
+    "Failed to apply %1 colors": ""
   },
   "Failed to apply charge limit to system": {
     "Failed to apply charge limit to system": "Toepassen van laadlimiet op systeem mislukt"
@@ -3158,9 +2987,6 @@
   "Failed to enable night mode": {
     "Failed to enable night mode": "Inschakelen van nachtmodus mislukt"
   },
-  "Failed to enable plugin: %1": {
-    "Failed to enable plugin: %1": "Inschakelen van plugin mislukt: %1"
-  },
   "Failed to fetch network QR code: %1": {
     "Failed to fetch network QR code: %1": "Ophalen van netwerk-QR-code mislukt: %1"
   },
@@ -3188,14 +3014,8 @@
   "Failed to move to trash": {
     "Failed to move to trash": "Verplaatsen naar prullenbak mislukt"
   },
-  "Failed to parse plugin_settings.json": {
-    "Failed to parse plugin_settings.json": "Ontleden van plugin_settings.json mislukt"
-  },
-  "Failed to parse session.json": {
-    "Failed to parse session.json": "Ontleden van session.json mislukt"
-  },
-  "Failed to parse settings.json": {
-    "Failed to parse settings.json": "Ontleden van settings.json mislukt"
+  "Failed to parse %1": {
+    "Failed to parse %1": ""
   },
   "Failed to pause printer": {
     "Failed to pause printer": "Pauzeren van printer mislukt"
@@ -3368,8 +3188,8 @@
   "File manager used to open the trash. Pick \"custom\" to enter your own command.": {
     "File manager used to open the trash. Pick \"custom\" to enter your own command.": "Bestandsbeheerder die wordt gebruikt om de prullenbak te openen. Kies \"aangepast\" om je eigen opdracht in te voeren."
   },
-  "File received from": {
-    "File received from": "Bestand ontvangen van"
+  "File received from %1": {
+    "File received from %1": ""
   },
   "File search requires dsearch\nInstall from github.com/AvengeMedia/danksearch": {
     "File search requires dsearch\nInstall from github.com/AvengeMedia/danksearch": "Bestandszoeken vereist dsearch\nInstalleer via github.com/morelazers/dsearch"
@@ -3563,9 +3383,6 @@
   "For editing plain text files": {
     "For editing plain text files": "Voor het bewerken van tekstbestanden"
   },
-  "For reading PDF files": {
-    "For reading PDF files": "Voor het lezen van PDF-bestanden"
-  },
   "Force HDR": {
     "Force HDR": "HDR forceren"
   },
@@ -3719,6 +3536,9 @@
   "Gaps": {
     "Gaps": ""
   },
+  "General": {
+    "General": ""
+  },
   "Generate Override": {
     "Generate Override": "Override genereren"
   },
@@ -3764,9 +3584,6 @@
   "Grant": {
     "Grant": "Toekennen"
   },
-  "Grant admin?": {
-    "Grant admin?": "Beheerder maken?"
-  },
   "Grant administrator privileges": {
     "Grant administrator privileges": "Beheerdersrechten verlenen"
   },
@@ -3785,15 +3602,6 @@
   "Greeter": {
     "Greeter": "Greeter"
   },
-  "Greeter Appearance": {
-    "Greeter Appearance": "Uiterlijk Greeter"
-  },
-  "Greeter Behavior": {
-    "Greeter Behavior": "Gedrag Greeter"
-  },
-  "Greeter Status": {
-    "Greeter Status": "Status Greeter"
-  },
   "Greeter activated. greetd is now enabled.": {
     "Greeter activated. greetd is now enabled.": "Greeter geactiveerd. greetd is nu ingeschakeld."
   },
@@ -3805,9 +3613,6 @@
   },
   "Greeter group:": {
     "Greeter group:": "Greeter-groep:"
-  },
-  "Greeter only — does not affect main clock": {
-    "Greeter only — does not affect main clock": "Alleen Greeter — heeft geen invloed op de hoofdklok"
   },
   "Greeter only — format for the date on the login screen": {
     "Greeter only — format for the date on the login screen": "Alleen Greeter — indeling voor de datum op het aanmeldscherm"
@@ -4067,9 +3872,6 @@
   "Hyprland Discord Server": {
     "Hyprland Discord Server": "Hyprland Discord-server"
   },
-  "Hyprland Layout Overrides": {
-    "Hyprland Layout Overrides": "Hyprland-indelingsoverschrijvingen"
-  },
   "Hyprland Options": {
     "Hyprland Options": "Hyprland-opties"
   },
@@ -4207,12 +4009,6 @@
   },
   "Incorrect password": {
     "Incorrect password": "Onjuist wachtwoord"
-  },
-  "Incorrect password - attempt %1 of %2 (lockout may follow)": {
-    "Incorrect password - attempt %1 of %2 (lockout may follow)": "Onjuist wachtwoord - poging %1 van %2 (blokkering kan volgen)"
-  },
-  "Incorrect password - next failures may trigger account lockout": {
-    "Incorrect password - next failures may trigger account lockout": "Onjuist wachtwoord - volgende fouten kunnen leiden tot blokkering van account"
   },
   "Incorrect password - try again": {
     "Incorrect password - try again": "Onjuist wachtwoord - probeer het opnieuw"
@@ -4370,9 +4166,6 @@
   "Jobs": {
     "Jobs": "Taken"
   },
-  "Jobs: ": {
-    "Jobs: ": "Taken: "
-  },
   "Join video call": {
     "Join video call": ""
   },
@@ -4517,9 +4310,6 @@
   "Layout Overrides": {
     "Layout Overrides": "Indeling overschrijven"
   },
-  "Layout and module positions on the greeter are synced from your shell (e.g. bar config). Run Sync to apply.": {
-    "Layout and module positions on the greeter are synced from your shell (e.g. bar config). Run Sync to apply.": "Lay-out en moduleposities op de Greeter worden gesynchroniseerd met je shell (bijv. balkconfiguratie). Voer Sync uit om toe te passen."
-  },
   "Left": {
     "Left": "Links"
   },
@@ -4604,9 +4394,6 @@
   "Locale": {
     "Locale": "Locale"
   },
-  "Locale Settings": {
-    "Locale Settings": "Locale-instellingen"
-  },
   "Location": {
     "Location": "Locatie"
   },
@@ -4619,20 +4406,8 @@
   "Lock Screen": {
     "Lock Screen": "Vergrendelscherm"
   },
-  "Lock Screen Appearance": {
-    "Lock Screen Appearance": ""
-  },
-  "Lock Screen Display": {
-    "Lock Screen Display": "Weergave vergrendelscherm"
-  },
   "Lock Screen Format": {
     "Lock Screen Format": "Notatie vergrendelscherm"
-  },
-  "Lock Screen behaviour": {
-    "Lock Screen behaviour": "Gedrag vergrendelscherm"
-  },
-  "Lock Screen layout": {
-    "Lock Screen layout": "Indeling vergrendelscherm"
   },
   "Lock at startup": {
     "Lock at startup": "Vergrendelen bij opstarten"
@@ -4642,9 +4417,6 @@
   },
   "Lock fade grace period": {
     "Lock fade grace period": "Vervalperiode vergrendelvervaging"
-  },
-  "Lock screen authentication changes apply automatically and may open a terminal when sudo authentication is required.": {
-    "Lock screen authentication changes apply automatically and may open a terminal when sudo authentication is required.": "Verificatiewijzigingen voor het vergrendelscherm worden automatisch toegepast en kunnen een terminal openen wanneer sudo-verificatie vereist is."
   },
   "Lock screen font": {
     "Lock screen font": ""
@@ -4660,9 +4432,6 @@
   },
   "Login": {
     "Login": "Inloggen"
-  },
-  "Login Authentication": {
-    "Login Authentication": "Aanmeld-authenticatie"
   },
   "Long": {
     "Long": "Lang"
@@ -4721,11 +4490,11 @@
   "Managed by Frame in Connected Mode": {
     "Managed by Frame in Connected Mode": "Beheerd door Frame in Verbonden Modus"
   },
+  "Managed by the primary PAM source.": {
+    "Managed by the primary PAM source.": ""
+  },
   "Management": {
     "Management": "Beheer"
-  },
-  "Manages calendar events": {
-    "Manages calendar events": "Beheert agenda-afspraken"
   },
   "Manages files and directories": {
     "Manages files and directories": "Beheert bestanden en mappen"
@@ -4735,9 +4504,6 @@
   },
   "Mango service not available": {
     "Mango service not available": "Mango-service niet beschikbaar"
-  },
-  "MangoWC Layout Overrides": {
-    "MangoWC Layout Overrides": "MangoWC-indelingsoverschrijvingen"
   },
   "Manual": {
     "Manual": "Handmatig"
@@ -4895,9 +4661,6 @@
   "Maximum pinned entries reached": {
     "Maximum pinned entries reached": "Maximaal aantal vastgemaakte items bereikt"
   },
-  "Maximum size per clipboard entry": {
-    "Maximum size per clipboard entry": "Maximale grootte per klemborditem"
-  },
   "Media": {
     "Media": "Media"
   },
@@ -4921,9 +4684,6 @@
   },
   "Media Player": {
     "Media Player": "Mediaspeler"
-  },
-  "Media Player Settings": {
-    "Media Player Settings": "Instellingen mediaspeler"
   },
   "Media Players (": {
     "Media Players (": "Mediaspelers ("
@@ -5006,9 +4766,6 @@
   "Mode": {
     "Mode": "Modus"
   },
-  "Mode:": {
-    "Mode:": "Modus:"
-  },
   "Model": {
     "Model": "Model"
   },
@@ -5063,9 +4820,6 @@
   "Mouse pointer size in pixels": {
     "Mouse pointer size in pixels": "Grootte muisaanwijzer in pixels"
   },
-  "Move": {
-    "Move": "Verplaatsen"
-  },
   "Move Widget": {
     "Move Widget": "Widget verplaatsen"
   },
@@ -5080,9 +4834,6 @@
   },
   "Multimedia": {
     "Multimedia": "Multimedia"
-  },
-  "Multiplexer": {
-    "Multiplexer": "Multiplexer"
   },
   "Multiplexer Type": {
     "Multiplexer Type": "Multiplexer-type"
@@ -5159,9 +4910,6 @@
   "Network Speed Monitor": {
     "Network Speed Monitor": "Netwerksnelheidsmeter"
   },
-  "Network Status": {
-    "Network Status": "Netwerkstatus"
-  },
   "Network Type": {
     "Network Type": "Netwerktype"
   },
@@ -5233,9 +4981,6 @@
   },
   "Niri Integration": {
     "Niri Integration": "Niri-integratie"
-  },
-  "Niri Layout Overrides": {
-    "Niri Layout Overrides": "Niri-indelingsoverschrijvingen"
   },
   "Niri compositor actions (focus, move, etc.)": {
     "Niri compositor actions (focus, move, etc.)": "Niri-compositoracties (focus, verplaatsen, enz.)"
@@ -5462,9 +5207,6 @@
   "No plugins found": {
     "No plugins found": "Geen plug-ins gevonden"
   },
-  "No plugins found.": {
-    "No plugins found.": "Geen plug-ins gevonden."
-  },
   "No printer found": {
     "No printer found": "Geen printer gevonden"
   },
@@ -5639,14 +5381,8 @@
   "Notification Popups": {
     "Notification Popups": "Meldingen-popups"
   },
-  "Notification Rules": {
-    "Notification Rules": "Meldingsregels"
-  },
   "Notification Settings": {
     "Notification Settings": "Meldinginstellingen"
-  },
-  "Notification Timeouts": {
-    "Notification Timeouts": "Time-outs voor meldingen"
   },
   "Notification Type": {
     "Notification Type": "Meldingstype"
@@ -5720,9 +5456,6 @@
   "Only adjust gamma based on time or location rules.": {
     "Only adjust gamma based on time or location rules.": "Gamma alleen aanpassen op basis van tijd- of locatieregels."
   },
-  "Only affects DMS-managed PAM. If greetd already includes pam_fprintd, fingerprint stays enabled.": {
-    "Only affects DMS-managed PAM. If greetd already includes pam_fprintd, fingerprint stays enabled.": "Heeft alleen invloed op door DMS beheerde PAM. Als greetd al pam_fprintd bevat, blijft de vingerafdruk ingeschakeld."
-  },
   "Only on Battery": {
     "Only on Battery": "Alleen op accustroom"
   },
@@ -5734,12 +5467,6 @@
   },
   "Opacity": {
     "Opacity": "Dekking"
-  },
-  "Opacity of the bar background": {
-    "Opacity of the bar background": "Dekking van de balkachtergrond"
-  },
-  "Opacity of widget backgrounds": {
-    "Opacity of widget backgrounds": "Dekking van widgetachtergronden"
   },
   "Opaque": {
     "Opaque": "Ondoorzichtig"
@@ -5807,17 +5534,11 @@
   "Opening file browser": {
     "Opening file browser": "Bestandsbeheer openen"
   },
-  "Opening terminal to update greetd": {
-    "Opening terminal to update greetd": "Terminal wordt geopend om greetd bij te werken"
-  },
   "Opening terminal: ": {
     "Opening terminal: ": "Terminal openen: "
   },
   "Opens a picker of other active sessions on this seat": {
     "Opens a picker of other active sessions on this seat": "Opent een selectievenster voor andere actieve sessies op deze seat"
-  },
-  "Opens image files": {
-    "Opens image files": "Opent afbeeldingsbestanden"
   },
   "Opens the connected launcher in Connected Frame Mode.": {
     "Opens the connected launcher in Connected Frame Mode.": "Opent de verbonden launcher in Connected Frame Mode."
@@ -5921,15 +5642,6 @@
   "PAM already provides security-key auth. Enable this to show it at login.": {
     "PAM already provides security-key auth. Enable this to show it at login.": "PAM biedt al authenticatie via beveiligingssleutel. Schakel dit in om het te tonen bij het inloggen."
   },
-  "PAM provides fingerprint auth, but availability could not be confirmed.": {
-    "PAM provides fingerprint auth, but availability could not be confirmed.": "PAM biedt vingerafdrukauthenticatie, maar de beschikbaarheid kon niet worden bevestigd."
-  },
-  "PAM provides fingerprint auth, but no prints are enrolled yet.": {
-    "PAM provides fingerprint auth, but no prints are enrolled yet.": "PAM biedt vingerafdrukauthenticatie, maar er zijn nog geen afdrukken geregistreerd."
-  },
-  "PAM provides fingerprint auth, but no reader was detected.": {
-    "PAM provides fingerprint auth, but no reader was detected.": "PAM biedt vingerafdrukauthenticatie, maar er is geen scanner gedetecteerd."
-  },
   "PDF Reader": {
     "PDF Reader": "PDF-lezer"
   },
@@ -5945,9 +5657,6 @@
   "Pad Hours": {
     "Pad Hours": "Uren opvullen"
   },
-  "Pad hours (02:00 vs 2:00)": {
-    "Pad hours (02:00 vs 2:00)": "Uren opvullen (02:00 in plaats van 2:00)"
-  },
   "Padding": {
     "Padding": "Opvulling"
   },
@@ -5960,14 +5669,11 @@
   "Paired": {
     "Paired": "Gekoppeld"
   },
-  "Pairing": {
-    "Pairing": "Koppelen"
-  },
   "Pairing failed": {
     "Pairing failed": "Koppelen mislukt"
   },
-  "Pairing request from": {
-    "Pairing request from": "Koppelingsverzoek van"
+  "Pairing request from %1": {
+    "Pairing request from %1": ""
   },
   "Pairing request sent": {
     "Pairing request sent": "Koppelingsverzoek verzonden"
@@ -6062,9 +5768,6 @@
   "Phone Connect Not Available": {
     "Phone Connect Not Available": "Phone Connect niet beschikbaar"
   },
-  "Phone Connect unavailable": {
-    "Phone Connect unavailable": "Phone Connect niet beschikbaar"
-  },
   "Phone number": {
     "Phone number": "Telefoonnummer"
   },
@@ -6092,8 +5795,8 @@
   "Ping": {
     "Ping": "Pingen"
   },
-  "Ping sent to": {
-    "Ping sent to": "Ping verzonden naar"
+  "Ping sent to %1": {
+    "Ping sent to %1": ""
   },
   "Pinned": {
     "Pinned": "Vastgemaakt"
@@ -6137,9 +5840,6 @@
   "Play sound when volume is adjusted": {
     "Play sound when volume is adjusted": "Geluid afspelen wanneer volume wordt aangepast"
   },
-  "Play sounds for system events": {
-    "Play sounds for system events": "Geluiden afspelen voor systeemgebeurtenissen"
-  },
   "Playback": {
     "Playback": "Afspelen"
   },
@@ -6148,9 +5848,6 @@
   },
   "Plays audio files": {
     "Plays audio files": "Speelt audiobestanden af"
-  },
-  "Plays video files": {
-    "Plays video files": "Speelt videobestanden af"
   },
   "Please wait...": {
     "Please wait...": "Even geduld..."
@@ -6227,6 +5924,9 @@
   "Popup behavior, position": {
     "Popup behavior, position": "Gedrag en positie pop-ups"
   },
+  "Popups": {
+    "Popups": ""
+  },
   "Port": {
     "Port": "Poort"
   },
@@ -6275,9 +5975,6 @@
   "Power Profiles & Saving": {
     "Power Profiles & Saving": ""
   },
-  "Power Profiles Auto-Switching": {
-    "Power Profiles Auto-Switching": "Automatisch wisselen van energieprofiel"
-  },
   "Power Saver": {
     "Power Saver": "Energiebesparing"
   },
@@ -6286,12 +5983,6 @@
   },
   "Power profile management available": {
     "Power profile management available": "Energieprofielbeheer beschikbaar"
-  },
-  "Power profile to use when AC power is connected.": {
-    "Power profile to use when AC power is connected.": "Te gebruiken energieprofiel wanneer netvoeding is aangesloten."
-  },
-  "Power profile to use when running on battery power.": {
-    "Power profile to use when running on battery power.": "Te gebruiken energieprofiel wanneer werkend op de accu."
   },
   "Power source": {
     "Power source": "Voedingsbron"
@@ -6316,9 +6007,6 @@
   },
   "Preset Widths (%)": {
     "Preset Widths (%)": "Voor ingestelde breedtes (%)"
-  },
-  "Press 'n' or click 'New Session' to create one": {
-    "Press 'n' or click 'New Session' to create one": "Druk op 'n' of klik op 'Nieuwe sessie' om er een aan te maken"
   },
   "Press Ctrl+N or click 'New Session' to create one": {
     "Press Ctrl+N or click 'New Session' to create one": ""
@@ -6359,9 +6047,6 @@
   "Primary Container": {
     "Primary Container": "Primaire container"
   },
-  "Primary Theme Color": {
-    "Primary Theme Color": "Primaire themakleur"
-  },
   "Print Server Management": {
     "Print Server Management": "Printserverbeheer"
   },
@@ -6389,9 +6074,6 @@
   "Printers": {
     "Printers": "Printers"
   },
-  "Printers: ": {
-    "Printers: ": "Printers: "
-  },
   "Prioritize performance": {
     "Prioritize performance": "Prestaties prioriteren"
   },
@@ -6415,9 +6097,6 @@
   },
   "Processes": {
     "Processes": "Processen"
-  },
-  "Processes:": {
-    "Processes:": "Processen:"
   },
   "Processing": {
     "Processing": "Verwerken"
@@ -6454,6 +6133,9 @@
   },
   "Profile when on Battery": {
     "Profile when on Battery": "Profiel bij accugebruik"
+  },
+  "Protection": {
+    "Protection": ""
   },
   "Protocol": {
     "Protocol": "Protocol"
@@ -6620,9 +6302,6 @@
   "Remove admin": {
     "Remove admin": "Beheerder ontnemen"
   },
-  "Remove admin?": {
-    "Remove admin?": "Beheerder ontnemen?"
-  },
   "Remove corner rounding from the bar": {
     "Remove corner rounding from the bar": "Hoekafronding van de balk verwijderen"
   },
@@ -6719,9 +6398,6 @@
   "Reset Size": {
     "Reset Size": "Grootte herstellen"
   },
-  "Reset to Default?": {
-    "Reset to Default?": "Terugzetten naar standaard?"
-  },
   "Reset to default": {
     "Reset to default": "Terugzetten naar standaard"
   },
@@ -6800,8 +6476,8 @@
   "Ring": {
     "Ring": "Klingelen"
   },
-  "Ringing": {
-    "Ringing": "Klingelen"
+  "Ringing %1...": {
+    "Ringing %1...": ""
   },
   "Ripple Effects": {
     "Ripple Effects": "Rimpel-effecten"
@@ -6815,8 +6491,14 @@
   "Rule": {
     "Rule": "Regel"
   },
+  "Rule %1": {
+    "Rule %1": ""
+  },
   "Rule Name": {
     "Rule Name": "Regelnaam"
+  },
+  "Rules": {
+    "Rules": ""
   },
   "Rules (%1)": {
     "Rules (%1)": "Regels (%1)"
@@ -6923,9 +6605,6 @@
   "Saving...": {
     "Saving...": "Opslaan..."
   },
-  "Saving…": {
-    "Saving…": "Opslaan…"
-  },
   "Scale": {
     "Scale": "Schaal"
   },
@@ -6940,9 +6619,6 @@
   },
   "Scan": {
     "Scan": "Scannen"
-  },
-  "Scanning": {
-    "Scanning": "Scannen"
   },
   "Scanning...": {
     "Scanning...": "Scannen..."
@@ -7028,9 +6704,6 @@
   "Search...": {
     "Search...": "Zoeken..."
   },
-  "Searching": {
-    "Searching": "Zoeken"
-  },
   "Searching...": {
     "Searching...": "Zoeken..."
   },
@@ -7051,6 +6724,9 @@
   },
   "Security & privacy": {
     "Security & privacy": "Beveiliging & privacy"
+  },
+  "Security Key PAM Source": {
+    "Security Key PAM Source": ""
   },
   "Security key mode": {
     "Security key mode": "Beveiligingssleutel-modus"
@@ -7139,17 +6815,11 @@
   "Select lock screen background image": {
     "Select lock screen background image": ""
   },
-  "Select monitor to configure wallpaper": {
-    "Select monitor to configure wallpaper": "Selecteer beeldscherm om achtergrond te configureren"
-  },
   "Select monospace font for process list and technical displays": {
     "Select monospace font for process list and technical displays": "Selecteer monospace-lettertype voor proceslijst en technische weergaven"
   },
   "Select network": {
     "Select network": "Selecteer netwerk"
-  },
-  "Select system sound theme": {
-    "Select system sound theme": "Selecteer systeemgeluidsthema"
   },
   "Select the font family for UI text": {
     "Select the font family for UI text": "Selecteer de lettertypefamilie voor UI-tekst"
@@ -7178,14 +6848,11 @@
   "Send Clipboard": {
     "Send Clipboard": "Klembord verzenden"
   },
-  "Send File": {
-    "Send File": "Bestand verzenden"
-  },
   "Send SMS": {
     "Send SMS": "Sms verzenden"
   },
-  "Sending": {
-    "Sending": "Verzenden"
+  "Sending %1...": {
+    "Sending %1...": ""
   },
   "Separate": {
     "Separate": "Gescheiden"
@@ -7237,9 +6904,6 @@
   },
   "Set the font size for notification body text (htmlBody)": {
     "Set the font size for notification body text (htmlBody)": "Stel de lettergrootte in voor de berichttekst van notificaties (htmlBody)"
-  },
-  "Set the font size for notification summary text": {
-    "Set the font size for notification summary text": "Stel de lettergrootte in voor de samenvattingstekst van notificaties"
   },
   "Set the percentage at which the battery is considered low.": {
     "Set the percentage at which the battery is considered low.": "Stel het percentage in waarbij de accu als 'bijna leeg' wordt beschouwd."
@@ -7294,9 +6958,6 @@
   },
   "Share Gamma Control Settings": {
     "Share Gamma Control Settings": "Gammaregeling-instellingen delen"
-  },
-  "Share Text": {
-    "Share Text": "Tekst delen"
   },
   "Shared": {
     "Shared": "Gedeeld"
@@ -7553,9 +7214,6 @@
   "Show during Niri overview": {
     "Show during Niri overview": "Weergeven tijdens Niri-overzicht"
   },
-  "Show foreground surfaces on blurred panels for stronger contrast": {
-    "Show foreground surfaces on blurred panels for stronger contrast": "Toon voorgrondoppervlakken op vervaagde panelen voor een sterker contrast"
-  },
   "Show foreground surfaces on panels for stronger contrast": {
     "Show foreground surfaces on panels for stronger contrast": "Toon voorgrandoppervlakken op panelen voor sterker contrast"
   },
@@ -7571,12 +7229,6 @@
   "Show mount path": {
     "Show mount path": "Mountpad tonen"
   },
-  "Show notification popups only on the currently focused monitor": {
-    "Show notification popups only on the currently focused monitor": "Meldingspop-ups alleen op de momenteel actieve monitor tonen"
-  },
-  "Show notifications only on the currently focused monitor": {
-    "Show notifications only on the currently focused monitor": "Meldingen alleen op de momenteel actieve monitor tonen"
-  },
   "Show on Last Display": {
     "Show on Last Display": "Tonen op laatste beeldscherm"
   },
@@ -7589,38 +7241,8 @@
   "Show on Overview Only": {
     "Show on Overview Only": "Alleen tonen op overzicht"
   },
-  "Show on all connected displays": {
-    "Show on all connected displays": "Tonen op alle aangesloten beeldschermen"
-  },
   "Show on screens:": {
     "Show on screens:": "Tonen op schermen:"
-  },
-  "Show on-screen display when brightness changes": {
-    "Show on-screen display when brightness changes": "On-screen display tonen wanneer helderheid wijzigt"
-  },
-  "Show on-screen display when caps lock state changes": {
-    "Show on-screen display when caps lock state changes": "On-screen display tonen wanneer Caps Lock-status wijzigt"
-  },
-  "Show on-screen display when cycling audio output devices": {
-    "Show on-screen display when cycling audio output devices": "On-screen display tonen bij wisselen van audio-uitvoerapparaten"
-  },
-  "Show on-screen display when idle inhibitor state changes": {
-    "Show on-screen display when idle inhibitor state changes": "On-screen display tonen wanneer status inactiviteitspreventie wijzigt"
-  },
-  "Show on-screen display when media player status changes": {
-    "Show on-screen display when media player status changes": "On-screen display (OSD) tonen wanneer de status van de mediaspeler wijzigt"
-  },
-  "Show on-screen display when media player volume changes": {
-    "Show on-screen display when media player volume changes": "On-screen display tonen wanneer volume mediaspeler wijzigt"
-  },
-  "Show on-screen display when microphone is muted/unmuted": {
-    "Show on-screen display when microphone is muted/unmuted": "On-screen display tonen wanneer microfoon wordt gedempt/ingeschakeld"
-  },
-  "Show on-screen display when power profile changes": {
-    "Show on-screen display when power profile changes": "On-screen display tonen wanneer energieprofiel wijzigt"
-  },
-  "Show on-screen display when volume changes": {
-    "Show on-screen display when volume changes": "On-screen display tonen wanneer volume wijzigt"
   },
   "Show the bar only when no windows are open": {
     "Show the bar only when no windows are open": "Toon de balk alleen wanneer er geen vensters open zijn"
@@ -7630,9 +7252,6 @@
   },
   "Show weather information in top bar and control center": {
     "Show weather information in top bar and control center": "Weerinformatie tonen in bovenbalk en bedieningspaneel"
-  },
-  "Show week number in the calendar": {
-    "Show week number in the calendar": "Toon weeknummer in de kalender"
   },
   "Show workspace index numbers in the top bar workspace switcher": {
     "Show workspace index numbers in the top bar workspace switcher": "Werkbladindexnummers tonen in de werkbladwisselaar in de bovenbalk"
@@ -7666,9 +7285,6 @@
   },
   "Signal Strength": {
     "Signal Strength": "Signaalsterkte"
-  },
-  "Signal:": {
-    "Signal:": "Signaal:"
   },
   "Silence for a while": {
     "Silence for a while": "Tijdelijk dempen"
@@ -7796,9 +7412,6 @@
   "Start": {
     "Start": "Start"
   },
-  "Start KDE Connect or Valent": {
-    "Start KDE Connect or Valent": "Start KDE Connect of Valent"
-  },
   "Start KDE Connect or Valent to use this plugin": {
     "Start KDE Connect or Valent to use this plugin": "Start KDE Connect of Valent om deze plug-in te gebruiken"
   },
@@ -7837,9 +7450,6 @@
   },
   "Stripes": {
     "Stripes": "Strepen"
-  },
-  "Subtle Overlay": {
-    "Subtle Overlay": "Subtiele overlay"
   },
   "Summary": {
     "Summary": "Samenvatting"
@@ -8045,20 +7655,11 @@
   "Terminal fallback failed. Install one of the supported terminal emulators or run 'dms greeter sync' manually.": {
     "Terminal fallback failed. Install one of the supported terminal emulators or run 'dms greeter sync' manually.": "Terminal fallback mislukt. Installeer een van de ondersteunde terminal-emulators of voer handmatig 'dms greeter sync' uit."
   },
-  "Terminal fallback opened. Complete authentication setup there; it will close automatically when done.": {
-    "Terminal fallback opened. Complete authentication setup there; it will close automatically when done.": "Terminal-terugval geopend. Voltooi de verificatie-instellingen daar; deze zal automatisch sluiten wanneer voltooid."
+  "Terminal fallback opened. Complete authentication there; it will close automatically when done.": {
+    "Terminal fallback opened. Complete authentication there; it will close automatically when done.": ""
   },
-  "Terminal fallback opened. Complete sync there; it will close automatically when done.": {
-    "Terminal fallback opened. Complete sync there; it will close automatically when done.": "Terminal fallback geopend. Voltooi de synchronisatie daar; de terminal sluit automatisch wanneer dit is voltooid."
-  },
-  "Terminal multiplexer backend to use": {
-    "Terminal multiplexer backend to use": "Te gebruiken terminal-multiplexer-backend"
-  },
-  "Terminal opened. Complete authentication setup there; it will close automatically when done.": {
-    "Terminal opened. Complete authentication setup there; it will close automatically when done.": "Terminal geopend. Voltooi de verificatie-instellingen daar; deze zal automatisch sluiten wanneer voltooid."
-  },
-  "Terminal opened. Complete sync authentication there; it will close automatically when done.": {
-    "Terminal opened. Complete sync authentication there; it will close automatically when done.": "Terminal geopend. Voltooi de sync-authenticatie daar; de terminal sluit automatisch wanneer dit is voltooid."
+  "Terminal opened. Complete authentication there; it will close automatically when done.": {
+    "Terminal opened. Complete authentication there; it will close automatically when done.": ""
   },
   "Terminals - Always use Dark Theme": {
     "Terminals - Always use Dark Theme": "Terminals - Altijd donker thema gebruiken"
@@ -8092,9 +7693,6 @@
   },
   "Text Rendering": {
     "Text Rendering": "Tekstweergave"
-  },
-  "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.": {
-    "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.": "De tool 'boregard' is niet geïnstalleerd of staat niet in je PATH.\n\nInstalleer deze vanaf https://danklinux.com en schakel deze plugin vervolgens opnieuw in."
   },
   "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": {
     "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "De tool 'dgop' is vereist voor systeembewaking.\nInstalleer dgop om deze functie te gebruiken."
@@ -8156,20 +7754,8 @@
   "This device": {
     "This device": "Dit apparaat"
   },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings.": "Deze installatie gebruikt nog hyprland.conf. Voer 'dms setup' uit om te migreren voordat je cursorinstellingen bewerkt."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing display settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing display settings.": "Deze installatie gebruikt nog hyprland.conf. Voer 'dms setup' uit om te migreren voordat je scherminstellingen bewerkt."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings.": "Deze installatie gebruikt nog hyprland.conf. Voer 'dms setup' uit om te migreren voordat je de lay-outinstellingen bewerkt."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing shortcuts in Settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing shortcuts in Settings.": "Deze installatie gebruikt nog hyprland.conf. Voer 'dms setup' uit om te migreren voordat je sneltoetsen bewerkt in Instellingen."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings.": "Deze installatie gebruikt nog hyprland.conf. Voer 'dms setup' uit om te migreren voordat je vensterregels bewerkt in Instellingen."
+  "This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.": {
+    "This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.": ""
   },
   "This may take a few seconds": {
     "This may take a few seconds": "Dit kan enkele seconden duren"
@@ -8201,14 +7787,8 @@
   "Tile": {
     "Tile": "Tegelen"
   },
-  "Tile H": {
-    "Tile H": "Tegelen H"
-  },
   "Tile Horizontally": {
     "Tile Horizontally": ""
-  },
-  "Tile V": {
-    "Tile V": "Tegelen V"
   },
   "Tile Vertically": {
     "Tile Vertically": ""
@@ -8252,14 +7832,8 @@
   "Timeout Progress Bar": {
     "Timeout Progress Bar": "Voortgangsbalk voor time-out"
   },
-  "Timeout for critical priority notifications": {
-    "Timeout for critical priority notifications": "Time-out voor meldingen met kritieke prioriteit"
-  },
-  "Timeout for low priority notifications": {
-    "Timeout for low priority notifications": "Time-out voor meldingen met lage prioriteit"
-  },
-  "Timeout for normal priority notifications": {
-    "Timeout for normal priority notifications": "Time-out voor meldingen met normale prioriteit"
+  "Timeouts": {
+    "Timeouts": ""
   },
   "Tint Saturation": {
     "Tint Saturation": "Tintverzadiging"
@@ -8374,15 +7948,6 @@
   },
   "Transparency": {
     "Transparency": "Transparantie"
-  },
-  "Transparency of the border": {
-    "Transparency of the border": "Transparantie van de rand"
-  },
-  "Transparency of the shadow layer": {
-    "Transparency of the shadow layer": "Transparantie van de schaduwlaag"
-  },
-  "Transparency of the widget outline": {
-    "Transparency of the widget outline": "Transparantie van de widget-omlijning"
   },
   "Trash": {
     "Trash": "Prullenbak"
@@ -8555,9 +8120,6 @@
   "Unpin from Dock": {
     "Unpin from Dock": "Van dock losmaken"
   },
-  "Unsaved Changes": {
-    "Unsaved Changes": "Niet-opgeslagen wijzigingen"
-  },
   "Unsaved changes": {
     "Unsaved changes": "Niet-opgeslagen wijzigingen"
   },
@@ -8608,9 +8170,6 @@
   },
   "Uptime": {
     "Uptime": "Uptime"
-  },
-  "Uptime:": {
-    "Uptime:": "Uptime:"
   },
   "Urgent": {
     "Urgent": "Urgent"
@@ -8681,9 +8240,6 @@
   "Use colors extracted from album art instead of system theme colors": {
     "Use colors extracted from album art instead of system theme colors": ""
   },
-  "Use custom border size": {
-    "Use custom border size": "Aangepaste randgrootte gebruiken"
-  },
   "Use custom border/focus-ring width": {
     "Use custom border/focus-ring width": "Aangepaste rand-/focusringbreedte gebruiken"
   },
@@ -8720,11 +8276,11 @@
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "Geluidsthema van systeeminstellingen gebruiken"
   },
+  "Use system PAM authentication": {
+    "Use system PAM authentication": ""
+  },
   "Use the extended surface for launcher content": {
     "Use the extended surface for launcher content": "Het uitgebreide oppervlak gebruiken voor launcher-inhoud"
-  },
-  "Use the overlay layer when opening the launcher": {
-    "Use the overlay layer when opening the launcher": "De overlay-laag gebruiken bij het openen van de launcher"
   },
   "Use the same position and size on all displays": {
     "Use the same position and size on all displays": "Dezelfde positie en grootte gebruiken op alle beeldschermen"
@@ -8975,6 +8531,9 @@
   "When locked": {
     "When locked": "Indien vergrendeld"
   },
+  "Which PAM service the lock screen uses to authenticate": {
+    "Which PAM service the lock screen uses to authenticate": ""
+  },
   "White": {
     "White": "Wit"
   },
@@ -9083,12 +8642,6 @@
   "Window Rules": {
     "Window Rules": "Vensterregels"
   },
-  "Window Rules Include Missing": {
-    "Window Rules Include Missing": "Vensterregels-include ontbreekt"
-  },
-  "Window Rules Not Configured": {
-    "Window Rules Not Configured": "Vensterregels niet geconfigureerd"
-  },
   "Wipe": {
     "Wipe": "Vegen"
   },
@@ -9098,9 +8651,6 @@
   "Workspace": {
     "Workspace": "Werkblad"
   },
-  "Workspace Appearance": {
-    "Workspace Appearance": "Uiterlijk werkblad"
-  },
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "Indexnummers werkblad"
   },
@@ -9109,9 +8659,6 @@
   },
   "Workspace Padding": {
     "Workspace Padding": "Werkblad-opvulling"
-  },
-  "Workspace Settings": {
-    "Workspace Settings": "Werkbladinstellingen"
   },
   "Workspace Switcher": {
     "Workspace Switcher": "Werkbladwisselaar"
@@ -9161,17 +8708,8 @@
   "Yesterday": {
     "Yesterday": "Gisteren"
   },
-  "You have unsaved changes. Save before closing this tab?": {
-    "You have unsaved changes. Save before closing this tab?": "U hebt niet-opgeslagen wijzigingen. Opslaan voordat u dit tabblad sluit?"
-  },
   "You have unsaved changes. Save before continuing?": {
     "You have unsaved changes. Save before continuing?": "U hebt niet-opgeslagen wijzigingen. Opslaan voordat u doorgaat?"
-  },
-  "You have unsaved changes. Save before creating a new file?": {
-    "You have unsaved changes. Save before creating a new file?": "U hebt niet-opgeslagen wijzigingen. Opslaan voordat u een nieuw bestand maakt?"
-  },
-  "You have unsaved changes. Save before opening a file?": {
-    "You have unsaved changes. Save before opening a file?": "U hebt niet-opgeslagen wijzigingen. Opslaan voordat u een bestand opent?"
   },
   "You need to set either:\nQT_QPA_PLATFORMTHEME=gtk3 OR\nQT_QPA_PLATFORMTHEME=qt6ct\nas environment variables, and then restart the shell.\n\nqt6ct requires qt6ct-kde to be installed.": {
     "You need to set either:\nQT_QPA_PLATFORMTHEME=gtk3 OR\nQT_QPA_PLATFORMTHEME=qt6ct\nas environment variables, and then restart the shell.\n\nqt6ct requires qt6ct-kde to be installed.": "U moet het volgende instellen:\nQT_QPA_PLATFORMTHEME=gtk3 OF\nQT_QPA_PLATFORMTHEME=qt6ct\nals omgevingsvariabelen, en daarna de shell herstarten.\n\nqt6ct vereist dat qt6ct-kde is geïnstalleerd."
@@ -9191,17 +8729,11 @@
   "Your system is up to date!": {
     "Your system is up to date!": "Uw systeem is bijgewerkt!"
   },
-  "actions": {
-    "actions": "acties"
-  },
   "admin": {
     "admin": "beheer"
   },
   "attached": {
     "attached": "gekoppeld"
-  },
-  "boregard is required": {
-    "boregard is required": "boregard is vereist"
   },
   "brandon": {
     "brandon": "brandon"
@@ -9236,9 +8768,6 @@
   "device": {
     "device": "apparaat"
   },
-  "devices connected": {
-    "devices connected": "apparaten verbonden"
-  },
   "dgop not available": {
     "dgop not available": "dgop niet beschikbaar"
   },
@@ -9247,6 +8776,9 @@
   },
   "discuss": {
     "discuss": "bespreken"
+  },
+  "display rotation option": {
+    "Normal": ""
   },
   "dms is a highly customizable, modern desktop shell with a <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">material 3 inspired</a> design.<br /><br/>It is built with <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, a QT6 framework for building desktop shells, and <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, a statically typed, compiled programming language.": {
     "dms is a highly customizable, modern desktop shell with a <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">material 3 inspired</a> design.<br /><br/>It is built with <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, a QT6 framework for building desktop shells, and <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, a statically typed, compiled programming language.": "dms is een zeer aanpasbare, moderne desktop-shell met een op <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">Material 3 geïnspireerd</a> ontwerp.<br /><br/>Het is gebouwd met <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, een QT6-framework voor het bouwen van desktop-shells, en <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, een statisch getypeerde, gecompileerde programmeertaal."
@@ -9308,11 +8840,8 @@
   "mangowc GitHub": {
     "mangowc GitHub": "mangowc GitHub"
   },
-  "matugen not available or disabled - cannot apply GTK colors": {
-    "matugen not available or disabled - cannot apply GTK colors": "matugen niet beschikbaar of uitgeschakeld - kan GTK-kleuren niet toepassen"
-  },
-  "matugen not available or disabled - cannot apply Qt colors": {
-    "matugen not available or disabled - cannot apply Qt colors": "matugen niet beschikbaar of uitgeschakeld - kan Qt-kleuren niet toepassen"
+  "matugen not available or disabled - cannot apply %1 colors": {
+    "matugen not available or disabled - cannot apply %1 colors": ""
   },
   "matugen not found - install matugen package for dynamic theming": {
     "matugen not found - install matugen package for dynamic theming": "matugen niet gevonden - installeer matugen-pakket voor dynamische thema's"
@@ -9325,6 +8854,9 @@
   },
   "nav": {
     "nav": "navigatie"
+  },
+  "network security type": {
+    "Open": ""
   },
   "niri GitHub": {
     "niri GitHub": "niri GitHub"
@@ -9368,14 +8900,14 @@
   "on Sway": {
     "on Sway": "op Sway"
   },
-  "open": {
-    "open": "openen"
-  },
   "or run ": {
     "or run ": "of voer uit: "
   },
   "power-profiles-daemon not available": {
     "power-profiles-daemon not available": "power-profiles-daemon niet beschikbaar"
+  },
+  "primary network connection label": {
+    "Primary": ""
   },
   "procs": {
     "procs": "procs"
@@ -9430,9 +8962,6 @@
   },
   "v%1 by %2": {
     "v%1 by %2": "v%1 door %2"
-  },
-  "verified": {
-    "verified": "geverifieerd"
   },
   "• Install only from trusted sources": {
     "• Install only from trusted sources": "• Installeer alleen vanuit vertrouwde bronnen"

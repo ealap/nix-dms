@@ -494,7 +494,7 @@ FloatingWindow {
                         spacing: Theme.spacingXS
 
                         StyledText {
-                            text: I18n.tr("Processes:", "process count label in footer")
+                            text: I18n.tr("Processes", "process count label in footer") + ":"
                             font.pixelSize: Theme.fontSizeSmall
                             color: Theme.surfaceVariantText
                         }
@@ -511,7 +511,7 @@ FloatingWindow {
                         spacing: Theme.spacingXS
 
                         StyledText {
-                            text: I18n.tr("Uptime:", "uptime label in footer")
+                            text: I18n.tr("Uptime", "uptime label in footer") + ":"
                             font.pixelSize: Theme.fontSizeSmall
                             color: Theme.surfaceVariantText
                         }

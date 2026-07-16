@@ -5,6 +5,9 @@
   "%1 Animation Speed": {
     "%1 Animation Speed": ""
   },
+  "%1 Layout Overrides": {
+    "%1 Layout Overrides": ""
+  },
   "%1 Sessions": {
     "%1 Sessions": ""
   },
@@ -35,9 +38,6 @@
   "%1 copied": {
     "%1 copied": ""
   },
-  "%1 custom animation duration": {
-    "%1 custom animation duration": ""
-  },
   "%1 disconnected": {
     "%1 disconnected": ""
   },
@@ -49,9 +49,6 @@
   },
   "%1 displays": {
     "%1 displays": ""
-  },
-  "%1 exists but is not included. Window rules won't apply.": {
-    "%1 exists but is not included. Window rules won't apply.": ""
   },
   "%1 filtered": {
     "%1 filtered": ""
@@ -118,9 +115,6 @@
   },
   "'Alternative' lets the key unlock on its own. 'Second factor' requires password or fingerprint first, then the key.": {
     "'Alternative' lets the key unlock on its own. 'Second factor' requires password or fingerprint first, then the key.": ""
-  },
-  "(Default)": {
-    "(Default)": ""
   },
   "(Unnamed)": {
     "(Unnamed)": "(Sin nombre)"
@@ -211,9 +205,6 @@
   },
   "24-Hour Format": {
     "24-Hour Format": "Formato de 24 horas"
-  },
-  "24-hour clock": {
-    "24-hour clock": ""
   },
   "25 seconds": {
     "25 seconds": ""
@@ -509,6 +500,9 @@
   "Afternoon": {
     "Afternoon": "Tarde"
   },
+  "Alerts": {
+    "Alerts": ""
+  },
   "All": {
     "All": "Todo"
   },
@@ -788,14 +782,14 @@
   "Authentication Required": {
     "Authentication Required": "Autenticación requerida"
   },
+  "Authentication Source": {
+    "Authentication Source": ""
+  },
   "Authentication changes applied.": {
     "Authentication changes applied.": ""
   },
   "Authentication changes apply automatically.": {
     "Authentication changes apply automatically.": ""
-  },
-  "Authentication changes apply automatically. Fingerprint-only login may not unlock Keyring.": {
-    "Authentication changes apply automatically. Fingerprint-only login may not unlock Keyring.": ""
   },
   "Authentication changes need sudo. Opening terminal so you can use password or fingerprint.": {
     "Authentication changes need sudo. Opening terminal so you can use password or fingerprint.": ""
@@ -811,9 +805,6 @@
   },
   "Authentication failed - try again": {
     "Authentication failed - try again": ""
-  },
-  "Authentication failed, please try again": {
-    "Authentication failed, please try again": "Autenticación fallida, intente nuevamente"
   },
   "Authorize": {
     "Authorize": "Autorizar"
@@ -848,20 +839,17 @@
   "Auto Power Saver": {
     "Auto Power Saver": ""
   },
-  "Auto matches bar spacing; Off leaves gaps to your Hyprland config": {
-    "Auto matches bar spacing; Off leaves gaps to your Hyprland config": ""
-  },
-  "Auto matches bar spacing; Off leaves gaps to your MangoWC config": {
-    "Auto matches bar spacing; Off leaves gaps to your MangoWC config": ""
-  },
-  "Auto matches bar spacing; Off leaves gaps to your niri config": {
-    "Auto matches bar spacing; Off leaves gaps to your niri config": ""
+  "Auto matches bar spacing; Off leaves gaps to your %1 config": {
+    "Auto matches bar spacing; Off leaves gaps to your %1 config": ""
   },
   "Auto mode is on. Manual profile selection is disabled.": {
     "Auto mode is on. Manual profile selection is disabled.": ""
   },
   "Auto saved": {
     "Auto saved": ""
+  },
+  "Auto uses an installed or bundled key-only service.": {
+    "Auto uses an installed or bundled key-only service.": ""
   },
   "Auto-Clear After": {
     "Auto-Clear After": "Limpiar automáticamente despues"
@@ -983,9 +971,6 @@
   "Available in Detailed and Forecast view modes": {
     "Available in Detailed and Forecast view modes": "Disponible en modo detallado y pronóstico"
   },
-  "Available.": {
-    "Available.": ""
-  },
   "Awaiting fingerprint authentication": {
     "Awaiting fingerprint authentication": ""
   },
@@ -1006,9 +991,6 @@
   },
   "Backend": {
     "Backend": "Backend"
-  },
-  "Backends: %1": {
-    "Backends: %1": ""
   },
   "Background": {
     "Background": ""
@@ -1049,9 +1031,6 @@
   "Bar %1": {
     "Bar %1": ""
   },
-  "Bar Configurations": {
-    "Bar Configurations": "Configuración de barras"
-  },
   "Bar Inset Padding": {
     "Bar Inset Padding": ""
   },
@@ -1070,9 +1049,6 @@
   "Bar shadow, border, and corners": {
     "Bar shadow, border, and corners": ""
   },
-  "Bar spacing and size": {
-    "Bar spacing and size": ""
-  },
   "Base color for shadows (opacity is applied automatically)": {
     "Base color for shadows (opacity is applied automatically)": ""
   },
@@ -1085,9 +1061,6 @@
   "Battery %1": {
     "Battery %1": ""
   },
-  "Battery Alerts": {
-    "Battery Alerts": ""
-  },
   "Battery Charge Limit": {
     "Battery Charge Limit": "Limite de carga de bateria"
   },
@@ -1096,15 +1069,6 @@
   },
   "Battery Power": {
     "Battery Power": ""
-  },
-  "Battery Protection": {
-    "Battery Protection": ""
-  },
-  "Battery Protection & Charging": {
-    "Battery Protection & Charging": ""
-  },
-  "Battery Status": {
-    "Battery Status": ""
   },
   "Battery and power management": {
     "Battery and power management": "Bateria y gestion de energia"
@@ -1118,9 +1082,6 @@
   "Battery is at %1% - Consider charging soon": {
     "Battery is at %1% - Consider charging soon": ""
   },
-  "Battery level and power management": {
-    "Battery level and power management": "Nivel de batería y gestión de energía"
-  },
   "Battery percentage to trigger a critical alert.": {
     "Battery percentage to trigger a critical alert.": ""
   },
@@ -1130,11 +1091,8 @@
   "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": {
     "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": "Conectar pantalla de bloqueo a las señales dbus de loginctl. Deshabilitar si se usa una pantalla de bloqueo externa"
   },
-  "Bind the spotlight IPC action in your compositor config.": {
-    "Bind the spotlight IPC action in your compositor config.": ""
-  },
-  "Bind the spotlight-bar IPC action in your compositor config.": {
-    "Bind the spotlight-bar IPC action in your compositor config.": ""
+  "Bind the %1 IPC action in your compositor config.": {
+    "Bind the %1 IPC action in your compositor config.": ""
   },
   "Binds include added": {
     "Binds include added": "Inclusión de atajos añadida"
@@ -1175,20 +1133,11 @@
   "Blur": {
     "Blur": ""
   },
-  "Blur Border Color": {
-    "Blur Border Color": ""
-  },
-  "Blur Border Opacity": {
-    "Blur Border Opacity": ""
-  },
   "Blur Wallpaper Layer": {
     "Blur Wallpaper Layer": "Desenfocar capa de papel tapiz"
   },
   "Blur on Overview": {
     "Blur on Overview": "Desenfocar en la vista general"
-  },
-  "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support and configuration.": {
-    "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support and configuration.": ""
   },
   "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support. Adjust Opacity accordingly.": {
     "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support. Adjust Opacity accordingly.": ""
@@ -1231,9 +1180,6 @@
   },
   "Border Width": {
     "Border Width": ""
-  },
-  "Border color around blurred surfaces": {
-    "Border color around blurred surfaces": ""
   },
   "Border color around popouts, modals, and other shell surfaces": {
     "Border color around popouts, modals, and other shell surfaces": ""
@@ -1294,9 +1240,6 @@
   },
   "Button Color": {
     "Button Color": ""
-  },
-  "By %1": {
-    "By %1": ""
   },
   "CPU": {
     "CPU": "CPU"
@@ -1436,9 +1379,6 @@
   "Check on startup": {
     "Check on startup": ""
   },
-  "Check sync status on demand. Sync (full) is for the main admin: it copies your theme to the login screen and sets up system greeter config. On multi-user systems, add other accounts in Settings → Users, then have each of them run dms greeter sync --profile after logging out and back in—not full sync. Authentication changes apply automatically.": {
-    "Check sync status on demand. Sync (full) is for the main admin: it copies your theme to the login screen and sets up system greeter config. On multi-user systems, add other accounts in Settings → Users, then have each of them run dms greeter sync --profile after logging out and back in—not full sync. Authentication changes apply automatically.": ""
-  },
   "Check your custom command in Settings → Dock → Trash.": {
     "Check your custom command in Settings → Dock → Trash.": ""
   },
@@ -1456,9 +1396,6 @@
   },
   "Choose Dark Mode Color": {
     "Choose Dark Mode Color": ""
-  },
-  "Choose Dock Launcher Logo Color": {
-    "Choose Dock Launcher Logo Color": ""
   },
   "Choose Launcher Logo Color": {
     "Choose Launcher Logo Color": "Elegir Color del Icono en el Lanzador"
@@ -1484,9 +1421,6 @@
   "Choose how this bar resolves shadow direction": {
     "Choose how this bar resolves shadow direction": ""
   },
-  "Choose how to be notified about battery alerts.": {
-    "Choose how to be notified about battery alerts.": ""
-  },
   "Choose how to be notified about critical battery alerts.": {
     "Choose how to be notified about critical battery alerts.": ""
   },
@@ -1504,12 +1438,6 @@
   },
   "Choose neutral or accent-colored widget text": {
     "Choose neutral or accent-colored widget text": ""
-  },
-  "Choose the background color for widgets": {
-    "Choose the background color for widgets": "Elegir el color de fondo para los widgets"
-  },
-  "Choose the border accent color": {
-    "Choose the border accent color": "Elegir el color de acento del borde"
   },
   "Choose the logo displayed on the launcher button in DankBar": {
     "Choose the logo displayed on the launcher button in DankBar": "Elegir logo del lanzador en la DankBar"
@@ -1573,9 +1501,6 @@
   },
   "Click 'Setup' to create %1 and add include to your compositor config.": {
     "Click 'Setup' to create %1 and add include to your compositor config.": ""
-  },
-  "Click 'Setup' to create the outputs config and add include to your compositor config.": {
-    "Click 'Setup' to create the outputs config and add include to your compositor config.": "Haga clic en \"Configuración\" para crear la configuración de salida y añadirla a la configuración del compositor."
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "Clic en importar para añadir un archivo .ovpn o .conf"
@@ -1682,12 +1607,6 @@
   "Color shown for areas not covered by wallpaper": {
     "Color shown for areas not covered by wallpaper": ""
   },
-  "Color shown for areas not covered by wallpaper (e.g. Fit or Pad modes)": {
-    "Color shown for areas not covered by wallpaper (e.g. Fit or Pad modes)": ""
-  },
-  "Color temperature for day time": {
-    "Color temperature for day time": "Temperatura de color para el día"
-  },
   "Color temperature for night mode": {
     "Color temperature for night mode": "Temperatura de color para el modo nocturno"
   },
@@ -1772,6 +1691,9 @@
   "Configuration will be preserved when this display reconnects": {
     "Configuration will be preserved when this display reconnects": "La configuración se conservará cuando esta pantalla vuelva a conectarse"
   },
+  "Configurations": {
+    "Configurations": ""
+  },
   "Configure": {
     "Configure": "Configurar"
   },
@@ -1853,9 +1775,6 @@
   "Connecting...": {
     "Connecting...": "Conectando..."
   },
-  "Connecting…": {
-    "Connecting…": ""
-  },
   "Connection failed": {
     "Connection failed": ""
   },
@@ -1904,24 +1823,6 @@
   "Controls opacity of shell surfaces, popouts, and modals": {
     "Controls opacity of shell surfaces, popouts, and modals": ""
   },
-  "Controls opacity of the bar background": {
-    "Controls opacity of the bar background": ""
-  },
-  "Controls opacity of the border": {
-    "Controls opacity of the border": ""
-  },
-  "Controls opacity of the shadow layer": {
-    "Controls opacity of the shadow layer": ""
-  },
-  "Controls opacity of the widget outline": {
-    "Controls opacity of the widget outline": ""
-  },
-  "Controls opacity of widget backgrounds": {
-    "Controls opacity of widget backgrounds": ""
-  },
-  "Controls outlines around blurred foreground cards, pills, and notification cards": {
-    "Controls outlines around blurred foreground cards, pills, and notification cards": ""
-  },
   "Controls outlines around foreground cards, pills, and notification cards": {
     "Controls outlines around foreground cards, pills, and notification cards": ""
   },
@@ -1931,17 +1832,8 @@
   "Controls the base blur radius and offset of shadows": {
     "Controls the base blur radius and offset of shadows": ""
   },
-  "Controls the opacity of the shadow": {
-    "Controls the opacity of the shadow": ""
-  },
-  "Controls the outer edge of protocol-blurred windows": {
-    "Controls the outer edge of protocol-blurred windows": ""
-  },
   "Controls the outline of popouts, modals, and other shell surfaces": {
     "Controls the outline of popouts, modals, and other shell surfaces": ""
-  },
-  "Controls the transparency of the shadow": {
-    "Controls the transparency of the shadow": ""
   },
   "Convenience options for the login screen. Sync to apply.": {
     "Convenience options for the login screen. Sync to apply.": ""
@@ -2000,9 +1892,6 @@
   "Corners & Background": {
     "Corners & Background": "Esquinas y Fondo"
   },
-  "Couldn't open a terminal for the auto-login update.": {
-    "Couldn't open a terminal for the auto-login update.": ""
-  },
   "Count Only": {
     "Count Only": "Solo la cantidad"
   },
@@ -2026,9 +1915,6 @@
   },
   "Create a new %1 session (^N)": {
     "Create a new %1 session (^N)": ""
-  },
-  "Create a new %1 session (n)": {
-    "Create a new %1 session (n)": ""
   },
   "Create rule for:": {
     "Create rule for:": ""
@@ -2192,9 +2078,6 @@
   "Custom...": {
     "Custom...": "Personalizado..."
   },
-  "Custom: ": {
-    "Custom: ": "Personalizado: "
-  },
   "Customizable empty space": {
     "Customizable empty space": "Espacio vacío personalizable"
   },
@@ -2225,14 +2108,11 @@
   "DMS Shortcuts": {
     "DMS Shortcuts": "Atajos de DMS"
   },
-  "DMS greeter needs: greetd, dms-greeter. Fingerprint: fprintd, pam_fprintd. Security keys: pam_u2f. Add your user to the greeter group. Authentication changes apply automatically and may open a terminal when sudo authentication is required.": {
-    "DMS greeter needs: greetd, dms-greeter. Fingerprint: fprintd, pam_fprintd. Security keys: pam_u2f. Add your user to the greeter group. Authentication changes apply automatically and may open a terminal when sudo authentication is required.": ""
-  },
-  "DMS needs administrator access. The terminal closes automatically when done.": {
-    "DMS needs administrator access. The terminal closes automatically when done.": ""
-  },
   "DMS out of date": {
     "DMS out of date": "DMS desactualizado"
+  },
+  "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it": {
+    "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it": ""
   },
   "DMS server is outdated (API v%1, expected v%2)": {
     "DMS server is outdated (API v%1, expected v%2)": ""
@@ -2404,9 +2284,6 @@
   },
   "Delete user": {
     "Delete user": ""
-  },
-  "Delete user?": {
-    "Delete user?": ""
   },
   "Demi Bold": {
     "Demi Bold": ""
@@ -2609,9 +2486,6 @@
   "Display power menu actions in a grid instead of a list": {
     "Display power menu actions in a grid instead of a list": "Mostrar acciones en una cuadrícula en vez de una lista"
   },
-  "Display seconds in the clock": {
-    "Display seconds in the clock": "Mostrar segundos en el reloj"
-  },
   "Display setup failed": {
     "Display setup failed": ""
   },
@@ -2623,9 +2497,6 @@
   },
   "Displays": {
     "Displays": "Pantallas"
-  },
-  "Displays count when overflow is active": {
-    "Displays count when overflow is active": ""
   },
   "Displays the active keyboard layout and allows switching": {
     "Displays the active keyboard layout and allows switching": "Muestra la distribución de teclado activa y permite cambiarla"
@@ -2648,14 +2519,8 @@
   "Dock Opacity": {
     "Dock Opacity": ""
   },
-  "Dock Visibility": {
-    "Dock Visibility": "Visibilidad del dock"
-  },
   "Dock margin, opacity, and border": {
     "Dock margin, opacity, and border": ""
-  },
-  "Dock margin, transparency, and border": {
-    "Dock margin, transparency, and border": ""
   },
   "Dock window": {
     "Dock window": ""
@@ -2801,9 +2666,6 @@
   "Empty Trash (%1)": {
     "Empty Trash (%1)": ""
   },
-  "Empty Trash?": {
-    "Empty Trash?": ""
-  },
   "Enable 10-bit color depth for wider color gamut and HDR support": {
     "Enable 10-bit color depth for wider color gamut and HDR support": "Habilita la profundidad de color de 10 bits para ampliar la gama de colores y la compatibilidad con HDR"
   },
@@ -2866,36 +2728,6 @@
   },
   "Enabled": {
     "Enabled": "Habilitado"
-  },
-  "Enabled, but fingerprint availability could not be confirmed.": {
-    "Enabled, but fingerprint availability could not be confirmed.": ""
-  },
-  "Enabled, but no fingerprint reader was detected.": {
-    "Enabled, but no fingerprint reader was detected.": ""
-  },
-  "Enabled, but no prints are enrolled yet. Authentication changes apply automatically once you enroll fingerprints.": {
-    "Enabled, but no prints are enrolled yet. Authentication changes apply automatically once you enroll fingerprints.": ""
-  },
-  "Enabled, but no prints are enrolled yet. Enroll fingerprints and run Sync.": {
-    "Enabled, but no prints are enrolled yet. Enroll fingerprints and run Sync.": ""
-  },
-  "Enabled, but no registered security key was found yet. Authentication changes apply automatically once your key is registered or your U2F config is updated.": {
-    "Enabled, but no registered security key was found yet. Authentication changes apply automatically once your key is registered or your U2F config is updated.": ""
-  },
-  "Enabled, but no registered security key was found yet. Register a key and run Sync.": {
-    "Enabled, but no registered security key was found yet. Register a key and run Sync.": ""
-  },
-  "Enabled, but security-key availability could not be confirmed.": {
-    "Enabled, but security-key availability could not be confirmed.": ""
-  },
-  "Enabled. PAM already provides fingerprint auth.": {
-    "Enabled. PAM already provides fingerprint auth.": ""
-  },
-  "Enabled. PAM already provides security-key auth.": {
-    "Enabled. PAM already provides security-key auth.": ""
-  },
-  "Enabled. PAM provides fingerprint auth, but no prints are enrolled yet.": {
-    "Enabled. PAM provides fingerprint auth, but no prints are enrolled yet.": ""
   },
   "Enabling WiFi...": {
     "Enabling WiFi...": "Habilitando WiFi..."
@@ -3011,8 +2843,8 @@
   "Exact": {
     "Exact": ""
   },
-  "Excluded Media Players": {
-    "Excluded Media Players": ""
+  "Excluded Players": {
+    "Excluded Players": ""
   },
   "Exclusive Zone Offset": {
     "Exclusive Zone Offset": "Zona exclusiva"
@@ -3080,11 +2912,8 @@
   "Failed to add printer to class": {
     "Failed to add printer to class": "Error al agregar la impresora a la clase"
   },
-  "Failed to apply GTK colors": {
-    "Failed to apply GTK colors": ""
-  },
-  "Failed to apply Qt colors": {
-    "Failed to apply Qt colors": ""
+  "Failed to apply %1 colors": {
+    "Failed to apply %1 colors": ""
   },
   "Failed to apply charge limit to system": {
     "Failed to apply charge limit to system": ""
@@ -3158,9 +2987,6 @@
   "Failed to enable night mode": {
     "Failed to enable night mode": "Fallo al habilitar el modo nocturno"
   },
-  "Failed to enable plugin: %1": {
-    "Failed to enable plugin: %1": ""
-  },
   "Failed to fetch network QR code: %1": {
     "Failed to fetch network QR code: %1": ""
   },
@@ -3188,14 +3014,8 @@
   "Failed to move to trash": {
     "Failed to move to trash": ""
   },
-  "Failed to parse plugin_settings.json": {
-    "Failed to parse plugin_settings.json": "Fallo al parsear plugin_settings.json"
-  },
-  "Failed to parse session.json": {
-    "Failed to parse session.json": "Fallo al parsear session.json"
-  },
-  "Failed to parse settings.json": {
-    "Failed to parse settings.json": "Fallo al parsear settings.json"
+  "Failed to parse %1": {
+    "Failed to parse %1": ""
   },
   "Failed to pause printer": {
     "Failed to pause printer": "Error al pausar la impresora"
@@ -3368,8 +3188,8 @@
   "File manager used to open the trash. Pick \"custom\" to enter your own command.": {
     "File manager used to open the trash. Pick \"custom\" to enter your own command.": ""
   },
-  "File received from": {
-    "File received from": ""
+  "File received from %1": {
+    "File received from %1": ""
   },
   "File search requires dsearch\nInstall from github.com/AvengeMedia/danksearch": {
     "File search requires dsearch\nInstall from github.com/AvengeMedia/danksearch": ""
@@ -3563,9 +3383,6 @@
   "For editing plain text files": {
     "For editing plain text files": ""
   },
-  "For reading PDF files": {
-    "For reading PDF files": ""
-  },
   "Force HDR": {
     "Force HDR": "Forzar HDR"
   },
@@ -3719,6 +3536,9 @@
   "Gaps": {
     "Gaps": ""
   },
+  "General": {
+    "General": ""
+  },
   "Generate Override": {
     "Generate Override": ""
   },
@@ -3764,9 +3584,6 @@
   "Grant": {
     "Grant": ""
   },
-  "Grant admin?": {
-    "Grant admin?": ""
-  },
   "Grant administrator privileges": {
     "Grant administrator privileges": ""
   },
@@ -3785,15 +3602,6 @@
   "Greeter": {
     "Greeter": ""
   },
-  "Greeter Appearance": {
-    "Greeter Appearance": ""
-  },
-  "Greeter Behavior": {
-    "Greeter Behavior": ""
-  },
-  "Greeter Status": {
-    "Greeter Status": ""
-  },
   "Greeter activated. greetd is now enabled.": {
     "Greeter activated. greetd is now enabled.": ""
   },
@@ -3805,9 +3613,6 @@
   },
   "Greeter group:": {
     "Greeter group:": ""
-  },
-  "Greeter only — does not affect main clock": {
-    "Greeter only — does not affect main clock": ""
   },
   "Greeter only — format for the date on the login screen": {
     "Greeter only — format for the date on the login screen": ""
@@ -4067,9 +3872,6 @@
   "Hyprland Discord Server": {
     "Hyprland Discord Server": ""
   },
-  "Hyprland Layout Overrides": {
-    "Hyprland Layout Overrides": "Sobreescribir opciones de Hyprland"
-  },
   "Hyprland Options": {
     "Hyprland Options": ""
   },
@@ -4207,12 +4009,6 @@
   },
   "Incorrect password": {
     "Incorrect password": "Contraseña incorrecta"
-  },
-  "Incorrect password - attempt %1 of %2 (lockout may follow)": {
-    "Incorrect password - attempt %1 of %2 (lockout may follow)": ""
-  },
-  "Incorrect password - next failures may trigger account lockout": {
-    "Incorrect password - next failures may trigger account lockout": ""
   },
   "Incorrect password - try again": {
     "Incorrect password - try again": ""
@@ -4370,9 +4166,6 @@
   "Jobs": {
     "Jobs": "Trabajos"
   },
-  "Jobs: ": {
-    "Jobs: ": "Trabajos:"
-  },
   "Join video call": {
     "Join video call": ""
   },
@@ -4517,9 +4310,6 @@
   "Layout Overrides": {
     "Layout Overrides": "Anulaciones de diseño"
   },
-  "Layout and module positions on the greeter are synced from your shell (e.g. bar config). Run Sync to apply.": {
-    "Layout and module positions on the greeter are synced from your shell (e.g. bar config). Run Sync to apply.": ""
-  },
   "Left": {
     "Left": "Izquierda"
   },
@@ -4604,9 +4394,6 @@
   "Locale": {
     "Locale": ""
   },
-  "Locale Settings": {
-    "Locale Settings": ""
-  },
   "Location": {
     "Location": "Ubicación"
   },
@@ -4619,20 +4406,8 @@
   "Lock Screen": {
     "Lock Screen": "Pantalla de bloqueo"
   },
-  "Lock Screen Appearance": {
-    "Lock Screen Appearance": ""
-  },
-  "Lock Screen Display": {
-    "Lock Screen Display": "Visualización de la pantalla de bloqueo"
-  },
   "Lock Screen Format": {
     "Lock Screen Format": "Formato en la pantalla de bloqueo"
-  },
-  "Lock Screen behaviour": {
-    "Lock Screen behaviour": "Comportamiento de la pantalla de bloqueo"
-  },
-  "Lock Screen layout": {
-    "Lock Screen layout": "Disposicion de la pantalla de bloqueo"
   },
   "Lock at startup": {
     "Lock at startup": ""
@@ -4642,9 +4417,6 @@
   },
   "Lock fade grace period": {
     "Lock fade grace period": "Intervalo de fundido antes de bloquear la pantalla"
-  },
-  "Lock screen authentication changes apply automatically and may open a terminal when sudo authentication is required.": {
-    "Lock screen authentication changes apply automatically and may open a terminal when sudo authentication is required.": ""
   },
   "Lock screen font": {
     "Lock screen font": ""
@@ -4660,9 +4432,6 @@
   },
   "Login": {
     "Login": ""
-  },
-  "Login Authentication": {
-    "Login Authentication": ""
   },
   "Long": {
     "Long": "Largo"
@@ -4721,11 +4490,11 @@
   "Managed by Frame in Connected Mode": {
     "Managed by Frame in Connected Mode": ""
   },
+  "Managed by the primary PAM source.": {
+    "Managed by the primary PAM source.": ""
+  },
   "Management": {
     "Management": "Gestión"
-  },
-  "Manages calendar events": {
-    "Manages calendar events": ""
   },
   "Manages files and directories": {
     "Manages files and directories": ""
@@ -4735,9 +4504,6 @@
   },
   "Mango service not available": {
     "Mango service not available": ""
-  },
-  "MangoWC Layout Overrides": {
-    "MangoWC Layout Overrides": "Sobreescribir opciones de MangoWC"
   },
   "Manual": {
     "Manual": ""
@@ -4895,9 +4661,6 @@
   "Maximum pinned entries reached": {
     "Maximum pinned entries reached": ""
   },
-  "Maximum size per clipboard entry": {
-    "Maximum size per clipboard entry": "Tamaño máximo por entrada en el portapapeles"
-  },
   "Media": {
     "Media": "Multimedia"
   },
@@ -4921,9 +4684,6 @@
   },
   "Media Player": {
     "Media Player": "Reproductor de multimedia"
-  },
-  "Media Player Settings": {
-    "Media Player Settings": "Ajustes del reproductor"
   },
   "Media Players (": {
     "Media Players (": "Reproductores ("
@@ -5006,9 +4766,6 @@
   "Mode": {
     "Mode": "Modo"
   },
-  "Mode:": {
-    "Mode:": "Modo:"
-  },
   "Model": {
     "Model": "Modelo"
   },
@@ -5063,9 +4820,6 @@
   "Mouse pointer size in pixels": {
     "Mouse pointer size in pixels": ""
   },
-  "Move": {
-    "Move": ""
-  },
   "Move Widget": {
     "Move Widget": "Mover widget"
   },
@@ -5080,9 +4834,6 @@
   },
   "Multimedia": {
     "Multimedia": ""
-  },
-  "Multiplexer": {
-    "Multiplexer": ""
   },
   "Multiplexer Type": {
     "Multiplexer Type": ""
@@ -5159,9 +4910,6 @@
   "Network Speed Monitor": {
     "Network Speed Monitor": "Monitor de velocidad de red"
   },
-  "Network Status": {
-    "Network Status": "Estado de conexión"
-  },
   "Network Type": {
     "Network Type": ""
   },
@@ -5233,9 +4981,6 @@
   },
   "Niri Integration": {
     "Niri Integration": "Integración con Niri"
-  },
-  "Niri Layout Overrides": {
-    "Niri Layout Overrides": "Anulaciones de diseño Niri"
   },
   "Niri compositor actions (focus, move, etc.)": {
     "Niri compositor actions (focus, move, etc.)": "Acciones del compositor Niri (enfocar,mover, etc.)"
@@ -5462,9 +5207,6 @@
   "No plugins found": {
     "No plugins found": "No hay complementos encontrados"
   },
-  "No plugins found.": {
-    "No plugins found.": "No hay complementos encontrados."
-  },
   "No printer found": {
     "No printer found": "Impresora no encontrada"
   },
@@ -5639,14 +5381,8 @@
   "Notification Popups": {
     "Notification Popups": "Notificaciones emergentes"
   },
-  "Notification Rules": {
-    "Notification Rules": ""
-  },
   "Notification Settings": {
     "Notification Settings": "Ajustes de notificaciones"
-  },
-  "Notification Timeouts": {
-    "Notification Timeouts": "Duración de las notificaciones"
   },
   "Notification Type": {
     "Notification Type": ""
@@ -5720,9 +5456,6 @@
   "Only adjust gamma based on time or location rules.": {
     "Only adjust gamma based on time or location rules.": "Ajustar gamma en función de la hora o ubicación."
   },
-  "Only affects DMS-managed PAM. If greetd already includes pam_fprintd, fingerprint stays enabled.": {
-    "Only affects DMS-managed PAM. If greetd already includes pam_fprintd, fingerprint stays enabled.": ""
-  },
   "Only on Battery": {
     "Only on Battery": ""
   },
@@ -5734,12 +5467,6 @@
   },
   "Opacity": {
     "Opacity": "Opacidad"
-  },
-  "Opacity of the bar background": {
-    "Opacity of the bar background": ""
-  },
-  "Opacity of widget backgrounds": {
-    "Opacity of widget backgrounds": ""
   },
   "Opaque": {
     "Opaque": ""
@@ -5807,17 +5534,11 @@
   "Opening file browser": {
     "Opening file browser": ""
   },
-  "Opening terminal to update greetd": {
-    "Opening terminal to update greetd": ""
-  },
   "Opening terminal: ": {
     "Opening terminal: ": ""
   },
   "Opens a picker of other active sessions on this seat": {
     "Opens a picker of other active sessions on this seat": ""
-  },
-  "Opens image files": {
-    "Opens image files": ""
   },
   "Opens the connected launcher in Connected Frame Mode.": {
     "Opens the connected launcher in Connected Frame Mode.": ""
@@ -5921,15 +5642,6 @@
   "PAM already provides security-key auth. Enable this to show it at login.": {
     "PAM already provides security-key auth. Enable this to show it at login.": ""
   },
-  "PAM provides fingerprint auth, but availability could not be confirmed.": {
-    "PAM provides fingerprint auth, but availability could not be confirmed.": ""
-  },
-  "PAM provides fingerprint auth, but no prints are enrolled yet.": {
-    "PAM provides fingerprint auth, but no prints are enrolled yet.": ""
-  },
-  "PAM provides fingerprint auth, but no reader was detected.": {
-    "PAM provides fingerprint auth, but no reader was detected.": ""
-  },
   "PDF Reader": {
     "PDF Reader": ""
   },
@@ -5945,9 +5657,6 @@
   "Pad Hours": {
     "Pad Hours": ""
   },
-  "Pad hours (02:00 vs 2:00)": {
-    "Pad hours (02:00 vs 2:00)": ""
-  },
   "Padding": {
     "Padding": "Relleno"
   },
@@ -5960,14 +5669,11 @@
   "Paired": {
     "Paired": "Vinculado"
   },
-  "Pairing": {
-    "Pairing": ""
-  },
   "Pairing failed": {
     "Pairing failed": "Emparejamiento fallido"
   },
-  "Pairing request from": {
-    "Pairing request from": ""
+  "Pairing request from %1": {
+    "Pairing request from %1": ""
   },
   "Pairing request sent": {
     "Pairing request sent": ""
@@ -6062,9 +5768,6 @@
   "Phone Connect Not Available": {
     "Phone Connect Not Available": ""
   },
-  "Phone Connect unavailable": {
-    "Phone Connect unavailable": ""
-  },
   "Phone number": {
     "Phone number": ""
   },
@@ -6092,8 +5795,8 @@
   "Ping": {
     "Ping": ""
   },
-  "Ping sent to": {
-    "Ping sent to": ""
+  "Ping sent to %1": {
+    "Ping sent to %1": ""
   },
   "Pinned": {
     "Pinned": "Fijado"
@@ -6137,9 +5840,6 @@
   "Play sound when volume is adjusted": {
     "Play sound when volume is adjusted": "Reproducir sonido al ajustar el volumen"
   },
-  "Play sounds for system events": {
-    "Play sounds for system events": "Reproducir sonidos para eventos del sistema"
-  },
   "Playback": {
     "Playback": "Reproducción"
   },
@@ -6148,9 +5848,6 @@
   },
   "Plays audio files": {
     "Plays audio files": ""
-  },
-  "Plays video files": {
-    "Plays video files": ""
   },
   "Please wait...": {
     "Please wait...": ""
@@ -6227,6 +5924,9 @@
   "Popup behavior, position": {
     "Popup behavior, position": "Comportamiento y posición de las notificaciones emergentes"
   },
+  "Popups": {
+    "Popups": ""
+  },
   "Port": {
     "Port": ""
   },
@@ -6275,9 +5975,6 @@
   "Power Profiles & Saving": {
     "Power Profiles & Saving": ""
   },
-  "Power Profiles Auto-Switching": {
-    "Power Profiles Auto-Switching": ""
-  },
   "Power Saver": {
     "Power Saver": ""
   },
@@ -6286,12 +5983,6 @@
   },
   "Power profile management available": {
     "Power profile management available": "Gestión del perfil de potencia disponible"
-  },
-  "Power profile to use when AC power is connected.": {
-    "Power profile to use when AC power is connected.": ""
-  },
-  "Power profile to use when running on battery power.": {
-    "Power profile to use when running on battery power.": ""
   },
   "Power source": {
     "Power source": "Fuente de energia"
@@ -6316,9 +6007,6 @@
   },
   "Preset Widths (%)": {
     "Preset Widths (%)": "Anchuras prefijadas (%)"
-  },
-  "Press 'n' or click 'New Session' to create one": {
-    "Press 'n' or click 'New Session' to create one": ""
   },
   "Press Ctrl+N or click 'New Session' to create one": {
     "Press Ctrl+N or click 'New Session' to create one": ""
@@ -6359,9 +6047,6 @@
   "Primary Container": {
     "Primary Container": ""
   },
-  "Primary Theme Color": {
-    "Primary Theme Color": ""
-  },
   "Print Server Management": {
     "Print Server Management": "Gestión del servidor de impresión"
   },
@@ -6389,9 +6074,6 @@
   "Printers": {
     "Printers": "Impresoras"
   },
-  "Printers: ": {
-    "Printers: ": "Impresoras: "
-  },
   "Prioritize performance": {
     "Prioritize performance": ""
   },
@@ -6415,9 +6097,6 @@
   },
   "Processes": {
     "Processes": "Procesos"
-  },
-  "Processes:": {
-    "Processes:": "Procesos:"
   },
   "Processing": {
     "Processing": "Procesando"
@@ -6454,6 +6133,9 @@
   },
   "Profile when on Battery": {
     "Profile when on Battery": ""
+  },
+  "Protection": {
+    "Protection": ""
   },
   "Protocol": {
     "Protocol": "Protocolo"
@@ -6620,9 +6302,6 @@
   "Remove admin": {
     "Remove admin": ""
   },
-  "Remove admin?": {
-    "Remove admin?": ""
-  },
   "Remove corner rounding from the bar": {
     "Remove corner rounding from the bar": ""
   },
@@ -6719,9 +6398,6 @@
   "Reset Size": {
     "Reset Size": "Reiniciar tamaño"
   },
-  "Reset to Default?": {
-    "Reset to Default?": ""
-  },
   "Reset to default": {
     "Reset to default": ""
   },
@@ -6800,8 +6476,8 @@
   "Ring": {
     "Ring": ""
   },
-  "Ringing": {
-    "Ringing": ""
+  "Ringing %1...": {
+    "Ringing %1...": ""
   },
   "Ripple Effects": {
     "Ripple Effects": ""
@@ -6815,8 +6491,14 @@
   "Rule": {
     "Rule": ""
   },
+  "Rule %1": {
+    "Rule %1": ""
+  },
   "Rule Name": {
     "Rule Name": ""
+  },
+  "Rules": {
+    "Rules": ""
   },
   "Rules (%1)": {
     "Rules (%1)": ""
@@ -6923,9 +6605,6 @@
   "Saving...": {
     "Saving...": ""
   },
-  "Saving…": {
-    "Saving…": ""
-  },
   "Scale": {
     "Scale": "Escala"
   },
@@ -6940,9 +6619,6 @@
   },
   "Scan": {
     "Scan": "Escanear"
-  },
-  "Scanning": {
-    "Scanning": "Escaneando"
   },
   "Scanning...": {
     "Scanning...": "Escaneando..."
@@ -7028,9 +6704,6 @@
   "Search...": {
     "Search...": "Buscar..."
   },
-  "Searching": {
-    "Searching": ""
-  },
   "Searching...": {
     "Searching...": "Buscando..."
   },
@@ -7051,6 +6724,9 @@
   },
   "Security & privacy": {
     "Security & privacy": "Seguridad y privacidad"
+  },
+  "Security Key PAM Source": {
+    "Security Key PAM Source": ""
   },
   "Security key mode": {
     "Security key mode": ""
@@ -7139,17 +6815,11 @@
   "Select lock screen background image": {
     "Select lock screen background image": ""
   },
-  "Select monitor to configure wallpaper": {
-    "Select monitor to configure wallpaper": "Seleccionar monitor para configurar el fondo de pantalla"
-  },
   "Select monospace font for process list and technical displays": {
     "Select monospace font for process list and technical displays": "Selecciona la fuente monoespaciada para la lista de procesos y la información técnica"
   },
   "Select network": {
     "Select network": ""
-  },
-  "Select system sound theme": {
-    "Select system sound theme": "Seleccionar tema de sonidos del sistema"
   },
   "Select the font family for UI text": {
     "Select the font family for UI text": "Seleccione la familia de fuentes para el texto de la interfaz de usuario"
@@ -7178,14 +6848,11 @@
   "Send Clipboard": {
     "Send Clipboard": ""
   },
-  "Send File": {
-    "Send File": ""
-  },
   "Send SMS": {
     "Send SMS": ""
   },
-  "Sending": {
-    "Sending": ""
+  "Sending %1...": {
+    "Sending %1...": ""
   },
   "Separate": {
     "Separate": ""
@@ -7237,9 +6904,6 @@
   },
   "Set the font size for notification body text (htmlBody)": {
     "Set the font size for notification body text (htmlBody)": ""
-  },
-  "Set the font size for notification summary text": {
-    "Set the font size for notification summary text": ""
   },
   "Set the percentage at which the battery is considered low.": {
     "Set the percentage at which the battery is considered low.": ""
@@ -7294,9 +6958,6 @@
   },
   "Share Gamma Control Settings": {
     "Share Gamma Control Settings": ""
-  },
-  "Share Text": {
-    "Share Text": ""
   },
   "Shared": {
     "Shared": ""
@@ -7553,9 +7214,6 @@
   "Show during Niri overview": {
     "Show during Niri overview": ""
   },
-  "Show foreground surfaces on blurred panels for stronger contrast": {
-    "Show foreground surfaces on blurred panels for stronger contrast": ""
-  },
   "Show foreground surfaces on panels for stronger contrast": {
     "Show foreground surfaces on panels for stronger contrast": ""
   },
@@ -7571,12 +7229,6 @@
   "Show mount path": {
     "Show mount path": ""
   },
-  "Show notification popups only on the currently focused monitor": {
-    "Show notification popups only on the currently focused monitor": ""
-  },
-  "Show notifications only on the currently focused monitor": {
-    "Show notifications only on the currently focused monitor": ""
-  },
   "Show on Last Display": {
     "Show on Last Display": "Mostrar en última pantalla"
   },
@@ -7589,38 +7241,8 @@
   "Show on Overview Only": {
     "Show on Overview Only": ""
   },
-  "Show on all connected displays": {
-    "Show on all connected displays": "Mostrar en todas las pantallas conectadas"
-  },
   "Show on screens:": {
     "Show on screens:": "Mostrar en pantallas:"
-  },
-  "Show on-screen display when brightness changes": {
-    "Show on-screen display when brightness changes": "Mostrar en pantalla cuando el brillo cambia"
-  },
-  "Show on-screen display when caps lock state changes": {
-    "Show on-screen display when caps lock state changes": "Mostrar en pantalla al activar o desactivar Bloq Mayús"
-  },
-  "Show on-screen display when cycling audio output devices": {
-    "Show on-screen display when cycling audio output devices": "Mostrar en pantalla al ciclar los dispositivos de salida de audio"
-  },
-  "Show on-screen display when idle inhibitor state changes": {
-    "Show on-screen display when idle inhibitor state changes": "Mostrar en pantalla cuando el estado del inhibidor cambia"
-  },
-  "Show on-screen display when media player status changes": {
-    "Show on-screen display when media player status changes": ""
-  },
-  "Show on-screen display when media player volume changes": {
-    "Show on-screen display when media player volume changes": "Mostrar en pantalla cuando el volumen multimedia cambia"
-  },
-  "Show on-screen display when microphone is muted/unmuted": {
-    "Show on-screen display when microphone is muted/unmuted": "Mostrar en pantalla cuando el micrófono se silencia/reactiva"
-  },
-  "Show on-screen display when power profile changes": {
-    "Show on-screen display when power profile changes": "Mostrar en pantalla cuando el perfil de energía cambia"
-  },
-  "Show on-screen display when volume changes": {
-    "Show on-screen display when volume changes": "Mostrar en pantalla cuando el volumen cambia"
   },
   "Show the bar only when no windows are open": {
     "Show the bar only when no windows are open": ""
@@ -7630,9 +7252,6 @@
   },
   "Show weather information in top bar and control center": {
     "Show weather information in top bar and control center": "Mostrar clima en la barra superior y en el centro de control"
-  },
-  "Show week number in the calendar": {
-    "Show week number in the calendar": ""
   },
   "Show workspace index numbers in the top bar workspace switcher": {
     "Show workspace index numbers in the top bar workspace switcher": "Indicar el orden de los espacios en la barra superior"
@@ -7666,9 +7285,6 @@
   },
   "Signal Strength": {
     "Signal Strength": ""
-  },
-  "Signal:": {
-    "Signal:": "Señal:"
   },
   "Silence for a while": {
     "Silence for a while": ""
@@ -7796,9 +7412,6 @@
   "Start": {
     "Start": "Empezar"
   },
-  "Start KDE Connect or Valent": {
-    "Start KDE Connect or Valent": ""
-  },
   "Start KDE Connect or Valent to use this plugin": {
     "Start KDE Connect or Valent to use this plugin": ""
   },
@@ -7837,9 +7450,6 @@
   },
   "Stripes": {
     "Stripes": ""
-  },
-  "Subtle Overlay": {
-    "Subtle Overlay": ""
   },
   "Summary": {
     "Summary": ""
@@ -8045,20 +7655,11 @@
   "Terminal fallback failed. Install one of the supported terminal emulators or run 'dms greeter sync' manually.": {
     "Terminal fallback failed. Install one of the supported terminal emulators or run 'dms greeter sync' manually.": ""
   },
-  "Terminal fallback opened. Complete authentication setup there; it will close automatically when done.": {
-    "Terminal fallback opened. Complete authentication setup there; it will close automatically when done.": ""
+  "Terminal fallback opened. Complete authentication there; it will close automatically when done.": {
+    "Terminal fallback opened. Complete authentication there; it will close automatically when done.": ""
   },
-  "Terminal fallback opened. Complete sync there; it will close automatically when done.": {
-    "Terminal fallback opened. Complete sync there; it will close automatically when done.": ""
-  },
-  "Terminal multiplexer backend to use": {
-    "Terminal multiplexer backend to use": ""
-  },
-  "Terminal opened. Complete authentication setup there; it will close automatically when done.": {
-    "Terminal opened. Complete authentication setup there; it will close automatically when done.": ""
-  },
-  "Terminal opened. Complete sync authentication there; it will close automatically when done.": {
-    "Terminal opened. Complete sync authentication there; it will close automatically when done.": ""
+  "Terminal opened. Complete authentication there; it will close automatically when done.": {
+    "Terminal opened. Complete authentication there; it will close automatically when done.": ""
   },
   "Terminals - Always use Dark Theme": {
     "Terminals - Always use Dark Theme": "Forzar modo oscuro en terminales"
@@ -8092,9 +7693,6 @@
   },
   "Text Rendering": {
     "Text Rendering": ""
-  },
-  "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.": {
-    "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.": ""
   },
   "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": {
     "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": ""
@@ -8156,20 +7754,8 @@
   "This device": {
     "This device": ""
   },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings.": ""
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing display settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing display settings.": ""
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings.": ""
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing shortcuts in Settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing shortcuts in Settings.": ""
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings.": ""
+  "This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.": {
+    "This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.": ""
   },
   "This may take a few seconds": {
     "This may take a few seconds": ""
@@ -8201,14 +7787,8 @@
   "Tile": {
     "Tile": ""
   },
-  "Tile H": {
-    "Tile H": ""
-  },
   "Tile Horizontally": {
     "Tile Horizontally": ""
-  },
-  "Tile V": {
-    "Tile V": ""
   },
   "Tile Vertically": {
     "Tile Vertically": ""
@@ -8252,14 +7832,8 @@
   "Timeout Progress Bar": {
     "Timeout Progress Bar": ""
   },
-  "Timeout for critical priority notifications": {
-    "Timeout for critical priority notifications": "Tiempo de espera para notificaciones de prioridad crítica"
-  },
-  "Timeout for low priority notifications": {
-    "Timeout for low priority notifications": "Tiempo limite para las notificaciones de baja prioridad"
-  },
-  "Timeout for normal priority notifications": {
-    "Timeout for normal priority notifications": "Tiempo de espera para notificaciones de prioridad normal"
+  "Timeouts": {
+    "Timeouts": ""
   },
   "Tint Saturation": {
     "Tint Saturation": ""
@@ -8374,15 +7948,6 @@
   },
   "Transparency": {
     "Transparency": "Transparencia"
-  },
-  "Transparency of the border": {
-    "Transparency of the border": ""
-  },
-  "Transparency of the shadow layer": {
-    "Transparency of the shadow layer": ""
-  },
-  "Transparency of the widget outline": {
-    "Transparency of the widget outline": ""
   },
   "Trash": {
     "Trash": ""
@@ -8555,9 +8120,6 @@
   "Unpin from Dock": {
     "Unpin from Dock": "Desfijar del dock"
   },
-  "Unsaved Changes": {
-    "Unsaved Changes": "Cambios sin guardar"
-  },
   "Unsaved changes": {
     "Unsaved changes": "Cambios sin guardar"
   },
@@ -8608,9 +8170,6 @@
   },
   "Uptime": {
     "Uptime": ""
-  },
-  "Uptime:": {
-    "Uptime:": ""
   },
   "Urgent": {
     "Urgent": ""
@@ -8681,9 +8240,6 @@
   "Use colors extracted from album art instead of system theme colors": {
     "Use colors extracted from album art instead of system theme colors": ""
   },
-  "Use custom border size": {
-    "Use custom border size": "Usar un tamaño de borde personalizado"
-  },
   "Use custom border/focus-ring width": {
     "Use custom border/focus-ring width": ""
   },
@@ -8720,11 +8276,11 @@
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "Usar tema de sonidos del sistema"
   },
+  "Use system PAM authentication": {
+    "Use system PAM authentication": ""
+  },
   "Use the extended surface for launcher content": {
     "Use the extended surface for launcher content": ""
-  },
-  "Use the overlay layer when opening the launcher": {
-    "Use the overlay layer when opening the launcher": ""
   },
   "Use the same position and size on all displays": {
     "Use the same position and size on all displays": ""
@@ -8975,6 +8531,9 @@
   "When locked": {
     "When locked": ""
   },
+  "Which PAM service the lock screen uses to authenticate": {
+    "Which PAM service the lock screen uses to authenticate": ""
+  },
   "White": {
     "White": ""
   },
@@ -9083,12 +8642,6 @@
   "Window Rules": {
     "Window Rules": ""
   },
-  "Window Rules Include Missing": {
-    "Window Rules Include Missing": ""
-  },
-  "Window Rules Not Configured": {
-    "Window Rules Not Configured": ""
-  },
   "Wipe": {
     "Wipe": ""
   },
@@ -9098,9 +8651,6 @@
   "Workspace": {
     "Workspace": "Espacio de trabajo"
   },
-  "Workspace Appearance": {
-    "Workspace Appearance": ""
-  },
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "Espacios de trabajo numerados"
   },
@@ -9109,9 +8659,6 @@
   },
   "Workspace Padding": {
     "Workspace Padding": "Margen de los espacios de trabajo"
-  },
-  "Workspace Settings": {
-    "Workspace Settings": "Ajustes de espacios de trabajo"
   },
   "Workspace Switcher": {
     "Workspace Switcher": "Espacios de trabajo"
@@ -9161,17 +8708,8 @@
   "Yesterday": {
     "Yesterday": "Ayer"
   },
-  "You have unsaved changes. Save before closing this tab?": {
-    "You have unsaved changes. Save before closing this tab?": "Tienes cambios sin guardar. ¿Guardar antes de cerrar esta pestaña?"
-  },
   "You have unsaved changes. Save before continuing?": {
     "You have unsaved changes. Save before continuing?": "Tienes cambios sin guardar. ¿Guardar antes de continuar?"
-  },
-  "You have unsaved changes. Save before creating a new file?": {
-    "You have unsaved changes. Save before creating a new file?": "Tienes cambios sin guardar. ¿Guardar antes de crear un archivo nuevo?"
-  },
-  "You have unsaved changes. Save before opening a file?": {
-    "You have unsaved changes. Save before opening a file?": "Tienes cambios sin guardar. ¿Guardar antes de abrir otro archivo?"
   },
   "You need to set either:\nQT_QPA_PLATFORMTHEME=gtk3 OR\nQT_QPA_PLATFORMTHEME=qt6ct\nas environment variables, and then restart the shell.\n\nqt6ct requires qt6ct-kde to be installed.": {
     "You need to set either:\nQT_QPA_PLATFORMTHEME=gtk3 OR\nQT_QPA_PLATFORMTHEME=qt6ct\nas environment variables, and then restart the shell.\n\nqt6ct requires qt6ct-kde to be installed.": ""
@@ -9191,17 +8729,11 @@
   "Your system is up to date!": {
     "Your system is up to date!": ""
   },
-  "actions": {
-    "actions": ""
-  },
   "admin": {
     "admin": ""
   },
   "attached": {
     "attached": ""
-  },
-  "boregard is required": {
-    "boregard is required": ""
   },
   "brandon": {
     "brandon": ""
@@ -9236,9 +8768,6 @@
   "device": {
     "device": "dispositivo"
   },
-  "devices connected": {
-    "devices connected": "dispositivos conectados"
-  },
   "dgop not available": {
     "dgop not available": "dgop no disponible"
   },
@@ -9247,6 +8776,9 @@
   },
   "discuss": {
     "discuss": ""
+  },
+  "display rotation option": {
+    "Normal": ""
   },
   "dms is a highly customizable, modern desktop shell with a <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">material 3 inspired</a> design.<br /><br/>It is built with <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, a QT6 framework for building desktop shells, and <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, a statically typed, compiled programming language.": {
     "dms is a highly customizable, modern desktop shell with a <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">material 3 inspired</a> design.<br /><br/>It is built with <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, a QT6 framework for building desktop shells, and <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, a statically typed, compiled programming language.": ""
@@ -9308,11 +8840,8 @@
   "mangowc GitHub": {
     "mangowc GitHub": ""
   },
-  "matugen not available or disabled - cannot apply GTK colors": {
-    "matugen not available or disabled - cannot apply GTK colors": ""
-  },
-  "matugen not available or disabled - cannot apply Qt colors": {
-    "matugen not available or disabled - cannot apply Qt colors": ""
+  "matugen not available or disabled - cannot apply %1 colors": {
+    "matugen not available or disabled - cannot apply %1 colors": ""
   },
   "matugen not found - install matugen package for dynamic theming": {
     "matugen not found - install matugen package for dynamic theming": "matguen no encontrado - instala el paquete matugen para la tematización dinámica"
@@ -9325,6 +8854,9 @@
   },
   "nav": {
     "nav": ""
+  },
+  "network security type": {
+    "Open": ""
   },
   "niri GitHub": {
     "niri GitHub": ""
@@ -9368,14 +8900,14 @@
   "on Sway": {
     "on Sway": ""
   },
-  "open": {
-    "open": ""
-  },
   "or run ": {
     "or run ": ""
   },
   "power-profiles-daemon not available": {
     "power-profiles-daemon not available": ""
+  },
+  "primary network connection label": {
+    "Primary": ""
   },
   "procs": {
     "procs": ""
@@ -9430,9 +8962,6 @@
   },
   "v%1 by %2": {
     "v%1 by %2": ""
-  },
-  "verified": {
-    "verified": ""
   },
   "• Install only from trusted sources": {
     "• Install only from trusted sources": "• Instalar solo desde fuentes confiables"

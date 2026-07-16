@@ -45,7 +45,7 @@ Item {
             SettingsCard {
                 tab: "locale"
                 tags: ["locale", "language", "country"]
-                title: I18n.tr("Locale Settings")
+                title: I18n.tr("General")
                 iconName: "language"
 
                 SettingsDropdownRow {

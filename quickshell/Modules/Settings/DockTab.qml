@@ -37,7 +37,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "dock_to_bottom"
-                title: I18n.tr("Dock Visibility")
+                title: I18n.tr("Visibility")
                 settingKey: "dockVisibility"
 
                 SettingsToggleRow {
@@ -228,7 +228,6 @@ Item {
                     settingKey: "dockShowOverflowBadge"
                     tags: ["dock", "overflow", "badge", "count", "indicator"]
                     text: I18n.tr("Show Overflow Badge Count")
-                    description: I18n.tr("Displays count when overflow is active")
                     checked: SettingsData.dockShowOverflowBadge
                     onToggled: checked => SettingsData.set("dockShowOverflowBadge", checked)
                 }
@@ -461,7 +460,7 @@ Item {
                                                 if (!PopoutService.colorPickerModal)
                                                     return;
                                                 PopoutService.colorPickerModal.selectedColor = SettingsData.dockLauncherLogoColorOverride;
-                                                PopoutService.colorPickerModal.pickerTitle = I18n.tr("Choose Dock Launcher Logo Color");
+                                                PopoutService.colorPickerModal.pickerTitle = I18n.tr("Choose Launcher Logo Color");
                                                 PopoutService.colorPickerModal.onColorSelectedCallback = function (selectedColor) {
                                                     SettingsData.set("dockLauncherLogoColorOverride", selectedColor);
                                                 };
@@ -683,7 +682,6 @@ Item {
 
                 SettingsButtonGroupRow {
                     text: I18n.tr("Border Color")
-                    description: I18n.tr("Choose the border accent color")
                     visible: SettingsData.dockBorderEnabled
                     model: [I18n.tr("Surface", "color option"), I18n.tr("Secondary", "color option"), I18n.tr("Primary", "color option")]
                     buttonPadding: Theme.spacingS

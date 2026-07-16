@@ -153,7 +153,7 @@ Item {
     ]
 
     readonly property var entryActionKeys: ["copy", "paste", "pin", "edit", "delete"]
-    readonly property var entryActionLabels: [I18n.tr("Copy"), I18n.tr("Paste"), I18n.tr("Pin"), I18n.tr("Edit"), I18n.tr("Delete")]
+    readonly property var entryActionLabels: [I18n.tr("Copy"), I18n.tr("Paste"), I18n.tr("Pin", "pin item action"), I18n.tr("Edit"), I18n.tr("Delete")]
 
     function getMaxHistoryText(value) {
         if (value <= 0)
@@ -341,7 +341,6 @@ Item {
                     tags: ["clipboard", "entry", "size", "limit"]
                     settingKey: "maxEntrySize"
                     text: I18n.tr("Maximum Entry Size")
-                    description: I18n.tr("Maximum size per clipboard entry")
                     options: root.maxEntrySizeOptions.map(opt => opt.text)
 
                     Component.onCompleted: {

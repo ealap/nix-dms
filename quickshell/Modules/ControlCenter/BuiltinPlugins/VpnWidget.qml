@@ -18,7 +18,7 @@ PluginComponent {
     ccWidgetPrimaryText: I18n.tr("VPN")
     ccWidgetSecondaryText: {
         if (vpnActivating)
-            return I18n.tr("Connecting…");
+            return I18n.tr("Connecting...");
         if (!vpnActivated)
             return I18n.tr("Disconnected");
         const names = DMSNetworkService.activeNames || [];

@@ -5,6 +5,9 @@
   "%1 Animation Speed": {
     "%1 Animation Speed": "Tốc độ ảnh động %1"
   },
+  "%1 Layout Overrides": {
+    "%1 Layout Overrides": ""
+  },
   "%1 Sessions": {
     "%1 Sessions": "%1 phiên làm việc"
   },
@@ -35,9 +38,6 @@
   "%1 copied": {
     "%1 copied": "Đã sao chép %1"
   },
-  "%1 custom animation duration": {
-    "%1 custom animation duration": "Thời lượng ảnh động tùy chỉnh %1"
-  },
   "%1 disconnected": {
     "%1 disconnected": "%1 đã ngắt kết nối"
   },
@@ -49,9 +49,6 @@
   },
   "%1 displays": {
     "%1 displays": "%1 màn hình"
-  },
-  "%1 exists but is not included. Window rules won't apply.": {
-    "%1 exists but is not included. Window rules won't apply.": "%1 tồn tại nhưng không được bao gồm. Quy tắc cửa sổ sẽ không được áp dụng."
   },
   "%1 filtered": {
     "%1 filtered": "%1 đã được lọc"
@@ -118,9 +115,6 @@
   },
   "'Alternative' lets the key unlock on its own. 'Second factor' requires password or fingerprint first, then the key.": {
     "'Alternative' lets the key unlock on its own. 'Second factor' requires password or fingerprint first, then the key.": "'Thay thế' cho phép khóa tự mở. 'Yếu tố thứ hai' yêu cầu mật khẩu hoặc vân tay trước, sau đó mới dùng khóa."
-  },
-  "(Default)": {
-    "(Default)": "(Mặc định)"
   },
   "(Unnamed)": {
     "(Unnamed)": "(Chưa có tên)"
@@ -211,9 +205,6 @@
   },
   "24-Hour Format": {
     "24-Hour Format": "Định dạng 24 giờ"
-  },
-  "24-hour clock": {
-    "24-hour clock": "Đồng hồ 24 giờ"
   },
   "25 seconds": {
     "25 seconds": "25 giây"
@@ -509,6 +500,9 @@
   "Afternoon": {
     "Afternoon": "Buổi chiều"
   },
+  "Alerts": {
+    "Alerts": ""
+  },
   "All": {
     "All": "Tất cả"
   },
@@ -788,14 +782,14 @@
   "Authentication Required": {
     "Authentication Required": "Yêu cầu xác thực"
   },
+  "Authentication Source": {
+    "Authentication Source": ""
+  },
   "Authentication changes applied.": {
     "Authentication changes applied.": "Đã áp dụng các thay đổi xác thực."
   },
   "Authentication changes apply automatically.": {
     "Authentication changes apply automatically.": "Các thay đổi xác thực được áp dụng tự động."
-  },
-  "Authentication changes apply automatically. Fingerprint-only login may not unlock Keyring.": {
-    "Authentication changes apply automatically. Fingerprint-only login may not unlock Keyring.": "Các thay đổi xác thực được áp dụng tự động. Chỉ đăng nhập bằng vân tay có thể không mở khóa được Keyring."
   },
   "Authentication changes need sudo. Opening terminal so you can use password or fingerprint.": {
     "Authentication changes need sudo. Opening terminal so you can use password or fingerprint.": "Các thay đổi xác thực cần sudo. Đang mở cửa sổ dòng lệnh để bạn có thể sử dụng mật khẩu hoặc vân tay."
@@ -811,9 +805,6 @@
   },
   "Authentication failed - try again": {
     "Authentication failed - try again": ""
-  },
-  "Authentication failed, please try again": {
-    "Authentication failed, please try again": "Xác thực không thành công, vui lòng thử lại"
   },
   "Authorize": {
     "Authorize": "Ủy quyền"
@@ -848,20 +839,17 @@
   "Auto Power Saver": {
     "Auto Power Saver": "Tiết kiệm Pin Tự động"
   },
-  "Auto matches bar spacing; Off leaves gaps to your Hyprland config": {
-    "Auto matches bar spacing; Off leaves gaps to your Hyprland config": "Tự động khớp khoảng cách thanh; Tắt để lại khoảng trống cho cấu hình Hyprland của bạn"
-  },
-  "Auto matches bar spacing; Off leaves gaps to your MangoWC config": {
-    "Auto matches bar spacing; Off leaves gaps to your MangoWC config": "Tự động khớp khoảng cách thanh; Tắt để lại khoảng trống cho cấu hình MangoWC của bạn"
-  },
-  "Auto matches bar spacing; Off leaves gaps to your niri config": {
-    "Auto matches bar spacing; Off leaves gaps to your niri config": "Tự động khớp khoảng cách thanh; Tắt để lại khoảng trống cho cấu hình niri của bạn"
+  "Auto matches bar spacing; Off leaves gaps to your %1 config": {
+    "Auto matches bar spacing; Off leaves gaps to your %1 config": ""
   },
   "Auto mode is on. Manual profile selection is disabled.": {
     "Auto mode is on. Manual profile selection is disabled.": "Chế độ tự động đang bật. Lựa chọn cấu hình thủ công đã bị tắt."
   },
   "Auto saved": {
     "Auto saved": "Đã tự động lưu"
+  },
+  "Auto uses an installed or bundled key-only service.": {
+    "Auto uses an installed or bundled key-only service.": ""
   },
   "Auto-Clear After": {
     "Auto-Clear After": "Tự động xóa sau"
@@ -983,9 +971,6 @@
   "Available in Detailed and Forecast view modes": {
     "Available in Detailed and Forecast view modes": "Có sẵn trong chế độ xem Chi tiết và Dự báo"
   },
-  "Available.": {
-    "Available.": "Có sẵn."
-  },
   "Awaiting fingerprint authentication": {
     "Awaiting fingerprint authentication": ""
   },
@@ -1006,9 +991,6 @@
   },
   "Backend": {
     "Backend": "Backend"
-  },
-  "Backends: %1": {
-    "Backends: %1": "Backend: %1"
   },
   "Background": {
     "Background": "Nền"
@@ -1049,9 +1031,6 @@
   "Bar %1": {
     "Bar %1": "Thanh %1"
   },
-  "Bar Configurations": {
-    "Bar Configurations": "Cấu hình thanh"
-  },
   "Bar Inset Padding": {
     "Bar Inset Padding": "Khoảng Cách Lề Thanh"
   },
@@ -1070,9 +1049,6 @@
   "Bar shadow, border, and corners": {
     "Bar shadow, border, and corners": "Bóng, viền và góc của thanh"
   },
-  "Bar spacing and size": {
-    "Bar spacing and size": "Kích thước và khoảng cách của thanh"
-  },
   "Base color for shadows (opacity is applied automatically)": {
     "Base color for shadows (opacity is applied automatically)": "Màu cơ bản cho bóng (độ mờ được áp dụng tự động)"
   },
@@ -1085,9 +1061,6 @@
   "Battery %1": {
     "Battery %1": "Pin %1"
   },
-  "Battery Alerts": {
-    "Battery Alerts": "Cảnh báo pin"
-  },
   "Battery Charge Limit": {
     "Battery Charge Limit": "Giới hạn sạc pin"
   },
@@ -1096,15 +1069,6 @@
   },
   "Battery Power": {
     "Battery Power": "Dùng Pin"
-  },
-  "Battery Protection": {
-    "Battery Protection": "Bảo vệ pin"
-  },
-  "Battery Protection & Charging": {
-    "Battery Protection & Charging": "Bảo vệ & Sạc Pin"
-  },
-  "Battery Status": {
-    "Battery Status": "Trạng Thái Pin"
   },
   "Battery and power management": {
     "Battery and power management": "Quản lý pin và điện năng"
@@ -1118,9 +1082,6 @@
   "Battery is at %1% - Consider charging soon": {
     "Battery is at %1% - Consider charging soon": "Pin ở mức %1% - Hãy cân nhắc sạc sớm"
   },
-  "Battery level and power management": {
-    "Battery level and power management": "Mức pin và quản lý năng lượng"
-  },
   "Battery percentage to trigger a critical alert.": {
     "Battery percentage to trigger a critical alert.": "Phần trăm pin để kích hoạt cảnh báo quan trọng."
   },
@@ -1130,11 +1091,8 @@
   "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": {
     "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": "Liên kết khóa màn hình với tín hiệu dbus từ loginctl. Tắt nếu dùng khóa màn hình bên ngoài"
   },
-  "Bind the spotlight IPC action in your compositor config.": {
-    "Bind the spotlight IPC action in your compositor config.": "Gán hành động spotlight IPC trong cấu hình compositor của bạn."
-  },
-  "Bind the spotlight-bar IPC action in your compositor config.": {
-    "Bind the spotlight-bar IPC action in your compositor config.": "Gán hành động spotlight-bar IPC trong cấu hình compositor của bạn."
+  "Bind the %1 IPC action in your compositor config.": {
+    "Bind the %1 IPC action in your compositor config.": ""
   },
   "Binds include added": {
     "Binds include added": "Bao gồm các phím tắt đã thêm"
@@ -1175,20 +1133,11 @@
   "Blur": {
     "Blur": "Làm mờ"
   },
-  "Blur Border Color": {
-    "Blur Border Color": "Màu viền làm mờ"
-  },
-  "Blur Border Opacity": {
-    "Blur Border Opacity": "Độ mờ viền làm mờ"
-  },
   "Blur Wallpaper Layer": {
     "Blur Wallpaper Layer": "Làm mờ lớp hình nền"
   },
   "Blur on Overview": {
     "Blur on Overview": "Làm mờ trên Tổng quan"
-  },
-  "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support and configuration.": {
-    "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support and configuration.": "Làm mờ nền đằng sau các thanh, cửa sổ nổi, bảng thông báo. Yêu cầu sự hỗ trợ và cấu hình của compositor."
   },
   "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support. Adjust Opacity accordingly.": {
     "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support. Adjust Opacity accordingly.": "Làm mờ nền phía sau các thanh, cửa sổ bật, hộp thoại modal và thông báo. Yêu cầu hỗ trợ từ compositor. Điều chỉnh Độ mờ cho phù hợp."
@@ -1231,9 +1180,6 @@
   },
   "Border Width": {
     "Border Width": "Độ rộng viền"
-  },
-  "Border color around blurred surfaces": {
-    "Border color around blurred surfaces": "Màu viền xung quanh các bề mặt bị làm mờ"
   },
   "Border color around popouts, modals, and other shell surfaces": {
     "Border color around popouts, modals, and other shell surfaces": "Màu đường viền xung quanh các pop-out, modal và các bề mặt shell khác"
@@ -1294,9 +1240,6 @@
   },
   "Button Color": {
     "Button Color": "Màu nút"
-  },
-  "By %1": {
-    "By %1": "Bởi %1"
   },
   "CPU": {
     "CPU": "CPU"
@@ -1436,9 +1379,6 @@
   "Check on startup": {
     "Check on startup": "Kiểm tra khi khởi động"
   },
-  "Check sync status on demand. Sync (full) is for the main admin: it copies your theme to the login screen and sets up system greeter config. On multi-user systems, add other accounts in Settings → Users, then have each of them run dms greeter sync --profile after logging out and back in—not full sync. Authentication changes apply automatically.": {
-    "Check sync status on demand. Sync (full) is for the main admin: it copies your theme to the login screen and sets up system greeter config. On multi-user systems, add other accounts in Settings → Users, then have each of them run dms greeter sync --profile after logging out and back in—not full sync. Authentication changes apply automatically.": "Kiểm tra trạng thái đồng bộ theo yêu cầu. Đồng bộ (đầy đủ) dành cho quản trị viên chính: nó sao chép chủ đề của bạn vào màn hình đăng nhập và thiết lập cấu hình màn hình chào của hệ thống. Trên các hệ thống nhiều người dùng, hãy thêm các tài khoản khác trong Cài đặt → Người dùng, sau đó yêu cầu từng người dùng chạy dms greeter sync --profile sau khi đăng xuất và đăng nhập lại — không phải đồng bộ đầy đủ. Các thay đổi xác thực được áp dụng tự động."
-  },
   "Check your custom command in Settings → Dock → Trash.": {
     "Check your custom command in Settings → Dock → Trash.": "Kiểm tra lệnh tùy chỉnh của bạn trong Cài đặt → Dock → Thùng rác."
   },
@@ -1456,9 +1396,6 @@
   },
   "Choose Dark Mode Color": {
     "Choose Dark Mode Color": "Chọn màu chế độ tối"
-  },
-  "Choose Dock Launcher Logo Color": {
-    "Choose Dock Launcher Logo Color": "Chọn màu logo trình khởi chạy dock"
   },
   "Choose Launcher Logo Color": {
     "Choose Launcher Logo Color": "Chọn màu biểu tượng launcher"
@@ -1484,9 +1421,6 @@
   "Choose how this bar resolves shadow direction": {
     "Choose how this bar resolves shadow direction": "Chọn cách thanh này xử lý hướng bóng"
   },
-  "Choose how to be notified about battery alerts.": {
-    "Choose how to be notified about battery alerts.": "Chọn cách bạn muốn được thông báo về cảnh báo pin."
-  },
   "Choose how to be notified about critical battery alerts.": {
     "Choose how to be notified about critical battery alerts.": "Chọn cách bạn muốn nhận thông báo về các cảnh báo pin quan trọng."
   },
@@ -1504,12 +1438,6 @@
   },
   "Choose neutral or accent-colored widget text": {
     "Choose neutral or accent-colored widget text": "Chọn văn bản widget màu trung tính hoặc nhấn mạnh"
-  },
-  "Choose the background color for widgets": {
-    "Choose the background color for widgets": "Chọn màu nền cho các tiện ích"
-  },
-  "Choose the border accent color": {
-    "Choose the border accent color": "Chọn màu nổi bật cho viền"
   },
   "Choose the logo displayed on the launcher button in DankBar": {
     "Choose the logo displayed on the launcher button in DankBar": "Chọn logo hiển thị trên nút launcher trong DankBar"
@@ -1573,9 +1501,6 @@
   },
   "Click 'Setup' to create %1 and add include to your compositor config.": {
     "Click 'Setup' to create %1 and add include to your compositor config.": "Nhấp 'Thiết lập' để tạo %1 và thêm phần bao gồm vào cấu hình compositor của bạn."
-  },
-  "Click 'Setup' to create the outputs config and add include to your compositor config.": {
-    "Click 'Setup' to create the outputs config and add include to your compositor config.": "Nhấp 'Thiết lập' để tạo cấu hình đầu ra và thêm phần bao gồm vào cấu hình compositor của bạn."
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "Nhấp Nhập để thêm tệp .ovpn hoặc .conf"
@@ -1682,12 +1607,6 @@
   "Color shown for areas not covered by wallpaper": {
     "Color shown for areas not covered by wallpaper": "Màu hiển thị cho các vùng không được bao phủ bởi hình nền"
   },
-  "Color shown for areas not covered by wallpaper (e.g. Fit or Pad modes)": {
-    "Color shown for areas not covered by wallpaper (e.g. Fit or Pad modes)": "Màu hiển thị cho các vùng không được bao phủ bởi hình nền (ví dụ: chế độ Fit hoặc Pad)"
-  },
-  "Color temperature for day time": {
-    "Color temperature for day time": "Nhiệt độ màu trong ngày"
-  },
   "Color temperature for night mode": {
     "Color temperature for night mode": "Nhiệt độ màu cho chế độ ban đêm"
   },
@@ -1772,6 +1691,9 @@
   "Configuration will be preserved when this display reconnects": {
     "Configuration will be preserved when this display reconnects": "Cấu hình sẽ được giữ lại khi màn hình này kết nối lại"
   },
+  "Configurations": {
+    "Configurations": ""
+  },
   "Configure": {
     "Configure": "Cấu hình"
   },
@@ -1853,9 +1775,6 @@
   "Connecting...": {
     "Connecting...": "Đang kết nối..."
   },
-  "Connecting…": {
-    "Connecting…": "Đang kết nối..."
-  },
   "Connection failed": {
     "Connection failed": "Kết nối thất bại"
   },
@@ -1904,24 +1823,6 @@
   "Controls opacity of shell surfaces, popouts, and modals": {
     "Controls opacity of shell surfaces, popouts, and modals": "Điều khiển độ mờ của bề mặt shell, cửa sổ bật và hộp thoại modal"
   },
-  "Controls opacity of the bar background": {
-    "Controls opacity of the bar background": "Điều khiển độ mờ của nền thanh"
-  },
-  "Controls opacity of the border": {
-    "Controls opacity of the border": "Điều khiển độ mờ của viền"
-  },
-  "Controls opacity of the shadow layer": {
-    "Controls opacity of the shadow layer": "Điều khiển độ mờ của lớp bóng đổ"
-  },
-  "Controls opacity of the widget outline": {
-    "Controls opacity of the widget outline": "Điều khiển độ mờ của đường viền widget"
-  },
-  "Controls opacity of widget backgrounds": {
-    "Controls opacity of widget backgrounds": "Điều khiển độ mờ của nền widget"
-  },
-  "Controls outlines around blurred foreground cards, pills, and notification cards": {
-    "Controls outlines around blurred foreground cards, pills, and notification cards": "Điều khiển đường viền xung quanh các thẻ phía trước bị làm mờ, các nút dạng thuốc và thẻ thông báo"
-  },
   "Controls outlines around foreground cards, pills, and notification cards": {
     "Controls outlines around foreground cards, pills, and notification cards": "Kiểm soát đường viền xung quanh các thẻ nền trước, viên và thẻ thông báo"
   },
@@ -1931,17 +1832,8 @@
   "Controls the base blur radius and offset of shadows": {
     "Controls the base blur radius and offset of shadows": "Điều khiển bán kính làm mờ cơ bản và độ lệch của bóng"
   },
-  "Controls the opacity of the shadow": {
-    "Controls the opacity of the shadow": "Điều khiển độ mờ của bóng đổ"
-  },
-  "Controls the outer edge of protocol-blurred windows": {
-    "Controls the outer edge of protocol-blurred windows": "Điều khiển cạnh ngoài của các cửa sổ bị làm mờ theo giao thức"
-  },
   "Controls the outline of popouts, modals, and other shell surfaces": {
     "Controls the outline of popouts, modals, and other shell surfaces": "Kiểm soát đường viền của các pop-out, modal và các bề mặt shell khác"
-  },
-  "Controls the transparency of the shadow": {
-    "Controls the transparency of the shadow": "Điều khiển độ trong suốt của bóng"
   },
   "Convenience options for the login screen. Sync to apply.": {
     "Convenience options for the login screen. Sync to apply.": "Các tùy chọn tiện ích cho màn hình đăng nhập. Đồng bộ để áp dụng."
@@ -2000,9 +1892,6 @@
   "Corners & Background": {
     "Corners & Background": "Góc & Nền"
   },
-  "Couldn't open a terminal for the auto-login update.": {
-    "Couldn't open a terminal for the auto-login update.": "Không thể mở thiết bị đầu cuối để cập nhật đăng nhập tự động."
-  },
   "Count Only": {
     "Count Only": "Chỉ đếm"
   },
@@ -2026,9 +1915,6 @@
   },
   "Create a new %1 session (^N)": {
     "Create a new %1 session (^N)": "Tạo phiên %1 mới (^N)"
-  },
-  "Create a new %1 session (n)": {
-    "Create a new %1 session (n)": "Tạo một phiên %1 mới (n)"
   },
   "Create rule for:": {
     "Create rule for:": "Tạo quy tắc cho:"
@@ -2192,9 +2078,6 @@
   "Custom...": {
     "Custom...": "Tùy chỉnh..."
   },
-  "Custom: ": {
-    "Custom: ": "Tuỳ chỉnh: "
-  },
   "Customizable empty space": {
     "Customizable empty space": "Tuỳ chỉnh khoảng trống"
   },
@@ -2225,14 +2108,11 @@
   "DMS Shortcuts": {
     "DMS Shortcuts": "Phím tắt DMS"
   },
-  "DMS greeter needs: greetd, dms-greeter. Fingerprint: fprintd, pam_fprintd. Security keys: pam_u2f. Add your user to the greeter group. Authentication changes apply automatically and may open a terminal when sudo authentication is required.": {
-    "DMS greeter needs: greetd, dms-greeter. Fingerprint: fprintd, pam_fprintd. Security keys: pam_u2f. Add your user to the greeter group. Authentication changes apply automatically and may open a terminal when sudo authentication is required.": "DMS màn hình chào cần: greetd, dms-màn hình chào. Vân tay: fprintd, pam_fprintd. Khóa bảo mật: pam_u2f. Thêm người dùng của bạn vào nhóm màn hình chào. Các thay đổi xác thực được áp dụng tự động và có thể mở cửa sổ dòng lệnh khi cần xác thực sudo."
-  },
-  "DMS needs administrator access. The terminal closes automatically when done.": {
-    "DMS needs administrator access. The terminal closes automatically when done.": "DMS cần quyền truy cập của quản trị viên. Thiết bị đầu cuối sẽ tự động đóng lại khi hoàn tất."
-  },
   "DMS out of date": {
     "DMS out of date": "DMS đã lỗi thời"
+  },
+  "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it": {
+    "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it": ""
   },
   "DMS server is outdated (API v%1, expected v%2)": {
     "DMS server is outdated (API v%1, expected v%2)": "Máy chủ DMS đã cũ (API v%1, mong đợi v%2)"
@@ -2404,9 +2284,6 @@
   },
   "Delete user": {
     "Delete user": "Xóa người dùng"
-  },
-  "Delete user?": {
-    "Delete user?": "Xóa người dùng?"
   },
   "Demi Bold": {
     "Demi Bold": "Bán đậm"
@@ -2609,9 +2486,6 @@
   "Display power menu actions in a grid instead of a list": {
     "Display power menu actions in a grid instead of a list": "Hiển thị các hành động trong menu nguồn dưới dạng lưới thay vì danh sách"
   },
-  "Display seconds in the clock": {
-    "Display seconds in the clock": "Hiển thị giây trên đồng hồ"
-  },
   "Display setup failed": {
     "Display setup failed": "Thiết lập hiển thị không thành công"
   },
@@ -2623,9 +2497,6 @@
   },
   "Displays": {
     "Displays": "Hiển thị"
-  },
-  "Displays count when overflow is active": {
-    "Displays count when overflow is active": "Hiển thị số lượng khi chế độ tràn hoạt động"
   },
   "Displays the active keyboard layout and allows switching": {
     "Displays the active keyboard layout and allows switching": "Hiển thị bố cục bàn phím đang dùng và cho phép chuyển đổi"
@@ -2648,14 +2519,8 @@
   "Dock Opacity": {
     "Dock Opacity": "Độ mờ thanh Dock"
   },
-  "Dock Visibility": {
-    "Dock Visibility": "Chế độ hiển thị của Dock"
-  },
   "Dock margin, opacity, and border": {
     "Dock margin, opacity, and border": "Căn lề, độ mờ và viền thanh Dock"
-  },
-  "Dock margin, transparency, and border": {
-    "Dock margin, transparency, and border": "Lề, độ trong suốt và viền của Dock"
   },
   "Dock window": {
     "Dock window": "Cửa sổ Dock"
@@ -2801,9 +2666,6 @@
   "Empty Trash (%1)": {
     "Empty Trash (%1)": "Dọn sạch thùng rác (%1)"
   },
-  "Empty Trash?": {
-    "Empty Trash?": "Dọn sạch thùng rác?"
-  },
   "Enable 10-bit color depth for wider color gamut and HDR support": {
     "Enable 10-bit color depth for wider color gamut and HDR support": "Bật độ sâu màu 10-bit cho gam màu rộng hơn và hỗ trợ HDR"
   },
@@ -2866,36 +2728,6 @@
   },
   "Enabled": {
     "Enabled": "Đã bật"
-  },
-  "Enabled, but fingerprint availability could not be confirmed.": {
-    "Enabled, but fingerprint availability could not be confirmed.": "Đã bật, nhưng tính khả dụng của vân tay không thể được xác nhận."
-  },
-  "Enabled, but no fingerprint reader was detected.": {
-    "Enabled, but no fingerprint reader was detected.": "Đã bật, nhưng không phát hiện thấy trình đọc vân tay nào."
-  },
-  "Enabled, but no prints are enrolled yet. Authentication changes apply automatically once you enroll fingerprints.": {
-    "Enabled, but no prints are enrolled yet. Authentication changes apply automatically once you enroll fingerprints.": "Đã bật, nhưng chưa có vân tay nào được đăng ký. Các thay đổi xác thực sẽ được áp dụng tự động sau khi bạn đăng ký vân tay."
-  },
-  "Enabled, but no prints are enrolled yet. Enroll fingerprints and run Sync.": {
-    "Enabled, but no prints are enrolled yet. Enroll fingerprints and run Sync.": "Đã bật, nhưng chưa có vân tay nào được đăng ký. Hãy đăng ký vân tay và chạy Đồng bộ."
-  },
-  "Enabled, but no registered security key was found yet. Authentication changes apply automatically once your key is registered or your U2F config is updated.": {
-    "Enabled, but no registered security key was found yet. Authentication changes apply automatically once your key is registered or your U2F config is updated.": "Đã bật, nhưng chưa tìm thấy khóa bảo mật đã đăng ký. Các thay đổi xác thực sẽ được áp dụng tự động sau khi khóa của bạn được đăng ký hoặc cấu hình U2F được cập nhật."
-  },
-  "Enabled, but no registered security key was found yet. Register a key and run Sync.": {
-    "Enabled, but no registered security key was found yet. Register a key and run Sync.": "Đã bật, nhưng chưa tìm thấy khóa bảo mật đã đăng ký. Hãy đăng ký một khóa và chạy Đồng bộ."
-  },
-  "Enabled, but security-key availability could not be confirmed.": {
-    "Enabled, but security-key availability could not be confirmed.": "Đã bật, nhưng tính khả dụng của khóa bảo mật không thể được xác nhận."
-  },
-  "Enabled. PAM already provides fingerprint auth.": {
-    "Enabled. PAM already provides fingerprint auth.": "Đã bật. PAM đã cung cấp xác thực vân tay."
-  },
-  "Enabled. PAM already provides security-key auth.": {
-    "Enabled. PAM already provides security-key auth.": "Đã bật. PAM đã cung cấp xác thực khóa bảo mật."
-  },
-  "Enabled. PAM provides fingerprint auth, but no prints are enrolled yet.": {
-    "Enabled. PAM provides fingerprint auth, but no prints are enrolled yet.": "Đã bật. PAM cung cấp xác thực vân tay, nhưng chưa có vân tay nào được đăng ký."
   },
   "Enabling WiFi...": {
     "Enabling WiFi...": "Đang bật WiFi..."
@@ -3011,8 +2843,8 @@
   "Exact": {
     "Exact": "Chính xác"
   },
-  "Excluded Media Players": {
-    "Excluded Media Players": "Trình phát Phương tiện Bị loại trừ"
+  "Excluded Players": {
+    "Excluded Players": ""
   },
   "Exclusive Zone Offset": {
     "Exclusive Zone Offset": "Độ lệch vùng độc quyền"
@@ -3080,11 +2912,8 @@
   "Failed to add printer to class": {
     "Failed to add printer to class": "Thêm máy in vào lớp thất bại"
   },
-  "Failed to apply GTK colors": {
-    "Failed to apply GTK colors": "Áp dụng màu GTK thất bại"
-  },
-  "Failed to apply Qt colors": {
-    "Failed to apply Qt colors": "Áp dụng màu Qt thất bại"
+  "Failed to apply %1 colors": {
+    "Failed to apply %1 colors": ""
   },
   "Failed to apply charge limit to system": {
     "Failed to apply charge limit to system": "Không thể áp dụng giới hạn sạc cho hệ thống"
@@ -3158,9 +2987,6 @@
   "Failed to enable night mode": {
     "Failed to enable night mode": "Bật chế độ ban đêm thất bại"
   },
-  "Failed to enable plugin: %1": {
-    "Failed to enable plugin: %1": "Bật plugin thất bại: %1"
-  },
   "Failed to fetch network QR code: %1": {
     "Failed to fetch network QR code: %1": "Lấy mã QR mạng thất bại: %1"
   },
@@ -3188,14 +3014,8 @@
   "Failed to move to trash": {
     "Failed to move to trash": "Di chuyển vào thùng rác thất bại"
   },
-  "Failed to parse plugin_settings.json": {
-    "Failed to parse plugin_settings.json": "Phân tích plugin_settings.json thất bại"
-  },
-  "Failed to parse session.json": {
-    "Failed to parse session.json": "Phân tích session.json thất bại"
-  },
-  "Failed to parse settings.json": {
-    "Failed to parse settings.json": "Phân tích settings.json thất bại"
+  "Failed to parse %1": {
+    "Failed to parse %1": ""
   },
   "Failed to pause printer": {
     "Failed to pause printer": "Không thể tạm dừng máy in"
@@ -3368,8 +3188,8 @@
   "File manager used to open the trash. Pick \"custom\" to enter your own command.": {
     "File manager used to open the trash. Pick \"custom\" to enter your own command.": "Trình quản lý tệp dùng để mở thùng rác. Chọn \"tùy chỉnh\" để nhập lệnh của riêng bạn."
   },
-  "File received from": {
-    "File received from": "Tệp nhận được từ"
+  "File received from %1": {
+    "File received from %1": ""
   },
   "File search requires dsearch\nInstall from github.com/AvengeMedia/danksearch": {
     "File search requires dsearch\nInstall from github.com/AvengeMedia/danksearch": "Tìm kiếm tệp yêu cầu dsearch\nHãy cài đặt từ github.com/AvengeMedia/danksearch"
@@ -3563,9 +3383,6 @@
   "For editing plain text files": {
     "For editing plain text files": "Để chỉnh sửa các tệp văn bản thuần túy"
   },
-  "For reading PDF files": {
-    "For reading PDF files": "Để đọc các tệp PDF"
-  },
   "Force HDR": {
     "Force HDR": "Bắt buộc HDR"
   },
@@ -3719,6 +3536,9 @@
   "Gaps": {
     "Gaps": "Khoảng Cách"
   },
+  "General": {
+    "General": ""
+  },
   "Generate Override": {
     "Generate Override": "Tạo ghi đè"
   },
@@ -3764,9 +3584,6 @@
   "Grant": {
     "Grant": "Cấp quyền"
   },
-  "Grant admin?": {
-    "Grant admin?": "Cấp quyền quản trị?"
-  },
   "Grant administrator privileges": {
     "Grant administrator privileges": "Cấp quyền quản trị viên"
   },
@@ -3785,15 +3602,6 @@
   "Greeter": {
     "Greeter": "Màn hình chào"
   },
-  "Greeter Appearance": {
-    "Greeter Appearance": "Giao diện Màn hình chào"
-  },
-  "Greeter Behavior": {
-    "Greeter Behavior": "Hành vi Màn hình chào"
-  },
-  "Greeter Status": {
-    "Greeter Status": "Trạng thái Màn hình chào"
-  },
   "Greeter activated. greetd is now enabled.": {
     "Greeter activated. greetd is now enabled.": "Màn hình chào đã được kích hoạt. greetd hiện đã được bật."
   },
@@ -3805,9 +3613,6 @@
   },
   "Greeter group:": {
     "Greeter group:": "Nhóm Màn hình chào:"
-  },
-  "Greeter only — does not affect main clock": {
-    "Greeter only — does not affect main clock": "Chỉ dành cho Màn hình chào — không ảnh hưởng đến đồng hồ chính"
   },
   "Greeter only — format for the date on the login screen": {
     "Greeter only — format for the date on the login screen": "Chỉ dành cho Màn hình chào — định dạng cho ngày trên màn hình đăng nhập"
@@ -4067,9 +3872,6 @@
   "Hyprland Discord Server": {
     "Hyprland Discord Server": "Máy chủ Discord Hyprland"
   },
-  "Hyprland Layout Overrides": {
-    "Hyprland Layout Overrides": "Ghi đè bố cục Hyprland"
-  },
   "Hyprland Options": {
     "Hyprland Options": "Tùy chọn Hyprland"
   },
@@ -4207,12 +4009,6 @@
   },
   "Incorrect password": {
     "Incorrect password": "Sai mật khẩu"
-  },
-  "Incorrect password - attempt %1 of %2 (lockout may follow)": {
-    "Incorrect password - attempt %1 of %2 (lockout may follow)": "Mật khẩu không chính xác - lần thử %1 trên %2 (có thể bị khóa)"
-  },
-  "Incorrect password - next failures may trigger account lockout": {
-    "Incorrect password - next failures may trigger account lockout": "Mật khẩu không chính xác - những lần thất bại tiếp theo có thể khiến tài khoản bị khóa"
   },
   "Incorrect password - try again": {
     "Incorrect password - try again": "Mật khẩu không chính xác - hãy thử lại"
@@ -4370,9 +4166,6 @@
   "Jobs": {
     "Jobs": "Công việc"
   },
-  "Jobs: ": {
-    "Jobs: ": "Công việc: "
-  },
   "Join video call": {
     "Join video call": ""
   },
@@ -4517,9 +4310,6 @@
   "Layout Overrides": {
     "Layout Overrides": "Ghi đè bố cục"
   },
-  "Layout and module positions on the greeter are synced from your shell (e.g. bar config). Run Sync to apply.": {
-    "Layout and module positions on the greeter are synced from your shell (e.g. bar config). Run Sync to apply.": "Bố cục và vị trí các mô-đun trên màn hình chào được đồng bộ từ shell của bạn (vd: cấu hình thanh). Chạy Đồng bộ để áp dụng."
-  },
   "Left": {
     "Left": "Trái"
   },
@@ -4604,9 +4394,6 @@
   "Locale": {
     "Locale": "Ngôn ngữ"
   },
-  "Locale Settings": {
-    "Locale Settings": "Cài đặt ngôn ngữ"
-  },
   "Location": {
     "Location": "Vị trí"
   },
@@ -4619,20 +4406,8 @@
   "Lock Screen": {
     "Lock Screen": "Khóa màn hình"
   },
-  "Lock Screen Appearance": {
-    "Lock Screen Appearance": "Giao Diện Màn Hình Khóa"
-  },
-  "Lock Screen Display": {
-    "Lock Screen Display": "Hiển thị màn hình khóa"
-  },
   "Lock Screen Format": {
     "Lock Screen Format": "Định dạng màn hình khóa"
-  },
-  "Lock Screen behaviour": {
-    "Lock Screen behaviour": "Hành vi màn hình khóa"
-  },
-  "Lock Screen layout": {
-    "Lock Screen layout": "Bố cục màn hình khóa"
   },
   "Lock at startup": {
     "Lock at startup": "Khóa khi khởi động"
@@ -4642,9 +4417,6 @@
   },
   "Lock fade grace period": {
     "Lock fade grace period": "Thời gian chờ làm mờ khi khóa"
-  },
-  "Lock screen authentication changes apply automatically and may open a terminal when sudo authentication is required.": {
-    "Lock screen authentication changes apply automatically and may open a terminal when sudo authentication is required.": "Các thay đổi xác thực màn hình khóa được áp dụng tự động và có thể mở cửa sổ dòng lệnh khi cần xác thực sudo."
   },
   "Lock screen font": {
     "Lock screen font": "Phông chữ màn hình khóa"
@@ -4660,9 +4432,6 @@
   },
   "Login": {
     "Login": "Đăng nhập"
-  },
-  "Login Authentication": {
-    "Login Authentication": "Xác thực đăng nhập"
   },
   "Long": {
     "Long": "Dài"
@@ -4721,11 +4490,11 @@
   "Managed by Frame in Connected Mode": {
     "Managed by Frame in Connected Mode": "Được quản lý bởi Khung trong Chế độ kết nối"
   },
+  "Managed by the primary PAM source.": {
+    "Managed by the primary PAM source.": ""
+  },
   "Management": {
     "Management": "Quản lý"
-  },
-  "Manages calendar events": {
-    "Manages calendar events": "Quản lý các sự kiện lịch"
   },
   "Manages files and directories": {
     "Manages files and directories": "Quản lý các tệp và thư mục"
@@ -4735,9 +4504,6 @@
   },
   "Mango service not available": {
     "Mango service not available": "Dịch vụ Mango không khả dụng"
-  },
-  "MangoWC Layout Overrides": {
-    "MangoWC Layout Overrides": "Ghi đè bố cục MangoWC"
   },
   "Manual": {
     "Manual": "Thủ công"
@@ -4895,9 +4661,6 @@
   "Maximum pinned entries reached": {
     "Maximum pinned entries reached": "Đã đạt đến số lượng mục ghim tối đa"
   },
-  "Maximum size per clipboard entry": {
-    "Maximum size per clipboard entry": "Kích thước tối đa cho mỗi mục bảng nhớ tạm"
-  },
   "Media": {
     "Media": "Phương tiện"
   },
@@ -4921,9 +4684,6 @@
   },
   "Media Player": {
     "Media Player": "Trình phát phương tiện"
-  },
-  "Media Player Settings": {
-    "Media Player Settings": "Cài đặt trình phát phương tiện"
   },
   "Media Players (": {
     "Media Players (": "Trình phát phương tiện ("
@@ -5006,9 +4766,6 @@
   "Mode": {
     "Mode": "Chế độ"
   },
-  "Mode:": {
-    "Mode:": "Chế độ:"
-  },
   "Model": {
     "Model": "Kiểu máy"
   },
@@ -5063,9 +4820,6 @@
   "Mouse pointer size in pixels": {
     "Mouse pointer size in pixels": "Kích thước con trỏ chuột theo pixel"
   },
-  "Move": {
-    "Move": "Di chuyển"
-  },
   "Move Widget": {
     "Move Widget": "Di chuyển tiện ích"
   },
@@ -5080,9 +4834,6 @@
   },
   "Multimedia": {
     "Multimedia": "Đa phương tiện"
-  },
-  "Multiplexer": {
-    "Multiplexer": "Bộ ghép kênh (Multiplexer)"
   },
   "Multiplexer Type": {
     "Multiplexer Type": "Loại bộ ghép kênh"
@@ -5159,9 +4910,6 @@
   "Network Speed Monitor": {
     "Network Speed Monitor": "Trình giám sát tốc độ mạng"
   },
-  "Network Status": {
-    "Network Status": "Trạng thái mạng"
-  },
   "Network Type": {
     "Network Type": "Loại Mạng"
   },
@@ -5233,9 +4981,6 @@
   },
   "Niri Integration": {
     "Niri Integration": "Tích hợp Niri"
-  },
-  "Niri Layout Overrides": {
-    "Niri Layout Overrides": "Ghi đè bố cục Niri"
   },
   "Niri compositor actions (focus, move, etc.)": {
     "Niri compositor actions (focus, move, etc.)": "Các hành động compositor Niri (tập trung, di chuyển, v.v.)"
@@ -5462,9 +5207,6 @@
   "No plugins found": {
     "No plugins found": "Không tìm thấy plugin nào"
   },
-  "No plugins found.": {
-    "No plugins found.": "Không tìm thấy plugin nào."
-  },
   "No printer found": {
     "No printer found": "Không tìm thấy máy in"
   },
@@ -5639,14 +5381,8 @@
   "Notification Popups": {
     "Notification Popups": "Thông báo nổi"
   },
-  "Notification Rules": {
-    "Notification Rules": "Các quy tắc thông báo"
-  },
   "Notification Settings": {
     "Notification Settings": "Cài đặt thông báo"
-  },
-  "Notification Timeouts": {
-    "Notification Timeouts": "Quá thời gian chờ thông báo"
   },
   "Notification Type": {
     "Notification Type": "Loại Thông báo"
@@ -5720,9 +5456,6 @@
   "Only adjust gamma based on time or location rules.": {
     "Only adjust gamma based on time or location rules.": "Chỉ điều chỉnh gamma dựa trên quy tắc thời gian hoặc địa điểm."
   },
-  "Only affects DMS-managed PAM. If greetd already includes pam_fprintd, fingerprint stays enabled.": {
-    "Only affects DMS-managed PAM. If greetd already includes pam_fprintd, fingerprint stays enabled.": "Chỉ ảnh hưởng đến PAM do DMS quản lý. Nếu greetd đã bao gồm pam_fprintd, vân tay vẫn sẽ được bật."
-  },
   "Only on Battery": {
     "Only on Battery": "Chỉ Trên Pin"
   },
@@ -5734,12 +5467,6 @@
   },
   "Opacity": {
     "Opacity": "Độ mờ"
-  },
-  "Opacity of the bar background": {
-    "Opacity of the bar background": "Độ mờ của nền thanh"
-  },
-  "Opacity of widget backgrounds": {
-    "Opacity of widget backgrounds": "Độ mờ của nền tiện ích"
   },
   "Opaque": {
     "Opaque": "Đục (Không trong suốt)"
@@ -5807,17 +5534,11 @@
   "Opening file browser": {
     "Opening file browser": "Đang mở trình duyệt tệp"
   },
-  "Opening terminal to update greetd": {
-    "Opening terminal to update greetd": "Đang mở terminal để cập nhật greetd"
-  },
   "Opening terminal: ": {
     "Opening terminal: ": "Đang mở cửa sổ dòng lệnh: "
   },
   "Opens a picker of other active sessions on this seat": {
     "Opens a picker of other active sessions on this seat": "Mở trình chọn các phiên hoạt động khác trên ghế (seat) này"
-  },
-  "Opens image files": {
-    "Opens image files": "Mở các tệp hình ảnh"
   },
   "Opens the connected launcher in Connected Frame Mode.": {
     "Opens the connected launcher in Connected Frame Mode.": "Mở trình khởi chạy đã kết nối trong Chế độ khung kết nối."
@@ -5921,15 +5642,6 @@
   "PAM already provides security-key auth. Enable this to show it at login.": {
     "PAM already provides security-key auth. Enable this to show it at login.": "PAM đã cung cấp xác thực khóa bảo mật. Bật tính năng này để hiển thị khi đăng nhập."
   },
-  "PAM provides fingerprint auth, but availability could not be confirmed.": {
-    "PAM provides fingerprint auth, but availability could not be confirmed.": "PAM cung cấp xác thực vân tay, nhưng tính khả dụng không thể được xác nhận."
-  },
-  "PAM provides fingerprint auth, but no prints are enrolled yet.": {
-    "PAM provides fingerprint auth, but no prints are enrolled yet.": "PAM cung cấp xác thực vân tay, nhưng chưa có vân tay nào được đăng ký."
-  },
-  "PAM provides fingerprint auth, but no reader was detected.": {
-    "PAM provides fingerprint auth, but no reader was detected.": "PAM cung cấp xác thực vân tay, nhưng không phát hiện thấy trình đọc nào."
-  },
   "PDF Reader": {
     "PDF Reader": "Trình đọc PDF"
   },
@@ -5945,9 +5657,6 @@
   "Pad Hours": {
     "Pad Hours": "Thêm số 0 cho giờ"
   },
-  "Pad hours (02:00 vs 2:00)": {
-    "Pad hours (02:00 vs 2:00)": "Thêm số 0 cho giờ (02:00 so với 2:00)"
-  },
   "Padding": {
     "Padding": "Lề trong"
   },
@@ -5960,14 +5669,11 @@
   "Paired": {
     "Paired": "Đã ghép đôi"
   },
-  "Pairing": {
-    "Pairing": "Đang ghép đôi"
-  },
   "Pairing failed": {
     "Pairing failed": "Ghép nối không thành công"
   },
-  "Pairing request from": {
-    "Pairing request from": "Yêu cầu ghép đôi từ"
+  "Pairing request from %1": {
+    "Pairing request from %1": ""
   },
   "Pairing request sent": {
     "Pairing request sent": "Yêu cầu ghép đôi đã được gửi"
@@ -6062,9 +5768,6 @@
   "Phone Connect Not Available": {
     "Phone Connect Not Available": "Kết nối điện thoại không khả dụng"
   },
-  "Phone Connect unavailable": {
-    "Phone Connect unavailable": "Kết nối điện thoại không khả dụng"
-  },
   "Phone number": {
     "Phone number": "Số điện thoại"
   },
@@ -6092,8 +5795,8 @@
   "Ping": {
     "Ping": "Ping"
   },
-  "Ping sent to": {
-    "Ping sent to": "Đã gửi ping tới"
+  "Ping sent to %1": {
+    "Ping sent to %1": ""
   },
   "Pinned": {
     "Pinned": "Đã ghim"
@@ -6137,9 +5840,6 @@
   "Play sound when volume is adjusted": {
     "Play sound when volume is adjusted": "Phát âm thanh khi tăng giảm âm lượng"
   },
-  "Play sounds for system events": {
-    "Play sounds for system events": "Phát âm thanh cho các sự kiện hệ thống"
-  },
   "Playback": {
     "Playback": "Phát lại"
   },
@@ -6148,9 +5848,6 @@
   },
   "Plays audio files": {
     "Plays audio files": "Phát các tệp âm thanh"
-  },
-  "Plays video files": {
-    "Plays video files": "Phát các tệp video"
   },
   "Please wait...": {
     "Please wait...": "Vui lòng chờ..."
@@ -6227,6 +5924,9 @@
   "Popup behavior, position": {
     "Popup behavior, position": "Hành vi, vị trí cửa sổ nổi"
   },
+  "Popups": {
+    "Popups": ""
+  },
   "Port": {
     "Port": "Cổng"
   },
@@ -6275,9 +5975,6 @@
   "Power Profiles & Saving": {
     "Power Profiles & Saving": "Cấu hình nguồn điện và tiết kiệm"
   },
-  "Power Profiles Auto-Switching": {
-    "Power Profiles Auto-Switching": "Chuyển đổi Hồ sơ Năng lượng Tự động"
-  },
   "Power Saver": {
     "Power Saver": "Tiết kiệm điện"
   },
@@ -6286,12 +5983,6 @@
   },
   "Power profile management available": {
     "Power profile management available": "Quản lý cấu hình nguồn khả dụng"
-  },
-  "Power profile to use when AC power is connected.": {
-    "Power profile to use when AC power is connected.": "Hồ sơ năng lượng sử dụng khi kết nối điện AC."
-  },
-  "Power profile to use when running on battery power.": {
-    "Power profile to use when running on battery power.": "Hồ sơ năng lượng sử dụng khi chạy bằng pin."
   },
   "Power source": {
     "Power source": "Nguồn điện"
@@ -6316,9 +6007,6 @@
   },
   "Preset Widths (%)": {
     "Preset Widths (%)": "Các chiều rộng đặt trước (%)"
-  },
-  "Press 'n' or click 'New Session' to create one": {
-    "Press 'n' or click 'New Session' to create one": "Nhấn 'n' hoặc nhấp 'Phiên mới' để tạo một cái"
   },
   "Press Ctrl+N or click 'New Session' to create one": {
     "Press Ctrl+N or click 'New Session' to create one": "Nhấn Ctrl+N hoặc nhấp vào 'Phiên Mới' để tạo một phiên"
@@ -6359,9 +6047,6 @@
   "Primary Container": {
     "Primary Container": "Container chính"
   },
-  "Primary Theme Color": {
-    "Primary Theme Color": "Màu Chủ đề Chính"
-  },
   "Print Server Management": {
     "Print Server Management": "Quản lý máy chủ in"
   },
@@ -6389,9 +6074,6 @@
   "Printers": {
     "Printers": "Máy in"
   },
-  "Printers: ": {
-    "Printers: ": "Máy in: "
-  },
   "Prioritize performance": {
     "Prioritize performance": "Ưu tiên hiệu năng"
   },
@@ -6415,9 +6097,6 @@
   },
   "Processes": {
     "Processes": "Các tiến trình"
-  },
-  "Processes:": {
-    "Processes:": "Các tiến trình:"
   },
   "Processing": {
     "Processing": "Xử lý"
@@ -6454,6 +6133,9 @@
   },
   "Profile when on Battery": {
     "Profile when on Battery": "Hồ sơ Khi Sử dụng Pin"
+  },
+  "Protection": {
+    "Protection": ""
   },
   "Protocol": {
     "Protocol": "Giao thức"
@@ -6620,9 +6302,6 @@
   "Remove admin": {
     "Remove admin": "Gỡ quyền quản trị"
   },
-  "Remove admin?": {
-    "Remove admin?": "Gỡ quyền quản trị?"
-  },
   "Remove corner rounding from the bar": {
     "Remove corner rounding from the bar": "Gỡ bo góc khỏi thanh"
   },
@@ -6719,9 +6398,6 @@
   "Reset Size": {
     "Reset Size": "Đặt lại kích thước"
   },
-  "Reset to Default?": {
-    "Reset to Default?": "Đặt lại về mặc định?"
-  },
   "Reset to default": {
     "Reset to default": "Đặt lại về mặc định"
   },
@@ -6800,8 +6476,8 @@
   "Ring": {
     "Ring": "Đổ chuông"
   },
-  "Ringing": {
-    "Ringing": "Đang đổ chuông"
+  "Ringing %1...": {
+    "Ringing %1...": ""
   },
   "Ripple Effects": {
     "Ripple Effects": "Hiệu ứng gợn sóng"
@@ -6815,8 +6491,14 @@
   "Rule": {
     "Rule": "Quy tắc"
   },
+  "Rule %1": {
+    "Rule %1": ""
+  },
   "Rule Name": {
     "Rule Name": "Tên quy tắc"
+  },
+  "Rules": {
+    "Rules": ""
   },
   "Rules (%1)": {
     "Rules (%1)": "Quy tắc (%1)"
@@ -6923,9 +6605,6 @@
   "Saving...": {
     "Saving...": "Đang lưu..."
   },
-  "Saving…": {
-    "Saving…": "Đang lưu…"
-  },
   "Scale": {
     "Scale": "Tỷ lệ"
   },
@@ -6940,9 +6619,6 @@
   },
   "Scan": {
     "Scan": "Quét"
-  },
-  "Scanning": {
-    "Scanning": "Đang quét"
   },
   "Scanning...": {
     "Scanning...": "Đang quét..."
@@ -7028,9 +6704,6 @@
   "Search...": {
     "Search...": "Tìm kiếm..."
   },
-  "Searching": {
-    "Searching": "Đang tìm kiếm"
-  },
   "Searching...": {
     "Searching...": "Đang tìm kiếm..."
   },
@@ -7051,6 +6724,9 @@
   },
   "Security & privacy": {
     "Security & privacy": "Bảo mật & riêng tư"
+  },
+  "Security Key PAM Source": {
+    "Security Key PAM Source": ""
   },
   "Security key mode": {
     "Security key mode": "Chế độ khóa bảo mật"
@@ -7139,17 +6815,11 @@
   "Select lock screen background image": {
     "Select lock screen background image": "Chọn hình ảnh nền màn hình khóa"
   },
-  "Select monitor to configure wallpaper": {
-    "Select monitor to configure wallpaper": "Chọn màn hình áp dụng hình nền"
-  },
   "Select monospace font for process list and technical displays": {
     "Select monospace font for process list and technical displays": "Chọn phông chữ đơn cách cho danh sách tiến trình và hiển thị kỹ thuật"
   },
   "Select network": {
     "Select network": "Chọn mạng"
-  },
-  "Select system sound theme": {
-    "Select system sound theme": "Chọn chủ đề âm thanh hệ thống"
   },
   "Select the font family for UI text": {
     "Select the font family for UI text": "Chọn nhóm phông chữ cho văn bản giao diện"
@@ -7178,14 +6848,11 @@
   "Send Clipboard": {
     "Send Clipboard": "Gửi bảng nhớ tạm"
   },
-  "Send File": {
-    "Send File": "Gửi tệp"
-  },
   "Send SMS": {
     "Send SMS": "Gửi SMS"
   },
-  "Sending": {
-    "Sending": "Đang gửi"
+  "Sending %1...": {
+    "Sending %1...": ""
   },
   "Separate": {
     "Separate": "Riêng biệt"
@@ -7237,9 +6904,6 @@
   },
   "Set the font size for notification body text (htmlBody)": {
     "Set the font size for notification body text (htmlBody)": "Đặt kích thước phông chữ cho phần thân văn bản thông báo (htmlBody)"
-  },
-  "Set the font size for notification summary text": {
-    "Set the font size for notification summary text": "Đặt kích thước phông chữ cho văn bản tóm tắt thông báo"
   },
   "Set the percentage at which the battery is considered low.": {
     "Set the percentage at which the battery is considered low.": "Đặt phần trăm mà pin được coi là yếu."
@@ -7294,9 +6958,6 @@
   },
   "Share Gamma Control Settings": {
     "Share Gamma Control Settings": "Chia sẻ cài đặt điều khiển Gamma"
-  },
-  "Share Text": {
-    "Share Text": "Chia sẻ văn bản"
   },
   "Shared": {
     "Shared": "Đã chia sẻ"
@@ -7553,9 +7214,6 @@
   "Show during Niri overview": {
     "Show during Niri overview": "Hiển thị trong phần tổng quan Niri"
   },
-  "Show foreground surfaces on blurred panels for stronger contrast": {
-    "Show foreground surfaces on blurred panels for stronger contrast": "Hiển thị các bề mặt phía trước trên các bảng bị làm mờ để có độ tương phản mạnh hơn"
-  },
   "Show foreground surfaces on panels for stronger contrast": {
     "Show foreground surfaces on panels for stronger contrast": "Hiển thị bề mặt nền trước trên bảng để tương phản mạnh hơn"
   },
@@ -7571,12 +7229,6 @@
   "Show mount path": {
     "Show mount path": "Hiển thị đường dẫn mount"
   },
-  "Show notification popups only on the currently focused monitor": {
-    "Show notification popups only on the currently focused monitor": "Chỉ hiện thông báo nổi trên màn hình đang chọn"
-  },
-  "Show notifications only on the currently focused monitor": {
-    "Show notifications only on the currently focused monitor": "Chỉ hiện thông báo trên màn hình đang chọn"
-  },
   "Show on Last Display": {
     "Show on Last Display": "Hiển thị trên màn hình cuối cùng"
   },
@@ -7589,38 +7241,8 @@
   "Show on Overview Only": {
     "Show on Overview Only": "Chỉ hiển thị khi Tổng quan"
   },
-  "Show on all connected displays": {
-    "Show on all connected displays": "Hiển thị trong tất cả màn hình đã kết nối"
-  },
   "Show on screens:": {
     "Show on screens:": "Hiển thị trong các màn hình:"
-  },
-  "Show on-screen display when brightness changes": {
-    "Show on-screen display when brightness changes": "Hiển thị OSD khi độ sáng thay đổi"
-  },
-  "Show on-screen display when caps lock state changes": {
-    "Show on-screen display when caps lock state changes": "Hiển thị OSD khi trạng thái Caps Lock thay đổi"
-  },
-  "Show on-screen display when cycling audio output devices": {
-    "Show on-screen display when cycling audio output devices": "Hiển thị OSD khi xoay vòng các thiết bị đầu ra âm thanh"
-  },
-  "Show on-screen display when idle inhibitor state changes": {
-    "Show on-screen display when idle inhibitor state changes": "Hiển thị OSD khi trạng thái chặn chế độ rảnh thay đổi"
-  },
-  "Show on-screen display when media player status changes": {
-    "Show on-screen display when media player status changes": "Hiển thị OSD khi trạng thái trình phát phương tiện thay đổi"
-  },
-  "Show on-screen display when media player volume changes": {
-    "Show on-screen display when media player volume changes": "Hiển thị OSD khi âm lượng trình phát phương tiện thay đổi"
-  },
-  "Show on-screen display when microphone is muted/unmuted": {
-    "Show on-screen display when microphone is muted/unmuted": "Hiển thị OSD khi micro được tắt/bật âm"
-  },
-  "Show on-screen display when power profile changes": {
-    "Show on-screen display when power profile changes": "Hiển thị OSD khi cấu hình nguồn thay đổi"
-  },
-  "Show on-screen display when volume changes": {
-    "Show on-screen display when volume changes": "Hiển thị OSD khi âm lượng thay đổi"
   },
   "Show the bar only when no windows are open": {
     "Show the bar only when no windows are open": "Chỉ hiển thị thanh khi không có cửa sổ nào đang mở"
@@ -7630,9 +7252,6 @@
   },
   "Show weather information in top bar and control center": {
     "Show weather information in top bar and control center": "Hiển thị thông tin thời tiết trên thanh trên và trung tâm điều khiển"
-  },
-  "Show week number in the calendar": {
-    "Show week number in the calendar": "Hiển thị số tuần trong lịch"
   },
   "Show workspace index numbers in the top bar workspace switcher": {
     "Show workspace index numbers in the top bar workspace switcher": "Hiển thị số thứ tự không gian làm việc trên nút chuyển đổi không gian làm việc trong thanh trên"
@@ -7666,9 +7285,6 @@
   },
   "Signal Strength": {
     "Signal Strength": "Cường độ Tín hiệu"
-  },
-  "Signal:": {
-    "Signal:": "Tín hiệu:"
   },
   "Silence for a while": {
     "Silence for a while": "Tắt tiếng một lúc"
@@ -7796,9 +7412,6 @@
   "Start": {
     "Start": "Bắt đầu"
   },
-  "Start KDE Connect or Valent": {
-    "Start KDE Connect or Valent": "Khởi động KDE Connect hoặc Valent"
-  },
   "Start KDE Connect or Valent to use this plugin": {
     "Start KDE Connect or Valent to use this plugin": "Khởi động KDE Connect hoặc Valent để sử dụng plugin này"
   },
@@ -7837,9 +7450,6 @@
   },
   "Stripes": {
     "Stripes": "Sọc"
-  },
-  "Subtle Overlay": {
-    "Subtle Overlay": "Lớp Phủ Tinh tế"
   },
   "Summary": {
     "Summary": "Tóm tắt"
@@ -8045,20 +7655,11 @@
   "Terminal fallback failed. Install one of the supported terminal emulators or run 'dms greeter sync' manually.": {
     "Terminal fallback failed. Install one of the supported terminal emulators or run 'dms greeter sync' manually.": "Chế độ dự phòng dòng lệnh thất bại. Hãy cài đặt một trong những trình giả lập dòng lệnh được hỗ trợ hoặc chạy 'dms greeter sync' thủ công."
   },
-  "Terminal fallback opened. Complete authentication setup there; it will close automatically when done.": {
-    "Terminal fallback opened. Complete authentication setup there; it will close automatically when done.": "Đã mở chế độ dự phòng dòng lệnh. Hãy hoàn tất thiết lập xác thực tại đó; nó sẽ tự động đóng khi xong."
+  "Terminal fallback opened. Complete authentication there; it will close automatically when done.": {
+    "Terminal fallback opened. Complete authentication there; it will close automatically when done.": ""
   },
-  "Terminal fallback opened. Complete sync there; it will close automatically when done.": {
-    "Terminal fallback opened. Complete sync there; it will close automatically when done.": "Đã mở chế độ dự phòng dòng lệnh. Hãy hoàn tất đồng bộ tại đó; nó sẽ tự động đóng khi xong."
-  },
-  "Terminal multiplexer backend to use": {
-    "Terminal multiplexer backend to use": "Backend bộ ghép kênh dòng lệnh cần dùng"
-  },
-  "Terminal opened. Complete authentication setup there; it will close automatically when done.": {
-    "Terminal opened. Complete authentication setup there; it will close automatically when done.": "Đã mở cửa sổ dòng lệnh. Hãy hoàn tất thiết lập xác thực tại đó; nó sẽ tự động đóng khi xong."
-  },
-  "Terminal opened. Complete sync authentication there; it will close automatically when done.": {
-    "Terminal opened. Complete sync authentication there; it will close automatically when done.": "Đã mở cửa sổ dòng lệnh. Hãy hoàn tất xác thực đồng bộ tại đó; nó sẽ tự động đóng khi xong."
+  "Terminal opened. Complete authentication there; it will close automatically when done.": {
+    "Terminal opened. Complete authentication there; it will close automatically when done.": ""
   },
   "Terminals - Always use Dark Theme": {
     "Terminals - Always use Dark Theme": "Terminal - Luôn sử dụng giao diện tối"
@@ -8092,9 +7693,6 @@
   },
   "Text Rendering": {
     "Text Rendering": "Kết xuất văn bản"
-  },
-  "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.": {
-    "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.": "Công cụ 'boregard' không được cài đặt hoặc không có trong PATH của bạn.\n\nCài đặt nó từ https://danklinux.com, sau đó bật lại plugin này."
   },
   "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": {
     "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "Công cụ 'dgop' là bắt buộc để giám sát hệ thống.\nVui lòng cài đặt dgop để sử dụng tính năng này."
@@ -8156,20 +7754,8 @@
   "This device": {
     "This device": "Thiết bị này"
   },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings.": "Bản cài đặt này vẫn đang dùng hyprland.conf. Chạy dms setup để migrate trước khi chỉnh sửa cài đặt con trỏ."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing display settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing display settings.": "Bản cài đặt này vẫn đang dùng hyprland.conf. Chạy dms setup để migrate trước khi chỉnh sửa cài đặt màn hình."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings.": "Cài đặt này vẫn đang sử dụng hyprland.conf. Chạy dms setup để di chuyển trước khi chỉnh sửa cài đặt bố cục."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing shortcuts in Settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing shortcuts in Settings.": "Bản cài đặt này vẫn đang dùng hyprland.conf. Chạy dms setup để migrate trước khi chỉnh sửa phím tắt trong Cài đặt."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings.": "Bản cài đặt này vẫn đang dùng hyprland.conf. Chạy dms setup để migrate trước khi chỉnh sửa quy tắc cửa sổ trong Cài đặt."
+  "This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.": {
+    "This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.": ""
   },
   "This may take a few seconds": {
     "This may take a few seconds": "Việc này có thể mất vài giây"
@@ -8201,14 +7787,8 @@
   "Tile": {
     "Tile": "Ô (Tile)"
   },
-  "Tile H": {
-    "Tile H": "Chiều cao ô"
-  },
   "Tile Horizontally": {
     "Tile Horizontally": "Xếp gạch theo chiều ngang"
-  },
-  "Tile V": {
-    "Tile V": "Chiều dọc ô"
   },
   "Tile Vertically": {
     "Tile Vertically": "Gạch lát theo chiều dọc"
@@ -8252,14 +7832,8 @@
   "Timeout Progress Bar": {
     "Timeout Progress Bar": "Thanh tiến trình thời gian chờ"
   },
-  "Timeout for critical priority notifications": {
-    "Timeout for critical priority notifications": "Thời gian chờ cho thông báo ưu tiên khẩn cấp"
-  },
-  "Timeout for low priority notifications": {
-    "Timeout for low priority notifications": "Thời gian chờ cho thông báo ưu tiên thấp"
-  },
-  "Timeout for normal priority notifications": {
-    "Timeout for normal priority notifications": "Thời gian chờ cho thông báo ưu tiên bình thường"
+  "Timeouts": {
+    "Timeouts": ""
   },
   "Tint Saturation": {
     "Tint Saturation": "Độ bão hòa màu nhuộm"
@@ -8374,15 +7948,6 @@
   },
   "Transparency": {
     "Transparency": "Độ trong suốt"
-  },
-  "Transparency of the border": {
-    "Transparency of the border": "Độ trong suốt của viền"
-  },
-  "Transparency of the shadow layer": {
-    "Transparency of the shadow layer": "Độ trong suốt của lớp bóng"
-  },
-  "Transparency of the widget outline": {
-    "Transparency of the widget outline": "Độ trong suốt của đường viền tiện ích"
   },
   "Trash": {
     "Trash": "Thùng rác"
@@ -8555,9 +8120,6 @@
   "Unpin from Dock": {
     "Unpin from Dock": "Bỏ ghim khỏi dock"
   },
-  "Unsaved Changes": {
-    "Unsaved Changes": "Thay đổi chưa lưu"
-  },
   "Unsaved changes": {
     "Unsaved changes": "Thay đổi chưa lưu"
   },
@@ -8608,9 +8170,6 @@
   },
   "Uptime": {
     "Uptime": "Thời gian hoạt động"
-  },
-  "Uptime:": {
-    "Uptime:": "Thời gian hoạt động:"
   },
   "Urgent": {
     "Urgent": "Khẩn cấp"
@@ -8681,9 +8240,6 @@
   "Use colors extracted from album art instead of system theme colors": {
     "Use colors extracted from album art instead of system theme colors": ""
   },
-  "Use custom border size": {
-    "Use custom border size": "Sử dụng kích thước viền tùy chỉnh"
-  },
   "Use custom border/focus-ring width": {
     "Use custom border/focus-ring width": "Sử dụng độ rộng viền/vòng tiêu điểm tùy chỉnh"
   },
@@ -8720,11 +8276,11 @@
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "Dùng chủ đề âm thanh từ cài đặt hệ thống"
   },
+  "Use system PAM authentication": {
+    "Use system PAM authentication": ""
+  },
   "Use the extended surface for launcher content": {
     "Use the extended surface for launcher content": "Sử dụng bề mặt mở rộng cho nội dung trình khởi chạy"
-  },
-  "Use the overlay layer when opening the launcher": {
-    "Use the overlay layer when opening the launcher": "Sử dụng lớp phủ khi mở trình khởi chạy"
   },
   "Use the same position and size on all displays": {
     "Use the same position and size on all displays": "Sử dụng cùng vị trí và kích thước trên tất cả màn hình"
@@ -8975,6 +8531,9 @@
   "When locked": {
     "When locked": "Khi đã khóa"
   },
+  "Which PAM service the lock screen uses to authenticate": {
+    "Which PAM service the lock screen uses to authenticate": ""
+  },
   "White": {
     "White": "Trắng"
   },
@@ -9083,12 +8642,6 @@
   "Window Rules": {
     "Window Rules": "Các quy tắc cửa sổ"
   },
-  "Window Rules Include Missing": {
-    "Window Rules Include Missing": "Thiếu phần bao gồm các quy tắc cửa sổ"
-  },
-  "Window Rules Not Configured": {
-    "Window Rules Not Configured": "Các quy tắc cửa sổ chưa được cấu hình"
-  },
   "Wipe": {
     "Wipe": "Xóa sạch"
   },
@@ -9098,9 +8651,6 @@
   "Workspace": {
     "Workspace": "Không gian làm việc"
   },
-  "Workspace Appearance": {
-    "Workspace Appearance": "Giao diện không gian làm việc"
-  },
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "Số thứ tự không gian làm việc"
   },
@@ -9109,9 +8659,6 @@
   },
   "Workspace Padding": {
     "Workspace Padding": "Khoảng đệm không gian làm việc"
-  },
-  "Workspace Settings": {
-    "Workspace Settings": "Cài đặt không gian làm việc"
   },
   "Workspace Switcher": {
     "Workspace Switcher": "Chuyển không gian làm việc"
@@ -9161,17 +8708,8 @@
   "Yesterday": {
     "Yesterday": "Hôm qua"
   },
-  "You have unsaved changes. Save before closing this tab?": {
-    "You have unsaved changes. Save before closing this tab?": "Bạn có những thay đổi chưa lưu. Lưu trước khi đóng tab?"
-  },
   "You have unsaved changes. Save before continuing?": {
     "You have unsaved changes. Save before continuing?": "Bạn có những thay đổi chưa lưu. Lưu trước khi tiếp tục?"
-  },
-  "You have unsaved changes. Save before creating a new file?": {
-    "You have unsaved changes. Save before creating a new file?": "Bạn có những thay đổi chưa lưu. Lưu trước khi tạo tệp mới?"
-  },
-  "You have unsaved changes. Save before opening a file?": {
-    "You have unsaved changes. Save before opening a file?": "Bạn có những thay đổi chưa lưu. Lưu trước khi mở tệp?"
   },
   "You need to set either:\nQT_QPA_PLATFORMTHEME=gtk3 OR\nQT_QPA_PLATFORMTHEME=qt6ct\nas environment variables, and then restart the shell.\n\nqt6ct requires qt6ct-kde to be installed.": {
     "You need to set either:\nQT_QPA_PLATFORMTHEME=gtk3 OR\nQT_QPA_PLATFORMTHEME=qt6ct\nas environment variables, and then restart the shell.\n\nqt6ct requires qt6ct-kde to be installed.": "Bạn cần đặt một trong hai:\nQT_QPA_PLATFORMTHEME=gtk3 HOẶC\nQT_QPA_PLATFORMTHEME=qt6ct\nlàm biến môi trường, sau đó khởi động lại shell.\n\nqt6ct yêu cầu cài đặt qt6ct-kde."
@@ -9191,17 +8729,11 @@
   "Your system is up to date!": {
     "Your system is up to date!": "Hệ thống của bạn đã được cập nhật!"
   },
-  "actions": {
-    "actions": "thao tác"
-  },
   "admin": {
     "admin": "quản trị viên"
   },
   "attached": {
     "attached": "đã đính kèm"
-  },
-  "boregard is required": {
-    "boregard is required": "boregard là bắt buộc"
   },
   "brandon": {
     "brandon": "brandon (Kiểu)"
@@ -9236,9 +8768,6 @@
   "device": {
     "device": "thiết bị"
   },
-  "devices connected": {
-    "devices connected": "thiết bị đã kết nối"
-  },
   "dgop not available": {
     "dgop not available": "dgop không khả dụng"
   },
@@ -9247,6 +8776,9 @@
   },
   "discuss": {
     "discuss": "thảo luận"
+  },
+  "display rotation option": {
+    "Normal": ""
   },
   "dms is a highly customizable, modern desktop shell with a <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">material 3 inspired</a> design.<br /><br/>It is built with <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, a QT6 framework for building desktop shells, and <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, a statically typed, compiled programming language.": {
     "dms is a highly customizable, modern desktop shell with a <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">material 3 inspired</a> design.<br /><br/>It is built with <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, a QT6 framework for building desktop shells, and <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, a statically typed, compiled programming language.": "dms là một shell desktop hiện đại, có khả năng tùy chỉnh cao với thiết kế <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">lấy cảm hứng từ material 3</a>.<br /><br/>Nó được xây dựng bằng <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, một framework QT6 để xây dựng shell desktop, và <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, một ngôn ngữ lập trình biên dịch, định kiểu tĩnh."
@@ -9308,11 +8840,8 @@
   "mangowc GitHub": {
     "mangowc GitHub": "GitHub mangowc"
   },
-  "matugen not available or disabled - cannot apply GTK colors": {
-    "matugen not available or disabled - cannot apply GTK colors": "matugen không khả dụng hoặc bị tắt - không thể áp dụng màu GTK"
-  },
-  "matugen not available or disabled - cannot apply Qt colors": {
-    "matugen not available or disabled - cannot apply Qt colors": "matugen không khả dụng hoặc bị tắt - không thể áp dụng màu Qt"
+  "matugen not available or disabled - cannot apply %1 colors": {
+    "matugen not available or disabled - cannot apply %1 colors": ""
   },
   "matugen not found - install matugen package for dynamic theming": {
     "matugen not found - install matugen package for dynamic theming": "không tìm thấy matugen - hãy cài đặt gói matugen cho tạo chủ đề động"
@@ -9325,6 +8854,9 @@
   },
   "nav": {
     "nav": "điều hướng"
+  },
+  "network security type": {
+    "Open": ""
   },
   "niri GitHub": {
     "niri GitHub": "GitHub niri"
@@ -9368,14 +8900,14 @@
   "on Sway": {
     "on Sway": "trên Sway"
   },
-  "open": {
-    "open": "mở"
-  },
   "or run ": {
     "or run ": "hoặc chạy "
   },
   "power-profiles-daemon not available": {
     "power-profiles-daemon not available": "power-profiles-daemon không khả dụng"
+  },
+  "primary network connection label": {
+    "Primary": ""
   },
   "procs": {
     "procs": "tiến trình"
@@ -9430,9 +8962,6 @@
   },
   "v%1 by %2": {
     "v%1 by %2": "v%1 bởi %2"
-  },
-  "verified": {
-    "verified": "xác minh"
   },
   "• Install only from trusted sources": {
     "• Install only from trusted sources": "• Chỉ cài đặt từ nguồn đáng tin"

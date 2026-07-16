@@ -305,7 +305,7 @@ Item {
         onExited: exitCode => {
             root.greeterSyncRunning = false;
             if (exitCode === 0) {
-                var launched = root.greeterTerminalFallbackFromPrecheck ? I18n.tr("Terminal opened. Complete sync authentication there; it will close automatically when done.") : I18n.tr("Terminal fallback opened. Complete sync there; it will close automatically when done.");
+                var launched = root.greeterTerminalFallbackFromPrecheck ? I18n.tr("Terminal opened. Complete authentication there; it will close automatically when done.") : I18n.tr("Terminal fallback opened. Complete authentication there; it will close automatically when done.");
                 root.greeterStatusText = root.greeterStatusText ? root.greeterStatusText + "\n\n" + launched : launched;
                 SettingsData.clearGreeterSyncPending();
                 return;
@@ -396,7 +396,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "info"
-                title: I18n.tr("Greeter Status")
+                title: I18n.tr("Status")
                 settingKey: "greeterStatus"
 
                 StyledText {
@@ -470,7 +470,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "fingerprint"
-                title: I18n.tr("Login Authentication")
+                title: I18n.tr("Authentication")
                 settingKey: "greeterAuth"
 
                 StyledText {
@@ -517,7 +517,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "palette"
-                title: I18n.tr("Greeter Appearance")
+                title: I18n.tr("Appearance")
                 settingKey: "greeterAppearance"
 
                 StyledText {
@@ -558,7 +558,7 @@ Item {
                     currentValue: {
                         var current = (SettingsData.greeterLockDateFormat !== undefined && SettingsData.greeterLockDateFormat !== "") ? SettingsData.greeterLockDateFormat : SettingsData.lockDateFormat || "";
                         var match = root._lockDateFormatPresets.find(p => p.format === current);
-                        return match ? match.label : (current ? I18n.tr("Custom: ") + current : root._lockDateFormatPresets[0].label);
+                        return match ? match.label : (current ? I18n.tr("Custom") + ": " + current : root._lockDateFormatPresets[0].label);
                     }
                     onValueChanged: value => {
                         var preset = root._lockDateFormatPresets.find(p => p.label === value);
@@ -601,7 +601,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "history"
-                title: I18n.tr("Greeter Behavior")
+                title: I18n.tr("Behavior")
                 settingKey: "greeterBehavior"
 
                 StyledText {

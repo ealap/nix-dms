@@ -31,7 +31,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "frame_source"
-                title: I18n.tr("Frame")
+                title: I18n.tr("General")
                 settingKey: "frameEnabled"
 
                 SettingsToggleRow {

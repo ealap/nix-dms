@@ -266,7 +266,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "lock"
-                title: I18n.tr("Lock Screen layout")
+                title: I18n.tr("Layout")
                 settingKey: "lockLayout"
 
                 SettingsToggleRow {
@@ -345,7 +345,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "palette"
-                title: I18n.tr("Lock Screen Appearance")
+                title: I18n.tr("Appearance")
                 settingKey: "lockAppearance"
 
                 StyledText {
@@ -476,7 +476,6 @@ Item {
                     settingKey: "lockPamExternallyManaged"
                     tags: ["lock", "screen", "pam", "managed", "external", "authentication", "policy"]
                     text: I18n.tr("Use system PAM authentication", "system PAM policy toggle")
-                    description: I18n.tr("System PAM sets the authentication policy.", "system PAM policy toggle")
                     checked: SettingsData.lockPamExternallyManaged
                     onToggled: checked => SettingsData.set("lockPamExternallyManaged", checked)
                 }
@@ -582,7 +581,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "lock"
-                title: I18n.tr("Lock Screen behaviour")
+                title: I18n.tr("Behavior")
                 settingKey: "lockBehavior"
 
                 StyledText {
@@ -721,7 +720,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "monitor"
-                title: I18n.tr("Lock Screen Display")
+                title: I18n.tr("Display Assignment")
                 settingKey: "lockDisplay"
 
                 StyledText {

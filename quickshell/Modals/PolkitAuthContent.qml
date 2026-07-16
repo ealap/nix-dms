@@ -294,7 +294,7 @@ FocusScope {
         }
 
         StyledText {
-            text: I18n.tr("Authentication failed, please try again")
+            text: I18n.tr("Authentication failed - try again")
             font.pixelSize: Theme.fontSizeSmall
             color: Theme.error
             width: parent.width

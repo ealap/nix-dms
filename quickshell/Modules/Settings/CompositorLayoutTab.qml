@@ -94,7 +94,7 @@ Item {
 
     function fixLayoutInclude() {
         if (readOnly) {
-            ToastService.showWarning(I18n.tr("Hyprland conf mode"), I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings."), "dms setup", "hyprland-migration");
+            ToastService.showWarning(I18n.tr("Hyprland conf mode"), I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before changing these settings."), "dms setup", "hyprland-migration");
             return;
         }
         const paths = getLayoutConfigPaths();
@@ -208,7 +208,7 @@ awk '$1 == "xray" { print FILENAME ":" FNR; exit }' $files 2>/dev/null`;
                         StyledText {
                             text: {
                                 if (warningBox.showLegacy)
-                                    return I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings.");
+                                    return I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.");
                                 if (warningBox.showSetup)
                                     return I18n.tr("Click 'Setup' to create %1 and add include to your compositor config.").arg("dms/layout");
                                 return "";
@@ -270,7 +270,7 @@ awk '$1 == "xray" { print FILENAME ":" FNR; exit }' $files 2>/dev/null`;
             SettingsCard {
                 width: parent.width
                 tags: ["niri", "layout", "gaps", "radius", "window", "border"]
-                title: I18n.tr("Niri Layout Overrides")
+                title: I18n.tr("%1 Layout Overrides").arg("niri")
                 settingKey: "niriLayout"
                 iconName: "layers"
                 visible: CompositorService.isNiri
@@ -279,7 +279,7 @@ awk '$1 == "xray" { print FILENAME ":" FNR; exit }' $files 2>/dev/null`;
                     tags: ["niri", "gaps", "override", "unmanaged"]
                     settingKey: "niriLayoutGapsMode"
                     text: I18n.tr("Gaps")
-                    description: I18n.tr("Auto matches bar spacing; Off leaves gaps to your niri config")
+                    description: I18n.tr("Auto matches bar spacing; Off leaves gaps to your %1 config").arg("niri")
                     model: [I18n.tr("Auto"), I18n.tr("Custom"), I18n.tr("Off")]
                     currentIndex: {
                         if (SettingsData.niriLayoutGapsOverride === -2)
@@ -399,7 +399,7 @@ awk '$1 == "xray" { print FILENAME ":" FNR; exit }' $files 2>/dev/null`;
             SettingsCard {
                 width: parent.width
                 tags: ["hyprland", "layout", "gaps", "radius", "window", "border", "rounding"]
-                title: I18n.tr("Hyprland Layout Overrides")
+                title: I18n.tr("%1 Layout Overrides").arg("Hyprland")
                 settingKey: "hyprlandLayout"
                 iconName: "crop_square"
                 visible: CompositorService.isHyprland
@@ -408,7 +408,7 @@ awk '$1 == "xray" { print FILENAME ":" FNR; exit }' $files 2>/dev/null`;
                     tags: ["hyprland", "gaps", "override", "inner", "outer", "unmanaged"]
                     settingKey: "hyprlandLayoutGapsMode"
                     text: I18n.tr("Gaps")
-                    description: I18n.tr("Auto matches bar spacing; Off leaves gaps to your Hyprland config")
+                    description: I18n.tr("Auto matches bar spacing; Off leaves gaps to your %1 config").arg("Hyprland")
                     model: [I18n.tr("Auto"), I18n.tr("Custom"), I18n.tr("Off")]
                     currentIndex: {
                         if (SettingsData.hyprlandLayoutGapsOverride === -2)
@@ -492,7 +492,6 @@ awk '$1 == "xray" { print FILENAME ":" FNR; exit }' $files 2>/dev/null`;
                     tags: ["hyprland", "border", "override"]
                     settingKey: "hyprlandLayoutBorderSizeEnabled"
                     text: I18n.tr("Override Border Size")
-                    description: I18n.tr("Use custom border size")
                     checked: SettingsData.hyprlandLayoutBorderSize >= 0
                     onToggled: checked => {
                         if (checked) {
@@ -551,7 +550,7 @@ awk '$1 == "xray" { print FILENAME ":" FNR; exit }' $files 2>/dev/null`;
             SettingsCard {
                 width: parent.width
                 tags: ["mangowc", "mango", "dwl", "layout", "gaps", "radius", "window", "border"]
-                title: I18n.tr("MangoWC Layout Overrides")
+                title: I18n.tr("%1 Layout Overrides").arg("MangoWC")
                 settingKey: "mangoLayout"
                 iconName: "crop_square"
                 visible: CompositorService.isMango
@@ -560,7 +559,7 @@ awk '$1 == "xray" { print FILENAME ":" FNR; exit }' $files 2>/dev/null`;
                     tags: ["mangowc", "mango", "gaps", "override", "inner", "outer", "unmanaged"]
                     settingKey: "mangoLayoutGapsMode"
                     text: I18n.tr("Gaps")
-                    description: I18n.tr("Auto matches bar spacing; Off leaves gaps to your MangoWC config")
+                    description: I18n.tr("Auto matches bar spacing; Off leaves gaps to your %1 config").arg("MangoWC")
                     model: [I18n.tr("Auto"), I18n.tr("Custom"), I18n.tr("Off")]
                     currentIndex: {
                         if (SettingsData.mangoLayoutGapsOverride === -2)
@@ -644,7 +643,6 @@ awk '$1 == "xray" { print FILENAME ":" FNR; exit }' $files 2>/dev/null`;
                     tags: ["mangowc", "mango", "border", "override"]
                     settingKey: "mangoLayoutBorderSizeEnabled"
                     text: I18n.tr("Override Border Size")
-                    description: I18n.tr("Use custom border size")
                     checked: SettingsData.mangoLayoutBorderSize >= 0
                     onToggled: checked => {
                         if (checked) {

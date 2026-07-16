@@ -4,6 +4,9 @@
 While term_freeze.json exists, any I18n.tr()/qsTr() term not in it fails the check.
 Existing terms may be reused or moved freely.
 
+The freeze is term-granular: adding a new real context to a frozen term via
+I18n.tr(term, ctx, true) does not trip it (same English string, new slot).
+
   --update   re-snapshot the current terms into term_freeze.json
   (delete term_freeze.json to lift the freeze)
 """

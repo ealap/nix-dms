@@ -156,7 +156,7 @@ Item {
 
                     function statusTitle() {
                         if (root.controller?.isSearching || root.controller?.isFileSearching)
-                            return I18n.tr("Searching");
+                            return I18n.tr("Searching...");
                         if ((root.controller?.searchMode ?? "") === "files" && !DSearchService.dsearchAvailable)
                             return I18n.tr("File search unavailable");
                         if ((root.controller?.searchMode ?? "") === "files" && (root.controller?.searchQuery?.length ?? 0) < 2)

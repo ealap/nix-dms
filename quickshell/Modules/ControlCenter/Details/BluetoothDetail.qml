@@ -166,7 +166,7 @@ Rectangle {
                 }
 
                 StyledText {
-                    text: scanButton.isDiscovering ? I18n.tr("Scanning") : I18n.tr("Scan")
+                    text: scanButton.isDiscovering ? I18n.tr("Scanning...") : I18n.tr("Scan")
                     color: scanButton.adapterEnabled ? Theme.primary : Theme.surfaceVariantText
                     font.pixelSize: Theme.fontSizeMedium
                     font.weight: Font.Medium

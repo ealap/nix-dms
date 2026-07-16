@@ -46,7 +46,8 @@ StyledRect {
     }
 
     function updateSingle(plugin) {
-        if (isUpdating) return;
+        if (isUpdating)
+            return;
         isUpdating = true;
         currentUpdatingPlugin = plugin.name;
 
@@ -68,7 +69,8 @@ StyledRect {
     }
 
     function updateAll() {
-        if (isUpdating) return;
+        if (isUpdating)
+            return;
         isUpdating = true;
 
         var list = updatesList.slice();
@@ -149,7 +151,9 @@ StyledRect {
             clip: true
 
             Behavior on height {
-                NumberAnimation { duration: Theme.shortDuration }
+                NumberAnimation {
+                    duration: Theme.shortDuration
+                }
             }
 
             Row {
@@ -220,7 +224,7 @@ StyledRect {
                                 }
 
                                 StyledText {
-                                    text: modelData.author ? I18n.tr("By %1").arg(modelData.author) : ""
+                                    text: modelData.author ? I18n.tr("by %1", "author attribution").arg(modelData.author) : ""
                                     font.pixelSize: Theme.fontSizeSmall
                                     color: Theme.surfaceVariantText
                                     elide: Text.ElideRight

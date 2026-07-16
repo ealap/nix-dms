@@ -1518,7 +1518,7 @@ Singleton {
     }
 
     function showHyprlandReadOnlyWarning() {
-        ToastService.showWarning(I18n.tr("Hyprland conf mode"), I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before editing display settings."), "dms setup", "display-config");
+        ToastService.showWarning(I18n.tr("Hyprland conf mode"), I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before changing these settings."), "dms setup", "display-config");
     }
 
     function buildOutputsMap() {
@@ -2639,7 +2639,7 @@ Singleton {
     function getTransformLabel(transform) {
         switch (transform) {
         case "Normal":
-            return I18n.tr("Normal");
+            return I18n.tr("Normal", "display rotation option", true);
         case "90":
             return I18n.tr("90°");
         case "180":
@@ -2655,12 +2655,12 @@ Singleton {
         case "Flipped270":
             return I18n.tr("Flipped 270°");
         default:
-            return I18n.tr("Normal");
+            return I18n.tr("Normal", "display rotation option", true);
         }
     }
 
     function getTransformValue(label) {
-        if (label === I18n.tr("Normal"))
+        if (label === I18n.tr("Normal", "display rotation option", true))
             return "Normal";
         if (label === I18n.tr("90°"))
             return "90";

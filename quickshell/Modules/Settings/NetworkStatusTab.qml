@@ -37,7 +37,7 @@ Item {
             SettingsCard {
                 id: root
 
-                title: I18n.tr("Network Status")
+                title: I18n.tr("Status")
                 iconName: "lan"
                 settingKey: "networkStatus"
                 tags: ["status", "network", "connectivity", "internet"]
@@ -128,7 +128,7 @@ Item {
                         }
 
                         StyledText {
-                            text: I18n.tr("Primary")
+                            text: I18n.tr("Primary", "primary network connection label", true)
                             font.pixelSize: Theme.fontSizeMedium
                             color: Theme.surfaceVariantText
                             visible: NetworkService.primaryConnection.length > 0

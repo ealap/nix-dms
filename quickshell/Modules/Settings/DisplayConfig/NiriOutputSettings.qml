@@ -93,21 +93,21 @@ Column {
 
             currentValue: {
                 if (!hotCornersData)
-                    return I18n.tr("Inherit");
+                    return I18n.tr("Inherit", "inherit from global setting");
                 if (hotCornersData.off)
                     return I18n.tr("Off");
                 const corners = hotCornersData.corners || [];
                 if (corners.length === 0)
-                    return I18n.tr("Inherit");
+                    return I18n.tr("Inherit", "inherit from global setting");
                 if (corners.length === 4)
                     return I18n.tr("All");
                 return I18n.tr("Select...");
             }
-            options: [I18n.tr("Inherit"), I18n.tr("Off"), I18n.tr("All"), I18n.tr("Select...")]
+            options: [I18n.tr("Inherit", "inherit from global setting"), I18n.tr("Off"), I18n.tr("All"), I18n.tr("Select...")]
 
             onValueChanged: value => {
                 switch (value) {
-                case I18n.tr("Inherit"):
+                case I18n.tr("Inherit", "inherit from global setting"):
                     DisplayConfigState.setNiriSetting(root.outputData, root.outputName, "hotCorners", null);
                     break;
                 case I18n.tr("Off"):
@@ -232,7 +232,7 @@ Column {
                         DankTextField {
                             width: parent.width
                             height: 40
-                            placeholderText: I18n.tr("Inherit")
+                            placeholderText: I18n.tr("Inherit", "inherit from global setting")
                             enabled: !settingsColumn.isDisabled
                             text: {
                                 const layout = DisplayConfigState.getNiriSetting(root.outputData, root.outputName, "layout", null);
@@ -270,7 +270,7 @@ Column {
                         DankTextField {
                             width: parent.width
                             height: 40
-                            placeholderText: I18n.tr("Inherit")
+                            placeholderText: I18n.tr("Inherit", "inherit from global setting")
                             enabled: !settingsColumn.isDisabled
                             text: {
                                 const layout = DisplayConfigState.getNiriSetting(root.outputData, root.outputName, "layout", null);
@@ -321,7 +321,7 @@ Column {
                     DankTextField {
                         width: parent.width
                         height: 40
-                        placeholderText: I18n.tr("Inherit")
+                        placeholderText: I18n.tr("Inherit", "inherit from global setting")
                         enabled: !settingsColumn.isDisabled
                         text: {
                             const layout = DisplayConfigState.getNiriSetting(root.outputData, root.outputName, "layout", null);

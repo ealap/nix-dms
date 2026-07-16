@@ -435,7 +435,7 @@ def parse_tabs_from_sidebar(sidebar_file):
     with open(sidebar_file, "r", encoding="utf-8") as f:
         content = f.read()
 
-    pattern = r'"text"\s*:\s*I18n\.tr\("([^"]+)"(?:,\s*"[^"]+")?\).*?"icon"\s*:\s*"([^"]+)".*?"tabIndex"\s*:\s*(\d+)'
+    pattern = r'"text"\s*:\s*I18n\.tr\("([^"]+)"(?:,\s*"[^"]+"(?:,\s*true)?)?\).*?"icon"\s*:\s*"([^"]+)".*?"tabIndex"\s*:\s*(\d+)'
     tabs = []
 
     for match in re.finditer(pattern, content, re.DOTALL):

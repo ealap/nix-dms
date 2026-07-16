@@ -646,7 +646,7 @@ Singleton {
 
         onExited: exitCode => {
             if (exitCode === 0) {
-                const message = root.authApplyTerminalFallbackFromPrecheck ? I18n.tr("Terminal opened. Complete authentication setup there; it will close automatically when done.") : I18n.tr("Terminal fallback opened. Complete authentication setup there; it will close automatically when done.");
+                const message = root.authApplyTerminalFallbackFromPrecheck ? I18n.tr("Terminal opened. Complete authentication there; it will close automatically when done.") : I18n.tr("Terminal fallback opened. Complete authentication there; it will close automatically when done.");
                 ToastService.showInfo(message, "", "", "auth-sync");
             } else {
                 let details = (root.authApplyTerminalFallbackStderr || "").trim();

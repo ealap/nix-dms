@@ -90,15 +90,20 @@ def json_changed(file_path, new_data):
     old_data = normalize_json(file_path)
     return json.dumps(old_data, sort_keys=True) != json.dumps(new_data, sort_keys=True)
 
-def upload_source_strings(api_token, project_id):
+def upload_source_strings(api_token, project_id, prune=False):
     if not EN_JSON.exists():
         warn("No en.json to upload")
         return False
 
-    info("Uploading source strings to POEditor...")
+    info("Uploading source strings to POEditor..." + (" (pruning terms not in en.json)" if prune else ""))
 
     with open(EN_JSON, 'rb') as f:
         boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW'
+        sync_part = (
+            f'--{boundary}\r\n'
+            f'Content-Disposition: form-data; name="sync_terms"\r\n\r\n'
+            f'1\r\n'
+        ) if prune else ''
         body = (
             f'--{boundary}\r\n'
             f'Content-Disposition: form-data; name="api_token"\r\n\r\n'
@@ -109,6 +114,7 @@ def upload_source_strings(api_token, project_id):
             f'--{boundary}\r\n'
             f'Content-Disposition: form-data; name="updating"\r\n\r\n'
             f'terms\r\n'
+            f'{sync_part}'
             f'--{boundary}\r\n'
             f'Content-Disposition: form-data; name="file"; filename="en.json"\r\n'
             f'Content-Type: application/json\r\n\r\n'
@@ -253,7 +259,7 @@ def save_sync_state():
 
 def main():
     if len(sys.argv) < 2:
-        error("Usage: i18nsync.py [check|sync|test|local]")
+        error("Usage: i18nsync.py [check|sync [--prune]|test|local]")
 
     command = sys.argv[1]
 
@@ -290,6 +296,10 @@ def main():
     elif command == "sync":
         api_token = get_env_or_error('POEDITOR_API_TOKEN')
         project_id = get_env_or_error('POEDITOR_PROJECT_ID')
+        prune = "--prune" in sys.argv[2:]
+        if prune:
+            warn("--prune deletes every POEditor term missing from the local en.json, including its translations.")
+            warn("Terms from dms-plugins/ are machine-dependent: make sure all official plugins are present before pruning.")
 
         extract_strings()
 
@@ -310,8 +320,8 @@ def main():
 
         strings_changed = json.dumps(current_en, sort_keys=True) != json.dumps(staged_en, sort_keys=True)
 
-        if strings_changed:
-            upload_source_strings(api_token, project_id)
+        if strings_changed or prune:
+            upload_source_strings(api_token, project_id, prune)
         else:
             info("No changes in source strings")
 

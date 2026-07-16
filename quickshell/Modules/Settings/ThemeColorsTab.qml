@@ -143,7 +143,7 @@ Item {
 
     function fixCursorInclude() {
         if (cursorReadOnly) {
-            ToastService.showWarning(I18n.tr("Hyprland conf mode"), I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings."), "dms setup", "hyprland-migration");
+            ToastService.showWarning(I18n.tr("Hyprland conf mode"), I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before changing these settings."), "dms setup", "hyprland-migration");
             return;
         }
         const paths = getCursorConfigPaths();
@@ -1626,7 +1626,6 @@ Item {
                     tags: ["widget", "background", "color", "surface", "material"]
                     settingKey: "widgetBackgroundColor"
                     text: I18n.tr("Widget Background Color")
-                    description: I18n.tr("Choose the background color for widgets")
                     dropdownWidth: 220
                     options: themeColorsTab.widgetBackgroundOptions
                     currentMode: SettingsData.widgetBackgroundColor
@@ -1943,7 +1942,6 @@ Item {
                     tags: ["elevation", "shadow", "opacity", "transparency", "m3"]
                     settingKey: "m3ElevationOpacity"
                     text: I18n.tr("Shadow Opacity")
-                    description: I18n.tr("Controls the opacity of the shadow")
                     value: SettingsData.m3ElevationOpacity ?? 30
                     minimum: 0
                     maximum: 100
@@ -2220,7 +2218,7 @@ Item {
                                 StyledText {
                                     text: {
                                         if (cursorWarningBox.showLegacy)
-                                            return I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings.");
+                                            return I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.");
                                         if (cursorWarningBox.showSetup)
                                             return I18n.tr("Click 'Setup' to create %1 and add include to your compositor config.").arg("dms/cursor");
                                         return "";

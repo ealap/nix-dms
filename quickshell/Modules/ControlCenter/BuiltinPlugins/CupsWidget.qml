@@ -16,7 +16,7 @@ PluginComponent {
     ccWidgetPrimaryText: I18n.tr("Printers")
     ccWidgetSecondaryText: {
         if (CupsService.cupsAvailable && CupsService.getPrintersNum() > 0) {
-            return I18n.tr("Printers: ") + CupsService.getPrintersNum() + " - " + I18n.tr("Jobs: ") + CupsService.getTotalJobsNum();
+            return I18n.tr("Printers") + ": " + CupsService.getPrintersNum() + " - " + I18n.tr("Jobs") + ": " + CupsService.getTotalJobsNum();
         } else {
             if (!CupsService.cupsAvailable) {
                 return I18n.tr("Print Server not available");

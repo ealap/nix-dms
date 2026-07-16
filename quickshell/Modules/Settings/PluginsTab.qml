@@ -21,7 +21,8 @@ FocusScope {
     property var filteredPlugins: []
 
     readonly property var pluginsWithUpdates: {
-        if (!DMSService.installedPlugins) return [];
+        if (!DMSService.installedPlugins)
+            return [];
         return DMSService.installedPlugins.filter(p => p.hasUpdate === true);
     }
 
@@ -438,7 +439,7 @@ FocusScope {
 
                         StyledText {
                             width: parent.width
-                            text: I18n.tr("No plugins found.") + "\n" + I18n.tr("Place plugins in %1").arg(PluginService.pluginDirectory)
+                            text: I18n.tr("No plugins found", "empty plugin list") + "\n" + I18n.tr("Place plugins in %1").arg(PluginService.pluginDirectory)
                             font.pixelSize: Theme.fontSizeMedium
                             color: Theme.surfaceVariantText
                             horizontalAlignment: Text.AlignHCenter

@@ -192,7 +192,7 @@ Item {
             {
                 "id": "battery",
                 "text": I18n.tr("Battery"),
-                "description": I18n.tr("Battery level and power management"),
+                "description": I18n.tr("Battery and power management"),
                 "icon": "battery_std",
                 "enabled": true
             },

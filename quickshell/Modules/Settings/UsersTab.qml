@@ -290,7 +290,7 @@ Item {
                                             return;
                                         const makeAdmin = !userRow.modelData.isAdmin;
                                         adminToggleConfirm.showWithOptions({
-                                            title: makeAdmin ? I18n.tr("Grant admin?") : I18n.tr("Remove admin?"),
+                                            title: makeAdmin ? I18n.tr("Make admin") : I18n.tr("Remove admin"),
                                             message: makeAdmin ? I18n.tr("Add \"%1\" to the %2 group?").arg(userRow.modelData.username).arg(UsersService.adminGroup) : I18n.tr("Remove \"%1\" from the %2 group?").arg(userRow.modelData.username).arg(UsersService.adminGroup),
                                             confirmText: makeAdmin ? I18n.tr("Grant") : I18n.tr("Remove"),
                                             confirmColor: Theme.primary,
@@ -317,7 +317,7 @@ Item {
                                         if (actionBlocked)
                                             return;
                                         deleteUserConfirm.showWithOptions({
-                                            title: I18n.tr("Delete user?"),
+                                            title: I18n.tr("Delete user"),
                                             message: I18n.tr("Delete \"%1\" and remove the home directory? This cannot be undone.").arg(userRow.modelData.username),
                                             confirmText: I18n.tr("Delete"),
                                             confirmColor: Theme.primary,

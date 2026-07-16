@@ -117,12 +117,17 @@ Singleton {
         log.warn("Falling back to built-in English strings");
     }
 
-    function tr(term, context) {
+    // isRealContext is consumed by translations/extract_translations.py only:
+    // pass a literal `true` (same line) to give (term, context) its own POEditor
+    // translation slot. Lookup ignores it -- a real context exists as a bucket
+    // in the export, a comment-only context does not.
+    function tr(term, context, isRealContext) {
         if (!translationsLoaded || !translations)
             return term;
-        const ctx = context || term;
-        if (translations[ctx] && translations[ctx][term])
-            return translations[ctx][term];
+        if (context && translations[context] && translations[context][term])
+            return translations[context][term];
+        if (translations[term] && translations[term][term])
+            return translations[term][term];
         for (const c in translations) {
             if (translations[c] && translations[c][term])
                 return translations[c][term];

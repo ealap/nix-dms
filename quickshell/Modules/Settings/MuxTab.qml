@@ -25,7 +25,7 @@ Item {
             SettingsCard {
                 tab: "mux"
                 tags: ["mux", "multiplexer", "tmux", "zellij", "type"]
-                title: I18n.tr("Multiplexer")
+                title: I18n.tr("General")
                 iconName: "terminal"
 
                 SettingsDropdownRow {
@@ -33,7 +33,6 @@ Item {
                     tags: ["mux", "multiplexer", "tmux", "zellij", "type", "backend"]
                     settingKey: "muxType"
                     text: I18n.tr("Multiplexer Type")
-                    description: I18n.tr("Terminal multiplexer backend to use")
                     options: root.muxTypeOptions
                     currentValue: SettingsData.muxType
                     onValueChanged: value => SettingsData.set("muxType", value)

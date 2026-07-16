@@ -318,7 +318,7 @@ Item {
                                 visible: NetworkService.wifiConnected
 
                                 StyledText {
-                                    text: I18n.tr("Signal:")
+                                    text: I18n.tr("Signal") + ":"
                                     font.pixelSize: Theme.fontSizeMedium
                                     color: Theme.surfaceVariantText
                                     width: 100
@@ -563,7 +563,7 @@ Item {
                                                         spacing: Theme.spacingXS
 
                                                         StyledText {
-                                                            text: isConnecting ? I18n.tr("Connecting...") : (isConnected ? I18n.tr("Connected") : (modelData.secured ? I18n.tr("Secured") : I18n.tr("Open")))
+                                                            text: isConnecting ? I18n.tr("Connecting...") : (isConnected ? I18n.tr("Connected") : (modelData.secured ? I18n.tr("Secured") : I18n.tr("Open", "network security type", true)))
                                                             font.pixelSize: Theme.fontSizeSmall
                                                             color: isConnecting ? Theme.warning : (isConnected ? Theme.primary : Theme.surfaceVariantText)
                                                         }
@@ -770,7 +770,7 @@ Item {
                                                                     });
                                                                 fields.push({
                                                                     label: I18n.tr("Security"),
-                                                                    value: net.secured ? (net.enterprise ? I18n.tr("Enterprise") : I18n.tr("WPA/WPA2")) : I18n.tr("Open")
+                                                                    value: net.secured ? (net.enterprise ? I18n.tr("Enterprise") : I18n.tr("WPA/WPA2")) : I18n.tr("Open", "network security type", true)
                                                                 });
 
                                                                 return fields;
@@ -966,7 +966,7 @@ Item {
                                                 text: {
                                                     if (isConnecting)
                                                         return I18n.tr("Connecting...");
-                                                    const parts = [isConnected ? I18n.tr("Connected") : (modelData.secured ? I18n.tr("Secured") : I18n.tr("Open"))];
+                                                    const parts = [isConnected ? I18n.tr("Connected") : (modelData.secured ? I18n.tr("Secured") : I18n.tr("Open", "network security type", true))];
                                                     parts.push(isOutOfRange ? I18n.tr("Unavailable") : (modelData.signal || 0) + "%");
                                                     if (modelData.hidden || false)
                                                         parts.push(I18n.tr("Hidden"));
@@ -1131,7 +1131,7 @@ Item {
                                                             });
                                                         fields.push({
                                                             label: I18n.tr("Security"),
-                                                            value: net.secured ? (net.enterprise ? I18n.tr("Enterprise") : I18n.tr("WPA/WPA2")) : I18n.tr("Open")
+                                                            value: net.secured ? (net.enterprise ? I18n.tr("Enterprise") : I18n.tr("WPA/WPA2")) : I18n.tr("Open", "network security type", true)
                                                         });
 
                                                         return fields;

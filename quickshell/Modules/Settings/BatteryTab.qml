@@ -48,8 +48,9 @@ done
             SettingsCard {
                 width: parent.width
                 iconName: "battery_charging_full"
-                title: I18n.tr("Battery Status")
+                title: I18n.tr("Status")
                 settingKey: "batteryStatusCard"
+                tags: ["battery", "status", "charge", "health"]
 
                 Column {
                     width: parent.width - Theme.spacingM * 2
@@ -167,8 +168,9 @@ done
             SettingsCard {
                 width: parent.width
                 iconName: "tune"
-                title: I18n.tr("Battery Protection")
+                title: I18n.tr("Protection")
                 settingKey: "batteryProtection"
+                tags: ["battery", "protection", "charge", "limit"]
 
                 SettingsSliderRow {
                     settingKey: "batteryChargeLimit"
@@ -230,8 +232,9 @@ done
             SettingsCard {
                 width: parent.width
                 iconName: "notifications"
-                title: I18n.tr("Battery Alerts")
+                title: I18n.tr("Alerts")
                 settingKey: "batteryAlerts"
+                tags: ["battery", "alerts", "low", "warning"]
 
                 SettingsSliderRow {
                     settingKey: "batteryLowThreshold"
@@ -332,7 +335,6 @@ done
                 SettingsDropdownRow {
                     settingKey: "acProfileName"
                     text: I18n.tr("Profile when Plugged In (AC)")
-                    description: I18n.tr("Power profile to use when AC power is connected.")
                     options: [I18n.tr("Don't Change"), Theme.getPowerProfileLabel(0), Theme.getPowerProfileLabel(1), Theme.getPowerProfileLabel(2)]
                     currentValue: {
                         const val = SettingsData.acProfileName;
@@ -350,7 +352,6 @@ done
                 SettingsDropdownRow {
                     settingKey: "batteryProfileName"
                     text: I18n.tr("Profile when on Battery")
-                    description: I18n.tr("Power profile to use when running on battery power.")
                     options: [I18n.tr("Don't Change"), Theme.getPowerProfileLabel(0), Theme.getPowerProfileLabel(1), Theme.getPowerProfileLabel(2)]
                     currentValue: {
                         const val = SettingsData.batteryProfileName;

@@ -139,7 +139,7 @@ Item {
                             }
 
                             StyledText {
-                                text: !root.keybindsAvailable ? I18n.tr("Bind the spotlight IPC action in your compositor config.") : SettingsData.connectedFrameModeActive ? I18n.tr("Opens the connected launcher in Connected Frame Mode.") : I18n.tr("Follows the default launcher choice selected above.")
+                                text: !root.keybindsAvailable ? I18n.tr("Bind the %1 IPC action in your compositor config.").arg("spotlight") : SettingsData.connectedFrameModeActive ? I18n.tr("Opens the connected launcher in Connected Frame Mode.") : I18n.tr("Follows the default launcher choice selected above.")
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Theme.surfaceVariantText
                                 width: parent.width
@@ -173,7 +173,6 @@ Item {
                     settingKey: "launcherUseOverlayLayer"
                     tags: ["launcher", "fullscreen", "overlay", "layer"]
                     text: I18n.tr("Use Overlay Layer", "launcher layer toggle: use Wayland overlay layer")
-                    description: I18n.tr("Use the overlay layer when opening the launcher")
                     checked: SettingsData.launcherUseOverlayLayer
                     onToggled: checked => SettingsData.set("launcherUseOverlayLayer", checked)
                 }
@@ -233,7 +232,7 @@ Item {
                             }
 
                             StyledText {
-                                text: !root.keybindsAvailable ? I18n.tr("Bind the spotlight-bar IPC action in your compositor config.") : I18n.tr("Uses the spotlight-bar IPC action and always opens the minimal bar.")
+                                text: !root.keybindsAvailable ? I18n.tr("Bind the %1 IPC action in your compositor config.").arg("spotlight-bar") : I18n.tr("Uses the spotlight-bar IPC action and always opens the minimal bar.")
                                 font.pixelSize: Theme.fontSizeSmall
                                 color: Theme.surfaceVariantText
                                 width: parent.width

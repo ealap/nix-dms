@@ -5,6 +5,9 @@
   "%1 Animation Speed": {
     "%1 Animation Speed": "%1 애니메이션 속도"
   },
+  "%1 Layout Overrides": {
+    "%1 Layout Overrides": ""
+  },
   "%1 Sessions": {
     "%1 Sessions": "%1 세션"
   },
@@ -35,9 +38,6 @@
   "%1 copied": {
     "%1 copied": "%1 복사됨"
   },
-  "%1 custom animation duration": {
-    "%1 custom animation duration": "%1 사용자 지정 애니메이션 지속 시간"
-  },
   "%1 disconnected": {
     "%1 disconnected": "%1 연결 끊김"
   },
@@ -49,9 +49,6 @@
   },
   "%1 displays": {
     "%1 displays": "%1 디스플레이"
-  },
-  "%1 exists but is not included. Window rules won't apply.": {
-    "%1 exists but is not included. Window rules won't apply.": ""
   },
   "%1 filtered": {
     "%1 filtered": "%1 필터링됨"
@@ -118,9 +115,6 @@
   },
   "'Alternative' lets the key unlock on its own. 'Second factor' requires password or fingerprint first, then the key.": {
     "'Alternative' lets the key unlock on its own. 'Second factor' requires password or fingerprint first, then the key.": "'Alternative'는 키 단독으로 잠금을 해제합니다. 'Second factor'는 암호나 지문을 먼저 요구한 뒤 키를 요구합니다."
-  },
-  "(Default)": {
-    "(Default)": "(기본값)"
   },
   "(Unnamed)": {
     "(Unnamed)": "(이름 없음)"
@@ -211,9 +205,6 @@
   },
   "24-Hour Format": {
     "24-Hour Format": "24시간 형식"
-  },
-  "24-hour clock": {
-    "24-hour clock": "24시간 시계"
   },
   "25 seconds": {
     "25 seconds": "25초"
@@ -509,6 +500,9 @@
   "Afternoon": {
     "Afternoon": "오후"
   },
+  "Alerts": {
+    "Alerts": ""
+  },
   "All": {
     "All": "모두"
   },
@@ -788,14 +782,14 @@
   "Authentication Required": {
     "Authentication Required": "인증 필요"
   },
+  "Authentication Source": {
+    "Authentication Source": ""
+  },
   "Authentication changes applied.": {
     "Authentication changes applied.": "인증 변경 사항이 적용되었습니다."
   },
   "Authentication changes apply automatically.": {
     "Authentication changes apply automatically.": "인증 변경 사항은 자동으로 적용됩니다."
-  },
-  "Authentication changes apply automatically. Fingerprint-only login may not unlock Keyring.": {
-    "Authentication changes apply automatically. Fingerprint-only login may not unlock Keyring.": "인증 변경 사항은 자동으로 적용됩니다. 지문 전용 로그인은 Keyring의 잠금을 해제하지 못할 수 있습니다."
   },
   "Authentication changes need sudo. Opening terminal so you can use password or fingerprint.": {
     "Authentication changes need sudo. Opening terminal so you can use password or fingerprint.": "인증 변경 사항에는 sudo가 필요합니다. 비밀번호나 지문을 사용할 수 있도록 터미널을 엽니다."
@@ -811,9 +805,6 @@
   },
   "Authentication failed - try again": {
     "Authentication failed - try again": ""
-  },
-  "Authentication failed, please try again": {
-    "Authentication failed, please try again": "인증 실패, 다시 시도해 주세요"
   },
   "Authorize": {
     "Authorize": "권한 부여"
@@ -848,20 +839,17 @@
   "Auto Power Saver": {
     "Auto Power Saver": "자동 절전"
   },
-  "Auto matches bar spacing; Off leaves gaps to your Hyprland config": {
-    "Auto matches bar spacing; Off leaves gaps to your Hyprland config": "자동은 표시줄 간격과 일치시키고, 끄기는 Hyprland 구성에 간격을 맡깁니다"
-  },
-  "Auto matches bar spacing; Off leaves gaps to your MangoWC config": {
-    "Auto matches bar spacing; Off leaves gaps to your MangoWC config": "자동은 표시줄 간격과 일치시키고, 끄기는 MangoWC 구성에 간격을 맡깁니다"
-  },
-  "Auto matches bar spacing; Off leaves gaps to your niri config": {
-    "Auto matches bar spacing; Off leaves gaps to your niri config": "자동은 표시줄 간격과 일치시키고, 끄기는 niri 구성에 간격을 맡깁니다"
+  "Auto matches bar spacing; Off leaves gaps to your %1 config": {
+    "Auto matches bar spacing; Off leaves gaps to your %1 config": ""
   },
   "Auto mode is on. Manual profile selection is disabled.": {
     "Auto mode is on. Manual profile selection is disabled.": "자동 모드가 켜져 있습니다. 수동 프로필 선택이 비활성화되었습니다."
   },
   "Auto saved": {
     "Auto saved": "자동 저장됨"
+  },
+  "Auto uses an installed or bundled key-only service.": {
+    "Auto uses an installed or bundled key-only service.": ""
   },
   "Auto-Clear After": {
     "Auto-Clear After": "이후 자동 지우기"
@@ -983,9 +971,6 @@
   "Available in Detailed and Forecast view modes": {
     "Available in Detailed and Forecast view modes": "상세 및 일기예보 보기 모드에서 사용 가능"
   },
-  "Available.": {
-    "Available.": "사용 가능."
-  },
   "Awaiting fingerprint authentication": {
     "Awaiting fingerprint authentication": ""
   },
@@ -1006,9 +991,6 @@
   },
   "Backend": {
     "Backend": "백엔드"
-  },
-  "Backends: %1": {
-    "Backends: %1": "백엔드: %1"
   },
   "Background": {
     "Background": "배경"
@@ -1049,9 +1031,6 @@
   "Bar %1": {
     "Bar %1": "표시줄 %1"
   },
-  "Bar Configurations": {
-    "Bar Configurations": "표시줄 구성"
-  },
   "Bar Inset Padding": {
     "Bar Inset Padding": "표시줄 내부 패딩"
   },
@@ -1070,9 +1049,6 @@
   "Bar shadow, border, and corners": {
     "Bar shadow, border, and corners": "표시줄 그림자, 테두리 및 모서리"
   },
-  "Bar spacing and size": {
-    "Bar spacing and size": ""
-  },
   "Base color for shadows (opacity is applied automatically)": {
     "Base color for shadows (opacity is applied automatically)": "그림자 기본 색상 (불투명도는 자동으로 적용됨)"
   },
@@ -1085,9 +1061,6 @@
   "Battery %1": {
     "Battery %1": "배터리 %1"
   },
-  "Battery Alerts": {
-    "Battery Alerts": "배터리 알림"
-  },
   "Battery Charge Limit": {
     "Battery Charge Limit": "배터리 충전 제한"
   },
@@ -1096,15 +1069,6 @@
   },
   "Battery Power": {
     "Battery Power": "배터리 전원"
-  },
-  "Battery Protection": {
-    "Battery Protection": "배터리 보호"
-  },
-  "Battery Protection & Charging": {
-    "Battery Protection & Charging": ""
-  },
-  "Battery Status": {
-    "Battery Status": "배터리 상태"
   },
   "Battery and power management": {
     "Battery and power management": "배터리 및 전원 관리"
@@ -1118,9 +1082,6 @@
   "Battery is at %1% - Consider charging soon": {
     "Battery is at %1% - Consider charging soon": "배터리가 %1%입니다 - 곧 충전을 고려하세요"
   },
-  "Battery level and power management": {
-    "Battery level and power management": "배터리 잔량 및 전원 관리"
-  },
   "Battery percentage to trigger a critical alert.": {
     "Battery percentage to trigger a critical alert.": "치명적인 알림을 트리거할 배터리 비율입니다."
   },
@@ -1130,11 +1091,8 @@
   "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": {
     "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": "잠금 화면을 loginctl의 dbus 신호에 바인딩합니다. 외부 잠금 화면을 사용하는 경우 비활성화하세요."
   },
-  "Bind the spotlight IPC action in your compositor config.": {
-    "Bind the spotlight IPC action in your compositor config.": "컴포지터 구성에서 spotlight IPC 작업을 바인딩합니다."
-  },
-  "Bind the spotlight-bar IPC action in your compositor config.": {
-    "Bind the spotlight-bar IPC action in your compositor config.": "컴포지터 구성에서 spotlight-bar IPC 작업을 바인딩합니다."
+  "Bind the %1 IPC action in your compositor config.": {
+    "Bind the %1 IPC action in your compositor config.": ""
   },
   "Binds include added": {
     "Binds include added": "바인딩 포함 추가됨"
@@ -1175,20 +1133,11 @@
   "Blur": {
     "Blur": "블러"
   },
-  "Blur Border Color": {
-    "Blur Border Color": ""
-  },
-  "Blur Border Opacity": {
-    "Blur Border Opacity": ""
-  },
   "Blur Wallpaper Layer": {
     "Blur Wallpaper Layer": "배경화면 레이어 블러"
   },
   "Blur on Overview": {
     "Blur on Overview": "오버뷰 시 블러"
-  },
-  "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support and configuration.": {
-    "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support and configuration.": ""
   },
   "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support. Adjust Opacity accordingly.": {
     "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support. Adjust Opacity accordingly.": "표시줄, 팝아웃, 모달 및 알림 뒤의 배경을 블러 처리합니다. 컴포지터 지원이 필요합니다. 그에 맞춰 불투명도를 조정하세요."
@@ -1231,9 +1180,6 @@
   },
   "Border Width": {
     "Border Width": "테두리 너비"
-  },
-  "Border color around blurred surfaces": {
-    "Border color around blurred surfaces": ""
   },
   "Border color around popouts, modals, and other shell surfaces": {
     "Border color around popouts, modals, and other shell surfaces": "팝아웃, 모달 및 기타 셸 표면 주변의 테두리 색상"
@@ -1294,9 +1240,6 @@
   },
   "Button Color": {
     "Button Color": "버튼 색상"
-  },
-  "By %1": {
-    "By %1": "%1 제작"
   },
   "CPU": {
     "CPU": "CPU"
@@ -1436,9 +1379,6 @@
   "Check on startup": {
     "Check on startup": "시작 시 확인"
   },
-  "Check sync status on demand. Sync (full) is for the main admin: it copies your theme to the login screen and sets up system greeter config. On multi-user systems, add other accounts in Settings → Users, then have each of them run dms greeter sync --profile after logging out and back in—not full sync. Authentication changes apply automatically.": {
-    "Check sync status on demand. Sync (full) is for the main admin: it copies your theme to the login screen and sets up system greeter config. On multi-user systems, add other accounts in Settings → Users, then have each of them run dms greeter sync --profile after logging out and back in—not full sync. Authentication changes apply automatically.": ""
-  },
   "Check your custom command in Settings → Dock → Trash.": {
     "Check your custom command in Settings → Dock → Trash.": "설정 → 독 → 휴지통에서 사용자 지정 명령을 확인하세요."
   },
@@ -1456,9 +1396,6 @@
   },
   "Choose Dark Mode Color": {
     "Choose Dark Mode Color": "다크 모드 색상 선택"
-  },
-  "Choose Dock Launcher Logo Color": {
-    "Choose Dock Launcher Logo Color": "독 런처 로고 색상 선택"
   },
   "Choose Launcher Logo Color": {
     "Choose Launcher Logo Color": "런처 로고 색상 선택"
@@ -1484,9 +1421,6 @@
   "Choose how this bar resolves shadow direction": {
     "Choose how this bar resolves shadow direction": "이 표시줄이 그림자 방향을 확인하는 방식을 선택하세요"
   },
-  "Choose how to be notified about battery alerts.": {
-    "Choose how to be notified about battery alerts.": ""
-  },
   "Choose how to be notified about critical battery alerts.": {
     "Choose how to be notified about critical battery alerts.": "위험 수준 배터리 알림을 받는 방식을 선택하세요."
   },
@@ -1504,12 +1438,6 @@
   },
   "Choose neutral or accent-colored widget text": {
     "Choose neutral or accent-colored widget text": "중립적 또는 강조 색상의 위젯 텍스트를 선택하세요"
-  },
-  "Choose the background color for widgets": {
-    "Choose the background color for widgets": "위젯 배경 색상을 선택하세요"
-  },
-  "Choose the border accent color": {
-    "Choose the border accent color": "테두리 강조 색상을 선택하세요"
   },
   "Choose the logo displayed on the launcher button in DankBar": {
     "Choose the logo displayed on the launcher button in DankBar": "DankBar의 런처 버튼에 표시되는 로고를 선택하세요"
@@ -1573,9 +1501,6 @@
   },
   "Click 'Setup' to create %1 and add include to your compositor config.": {
     "Click 'Setup' to create %1 and add include to your compositor config.": "'설정'을 클릭하여 %1을(를) 생성하고 컴포지터 구성에 포함을 추가하세요."
-  },
-  "Click 'Setup' to create the outputs config and add include to your compositor config.": {
-    "Click 'Setup' to create the outputs config and add include to your compositor config.": "'설정'을 클릭하여 출력 구성을 생성하고 컴포지터 구성에 포함을 추가하세요."
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": ".ovpn 또는 .conf를 추가하려면 가져오기를 클릭하세요"
@@ -1682,12 +1607,6 @@
   "Color shown for areas not covered by wallpaper": {
     "Color shown for areas not covered by wallpaper": "배경화면으로 덮이지 않은 영역에 표시되는 색상"
   },
-  "Color shown for areas not covered by wallpaper (e.g. Fit or Pad modes)": {
-    "Color shown for areas not covered by wallpaper (e.g. Fit or Pad modes)": ""
-  },
-  "Color temperature for day time": {
-    "Color temperature for day time": "주간 색온도"
-  },
   "Color temperature for night mode": {
     "Color temperature for night mode": "야간 모드 색온도"
   },
@@ -1772,6 +1691,9 @@
   "Configuration will be preserved when this display reconnects": {
     "Configuration will be preserved when this display reconnects": "이 디스플레이가 다시 연결될 때 구성이 보존됩니다"
   },
+  "Configurations": {
+    "Configurations": ""
+  },
   "Configure": {
     "Configure": "구성"
   },
@@ -1853,9 +1775,6 @@
   "Connecting...": {
     "Connecting...": "연결 중..."
   },
-  "Connecting…": {
-    "Connecting…": "연결 중…"
-  },
   "Connection failed": {
     "Connection failed": "연결 실패"
   },
@@ -1904,24 +1823,6 @@
   "Controls opacity of shell surfaces, popouts, and modals": {
     "Controls opacity of shell surfaces, popouts, and modals": "셸 표면, 팝아웃 및 모달의 불투명도 제어"
   },
-  "Controls opacity of the bar background": {
-    "Controls opacity of the bar background": "표시줄 배경의 불투명도 제어"
-  },
-  "Controls opacity of the border": {
-    "Controls opacity of the border": "테두리의 불투명도 제어"
-  },
-  "Controls opacity of the shadow layer": {
-    "Controls opacity of the shadow layer": "그림자 레이어의 불투명도 제어"
-  },
-  "Controls opacity of the widget outline": {
-    "Controls opacity of the widget outline": "위젯 윤곽선의 불투명도 제어"
-  },
-  "Controls opacity of widget backgrounds": {
-    "Controls opacity of widget backgrounds": "위젯 배경의 불투명도 제어"
-  },
-  "Controls outlines around blurred foreground cards, pills, and notification cards": {
-    "Controls outlines around blurred foreground cards, pills, and notification cards": ""
-  },
   "Controls outlines around foreground cards, pills, and notification cards": {
     "Controls outlines around foreground cards, pills, and notification cards": "전경 카드, 알약 버튼 및 알림 카드 주변의 윤곽선 제어"
   },
@@ -1931,17 +1832,8 @@
   "Controls the base blur radius and offset of shadows": {
     "Controls the base blur radius and offset of shadows": "그림자의 기본 흐림 반경 및 오프셋 제어"
   },
-  "Controls the opacity of the shadow": {
-    "Controls the opacity of the shadow": "그림자의 불투명도 제어"
-  },
-  "Controls the outer edge of protocol-blurred windows": {
-    "Controls the outer edge of protocol-blurred windows": ""
-  },
   "Controls the outline of popouts, modals, and other shell surfaces": {
     "Controls the outline of popouts, modals, and other shell surfaces": "팝아웃, 모달 및 기타 셸 표면의 윤곽선 제어"
-  },
-  "Controls the transparency of the shadow": {
-    "Controls the transparency of the shadow": ""
   },
   "Convenience options for the login screen. Sync to apply.": {
     "Convenience options for the login screen. Sync to apply.": "로그인 화면 편의 옵션입니다. 동기화하여 적용하세요."
@@ -2000,9 +1892,6 @@
   "Corners & Background": {
     "Corners & Background": "모서리 및 배경"
   },
-  "Couldn't open a terminal for the auto-login update.": {
-    "Couldn't open a terminal for the auto-login update.": ""
-  },
   "Count Only": {
     "Count Only": "개수만 표시"
   },
@@ -2026,9 +1915,6 @@
   },
   "Create a new %1 session (^N)": {
     "Create a new %1 session (^N)": "새로운 %1 세션 생성 (^N)"
-  },
-  "Create a new %1 session (n)": {
-    "Create a new %1 session (n)": ""
   },
   "Create rule for:": {
     "Create rule for:": "규칙 생성 대상:"
@@ -2192,9 +2078,6 @@
   "Custom...": {
     "Custom...": "사용자 지정..."
   },
-  "Custom: ": {
-    "Custom: ": "사용자 지정:"
-  },
   "Customizable empty space": {
     "Customizable empty space": "사용자 지정 가능한 빈 공간"
   },
@@ -2225,14 +2108,11 @@
   "DMS Shortcuts": {
     "DMS Shortcuts": "DMS 바로 가기"
   },
-  "DMS greeter needs: greetd, dms-greeter. Fingerprint: fprintd, pam_fprintd. Security keys: pam_u2f. Add your user to the greeter group. Authentication changes apply automatically and may open a terminal when sudo authentication is required.": {
-    "DMS greeter needs: greetd, dms-greeter. Fingerprint: fprintd, pam_fprintd. Security keys: pam_u2f. Add your user to the greeter group. Authentication changes apply automatically and may open a terminal when sudo authentication is required.": ""
-  },
-  "DMS needs administrator access. The terminal closes automatically when done.": {
-    "DMS needs administrator access. The terminal closes automatically when done.": ""
-  },
   "DMS out of date": {
     "DMS out of date": "DMS가 구버전임"
+  },
+  "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it": {
+    "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it": ""
   },
   "DMS server is outdated (API v%1, expected v%2)": {
     "DMS server is outdated (API v%1, expected v%2)": "DMS 서버가 구버전입니다(API v%1, 예상 v%2)."
@@ -2404,9 +2284,6 @@
   },
   "Delete user": {
     "Delete user": "사용자 삭제"
-  },
-  "Delete user?": {
-    "Delete user?": "사용자를 삭제하시겠습니까?"
   },
   "Demi Bold": {
     "Demi Bold": "데미 볼드"
@@ -2609,9 +2486,6 @@
   "Display power menu actions in a grid instead of a list": {
     "Display power menu actions in a grid instead of a list": "목록 대신 그리드에 전원 메뉴 작업 표시"
   },
-  "Display seconds in the clock": {
-    "Display seconds in the clock": "시계에 초 표시"
-  },
   "Display setup failed": {
     "Display setup failed": "디스플레이 설정 실패"
   },
@@ -2623,9 +2497,6 @@
   },
   "Displays": {
     "Displays": "디스플레이"
-  },
-  "Displays count when overflow is active": {
-    "Displays count when overflow is active": "오버플로가 활성화될 때 개수 표시"
   },
   "Displays the active keyboard layout and allows switching": {
     "Displays the active keyboard layout and allows switching": "활성 키보드 레이아웃을 표시하고 전환 허용"
@@ -2648,14 +2519,8 @@
   "Dock Opacity": {
     "Dock Opacity": "독 불투명도"
   },
-  "Dock Visibility": {
-    "Dock Visibility": "독 가시성"
-  },
   "Dock margin, opacity, and border": {
     "Dock margin, opacity, and border": "독 여백, 불투명도 및 테두리"
-  },
-  "Dock margin, transparency, and border": {
-    "Dock margin, transparency, and border": ""
   },
   "Dock window": {
     "Dock window": "독 창"
@@ -2801,9 +2666,6 @@
   "Empty Trash (%1)": {
     "Empty Trash (%1)": "휴지통 비우기 (%1)"
   },
-  "Empty Trash?": {
-    "Empty Trash?": "휴지통을 비우시겠습니까?"
-  },
   "Enable 10-bit color depth for wider color gamut and HDR support": {
     "Enable 10-bit color depth for wider color gamut and HDR support": "더 넓은 색 영역과 HDR 지원을 위해 10비트 색 심도 활성화"
   },
@@ -2866,36 +2728,6 @@
   },
   "Enabled": {
     "Enabled": "활성화됨"
-  },
-  "Enabled, but fingerprint availability could not be confirmed.": {
-    "Enabled, but fingerprint availability could not be confirmed.": "활성화되었지만 지문 사용 가능 여부를 확인할 수 없습니다."
-  },
-  "Enabled, but no fingerprint reader was detected.": {
-    "Enabled, but no fingerprint reader was detected.": "활성화되었지만 지문 인식기가 감지되지 않았습니다."
-  },
-  "Enabled, but no prints are enrolled yet. Authentication changes apply automatically once you enroll fingerprints.": {
-    "Enabled, but no prints are enrolled yet. Authentication changes apply automatically once you enroll fingerprints.": "활성화되었지만 아직 등록된 지문이 없습니다. 지문을 등록하면 인증 변경 사항이 자동으로 적용됩니다."
-  },
-  "Enabled, but no prints are enrolled yet. Enroll fingerprints and run Sync.": {
-    "Enabled, but no prints are enrolled yet. Enroll fingerprints and run Sync.": "활성화되었지만 아직 등록된 지문이 없습니다. 지문을 등록하고 동기화를 실행하세요."
-  },
-  "Enabled, but no registered security key was found yet. Authentication changes apply automatically once your key is registered or your U2F config is updated.": {
-    "Enabled, but no registered security key was found yet. Authentication changes apply automatically once your key is registered or your U2F config is updated.": "활성화되었지만 등록된 보안 키를 아직 찾을 수 없습니다. 키를 등록하거나 U2F 구성이 업데이트되면 인증 변경 사항이 자동으로 적용됩니다."
-  },
-  "Enabled, but no registered security key was found yet. Register a key and run Sync.": {
-    "Enabled, but no registered security key was found yet. Register a key and run Sync.": "활성화되었지만 등록된 보안 키를 아직 찾을 수 없습니다. 키를 등록하고 동기화를 실행하세요."
-  },
-  "Enabled, but security-key availability could not be confirmed.": {
-    "Enabled, but security-key availability could not be confirmed.": "활성화되었지만 보안 키 사용 가능 여부를 확인할 수 없습니다."
-  },
-  "Enabled. PAM already provides fingerprint auth.": {
-    "Enabled. PAM already provides fingerprint auth.": "활성화됨. PAM에서 이미 지문 인증을 제공합니다."
-  },
-  "Enabled. PAM already provides security-key auth.": {
-    "Enabled. PAM already provides security-key auth.": "활성화됨. PAM에서 이미 보안 키 인증을 제공합니다."
-  },
-  "Enabled. PAM provides fingerprint auth, but no prints are enrolled yet.": {
-    "Enabled. PAM provides fingerprint auth, but no prints are enrolled yet.": "활성화됨. PAM에서 지문 인증을 제공하지만 아직 등록된 지문이 없습니다."
   },
   "Enabling WiFi...": {
     "Enabling WiFi...": "Wi-Fi 켜는 중..."
@@ -3011,8 +2843,8 @@
   "Exact": {
     "Exact": "정확히 일치"
   },
-  "Excluded Media Players": {
-    "Excluded Media Players": "제외된 미디어 플레이어"
+  "Excluded Players": {
+    "Excluded Players": ""
   },
   "Exclusive Zone Offset": {
     "Exclusive Zone Offset": "독점 영역 오프셋"
@@ -3080,11 +2912,8 @@
   "Failed to add printer to class": {
     "Failed to add printer to class": "클래스에 프린터 추가 실패"
   },
-  "Failed to apply GTK colors": {
-    "Failed to apply GTK colors": "GTK 색상 적용 실패"
-  },
-  "Failed to apply Qt colors": {
-    "Failed to apply Qt colors": "Qt 색상 적용 실패"
+  "Failed to apply %1 colors": {
+    "Failed to apply %1 colors": ""
   },
   "Failed to apply charge limit to system": {
     "Failed to apply charge limit to system": "시스템에 충전 제한 적용 실패"
@@ -3158,9 +2987,6 @@
   "Failed to enable night mode": {
     "Failed to enable night mode": "야간 모드 활성화 실패"
   },
-  "Failed to enable plugin: %1": {
-    "Failed to enable plugin: %1": ""
-  },
   "Failed to fetch network QR code: %1": {
     "Failed to fetch network QR code: %1": "네트워크 QR 코드 가져오기 실패: %1"
   },
@@ -3188,14 +3014,8 @@
   "Failed to move to trash": {
     "Failed to move to trash": "휴지통으로 이동 실패"
   },
-  "Failed to parse plugin_settings.json": {
-    "Failed to parse plugin_settings.json": "plugin_settings.json 파싱 실패"
-  },
-  "Failed to parse session.json": {
-    "Failed to parse session.json": "session.json 파싱 실패"
-  },
-  "Failed to parse settings.json": {
-    "Failed to parse settings.json": "settings.json 파싱 파싱 실패"
+  "Failed to parse %1": {
+    "Failed to parse %1": ""
   },
   "Failed to pause printer": {
     "Failed to pause printer": "프린터 일시 중지 실패"
@@ -3368,8 +3188,8 @@
   "File manager used to open the trash. Pick \"custom\" to enter your own command.": {
     "File manager used to open the trash. Pick \"custom\" to enter your own command.": "휴지통을 열 때 사용되는 파일 관리자입니다. 자신만의 명령어를 입력하려면 \"사용자 지정\"을 선택하세요."
   },
-  "File received from": {
-    "File received from": "다음으로부터 파일을 받음:"
+  "File received from %1": {
+    "File received from %1": ""
   },
   "File search requires dsearch\nInstall from github.com/AvengeMedia/danksearch": {
     "File search requires dsearch\nInstall from github.com/AvengeMedia/danksearch": "파일 검색에는 dsearch가 필요합니다\ngithub.com/AvengeMedia/danksearch에서 설치하세요"
@@ -3563,9 +3383,6 @@
   "For editing plain text files": {
     "For editing plain text files": "일반 텍스트 파일 편집용"
   },
-  "For reading PDF files": {
-    "For reading PDF files": "PDF 파일 읽기용"
-  },
   "Force HDR": {
     "Force HDR": "HDR 강제"
   },
@@ -3719,6 +3536,9 @@
   "Gaps": {
     "Gaps": "간격"
   },
+  "General": {
+    "General": ""
+  },
   "Generate Override": {
     "Generate Override": "오버라이드 생성"
   },
@@ -3764,9 +3584,6 @@
   "Grant": {
     "Grant": "권한 부여"
   },
-  "Grant admin?": {
-    "Grant admin?": "관리자 권한을 부여하시겠습니까?"
-  },
   "Grant administrator privileges": {
     "Grant administrator privileges": "관리자 권한 부여"
   },
@@ -3785,15 +3602,6 @@
   "Greeter": {
     "Greeter": "로그인 화면"
   },
-  "Greeter Appearance": {
-    "Greeter Appearance": "로그인 화면 모양"
-  },
-  "Greeter Behavior": {
-    "Greeter Behavior": "로그인 화면 동작"
-  },
-  "Greeter Status": {
-    "Greeter Status": "로그인 화면 상태"
-  },
   "Greeter activated. greetd is now enabled.": {
     "Greeter activated. greetd is now enabled.": "로그인 화면이 활성화되었습니다. 이제 greetd가 활성화됩니다."
   },
@@ -3805,9 +3613,6 @@
   },
   "Greeter group:": {
     "Greeter group:": "로그인 화면 그룹:"
-  },
-  "Greeter only — does not affect main clock": {
-    "Greeter only — does not affect main clock": "로그인 화면 전용 — 기본 시계에 영향을 주지 않음"
   },
   "Greeter only — format for the date on the login screen": {
     "Greeter only — format for the date on the login screen": "로그인 화면 전용 — 로그인 화면의 날짜 형식"
@@ -4067,9 +3872,6 @@
   "Hyprland Discord Server": {
     "Hyprland Discord Server": "Hyprland Discord 서버"
   },
-  "Hyprland Layout Overrides": {
-    "Hyprland Layout Overrides": "Hyprland 레이아웃 오버라이드"
-  },
   "Hyprland Options": {
     "Hyprland Options": "Hyprland 옵션"
   },
@@ -4207,12 +4009,6 @@
   },
   "Incorrect password": {
     "Incorrect password": "잘못된 비밀번호"
-  },
-  "Incorrect password - attempt %1 of %2 (lockout may follow)": {
-    "Incorrect password - attempt %1 of %2 (lockout may follow)": "잘못된 비밀번호 - %1/%2회 시도(잠길 수 있음)"
-  },
-  "Incorrect password - next failures may trigger account lockout": {
-    "Incorrect password - next failures may trigger account lockout": "잘못된 비밀번호 - 다음에 실패하면 계정이 잠길 수 있음"
   },
   "Incorrect password - try again": {
     "Incorrect password - try again": "잘못된 비밀번호 - 다시 시도하세요"
@@ -4370,9 +4166,6 @@
   "Jobs": {
     "Jobs": "작업"
   },
-  "Jobs: ": {
-    "Jobs: ": "작업:"
-  },
   "Join video call": {
     "Join video call": ""
   },
@@ -4517,9 +4310,6 @@
   "Layout Overrides": {
     "Layout Overrides": "레이아웃 오버라이드"
   },
-  "Layout and module positions on the greeter are synced from your shell (e.g. bar config). Run Sync to apply.": {
-    "Layout and module positions on the greeter are synced from your shell (e.g. bar config). Run Sync to apply.": ""
-  },
   "Left": {
     "Left": "왼쪽"
   },
@@ -4604,9 +4394,6 @@
   "Locale": {
     "Locale": "로캘"
   },
-  "Locale Settings": {
-    "Locale Settings": "로캘 설정"
-  },
   "Location": {
     "Location": "위치"
   },
@@ -4619,20 +4406,8 @@
   "Lock Screen": {
     "Lock Screen": "잠금 화면"
   },
-  "Lock Screen Appearance": {
-    "Lock Screen Appearance": "잠금 화면 모양"
-  },
-  "Lock Screen Display": {
-    "Lock Screen Display": "잠금 화면 표시"
-  },
   "Lock Screen Format": {
     "Lock Screen Format": "잠금 화면 형식"
-  },
-  "Lock Screen behaviour": {
-    "Lock Screen behaviour": "잠금 화면 동작"
-  },
-  "Lock Screen layout": {
-    "Lock Screen layout": "잠금 화면 레이아웃"
   },
   "Lock at startup": {
     "Lock at startup": "시작 시 잠금"
@@ -4642,9 +4417,6 @@
   },
   "Lock fade grace period": {
     "Lock fade grace period": "잠금 페이드 유예 기간"
-  },
-  "Lock screen authentication changes apply automatically and may open a terminal when sudo authentication is required.": {
-    "Lock screen authentication changes apply automatically and may open a terminal when sudo authentication is required.": "잠금 화면 인증 변경 사항은 자동으로 적용되며 sudo 인증이 필요한 경우 터미널을 열 수 있습니다."
   },
   "Lock screen font": {
     "Lock screen font": "잠금 화면 글꼴"
@@ -4660,9 +4432,6 @@
   },
   "Login": {
     "Login": "로그인"
-  },
-  "Login Authentication": {
-    "Login Authentication": "로그인 인증"
   },
   "Long": {
     "Long": "긺"
@@ -4721,11 +4490,11 @@
   "Managed by Frame in Connected Mode": {
     "Managed by Frame in Connected Mode": "연결된 모드에서 프레임이 관리"
   },
+  "Managed by the primary PAM source.": {
+    "Managed by the primary PAM source.": ""
+  },
   "Management": {
     "Management": "관리"
-  },
-  "Manages calendar events": {
-    "Manages calendar events": "캘린더 이벤트 관리"
   },
   "Manages files and directories": {
     "Manages files and directories": "파일 및 디렉터리 관리"
@@ -4735,9 +4504,6 @@
   },
   "Mango service not available": {
     "Mango service not available": "Mango 서비스를 사용할 수 없음"
-  },
-  "MangoWC Layout Overrides": {
-    "MangoWC Layout Overrides": "MangoWC 레이아웃 오버라이드"
   },
   "Manual": {
     "Manual": "수동"
@@ -4895,9 +4661,6 @@
   "Maximum pinned entries reached": {
     "Maximum pinned entries reached": "최대 고정 항목 수에 도달함"
   },
-  "Maximum size per clipboard entry": {
-    "Maximum size per clipboard entry": "클립보드 항목당 최대 크기"
-  },
   "Media": {
     "Media": "미디어"
   },
@@ -4921,9 +4684,6 @@
   },
   "Media Player": {
     "Media Player": "미디어 플레이어"
-  },
-  "Media Player Settings": {
-    "Media Player Settings": "미디어 플레이어 설정"
   },
   "Media Players (": {
     "Media Players (": "미디어 플레이어 ("
@@ -5006,9 +4766,6 @@
   "Mode": {
     "Mode": "모드"
   },
-  "Mode:": {
-    "Mode:": "모드:"
-  },
   "Model": {
     "Model": "모델"
   },
@@ -5063,9 +4820,6 @@
   "Mouse pointer size in pixels": {
     "Mouse pointer size in pixels": "마우스 포인터 크기(픽셀)"
   },
-  "Move": {
-    "Move": "이동"
-  },
   "Move Widget": {
     "Move Widget": "위젯 이동"
   },
@@ -5080,9 +4834,6 @@
   },
   "Multimedia": {
     "Multimedia": "멀티미디어"
-  },
-  "Multiplexer": {
-    "Multiplexer": "멀티플렉서"
   },
   "Multiplexer Type": {
     "Multiplexer Type": "멀티플렉서 유형"
@@ -5159,9 +4910,6 @@
   "Network Speed Monitor": {
     "Network Speed Monitor": "네트워크 속도 모니터"
   },
-  "Network Status": {
-    "Network Status": "네트워크 상태"
-  },
   "Network Type": {
     "Network Type": "네트워크 유형"
   },
@@ -5233,9 +4981,6 @@
   },
   "Niri Integration": {
     "Niri Integration": "Niri 통합"
-  },
-  "Niri Layout Overrides": {
-    "Niri Layout Overrides": "Niri 레이아웃 오버라이드"
   },
   "Niri compositor actions (focus, move, etc.)": {
     "Niri compositor actions (focus, move, etc.)": "Niri 컴포지터 작업(포커스, 이동 등)"
@@ -5462,9 +5207,6 @@
   "No plugins found": {
     "No plugins found": "플러그인을 찾을 수 없음"
   },
-  "No plugins found.": {
-    "No plugins found.": "플러그인을 찾을 수 없습니다."
-  },
   "No printer found": {
     "No printer found": "프린터를 찾을 수 없음"
   },
@@ -5639,14 +5381,8 @@
   "Notification Popups": {
     "Notification Popups": "알림 팝업"
   },
-  "Notification Rules": {
-    "Notification Rules": "알림 규칙"
-  },
   "Notification Settings": {
     "Notification Settings": "알림 설정"
-  },
-  "Notification Timeouts": {
-    "Notification Timeouts": "알림 시간 초과"
   },
   "Notification Type": {
     "Notification Type": "알림 유형"
@@ -5720,9 +5456,6 @@
   "Only adjust gamma based on time or location rules.": {
     "Only adjust gamma based on time or location rules.": "시간 또는 위치 규칙에 따라서만 감마를 조정합니다."
   },
-  "Only affects DMS-managed PAM. If greetd already includes pam_fprintd, fingerprint stays enabled.": {
-    "Only affects DMS-managed PAM. If greetd already includes pam_fprintd, fingerprint stays enabled.": "DMS 관리 PAM에만 영향을 줍니다. greetd에 이미 pam_fprintd가 포함된 경우 지문은 활성화된 상태로 유지됩니다."
-  },
   "Only on Battery": {
     "Only on Battery": "배터리 사용 시만"
   },
@@ -5734,12 +5467,6 @@
   },
   "Opacity": {
     "Opacity": "불투명도"
-  },
-  "Opacity of the bar background": {
-    "Opacity of the bar background": ""
-  },
-  "Opacity of widget backgrounds": {
-    "Opacity of widget backgrounds": ""
   },
   "Opaque": {
     "Opaque": "불투명"
@@ -5807,17 +5534,11 @@
   "Opening file browser": {
     "Opening file browser": "파일 브라우저 여는 중"
   },
-  "Opening terminal to update greetd": {
-    "Opening terminal to update greetd": ""
-  },
   "Opening terminal: ": {
     "Opening terminal: ": "터미널 여는 중:"
   },
   "Opens a picker of other active sessions on this seat": {
     "Opens a picker of other active sessions on this seat": "이 자리의 다른 활성 세션 선택기를 엽니다"
-  },
-  "Opens image files": {
-    "Opens image files": "이미지 파일 열기"
   },
   "Opens the connected launcher in Connected Frame Mode.": {
     "Opens the connected launcher in Connected Frame Mode.": "연결된 프레임 모드에서 연결된 런처를 엽니다."
@@ -5921,15 +5642,6 @@
   "PAM already provides security-key auth. Enable this to show it at login.": {
     "PAM already provides security-key auth. Enable this to show it at login.": "PAM은 이미 보안 키 인증을 제공합니다. 로그인 시 표시하려면 활성화하세요."
   },
-  "PAM provides fingerprint auth, but availability could not be confirmed.": {
-    "PAM provides fingerprint auth, but availability could not be confirmed.": "PAM은 지문 인증을 제공하지만 가용성을 확인할 수 없습니다."
-  },
-  "PAM provides fingerprint auth, but no prints are enrolled yet.": {
-    "PAM provides fingerprint auth, but no prints are enrolled yet.": "PAM은 지문 인증을 제공하지만 아직 등록된 지문이 없습니다."
-  },
-  "PAM provides fingerprint auth, but no reader was detected.": {
-    "PAM provides fingerprint auth, but no reader was detected.": "PAM은 지문 인증을 제공하지만 판독기가 감지되지 않았습니다."
-  },
   "PDF Reader": {
     "PDF Reader": "PDF 리더"
   },
@@ -5945,9 +5657,6 @@
   "Pad Hours": {
     "Pad Hours": "시간 패딩"
   },
-  "Pad hours (02:00 vs 2:00)": {
-    "Pad hours (02:00 vs 2:00)": "시간 패딩(02:00 대 2:00)"
-  },
   "Padding": {
     "Padding": "여백"
   },
@@ -5960,14 +5669,11 @@
   "Paired": {
     "Paired": "페어링됨"
   },
-  "Pairing": {
-    "Pairing": "페어링 중"
-  },
   "Pairing failed": {
     "Pairing failed": "페어링 실패"
   },
-  "Pairing request from": {
-    "Pairing request from": "페어링 요청 발신자:"
+  "Pairing request from %1": {
+    "Pairing request from %1": ""
   },
   "Pairing request sent": {
     "Pairing request sent": "페어링 요청 보냄"
@@ -6062,9 +5768,6 @@
   "Phone Connect Not Available": {
     "Phone Connect Not Available": "휴대폰 연결을 사용할 수 없음"
   },
-  "Phone Connect unavailable": {
-    "Phone Connect unavailable": ""
-  },
   "Phone number": {
     "Phone number": "전화번호"
   },
@@ -6092,8 +5795,8 @@
   "Ping": {
     "Ping": "핑"
   },
-  "Ping sent to": {
-    "Ping sent to": "핑 보낸 대상:"
+  "Ping sent to %1": {
+    "Ping sent to %1": ""
   },
   "Pinned": {
     "Pinned": "고정됨"
@@ -6137,9 +5840,6 @@
   "Play sound when volume is adjusted": {
     "Play sound when volume is adjusted": "볼륨을 조정할 때 소리 재생"
   },
-  "Play sounds for system events": {
-    "Play sounds for system events": "시스템 이벤트에 대한 소리 재생"
-  },
   "Playback": {
     "Playback": "재생"
   },
@@ -6148,9 +5848,6 @@
   },
   "Plays audio files": {
     "Plays audio files": "오디오 파일 재생"
-  },
-  "Plays video files": {
-    "Plays video files": "비디오 파일 재생"
   },
   "Please wait...": {
     "Please wait...": "잠시 기다려 주십시오..."
@@ -6227,6 +5924,9 @@
   "Popup behavior, position": {
     "Popup behavior, position": "팝업 동작, 위치"
   },
+  "Popups": {
+    "Popups": ""
+  },
   "Port": {
     "Port": "포트"
   },
@@ -6275,9 +5975,6 @@
   "Power Profiles & Saving": {
     "Power Profiles & Saving": "전원 프로필 및 절약"
   },
-  "Power Profiles Auto-Switching": {
-    "Power Profiles Auto-Switching": ""
-  },
   "Power Saver": {
     "Power Saver": "절전"
   },
@@ -6286,12 +5983,6 @@
   },
   "Power profile management available": {
     "Power profile management available": "전원 프로필 관리 사용 가능"
-  },
-  "Power profile to use when AC power is connected.": {
-    "Power profile to use when AC power is connected.": "AC 전원이 연결되어 있을 때 사용할 전원 프로필."
-  },
-  "Power profile to use when running on battery power.": {
-    "Power profile to use when running on battery power.": "배터리 전원으로 실행할 때 사용할 전원 프로필."
   },
   "Power source": {
     "Power source": "전원"
@@ -6316,9 +6007,6 @@
   },
   "Preset Widths (%)": {
     "Preset Widths (%)": "사전 설정 너비(%)"
-  },
-  "Press 'n' or click 'New Session' to create one": {
-    "Press 'n' or click 'New Session' to create one": ""
   },
   "Press Ctrl+N or click 'New Session' to create one": {
     "Press Ctrl+N or click 'New Session' to create one": "Ctrl+N을 누르거나 '새 세션'을 클릭하여 생성하세요"
@@ -6359,9 +6047,6 @@
   "Primary Container": {
     "Primary Container": "기본 컨테이너"
   },
-  "Primary Theme Color": {
-    "Primary Theme Color": ""
-  },
   "Print Server Management": {
     "Print Server Management": "인쇄 서버 관리"
   },
@@ -6389,9 +6074,6 @@
   "Printers": {
     "Printers": "프린터"
   },
-  "Printers: ": {
-    "Printers: ": "프린터:"
-  },
   "Prioritize performance": {
     "Prioritize performance": "성능 우선"
   },
@@ -6415,9 +6097,6 @@
   },
   "Processes": {
     "Processes": "프로세스"
-  },
-  "Processes:": {
-    "Processes:": "프로세스:"
   },
   "Processing": {
     "Processing": "처리 중"
@@ -6454,6 +6133,9 @@
   },
   "Profile when on Battery": {
     "Profile when on Battery": "배터리 사용 시 프로필"
+  },
+  "Protection": {
+    "Protection": ""
   },
   "Protocol": {
     "Protocol": "프로토콜"
@@ -6620,9 +6302,6 @@
   "Remove admin": {
     "Remove admin": "관리자 권한 제거"
   },
-  "Remove admin?": {
-    "Remove admin?": "관리자 권한을 제거하시겠습니까?"
-  },
   "Remove corner rounding from the bar": {
     "Remove corner rounding from the bar": "바에서 모서리 둥글게 처리 제거"
   },
@@ -6719,9 +6398,6 @@
   "Reset Size": {
     "Reset Size": "크기 재설정"
   },
-  "Reset to Default?": {
-    "Reset to Default?": "기본값으로 재설정하시겠습니까?"
-  },
   "Reset to default": {
     "Reset to default": "기본값으로 재설정"
   },
@@ -6800,8 +6476,8 @@
   "Ring": {
     "Ring": "벨 울리기"
   },
-  "Ringing": {
-    "Ringing": "벨 울리는 중"
+  "Ringing %1...": {
+    "Ringing %1...": ""
   },
   "Ripple Effects": {
     "Ripple Effects": "파문 효과"
@@ -6815,8 +6491,14 @@
   "Rule": {
     "Rule": "규칙"
   },
+  "Rule %1": {
+    "Rule %1": ""
+  },
   "Rule Name": {
     "Rule Name": "규칙 이름"
+  },
+  "Rules": {
+    "Rules": ""
   },
   "Rules (%1)": {
     "Rules (%1)": "규칙(%1)"
@@ -6923,9 +6605,6 @@
   "Saving...": {
     "Saving...": "저장 중..."
   },
-  "Saving…": {
-    "Saving…": "저장 중…"
-  },
   "Scale": {
     "Scale": "배율"
   },
@@ -6940,9 +6619,6 @@
   },
   "Scan": {
     "Scan": "스캔"
-  },
-  "Scanning": {
-    "Scanning": "스캔 중"
   },
   "Scanning...": {
     "Scanning...": "스캔 중..."
@@ -7028,9 +6704,6 @@
   "Search...": {
     "Search...": "검색..."
   },
-  "Searching": {
-    "Searching": "검색 중"
-  },
   "Searching...": {
     "Searching...": "검색 중..."
   },
@@ -7051,6 +6724,9 @@
   },
   "Security & privacy": {
     "Security & privacy": "보안 및 개인 정보 보호"
+  },
+  "Security Key PAM Source": {
+    "Security Key PAM Source": ""
   },
   "Security key mode": {
     "Security key mode": "보안 키 모드"
@@ -7139,17 +6815,11 @@
   "Select lock screen background image": {
     "Select lock screen background image": "잠금 화면 배경 이미지 선택"
   },
-  "Select monitor to configure wallpaper": {
-    "Select monitor to configure wallpaper": "배경화면을 구성할 모니터 선택"
-  },
   "Select monospace font for process list and technical displays": {
     "Select monospace font for process list and technical displays": "프로세스 목록 및 기술 디스플레이에 사용할 고정폭 글꼴 선택"
   },
   "Select network": {
     "Select network": "네트워크 선택"
-  },
-  "Select system sound theme": {
-    "Select system sound theme": "시스템 소리 테마 선택"
   },
   "Select the font family for UI text": {
     "Select the font family for UI text": "UI 텍스트의 글꼴 패밀리 선택"
@@ -7178,14 +6848,11 @@
   "Send Clipboard": {
     "Send Clipboard": "클립보드 보내기"
   },
-  "Send File": {
-    "Send File": ""
-  },
   "Send SMS": {
     "Send SMS": "SMS 보내기"
   },
-  "Sending": {
-    "Sending": "보내는 중"
+  "Sending %1...": {
+    "Sending %1...": ""
   },
   "Separate": {
     "Separate": "분리"
@@ -7237,9 +6904,6 @@
   },
   "Set the font size for notification body text (htmlBody)": {
     "Set the font size for notification body text (htmlBody)": "알림 본문 텍스트의 글꼴 크기 설정(htmlBody)"
-  },
-  "Set the font size for notification summary text": {
-    "Set the font size for notification summary text": "알림 요약 텍스트의 글꼴 크기 설정"
   },
   "Set the percentage at which the battery is considered low.": {
     "Set the percentage at which the battery is considered low.": "배터리가 부족한 것으로 간주되는 백분율을 설정합니다."
@@ -7294,9 +6958,6 @@
   },
   "Share Gamma Control Settings": {
     "Share Gamma Control Settings": "감마 제어 설정 공유"
-  },
-  "Share Text": {
-    "Share Text": ""
   },
   "Shared": {
     "Shared": "공유됨"
@@ -7553,9 +7214,6 @@
   "Show during Niri overview": {
     "Show during Niri overview": "Niri 개요 중 표시"
   },
-  "Show foreground surfaces on blurred panels for stronger contrast": {
-    "Show foreground surfaces on blurred panels for stronger contrast": ""
-  },
   "Show foreground surfaces on panels for stronger contrast": {
     "Show foreground surfaces on panels for stronger contrast": "강한 대비를 위해 패널에 전경 표면 표시"
   },
@@ -7571,12 +7229,6 @@
   "Show mount path": {
     "Show mount path": "마운트 경로 표시"
   },
-  "Show notification popups only on the currently focused monitor": {
-    "Show notification popups only on the currently focused monitor": "현재 포커스된 모니터에만 알림 팝업 표시"
-  },
-  "Show notifications only on the currently focused monitor": {
-    "Show notifications only on the currently focused monitor": "현재 포커스된 모니터에만 알림 표시"
-  },
   "Show on Last Display": {
     "Show on Last Display": "마지막 디스플레이에 표시"
   },
@@ -7589,38 +7241,8 @@
   "Show on Overview Only": {
     "Show on Overview Only": "개요에만 표시"
   },
-  "Show on all connected displays": {
-    "Show on all connected displays": "연결된 모든 디스플레이에 표시"
-  },
   "Show on screens:": {
     "Show on screens:": "화면에 표시:"
-  },
-  "Show on-screen display when brightness changes": {
-    "Show on-screen display when brightness changes": "밝기가 변경될 때 온스크린 디스플레이 표시"
-  },
-  "Show on-screen display when caps lock state changes": {
-    "Show on-screen display when caps lock state changes": "Caps Lock 상태가 변경될 때 온스크린 디스플레이 표시"
-  },
-  "Show on-screen display when cycling audio output devices": {
-    "Show on-screen display when cycling audio output devices": "오디오 출력 장치를 순환할 때 온스크린 디스플레이 표시"
-  },
-  "Show on-screen display when idle inhibitor state changes": {
-    "Show on-screen display when idle inhibitor state changes": "대기 금지기 상태가 변경될 때 온스크린 디스플레이 표시"
-  },
-  "Show on-screen display when media player status changes": {
-    "Show on-screen display when media player status changes": "미디어 플레이어 상태가 변경될 때 온스크린 디스플레이 표시"
-  },
-  "Show on-screen display when media player volume changes": {
-    "Show on-screen display when media player volume changes": "미디어 플레이어 볼륨이 변경될 때 온스크린 디스플레이 표시"
-  },
-  "Show on-screen display when microphone is muted/unmuted": {
-    "Show on-screen display when microphone is muted/unmuted": "마이크가 음소거/음소거 해제될 때 온스크린 디스플레이 표시"
-  },
-  "Show on-screen display when power profile changes": {
-    "Show on-screen display when power profile changes": "전원 프로필이 변경될 때 온스크린 디스플레이 표시"
-  },
-  "Show on-screen display when volume changes": {
-    "Show on-screen display when volume changes": "볼륨이 변경될 때 온스크린 디스플레이 표시"
   },
   "Show the bar only when no windows are open": {
     "Show the bar only when no windows are open": "열려 있는 창이 없을 때만 바 표시"
@@ -7630,9 +7252,6 @@
   },
   "Show weather information in top bar and control center": {
     "Show weather information in top bar and control center": "상단 바 및 제어 센터에 날씨 정보 표시"
-  },
-  "Show week number in the calendar": {
-    "Show week number in the calendar": "캘린더에 주 번호 표시"
   },
   "Show workspace index numbers in the top bar workspace switcher": {
     "Show workspace index numbers in the top bar workspace switcher": "상단 바 작업 공간 전환기에 작업 공간 인덱스 번호 표시"
@@ -7666,9 +7285,6 @@
   },
   "Signal Strength": {
     "Signal Strength": "신호 강도"
-  },
-  "Signal:": {
-    "Signal:": "신호:"
   },
   "Silence for a while": {
     "Silence for a while": "잠시 무음"
@@ -7796,9 +7412,6 @@
   "Start": {
     "Start": "시작"
   },
-  "Start KDE Connect or Valent": {
-    "Start KDE Connect or Valent": ""
-  },
   "Start KDE Connect or Valent to use this plugin": {
     "Start KDE Connect or Valent to use this plugin": "이 플러그인을 사용하려면 KDE Connect 또는 Valent 시작"
   },
@@ -7837,9 +7450,6 @@
   },
   "Stripes": {
     "Stripes": "줄무늬"
-  },
-  "Subtle Overlay": {
-    "Subtle Overlay": ""
   },
   "Summary": {
     "Summary": "요약"
@@ -8045,20 +7655,11 @@
   "Terminal fallback failed. Install one of the supported terminal emulators or run 'dms greeter sync' manually.": {
     "Terminal fallback failed. Install one of the supported terminal emulators or run 'dms greeter sync' manually.": "터미널 대체를 실패했습니다. 지원되는 터미널 에뮬레이터 중 하나를 설치하거나 'dms greeter sync'를 수동으로 실행하세요."
   },
-  "Terminal fallback opened. Complete authentication setup there; it will close automatically when done.": {
-    "Terminal fallback opened. Complete authentication setup there; it will close automatically when done.": "터미널 대체가 열렸습니다. 거기에서 인증 설정을 완료하세요. 완료되면 자동으로 닫힙니다."
+  "Terminal fallback opened. Complete authentication there; it will close automatically when done.": {
+    "Terminal fallback opened. Complete authentication there; it will close automatically when done.": ""
   },
-  "Terminal fallback opened. Complete sync there; it will close automatically when done.": {
-    "Terminal fallback opened. Complete sync there; it will close automatically when done.": "터미널 대체가 열렸습니다. 거기에서 동기화를 완료하세요. 완료되면 자동으로 닫힙니다."
-  },
-  "Terminal multiplexer backend to use": {
-    "Terminal multiplexer backend to use": "사용할 터미널 멀티플렉서 백엔드"
-  },
-  "Terminal opened. Complete authentication setup there; it will close automatically when done.": {
-    "Terminal opened. Complete authentication setup there; it will close automatically when done.": "터미널이 열렸습니다. 거기에서 인증 설정을 완료하세요. 완료되면 자동으로 닫힙니다."
-  },
-  "Terminal opened. Complete sync authentication there; it will close automatically when done.": {
-    "Terminal opened. Complete sync authentication there; it will close automatically when done.": "터미널이 열렸습니다. 거기에서 동기화 인증을 완료하세요. 완료되면 자동으로 닫힙니다."
+  "Terminal opened. Complete authentication there; it will close automatically when done.": {
+    "Terminal opened. Complete authentication there; it will close automatically when done.": ""
   },
   "Terminals - Always use Dark Theme": {
     "Terminals - Always use Dark Theme": "터미널 - 항상 다크 테마 사용"
@@ -8092,9 +7693,6 @@
   },
   "Text Rendering": {
     "Text Rendering": "텍스트 렌더링"
-  },
-  "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.": {
-    "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.": ""
   },
   "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": {
     "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "시스템 모니터링을 위해서는 'dgop' 도구가 필요합니다.\n이 기능을 사용하려면 dgop를 설치하세요."
@@ -8156,20 +7754,8 @@
   "This device": {
     "This device": "이 기기"
   },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings.": "이 설치는 여전히 hyprland.conf를 사용하고 있습니다. 커서 설정을 편집하기 전에 dms setup을 실행하여 마이그레이션하세요."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing display settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing display settings.": "이 설치는 여전히 hyprland.conf를 사용하고 있습니다. 디스플레이 설정을 편집하기 전에 dms setup을 실행하여 마이그레이션하세요."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings.": "이 설치는 여전히 hyprland.conf를 사용하고 있습니다. 레이아웃 설정을 편집하기 전에 dms setup을 실행하여 마이그레이션하세요."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing shortcuts in Settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing shortcuts in Settings.": "이 설치는 여전히 hyprland.conf를 사용하고 있습니다. 설정에서 바로 가기를 편집하기 전에 dms setup을 실행하여 마이그레이션하세요."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings.": "이 설치는 여전히 hyprland.conf를 사용하고 있습니다. 설정에서 창 규칙을 편집하기 전에 dms setup을 실행하여 마이그레이션하세요."
+  "This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.": {
+    "This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.": ""
   },
   "This may take a few seconds": {
     "This may take a few seconds": "몇 초 정도 걸릴 수 있습니다"
@@ -8201,14 +7787,8 @@
   "Tile": {
     "Tile": "타일"
   },
-  "Tile H": {
-    "Tile H": ""
-  },
   "Tile Horizontally": {
     "Tile Horizontally": "가로로 타일"
-  },
-  "Tile V": {
-    "Tile V": ""
   },
   "Tile Vertically": {
     "Tile Vertically": "세로로 타일"
@@ -8252,14 +7832,8 @@
   "Timeout Progress Bar": {
     "Timeout Progress Bar": "시간 초과 진행률 바"
   },
-  "Timeout for critical priority notifications": {
-    "Timeout for critical priority notifications": "중요 우선순위 알림의 시간 초과"
-  },
-  "Timeout for low priority notifications": {
-    "Timeout for low priority notifications": "낮은 우선순위 알림의 시간 초과"
-  },
-  "Timeout for normal priority notifications": {
-    "Timeout for normal priority notifications": "보통 우선순위 알림의 시간 초과"
+  "Timeouts": {
+    "Timeouts": ""
   },
   "Tint Saturation": {
     "Tint Saturation": "색조 채도"
@@ -8374,15 +7948,6 @@
   },
   "Transparency": {
     "Transparency": "투명도"
-  },
-  "Transparency of the border": {
-    "Transparency of the border": ""
-  },
-  "Transparency of the shadow layer": {
-    "Transparency of the shadow layer": ""
-  },
-  "Transparency of the widget outline": {
-    "Transparency of the widget outline": ""
   },
   "Trash": {
     "Trash": "휴지통"
@@ -8555,9 +8120,6 @@
   "Unpin from Dock": {
     "Unpin from Dock": "독에서 고정 해제"
   },
-  "Unsaved Changes": {
-    "Unsaved Changes": "저장되지 않은 변경 사항"
-  },
   "Unsaved changes": {
     "Unsaved changes": "저장되지 않은 변경 사항"
   },
@@ -8608,9 +8170,6 @@
   },
   "Uptime": {
     "Uptime": "가동 시간"
-  },
-  "Uptime:": {
-    "Uptime:": "가동 시간:"
   },
   "Urgent": {
     "Urgent": "긴급"
@@ -8681,9 +8240,6 @@
   "Use colors extracted from album art instead of system theme colors": {
     "Use colors extracted from album art instead of system theme colors": ""
   },
-  "Use custom border size": {
-    "Use custom border size": "사용자 지정 테두리 크기 사용"
-  },
   "Use custom border/focus-ring width": {
     "Use custom border/focus-ring width": "사용자 지정 테두리/포커스 링 너비 사용"
   },
@@ -8720,11 +8276,11 @@
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "시스템 설정의 소리 테마 사용"
   },
+  "Use system PAM authentication": {
+    "Use system PAM authentication": ""
+  },
   "Use the extended surface for launcher content": {
     "Use the extended surface for launcher content": "런처 내용에 확장된 표면 사용"
-  },
-  "Use the overlay layer when opening the launcher": {
-    "Use the overlay layer when opening the launcher": "런처를 열 때 오버레이 레이어 사용"
   },
   "Use the same position and size on all displays": {
     "Use the same position and size on all displays": "모든 디스플레이에 같은 위치 및 크기 사용"
@@ -8975,6 +8531,9 @@
   "When locked": {
     "When locked": "잠겼을 때"
   },
+  "Which PAM service the lock screen uses to authenticate": {
+    "Which PAM service the lock screen uses to authenticate": ""
+  },
   "White": {
     "White": "흰색"
   },
@@ -9083,12 +8642,6 @@
   "Window Rules": {
     "Window Rules": "창 규칙"
   },
-  "Window Rules Include Missing": {
-    "Window Rules Include Missing": ""
-  },
-  "Window Rules Not Configured": {
-    "Window Rules Not Configured": ""
-  },
   "Wipe": {
     "Wipe": "닦아내기"
   },
@@ -9098,9 +8651,6 @@
   "Workspace": {
     "Workspace": "작업 공간"
   },
-  "Workspace Appearance": {
-    "Workspace Appearance": "작업 공간 모양"
-  },
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "작업 공간 인덱스 번호"
   },
@@ -9109,9 +8659,6 @@
   },
   "Workspace Padding": {
     "Workspace Padding": "작업 공간 여백"
-  },
-  "Workspace Settings": {
-    "Workspace Settings": "작업 공간 설정"
   },
   "Workspace Switcher": {
     "Workspace Switcher": "작업 공간 전환기"
@@ -9161,17 +8708,8 @@
   "Yesterday": {
     "Yesterday": "어제"
   },
-  "You have unsaved changes. Save before closing this tab?": {
-    "You have unsaved changes. Save before closing this tab?": "저장하지 않은 변경 사항이 있습니다. 이 탭을 닫기 전에 저장하시겠습니까?"
-  },
   "You have unsaved changes. Save before continuing?": {
     "You have unsaved changes. Save before continuing?": "저장하지 않은 변경 사항이 있습니다. 계속하기 전에 저장하시겠습니까?"
-  },
-  "You have unsaved changes. Save before creating a new file?": {
-    "You have unsaved changes. Save before creating a new file?": "저장하지 않은 변경 사항이 있습니다. 새 파일을 만들기 전에 저장하시겠습니까?"
-  },
-  "You have unsaved changes. Save before opening a file?": {
-    "You have unsaved changes. Save before opening a file?": "저장하지 않은 변경 사항이 있습니다. 파일을 열기 전에 저장하시겠습니까?"
   },
   "You need to set either:\nQT_QPA_PLATFORMTHEME=gtk3 OR\nQT_QPA_PLATFORMTHEME=qt6ct\nas environment variables, and then restart the shell.\n\nqt6ct requires qt6ct-kde to be installed.": {
     "You need to set either:\nQT_QPA_PLATFORMTHEME=gtk3 OR\nQT_QPA_PLATFORMTHEME=qt6ct\nas environment variables, and then restart the shell.\n\nqt6ct requires qt6ct-kde to be installed.": "환경 변수로 다음 중 하나를 설정해야 합니다:\nQT_QPA_PLATFORMTHEME=gtk3 또는\nQT_QPA_PLATFORMTHEME=qt6ct\n그런 다음 셸을 다시 시작하세요.\n\nqt6ct를 사용하려면 qt6ct-kde가 설치되어 있어야 합니다."
@@ -9191,17 +8729,11 @@
   "Your system is up to date!": {
     "Your system is up to date!": "시스템이 최신 상태입니다!"
   },
-  "actions": {
-    "actions": "작업"
-  },
   "admin": {
     "admin": "관리자"
   },
   "attached": {
     "attached": "연결됨"
-  },
-  "boregard is required": {
-    "boregard is required": ""
   },
   "brandon": {
     "brandon": "brandon"
@@ -9236,9 +8768,6 @@
   "device": {
     "device": "기기"
   },
-  "devices connected": {
-    "devices connected": ""
-  },
   "dgop not available": {
     "dgop not available": "dgop를 사용할 수 없음"
   },
@@ -9247,6 +8776,9 @@
   },
   "discuss": {
     "discuss": "토론"
+  },
+  "display rotation option": {
+    "Normal": ""
   },
   "dms is a highly customizable, modern desktop shell with a <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">material 3 inspired</a> design.<br /><br/>It is built with <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, a QT6 framework for building desktop shells, and <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, a statically typed, compiled programming language.": {
     "dms is a highly customizable, modern desktop shell with a <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">material 3 inspired</a> design.<br /><br/>It is built with <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, a QT6 framework for building desktop shells, and <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, a statically typed, compiled programming language.": "dms는 <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">material 3에서 영감을 받은</a> 디자인의 고도로 사용자 지정 가능한 최신 데스크톱 셸입니다.<br /><br/>데스크톱 셸 구축을 위한 QT6 프레임워크인 <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>과 정적으로 타입이 지정된 컴파일 프로그래밍 언어인 <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>로 구축되었습니다."
@@ -9308,11 +8840,8 @@
   "mangowc GitHub": {
     "mangowc GitHub": "mangowc GitHub"
   },
-  "matugen not available or disabled - cannot apply GTK colors": {
-    "matugen not available or disabled - cannot apply GTK colors": "matugen을 사용할 수 없거나 비활성화됨 - GTK 색상을 적용할 수 없음"
-  },
-  "matugen not available or disabled - cannot apply Qt colors": {
-    "matugen not available or disabled - cannot apply Qt colors": "matugen을 사용할 수 없거나 비활성화됨 - Qt 색상을 적용할 수 없음"
+  "matugen not available or disabled - cannot apply %1 colors": {
+    "matugen not available or disabled - cannot apply %1 colors": ""
   },
   "matugen not found - install matugen package for dynamic theming": {
     "matugen not found - install matugen package for dynamic theming": "matugen을 찾을 수 없음 - 동적 테마 지정을 위해 matugen 패키지 설치"
@@ -9325,6 +8854,9 @@
   },
   "nav": {
     "nav": "탐색"
+  },
+  "network security type": {
+    "Open": ""
   },
   "niri GitHub": {
     "niri GitHub": "niri GitHub"
@@ -9368,14 +8900,14 @@
   "on Sway": {
     "on Sway": "Sway에서"
   },
-  "open": {
-    "open": "열기"
-  },
   "or run ": {
     "or run ": "또는 실행"
   },
   "power-profiles-daemon not available": {
     "power-profiles-daemon not available": "power-profiles-daemon을 사용할 수 없음"
+  },
+  "primary network connection label": {
+    "Primary": ""
   },
   "procs": {
     "procs": "프로세스"
@@ -9430,9 +8962,6 @@
   },
   "v%1 by %2": {
     "v%1 by %2": "v%1(%2 제작)"
-  },
-  "verified": {
-    "verified": ""
   },
   "• Install only from trusted sources": {
     "• Install only from trusted sources": "• 신뢰할 수 있는 소스에서만 설치하세요"

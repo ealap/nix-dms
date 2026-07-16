@@ -396,7 +396,6 @@
       "appearance",
       "background",
       "bg",
-      "configure",
       "custom",
       "customize",
       "desktop",
@@ -407,10 +406,8 @@
       "personalization",
       "picture",
       "screen",
-      "select",
       "wallpaper"
-    ],
-    "description": "Select monitor to configure wallpaper"
+    ]
   },
   {
     "section": "useAutoLocation",
@@ -463,19 +460,12 @@
       "calendar",
       "clock",
       "date",
-      "day",
       "forecast",
       "format",
-      "month",
-      "number",
-      "show",
       "time",
-      "weather",
-      "week",
-      "year"
+      "weather"
     ],
-    "icon": "calendar_today",
-    "description": "Show week number in the calendar"
+    "icon": "calendar_today"
   },
   {
     "section": "weatherEnabled",
@@ -567,18 +557,12 @@
     "keywords": [
       "clock",
       "date",
-      "display",
       "forecast",
-      "monitor",
-      "output",
-      "screen",
       "seconds",
       "show",
       "time",
-      "watch",
       "weather"
-    ],
-    "description": "Display seconds in the clock"
+    ]
   },
   {
     "section": "showWeekNumber",
@@ -586,20 +570,15 @@
     "tabIndex": 1,
     "category": "Time & Weather",
     "keywords": [
-      "calendar",
       "clock",
       "date",
-      "day",
       "forecast",
-      "month",
       "number",
       "show",
       "time",
       "weather",
-      "week",
-      "year"
-    ],
-    "description": "Show week number in the calendar"
+      "week"
+    ]
   },
   {
     "section": "_tab_1",
@@ -758,7 +737,7 @@
   },
   {
     "section": "barConfigurations",
-    "label": "Bar Configurations",
+    "label": "Configurations",
     "tabIndex": 3,
     "category": "Dank Bar",
     "keywords": [
@@ -770,7 +749,6 @@
       "panel",
       "setup",
       "statusbar",
-      "taskbar",
       "topbar"
     ],
     "icon": "dashboard"
@@ -895,6 +873,33 @@
     "description": "Automatically hide the bar when the pointer moves away"
   },
   {
+    "section": "workspaceAppearance",
+    "label": "Appearance",
+    "tabIndex": 4,
+    "category": "Dank Bar",
+    "keywords": [
+      "appearance",
+      "around",
+      "bar",
+      "color",
+      "custom",
+      "dank",
+      "desktop",
+      "focused",
+      "indicator",
+      "outline",
+      "panel",
+      "ring",
+      "show",
+      "statusbar",
+      "topbar",
+      "virtual",
+      "workspace"
+    ],
+    "icon": "palette",
+    "description": "Show an outline ring around the focused workspace indicator"
+  },
+  {
     "section": "workspaceDragReorder",
     "label": "Drag to Reorder",
     "tabIndex": 4,
@@ -992,6 +997,32 @@
       "workspaces"
     ],
     "description": "Show workspaces of the currently focused monitor",
+    "conditionKey": "isNiri"
+  },
+  {
+    "section": "workspaceSettings",
+    "label": "General",
+    "tabIndex": 4,
+    "category": "Dank Bar",
+    "keywords": [
+      "bar",
+      "dank",
+      "desktop",
+      "general",
+      "index",
+      "labels",
+      "numbers",
+      "panel",
+      "show",
+      "statusbar",
+      "switcher",
+      "taskbar",
+      "topbar",
+      "virtual",
+      "workspace"
+    ],
+    "icon": "view_module",
+    "description": "Show workspace index numbers in the top bar workspace switcher",
     "conditionKey": "isNiri"
   },
   {
@@ -1241,33 +1272,6 @@
     "conditionKey": "isNiri"
   },
   {
-    "section": "workspaceAppearance",
-    "label": "Workspace Appearance",
-    "tabIndex": 4,
-    "category": "Dank Bar",
-    "keywords": [
-      "appearance",
-      "around",
-      "bar",
-      "color",
-      "custom",
-      "dank",
-      "desktop",
-      "focused",
-      "indicator",
-      "outline",
-      "panel",
-      "ring",
-      "show",
-      "statusbar",
-      "topbar",
-      "virtual",
-      "workspace"
-    ],
-    "icon": "palette",
-    "description": "Show an outline ring around the focused workspace indicator"
-  },
-  {
     "section": "showWorkspaceIndex",
     "label": "Workspace Index Numbers",
     "tabIndex": 4,
@@ -1342,32 +1346,6 @@
       "workspaces"
     ],
     "description": "Always show a minimum of 3 workspaces, even if fewer are available"
-  },
-  {
-    "section": "workspaceSettings",
-    "label": "Workspace Settings",
-    "tabIndex": 4,
-    "category": "Dank Bar",
-    "keywords": [
-      "bar",
-      "dank",
-      "desktop",
-      "index",
-      "labels",
-      "numbers",
-      "panel",
-      "settings",
-      "show",
-      "statusbar",
-      "switcher",
-      "taskbar",
-      "topbar",
-      "virtual",
-      "workspace"
-    ],
-    "icon": "view_module",
-    "description": "Show workspace index numbers in the top bar workspace switcher",
-    "conditionKey": "isNiri"
   },
   {
     "section": "_tab_4",
@@ -1498,39 +1476,6 @@
       "taskbar"
     ],
     "icon": "shelf_auto_hide"
-  },
-  {
-    "section": "dockVisibility",
-    "label": "Dock Visibility",
-    "tabIndex": 5,
-    "category": "Dock",
-    "keywords": [
-      "app",
-      "applications",
-      "apps",
-      "auto-hide",
-      "autohide",
-      "display",
-      "dock",
-      "enable",
-      "hidden",
-      "hide",
-      "launcher bar",
-      "monitor",
-      "output",
-      "panel",
-      "pinned",
-      "program",
-      "programs",
-      "running",
-      "screen",
-      "show",
-      "taskbar",
-      "visibility",
-      "visible"
-    ],
-    "icon": "dock_to_bottom",
-    "description": "Display a dock with pinned and running applications"
   },
   {
     "section": "dockGroupByApp",
@@ -1811,24 +1756,15 @@
     "tabIndex": 5,
     "category": "Dock",
     "keywords": [
-      "active",
       "badge",
       "count",
-      "displays",
       "dock",
       "indicator",
       "launcher bar",
-      "monitor",
-      "monitors",
-      "output",
-      "outputs",
       "overflow",
-      "screen",
-      "screens",
       "show",
       "taskbar"
-    ],
-    "description": "Displays count when overflow is active"
+    ]
   },
   {
     "section": "dockShowTrash",
@@ -1951,6 +1887,39 @@
       "wayland"
     ],
     "description": "Place the dock on the Wayland overlay layer"
+  },
+  {
+    "section": "dockVisibility",
+    "label": "Visibility",
+    "tabIndex": 5,
+    "category": "Dock",
+    "keywords": [
+      "app",
+      "applications",
+      "apps",
+      "auto-hide",
+      "autohide",
+      "display",
+      "dock",
+      "enable",
+      "hidden",
+      "hide",
+      "launcher bar",
+      "monitor",
+      "output",
+      "panel",
+      "pinned",
+      "program",
+      "programs",
+      "running",
+      "screen",
+      "show",
+      "taskbar",
+      "visibility",
+      "visible"
+    ],
+    "icon": "dock_to_bottom",
+    "description": "Display a dock with pinned and running applications"
   },
   {
     "section": "barBorder",
@@ -2103,18 +2072,14 @@
     "tabIndex": 6,
     "category": "Dank Bar",
     "keywords": [
-      "background",
       "bar",
-      "controls",
       "dank",
       "opacity",
       "panel",
       "statusbar",
-      "taskbar",
       "topbar"
     ],
-    "icon": "opacity",
-    "description": "Controls opacity of the bar background"
+    "icon": "opacity"
   },
   {
     "section": "barShadow",
@@ -2241,20 +2206,15 @@
   },
   {
     "section": "networkStatus",
-    "label": "Network Status",
+    "label": "Status",
     "tabIndex": 7,
     "category": "Network",
     "keywords": [
-      "connection",
       "connectivity",
-      "ethernet",
       "internet",
       "network",
       "online",
-      "status",
-      "wi-fi",
-      "wifi",
-      "wireless"
+      "status"
     ],
     "icon": "lan"
   },
@@ -2387,18 +2347,14 @@
       "drawer",
       "full",
       "launcher",
-      "layer",
       "menu",
       "minimal",
-      "opening",
-      "overlay",
       "spotlight",
       "start",
       "start menu",
       "style"
     ],
-    "icon": "search",
-    "description": "Use the overlay layer when opening the launcher"
+    "icon": "search"
   },
   {
     "section": "launcherStyleSelector",
@@ -3000,20 +2956,14 @@
     "tabIndex": 9,
     "category": "Launcher",
     "keywords": [
-      "app drawer",
-      "app menu",
-      "applications",
       "drawer",
       "fullscreen",
       "launcher",
       "layer",
       "menu",
-      "opening",
       "overlay",
-      "start",
-      "start menu"
-    ],
-    "description": "Use the overlay layer when opening the launcher"
+      "start"
+    ]
   },
   {
     "section": "matugenTemplateAlacritty",
@@ -4047,7 +3997,6 @@
     "keywords": [
       "appearance",
       "colors",
-      "controls",
       "elevation",
       "look",
       "m3",
@@ -4057,8 +4006,7 @@
       "style",
       "theme",
       "transparency"
-    ],
-    "description": "Controls the opacity of the shadow"
+    ]
   },
   {
     "section": "m3ElevationEnabled",
@@ -4635,6 +4583,29 @@
     ]
   },
   {
+    "section": "lockAppearance",
+    "label": "Appearance",
+    "tabIndex": 11,
+    "category": "Lock Screen",
+    "keywords": [
+      "appearance",
+      "clock",
+      "date",
+      "font",
+      "lock",
+      "lockscreen",
+      "login",
+      "password",
+      "screen",
+      "security",
+      "time",
+      "typography",
+      "watch"
+    ],
+    "icon": "palette",
+    "description": "Font used for the clock and date on the lock screen"
+  },
+  {
     "section": "lockAuthSource",
     "label": "Authentication",
     "tabIndex": 11,
@@ -4701,6 +4672,48 @@
       "video"
     ],
     "description": "Pick a different random video each time from the same folder"
+  },
+  {
+    "section": "lockBehavior",
+    "label": "Behavior",
+    "tabIndex": 11,
+    "category": "Lock Screen",
+    "keywords": [
+      "behavior",
+      "bind",
+      "dbus",
+      "disable",
+      "external",
+      "integration",
+      "lock",
+      "lockscreen",
+      "login",
+      "loginctl",
+      "password",
+      "screen",
+      "security",
+      "signals"
+    ],
+    "icon": "lock",
+    "description": "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen"
+  },
+  {
+    "section": "lockDisplay",
+    "label": "Display Assignment",
+    "tabIndex": 11,
+    "category": "Lock Screen",
+    "keywords": [
+      "assignment",
+      "display",
+      "lock",
+      "login",
+      "monitor",
+      "output",
+      "password",
+      "screen",
+      "security"
+    ],
+    "icon": "monitor"
   },
   {
     "section": "lockScreenVideoEnabled",
@@ -4793,6 +4806,31 @@
     "description": "Managed by the primary PAM source."
   },
   {
+    "section": "lockLayout",
+    "label": "Layout",
+    "tabIndex": 11,
+    "category": "Lock Screen",
+    "keywords": [
+      "actions",
+      "appear",
+      "field",
+      "hidden",
+      "layout",
+      "lock",
+      "login",
+      "password",
+      "power",
+      "pressed",
+      "reboot",
+      "screen",
+      "security",
+      "shutdown",
+      "soon"
+    ],
+    "icon": "lock",
+    "description": "If the field is hidden, it will appear as soon as a key is pressed."
+  },
+  {
     "section": "_tab_11",
     "label": "Lock Screen",
     "tabIndex": 11,
@@ -4806,97 +4844,6 @@
       "security"
     ],
     "icon": "lock"
-  },
-  {
-    "section": "lockAppearance",
-    "label": "Lock Screen Appearance",
-    "tabIndex": 11,
-    "category": "Lock Screen",
-    "keywords": [
-      "appearance",
-      "clock",
-      "date",
-      "font",
-      "lock",
-      "lockscreen",
-      "login",
-      "password",
-      "screen",
-      "security",
-      "time",
-      "typography",
-      "watch"
-    ],
-    "icon": "palette",
-    "description": "Font used for the clock and date on the lock screen"
-  },
-  {
-    "section": "lockDisplay",
-    "label": "Lock Screen Display",
-    "tabIndex": 11,
-    "category": "Lock Screen",
-    "keywords": [
-      "display",
-      "lock",
-      "lockscreen",
-      "login",
-      "monitor",
-      "output",
-      "password",
-      "screen",
-      "security"
-    ],
-    "icon": "monitor"
-  },
-  {
-    "section": "lockBehavior",
-    "label": "Lock Screen behaviour",
-    "tabIndex": 11,
-    "category": "Lock Screen",
-    "keywords": [
-      "behaviour",
-      "bind",
-      "dbus",
-      "disable",
-      "external",
-      "integration",
-      "lock",
-      "lockscreen",
-      "login",
-      "loginctl",
-      "password",
-      "screen",
-      "security",
-      "signals"
-    ],
-    "icon": "lock",
-    "description": "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen"
-  },
-  {
-    "section": "lockLayout",
-    "label": "Lock Screen layout",
-    "tabIndex": 11,
-    "category": "Lock Screen",
-    "keywords": [
-      "actions",
-      "appear",
-      "field",
-      "hidden",
-      "layout",
-      "lock",
-      "lockscreen",
-      "login",
-      "password",
-      "power",
-      "pressed",
-      "reboot",
-      "screen",
-      "security",
-      "shutdown",
-      "soon"
-    ],
-    "icon": "lock",
-    "description": "If the field is hidden, it will appear as soon as a key is pressed."
   },
   {
     "section": "lockAtStartup",
@@ -5214,10 +5161,8 @@
       "policy",
       "screen",
       "security",
-      "sets",
       "system"
-    ],
-    "description": "System PAM sets the authentication policy."
+    ]
   },
   {
     "section": "videoScreensaver",
@@ -5278,7 +5223,6 @@
       "animate",
       "animation",
       "animations",
-      "custom",
       "duration",
       "fonts",
       "modal",
@@ -5289,8 +5233,7 @@
       "transition",
       "typography"
     ],
-    "icon": "web_asset",
-    "description": "%1 custom animation duration"
+    "icon": "web_asset"
   },
   {
     "section": "popoutAnimationSpeed",
@@ -5301,7 +5244,6 @@
       "animate",
       "animation",
       "animations",
-      "custom",
       "duration",
       "fonts",
       "motion",
@@ -5312,8 +5254,7 @@
       "transition",
       "typography"
     ],
-    "icon": "open_in_new",
-    "description": "%1 custom animation duration"
+    "icon": "open_in_new"
   },
   {
     "section": "customAnimationDuration",
@@ -5389,9 +5330,7 @@
     "tabIndex": 14,
     "category": "Typography & Motion",
     "keywords": [
-      "animate",
       "animation",
-      "animations",
       "custom",
       "duration",
       "fonts",
@@ -5399,10 +5338,8 @@
       "motion",
       "speed",
       "text",
-      "transition",
       "typography"
-    ],
-    "description": "%1 custom animation duration"
+    ]
   },
   {
     "section": "popoutCustomAnimationDuration",
@@ -5410,9 +5347,7 @@
     "tabIndex": 14,
     "category": "Typography & Motion",
     "keywords": [
-      "animate",
       "animation",
-      "animations",
       "custom",
       "duration",
       "fonts",
@@ -5420,10 +5355,8 @@
       "popout",
       "speed",
       "text",
-      "transition",
       "typography"
-    ],
-    "description": "%1 custom animation duration"
+    ]
   },
   {
     "section": "fontScale",
@@ -5651,14 +5584,11 @@
       "audio",
       "effects",
       "enable",
-      "events",
-      "play",
       "sfx",
       "sound",
       "sounds",
       "system"
-    ],
-    "description": "Play sounds for system events"
+    ]
   },
   {
     "section": "soundLogin",
@@ -5766,10 +5696,8 @@
       "sound",
       "sounds",
       "style",
-      "system",
       "theme"
-    ],
-    "description": "Select system sound theme"
+    ]
   },
   {
     "section": "_tab_15",
@@ -5791,18 +5719,23 @@
     "tabIndex": 15,
     "category": "Sounds",
     "keywords": [
+      "appearance",
       "audio",
+      "colors",
+      "colour",
       "effects",
-      "events",
+      "look",
       "notification",
-      "play",
+      "settings",
       "sfx",
       "sound",
       "sounds",
+      "style",
       "system",
+      "theme",
       "volume"
     ],
-    "description": "Play sounds for system events",
+    "description": "Use sound theme from system settings",
     "conditionKey": "soundsAvailable"
   },
   {
@@ -5849,23 +5782,47 @@
   },
   {
     "section": "mediaExcludePlayers",
-    "label": "Excluded Media Players",
+    "label": "Excluded Players",
     "tabIndex": 16,
     "category": "Media Player",
     "keywords": [
-      "audio",
       "exclude",
       "excluded",
       "ignore",
       "media",
       "mpris",
       "music",
-      "playback",
       "player",
       "players",
       "spotify"
     ],
     "icon": "do_not_disturb_on"
+  },
+  {
+    "section": "mediaPlayer",
+    "label": "General",
+    "tabIndex": 16,
+    "category": "Media Player",
+    "keywords": [
+      "animated",
+      "bars",
+      "general",
+      "media",
+      "mpris",
+      "music",
+      "panel",
+      "playback",
+      "player",
+      "progress",
+      "scroll",
+      "spotify",
+      "statusbar",
+      "taskbar",
+      "topbar",
+      "wave"
+    ],
+    "icon": "music_note",
+    "description": "Use animated wave progress bars for media playback"
   },
   {
     "section": "_tab_16",
@@ -5882,33 +5839,6 @@
       "spotify"
     ],
     "icon": "music_note"
-  },
-  {
-    "section": "mediaPlayer",
-    "label": "Media Player Settings",
-    "tabIndex": 16,
-    "category": "Media Player",
-    "keywords": [
-      "animated",
-      "audio",
-      "bars",
-      "media",
-      "mpris",
-      "music",
-      "panel",
-      "playback",
-      "player",
-      "progress",
-      "scroll",
-      "settings",
-      "spotify",
-      "statusbar",
-      "taskbar",
-      "topbar",
-      "wave"
-    ],
-    "icon": "music_note",
-    "description": "Use animated wave progress bars for media playback"
   },
   {
     "section": "audioScrollMode",
@@ -5997,20 +5927,16 @@
     "tabIndex": 17,
     "category": "Notifications",
     "keywords": [
-      "alert",
       "alerts",
       "critical",
       "duration",
       "messages",
-      "notif",
       "notification",
       "notifications",
-      "notifs",
       "priority",
       "timeout",
       "toast"
-    ],
-    "description": "Timeout for critical priority notifications"
+    ]
   },
   {
     "section": "doNotDisturb",
@@ -6090,23 +6016,17 @@
     "category": "Notifications",
     "keywords": [
       "active",
-      "alert",
       "alerts",
-      "currently",
       "display",
       "focused",
       "messages",
       "monitor",
-      "notif",
       "notification",
       "notifications",
       "popup",
-      "popups",
       "screen",
-      "show",
       "toast"
-    ],
-    "description": "Show notification popups only on the currently focused monitor"
+    ]
   },
   {
     "section": "notificationHistoryMaxAgeDays",
@@ -6211,20 +6131,16 @@
     "tabIndex": 17,
     "category": "Notifications",
     "keywords": [
-      "alert",
       "alerts",
       "duration",
       "low",
       "messages",
-      "notif",
       "notification",
       "notifications",
-      "notifs",
       "priority",
       "timeout",
       "toast"
-    ],
-    "description": "Timeout for low priority notifications"
+    ]
   },
   {
     "section": "notificationHistoryMaxCount",
@@ -6296,20 +6212,16 @@
     "tabIndex": 17,
     "category": "Notifications",
     "keywords": [
-      "alert",
       "alerts",
       "duration",
       "messages",
       "normal",
-      "notif",
       "notification",
       "notifications",
-      "notifs",
       "priority",
       "timeout",
       "toast"
-    ],
-    "description": "Timeout for normal priority notifications"
+    ]
   },
   {
     "section": "notificationOverlayEnabled",
@@ -6336,73 +6248,6 @@
       "toast"
     ],
     "description": "Display all priorities over fullscreen apps"
-  },
-  {
-    "section": "notificationPopups",
-    "label": "Notification Popups",
-    "tabIndex": 17,
-    "category": "Notifications",
-    "keywords": [
-      "alert",
-      "alerts",
-      "font",
-      "messages",
-      "notif",
-      "notification",
-      "notifications",
-      "popups",
-      "size",
-      "summary",
-      "text",
-      "toast"
-    ],
-    "icon": "notifications",
-    "description": "Set the font size for notification summary text"
-  },
-  {
-    "section": "notificationRules",
-    "label": "Notification Rules",
-    "tabIndex": 17,
-    "category": "Notifications",
-    "keywords": [
-      "alert",
-      "alerts",
-      "history",
-      "ignore",
-      "messages",
-      "mute",
-      "notif",
-      "notification",
-      "notifications",
-      "priority",
-      "regex",
-      "rules",
-      "toast"
-    ],
-    "icon": "rule_settings"
-  },
-  {
-    "section": "notificationTimeouts",
-    "label": "Notification Timeouts",
-    "tabIndex": 17,
-    "category": "Notifications",
-    "keywords": [
-      "alert",
-      "alerts",
-      "duration",
-      "low",
-      "messages",
-      "notif",
-      "notification",
-      "notifications",
-      "notifs",
-      "priority",
-      "timeout",
-      "timeouts",
-      "toast"
-    ],
-    "icon": "timer",
-    "description": "Timeout for low priority notifications"
   },
   {
     "section": "_tab_17",
@@ -6481,6 +6326,29 @@
     "description": "Show drop shadow on notification popups. Requires M3 Elevation to be enabled in Theme & Colors."
   },
   {
+    "section": "notificationPopups",
+    "label": "Popups",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alert",
+      "alerts",
+      "body",
+      "font",
+      "messages",
+      "notif",
+      "notification",
+      "notifications",
+      "popups",
+      "size",
+      "summary",
+      "text",
+      "toast"
+    ],
+    "icon": "notifications",
+    "description": "Set the font size for notification body text (htmlBody)"
+  },
+  {
     "section": "notificationPopupPrivacyMode",
     "label": "Privacy Mode",
     "tabIndex": 17,
@@ -6508,24 +6376,40 @@
     "description": "Hide notification content until expanded; popups show collapsed by default"
   },
   {
+    "section": "notificationRules",
+    "label": "Rules",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alerts",
+      "history",
+      "ignore",
+      "messages",
+      "mute",
+      "notification",
+      "notifications",
+      "priority",
+      "regex",
+      "rules",
+      "toast"
+    ],
+    "icon": "rule_settings"
+  },
+  {
     "section": "notificationSummaryFontSize",
     "label": "Summary Font Size",
     "tabIndex": 17,
     "category": "Notifications",
     "keywords": [
-      "alert",
       "alerts",
       "font",
       "messages",
-      "notif",
       "notification",
       "notifications",
       "size",
       "summary",
-      "text",
       "toast"
-    ],
-    "description": "Set the font size for notification summary text"
+    ]
   },
   {
     "section": "notificationDedupeEnabled",
@@ -6581,6 +6465,25 @@
     "description": "Show a bar that drains as the popup"
   },
   {
+    "section": "notificationTimeouts",
+    "label": "Timeouts",
+    "tabIndex": 17,
+    "category": "Notifications",
+    "keywords": [
+      "alerts",
+      "duration",
+      "low",
+      "messages",
+      "notification",
+      "notifications",
+      "priority",
+      "timeout",
+      "timeouts",
+      "toast"
+    ],
+    "icon": "timer"
+  },
+  {
     "section": "osdAlwaysShowValue",
     "label": "Always Show Percentage",
     "tabIndex": 18,
@@ -6618,20 +6521,14 @@
     "category": "On-screen Displays",
     "keywords": [
       "audio",
-      "cycling",
-      "devices",
-      "display",
       "displays",
       "indicator",
-      "monitor",
       "osd",
       "output",
       "popup",
       "screen",
-      "show",
       "switch"
-    ],
-    "description": "Show on-screen display when cycling audio output devices"
+    ]
   },
   {
     "section": "osdBrightnessEnabled",
@@ -6642,19 +6539,13 @@
       "backlight",
       "bright",
       "brightness",
-      "changes",
       "dim",
-      "display",
       "displays",
       "indicator",
-      "monitor",
       "osd",
-      "output",
       "popup",
-      "screen",
-      "show"
-    ],
-    "description": "Show on-screen display when brightness changes"
+      "screen"
+    ]
   },
   {
     "section": "osdCapsLockEnabled",
@@ -6663,20 +6554,13 @@
     "category": "On-screen Displays",
     "keywords": [
       "caps",
-      "changes",
-      "display",
       "displays",
       "indicator",
       "lock",
-      "monitor",
       "osd",
-      "output",
       "popup",
-      "screen",
-      "show",
-      "state"
-    ],
-    "description": "Show on-screen display when caps lock state changes"
+      "screen"
+    ]
   },
   {
     "section": "osdIdleInhibitorEnabled",
@@ -6685,24 +6569,17 @@
     "category": "On-screen Displays",
     "keywords": [
       "afk",
-      "changes",
-      "display",
       "displays",
       "idle",
       "inactive",
       "indicator",
       "inhibitor",
-      "monitor",
       "osd",
-      "output",
       "popup",
       "screen",
       "screensaver",
-      "show",
-      "state",
       "timeout"
-    ],
-    "description": "Show on-screen display when idle inhibitor state changes"
+    ]
   },
   {
     "section": "osdMediaPlaybackEnabled",
@@ -6710,25 +6587,14 @@
     "tabIndex": 18,
     "category": "On-screen Displays",
     "keywords": [
-      "audio",
-      "changes",
-      "display",
       "displays",
       "indicator",
       "media",
-      "monitor",
-      "mpris",
-      "music",
       "osd",
-      "output",
       "playback",
-      "player",
       "popup",
-      "screen",
-      "show",
-      "status"
-    ],
-    "description": "Show on-screen display when media player status changes"
+      "screen"
+    ]
   },
   {
     "section": "osdMediaVolumeEnabled",
@@ -6737,27 +6603,17 @@
     "category": "On-screen Displays",
     "keywords": [
       "audio",
-      "changes",
-      "display",
       "displays",
       "indicator",
       "loudness",
       "media",
-      "monitor",
-      "mpris",
-      "music",
       "osd",
-      "output",
-      "playback",
-      "player",
       "popup",
       "screen",
-      "show",
       "sound",
       "speaker",
       "volume"
-    ],
-    "description": "Show on-screen display when media player volume changes"
+    ]
   },
   {
     "section": "osdMicMuteEnabled",
@@ -6765,21 +6621,14 @@
     "tabIndex": 18,
     "category": "On-screen Displays",
     "keywords": [
-      "display",
       "displays",
       "indicator",
       "microphone",
-      "monitor",
       "mute",
-      "muted",
       "osd",
-      "output",
       "popup",
-      "screen",
-      "show",
-      "unmuted"
-    ],
-    "description": "Show on-screen display when microphone is muted/unmuted"
+      "screen"
+    ]
   },
   {
     "section": "osdPosition",
@@ -6833,26 +6682,20 @@
     "tabIndex": 18,
     "category": "On-screen Displays",
     "keywords": [
-      "changes",
-      "display",
       "displays",
       "hibernate",
       "indicator",
-      "monitor",
       "osd",
-      "output",
       "popup",
       "power",
       "profile",
       "reboot",
       "restart",
       "screen",
-      "show",
       "shutdown",
       "sleep",
       "suspend"
-    ],
-    "description": "Show on-screen display when power profile changes"
+    ]
   },
   {
     "section": "osdVolumeEnabled",
@@ -6861,22 +6704,16 @@
     "category": "On-screen Displays",
     "keywords": [
       "audio",
-      "changes",
-      "display",
       "displays",
       "indicator",
       "loudness",
-      "monitor",
       "osd",
-      "output",
       "popup",
       "screen",
-      "show",
       "sound",
       "speaker",
       "volume"
-    ],
-    "description": "Show on-screen display when volume changes"
+    ]
   },
   {
     "section": "appIdSubstitutions",
@@ -7554,19 +7391,14 @@
     "category": "System",
     "keywords": [
       "clipboard",
-      "cliphist",
-      "copy",
       "entry",
-      "history",
       "limit",
       "linux",
       "maximum",
       "os",
-      "paste",
       "size",
       "system"
-    ],
-    "description": "Maximum size per clipboard entry"
+    ]
   },
   {
     "section": "maxPinned",
@@ -7666,22 +7498,17 @@
     "keywords": [
       "celsius",
       "color",
-      "colour",
       "day",
       "displays",
       "fahrenheit",
       "gamma",
-      "hue",
       "kelvin",
       "monitor",
       "resolution",
       "screen",
       "temp",
-      "temperature",
-      "time",
-      "tint"
-    ],
-    "description": "Color temperature for day time"
+      "temperature"
+    ]
   },
   {
     "section": "_tab_25",
@@ -7817,6 +7644,22 @@
     "icon": "memory"
   },
   {
+    "section": "locale",
+    "label": "General",
+    "tabIndex": 30,
+    "category": "Locale",
+    "keywords": [
+      "change",
+      "country",
+      "general",
+      "interface",
+      "language",
+      "locale"
+    ],
+    "icon": "language",
+    "description": "Change the locale used by the DMS interface."
+  },
+  {
     "section": "_tab_30",
     "label": "Locale",
     "tabIndex": 30,
@@ -7827,22 +7670,6 @@
       "locale"
     ],
     "icon": "language"
-  },
-  {
-    "section": "locale",
-    "label": "Locale Settings",
-    "tabIndex": 30,
-    "category": "Locale",
-    "keywords": [
-      "change",
-      "country",
-      "interface",
-      "language",
-      "locale",
-      "settings"
-    ],
-    "icon": "language",
-    "description": "Change the locale used by the DMS interface."
   },
   {
     "section": "timeLocale",
@@ -7863,6 +7690,47 @@
       "time"
     ],
     "description": "Change the locale used for date and time formatting, independent of the interface language."
+  },
+  {
+    "section": "greeterAppearance",
+    "label": "Appearance",
+    "tabIndex": 31,
+    "category": "Greeter",
+    "keywords": [
+      "appearance",
+      "display manager",
+      "font",
+      "greetd",
+      "greeter",
+      "login",
+      "screen",
+      "typography"
+    ],
+    "icon": "palette",
+    "description": "Font used on the login screen"
+  },
+  {
+    "section": "greeterAuth",
+    "label": "Authentication",
+    "tabIndex": 31,
+    "category": "Greeter",
+    "keywords": [
+      "auth",
+      "authentication",
+      "block",
+      "display manager",
+      "external",
+      "greetd",
+      "greeter",
+      "login",
+      "managed",
+      "pam",
+      "removes",
+      "stops",
+      "writing"
+    ],
+    "icon": "fingerprint",
+    "description": "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it"
   },
   {
     "section": "greeterAutoLogin",
@@ -7896,6 +7764,25 @@
       "until"
     ],
     "description": "Skip the greeter password after boot until you sign out. Lock screen unlock is unchanged. Takes effect on the next reboot after sync."
+  },
+  {
+    "section": "greeterBehavior",
+    "label": "Behavior",
+    "tabIndex": 31,
+    "category": "Greeter",
+    "keywords": [
+      "behavior",
+      "display manager",
+      "greetd",
+      "greeter",
+      "last",
+      "login",
+      "remember",
+      "select",
+      "session"
+    ],
+    "icon": "history",
+    "description": "Pre-select the last used session on the greeter"
   },
   {
     "section": "greeterLockDateFormat",
@@ -7975,57 +7862,6 @@
     "icon": "login"
   },
   {
-    "section": "greeterAppearance",
-    "label": "Greeter Appearance",
-    "tabIndex": 31,
-    "category": "Greeter",
-    "keywords": [
-      "appearance",
-      "display manager",
-      "font",
-      "greetd",
-      "greeter",
-      "login",
-      "screen",
-      "typography"
-    ],
-    "icon": "palette",
-    "description": "Font used on the login screen"
-  },
-  {
-    "section": "greeterBehavior",
-    "label": "Greeter Behavior",
-    "tabIndex": 31,
-    "category": "Greeter",
-    "keywords": [
-      "behavior",
-      "display manager",
-      "greetd",
-      "greeter",
-      "last",
-      "login",
-      "remember",
-      "select",
-      "session"
-    ],
-    "icon": "history",
-    "description": "Pre-select the last used session on the greeter"
-  },
-  {
-    "section": "greeterStatus",
-    "label": "Greeter Status",
-    "tabIndex": 31,
-    "category": "Greeter",
-    "keywords": [
-      "display manager",
-      "greetd",
-      "greeter",
-      "login",
-      "status"
-    ],
-    "icon": "info"
-  },
-  {
     "section": "greeterFontFamily",
     "label": "Greeter font",
     "tabIndex": 31,
@@ -8040,29 +7876,6 @@
       "typography"
     ],
     "description": "Font used on the login screen"
-  },
-  {
-    "section": "greeterAuth",
-    "label": "Login Authentication",
-    "tabIndex": 31,
-    "category": "Greeter",
-    "keywords": [
-      "auth",
-      "authentication",
-      "block",
-      "display manager",
-      "external",
-      "greetd",
-      "greeter",
-      "login",
-      "managed",
-      "pam",
-      "removes",
-      "stops",
-      "writing"
-    ],
-    "icon": "fingerprint",
-    "description": "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it"
   },
   {
     "section": "greeterRememberLastSession",
@@ -8101,6 +7914,20 @@
     "description": "Pre-fill the last successful username on the greeter"
   },
   {
+    "section": "greeterStatus",
+    "label": "Status",
+    "tabIndex": 31,
+    "category": "Greeter",
+    "keywords": [
+      "display manager",
+      "greetd",
+      "greeter",
+      "login",
+      "status"
+    ],
+    "icon": "info"
+  },
+  {
     "section": "greeterPamExternallyManaged",
     "label": "Use system PAM authentication",
     "tabIndex": 31,
@@ -8125,11 +7952,11 @@
   },
   {
     "section": "muxType",
-    "label": "Multiplexer",
+    "label": "General",
     "tabIndex": 32,
     "category": "Multiplexers",
     "keywords": [
-      "backend",
+      "general",
       "multiplexer",
       "multiplexers",
       "mux",
@@ -8138,8 +7965,7 @@
       "type",
       "zellij"
     ],
-    "icon": "terminal",
-    "description": "Terminal multiplexer backend to use"
+    "icon": "terminal"
   },
   {
     "section": "_tab_32",
@@ -8425,28 +8251,17 @@
     "description": "Reveal the arcs where surfaces meet the frame"
   },
   {
-    "section": "frameEnabled",
+    "section": "_tab_33",
     "label": "Frame",
     "tabIndex": 33,
     "category": "Frame",
     "keywords": [
-      "around",
       "border",
-      "connected",
       "decoration",
-      "display",
-      "draw",
-      "entire",
       "frame",
-      "monitor",
-      "outline",
-      "output",
-      "picture",
-      "screen",
       "window"
     ],
-    "icon": "frame_source",
-    "description": "Draw a connected picture-frame border around the entire display"
+    "icon": "frame_source"
   },
   {
     "section": "frameBlurEnabled",
@@ -8469,6 +8284,31 @@
       "window"
     ],
     "description": "Requires a newer version of Quickshell"
+  },
+  {
+    "section": "frameEnabled",
+    "label": "General",
+    "tabIndex": 33,
+    "category": "Frame",
+    "keywords": [
+      "around",
+      "border",
+      "connected",
+      "decoration",
+      "display",
+      "draw",
+      "entire",
+      "frame",
+      "general",
+      "monitor",
+      "outline",
+      "output",
+      "picture",
+      "screen",
+      "window"
+    ],
+    "icon": "frame_source",
+    "description": "Draw a connected picture-frame border around the entire display"
   },
   {
     "section": "frameBarIntegration",
@@ -8763,6 +8603,114 @@
     "icon": "line_start"
   },
   {
+    "section": "hyprlandLayout",
+    "label": "%1 Layout Overrides",
+    "tabIndex": 37,
+    "category": "Personalization",
+    "keywords": [
+      "appearance",
+      "auto",
+      "border",
+      "config",
+      "custom",
+      "customize",
+      "gap",
+      "gaps",
+      "hyprland",
+      "layout",
+      "leaves",
+      "margin",
+      "margins",
+      "matches",
+      "overrides",
+      "padding",
+      "panel",
+      "personal",
+      "personalization",
+      "radius",
+      "rounding",
+      "statusbar",
+      "taskbar",
+      "topbar",
+      "window"
+    ],
+    "icon": "crop_square",
+    "description": "Auto matches bar spacing; Off leaves gaps to your %1 config",
+    "conditionKey": "isHyprland"
+  },
+  {
+    "section": "mangoLayout",
+    "label": "%1 Layout Overrides",
+    "tabIndex": 37,
+    "category": "Personalization",
+    "keywords": [
+      "appearance",
+      "auto",
+      "border",
+      "config",
+      "custom",
+      "customize",
+      "dwl",
+      "gap",
+      "gaps",
+      "layout",
+      "leaves",
+      "mango",
+      "mangowc",
+      "margin",
+      "margins",
+      "matches",
+      "overrides",
+      "padding",
+      "panel",
+      "personal",
+      "personalization",
+      "radius",
+      "statusbar",
+      "taskbar",
+      "topbar",
+      "window"
+    ],
+    "icon": "crop_square",
+    "description": "Auto matches bar spacing; Off leaves gaps to your %1 config",
+    "conditionKey": "isMango"
+  },
+  {
+    "section": "niriLayout",
+    "label": "%1 Layout Overrides",
+    "tabIndex": 37,
+    "category": "Personalization",
+    "keywords": [
+      "appearance",
+      "auto",
+      "border",
+      "config",
+      "custom",
+      "customize",
+      "gap",
+      "gaps",
+      "layout",
+      "leaves",
+      "margin",
+      "margins",
+      "matches",
+      "niri",
+      "overrides",
+      "padding",
+      "panel",
+      "personal",
+      "personalization",
+      "radius",
+      "statusbar",
+      "taskbar",
+      "topbar",
+      "window"
+    ],
+    "icon": "layers",
+    "description": "Auto matches bar spacing; Off leaves gaps to your %1 config",
+    "conditionKey": "isNiri"
+  },
+  {
     "section": "hyprlandLayoutBorderSize",
     "label": "Border Size",
     "tabIndex": 37,
@@ -8915,7 +8863,7 @@
       "topbar",
       "unmanaged"
     ],
-    "description": "Auto matches bar spacing; Off leaves gaps to your Hyprland config"
+    "description": "Auto matches bar spacing; Off leaves gaps to your %1 config"
   },
   {
     "section": "mangoLayoutGapsMode",
@@ -8948,7 +8896,7 @@
       "topbar",
       "unmanaged"
     ],
-    "description": "Auto matches bar spacing; Off leaves gaps to your MangoWC config"
+    "description": "Auto matches bar spacing; Off leaves gaps to your %1 config"
   },
   {
     "section": "niriLayoutGapsMode",
@@ -8978,43 +8926,7 @@
       "topbar",
       "unmanaged"
     ],
-    "description": "Auto matches bar spacing; Off leaves gaps to your niri config"
-  },
-  {
-    "section": "hyprlandLayout",
-    "label": "Hyprland Layout Overrides",
-    "tabIndex": 37,
-    "category": "Personalization",
-    "keywords": [
-      "appearance",
-      "auto",
-      "border",
-      "config",
-      "custom",
-      "customize",
-      "gap",
-      "gaps",
-      "hyprland",
-      "layout",
-      "leaves",
-      "margin",
-      "margins",
-      "matches",
-      "overrides",
-      "padding",
-      "panel",
-      "personal",
-      "personalization",
-      "radius",
-      "rounding",
-      "statusbar",
-      "taskbar",
-      "topbar",
-      "window"
-    ],
-    "icon": "crop_square",
-    "description": "Auto matches bar spacing; Off leaves gaps to your Hyprland config",
-    "conditionKey": "isHyprland"
+    "description": "Auto matches bar spacing; Off leaves gaps to your %1 config"
   },
   {
     "section": "hyprlandLayoutGapsOverride",
@@ -9058,78 +8970,6 @@
       "windows"
     ],
     "description": "Space between windows"
-  },
-  {
-    "section": "mangoLayout",
-    "label": "MangoWC Layout Overrides",
-    "tabIndex": 37,
-    "category": "Personalization",
-    "keywords": [
-      "appearance",
-      "auto",
-      "border",
-      "config",
-      "custom",
-      "customize",
-      "dwl",
-      "gap",
-      "gaps",
-      "layout",
-      "leaves",
-      "mango",
-      "mangowc",
-      "margin",
-      "margins",
-      "matches",
-      "overrides",
-      "padding",
-      "panel",
-      "personal",
-      "personalization",
-      "radius",
-      "statusbar",
-      "taskbar",
-      "topbar",
-      "window"
-    ],
-    "icon": "crop_square",
-    "description": "Auto matches bar spacing; Off leaves gaps to your MangoWC config",
-    "conditionKey": "isMango"
-  },
-  {
-    "section": "niriLayout",
-    "label": "Niri Layout Overrides",
-    "tabIndex": 37,
-    "category": "Personalization",
-    "keywords": [
-      "appearance",
-      "auto",
-      "border",
-      "config",
-      "custom",
-      "customize",
-      "gap",
-      "gaps",
-      "layout",
-      "leaves",
-      "margin",
-      "margins",
-      "matches",
-      "niri",
-      "overrides",
-      "padding",
-      "panel",
-      "personal",
-      "personalization",
-      "radius",
-      "statusbar",
-      "taskbar",
-      "topbar",
-      "window"
-    ],
-    "icon": "layers",
-    "description": "Auto matches bar spacing; Off leaves gaps to your niri config",
-    "conditionKey": "isNiri"
   },
   {
     "section": "hyprlandLayoutGapsOutOverride",
@@ -9195,8 +9035,7 @@
       "personal",
       "personalization",
       "size"
-    ],
-    "description": "Use custom border size"
+    ]
   },
   {
     "section": "mangoLayoutBorderSizeEnabled",
@@ -9214,8 +9053,7 @@
       "personal",
       "personalization",
       "size"
-    ],
-    "description": "Use custom border size"
+    ]
   },
   {
     "section": "niriLayoutBorderSizeEnabled",
@@ -9599,6 +9437,26 @@
     "icon": "vpn_key"
   },
   {
+    "section": "batteryAlerts",
+    "label": "Alerts",
+    "tabIndex": 42,
+    "category": "Power & Security",
+    "keywords": [
+      "alerts",
+      "battery",
+      "charge",
+      "charging",
+      "considered",
+      "low",
+      "percentage",
+      "power",
+      "security",
+      "warning"
+    ],
+    "icon": "notifications",
+    "description": "Set the percentage at which the battery is considered low."
+  },
+  {
     "section": "batteryAutoPowerSaver",
     "label": "Auto Power Saver",
     "tabIndex": 42,
@@ -9624,24 +9482,6 @@
     "description": "Automatically turn on Power Saver profile when battery is low."
   },
   {
-    "section": "batteryAlerts",
-    "label": "Battery Alerts",
-    "tabIndex": 42,
-    "category": "Power & Security",
-    "keywords": [
-      "alerts",
-      "battery",
-      "charge",
-      "charging",
-      "considered",
-      "percentage",
-      "power",
-      "security"
-    ],
-    "icon": "notifications",
-    "description": "Set the percentage at which the battery is considered low."
-  },
-  {
     "section": "batteryChargeLimit",
     "label": "Battery Charge Limit",
     "tabIndex": 42,
@@ -9659,42 +9499,6 @@
       "security"
     ],
     "description": "Limit the maximum battery charge level to extend lifespan."
-  },
-  {
-    "section": "batteryProtection",
-    "label": "Battery Protection",
-    "tabIndex": 42,
-    "category": "Power & Security",
-    "keywords": [
-      "battery",
-      "charge",
-      "charging",
-      "extend",
-      "level",
-      "lifespan",
-      "limit",
-      "maximum",
-      "power",
-      "protection",
-      "security"
-    ],
-    "icon": "tune",
-    "description": "Limit the maximum battery charge level to extend lifespan."
-  },
-  {
-    "section": "batteryStatusCard",
-    "label": "Battery Status",
-    "tabIndex": 42,
-    "category": "Power & Security",
-    "keywords": [
-      "battery",
-      "charge",
-      "charging",
-      "power",
-      "security",
-      "status"
-    ],
-    "icon": "battery_charging_full"
   },
   {
     "section": "batteryNotifyCritical",
@@ -9919,19 +9723,11 @@
     "category": "Power & Security",
     "keywords": [
       "(ac)",
-      "connected",
-      "hibernate",
       "plugged",
       "power",
       "profile",
-      "reboot",
-      "restart",
-      "security",
-      "shutdown",
-      "sleep",
-      "suspend"
-    ],
-    "description": "Power profile to use when AC power is connected."
+      "security"
+    ]
   },
   {
     "section": "batteryProfileName",
@@ -9942,18 +9738,46 @@
       "battery",
       "charge",
       "charging",
-      "hibernate",
       "power",
       "profile",
-      "reboot",
-      "restart",
-      "running",
-      "security",
-      "shutdown",
-      "sleep",
-      "suspend"
+      "security"
+    ]
+  },
+  {
+    "section": "batteryProtection",
+    "label": "Protection",
+    "tabIndex": 42,
+    "category": "Power & Security",
+    "keywords": [
+      "battery",
+      "charge",
+      "charging",
+      "extend",
+      "level",
+      "lifespan",
+      "limit",
+      "maximum",
+      "power",
+      "protection",
+      "security"
     ],
-    "description": "Power profile to use when running on battery power."
+    "icon": "tune",
+    "description": "Limit the maximum battery charge level to extend lifespan."
+  },
+  {
+    "section": "batteryStatusCard",
+    "label": "Status",
+    "tabIndex": 42,
+    "category": "Power & Security",
+    "keywords": [
+      "battery",
+      "charge",
+      "health",
+      "power",
+      "security",
+      "status"
+    ],
+    "icon": "battery_charging_full"
   },
   {
     "section": "_tab_43",

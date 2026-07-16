@@ -408,14 +408,14 @@ FocusScope {
 
                 StyledText {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "↵ " + I18n.tr("open")
+                    text: "↵ " + I18n.tr("Open")
                     font.pixelSize: Theme.fontSizeSmall - 1
                     color: Theme.surfaceVariantText
                 }
 
                 StyledText {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "Tab " + I18n.tr("actions")
+                    text: "Tab " + I18n.tr("Actions")
                     font.pixelSize: Theme.fontSizeSmall - 1
                     color: Theme.surfaceVariantText
                     visible: actionPanel.hasActions

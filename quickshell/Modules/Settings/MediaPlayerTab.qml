@@ -34,7 +34,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "music_note"
-                title: I18n.tr("Media Player Settings")
+                title: I18n.tr("General")
                 settingKey: "mediaPlayer"
 
                 SettingsToggleRow {
@@ -146,7 +146,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "do_not_disturb_on"
-                title: I18n.tr("Excluded Media Players")
+                title: I18n.tr("Excluded Players")
                 settingKey: "mediaExcludePlayers"
                 tags: ["media", "music", "exclude", "ignore", "player", "mpris"]
 

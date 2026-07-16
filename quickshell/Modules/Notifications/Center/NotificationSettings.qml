@@ -172,7 +172,7 @@ Rectangle {
             }
 
             StyledText {
-                text: I18n.tr("Notification Timeouts")
+                text: I18n.tr("Timeouts")
                 font.pixelSize: Theme.fontSizeSmall
                 font.weight: Font.Medium
                 color: Theme.surfaceVariantText
@@ -182,7 +182,6 @@ Rectangle {
                 id: lowTimeoutDropdown
                 transientSurfaceTracker: root.transientSurfaceTracker
                 text: I18n.tr("Low Priority")
-                description: I18n.tr("Timeout for low priority notifications")
                 currentValue: getTimeoutText(SettingsData.notificationTimeoutLow)
                 options: timeoutOptions.map(opt => opt.text)
                 onValueChanged: value => {
@@ -199,7 +198,6 @@ Rectangle {
                 id: normalTimeoutDropdown
                 transientSurfaceTracker: root.transientSurfaceTracker
                 text: I18n.tr("Normal Priority")
-                description: I18n.tr("Timeout for normal priority notifications")
                 currentValue: getTimeoutText(SettingsData.notificationTimeoutNormal)
                 options: timeoutOptions.map(opt => opt.text)
                 onValueChanged: value => {
@@ -216,7 +214,6 @@ Rectangle {
                 id: criticalTimeoutDropdown
                 transientSurfaceTracker: root.transientSurfaceTracker
                 text: I18n.tr("Critical Priority")
-                description: I18n.tr("Timeout for critical priority notifications")
                 currentValue: getTimeoutText(SettingsData.notificationTimeoutCritical)
                 options: timeoutOptions.map(opt => opt.text)
                 onValueChanged: value => {

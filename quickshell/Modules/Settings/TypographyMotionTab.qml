@@ -455,7 +455,7 @@ Item {
                         buttonPadding: parent.width < 480 ? Theme.spacingXS : Theme.spacingS
                         minButtonWidth: parent.width < 480 ? 40 : 56
                         textSize: parent.width < 480 ? Theme.fontSizeSmall : Theme.fontSizeMedium
-                        model: [I18n.tr("Default"), I18n.tr("Low"), I18n.tr("Normal"), I18n.tr("High"), I18n.tr("Very High")]
+                        model: [I18n.tr("Default"), I18n.tr("Low", "quality level option"), I18n.tr("Normal", "quality level option"), I18n.tr("High", "quality level option"), I18n.tr("Very High", "quality level option")]
                         selectionMode: "single"
                         currentIndex: SettingsData.textRenderQuality
                         onSelectionChanged: (index, selected) => {
@@ -622,7 +622,6 @@ Item {
                     tags: ["animation", "duration", "custom", "speed", "popout"]
                     settingKey: "popoutCustomAnimationDuration"
                     text: I18n.tr("Custom Duration")
-                    description: I18n.tr("%1 custom animation duration").arg(I18n.tr("Popouts"))
                     minimum: 0
                     maximum: 1000
                     value: Theme.popoutAnimationDuration
@@ -706,7 +705,6 @@ Item {
                     tags: ["animation", "duration", "custom", "speed", "modal"]
                     settingKey: "modalCustomAnimationDuration"
                     text: I18n.tr("Custom Duration")
-                    description: I18n.tr("%1 custom animation duration").arg(I18n.tr("Modals"))
                     minimum: 0
                     maximum: 1000
                     value: Theme.modalAnimationDuration

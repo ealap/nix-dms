@@ -399,7 +399,6 @@ Item {
                                     DankToggle {
                                         width: parent.width
                                         text: I18n.tr("All displays")
-                                        description: I18n.tr("Show on all connected displays")
                                         checked: {
                                             var prefs = root.getScreenPreferences(parent.componentId);
                                             return prefs.includes("all") || (typeof prefs[0] === "string" && prefs[0] === "all");
@@ -420,7 +419,6 @@ Item {
                                     DankToggle {
                                         width: parent.width
                                         text: I18n.tr("Focused Monitor Only")
-                                        description: I18n.tr("Show notifications only on the currently focused monitor")
                                         visible: parent.componentId === "notifications"
                                         checked: SettingsData.notificationFocusedMonitor
                                         onToggled: checked => SettingsData.set("notificationFocusedMonitor", checked)

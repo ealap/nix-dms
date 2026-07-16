@@ -203,7 +203,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "notifications"
-                title: I18n.tr("Notification Popups")
+                title: I18n.tr("Popups")
                 settingKey: "notificationPopups"
 
                 // Font size selectors for summary and body
@@ -211,7 +211,6 @@ Item {
                     settingKey: "notificationSummaryFontSize"
                     tags: ["notification", "font", "summary", "size"]
                     text: I18n.tr("Summary Font Size")
-                    description: I18n.tr("Set the font size for notification summary text")
                     options: [I18n.tr("Unset"), "10", "12", "14", "16", "18"]
                     currentValue: (SettingsData.notificationSummaryFontSize || I18n.tr("Unset")).toString()
                     onValueChanged: value => {
@@ -340,7 +339,6 @@ Item {
                     settingKey: "notificationFocusedMonitor"
                     tags: ["notification", "popup", "focused", "monitor", "display", "screen", "active"]
                     text: I18n.tr("Focused Monitor Only")
-                    description: I18n.tr("Show notification popups only on the currently focused monitor")
                     checked: SettingsData.notificationFocusedMonitor
                     onToggled: checked => SettingsData.set("notificationFocusedMonitor", checked)
                 }
@@ -445,7 +443,7 @@ Item {
                 id: notificationRulesCard
                 width: parent.width
                 iconName: "rule_settings"
-                title: I18n.tr("Notification Rules")
+                title: I18n.tr("Rules")
                 settingKey: "notificationRules"
                 tags: ["notification", "rules", "mute", "ignore", "priority", "regex", "history"]
                 collapsible: true
@@ -510,7 +508,7 @@ Item {
 
                                     StyledText {
                                         id: ruleLabel
-                                        text: I18n.tr("Rule") + " " + (index + 1)
+                                        text: I18n.tr("Rule %1").arg(index + 1)
                                         font.pixelSize: Theme.fontSizeSmall
                                         color: Theme.surfaceVariantText
                                         anchors.verticalCenter: parent.verticalCenter
@@ -785,7 +783,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "timer"
-                title: I18n.tr("Notification Timeouts")
+                title: I18n.tr("Timeouts")
                 settingKey: "notificationTimeouts"
                 collapsible: true
                 expanded: false
@@ -794,7 +792,6 @@ Item {
                     settingKey: "notificationTimeoutLow"
                     tags: ["notification", "timeout", "low", "priority", "duration"]
                     text: I18n.tr("Low Priority")
-                    description: I18n.tr("Timeout for low priority notifications")
                     currentValue: root.getTimeoutText(SettingsData.notificationTimeoutLow)
                     options: root.timeoutOptions.map(opt => opt.text)
                     onValueChanged: value => {
@@ -811,7 +808,6 @@ Item {
                     settingKey: "notificationTimeoutNormal"
                     tags: ["notification", "timeout", "normal", "priority", "duration"]
                     text: I18n.tr("Normal Priority")
-                    description: I18n.tr("Timeout for normal priority notifications")
                     currentValue: root.getTimeoutText(SettingsData.notificationTimeoutNormal)
                     options: root.timeoutOptions.map(opt => opt.text)
                     onValueChanged: value => {
@@ -828,7 +824,6 @@ Item {
                     settingKey: "notificationTimeoutCritical"
                     tags: ["notification", "timeout", "critical", "priority", "duration"]
                     text: I18n.tr("Critical Priority")
-                    description: I18n.tr("Timeout for critical priority notifications")
                     currentValue: root.getTimeoutText(SettingsData.notificationTimeoutCritical)
                     options: root.timeoutOptions.map(opt => opt.text)
                     onValueChanged: value => {

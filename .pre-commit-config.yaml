@@ -38,6 +38,14 @@ repos:
         pass_filenames: false
   - repo: local
     hooks:
+      - id: i18n-term-variants
+        name: i18n term variants (no case/punctuation duplicates)
+        entry: python3 quickshell/translations/check_term_variants.py
+        language: system
+        files: ^quickshell/(.*\.qml|translations/(check_term_variants\.py|extract_translations\.py))$
+        pass_filenames: false
+  - repo: local
+    hooks:
       - id: no-console-in-qml
         name: no console.* in QML (use Log service)
         entry: bash -c 'if grep -nE "console\.(log|error|info|warn|debug)" "$@"; then echo "Use the Log service (log.info/warn/error/debug/fatal) instead of console.*" >&2; exit 1; fi' --

@@ -266,7 +266,7 @@ Item {
 
             SettingsCard {
                 iconName: "dashboard"
-                title: I18n.tr("Bar Configurations")
+                title: I18n.tr("Configurations")
                 settingKey: "barConfigurations"
                 visible: !dankBarTab.appearanceOnly
 
@@ -490,7 +490,7 @@ Item {
                     DankButtonGroup {
                         id: positionButtonGroup
                         anchors.horizontalCenter: parent.horizontalCenter
-                        model: [I18n.tr("Top"), I18n.tr("Bottom"), I18n.tr("Left"), I18n.tr("Right")]
+                        model: [I18n.tr("Top", "screen edge position"), I18n.tr("Bottom", "screen edge position"), I18n.tr("Left", "screen edge position"), I18n.tr("Right", "screen edge position")]
                         currentIndex: {
                             selectedBarId;
                             const config = SettingsData.getBarConfig(selectedBarId);
@@ -820,7 +820,6 @@ Item {
                     id: barTransparencySlider
                     visible: !SettingsData.frameEnabled
                     text: I18n.tr("Bar Opacity")
-                    description: I18n.tr("Controls opacity of the bar background")
                     value: (selectedBarConfig?.transparency ?? 1.0) * 100
                     minimum: 0
                     maximum: 100
@@ -843,7 +842,6 @@ Item {
                 SettingsSliderRow {
                     id: widgetTransparencySlider
                     text: I18n.tr("Widget Opacity")
-                    description: I18n.tr("Controls opacity of widget backgrounds")
                     value: (selectedBarConfig?.widgetTransparency ?? 1.0) * 100
                     minimum: 0
                     maximum: 100
@@ -1463,7 +1461,6 @@ Item {
                 SettingsSliderRow {
                     id: borderOpacitySlider
                     text: I18n.tr("Opacity")
-                    description: I18n.tr("Controls opacity of the border")
                     value: (selectedBarConfig?.borderOpacity ?? 1.0) * 100
                     minimum: 0
                     maximum: 100
@@ -1558,7 +1555,6 @@ Item {
                 SettingsSliderRow {
                     id: widgetOutlineOpacitySlider
                     text: I18n.tr("Opacity")
-                    description: I18n.tr("Controls opacity of the widget outline")
                     value: (selectedBarConfig?.widgetOutlineOpacity ?? 1.0) * 100
                     minimum: 0
                     maximum: 100
@@ -1667,7 +1663,6 @@ Item {
                 SettingsSliderRow {
                     visible: shadowCard.shadowActive
                     text: I18n.tr("Opacity")
-                    description: I18n.tr("Controls opacity of the shadow layer")
                     minimum: 10
                     maximum: 100
                     unit: "%"

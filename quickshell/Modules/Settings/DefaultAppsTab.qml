@@ -312,7 +312,6 @@ Item {
                     text: I18n.tr("Calendar", "Calendar")
                     category: root.appCategory.Calendar
                     tags: ["calendar", "events"]
-                    description: I18n.tr("Manages calendar events", "Manages calendar events")
                 }
             }
 
@@ -330,7 +329,6 @@ Item {
                     text: I18n.tr("PDF Reader", "PDF Reader")
                     category: root.appCategory.PDFReader
                     tags: ["pdf", "reader"]
-                    description: I18n.tr("For reading PDF files", "For reading PDF files")
                 }
             }
 
@@ -341,13 +339,11 @@ Item {
                     text: I18n.tr("Image Viewer", "Image Viewer")
                     category: root.appCategory.ImageViewer
                     tags: ["image", "viewer"]
-                    description: I18n.tr("Opens image files", "Opens image files")
                 }
                 AppSelector {
                     text: I18n.tr("Video Player", "Video Player")
                     category: root.appCategory.VideoPlayer
                     tags: ["video", "player"]
-                    description: I18n.tr("Plays video files", "Plays video files")
                 }
                 AppSelector {
                     text: I18n.tr("Music Player", "Music Player")

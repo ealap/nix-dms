@@ -804,7 +804,6 @@ Item {
                         settingKey: "selectedMonitor"
                         width: parent.width - Theme.spacingM * 2
                         text: I18n.tr("Wallpaper Monitor")
-                        description: I18n.tr("Select monitor to configure wallpaper")
                         currentValue: {
                             var screens = Quickshell.screens;
                             for (var i = 0; i < screens.length; i++) {
@@ -843,7 +842,7 @@ Item {
                         currentValue: {
                             var screens = Quickshell.screens;
                             if (!SettingsData.matugenTargetMonitor || SettingsData.matugenTargetMonitor === "") {
-                                return screens.length > 0 ? SettingsData.getScreenDisplayName(screens[0]) + " " + I18n.tr("(Default)", "default monitor label suffix") : I18n.tr("No monitors", "no monitors available label");
+                                return screens.length > 0 ? SettingsData.getScreenDisplayName(screens[0]) + " " + "(" + I18n.tr("Default") + ")" : I18n.tr("No monitors", "no monitors available label");
                             }
                             for (var i = 0; i < screens.length; i++) {
                                 if (screens[i].name === SettingsData.matugenTargetMonitor) {
@@ -858,14 +857,14 @@ Item {
                             for (var i = 0; i < screens.length; i++) {
                                 var label = SettingsData.getScreenDisplayName(screens[i]);
                                 if (i === 0 && (!SettingsData.matugenTargetMonitor || SettingsData.matugenTargetMonitor === "")) {
-                                    label += " " + I18n.tr("(Default)", "default monitor label suffix");
+                                    label += " " + "(" + I18n.tr("Default") + ")";
                                 }
                                 screenNames.push(label);
                             }
                             return screenNames;
                         }
                         onValueChanged: value => {
-                            var cleanValue = value.replace(" " + I18n.tr("(Default)", "default monitor label suffix"), "");
+                            var cleanValue = value.replace(" " + "(" + I18n.tr("Default") + ")", "");
                             var screens = Quickshell.screens;
                             for (var i = 0; i < screens.length; i++) {
                                 if (SettingsData.getScreenDisplayName(screens[i]) === cleanValue) {
@@ -924,7 +923,7 @@ Item {
                         width: parent.width - Theme.spacingM * 2
 
                         StyledText {
-                            text: I18n.tr("Mode:")
+                            text: I18n.tr("Mode") + ":"
                             font.pixelSize: Theme.fontSizeMedium
                             color: Theme.surfaceText
                             anchors.verticalCenter: parent.verticalCenter

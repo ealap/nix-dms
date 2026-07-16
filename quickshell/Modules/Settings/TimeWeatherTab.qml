@@ -84,7 +84,6 @@ Item {
                     tags: ["time", "seconds", "clock"]
                     settingKey: "showSeconds"
                     text: I18n.tr("Show Seconds")
-                    description: I18n.tr("Display seconds in the clock")
                     checked: SettingsData.showSeconds
                     onToggled: checked => SettingsData.set("showSeconds", checked)
                 }
@@ -113,7 +112,6 @@ Item {
                     tags: ["show", "week"]
                     settingKey: "showWeekNumber"
                     text: I18n.tr("Show Week Number")
-                    description: I18n.tr("Show week number in the calendar")
                     checked: SettingsData.showWeekNumber
                     onToggled: checked => SettingsData.set("showWeekNumber", checked)
                 }
@@ -218,7 +216,7 @@ Item {
                             }
                         ];
                         const match = presets.find(p => p.format === SettingsData.clockDateFormat);
-                        return match ? match.label : I18n.tr("Custom: ") + SettingsData.clockDateFormat;
+                        return match ? match.label : I18n.tr("Custom") + ": " + SettingsData.clockDateFormat;
                     }
                     onValueChanged: value => {
                         const formatMap = {};
@@ -305,7 +303,7 @@ Item {
                             }
                         ];
                         const match = presets.find(p => p.format === SettingsData.lockDateFormat);
-                        return match ? match.label : I18n.tr("Custom: ") + SettingsData.lockDateFormat;
+                        return match ? match.label : I18n.tr("Custom") + ": " + SettingsData.lockDateFormat;
                     }
                     onValueChanged: value => {
                         const formatMap = {};

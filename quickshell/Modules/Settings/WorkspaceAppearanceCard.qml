@@ -8,7 +8,7 @@ SettingsCard {
     id: root
 
     iconName: "palette"
-    title: I18n.tr("Workspace Appearance")
+    title: I18n.tr("Appearance")
     settingKey: "workspaceAppearance"
     tags: ["workspace", "focused", "color", "custom"]
     collapsible: true
@@ -200,10 +200,10 @@ SettingsCard {
             tabHeight: 44
             showIcons: false
             model: [({
-                    "text": I18n.tr("Focused Display", "workspace appearance tab")
-                }), ({
-                    "text": I18n.tr("Unfocused Display(s)", "workspace appearance tab")
-                })]
+                        "text": I18n.tr("Focused Display", "workspace appearance tab")
+                    }), ({
+                        "text": I18n.tr("Unfocused Display(s)", "workspace appearance tab")
+                    })]
             onTabClicked: index => currentIndex = index
             Component.onCompleted: Qt.callLater(updateIndicator)
 

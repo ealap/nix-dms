@@ -122,7 +122,6 @@ Item {
                             tags: ["gamma", "day", "temperature", "kelvin", "color"]
                             width: parent.width - parent.leftPadding - parent.rightPadding
                             text: I18n.tr("Day Temperature")
-                            description: I18n.tr("Color temperature for day time")
                             minimum: SessionData.nightModeTemperature
                             maximum: 10000
                             step: 100

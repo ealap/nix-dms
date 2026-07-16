@@ -5,6 +5,9 @@
   "%1 Animation Speed": {
     "%1 Animation Speed": "سرعة الحركة لـ %1"
   },
+  "%1 Layout Overrides": {
+    "%1 Layout Overrides": ""
+  },
   "%1 Sessions": {
     "%1 Sessions": "%1 جلسة"
   },
@@ -35,9 +38,6 @@
   "%1 copied": {
     "%1 copied": "تم نسخ %1"
   },
-  "%1 custom animation duration": {
-    "%1 custom animation duration": "مدة الحركة المخصصة لـ %1"
-  },
   "%1 disconnected": {
     "%1 disconnected": "%1 غير متصل"
   },
@@ -49,9 +49,6 @@
   },
   "%1 displays": {
     "%1 displays": "%1 شاشات"
-  },
-  "%1 exists but is not included. Window rules won't apply.": {
-    "%1 exists but is not included. Window rules won't apply.": "%1 موجود ولكنه غير مدرج. لن يتم تطبيق قواعد النافذة."
   },
   "%1 filtered": {
     "%1 filtered": "%1 تمت تصفيته"
@@ -118,9 +115,6 @@
   },
   "'Alternative' lets the key unlock on its own. 'Second factor' requires password or fingerprint first, then the key.": {
     "'Alternative' lets the key unlock on its own. 'Second factor' requires password or fingerprint first, then the key.": "'بديل' يسمح للمفتاح بفتح القفل بمفرده. 'عامل ثانٍ' يتطلب كلمة مرور أو بصمة إصبع أولاً، ثم المفتاح."
-  },
-  "(Default)": {
-    "(Default)": "(افتراضي)"
   },
   "(Unnamed)": {
     "(Unnamed)": "(غير مسمى)"
@@ -211,9 +205,6 @@
   },
   "24-Hour Format": {
     "24-Hour Format": "صيغة ٢٤ ساعة"
-  },
-  "24-hour clock": {
-    "24-hour clock": "ساعة 24 ساعة"
   },
   "25 seconds": {
     "25 seconds": "25 ثانية"
@@ -509,6 +500,9 @@
   "Afternoon": {
     "Afternoon": "بعد الظهر"
   },
+  "Alerts": {
+    "Alerts": ""
+  },
   "All": {
     "All": "الكل"
   },
@@ -788,14 +782,14 @@
   "Authentication Required": {
     "Authentication Required": "المصادقة مطلوبة"
   },
+  "Authentication Source": {
+    "Authentication Source": ""
+  },
   "Authentication changes applied.": {
     "Authentication changes applied.": "تم تطبيق تغييرات المصادقة."
   },
   "Authentication changes apply automatically.": {
     "Authentication changes apply automatically.": "يتم تطبيق تغييرات المصادقة تلقائياً."
-  },
-  "Authentication changes apply automatically. Fingerprint-only login may not unlock Keyring.": {
-    "Authentication changes apply automatically. Fingerprint-only login may not unlock Keyring.": "يتم تطبيق تغييرات المصادقة تلقائياً. قد لا يؤدي تسجيل الدخول ببصمة الإصبع فقط إلى إلغاء قفل سلسلة المفاتيح (Keyring)."
   },
   "Authentication changes need sudo. Opening terminal so you can use password or fingerprint.": {
     "Authentication changes need sudo. Opening terminal so you can use password or fingerprint.": "تتطلب تغييرات المصادقة صلاحيات sudo. جاري فتح المحطة الطرفية حتى تتمكن من استخدام كلمة المرور أو بصمة الإصبع."
@@ -811,9 +805,6 @@
   },
   "Authentication failed - try again": {
     "Authentication failed - try again": "فشل التحقق - يرجى المحاولة مرة أخرى"
-  },
-  "Authentication failed, please try again": {
-    "Authentication failed, please try again": "فشل التحقق، أعد المحاولة"
   },
   "Authorize": {
     "Authorize": "منح الإذن"
@@ -848,20 +839,17 @@
   "Auto Power Saver": {
     "Auto Power Saver": "موفر الطاقة التلقائي"
   },
-  "Auto matches bar spacing; Off leaves gaps to your Hyprland config": {
-    "Auto matches bar spacing; Off leaves gaps to your Hyprland config": "مطابقة تلقائية لتباعد الشريط؛ الإيقاف يترك فجوات حسب إعدادات Hyprland الخاصة بك"
-  },
-  "Auto matches bar spacing; Off leaves gaps to your MangoWC config": {
-    "Auto matches bar spacing; Off leaves gaps to your MangoWC config": "مطابقة تلقائية لتباعد الشريط؛ الإيقاف يترك فجوات حسب إعدادات MangoWC الخاصة بك"
-  },
-  "Auto matches bar spacing; Off leaves gaps to your niri config": {
-    "Auto matches bar spacing; Off leaves gaps to your niri config": "مطابقة تلقائية لتباعد الشريط؛ الإيقاف يترك فجوات حسب إعدادات niri الخاصة بك"
+  "Auto matches bar spacing; Off leaves gaps to your %1 config": {
+    "Auto matches bar spacing; Off leaves gaps to your %1 config": ""
   },
   "Auto mode is on. Manual profile selection is disabled.": {
     "Auto mode is on. Manual profile selection is disabled.": "الوضع التلقائي مفعل. تم تعطيل اختيار الملف الشخصي اليدوي."
   },
   "Auto saved": {
     "Auto saved": "تم الحفظ تلقائيًا"
+  },
+  "Auto uses an installed or bundled key-only service.": {
+    "Auto uses an installed or bundled key-only service.": ""
   },
   "Auto-Clear After": {
     "Auto-Clear After": "المسح التلقائي بعد"
@@ -983,9 +971,6 @@
   "Available in Detailed and Forecast view modes": {
     "Available in Detailed and Forecast view modes": "متاح في أوضاع العرض التفصيلي والتوقعات"
   },
-  "Available.": {
-    "Available.": "متاح."
-  },
   "Awaiting fingerprint authentication": {
     "Awaiting fingerprint authentication": "بانتظار التحقق ببصمة الإصبع"
   },
@@ -1006,9 +991,6 @@
   },
   "Backend": {
     "Backend": "النظام الخلفي"
-  },
-  "Backends: %1": {
-    "Backends: %1": "الخلفيات: %1"
   },
   "Background": {
     "Background": "الخلفية"
@@ -1049,9 +1031,6 @@
   "Bar %1": {
     "Bar %1": "الشريط %1"
   },
-  "Bar Configurations": {
-    "Bar Configurations": "إعدادات الأشرطة"
-  },
   "Bar Inset Padding": {
     "Bar Inset Padding": "حاشية الشريط"
   },
@@ -1070,9 +1049,6 @@
   "Bar shadow, border, and corners": {
     "Bar shadow, border, and corners": "ظل الشريط، والحدود، والزوايا"
   },
-  "Bar spacing and size": {
-    "Bar spacing and size": "تباعد الأشرطة وحجمها"
-  },
   "Base color for shadows (opacity is applied automatically)": {
     "Base color for shadows (opacity is applied automatically)": "اللون الأساسي للظلال (يتم تطبيق الشفافية تلقائيًا)"
   },
@@ -1085,9 +1061,6 @@
   "Battery %1": {
     "Battery %1": "البطارية %1"
   },
-  "Battery Alerts": {
-    "Battery Alerts": "تنبيهات البطارية"
-  },
   "Battery Charge Limit": {
     "Battery Charge Limit": "حد شحن البطارية"
   },
@@ -1096,15 +1069,6 @@
   },
   "Battery Power": {
     "Battery Power": "طاقة البطارية"
-  },
-  "Battery Protection": {
-    "Battery Protection": "حماية البطارية"
-  },
-  "Battery Protection & Charging": {
-    "Battery Protection & Charging": "حماية البطارية والشحن"
-  },
-  "Battery Status": {
-    "Battery Status": "حالة البطارية"
   },
   "Battery and power management": {
     "Battery and power management": "إدارة البطارية والطاقة"
@@ -1118,9 +1082,6 @@
   "Battery is at %1% - Consider charging soon": {
     "Battery is at %1% - Consider charging soon": "البطارية عند %1% - فكر في الشحن قريباً"
   },
-  "Battery level and power management": {
-    "Battery level and power management": "مستوى البطارية وادارة الطاقة"
-  },
   "Battery percentage to trigger a critical alert.": {
     "Battery percentage to trigger a critical alert.": "نسبة البطارية لتفعيل تنبيه حرج."
   },
@@ -1130,11 +1091,8 @@
   "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": {
     "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": "ربط شاشة القفل بإشارات dbus القادمة من loginctl. أوقف تشغيله إذا كنت تستخدم شاشة قفل خارجية."
   },
-  "Bind the spotlight IPC action in your compositor config.": {
-    "Bind the spotlight IPC action in your compositor config.": "قم بربط إجراء IPC الخاص بـ spotlight في تكوين مدير النوافذ الخاص بك."
-  },
-  "Bind the spotlight-bar IPC action in your compositor config.": {
-    "Bind the spotlight-bar IPC action in your compositor config.": "قم بربط إجراء IPC الخاص بـ spotlight-bar في تكوين مدير النوافذ الخاص بك."
+  "Bind the %1 IPC action in your compositor config.": {
+    "Bind the %1 IPC action in your compositor config.": ""
   },
   "Binds include added": {
     "Binds include added": "تتضمن الروابط المضافة"
@@ -1175,20 +1133,11 @@
   "Blur": {
     "Blur": "تخبيش"
   },
-  "Blur Border Color": {
-    "Blur Border Color": "لون حدود التخبيش"
-  },
-  "Blur Border Opacity": {
-    "Blur Border Opacity": "شفافية حدود التخبيش"
-  },
   "Blur Wallpaper Layer": {
     "Blur Wallpaper Layer": "تخبيش طبقة الخلفية"
   },
   "Blur on Overview": {
     "Blur on Overview": "تغبيش في النظرة العامة"
-  },
-  "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support and configuration.": {
-    "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support and configuration.": "تخبيش الخلفية خلف الأشرطة، والنوافذ المنبثقة، والنوافذ المشروطة، والإشعارات. يتطلب دعم وضبط مدير النوافذ."
   },
   "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support. Adjust Opacity accordingly.": {
     "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support. Adjust Opacity accordingly.": "تخبيش الخلفية وراء الأشرطة، والنوافذ المنبثقة، والنوافذ المشروطة (Modals)، والإشعارات. يتطلب دعمًا من مُدير النوافذ. اضبط درجة الشفافية بناءً على ذلك."
@@ -1231,9 +1180,6 @@
   },
   "Border Width": {
     "Border Width": "عرض الحدود"
-  },
-  "Border color around blurred surfaces": {
-    "Border color around blurred surfaces": "لون الحدود حول الأسطح المُخبَّشة"
   },
   "Border color around popouts, modals, and other shell surfaces": {
     "Border color around popouts, modals, and other shell surfaces": "لون حدود النوافذ المنبثقة، والنوافذ الحوارية، وأسطح الصدفة الأخرى"
@@ -1294,9 +1240,6 @@
   },
   "Button Color": {
     "Button Color": "لون الزر"
-  },
-  "By %1": {
-    "By %1": "بواسطة %1"
   },
   "CPU": {
     "CPU": "المعالج"
@@ -1436,9 +1379,6 @@
   "Check on startup": {
     "Check on startup": "التحقق عند بدء التشغيل"
   },
-  "Check sync status on demand. Sync (full) is for the main admin: it copies your theme to the login screen and sets up system greeter config. On multi-user systems, add other accounts in Settings → Users, then have each of them run dms greeter sync --profile after logging out and back in—not full sync. Authentication changes apply automatically.": {
-    "Check sync status on demand. Sync (full) is for the main admin: it copies your theme to the login screen and sets up system greeter config. On multi-user systems, add other accounts in Settings → Users, then have each of them run dms greeter sync --profile after logging out and back in—not full sync. Authentication changes apply automatically.": "تحقق من حالة المزامنة عند الطلب. المزامنة (الكاملة) مخصصة للمسؤول الرئيسي: فهي تنسخ سماتك إلى شاشة تسجيل الدخول وتعد تكوين شاشة الترحيب للنظام. في الأنظمة متعددة المستخدمين، أضف حسابات أخرى في الإعدادات ← المستخدمون، ثم اجعل كل منهم يقوم بتشغيل dms greeter sync --profile بعد تسجيل الخروج والدخول مرة أخرى - وليس مزامنة كاملة. يتم تطبيق تغييرات المصادقة تلقائيًا."
-  },
   "Check your custom command in Settings → Dock → Trash.": {
     "Check your custom command in Settings → Dock → Trash.": "تحقق من أمرك المخصص في الإعدادات ← قفص الاتهام (Dock) ← المهملات."
   },
@@ -1456,9 +1396,6 @@
   },
   "Choose Dark Mode Color": {
     "Choose Dark Mode Color": "اختر لون الوضع الداكن"
-  },
-  "Choose Dock Launcher Logo Color": {
-    "Choose Dock Launcher Logo Color": "اختر لون شعار مشغل التطبيقات في مشغل التطبيقات"
   },
   "Choose Launcher Logo Color": {
     "Choose Launcher Logo Color": "اختر لون ايقونة مُشغِّل التطبيقات"
@@ -1484,9 +1421,6 @@
   "Choose how this bar resolves shadow direction": {
     "Choose how this bar resolves shadow direction": "اختر كيفية تحديد هذا الشريط لاتجاه الظل"
   },
-  "Choose how to be notified about battery alerts.": {
-    "Choose how to be notified about battery alerts.": "اختر كيفية تلقي إشعارات تنبيهات البطارية."
-  },
   "Choose how to be notified about critical battery alerts.": {
     "Choose how to be notified about critical battery alerts.": "اختر كيفية تلقي التنبيهات حول تحذيرات البطارية الحرجة."
   },
@@ -1504,12 +1438,6 @@
   },
   "Choose neutral or accent-colored widget text": {
     "Choose neutral or accent-colored widget text": "اختر نص عنصر واجهة المستخدم بلون محايد أو بلون التمييز"
-  },
-  "Choose the background color for widgets": {
-    "Choose the background color for widgets": "اختر لون خلفية الأدوات"
-  },
-  "Choose the border accent color": {
-    "Choose the border accent color": "اختر لون ممييز للحد"
   },
   "Choose the logo displayed on the launcher button in DankBar": {
     "Choose the logo displayed on the launcher button in DankBar": "اختر الايقونة المعروضة على زر مُشغِّل التطبيقات في شريط دانك"
@@ -1573,9 +1501,6 @@
   },
   "Click 'Setup' to create %1 and add include to your compositor config.": {
     "Click 'Setup' to create %1 and add include to your compositor config.": "انقر على 'إعداد' لإنشاء %1 وإضافة التضمين إلى ملف تكوين مدير النوافذ الخاص بك."
-  },
-  "Click 'Setup' to create the outputs config and add include to your compositor config.": {
-    "Click 'Setup' to create the outputs config and add include to your compositor config.": "انقر على 'إعداد' لإنشاء إعدادات العرض وإضافة التضمين إلى تكوين مدير النوافذ الخاص بك."
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "اضغط استيراد لإضافة ملف .ovpn أو .conf"
@@ -1682,12 +1607,6 @@
   "Color shown for areas not covered by wallpaper": {
     "Color shown for areas not covered by wallpaper": "اللون المعروض للمناطق التي لا تغطيها خلفية الشاشة"
   },
-  "Color shown for areas not covered by wallpaper (e.g. Fit or Pad modes)": {
-    "Color shown for areas not covered by wallpaper (e.g. Fit or Pad modes)": "اللون المعروض للمناطق غير المغطاة بخلفية الشاشة (مثل أوضاع الملائمة أو الحشو)"
-  },
-  "Color temperature for day time": {
-    "Color temperature for day time": "درجة حرارة اللون لوقت النهار"
-  },
   "Color temperature for night mode": {
     "Color temperature for night mode": "درجة حرارة اللون للوضع الليلي"
   },
@@ -1772,6 +1691,9 @@
   "Configuration will be preserved when this display reconnects": {
     "Configuration will be preserved when this display reconnects": "سيتم حفظ التكوين عند إعادة اتصال هذه الشاشة"
   },
+  "Configurations": {
+    "Configurations": ""
+  },
   "Configure": {
     "Configure": "ضبط"
   },
@@ -1853,9 +1775,6 @@
   "Connecting...": {
     "Connecting...": "جاري الاتصال..."
   },
-  "Connecting…": {
-    "Connecting…": "جاري الاتصال…"
-  },
   "Connection failed": {
     "Connection failed": "فشل الاتصال"
   },
@@ -1904,24 +1823,6 @@
   "Controls opacity of shell surfaces, popouts, and modals": {
     "Controls opacity of shell surfaces, popouts, and modals": "التحكم في عتامة أسطح الغلاف والنوافذ المنبثقة والمشروطة"
   },
-  "Controls opacity of the bar background": {
-    "Controls opacity of the bar background": "التحكم في عتامة خلفية الشريط"
-  },
-  "Controls opacity of the border": {
-    "Controls opacity of the border": "التحكم في عتامة الحدود"
-  },
-  "Controls opacity of the shadow layer": {
-    "Controls opacity of the shadow layer": "التحكم في عتامة طبقة الظل"
-  },
-  "Controls opacity of the widget outline": {
-    "Controls opacity of the widget outline": "التحكم في عتامة مخطط الأداة"
-  },
-  "Controls opacity of widget backgrounds": {
-    "Controls opacity of widget backgrounds": "التحكم في عتامة خلفيات الأداة"
-  },
-  "Controls outlines around blurred foreground cards, pills, and notification cards": {
-    "Controls outlines around blurred foreground cards, pills, and notification cards": "تتحكم في حدود الأشكال حول البطاقات، والأقراص، وبطاقات الإشعارات الأمامية المُخبَّشة"
-  },
   "Controls outlines around foreground cards, pills, and notification cards": {
     "Controls outlines around foreground cards, pills, and notification cards": "يتحكم في الخطوط الخارجية حول البطاقات الأمامية، والأقراص، وبطاقات الإشعارات"
   },
@@ -1931,17 +1832,8 @@
   "Controls the base blur radius and offset of shadows": {
     "Controls the base blur radius and offset of shadows": "يتحكم في نصف قطر التخبيش الأساسي وإزاحة الظلال"
   },
-  "Controls the opacity of the shadow": {
-    "Controls the opacity of the shadow": "التحكم في عتامة الظل"
-  },
-  "Controls the outer edge of protocol-blurred windows": {
-    "Controls the outer edge of protocol-blurred windows": "يتحكم في الحافة الخارجية للنوافذ ذات التخبيش البروتوكولي"
-  },
   "Controls the outline of popouts, modals, and other shell surfaces": {
     "Controls the outline of popouts, modals, and other shell surfaces": "يتحكم في مخطط النوافذ المنبثقة، والنوافذ الحوارية، وأسطح الصدفة الأخرى"
-  },
-  "Controls the transparency of the shadow": {
-    "Controls the transparency of the shadow": "يتحكم في شفافية الظل"
   },
   "Convenience options for the login screen. Sync to apply.": {
     "Convenience options for the login screen. Sync to apply.": "خيارات مريحة لشاشة تسجيل الدخول. قم بالمزامنة للتطبيق."
@@ -2000,9 +1892,6 @@
   "Corners & Background": {
     "Corners & Background": "الزوايا والخلفية"
   },
-  "Couldn't open a terminal for the auto-login update.": {
-    "Couldn't open a terminal for the auto-login update.": "تعذر فتح محطة طرفية لتحديث تسجيل الدخول التلقائي."
-  },
   "Count Only": {
     "Count Only": "العد فقط"
   },
@@ -2026,9 +1915,6 @@
   },
   "Create a new %1 session (^N)": {
     "Create a new %1 session (^N)": "إنشاء جلسة %1 جديدة (^N)"
-  },
-  "Create a new %1 session (n)": {
-    "Create a new %1 session (n)": "إنشاء جلسة %1 جديدة (n)"
   },
   "Create rule for:": {
     "Create rule for:": "إنشاء قاعدة لـ:"
@@ -2192,9 +2078,6 @@
   "Custom...": {
     "Custom...": "مخصص..."
   },
-  "Custom: ": {
-    "Custom: ": "مخصص"
-  },
   "Customizable empty space": {
     "Customizable empty space": "مساحة فارغة قابلة للتخصيص"
   },
@@ -2225,14 +2108,11 @@
   "DMS Shortcuts": {
     "DMS Shortcuts": "اختصارات DMS"
   },
-  "DMS greeter needs: greetd, dms-greeter. Fingerprint: fprintd, pam_fprintd. Security keys: pam_u2f. Add your user to the greeter group. Authentication changes apply automatically and may open a terminal when sudo authentication is required.": {
-    "DMS greeter needs: greetd, dms-greeter. Fingerprint: fprintd, pam_fprintd. Security keys: pam_u2f. Add your user to the greeter group. Authentication changes apply automatically and may open a terminal when sudo authentication is required.": "يحتاج برنامج الترحيب DMS إلى: greetd، dms-greeter. بصمة الإصبع: fprintd، pam_fprintd. مفاتيح الأمان: pam_u2f. أضف مستخدمك إلى مجموعة greeter. يتم تطبيق تغييرات المصادقة تلقائياً وقد تفتح محطة طرفية عند الحاجة إلى مصادقة sudo."
-  },
-  "DMS needs administrator access. The terminal closes automatically when done.": {
-    "DMS needs administrator access. The terminal closes automatically when done.": "تحتاج DMS إلى صلاحيات المسؤول. ستغلق المحطة الطرفية تلقائياً عند الانتهاء."
-  },
   "DMS out of date": {
     "DMS out of date": "نسخة DMS غير محدثة"
+  },
+  "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it": {
+    "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it": ""
   },
   "DMS server is outdated (API v%1, expected v%2)": {
     "DMS server is outdated (API v%1, expected v%2)": "خادم DMS قديم (إصدار API %1، المتوقع %2)"
@@ -2404,9 +2284,6 @@
   },
   "Delete user": {
     "Delete user": "حذف المستخدم"
-  },
-  "Delete user?": {
-    "Delete user?": "هل تريد حذف المستخدم؟"
   },
   "Demi Bold": {
     "Demi Bold": "نصف غامق"
@@ -2609,9 +2486,6 @@
   "Display power menu actions in a grid instead of a list": {
     "Display power menu actions in a grid instead of a list": "عرض إجراءات قائمة الطاقة كشبكة بدلًا من قائمة"
   },
-  "Display seconds in the clock": {
-    "Display seconds in the clock": "عرض الثواني في الساعة"
-  },
   "Display setup failed": {
     "Display setup failed": "فشل إعداد العرض"
   },
@@ -2623,9 +2497,6 @@
   },
   "Displays": {
     "Displays": "الشاشات"
-  },
-  "Displays count when overflow is active": {
-    "Displays count when overflow is active": "عدد الشاشات عند تفعيل التجاوز"
   },
   "Displays the active keyboard layout and allows switching": {
     "Displays the active keyboard layout and allows switching": "عرض تخطيط لوحة المفاتيح النشط وتبديله"
@@ -2648,14 +2519,8 @@
   "Dock Opacity": {
     "Dock Opacity": "شفافية شريط التطبيقات"
   },
-  "Dock Visibility": {
-    "Dock Visibility": "رؤية شريط التطبيقات"
-  },
   "Dock margin, opacity, and border": {
     "Dock margin, opacity, and border": "هامش شريط التطبيقات والعتامة والحدود"
-  },
-  "Dock margin, transparency, and border": {
-    "Dock margin, transparency, and border": "هامش لشريط التطبيقات، الشفافية، والحدود"
   },
   "Dock window": {
     "Dock window": "نافذة ملتحمة"
@@ -2801,9 +2666,6 @@
   "Empty Trash (%1)": {
     "Empty Trash (%1)": "إفراغ المهملات (%1)"
   },
-  "Empty Trash?": {
-    "Empty Trash?": "هل تريد إفراغ المهملات؟"
-  },
   "Enable 10-bit color depth for wider color gamut and HDR support": {
     "Enable 10-bit color depth for wider color gamut and HDR support": "تمكين عمق لون 10 بت للحصول على نطاق ألوان أوسع ودعم HDR"
   },
@@ -2866,36 +2728,6 @@
   },
   "Enabled": {
     "Enabled": "مفعّل"
-  },
-  "Enabled, but fingerprint availability could not be confirmed.": {
-    "Enabled, but fingerprint availability could not be confirmed.": "مفعل، ولكن لم يمكن التأكد من توفر البصمة."
-  },
-  "Enabled, but no fingerprint reader was detected.": {
-    "Enabled, but no fingerprint reader was detected.": "مفعل، ولكن لم يتم اكتشاف قارئ بصمات."
-  },
-  "Enabled, but no prints are enrolled yet. Authentication changes apply automatically once you enroll fingerprints.": {
-    "Enabled, but no prints are enrolled yet. Authentication changes apply automatically once you enroll fingerprints.": "تم التمكين، ولكن لم يتم تسجيل أي بصمات بعد. يتم تطبيق تغييرات المصادقة تلقائياً بمجرد تسجيل بصمات الأصابع."
-  },
-  "Enabled, but no prints are enrolled yet. Enroll fingerprints and run Sync.": {
-    "Enabled, but no prints are enrolled yet. Enroll fingerprints and run Sync.": "مفعل، ولكن لا توجد بصمات مسجلة بعد. قم بتسجيل البصمات وقم بتشغيل المزامنة (Sync)."
-  },
-  "Enabled, but no registered security key was found yet. Authentication changes apply automatically once your key is registered or your U2F config is updated.": {
-    "Enabled, but no registered security key was found yet. Authentication changes apply automatically once your key is registered or your U2F config is updated.": "تم التمكين، ولكن لم يتم العثور على مفتاح أمان مسجل بعد. يتم تطبيق تغييرات المصادقة تلقائياً بمجرد تسجيل مفتاحك أو تحديث تكوين U2F الخاص بك."
-  },
-  "Enabled, but no registered security key was found yet. Register a key and run Sync.": {
-    "Enabled, but no registered security key was found yet. Register a key and run Sync.": "مفعل، ولكن لم يتم العثور على مفتاح أمان مسجل بعد. قم بتسجيل مفتاح وقم بتشغيل المزامنة (Sync)."
-  },
-  "Enabled, but security-key availability could not be confirmed.": {
-    "Enabled, but security-key availability could not be confirmed.": "مفعل، ولكن لم يمكن التأكد من توفر مفتاح الأمان."
-  },
-  "Enabled. PAM already provides fingerprint auth.": {
-    "Enabled. PAM already provides fingerprint auth.": "مفعل. نظام PAM يوفر بالفعل المصادقة بالبصمة."
-  },
-  "Enabled. PAM already provides security-key auth.": {
-    "Enabled. PAM already provides security-key auth.": "مفعل. نظام PAM يوفر بالفعل المصادقة بمفتاح الأمان."
-  },
-  "Enabled. PAM provides fingerprint auth, but no prints are enrolled yet.": {
-    "Enabled. PAM provides fingerprint auth, but no prints are enrolled yet.": "مفعل. نظام PAM يوفر المصادقة بالبصمة، ولكن لا توجد بصمات مسجلة بعد."
   },
   "Enabling WiFi...": {
     "Enabling WiFi...": "جاري تمكين الWiFi..."
@@ -3011,8 +2843,8 @@
   "Exact": {
     "Exact": "مطابق تماماً"
   },
-  "Excluded Media Players": {
-    "Excluded Media Players": "مشغلات الوسائط المستبعدة"
+  "Excluded Players": {
+    "Excluded Players": ""
   },
   "Exclusive Zone Offset": {
     "Exclusive Zone Offset": "إزاحة النطاق الحصري"
@@ -3080,11 +2912,8 @@
   "Failed to add printer to class": {
     "Failed to add printer to class": "فشل إضافة الطابعة إلى الفئة"
   },
-  "Failed to apply GTK colors": {
-    "Failed to apply GTK colors": "فشل تطبيق ألوان GTK"
-  },
-  "Failed to apply Qt colors": {
-    "Failed to apply Qt colors": "فشل تطبيق ألوان Qt"
+  "Failed to apply %1 colors": {
+    "Failed to apply %1 colors": ""
   },
   "Failed to apply charge limit to system": {
     "Failed to apply charge limit to system": "فشل تطبيق حد الشحن على النظام"
@@ -3158,9 +2987,6 @@
   "Failed to enable night mode": {
     "Failed to enable night mode": "فشل في تمكين الوضع الليلي"
   },
-  "Failed to enable plugin: %1": {
-    "Failed to enable plugin: %1": "فشل تفعيل الملحق: %1"
-  },
   "Failed to fetch network QR code: %1": {
     "Failed to fetch network QR code: %1": "فشل جلب رمز QR للشبكة: %1"
   },
@@ -3188,14 +3014,8 @@
   "Failed to move to trash": {
     "Failed to move to trash": "فشل في النقل إلى المهملات"
   },
-  "Failed to parse plugin_settings.json": {
-    "Failed to parse plugin_settings.json": "فشل تحليل plugin_settings.json"
-  },
-  "Failed to parse session.json": {
-    "Failed to parse session.json": "فشل تحليل session.json"
-  },
-  "Failed to parse settings.json": {
-    "Failed to parse settings.json": "فشل تحليل settings.json"
+  "Failed to parse %1": {
+    "Failed to parse %1": ""
   },
   "Failed to pause printer": {
     "Failed to pause printer": "تعذر إيقاف الطابعة مؤقتًا"
@@ -3368,8 +3188,8 @@
   "File manager used to open the trash. Pick \"custom\" to enter your own command.": {
     "File manager used to open the trash. Pick \"custom\" to enter your own command.": "مدير الملفات المستخدم لفتح المهملات. اختر \"مخصص\" لإدخال أمرك الخاص."
   },
-  "File received from": {
-    "File received from": "تم استلام ملف من"
+  "File received from %1": {
+    "File received from %1": ""
   },
   "File search requires dsearch\nInstall from github.com/AvengeMedia/danksearch": {
     "File search requires dsearch\nInstall from github.com/AvengeMedia/danksearch": "يتطلب البحث عن الملفات dsearch\nقم بالتثبيت من github.com/AvengeMedia/danksearch"
@@ -3563,9 +3383,6 @@
   "For editing plain text files": {
     "For editing plain text files": "لتحرير ملفات النصوص العادية"
   },
-  "For reading PDF files": {
-    "For reading PDF files": "لقراءة ملفات PDF"
-  },
   "Force HDR": {
     "Force HDR": "فرض HDR"
   },
@@ -3719,6 +3536,9 @@
   "Gaps": {
     "Gaps": "الفجوات"
   },
+  "General": {
+    "General": ""
+  },
   "Generate Override": {
     "Generate Override": "إنشاء تجاوز"
   },
@@ -3764,9 +3584,6 @@
   "Grant": {
     "Grant": "منح"
   },
-  "Grant admin?": {
-    "Grant admin?": "هل تريد منح صلاحيات المسؤول؟"
-  },
   "Grant administrator privileges": {
     "Grant administrator privileges": "منح امتيازات المسؤول"
   },
@@ -3785,15 +3602,6 @@
   "Greeter": {
     "Greeter": "شاشة الترحيب (Greeter)"
   },
-  "Greeter Appearance": {
-    "Greeter Appearance": "مظهر شاشة الترحيب"
-  },
-  "Greeter Behavior": {
-    "Greeter Behavior": "سلوك شاشة الترحيب"
-  },
-  "Greeter Status": {
-    "Greeter Status": "حالة شاشة الترحيب"
-  },
   "Greeter activated. greetd is now enabled.": {
     "Greeter activated. greetd is now enabled.": "تم تفعيل شاشة الترحيب. greetd مفعل الآن."
   },
@@ -3805,9 +3613,6 @@
   },
   "Greeter group:": {
     "Greeter group:": "مجموعة الترحيب:"
-  },
-  "Greeter only — does not affect main clock": {
-    "Greeter only — does not affect main clock": "شاشة الترحيب فقط — لا يؤثر على الساعة الرئيسية"
   },
   "Greeter only — format for the date on the login screen": {
     "Greeter only — format for the date on the login screen": "شاشة الترحيب فقط — تنسيق التاريخ على شاشة تسجيل الدخول"
@@ -4067,9 +3872,6 @@
   "Hyprland Discord Server": {
     "Hyprland Discord Server": "خادم ديسكورد الخاص بـ Hyprland"
   },
-  "Hyprland Layout Overrides": {
-    "Hyprland Layout Overrides": "تجاوزات تخطيط Hyprland"
-  },
   "Hyprland Options": {
     "Hyprland Options": "خيارات Hyprland"
   },
@@ -4207,12 +4009,6 @@
   },
   "Incorrect password": {
     "Incorrect password": "كلمة المرور غير صحيحة"
-  },
-  "Incorrect password - attempt %1 of %2 (lockout may follow)": {
-    "Incorrect password - attempt %1 of %2 (lockout may follow)": "كلمة مرور غير صحيحة - المحاولة %1 من %2 (قد يتبعها قفل للحساب)"
-  },
-  "Incorrect password - next failures may trigger account lockout": {
-    "Incorrect password - next failures may trigger account lockout": "كلمة مرور غير صحيحة - المحاولات التالية قد تؤدي إلى قفل الحساب"
   },
   "Incorrect password - try again": {
     "Incorrect password - try again": "كلمة مرور غير صحيحة - حاول مجدداً"
@@ -4370,9 +4166,6 @@
   "Jobs": {
     "Jobs": "المهام"
   },
-  "Jobs: ": {
-    "Jobs: ": "المهام: "
-  },
   "Join video call": {
     "Join video call": "انضم إلى مكالمة الفيديو"
   },
@@ -4517,9 +4310,6 @@
   "Layout Overrides": {
     "Layout Overrides": "تجاوزات التخطيط"
   },
-  "Layout and module positions on the greeter are synced from your shell (e.g. bar config). Run Sync to apply.": {
-    "Layout and module positions on the greeter are synced from your shell (e.g. bar config). Run Sync to apply.": "يتم مزامنة التخطيط ومواضع الوحدات في شاشة الترحيب من غلافك (على سبيل المثال، إعدادات الشريط). قم بتشغيل 'مزامنة' للتطبيق."
-  },
   "Left": {
     "Left": "اليسار"
   },
@@ -4604,9 +4394,6 @@
   "Locale": {
     "Locale": "الإعدادات الإقليمية (Locale)"
   },
-  "Locale Settings": {
-    "Locale Settings": "إعدادات اللغة والمكان"
-  },
   "Location": {
     "Location": "الموقع"
   },
@@ -4619,20 +4406,8 @@
   "Lock Screen": {
     "Lock Screen": "شاشة القفل"
   },
-  "Lock Screen Appearance": {
-    "Lock Screen Appearance": "مظهر شاشة القفل"
-  },
-  "Lock Screen Display": {
-    "Lock Screen Display": "عرض شاشة القفل"
-  },
   "Lock Screen Format": {
     "Lock Screen Format": "تنسيق شاشة القفل"
-  },
-  "Lock Screen behaviour": {
-    "Lock Screen behaviour": "سلوك شاشة القفل"
-  },
-  "Lock Screen layout": {
-    "Lock Screen layout": "تخطيط شاشة القفل"
   },
   "Lock at startup": {
     "Lock at startup": "قفل عند بدء التشغيل"
@@ -4642,9 +4417,6 @@
   },
   "Lock fade grace period": {
     "Lock fade grace period": "فترة سماح تلاشي القفل"
-  },
-  "Lock screen authentication changes apply automatically and may open a terminal when sudo authentication is required.": {
-    "Lock screen authentication changes apply automatically and may open a terminal when sudo authentication is required.": "يتم تطبيق تغييرات مصادقة شاشة القفل تلقائياً وقد تفتح محطة طرفية عند الحاجة إلى مصادقة sudo."
   },
   "Lock screen font": {
     "Lock screen font": "خط شاشة القفل"
@@ -4660,9 +4432,6 @@
   },
   "Login": {
     "Login": "تسجيل الدخول"
-  },
-  "Login Authentication": {
-    "Login Authentication": "مصادقة تسجيل الدخول"
   },
   "Long": {
     "Long": "طويل"
@@ -4721,11 +4490,11 @@
   "Managed by Frame in Connected Mode": {
     "Managed by Frame in Connected Mode": "مدار بواسطة الإطار في الوضع المتصل"
   },
+  "Managed by the primary PAM source.": {
+    "Managed by the primary PAM source.": ""
+  },
   "Management": {
     "Management": "الإدارة"
-  },
-  "Manages calendar events": {
-    "Manages calendar events": "ادارة احداث التقويم"
   },
   "Manages files and directories": {
     "Manages files and directories": "يدير الملفات والمجلدات"
@@ -4735,9 +4504,6 @@
   },
   "Mango service not available": {
     "Mango service not available": "خدمة Mango غير متاحة"
-  },
-  "MangoWC Layout Overrides": {
-    "MangoWC Layout Overrides": "تجاوزات تخطيط MangoWC"
   },
   "Manual": {
     "Manual": "يدوي"
@@ -4895,9 +4661,6 @@
   "Maximum pinned entries reached": {
     "Maximum pinned entries reached": "تم الوصول إلى الحد الأقصى للإدخالات المثبتة"
   },
-  "Maximum size per clipboard entry": {
-    "Maximum size per clipboard entry": "الحد الأقصى للحجم لكل إدخال في الحافظة"
-  },
   "Media": {
     "Media": "الوسائط"
   },
@@ -4921,9 +4684,6 @@
   },
   "Media Player": {
     "Media Player": "مشغل الوسائط"
-  },
-  "Media Player Settings": {
-    "Media Player Settings": "إعدادات مشغل الوسائط"
   },
   "Media Players (": {
     "Media Players (": "مشغلات الوسائط ("
@@ -5006,9 +4766,6 @@
   "Mode": {
     "Mode": "الوضع"
   },
-  "Mode:": {
-    "Mode:": "الوضع:"
-  },
   "Model": {
     "Model": "الطراز"
   },
@@ -5063,9 +4820,6 @@
   "Mouse pointer size in pixels": {
     "Mouse pointer size in pixels": "حجم مؤشر الفأرة بالبكسل"
   },
-  "Move": {
-    "Move": "نقل"
-  },
   "Move Widget": {
     "Move Widget": "تحريك الأداة"
   },
@@ -5080,9 +4834,6 @@
   },
   "Multimedia": {
     "Multimedia": "الوسائط المتعددة"
-  },
-  "Multiplexer": {
-    "Multiplexer": "المضاعف (Multiplexer)"
   },
   "Multiplexer Type": {
     "Multiplexer Type": "نوع المضاعف"
@@ -5159,9 +4910,6 @@
   "Network Speed Monitor": {
     "Network Speed Monitor": "مراقب سرعة الشبكة"
   },
-  "Network Status": {
-    "Network Status": "حالة الشبكة"
-  },
   "Network Type": {
     "Network Type": "نوع الشبكة"
   },
@@ -5233,9 +4981,6 @@
   },
   "Niri Integration": {
     "Niri Integration": "تكامل Niri"
-  },
-  "Niri Layout Overrides": {
-    "Niri Layout Overrides": "تجاوزات تخطيط Niri"
   },
   "Niri compositor actions (focus, move, etc.)": {
     "Niri compositor actions (focus, move, etc.)": "إجراءات Niri (التركيز، التحريك، وغيرها.)"
@@ -5462,9 +5207,6 @@
   "No plugins found": {
     "No plugins found": "لم يتم العثور على ملحقات"
   },
-  "No plugins found.": {
-    "No plugins found.": "لم يتم تثبيت أي ملحقات."
-  },
   "No printer found": {
     "No printer found": "لا توجد طابعة"
   },
@@ -5639,14 +5381,8 @@
   "Notification Popups": {
     "Notification Popups": "نوافذ الإشعارات المنبثقة"
   },
-  "Notification Rules": {
-    "Notification Rules": "قواعد الإشعارات"
-  },
   "Notification Settings": {
     "Notification Settings": "إعدادات الإشعارات "
-  },
-  "Notification Timeouts": {
-    "Notification Timeouts": "مهلة عرض الإشعارات"
   },
   "Notification Type": {
     "Notification Type": "نوع الإشعار"
@@ -5720,9 +5456,6 @@
   "Only adjust gamma based on time or location rules.": {
     "Only adjust gamma based on time or location rules.": "تعديل حرارة الألوان بناءً على قواعد الوقت أو الموقع فقط."
   },
-  "Only affects DMS-managed PAM. If greetd already includes pam_fprintd, fingerprint stays enabled.": {
-    "Only affects DMS-managed PAM. If greetd already includes pam_fprintd, fingerprint stays enabled.": "يؤثر فقط على PAM المدار بواسطة DMS. إذا كان greetd يتضمن بالفعل pam_fprintd، فستظل البصمة مفعلة."
-  },
   "Only on Battery": {
     "Only on Battery": "فقط عند استخدام البطارية"
   },
@@ -5734,12 +5467,6 @@
   },
   "Opacity": {
     "Opacity": "الشفافية"
-  },
-  "Opacity of the bar background": {
-    "Opacity of the bar background": "شفافية خلفية الشريط"
-  },
-  "Opacity of widget backgrounds": {
-    "Opacity of widget backgrounds": "شفافية خلفيات الأدوات"
   },
   "Opaque": {
     "Opaque": "غير شفاف"
@@ -5807,17 +5534,11 @@
   "Opening file browser": {
     "Opening file browser": "فتح متصفح الملفات"
   },
-  "Opening terminal to update greetd": {
-    "Opening terminal to update greetd": "فتح المحطة الطرفية لتحديث greetd"
-  },
   "Opening terminal: ": {
     "Opening terminal: ": "فتح الطرفيّة: "
   },
   "Opens a picker of other active sessions on this seat": {
     "Opens a picker of other active sessions on this seat": "يفتح أداة اختيار للجلسات النشطة الأخرى في هذا المقعد"
-  },
-  "Opens image files": {
-    "Opens image files": "يفتح ملفات الصور"
   },
   "Opens the connected launcher in Connected Frame Mode.": {
     "Opens the connected launcher in Connected Frame Mode.": "يفتح المشغل المتصل في وضع الإطار المتصل."
@@ -5921,15 +5642,6 @@
   "PAM already provides security-key auth. Enable this to show it at login.": {
     "PAM already provides security-key auth. Enable this to show it at login.": "نظام PAM يوفر بالفعل المصادقة بمفتاح الأمان. فعل هذا لإظهاره عند تسجيل الدخول."
   },
-  "PAM provides fingerprint auth, but availability could not be confirmed.": {
-    "PAM provides fingerprint auth, but availability could not be confirmed.": "نظام PAM يوفر المصادقة بالبصمة، ولكن تعذر التأكد من توفرها."
-  },
-  "PAM provides fingerprint auth, but no prints are enrolled yet.": {
-    "PAM provides fingerprint auth, but no prints are enrolled yet.": "نظام PAM يوفر المصادقة بالبصمة، ولكن لا توجد بصمات مسجلة بعد."
-  },
-  "PAM provides fingerprint auth, but no reader was detected.": {
-    "PAM provides fingerprint auth, but no reader was detected.": "نظام PAM يوفر المصادقة بالبصمة، ولكن لم يتم اكتشاف قارئ."
-  },
   "PDF Reader": {
     "PDF Reader": "قارئ PDF"
   },
@@ -5945,9 +5657,6 @@
   "Pad Hours": {
     "Pad Hours": "حشو الساعات"
   },
-  "Pad hours (02:00 vs 2:00)": {
-    "Pad hours (02:00 vs 2:00)": "تعبئة الساعات (02:00 مقابل 2:00)"
-  },
   "Padding": {
     "Padding": "الهوامش"
   },
@@ -5960,14 +5669,11 @@
   "Paired": {
     "Paired": "مقترن"
   },
-  "Pairing": {
-    "Pairing": "الاقتران"
-  },
   "Pairing failed": {
     "Pairing failed": "فشل الاقتران"
   },
-  "Pairing request from": {
-    "Pairing request from": "طلب اقتران من"
+  "Pairing request from %1": {
+    "Pairing request from %1": ""
   },
   "Pairing request sent": {
     "Pairing request sent": "تم إرسال طلب الاقتران"
@@ -6062,9 +5768,6 @@
   "Phone Connect Not Available": {
     "Phone Connect Not Available": "اتصال الهاتف غير متاح"
   },
-  "Phone Connect unavailable": {
-    "Phone Connect unavailable": "اتصال الهاتف غير متاح"
-  },
   "Phone number": {
     "Phone number": "رقم الهاتف"
   },
@@ -6092,8 +5795,8 @@
   "Ping": {
     "Ping": "اختبار الاتصال (Ping)"
   },
-  "Ping sent to": {
-    "Ping sent to": "تم إرسال اختبار الاتصال إلى"
+  "Ping sent to %1": {
+    "Ping sent to %1": ""
   },
   "Pinned": {
     "Pinned": "مثبت"
@@ -6137,9 +5840,6 @@
   "Play sound when volume is adjusted": {
     "Play sound when volume is adjusted": "تشغيل صوت عند تغيير مستوى الصوت"
   },
-  "Play sounds for system events": {
-    "Play sounds for system events": "تشغيل أصوات لأحداث النظام"
-  },
   "Playback": {
     "Playback": "أجهزة التشغيل"
   },
@@ -6148,9 +5848,6 @@
   },
   "Plays audio files": {
     "Plays audio files": "يشغل الملفات الصوتية"
-  },
-  "Plays video files": {
-    "Plays video files": "يشغل ملفات الفيديو"
   },
   "Please wait...": {
     "Please wait...": "يرجى الانتظار..."
@@ -6227,6 +5924,9 @@
   "Popup behavior, position": {
     "Popup behavior, position": "سلوك وموضع النافذة المنبثقة"
   },
+  "Popups": {
+    "Popups": ""
+  },
   "Port": {
     "Port": "المنفذ"
   },
@@ -6275,9 +5975,6 @@
   "Power Profiles & Saving": {
     "Power Profiles & Saving": "ملفات تعريف الطاقة والحفظ"
   },
-  "Power Profiles Auto-Switching": {
-    "Power Profiles Auto-Switching": "التبديل التلقائي لملفات تعريف الطاقة"
-  },
   "Power Saver": {
     "Power Saver": "موفر الطاقة"
   },
@@ -6286,12 +5983,6 @@
   },
   "Power profile management available": {
     "Power profile management available": "إدارة وضع الطاقة متاحة"
-  },
-  "Power profile to use when AC power is connected.": {
-    "Power profile to use when AC power is connected.": "ملف تعريف الطاقة المستخدم عند توصيل طاقة التيار المتردد."
-  },
-  "Power profile to use when running on battery power.": {
-    "Power profile to use when running on battery power.": "ملف تعريف الطاقة المستخدم عند التشغيل باستخدام طاقة البطارية."
   },
   "Power source": {
     "Power source": "مصدر الطاقة"
@@ -6316,9 +6007,6 @@
   },
   "Preset Widths (%)": {
     "Preset Widths (%)": "أعراض محددة مسبقًا (%)"
-  },
-  "Press 'n' or click 'New Session' to create one": {
-    "Press 'n' or click 'New Session' to create one": "اضغط على 'n' أو انقر على 'جلسة جديدة' لإنشاء واحدة"
   },
   "Press Ctrl+N or click 'New Session' to create one": {
     "Press Ctrl+N or click 'New Session' to create one": "اضغط Ctrl+N أو انقر على 'جلسة جديدة' لإنشاء واحدة"
@@ -6359,9 +6047,6 @@
   "Primary Container": {
     "Primary Container": "حاوية أساسية"
   },
-  "Primary Theme Color": {
-    "Primary Theme Color": "لون السمة الأساسي"
-  },
   "Print Server Management": {
     "Print Server Management": "إدارة خادم الطباعة"
   },
@@ -6389,9 +6074,6 @@
   "Printers": {
     "Printers": "الطابعات"
   },
-  "Printers: ": {
-    "Printers: ": "الطابعات: "
-  },
   "Prioritize performance": {
     "Prioritize performance": "تحديد الأداء كأولوية"
   },
@@ -6415,9 +6097,6 @@
   },
   "Processes": {
     "Processes": "العمليات"
-  },
-  "Processes:": {
-    "Processes:": "العمليات:"
   },
   "Processing": {
     "Processing": "جاري المعالجة"
@@ -6454,6 +6133,9 @@
   },
   "Profile when on Battery": {
     "Profile when on Battery": "الملف الشخصي عند استخدام البطارية"
+  },
+  "Protection": {
+    "Protection": ""
   },
   "Protocol": {
     "Protocol": "البروتوكول"
@@ -6620,9 +6302,6 @@
   "Remove admin": {
     "Remove admin": "إزالة المسؤول"
   },
-  "Remove admin?": {
-    "Remove admin?": "هل تريد إزالة المسؤول؟"
-  },
   "Remove corner rounding from the bar": {
     "Remove corner rounding from the bar": "إزالة استدارة الزوايا من الشريط"
   },
@@ -6719,9 +6398,6 @@
   "Reset Size": {
     "Reset Size": "إعادة تعيين الحجم"
   },
-  "Reset to Default?": {
-    "Reset to Default?": "إعادة التعيين إلى الافتراضي؟"
-  },
   "Reset to default": {
     "Reset to default": "إعادة التعيين إلى الافتراضي"
   },
@@ -6800,8 +6476,8 @@
   "Ring": {
     "Ring": "رنين"
   },
-  "Ringing": {
-    "Ringing": "يرن"
+  "Ringing %1...": {
+    "Ringing %1...": ""
   },
   "Ripple Effects": {
     "Ripple Effects": "تأثيرات التموج"
@@ -6815,8 +6491,14 @@
   "Rule": {
     "Rule": "قاعدة"
   },
+  "Rule %1": {
+    "Rule %1": ""
+  },
   "Rule Name": {
     "Rule Name": "اسم القاعدة"
+  },
+  "Rules": {
+    "Rules": ""
   },
   "Rules (%1)": {
     "Rules (%1)": "القواعد (%1)"
@@ -6923,9 +6605,6 @@
   "Saving...": {
     "Saving...": "جارٍ الحفظ..."
   },
-  "Saving…": {
-    "Saving…": "جاري الحفظ..."
-  },
   "Scale": {
     "Scale": "مقياس"
   },
@@ -6940,9 +6619,6 @@
   },
   "Scan": {
     "Scan": "فحص"
-  },
-  "Scanning": {
-    "Scanning": "جاري المسح"
   },
   "Scanning...": {
     "Scanning...": "جاري الفحص..."
@@ -7028,9 +6704,6 @@
   "Search...": {
     "Search...": "ابحث هنا..."
   },
-  "Searching": {
-    "Searching": "جاري البحث"
-  },
   "Searching...": {
     "Searching...": "جاري البحث..."
   },
@@ -7051,6 +6724,9 @@
   },
   "Security & privacy": {
     "Security & privacy": "الأمان والخصوصية"
+  },
+  "Security Key PAM Source": {
+    "Security Key PAM Source": ""
   },
   "Security key mode": {
     "Security key mode": "وضع مفتاح الأمان"
@@ -7139,17 +6815,11 @@
   "Select lock screen background image": {
     "Select lock screen background image": "اختر صورة خلفية شاشة القفل"
   },
-  "Select monitor to configure wallpaper": {
-    "Select monitor to configure wallpaper": "اختر الشاشة لتحديد الخلفية"
-  },
   "Select monospace font for process list and technical displays": {
     "Select monospace font for process list and technical displays": "اختر خطاً أحادي المسافة لقائمة العمليات والشاشات التقنية"
   },
   "Select network": {
     "Select network": "تحديد الشبكة"
-  },
-  "Select system sound theme": {
-    "Select system sound theme": "اختر سمة أصوات النظام"
   },
   "Select the font family for UI text": {
     "Select the font family for UI text": "اختر عائلة الخط لنصوص واجهة المستخدم"
@@ -7178,14 +6848,11 @@
   "Send Clipboard": {
     "Send Clipboard": "إرسال الحافظة"
   },
-  "Send File": {
-    "Send File": "إرسال ملف"
-  },
   "Send SMS": {
     "Send SMS": "إرسال رسالة قصيرة"
   },
-  "Sending": {
-    "Sending": "جارٍ الإرسال"
+  "Sending %1...": {
+    "Sending %1...": ""
   },
   "Separate": {
     "Separate": "منفصل"
@@ -7237,9 +6904,6 @@
   },
   "Set the font size for notification body text (htmlBody)": {
     "Set the font size for notification body text (htmlBody)": "ضبط حجم خط نص جسم الإشعار (htmlBody)"
-  },
-  "Set the font size for notification summary text": {
-    "Set the font size for notification summary text": "ضبط حجم خط نص ملخص الإشعار"
   },
   "Set the percentage at which the battery is considered low.": {
     "Set the percentage at which the battery is considered low.": "حدد النسبة المئوية التي تعتبر عندها البطارية منخفضة."
@@ -7294,9 +6958,6 @@
   },
   "Share Gamma Control Settings": {
     "Share Gamma Control Settings": "مشاركة إعدادات التحكم في جاما"
-  },
-  "Share Text": {
-    "Share Text": "مشاركة النص"
   },
   "Shared": {
     "Shared": "تمت المشاركة"
@@ -7553,9 +7214,6 @@
   "Show during Niri overview": {
     "Show during Niri overview": "إظهار أثناء نظرة عامة على Niri"
   },
-  "Show foreground surfaces on blurred panels for stronger contrast": {
-    "Show foreground surfaces on blurred panels for stronger contrast": "إظهار الأسطح الأمامية على الألواح المُخبَّشة لتباين أقوى"
-  },
   "Show foreground surfaces on panels for stronger contrast": {
     "Show foreground surfaces on panels for stronger contrast": "إظهار الأسطح الأمامية على اللوحات لتباين أقوى"
   },
@@ -7571,12 +7229,6 @@
   "Show mount path": {
     "Show mount path": "إظهار مسار التثبيت"
   },
-  "Show notification popups only on the currently focused monitor": {
-    "Show notification popups only on the currently focused monitor": "إظهار نوافذ الإشعارات المنبثقة فقط على الشاشة المركّز عليها حاليًا"
-  },
-  "Show notifications only on the currently focused monitor": {
-    "Show notifications only on the currently focused monitor": "إظهار الإشعارات فقط على الشاشة المركّز عليها حاليًا"
-  },
   "Show on Last Display": {
     "Show on Last Display": "العرض على آخر شاشة"
   },
@@ -7589,38 +7241,8 @@
   "Show on Overview Only": {
     "Show on Overview Only": "إظهار في النظرة العامة فقط"
   },
-  "Show on all connected displays": {
-    "Show on all connected displays": "إظهار على جميع شاشات العرض المتصلة"
-  },
   "Show on screens:": {
     "Show on screens:": "العرض على الشاشات:"
-  },
-  "Show on-screen display when brightness changes": {
-    "Show on-screen display when brightness changes": "إظهار المبيّن عند تغيير السطوع"
-  },
-  "Show on-screen display when caps lock state changes": {
-    "Show on-screen display when caps lock state changes": "إظهار المبيّن عند تغيير حالة Caps Lock"
-  },
-  "Show on-screen display when cycling audio output devices": {
-    "Show on-screen display when cycling audio output devices": "إظهار العرض على الشاشة عند تدوير أجهزة إخراج الصوت"
-  },
-  "Show on-screen display when idle inhibitor state changes": {
-    "Show on-screen display when idle inhibitor state changes": "إظهار المبيّن عند تغيير حالة مانع الخمول"
-  },
-  "Show on-screen display when media player status changes": {
-    "Show on-screen display when media player status changes": "إظهار العرض على الشاشة عند تغير حالة مشغل الوسائط"
-  },
-  "Show on-screen display when media player volume changes": {
-    "Show on-screen display when media player volume changes": "إظهار مبين الشاشة عند تغيير مستوى صوت مشغل الوسائط"
-  },
-  "Show on-screen display when microphone is muted/unmuted": {
-    "Show on-screen display when microphone is muted/unmuted": "إظهار المبيّن عند كتم أو تشغيل الميكروفون"
-  },
-  "Show on-screen display when power profile changes": {
-    "Show on-screen display when power profile changes": "إظهار المبيّن عند تغيير وضع الطاقة"
-  },
-  "Show on-screen display when volume changes": {
-    "Show on-screen display when volume changes": "إظهار المبيّن عند تغيير مستوى الصوت"
   },
   "Show the bar only when no windows are open": {
     "Show the bar only when no windows are open": "إظهار الشريط فقط عند عدم وجود نوافذ مفتوحة"
@@ -7630,9 +7252,6 @@
   },
   "Show weather information in top bar and control center": {
     "Show weather information in top bar and control center": "إظهار معلومات الطقس في الشريط العلوي ومركز التحكم"
-  },
-  "Show week number in the calendar": {
-    "Show week number in the calendar": "اظهار رقم الاسبوع في التقويم"
   },
   "Show workspace index numbers in the top bar workspace switcher": {
     "Show workspace index numbers in the top bar workspace switcher": "إظهار أرقام أسطح المكتب في مبدل أسطح المكتب بالشريط العلوي"
@@ -7666,9 +7285,6 @@
   },
   "Signal Strength": {
     "Signal Strength": "قوة الإشارة"
-  },
-  "Signal:": {
-    "Signal:": "الإشارة:"
   },
   "Silence for a while": {
     "Silence for a while": "إسكات لفترة"
@@ -7796,9 +7412,6 @@
   "Start": {
     "Start": "ابدأ"
   },
-  "Start KDE Connect or Valent": {
-    "Start KDE Connect or Valent": "ابدأ KDE Connect أو Valent"
-  },
   "Start KDE Connect or Valent to use this plugin": {
     "Start KDE Connect or Valent to use this plugin": "ابدأ KDE Connect أو Valent لاستخدام هذه الملحق"
   },
@@ -7837,9 +7450,6 @@
   },
   "Stripes": {
     "Stripes": "خطوط"
-  },
-  "Subtle Overlay": {
-    "Subtle Overlay": "تراكب خفي"
   },
   "Summary": {
     "Summary": "ملخص"
@@ -8045,20 +7655,11 @@
   "Terminal fallback failed. Install one of the supported terminal emulators or run 'dms greeter sync' manually.": {
     "Terminal fallback failed. Install one of the supported terminal emulators or run 'dms greeter sync' manually.": "فشل الاحتياط للطرفية. قم بتثبيت أحد محاكيات الطرفية المدعومة أو قم بتشغيل 'dms greeter sync' يدوياً."
   },
-  "Terminal fallback opened. Complete authentication setup there; it will close automatically when done.": {
-    "Terminal fallback opened. Complete authentication setup there; it will close automatically when done.": "تم فتح وضع بديل المحطة الطرفية. أكمل إعداد المصادقة هناك؛ سيتم إغلاقه تلقائياً عند الانتهاء."
+  "Terminal fallback opened. Complete authentication there; it will close automatically when done.": {
+    "Terminal fallback opened. Complete authentication there; it will close automatically when done.": ""
   },
-  "Terminal fallback opened. Complete sync there; it will close automatically when done.": {
-    "Terminal fallback opened. Complete sync there; it will close automatically when done.": "تم فتح الطرفية الاحتياطية. أكمل المزامنة هناك؛ ستغلق تلقائياً عند الانتهاء."
-  },
-  "Terminal multiplexer backend to use": {
-    "Terminal multiplexer backend to use": "خلفية تعدد إرسال المحطة الطرفية المراد استخدامها"
-  },
-  "Terminal opened. Complete authentication setup there; it will close automatically when done.": {
-    "Terminal opened. Complete authentication setup there; it will close automatically when done.": "تم فتح المحطة الطرفية. أكمل إعداد المصادقة هناك؛ سيتم إغلاقه تلقائياً عند الانتهاء."
-  },
-  "Terminal opened. Complete sync authentication there; it will close automatically when done.": {
-    "Terminal opened. Complete sync authentication there; it will close automatically when done.": "تم فتح الطرفية. أكمل مصادقة المزامنة هناك؛ ستغلق تلقائياً عند الانتهاء."
+  "Terminal opened. Complete authentication there; it will close automatically when done.": {
+    "Terminal opened. Complete authentication there; it will close automatically when done.": ""
   },
   "Terminals - Always use Dark Theme": {
     "Terminals - Always use Dark Theme": "الطرفيات - استخدام المظهر الداكن دائمًا"
@@ -8092,9 +7693,6 @@
   },
   "Text Rendering": {
     "Text Rendering": "عرض النص"
-  },
-  "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.": {
-    "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.": "أداة 'boregard' غير مثبتة أو ليست في مسار النظام (PATH). قم بتثبيتها من https://danklinux.com، ثم أعد تفعيل هذه الإضافة."
   },
   "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": {
     "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "أداة 'dgop' مطلوبة لمراقبة النظام. يرجى تثبيت dgop لاستخدام هذه الميزة."
@@ -8156,20 +7754,8 @@
   "This device": {
     "This device": "هذا الجهاز"
   },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings.": "لا يزال هذا التثبيت يستخدم hyprland.conf. قم بتشغيل إعداد dms للترحيل قبل تعديل إعدادات المؤشر."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing display settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing display settings.": "لا يزال هذا التثبيت يستخدم hyprland.conf. قم بتشغيل إعداد dms للترحيل قبل تعديل إعدادات العرض."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings.": "هذا التثبيت لا يزال يستخدم hyprland.conf. قم بتشغيل إعداد dms للترحيل قبل تعديل إعدادات التخطيط."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing shortcuts in Settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing shortcuts in Settings.": "لا يزال هذا التثبيت يستخدم hyprland.conf. قم بتشغيل إعداد dms للترحيل قبل تعديل الاختصارات في الإعدادات."
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings.": "لا يزال هذا التثبيت يستخدم hyprland.conf. قم بتشغيل إعداد dms للترحيل قبل تعديل قواعد النوافذ في الإعدادات."
+  "This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.": {
+    "This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.": ""
   },
   "This may take a few seconds": {
     "This may take a few seconds": "قد يستغرق هذا بضع ثوانٍ"
@@ -8201,14 +7787,8 @@
   "Tile": {
     "Tile": "بلاطة"
   },
-  "Tile H": {
-    "Tile H": "بلاطة أفقية"
-  },
   "Tile Horizontally": {
     "Tile Horizontally": "تجانب أفقياً"
-  },
-  "Tile V": {
-    "Tile V": "بلاطة رأسية"
   },
   "Tile Vertically": {
     "Tile Vertically": "تجانب رأسياً"
@@ -8252,14 +7832,8 @@
   "Timeout Progress Bar": {
     "Timeout Progress Bar": "شريط تقدم المهلة"
   },
-  "Timeout for critical priority notifications": {
-    "Timeout for critical priority notifications": "مهلة الإشعارات ذات الأولوية الحرجة"
-  },
-  "Timeout for low priority notifications": {
-    "Timeout for low priority notifications": "مهلة الإشعارات ذات الأولوية المنخفضة"
-  },
-  "Timeout for normal priority notifications": {
-    "Timeout for normal priority notifications": "مهلة الإشعارات ذات الأولوية العادية"
+  "Timeouts": {
+    "Timeouts": ""
   },
   "Tint Saturation": {
     "Tint Saturation": "تشبع التلوين"
@@ -8374,15 +7948,6 @@
   },
   "Transparency": {
     "Transparency": "الشفافية"
-  },
-  "Transparency of the border": {
-    "Transparency of the border": "شفافية الحدود"
-  },
-  "Transparency of the shadow layer": {
-    "Transparency of the shadow layer": "شفافية طبقة الظل"
-  },
-  "Transparency of the widget outline": {
-    "Transparency of the widget outline": "شفافية مخطط الأداة"
   },
   "Trash": {
     "Trash": "المهملات"
@@ -8555,9 +8120,6 @@
   "Unpin from Dock": {
     "Unpin from Dock": "ازالة من الشريط"
   },
-  "Unsaved Changes": {
-    "Unsaved Changes": "تغييرات غير محفوظة"
-  },
   "Unsaved changes": {
     "Unsaved changes": "تغييرات غير محفوظة"
   },
@@ -8608,9 +8170,6 @@
   },
   "Uptime": {
     "Uptime": "وقت التشغيل"
-  },
-  "Uptime:": {
-    "Uptime:": "وقت التشغيل:"
   },
   "Urgent": {
     "Urgent": "عاجل"
@@ -8681,9 +8240,6 @@
   "Use colors extracted from album art instead of system theme colors": {
     "Use colors extracted from album art instead of system theme colors": "استخدم الألوان المستخرجة من خلفية الألبوم بدلاً من ألوان سمة النظام"
   },
-  "Use custom border size": {
-    "Use custom border size": "استخدام حجم حدود مخصص"
-  },
   "Use custom border/focus-ring width": {
     "Use custom border/focus-ring width": "استخدام عرض مخصص للحدود/حلقة التركيز"
   },
@@ -8720,11 +8276,11 @@
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "استخدام سمة الصوت من إعدادات النظام"
   },
+  "Use system PAM authentication": {
+    "Use system PAM authentication": ""
+  },
   "Use the extended surface for launcher content": {
     "Use the extended surface for launcher content": "استخدم السطح الممتد لمحتوى المشغل"
-  },
-  "Use the overlay layer when opening the launcher": {
-    "Use the overlay layer when opening the launcher": "استخدام طبقة التراكب عند فتح المشغل"
   },
   "Use the same position and size on all displays": {
     "Use the same position and size on all displays": "استخدام نفس الموقع والحجم على جميع الشاشات"
@@ -8975,6 +8531,9 @@
   "When locked": {
     "When locked": "عند القفل"
   },
+  "Which PAM service the lock screen uses to authenticate": {
+    "Which PAM service the lock screen uses to authenticate": ""
+  },
   "White": {
     "White": "أبيض"
   },
@@ -9083,12 +8642,6 @@
   "Window Rules": {
     "Window Rules": "قواعد النافذة"
   },
-  "Window Rules Include Missing": {
-    "Window Rules Include Missing": "قواعد النافذة تتضمن المفقود"
-  },
-  "Window Rules Not Configured": {
-    "Window Rules Not Configured": "قواعد النافذة غير مهيأة"
-  },
   "Wipe": {
     "Wipe": "مسح"
   },
@@ -9098,9 +8651,6 @@
   "Workspace": {
     "Workspace": "سطح المكتب"
   },
-  "Workspace Appearance": {
-    "Workspace Appearance": "مظهر سطح المكتب"
-  },
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "أرقام اسطح المكتب"
   },
@@ -9109,9 +8659,6 @@
   },
   "Workspace Padding": {
     "Workspace Padding": "هوامش سطح المكتب"
-  },
-  "Workspace Settings": {
-    "Workspace Settings": "إعدادات سطح المكتب"
   },
   "Workspace Switcher": {
     "Workspace Switcher": "مبدل سطح المكتب"
@@ -9161,17 +8708,8 @@
   "Yesterday": {
     "Yesterday": "أمس"
   },
-  "You have unsaved changes. Save before closing this tab?": {
-    "You have unsaved changes. Save before closing this tab?": "لديك تغييرات غير محفوظة. هل تريد الحفظ قبل إغلاق علامة التبويب هذه؟"
-  },
   "You have unsaved changes. Save before continuing?": {
     "You have unsaved changes. Save before continuing?": "لديك تغييرات غير محفوظة. هل تريد الحفظ قبل المتابعة؟"
-  },
-  "You have unsaved changes. Save before creating a new file?": {
-    "You have unsaved changes. Save before creating a new file?": "لديك تغييرات غير محفوظة. هل تريد الحفظ قبل إنشاء ملف جديد؟"
-  },
-  "You have unsaved changes. Save before opening a file?": {
-    "You have unsaved changes. Save before opening a file?": "لديك تغييرات غير محفوظة. هل تريد الحفظ قبل فتح ملف؟"
   },
   "You need to set either:\nQT_QPA_PLATFORMTHEME=gtk3 OR\nQT_QPA_PLATFORMTHEME=qt6ct\nas environment variables, and then restart the shell.\n\nqt6ct requires qt6ct-kde to be installed.": {
     "You need to set either:\nQT_QPA_PLATFORMTHEME=gtk3 OR\nQT_QPA_PLATFORMTHEME=qt6ct\nas environment variables, and then restart the shell.\n\nqt6ct requires qt6ct-kde to be installed.": "تحتاج إلى ضبط اما:\nQT_QPA_PLATFORMTHEME=gtk3 او\nQT_QPA_PLATFORMTHEME=qt6ct\nكمتغيرات بيئة ثم إعادة تشغيل DMS.\n\nيتطلب qt6ct تثبيت qt6ct-kde."
@@ -9191,17 +8729,11 @@
   "Your system is up to date!": {
     "Your system is up to date!": "نظامك محدث!"
   },
-  "actions": {
-    "actions": "إجراءات"
-  },
   "admin": {
     "admin": "مسؤول"
   },
   "attached": {
     "attached": "متصل"
-  },
-  "boregard is required": {
-    "boregard is required": "مطلوب boregard"
   },
   "brandon": {
     "brandon": "brandon"
@@ -9236,9 +8768,6 @@
   "device": {
     "device": "جهاز"
   },
-  "devices connected": {
-    "devices connected": "أجهزة متصلة"
-  },
   "dgop not available": {
     "dgop not available": "dgop غير متاح"
   },
@@ -9247,6 +8776,9 @@
   },
   "discuss": {
     "discuss": "نقاش"
+  },
+  "display rotation option": {
+    "Normal": ""
   },
   "dms is a highly customizable, modern desktop shell with a <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">material 3 inspired</a> design.<br /><br/>It is built with <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, a QT6 framework for building desktop shells, and <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, a statically typed, compiled programming language.": {
     "dms is a highly customizable, modern desktop shell with a <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">material 3 inspired</a> design.<br /><br/>It is built with <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, a QT6 framework for building desktop shells, and <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, a statically typed, compiled programming language.": "dms هو غلاف سطح مكتب حديث قابل للتخصيص بدرجة عالية مع تصميم <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">مستوحى من Material 3</a>.<br /><br/>تم بناؤه باستخدام <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>، وهو إطار عمل QT6 لبناء أغلفة سطح المكتب، ولغة <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>، وهي لغة برمجة مجمعة ومكتوبة بشكل ثابت."
@@ -9308,11 +8840,8 @@
   "mangowc GitHub": {
     "mangowc GitHub": "مستودع mangowc على GitHub"
   },
-  "matugen not available or disabled - cannot apply GTK colors": {
-    "matugen not available or disabled - cannot apply GTK colors": "matugen غير متوفر أو معطل - لا يمكن تطبيق ألوان GTK"
-  },
-  "matugen not available or disabled - cannot apply Qt colors": {
-    "matugen not available or disabled - cannot apply Qt colors": "matugen غير متوفر أو معطل - لا يمكن تطبيق ألوان Qt"
+  "matugen not available or disabled - cannot apply %1 colors": {
+    "matugen not available or disabled - cannot apply %1 colors": ""
   },
   "matugen not found - install matugen package for dynamic theming": {
     "matugen not found - install matugen package for dynamic theming": "لم يتم العثور على matugen - قم بتثبيت حزمة matugen للسمات الديناميكية"
@@ -9325,6 +8854,9 @@
   },
   "nav": {
     "nav": "تنقل"
+  },
+  "network security type": {
+    "Open": ""
   },
   "niri GitHub": {
     "niri GitHub": "مستودع niri على GitHub"
@@ -9368,14 +8900,14 @@
   "on Sway": {
     "on Sway": "على Sway"
   },
-  "open": {
-    "open": "فتح"
-  },
   "or run ": {
     "or run ": "أو قم بتشغيل "
   },
   "power-profiles-daemon not available": {
     "power-profiles-daemon not available": "power-profiles-daemon غير متاح"
+  },
+  "primary network connection label": {
+    "Primary": ""
   },
   "procs": {
     "procs": "عمليات"
@@ -9430,9 +8962,6 @@
   },
   "v%1 by %2": {
     "v%1 by %2": "الإصدار %1 بواسطة %2"
-  },
-  "verified": {
-    "verified": "تم التحقق"
   },
   "• Install only from trusted sources": {
     "• Install only from trusted sources": "• التثبيت من المصادر الموثوقة فقط"

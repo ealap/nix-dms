@@ -71,7 +71,6 @@ Item {
                     tags: ["sound", "enable", "system"]
                     settingKey: "soundsEnabled"
                     text: I18n.tr("Enable System Sounds")
-                    description: I18n.tr("Play sounds for system events")
                     checked: SettingsData.soundsEnabled
                     onToggled: checked => SettingsData.set("soundsEnabled", checked)
                 }
@@ -106,7 +105,6 @@ Item {
                         visible: SettingsData.useSystemSoundTheme && AudioService.availableSoundThemes.length > 0
                         enabled: SettingsData.useSystemSoundTheme && AudioService.availableSoundThemes.length > 0
                         text: I18n.tr("Sound Theme")
-                        description: I18n.tr("Select system sound theme")
                         options: AudioService.availableSoundThemes
                         currentValue: {
                             const theme = AudioService.currentSoundTheme;

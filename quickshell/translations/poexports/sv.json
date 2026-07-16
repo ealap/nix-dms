@@ -5,6 +5,9 @@
   "%1 Animation Speed": {
     "%1 Animation Speed": "%1 animeringshastighet"
   },
+  "%1 Layout Overrides": {
+    "%1 Layout Overrides": ""
+  },
   "%1 Sessions": {
     "%1 Sessions": "%1 sessioner"
   },
@@ -35,9 +38,6 @@
   "%1 copied": {
     "%1 copied": ""
   },
-  "%1 custom animation duration": {
-    "%1 custom animation duration": "%1 anpassad animeringstid"
-  },
   "%1 disconnected": {
     "%1 disconnected": "%1 frånkopplad"
   },
@@ -49,9 +49,6 @@
   },
   "%1 displays": {
     "%1 displays": "%1 bildskärmar"
-  },
-  "%1 exists but is not included. Window rules won't apply.": {
-    "%1 exists but is not included. Window rules won't apply.": "%1 finns men ingår inte. Fönsterregler tillämpas inte."
   },
   "%1 filtered": {
     "%1 filtered": "%1 filtrerade"
@@ -118,9 +115,6 @@
   },
   "'Alternative' lets the key unlock on its own. 'Second factor' requires password or fingerprint first, then the key.": {
     "'Alternative' lets the key unlock on its own. 'Second factor' requires password or fingerprint first, then the key.": "'Alternativ' låter nyckeln låsa upp på egen hand. 'Andra faktor' kräver lösenord eller fingeravtryck först, sedan nyckeln."
-  },
-  "(Default)": {
-    "(Default)": "(Standard)"
   },
   "(Unnamed)": {
     "(Unnamed)": "(Inget namn)"
@@ -211,9 +205,6 @@
   },
   "24-Hour Format": {
     "24-Hour Format": "24-timmarsklocka"
-  },
-  "24-hour clock": {
-    "24-hour clock": "24-timmarsklocka"
   },
   "25 seconds": {
     "25 seconds": "25 sekunder"
@@ -509,6 +500,9 @@
   "Afternoon": {
     "Afternoon": "Eftermiddag"
   },
+  "Alerts": {
+    "Alerts": ""
+  },
   "All": {
     "All": "Alla"
   },
@@ -788,14 +782,14 @@
   "Authentication Required": {
     "Authentication Required": "Autentisering krävs"
   },
+  "Authentication Source": {
+    "Authentication Source": ""
+  },
   "Authentication changes applied.": {
     "Authentication changes applied.": ""
   },
   "Authentication changes apply automatically.": {
     "Authentication changes apply automatically.": ""
-  },
-  "Authentication changes apply automatically. Fingerprint-only login may not unlock Keyring.": {
-    "Authentication changes apply automatically. Fingerprint-only login may not unlock Keyring.": ""
   },
   "Authentication changes need sudo. Opening terminal so you can use password or fingerprint.": {
     "Authentication changes need sudo. Opening terminal so you can use password or fingerprint.": ""
@@ -811,9 +805,6 @@
   },
   "Authentication failed - try again": {
     "Authentication failed - try again": ""
-  },
-  "Authentication failed, please try again": {
-    "Authentication failed, please try again": "Autentisering misslyckades, försök igen"
   },
   "Authorize": {
     "Authorize": "Auktorisera"
@@ -848,20 +839,17 @@
   "Auto Power Saver": {
     "Auto Power Saver": ""
   },
-  "Auto matches bar spacing; Off leaves gaps to your Hyprland config": {
-    "Auto matches bar spacing; Off leaves gaps to your Hyprland config": ""
-  },
-  "Auto matches bar spacing; Off leaves gaps to your MangoWC config": {
-    "Auto matches bar spacing; Off leaves gaps to your MangoWC config": ""
-  },
-  "Auto matches bar spacing; Off leaves gaps to your niri config": {
-    "Auto matches bar spacing; Off leaves gaps to your niri config": ""
+  "Auto matches bar spacing; Off leaves gaps to your %1 config": {
+    "Auto matches bar spacing; Off leaves gaps to your %1 config": ""
   },
   "Auto mode is on. Manual profile selection is disabled.": {
     "Auto mode is on. Manual profile selection is disabled.": ""
   },
   "Auto saved": {
     "Auto saved": ""
+  },
+  "Auto uses an installed or bundled key-only service.": {
+    "Auto uses an installed or bundled key-only service.": ""
   },
   "Auto-Clear After": {
     "Auto-Clear After": "Rensa automatiskt efter"
@@ -983,9 +971,6 @@
   "Available in Detailed and Forecast view modes": {
     "Available in Detailed and Forecast view modes": "Tillgänglig i detaljerade och prognosvyer"
   },
-  "Available.": {
-    "Available.": "Tillgängligt."
-  },
   "Awaiting fingerprint authentication": {
     "Awaiting fingerprint authentication": ""
   },
@@ -1006,9 +991,6 @@
   },
   "Backend": {
     "Backend": "Bakgrundstjänst"
-  },
-  "Backends: %1": {
-    "Backends: %1": ""
   },
   "Background": {
     "Background": "Bakgrund"
@@ -1049,9 +1031,6 @@
   "Bar %1": {
     "Bar %1": ""
   },
-  "Bar Configurations": {
-    "Bar Configurations": "Menyradskonfigurationer"
-  },
   "Bar Inset Padding": {
     "Bar Inset Padding": ""
   },
@@ -1070,9 +1049,6 @@
   "Bar shadow, border, and corners": {
     "Bar shadow, border, and corners": ""
   },
-  "Bar spacing and size": {
-    "Bar spacing and size": ""
-  },
   "Base color for shadows (opacity is applied automatically)": {
     "Base color for shadows (opacity is applied automatically)": "Basfärg för skuggor (opacitet tillämpas automatiskt)"
   },
@@ -1085,9 +1061,6 @@
   "Battery %1": {
     "Battery %1": "Batteri %1"
   },
-  "Battery Alerts": {
-    "Battery Alerts": ""
-  },
   "Battery Charge Limit": {
     "Battery Charge Limit": "Laddningsgräns"
   },
@@ -1096,15 +1069,6 @@
   },
   "Battery Power": {
     "Battery Power": ""
-  },
-  "Battery Protection": {
-    "Battery Protection": ""
-  },
-  "Battery Protection & Charging": {
-    "Battery Protection & Charging": ""
-  },
-  "Battery Status": {
-    "Battery Status": ""
   },
   "Battery and power management": {
     "Battery and power management": "Batteri och energihantering"
@@ -1118,9 +1082,6 @@
   "Battery is at %1% - Consider charging soon": {
     "Battery is at %1% - Consider charging soon": ""
   },
-  "Battery level and power management": {
-    "Battery level and power management": "Energi och batteri"
-  },
   "Battery percentage to trigger a critical alert.": {
     "Battery percentage to trigger a critical alert.": ""
   },
@@ -1130,11 +1091,8 @@
   "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": {
     "Bind lock screen to dbus signals from loginctl. Disable if using an external lock screen": "Koppla låsskärmen till dbus-signaler från loginctl. Avaktivera om du använder en extern låsskärm"
   },
-  "Bind the spotlight IPC action in your compositor config.": {
-    "Bind the spotlight IPC action in your compositor config.": ""
-  },
-  "Bind the spotlight-bar IPC action in your compositor config.": {
-    "Bind the spotlight-bar IPC action in your compositor config.": ""
+  "Bind the %1 IPC action in your compositor config.": {
+    "Bind the %1 IPC action in your compositor config.": ""
   },
   "Binds include added": {
     "Binds include added": "Inkludering av kortkommandon tillagd"
@@ -1175,20 +1133,11 @@
   "Blur": {
     "Blur": ""
   },
-  "Blur Border Color": {
-    "Blur Border Color": ""
-  },
-  "Blur Border Opacity": {
-    "Blur Border Opacity": ""
-  },
   "Blur Wallpaper Layer": {
     "Blur Wallpaper Layer": "Oskärpa bakgrundsbildslager"
   },
   "Blur on Overview": {
     "Blur on Overview": "Oskärpa i översikt"
-  },
-  "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support and configuration.": {
-    "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support and configuration.": ""
   },
   "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support. Adjust Opacity accordingly.": {
     "Blur the background behind bars, popouts, modals, and notifications. Requires compositor support. Adjust Opacity accordingly.": ""
@@ -1231,9 +1180,6 @@
   },
   "Border Width": {
     "Border Width": ""
-  },
-  "Border color around blurred surfaces": {
-    "Border color around blurred surfaces": ""
   },
   "Border color around popouts, modals, and other shell surfaces": {
     "Border color around popouts, modals, and other shell surfaces": ""
@@ -1294,9 +1240,6 @@
   },
   "Button Color": {
     "Button Color": "Knappfärg"
-  },
-  "By %1": {
-    "By %1": ""
   },
   "CPU": {
     "CPU": "CPU"
@@ -1436,9 +1379,6 @@
   "Check on startup": {
     "Check on startup": ""
   },
-  "Check sync status on demand. Sync (full) is for the main admin: it copies your theme to the login screen and sets up system greeter config. On multi-user systems, add other accounts in Settings → Users, then have each of them run dms greeter sync --profile after logging out and back in—not full sync. Authentication changes apply automatically.": {
-    "Check sync status on demand. Sync (full) is for the main admin: it copies your theme to the login screen and sets up system greeter config. On multi-user systems, add other accounts in Settings → Users, then have each of them run dms greeter sync --profile after logging out and back in—not full sync. Authentication changes apply automatically.": ""
-  },
   "Check your custom command in Settings → Dock → Trash.": {
     "Check your custom command in Settings → Dock → Trash.": ""
   },
@@ -1456,9 +1396,6 @@
   },
   "Choose Dark Mode Color": {
     "Choose Dark Mode Color": "Välj mörkt läge-färg"
-  },
-  "Choose Dock Launcher Logo Color": {
-    "Choose Dock Launcher Logo Color": "Välj färg på dockens startarikon"
   },
   "Choose Launcher Logo Color": {
     "Choose Launcher Logo Color": "Välj färgen på appstartarens ikon"
@@ -1484,9 +1421,6 @@
   "Choose how this bar resolves shadow direction": {
     "Choose how this bar resolves shadow direction": "Välj hur denna menyrad hanterar skuggriktning"
   },
-  "Choose how to be notified about battery alerts.": {
-    "Choose how to be notified about battery alerts.": ""
-  },
   "Choose how to be notified about critical battery alerts.": {
     "Choose how to be notified about critical battery alerts.": ""
   },
@@ -1504,12 +1438,6 @@
   },
   "Choose neutral or accent-colored widget text": {
     "Choose neutral or accent-colored widget text": ""
-  },
-  "Choose the background color for widgets": {
-    "Choose the background color for widgets": "Välj bakgrundsfärg för widgetar"
-  },
-  "Choose the border accent color": {
-    "Choose the border accent color": "Välj accentfärg på kantlinjen"
   },
   "Choose the logo displayed on the launcher button in DankBar": {
     "Choose the logo displayed on the launcher button in DankBar": "Välj ikonen som visas på appstartarknappen i DankBar"
@@ -1573,9 +1501,6 @@
   },
   "Click 'Setup' to create %1 and add include to your compositor config.": {
     "Click 'Setup' to create %1 and add include to your compositor config.": "Klicka på 'Konfiguration' för att skapa %1 och lägga till inkludering i din kompositorkonfiguration."
-  },
-  "Click 'Setup' to create the outputs config and add include to your compositor config.": {
-    "Click 'Setup' to create the outputs config and add include to your compositor config.": "Klicka på 'Konfiguration' för att skapa utgångskonfigurationen och lägga till inkludering i din kompositorkonfiguration."
   },
   "Click Import to add a .ovpn or .conf": {
     "Click Import to add a .ovpn or .conf": "Klicka på Importera för att lägga till en .ovpn- eller .conf-fil"
@@ -1682,12 +1607,6 @@
   "Color shown for areas not covered by wallpaper": {
     "Color shown for areas not covered by wallpaper": ""
   },
-  "Color shown for areas not covered by wallpaper (e.g. Fit or Pad modes)": {
-    "Color shown for areas not covered by wallpaper (e.g. Fit or Pad modes)": ""
-  },
-  "Color temperature for day time": {
-    "Color temperature for day time": "Färgtemperatur för dagtid"
-  },
   "Color temperature for night mode": {
     "Color temperature for night mode": "Färgtemperatur för nattläge"
   },
@@ -1772,6 +1691,9 @@
   "Configuration will be preserved when this display reconnects": {
     "Configuration will be preserved when this display reconnects": "Konfigurationen bevaras när denna bildskärm återansluts"
   },
+  "Configurations": {
+    "Configurations": ""
+  },
   "Configure": {
     "Configure": "Konfigurera"
   },
@@ -1853,9 +1775,6 @@
   "Connecting...": {
     "Connecting...": "Ansluter..."
   },
-  "Connecting…": {
-    "Connecting…": ""
-  },
   "Connection failed": {
     "Connection failed": "Anslutning misslyckades"
   },
@@ -1904,24 +1823,6 @@
   "Controls opacity of shell surfaces, popouts, and modals": {
     "Controls opacity of shell surfaces, popouts, and modals": ""
   },
-  "Controls opacity of the bar background": {
-    "Controls opacity of the bar background": ""
-  },
-  "Controls opacity of the border": {
-    "Controls opacity of the border": ""
-  },
-  "Controls opacity of the shadow layer": {
-    "Controls opacity of the shadow layer": ""
-  },
-  "Controls opacity of the widget outline": {
-    "Controls opacity of the widget outline": ""
-  },
-  "Controls opacity of widget backgrounds": {
-    "Controls opacity of widget backgrounds": ""
-  },
-  "Controls outlines around blurred foreground cards, pills, and notification cards": {
-    "Controls outlines around blurred foreground cards, pills, and notification cards": ""
-  },
   "Controls outlines around foreground cards, pills, and notification cards": {
     "Controls outlines around foreground cards, pills, and notification cards": ""
   },
@@ -1931,17 +1832,8 @@
   "Controls the base blur radius and offset of shadows": {
     "Controls the base blur radius and offset of shadows": "Styr grundoskärperadien och förskjutningen av skuggor"
   },
-  "Controls the opacity of the shadow": {
-    "Controls the opacity of the shadow": ""
-  },
-  "Controls the outer edge of protocol-blurred windows": {
-    "Controls the outer edge of protocol-blurred windows": ""
-  },
   "Controls the outline of popouts, modals, and other shell surfaces": {
     "Controls the outline of popouts, modals, and other shell surfaces": ""
-  },
-  "Controls the transparency of the shadow": {
-    "Controls the transparency of the shadow": "Styr skuggans genomskinlighet"
   },
   "Convenience options for the login screen. Sync to apply.": {
     "Convenience options for the login screen. Sync to apply.": "Bekvämlighetsalternativ för inloggningsskärmen. Synka för att tillämpa."
@@ -2000,9 +1892,6 @@
   "Corners & Background": {
     "Corners & Background": "Hörn & bakgrund"
   },
-  "Couldn't open a terminal for the auto-login update.": {
-    "Couldn't open a terminal for the auto-login update.": ""
-  },
   "Count Only": {
     "Count Only": "Bara antal"
   },
@@ -2026,9 +1915,6 @@
   },
   "Create a new %1 session (^N)": {
     "Create a new %1 session (^N)": ""
-  },
-  "Create a new %1 session (n)": {
-    "Create a new %1 session (n)": "Skapa en ny %1-session (n)"
   },
   "Create rule for:": {
     "Create rule for:": "Skapa regel för:"
@@ -2192,9 +2078,6 @@
   "Custom...": {
     "Custom...": "Anpassad..."
   },
-  "Custom: ": {
-    "Custom: ": "Anpassat: "
-  },
   "Customizable empty space": {
     "Customizable empty space": "Anpassningsbart mellanrum"
   },
@@ -2225,14 +2108,11 @@
   "DMS Shortcuts": {
     "DMS Shortcuts": "DMS-kortkommandon"
   },
-  "DMS greeter needs: greetd, dms-greeter. Fingerprint: fprintd, pam_fprintd. Security keys: pam_u2f. Add your user to the greeter group. Authentication changes apply automatically and may open a terminal when sudo authentication is required.": {
-    "DMS greeter needs: greetd, dms-greeter. Fingerprint: fprintd, pam_fprintd. Security keys: pam_u2f. Add your user to the greeter group. Authentication changes apply automatically and may open a terminal when sudo authentication is required.": ""
-  },
-  "DMS needs administrator access. The terminal closes automatically when done.": {
-    "DMS needs administrator access. The terminal closes automatically when done.": ""
-  },
   "DMS out of date": {
     "DMS out of date": "DMS är utdaterat"
+  },
+  "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it": {
+    "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it": ""
   },
   "DMS server is outdated (API v%1, expected v%2)": {
     "DMS server is outdated (API v%1, expected v%2)": ""
@@ -2404,9 +2284,6 @@
   },
   "Delete user": {
     "Delete user": ""
-  },
-  "Delete user?": {
-    "Delete user?": ""
   },
   "Demi Bold": {
     "Demi Bold": ""
@@ -2609,9 +2486,6 @@
   "Display power menu actions in a grid instead of a list": {
     "Display power menu actions in a grid instead of a list": "Visa strömmenyn i rutnätsform istället för lista"
   },
-  "Display seconds in the clock": {
-    "Display seconds in the clock": "Visa sekunder i klockan"
-  },
   "Display setup failed": {
     "Display setup failed": ""
   },
@@ -2623,9 +2497,6 @@
   },
   "Displays": {
     "Displays": "Bildskärmar"
-  },
-  "Displays count when overflow is active": {
-    "Displays count when overflow is active": "Antal bildskärmar när overflow är aktivt"
   },
   "Displays the active keyboard layout and allows switching": {
     "Displays the active keyboard layout and allows switching": "Visa aktiv tangentbordslayout och växla tangentbordslayouter"
@@ -2648,14 +2519,8 @@
   "Dock Opacity": {
     "Dock Opacity": ""
   },
-  "Dock Visibility": {
-    "Dock Visibility": "Docksynlighet"
-  },
   "Dock margin, opacity, and border": {
     "Dock margin, opacity, and border": ""
-  },
-  "Dock margin, transparency, and border": {
-    "Dock margin, transparency, and border": ""
   },
   "Dock window": {
     "Dock window": ""
@@ -2801,9 +2666,6 @@
   "Empty Trash (%1)": {
     "Empty Trash (%1)": ""
   },
-  "Empty Trash?": {
-    "Empty Trash?": ""
-  },
   "Enable 10-bit color depth for wider color gamut and HDR support": {
     "Enable 10-bit color depth for wider color gamut and HDR support": "Aktivera 10-bitars färgdjup för bredare färgomfång och HDR-stöd"
   },
@@ -2866,36 +2728,6 @@
   },
   "Enabled": {
     "Enabled": "Aktiverat"
-  },
-  "Enabled, but fingerprint availability could not be confirmed.": {
-    "Enabled, but fingerprint availability could not be confirmed.": "Aktiverat, men fingeravtryckstillgänglighet kunde inte bekräftas."
-  },
-  "Enabled, but no fingerprint reader was detected.": {
-    "Enabled, but no fingerprint reader was detected.": "Aktiverat, men ingen fingeravtrycksläsare hittades."
-  },
-  "Enabled, but no prints are enrolled yet. Authentication changes apply automatically once you enroll fingerprints.": {
-    "Enabled, but no prints are enrolled yet. Authentication changes apply automatically once you enroll fingerprints.": ""
-  },
-  "Enabled, but no prints are enrolled yet. Enroll fingerprints and run Sync.": {
-    "Enabled, but no prints are enrolled yet. Enroll fingerprints and run Sync.": "Aktiverat, men inga fingeravtryck har registrerats ännu. Registrera fingeravtryck och kör Synka."
-  },
-  "Enabled, but no registered security key was found yet. Authentication changes apply automatically once your key is registered or your U2F config is updated.": {
-    "Enabled, but no registered security key was found yet. Authentication changes apply automatically once your key is registered or your U2F config is updated.": ""
-  },
-  "Enabled, but no registered security key was found yet. Register a key and run Sync.": {
-    "Enabled, but no registered security key was found yet. Register a key and run Sync.": "Aktiverat, men ingen registrerad säkerhetsnyckel hittades ännu. Registrera en nyckel och kör Synka."
-  },
-  "Enabled, but security-key availability could not be confirmed.": {
-    "Enabled, but security-key availability could not be confirmed.": "Aktiverat, men säkerhetsnyckelns tillgänglighet kunde inte bekräftas."
-  },
-  "Enabled. PAM already provides fingerprint auth.": {
-    "Enabled. PAM already provides fingerprint auth.": "Aktiverat. PAM tillhandahåller redan fingeravtrycksautentisering."
-  },
-  "Enabled. PAM already provides security-key auth.": {
-    "Enabled. PAM already provides security-key auth.": "Aktiverat. PAM tillhandahåller redan säkerhetsnyckelautentisering."
-  },
-  "Enabled. PAM provides fingerprint auth, but no prints are enrolled yet.": {
-    "Enabled. PAM provides fingerprint auth, but no prints are enrolled yet.": "Aktiverat. PAM tillhandahåller fingeravtrycksautentisering, men inga fingeravtryck har registrerats ännu."
   },
   "Enabling WiFi...": {
     "Enabling WiFi...": "Aktiverar Wi-Fi..."
@@ -3011,8 +2843,8 @@
   "Exact": {
     "Exact": "Exakt"
   },
-  "Excluded Media Players": {
-    "Excluded Media Players": ""
+  "Excluded Players": {
+    "Excluded Players": ""
   },
   "Exclusive Zone Offset": {
     "Exclusive Zone Offset": "Avstånd från fönster"
@@ -3080,11 +2912,8 @@
   "Failed to add printer to class": {
     "Failed to add printer to class": "Misslyckades med att lägga till skrivare i klass"
   },
-  "Failed to apply GTK colors": {
-    "Failed to apply GTK colors": ""
-  },
-  "Failed to apply Qt colors": {
-    "Failed to apply Qt colors": ""
+  "Failed to apply %1 colors": {
+    "Failed to apply %1 colors": ""
   },
   "Failed to apply charge limit to system": {
     "Failed to apply charge limit to system": ""
@@ -3158,9 +2987,6 @@
   "Failed to enable night mode": {
     "Failed to enable night mode": "Misslyckades med att aktivera nattläge"
   },
-  "Failed to enable plugin: %1": {
-    "Failed to enable plugin: %1": ""
-  },
   "Failed to fetch network QR code: %1": {
     "Failed to fetch network QR code: %1": ""
   },
@@ -3188,14 +3014,8 @@
   "Failed to move to trash": {
     "Failed to move to trash": ""
   },
-  "Failed to parse plugin_settings.json": {
-    "Failed to parse plugin_settings.json": "Misslyckades med att tolka plugin_settings.json"
-  },
-  "Failed to parse session.json": {
-    "Failed to parse session.json": "Misslyckades med att tolka session.json"
-  },
-  "Failed to parse settings.json": {
-    "Failed to parse settings.json": "Misslyckades med att tolka settings.json"
+  "Failed to parse %1": {
+    "Failed to parse %1": ""
   },
   "Failed to pause printer": {
     "Failed to pause printer": "Misslyckades med att pausa skrivaren"
@@ -3368,8 +3188,8 @@
   "File manager used to open the trash. Pick \"custom\" to enter your own command.": {
     "File manager used to open the trash. Pick \"custom\" to enter your own command.": ""
   },
-  "File received from": {
-    "File received from": "Fil mottagen från"
+  "File received from %1": {
+    "File received from %1": ""
   },
   "File search requires dsearch\nInstall from github.com/AvengeMedia/danksearch": {
     "File search requires dsearch\nInstall from github.com/AvengeMedia/danksearch": "Filsökning kräver dsearch\nInstallera från github.com/AvengeMedia/danksearch"
@@ -3563,9 +3383,6 @@
   "For editing plain text files": {
     "For editing plain text files": ""
   },
-  "For reading PDF files": {
-    "For reading PDF files": ""
-  },
   "Force HDR": {
     "Force HDR": "Tvinga HDR"
   },
@@ -3719,6 +3536,9 @@
   "Gaps": {
     "Gaps": ""
   },
+  "General": {
+    "General": ""
+  },
   "Generate Override": {
     "Generate Override": ""
   },
@@ -3764,9 +3584,6 @@
   "Grant": {
     "Grant": ""
   },
-  "Grant admin?": {
-    "Grant admin?": ""
-  },
   "Grant administrator privileges": {
     "Grant administrator privileges": ""
   },
@@ -3785,15 +3602,6 @@
   "Greeter": {
     "Greeter": "Välkomstskärm"
   },
-  "Greeter Appearance": {
-    "Greeter Appearance": "Välkomstskärmens utseende"
-  },
-  "Greeter Behavior": {
-    "Greeter Behavior": "Välkomstskärmens beteende"
-  },
-  "Greeter Status": {
-    "Greeter Status": "Välkomstskärmens status"
-  },
   "Greeter activated. greetd is now enabled.": {
     "Greeter activated. greetd is now enabled.": "Välkomstskärmen aktiverad. greetd är nu aktiverat."
   },
@@ -3805,9 +3613,6 @@
   },
   "Greeter group:": {
     "Greeter group:": ""
-  },
-  "Greeter only — does not affect main clock": {
-    "Greeter only — does not affect main clock": "Gäller bara välkomstskärmen – påverkar inte huvudklockan"
   },
   "Greeter only — format for the date on the login screen": {
     "Greeter only — format for the date on the login screen": "Gäller bara välkomstskärmen – format för datumet på inloggningsskärmen"
@@ -4067,9 +3872,6 @@
   "Hyprland Discord Server": {
     "Hyprland Discord Server": "Hyprland Discord-server"
   },
-  "Hyprland Layout Overrides": {
-    "Hyprland Layout Overrides": "Hyprland-layoutöverstyrningar"
-  },
   "Hyprland Options": {
     "Hyprland Options": "Hyprland-alternativ"
   },
@@ -4207,12 +4009,6 @@
   },
   "Incorrect password": {
     "Incorrect password": "Felaktigt lösenord"
-  },
-  "Incorrect password - attempt %1 of %2 (lockout may follow)": {
-    "Incorrect password - attempt %1 of %2 (lockout may follow)": "Felaktigt lösenord – försök %1 av %2 (utelåsning kan följa)"
-  },
-  "Incorrect password - next failures may trigger account lockout": {
-    "Incorrect password - next failures may trigger account lockout": "Felaktigt lösenord – nästa misslyckanden kan utlösa kontoutelåsning"
   },
   "Incorrect password - try again": {
     "Incorrect password - try again": ""
@@ -4370,9 +4166,6 @@
   "Jobs": {
     "Jobs": "Jobb"
   },
-  "Jobs: ": {
-    "Jobs: ": "Jobb: "
-  },
   "Join video call": {
     "Join video call": ""
   },
@@ -4517,9 +4310,6 @@
   "Layout Overrides": {
     "Layout Overrides": "Layoutöverstyrningar"
   },
-  "Layout and module positions on the greeter are synced from your shell (e.g. bar config). Run Sync to apply.": {
-    "Layout and module positions on the greeter are synced from your shell (e.g. bar config). Run Sync to apply.": "Layout och modulpositioner på välkomstskärmen synkroniseras från ditt skal (t.ex. menyradskonfiguration). Kör Synka för att tillämpa."
-  },
   "Left": {
     "Left": "Vänster"
   },
@@ -4604,9 +4394,6 @@
   "Locale": {
     "Locale": "Språk"
   },
-  "Locale Settings": {
-    "Locale Settings": "Språkinställningar"
-  },
   "Location": {
     "Location": "Plats"
   },
@@ -4619,20 +4406,8 @@
   "Lock Screen": {
     "Lock Screen": "Låsskärm"
   },
-  "Lock Screen Appearance": {
-    "Lock Screen Appearance": ""
-  },
-  "Lock Screen Display": {
-    "Lock Screen Display": "Låsskärmsvisning"
-  },
   "Lock Screen Format": {
     "Lock Screen Format": "Datumformat på låsskärm"
-  },
-  "Lock Screen behaviour": {
-    "Lock Screen behaviour": "Låsskärmsbeteende"
-  },
-  "Lock Screen layout": {
-    "Lock Screen layout": "Låsskärmslayout"
   },
   "Lock at startup": {
     "Lock at startup": "Lås vid start"
@@ -4642,9 +4417,6 @@
   },
   "Lock fade grace period": {
     "Lock fade grace period": "Fördröjning för låstonande"
-  },
-  "Lock screen authentication changes apply automatically and may open a terminal when sudo authentication is required.": {
-    "Lock screen authentication changes apply automatically and may open a terminal when sudo authentication is required.": ""
   },
   "Lock screen font": {
     "Lock screen font": ""
@@ -4660,9 +4432,6 @@
   },
   "Login": {
     "Login": ""
-  },
-  "Login Authentication": {
-    "Login Authentication": "Inloggningsautentisering"
   },
   "Long": {
     "Long": "Lång"
@@ -4721,11 +4490,11 @@
   "Managed by Frame in Connected Mode": {
     "Managed by Frame in Connected Mode": ""
   },
+  "Managed by the primary PAM source.": {
+    "Managed by the primary PAM source.": ""
+  },
   "Management": {
     "Management": "Hantering"
-  },
-  "Manages calendar events": {
-    "Manages calendar events": ""
   },
   "Manages files and directories": {
     "Manages files and directories": ""
@@ -4735,9 +4504,6 @@
   },
   "Mango service not available": {
     "Mango service not available": ""
-  },
-  "MangoWC Layout Overrides": {
-    "MangoWC Layout Overrides": "MangoWC-layoutöverstyrningar"
   },
   "Manual": {
     "Manual": "Manuell"
@@ -4895,9 +4661,6 @@
   "Maximum pinned entries reached": {
     "Maximum pinned entries reached": "Maximalt antal fästa poster uppnått"
   },
-  "Maximum size per clipboard entry": {
-    "Maximum size per clipboard entry": "Maximal storlek per urklippspost"
-  },
   "Media": {
     "Media": "Medier"
   },
@@ -4921,9 +4684,6 @@
   },
   "Media Player": {
     "Media Player": "Mediespelare"
-  },
-  "Media Player Settings": {
-    "Media Player Settings": "Inställningar för mediespelaren"
   },
   "Media Players (": {
     "Media Players (": "Mediespelare ("
@@ -5006,9 +4766,6 @@
   "Mode": {
     "Mode": "Läge"
   },
-  "Mode:": {
-    "Mode:": "Läge:"
-  },
   "Model": {
     "Model": "Modell"
   },
@@ -5063,9 +4820,6 @@
   "Mouse pointer size in pixels": {
     "Mouse pointer size in pixels": "Muspekarens storlek i pixlar"
   },
-  "Move": {
-    "Move": "Flytta"
-  },
   "Move Widget": {
     "Move Widget": "Flytta widget"
   },
@@ -5080,9 +4834,6 @@
   },
   "Multimedia": {
     "Multimedia": ""
-  },
-  "Multiplexer": {
-    "Multiplexer": "Multiplexer"
   },
   "Multiplexer Type": {
     "Multiplexer Type": "Multiplexertyp"
@@ -5159,9 +4910,6 @@
   "Network Speed Monitor": {
     "Network Speed Monitor": "Övervakning för nätverkshastighet"
   },
-  "Network Status": {
-    "Network Status": "Nätverksstatus"
-  },
   "Network Type": {
     "Network Type": ""
   },
@@ -5233,9 +4981,6 @@
   },
   "Niri Integration": {
     "Niri Integration": "Niri-integration"
-  },
-  "Niri Layout Overrides": {
-    "Niri Layout Overrides": "Niri-layoutöverstyrningar"
   },
   "Niri compositor actions (focus, move, etc.)": {
     "Niri compositor actions (focus, move, etc.)": "Niri-kompositorsåtgärder (fokus, flytta, o.s.v.)"
@@ -5462,9 +5207,6 @@
   "No plugins found": {
     "No plugins found": "Inga tillägg hittades"
   },
-  "No plugins found.": {
-    "No plugins found.": "Inga tillägg hittades."
-  },
   "No printer found": {
     "No printer found": "Ingen skrivare hittades"
   },
@@ -5639,14 +5381,8 @@
   "Notification Popups": {
     "Notification Popups": "Banderoller"
   },
-  "Notification Rules": {
-    "Notification Rules": "Notisregler"
-  },
   "Notification Settings": {
     "Notification Settings": "Notisinställningar"
-  },
-  "Notification Timeouts": {
-    "Notification Timeouts": "Tidsgräns för notiser"
   },
   "Notification Type": {
     "Notification Type": ""
@@ -5720,9 +5456,6 @@
   "Only adjust gamma based on time or location rules.": {
     "Only adjust gamma based on time or location rules.": "Justera bara gamma baserat på tids- eller platsregler."
   },
-  "Only affects DMS-managed PAM. If greetd already includes pam_fprintd, fingerprint stays enabled.": {
-    "Only affects DMS-managed PAM. If greetd already includes pam_fprintd, fingerprint stays enabled.": "Påverkar bara DMS-hanterad PAM. Om greetd redan inkluderar pam_fprintd förblir fingeravtrycksläsaren aktiverad."
-  },
   "Only on Battery": {
     "Only on Battery": ""
   },
@@ -5734,12 +5467,6 @@
   },
   "Opacity": {
     "Opacity": "Opacitet"
-  },
-  "Opacity of the bar background": {
-    "Opacity of the bar background": ""
-  },
-  "Opacity of widget backgrounds": {
-    "Opacity of widget backgrounds": ""
   },
   "Opaque": {
     "Opaque": "Ogenomskinlig"
@@ -5807,17 +5534,11 @@
   "Opening file browser": {
     "Opening file browser": "Öppnar filbläddraren"
   },
-  "Opening terminal to update greetd": {
-    "Opening terminal to update greetd": ""
-  },
   "Opening terminal: ": {
     "Opening terminal: ": "Öppnar terminal: "
   },
   "Opens a picker of other active sessions on this seat": {
     "Opens a picker of other active sessions on this seat": ""
-  },
-  "Opens image files": {
-    "Opens image files": ""
   },
   "Opens the connected launcher in Connected Frame Mode.": {
     "Opens the connected launcher in Connected Frame Mode.": ""
@@ -5921,15 +5642,6 @@
   "PAM already provides security-key auth. Enable this to show it at login.": {
     "PAM already provides security-key auth. Enable this to show it at login.": "PAM tillhandahåller redan säkerhetsnyckelautentisering. Aktivera detta för att visa det vid inloggning."
   },
-  "PAM provides fingerprint auth, but availability could not be confirmed.": {
-    "PAM provides fingerprint auth, but availability could not be confirmed.": "PAM tillhandahåller fingeravtrycksautentisering, men tillgängligheten kunde inte bekräftas."
-  },
-  "PAM provides fingerprint auth, but no prints are enrolled yet.": {
-    "PAM provides fingerprint auth, but no prints are enrolled yet.": "PAM tillhandahåller fingeravtrycksautentisering, men inga fingeravtryck har registrerats ännu."
-  },
-  "PAM provides fingerprint auth, but no reader was detected.": {
-    "PAM provides fingerprint auth, but no reader was detected.": "PAM tillhandahåller fingeravtrycksautentisering, men ingen läsare hittades."
-  },
   "PDF Reader": {
     "PDF Reader": ""
   },
@@ -5945,9 +5657,6 @@
   "Pad Hours": {
     "Pad Hours": "Fyll ut timmar"
   },
-  "Pad hours (02:00 vs 2:00)": {
-    "Pad hours (02:00 vs 2:00)": "Fyll ut timmar (02:00 vs 2:00)"
-  },
   "Padding": {
     "Padding": "Utfyllnad"
   },
@@ -5960,14 +5669,11 @@
   "Paired": {
     "Paired": "Parkopplad"
   },
-  "Pairing": {
-    "Pairing": "Parkopplar"
-  },
   "Pairing failed": {
     "Pairing failed": "Parkoppling misslyckades"
   },
-  "Pairing request from": {
-    "Pairing request from": "Parkopplingsförfrågan från"
+  "Pairing request from %1": {
+    "Pairing request from %1": ""
   },
   "Pairing request sent": {
     "Pairing request sent": "Parkopplingsförfrågan skickad"
@@ -6062,9 +5768,6 @@
   "Phone Connect Not Available": {
     "Phone Connect Not Available": "Phone Connect är inte tillgängligt"
   },
-  "Phone Connect unavailable": {
-    "Phone Connect unavailable": "Phone Connect är inte tillgängligt"
-  },
   "Phone number": {
     "Phone number": "Telefonnummer"
   },
@@ -6092,8 +5795,8 @@
   "Ping": {
     "Ping": "Ping"
   },
-  "Ping sent to": {
-    "Ping sent to": "Ping skickat till"
+  "Ping sent to %1": {
+    "Ping sent to %1": ""
   },
   "Pinned": {
     "Pinned": "Fäst"
@@ -6137,9 +5840,6 @@
   "Play sound when volume is adjusted": {
     "Play sound when volume is adjusted": "Spela upp ljud när volymen justeras"
   },
-  "Play sounds for system events": {
-    "Play sounds for system events": "Spela upp ljud för systemhändelser"
-  },
   "Playback": {
     "Playback": "Uppspelning"
   },
@@ -6148,9 +5848,6 @@
   },
   "Plays audio files": {
     "Plays audio files": ""
-  },
-  "Plays video files": {
-    "Plays video files": ""
   },
   "Please wait...": {
     "Please wait...": "Vänta..."
@@ -6227,6 +5924,9 @@
   "Popup behavior, position": {
     "Popup behavior, position": "Popupbeteende, position"
   },
+  "Popups": {
+    "Popups": ""
+  },
   "Port": {
     "Port": "Port"
   },
@@ -6275,9 +5975,6 @@
   "Power Profiles & Saving": {
     "Power Profiles & Saving": ""
   },
-  "Power Profiles Auto-Switching": {
-    "Power Profiles Auto-Switching": ""
-  },
   "Power Saver": {
     "Power Saver": "Energisparläge"
   },
@@ -6286,12 +5983,6 @@
   },
   "Power profile management available": {
     "Power profile management available": "Energiprofilhantering tillgänglig"
-  },
-  "Power profile to use when AC power is connected.": {
-    "Power profile to use when AC power is connected.": ""
-  },
-  "Power profile to use when running on battery power.": {
-    "Power profile to use when running on battery power.": ""
   },
   "Power source": {
     "Power source": "Strömkälla"
@@ -6316,9 +6007,6 @@
   },
   "Preset Widths (%)": {
     "Preset Widths (%)": "Förinställda bredder (%)"
-  },
-  "Press 'n' or click 'New Session' to create one": {
-    "Press 'n' or click 'New Session' to create one": "Tryck på 'n' eller klicka på 'Ny session' för att skapa en"
   },
   "Press Ctrl+N or click 'New Session' to create one": {
     "Press Ctrl+N or click 'New Session' to create one": ""
@@ -6359,9 +6047,6 @@
   "Primary Container": {
     "Primary Container": "Primär behållare"
   },
-  "Primary Theme Color": {
-    "Primary Theme Color": ""
-  },
   "Print Server Management": {
     "Print Server Management": "Skrivarserverhantering"
   },
@@ -6389,9 +6074,6 @@
   "Printers": {
     "Printers": "Skrivare"
   },
-  "Printers: ": {
-    "Printers: ": "Skrivare: "
-  },
   "Prioritize performance": {
     "Prioritize performance": "Prioritera prestanda"
   },
@@ -6415,9 +6097,6 @@
   },
   "Processes": {
     "Processes": "Processer"
-  },
-  "Processes:": {
-    "Processes:": "Processer:"
   },
   "Processing": {
     "Processing": "Bearbetar"
@@ -6454,6 +6133,9 @@
   },
   "Profile when on Battery": {
     "Profile when on Battery": ""
+  },
+  "Protection": {
+    "Protection": ""
   },
   "Protocol": {
     "Protocol": "Protokoll"
@@ -6620,9 +6302,6 @@
   "Remove admin": {
     "Remove admin": ""
   },
-  "Remove admin?": {
-    "Remove admin?": ""
-  },
   "Remove corner rounding from the bar": {
     "Remove corner rounding from the bar": ""
   },
@@ -6719,9 +6398,6 @@
   "Reset Size": {
     "Reset Size": "Återställ storlek"
   },
-  "Reset to Default?": {
-    "Reset to Default?": ""
-  },
   "Reset to default": {
     "Reset to default": ""
   },
@@ -6800,8 +6476,8 @@
   "Ring": {
     "Ring": "Ring"
   },
-  "Ringing": {
-    "Ringing": "Ringer"
+  "Ringing %1...": {
+    "Ringing %1...": ""
   },
   "Ripple Effects": {
     "Ripple Effects": "Rippeleffekter"
@@ -6815,8 +6491,14 @@
   "Rule": {
     "Rule": "Regel"
   },
+  "Rule %1": {
+    "Rule %1": ""
+  },
   "Rule Name": {
     "Rule Name": "Regelnamn"
+  },
+  "Rules": {
+    "Rules": ""
   },
   "Rules (%1)": {
     "Rules (%1)": "Regler (%1)"
@@ -6923,9 +6605,6 @@
   "Saving...": {
     "Saving...": "Sparar..."
   },
-  "Saving…": {
-    "Saving…": ""
-  },
   "Scale": {
     "Scale": "Skala"
   },
@@ -6940,9 +6619,6 @@
   },
   "Scan": {
     "Scan": "Skanna"
-  },
-  "Scanning": {
-    "Scanning": "Söker"
   },
   "Scanning...": {
     "Scanning...": "Söker..."
@@ -7028,9 +6704,6 @@
   "Search...": {
     "Search...": "Sök..."
   },
-  "Searching": {
-    "Searching": ""
-  },
   "Searching...": {
     "Searching...": "Söker..."
   },
@@ -7051,6 +6724,9 @@
   },
   "Security & privacy": {
     "Security & privacy": "Säkerhet och integritet"
+  },
+  "Security Key PAM Source": {
+    "Security Key PAM Source": ""
   },
   "Security key mode": {
     "Security key mode": "Säkerhetsnyckelläge"
@@ -7139,17 +6815,11 @@
   "Select lock screen background image": {
     "Select lock screen background image": ""
   },
-  "Select monitor to configure wallpaper": {
-    "Select monitor to configure wallpaper": "Ställ in bakgrundsbild på den här bildskärmen"
-  },
   "Select monospace font for process list and technical displays": {
     "Select monospace font for process list and technical displays": "Välj monospaceteckensnitt för processlistan och övriga tekniska funktioner"
   },
   "Select network": {
     "Select network": "Välj nätverk"
-  },
-  "Select system sound theme": {
-    "Select system sound theme": "Välj systemljudtema"
   },
   "Select the font family for UI text": {
     "Select the font family for UI text": "Välj teckensnitts­familj för gränssnittstext"
@@ -7178,14 +6848,11 @@
   "Send Clipboard": {
     "Send Clipboard": "Skicka urklipp"
   },
-  "Send File": {
-    "Send File": "Skicka fil"
-  },
   "Send SMS": {
     "Send SMS": "Skicka SMS"
   },
-  "Sending": {
-    "Sending": "Skickar"
+  "Sending %1...": {
+    "Sending %1...": ""
   },
   "Separate": {
     "Separate": ""
@@ -7237,9 +6904,6 @@
   },
   "Set the font size for notification body text (htmlBody)": {
     "Set the font size for notification body text (htmlBody)": ""
-  },
-  "Set the font size for notification summary text": {
-    "Set the font size for notification summary text": ""
   },
   "Set the percentage at which the battery is considered low.": {
     "Set the percentage at which the battery is considered low.": ""
@@ -7294,9 +6958,6 @@
   },
   "Share Gamma Control Settings": {
     "Share Gamma Control Settings": "Dela gammakontrollinställningar"
-  },
-  "Share Text": {
-    "Share Text": "Dela text"
   },
   "Shared": {
     "Shared": "Delat"
@@ -7553,9 +7214,6 @@
   "Show during Niri overview": {
     "Show during Niri overview": ""
   },
-  "Show foreground surfaces on blurred panels for stronger contrast": {
-    "Show foreground surfaces on blurred panels for stronger contrast": ""
-  },
   "Show foreground surfaces on panels for stronger contrast": {
     "Show foreground surfaces on panels for stronger contrast": ""
   },
@@ -7571,12 +7229,6 @@
   "Show mount path": {
     "Show mount path": ""
   },
-  "Show notification popups only on the currently focused monitor": {
-    "Show notification popups only on the currently focused monitor": "Visa notisbanderoller bara på den aktuellt fokuserade bildskärmen"
-  },
-  "Show notifications only on the currently focused monitor": {
-    "Show notifications only on the currently focused monitor": "Visa notiser bara på den aktuellt fokuserade bildskärmen"
-  },
   "Show on Last Display": {
     "Show on Last Display": "Visa på sista bildskärm"
   },
@@ -7589,38 +7241,8 @@
   "Show on Overview Only": {
     "Show on Overview Only": "Visa bara i översikt"
   },
-  "Show on all connected displays": {
-    "Show on all connected displays": "Visa på alla anslutna bildskärmar"
-  },
   "Show on screens:": {
     "Show on screens:": "Visa på bildskärm:"
-  },
-  "Show on-screen display when brightness changes": {
-    "Show on-screen display when brightness changes": "Visa skärmvisning när ljusstyrkan ändras"
-  },
-  "Show on-screen display when caps lock state changes": {
-    "Show on-screen display when caps lock state changes": "Visa skärmvisning när Caps Lock-status ändras"
-  },
-  "Show on-screen display when cycling audio output devices": {
-    "Show on-screen display when cycling audio output devices": "Visa skärmvisning när ljudutgångsenheter växlas"
-  },
-  "Show on-screen display when idle inhibitor state changes": {
-    "Show on-screen display when idle inhibitor state changes": "Visa skärmvisning när inaktivitetsstatus ändras"
-  },
-  "Show on-screen display when media player status changes": {
-    "Show on-screen display when media player status changes": "Visa skärmvisning när mediaspecelarens status ändras"
-  },
-  "Show on-screen display when media player volume changes": {
-    "Show on-screen display when media player volume changes": "Visa skärmvisning när mediaspelaren ändrar volym"
-  },
-  "Show on-screen display when microphone is muted/unmuted": {
-    "Show on-screen display when microphone is muted/unmuted": "Visa skärmvisning när mikrofonen tystas/aktiveras"
-  },
-  "Show on-screen display when power profile changes": {
-    "Show on-screen display when power profile changes": "Visa skärmvisning när energiprofilen ändras"
-  },
-  "Show on-screen display when volume changes": {
-    "Show on-screen display when volume changes": "Visa skärmvisning när volymen ändras"
   },
   "Show the bar only when no windows are open": {
     "Show the bar only when no windows are open": ""
@@ -7630,9 +7252,6 @@
   },
   "Show weather information in top bar and control center": {
     "Show weather information in top bar and control center": "Visa väderinformation i menyraden och kontrollcentret"
-  },
-  "Show week number in the calendar": {
-    "Show week number in the calendar": "Visa veckonummer i kalendern"
   },
   "Show workspace index numbers in the top bar workspace switcher": {
     "Show workspace index numbers in the top bar workspace switcher": "Visa indexnummer på arbetsytan på växlaren i menyraden"
@@ -7666,9 +7285,6 @@
   },
   "Signal Strength": {
     "Signal Strength": ""
-  },
-  "Signal:": {
-    "Signal:": "Signal:"
   },
   "Silence for a while": {
     "Silence for a while": ""
@@ -7796,9 +7412,6 @@
   "Start": {
     "Start": "Start"
   },
-  "Start KDE Connect or Valent": {
-    "Start KDE Connect or Valent": "Starta KDE Connect eller Valent"
-  },
   "Start KDE Connect or Valent to use this plugin": {
     "Start KDE Connect or Valent to use this plugin": "Starta KDE Connect eller Valent för att använda detta tillägg"
   },
@@ -7837,9 +7450,6 @@
   },
   "Stripes": {
     "Stripes": "Ränder"
-  },
-  "Subtle Overlay": {
-    "Subtle Overlay": ""
   },
   "Summary": {
     "Summary": "Sammanfattning"
@@ -8045,20 +7655,11 @@
   "Terminal fallback failed. Install one of the supported terminal emulators or run 'dms greeter sync' manually.": {
     "Terminal fallback failed. Install one of the supported terminal emulators or run 'dms greeter sync' manually.": "Terminalåterfall misslyckades. Installera en av de stödda terminalemulatorerna eller kör 'dms greeter sync' manuellt."
   },
-  "Terminal fallback opened. Complete authentication setup there; it will close automatically when done.": {
-    "Terminal fallback opened. Complete authentication setup there; it will close automatically when done.": ""
+  "Terminal fallback opened. Complete authentication there; it will close automatically when done.": {
+    "Terminal fallback opened. Complete authentication there; it will close automatically when done.": ""
   },
-  "Terminal fallback opened. Complete sync there; it will close automatically when done.": {
-    "Terminal fallback opened. Complete sync there; it will close automatically when done.": "Terminalåterfall öppnat. Slutför synkroniseringen där; det stängs automatiskt när det är klart."
-  },
-  "Terminal multiplexer backend to use": {
-    "Terminal multiplexer backend to use": "Terminalmultiplexerbakgrundstjänst att använda"
-  },
-  "Terminal opened. Complete authentication setup there; it will close automatically when done.": {
-    "Terminal opened. Complete authentication setup there; it will close automatically when done.": ""
-  },
-  "Terminal opened. Complete sync authentication there; it will close automatically when done.": {
-    "Terminal opened. Complete sync authentication there; it will close automatically when done.": "Terminal öppnad. Slutför synkroniseringsautentiseringen där; det stängs automatiskt när det är klart."
+  "Terminal opened. Complete authentication there; it will close automatically when done.": {
+    "Terminal opened. Complete authentication there; it will close automatically when done.": ""
   },
   "Terminals - Always use Dark Theme": {
     "Terminals - Always use Dark Theme": "Terminaler – Använd alltid mörkt tema"
@@ -8092,9 +7693,6 @@
   },
   "Text Rendering": {
     "Text Rendering": ""
-  },
-  "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.": {
-    "The 'boregard' tool is not installed or not on your PATH.\n\nInstall it from https://danklinux.com, then re-enable this plugin.": ""
   },
   "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": {
     "The 'dgop' tool is required for system monitoring.\nPlease install dgop to use this feature.": "Verktyget 'dgop' krävs för systemövervakning.\nInstallera dgop för att använda den här funktionen."
@@ -8156,20 +7754,8 @@
   "This device": {
     "This device": ""
   },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing cursor settings.": ""
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing display settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing display settings.": ""
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing layout settings.": ""
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing shortcuts in Settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing shortcuts in Settings.": ""
-  },
-  "This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings.": {
-    "This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings.": ""
+  "This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.": {
+    "This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.": ""
   },
   "This may take a few seconds": {
     "This may take a few seconds": "Detta kan ta några sekunder"
@@ -8201,14 +7787,8 @@
   "Tile": {
     "Tile": "Kakla"
   },
-  "Tile H": {
-    "Tile H": "Kakla H"
-  },
   "Tile Horizontally": {
     "Tile Horizontally": ""
-  },
-  "Tile V": {
-    "Tile V": "Kakla V"
   },
   "Tile Vertically": {
     "Tile Vertically": ""
@@ -8252,14 +7832,8 @@
   "Timeout Progress Bar": {
     "Timeout Progress Bar": ""
   },
-  "Timeout for critical priority notifications": {
-    "Timeout for critical priority notifications": "Tidsgräns för aviseringar med kritisk prioritet"
-  },
-  "Timeout for low priority notifications": {
-    "Timeout for low priority notifications": "Tidsgräns för aviseringar med låg prioritet"
-  },
-  "Timeout for normal priority notifications": {
-    "Timeout for normal priority notifications": "Tidsgräns för aviseringar med normal prioritet"
+  "Timeouts": {
+    "Timeouts": ""
   },
   "Tint Saturation": {
     "Tint Saturation": ""
@@ -8374,15 +7948,6 @@
   },
   "Transparency": {
     "Transparency": "Genomskinlighet"
-  },
-  "Transparency of the border": {
-    "Transparency of the border": ""
-  },
-  "Transparency of the shadow layer": {
-    "Transparency of the shadow layer": ""
-  },
-  "Transparency of the widget outline": {
-    "Transparency of the widget outline": ""
   },
   "Trash": {
     "Trash": ""
@@ -8555,9 +8120,6 @@
   "Unpin from Dock": {
     "Unpin from Dock": "Ta bort från Dock"
   },
-  "Unsaved Changes": {
-    "Unsaved Changes": "Osparade ändringar"
-  },
   "Unsaved changes": {
     "Unsaved changes": "Osparade ändringar"
   },
@@ -8608,9 +8170,6 @@
   },
   "Uptime": {
     "Uptime": "Drifttid"
-  },
-  "Uptime:": {
-    "Uptime:": "Drifttid:"
   },
   "Urgent": {
     "Urgent": ""
@@ -8681,9 +8240,6 @@
   "Use colors extracted from album art instead of system theme colors": {
     "Use colors extracted from album art instead of system theme colors": ""
   },
-  "Use custom border size": {
-    "Use custom border size": "Använd anpassad ramstorlek"
-  },
   "Use custom border/focus-ring width": {
     "Use custom border/focus-ring width": "Använd anpassad ram/fokusring-bredd"
   },
@@ -8720,11 +8276,11 @@
   "Use sound theme from system settings": {
     "Use sound theme from system settings": "Använd ljudtemat från systeminställningarna"
   },
+  "Use system PAM authentication": {
+    "Use system PAM authentication": ""
+  },
   "Use the extended surface for launcher content": {
     "Use the extended surface for launcher content": ""
-  },
-  "Use the overlay layer when opening the launcher": {
-    "Use the overlay layer when opening the launcher": ""
   },
   "Use the same position and size on all displays": {
     "Use the same position and size on all displays": "Använd samma position och storlek på alla bildskärmar"
@@ -8975,6 +8531,9 @@
   "When locked": {
     "When locked": "När låst"
   },
+  "Which PAM service the lock screen uses to authenticate": {
+    "Which PAM service the lock screen uses to authenticate": ""
+  },
   "White": {
     "White": ""
   },
@@ -9083,12 +8642,6 @@
   "Window Rules": {
     "Window Rules": "Fönsterregler"
   },
-  "Window Rules Include Missing": {
-    "Window Rules Include Missing": "Inkludering av fönsterregler saknas"
-  },
-  "Window Rules Not Configured": {
-    "Window Rules Not Configured": "Fönsterregler inte konfigurerade"
-  },
   "Wipe": {
     "Wipe": "Sudda"
   },
@@ -9098,9 +8651,6 @@
   "Workspace": {
     "Workspace": "Arbetsyta"
   },
-  "Workspace Appearance": {
-    "Workspace Appearance": "Utseende på arbetsyta"
-  },
   "Workspace Index Numbers": {
     "Workspace Index Numbers": "Indexnummer på arbetsyta"
   },
@@ -9109,9 +8659,6 @@
   },
   "Workspace Padding": {
     "Workspace Padding": "Minst antal alltid synliga arbetsytor"
-  },
-  "Workspace Settings": {
-    "Workspace Settings": "Inställningar för arbetsytor"
   },
   "Workspace Switcher": {
     "Workspace Switcher": "Växla arbetsytor"
@@ -9161,17 +8708,8 @@
   "Yesterday": {
     "Yesterday": "Igår"
   },
-  "You have unsaved changes. Save before closing this tab?": {
-    "You have unsaved changes. Save before closing this tab?": "Du har osparade ändringar. Vill du spara dem innan du stänger fliken?"
-  },
   "You have unsaved changes. Save before continuing?": {
     "You have unsaved changes. Save before continuing?": "Du har osparade ändringar. Vill du spara dem innan du fortsätter?"
-  },
-  "You have unsaved changes. Save before creating a new file?": {
-    "You have unsaved changes. Save before creating a new file?": "Du har osparade ändringar. Vill du spara dem innan du skapar en ny fil?"
-  },
-  "You have unsaved changes. Save before opening a file?": {
-    "You have unsaved changes. Save before opening a file?": "Du har osparade ändringar. Vill du spara dem innan du öppnar en fil?"
   },
   "You need to set either:\nQT_QPA_PLATFORMTHEME=gtk3 OR\nQT_QPA_PLATFORMTHEME=qt6ct\nas environment variables, and then restart the shell.\n\nqt6ct requires qt6ct-kde to be installed.": {
     "You need to set either:\nQT_QPA_PLATFORMTHEME=gtk3 OR\nQT_QPA_PLATFORMTHEME=qt6ct\nas environment variables, and then restart the shell.\n\nqt6ct requires qt6ct-kde to be installed.": "Du måste ange antingen:\nQT_QPA_PLATFORMTHEME=gtk3 ELLER\nQT_QPA_PLATFORMTHEME=qt6ct\nsom miljövariabler och sedan starta om skalet.\n\nqt6ct kräver att qt6ct-kde är installerat."
@@ -9191,17 +8729,11 @@
   "Your system is up to date!": {
     "Your system is up to date!": "Ditt system är uppdaterat!"
   },
-  "actions": {
-    "actions": "åtgärder"
-  },
   "admin": {
     "admin": ""
   },
   "attached": {
     "attached": "ansluten"
-  },
-  "boregard is required": {
-    "boregard is required": ""
   },
   "brandon": {
     "brandon": "brandon"
@@ -9236,9 +8768,6 @@
   "device": {
     "device": "enhet"
   },
-  "devices connected": {
-    "devices connected": "enheter anslutna"
-  },
   "dgop not available": {
     "dgop not available": "dgop är inte tillgängligt"
   },
@@ -9247,6 +8776,9 @@
   },
   "discuss": {
     "discuss": ""
+  },
+  "display rotation option": {
+    "Normal": ""
   },
   "dms is a highly customizable, modern desktop shell with a <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">material 3 inspired</a> design.<br /><br/>It is built with <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, a QT6 framework for building desktop shells, and <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, a statically typed, compiled programming language.": {
     "dms is a highly customizable, modern desktop shell with a <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">material 3 inspired</a> design.<br /><br/>It is built with <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, a QT6 framework for building desktop shells, and <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, a statically typed, compiled programming language.": "dms är ett mycket anpassningsbart, modernt skrivbordsskal med en <a href=\"https://m3.material.io/\" style=\"text-decoration:none; color:%1;\">Material 3-inspirerad</a> design.<br /><br/>Det är byggt med <a href=\"https://quickshell.org\" style=\"text-decoration:none; color:%1;\">Quickshell</a>, ett QT6-ramverk för att bygga skrivbordsskal, och <a href=\"https://go.dev\" style=\"text-decoration:none; color:%1;\">Go</a>, ett statiskt typat kompilerat programmeringsspråk."
@@ -9308,11 +8840,8 @@
   "mangowc GitHub": {
     "mangowc GitHub": "mangowc GitHub"
   },
-  "matugen not available or disabled - cannot apply GTK colors": {
-    "matugen not available or disabled - cannot apply GTK colors": ""
-  },
-  "matugen not available or disabled - cannot apply Qt colors": {
-    "matugen not available or disabled - cannot apply Qt colors": ""
+  "matugen not available or disabled - cannot apply %1 colors": {
+    "matugen not available or disabled - cannot apply %1 colors": ""
   },
   "matugen not found - install matugen package for dynamic theming": {
     "matugen not found - install matugen package for dynamic theming": "Matugen hittades inte – installera matugen-paketet för dynamisk tematisering"
@@ -9325,6 +8854,9 @@
   },
   "nav": {
     "nav": "nav"
+  },
+  "network security type": {
+    "Open": ""
   },
   "niri GitHub": {
     "niri GitHub": "niri GitHub"
@@ -9368,14 +8900,14 @@
   "on Sway": {
     "on Sway": "på Sway"
   },
-  "open": {
-    "open": "öppna"
-  },
   "or run ": {
     "or run ": "eller kör "
   },
   "power-profiles-daemon not available": {
     "power-profiles-daemon not available": "power-profiles-daemon är inte tillgänglig"
+  },
+  "primary network connection label": {
+    "Primary": ""
   },
   "procs": {
     "procs": "proc."
@@ -9430,9 +8962,6 @@
   },
   "v%1 by %2": {
     "v%1 by %2": "v%1 av %2"
-  },
-  "verified": {
-    "verified": ""
   },
   "• Install only from trusted sources": {
     "• Install only from trusted sources": "• Installera endast från trovärdiga källor."

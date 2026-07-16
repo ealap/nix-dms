@@ -117,7 +117,7 @@ Item {
 
     function confirmResetBind(key, remainingKey) {
         removeBindConfirm.showWithOptions({
-            title: I18n.tr("Reset to Default?"),
+            title: I18n.tr("Reset to default"),
             message: I18n.tr("Drop your override for %1 so the DMS default action re-applies?").arg(key),
             confirmText: I18n.tr("Reset"),
             confirmColor: Theme.primary,
@@ -397,7 +397,7 @@ Item {
                             StyledText {
                                 text: {
                                     if (warningBox.showLegacy)
-                                        return I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before editing shortcuts in Settings.");
+                                        return I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.");
                                     if (warningBox.showSetup)
                                         return I18n.tr("Click 'Setup' to create %1 and add include to your compositor config.").arg("dms/binds");
                                     if (warningBox.showWarning) {

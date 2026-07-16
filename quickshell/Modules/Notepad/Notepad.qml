@@ -692,14 +692,14 @@ Item {
                         spacing: Theme.spacingM
 
                         StyledText {
-                            text: I18n.tr("Unsaved Changes")
+                            text: I18n.tr("Unsaved changes")
                             font.pixelSize: Theme.fontSizeLarge
                             color: Theme.surfaceText
                             font.weight: Font.Medium
                         }
 
                         StyledText {
-                            text: root.pendingAction === "new" ? I18n.tr("You have unsaved changes. Save before creating a new file?") : root.pendingAction.startsWith("close_tab_") ? I18n.tr("You have unsaved changes. Save before closing this tab?") : root.pendingAction === "load_file" || root.pendingAction === "open" ? I18n.tr("You have unsaved changes. Save before opening a file?") : I18n.tr("You have unsaved changes. Save before continuing?")
+                            text: I18n.tr("You have unsaved changes. Save before continuing?")
                             font.pixelSize: Theme.fontSizeMedium
                             color: Theme.surfaceTextMedium
                             width: parent.width

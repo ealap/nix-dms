@@ -329,7 +329,7 @@ Item {
                     spacing: Theme.spacingS
 
                     DankButton {
-                        text: root.saving ? I18n.tr("Saving…") : I18n.tr("Save")
+                        text: root.saving ? I18n.tr("Saving...") : I18n.tr("Save")
                         iconName: "check"
                         buttonHeight: 32
                         backgroundColor: Theme.primary

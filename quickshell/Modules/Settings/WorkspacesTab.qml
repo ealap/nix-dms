@@ -25,7 +25,7 @@ Item {
             SettingsCard {
                 width: parent.width
                 iconName: "view_module"
-                title: I18n.tr("Workspace Settings")
+                title: I18n.tr("General")
                 settingKey: "workspaceSettings"
 
                 SettingsToggleRow {

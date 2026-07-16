@@ -624,7 +624,7 @@ Rectangle {
                         spacing: Theme.spacingXS
 
                         StyledText {
-                            text: wifiDelegate.isConnecting ? I18n.tr("Connecting...") + " \u2022" : (wifiDelegate.isConnected ? I18n.tr("Connected") + " \u2022" : (modelData.secured ? I18n.tr("Secured") + " \u2022" : I18n.tr("Open") + " \u2022"))
+                            text: wifiDelegate.isConnecting ? I18n.tr("Connecting...") + " \u2022" : (wifiDelegate.isConnected ? I18n.tr("Connected") + " \u2022" : (modelData.secured ? I18n.tr("Secured") + " \u2022" : I18n.tr("Open", "network security type", true) + " \u2022"))
                             font.pixelSize: Theme.fontSizeSmall
                             color: wifiDelegate.isConnecting ? Theme.warning : Theme.surfaceVariantText
                         }

@@ -323,7 +323,7 @@ Item {
         target: TrashService
         function onEmptyTrashConfirmRequested(itemCount) {
             emptyTrashConfirm.showWithOptions({
-                title: I18n.tr("Empty Trash?"),
+                title: I18n.tr("Empty Trash"),
                 message: I18n.tr("Permanently delete %1 item(s)? This cannot be undone.").arg(itemCount),
                 confirmText: I18n.tr("Empty"),
                 cancelText: I18n.tr("Cancel"),

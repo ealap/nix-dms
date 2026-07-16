@@ -60,9 +60,9 @@ StyledRect {
                 StyledText {
                     text: {
                         if (root.showLegacy)
-                            return I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before editing display settings.");
+                            return I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.");
                         if (root.showSetup)
-                            return I18n.tr("Click 'Setup' to create the outputs config and add include to your compositor config.");
+                            return I18n.tr("Click 'Setup' to create %1 and add include to your compositor config.").arg("dms/outputs");
                         return "";
                     }
                     font.pixelSize: Theme.fontSizeSmall

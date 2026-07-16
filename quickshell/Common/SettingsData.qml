@@ -1793,7 +1793,7 @@ Singleton {
             _parseError = true;
             const msg = e.message;
             log.error("Failed to parse settings.json - file will not be overwritten. Error:", msg);
-            Qt.callLater(() => ToastService.showError(I18n.tr("Failed to parse settings.json"), msg));
+            Qt.callLater(() => ToastService.showError(I18n.tr("Failed to parse %1").arg("settings.json"), msg));
             applyStoredTheme();
         } finally {
             _loading = false;
@@ -1891,7 +1891,7 @@ Singleton {
             _pluginParseError = true;
             const msg = e.message;
             log.error("Failed to parse plugin_settings.json - file will not be overwritten. Error:", msg);
-            Qt.callLater(() => ToastService.showError(I18n.tr("Failed to parse plugin_settings.json"), msg));
+            Qt.callLater(() => ToastService.showError(I18n.tr("Failed to parse %1").arg("plugin_settings.json"), msg));
             pluginSettings = {};
         } finally {
             _pluginSettingsLoading = false;
@@ -3653,7 +3653,7 @@ Singleton {
                 _parseError = true;
                 const msg = e.message;
                 log.error("Failed to reload settings.json - file will not be overwritten. Error:", msg);
-                Qt.callLater(() => ToastService.showError(I18n.tr("Failed to parse settings.json"), msg));
+                Qt.callLater(() => ToastService.showError(I18n.tr("Failed to parse %1").arg("settings.json"), msg));
             } finally {
                 _loading = false;
             }

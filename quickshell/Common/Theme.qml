@@ -1956,7 +1956,7 @@ Singleton {
     function applyGtkColors() {
         if (!matugenAvailable) {
             if (typeof ToastService !== "undefined") {
-                ToastService.showError(I18n.tr("matugen not available or disabled - cannot apply GTK colors"));
+                ToastService.showError(I18n.tr("matugen not available or disabled - cannot apply %1 colors").arg("GTK"));
             }
             return;
         }
@@ -1969,7 +1969,7 @@ Singleton {
                 }
             } else {
                 if (typeof ToastService !== "undefined") {
-                    ToastService.showError(I18n.tr("Failed to apply GTK colors"));
+                    ToastService.showError(I18n.tr("Failed to apply %1 colors").arg("GTK"));
                 }
             }
         });
@@ -1978,7 +1978,7 @@ Singleton {
     function applyQtColors() {
         if (!matugenAvailable) {
             if (typeof ToastService !== "undefined") {
-                ToastService.showError(I18n.tr("matugen not available or disabled - cannot apply Qt colors"));
+                ToastService.showError(I18n.tr("matugen not available or disabled - cannot apply %1 colors").arg("Qt"));
             }
             return;
         }
@@ -1990,7 +1990,7 @@ Singleton {
                 }
             } else {
                 if (typeof ToastService !== "undefined") {
-                    ToastService.showError(I18n.tr("Failed to apply Qt colors"));
+                    ToastService.showError(I18n.tr("Failed to apply %1 colors").arg("Qt"));
                 }
             }
         });

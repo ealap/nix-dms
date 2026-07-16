@@ -45,7 +45,7 @@ Item {
             "appId": I18n.tr("App ID"),
             "title": I18n.tr("Title"),
             "isFloating": I18n.tr("Floating"),
-            "isActive": I18n.tr("Active"),
+            "isActive": I18n.tr("Active", "active state label"),
             "isFocused": I18n.tr("Focused"),
             "isActiveInColumn": I18n.tr("Active in Column"),
             "isWindowCastTarget": I18n.tr("Cast Target"),
@@ -343,7 +343,7 @@ Item {
     }
 
     function showHyprlandReadOnlyWarning() {
-        ToastService.showWarning(I18n.tr("Hyprland conf mode"), I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings."), "dms setup", "hyprland-migration");
+        ToastService.showWarning(I18n.tr("Hyprland conf mode"), I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before changing these settings."), "dms setup", "hyprland-migration");
     }
 
     Component.onCompleted: {
@@ -509,7 +509,7 @@ Item {
                         }
 
                         StyledText {
-                            text: warningBox.showLegacy ? I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before editing window rules in Settings.") : I18n.tr("Click 'Setup' to create %1 and add include to your compositor config.").arg("dms/windowrules")
+                            text: warningBox.showLegacy ? I18n.tr("This install is still using hyprland.conf. Run dms setup to migrate before changing these settings.") : I18n.tr("Click 'Setup' to create %1 and add include to your compositor config.").arg("dms/windowrules")
                             font.pixelSize: Theme.fontSizeSmall
                             color: Theme.surfaceVariantText
                             wrapMode: Text.WordWrap

@@ -308,7 +308,7 @@ StyledRect {
                             return DisplayConfigState.getTransformLabel(pendingTransform);
                         return DisplayConfigState.getTransformLabel(root.outputData?.logical?.transform ?? "Normal");
                     }
-                    options: [I18n.tr("Normal"), I18n.tr("90°"), I18n.tr("180°"), I18n.tr("270°"), I18n.tr("Flipped"), I18n.tr("Flipped 90°"), I18n.tr("Flipped 180°"), I18n.tr("Flipped 270°")]
+                    options: [I18n.tr("Normal", "display rotation option", true), I18n.tr("90°"), I18n.tr("180°"), I18n.tr("270°"), I18n.tr("Flipped"), I18n.tr("Flipped 90°"), I18n.tr("Flipped 180°"), I18n.tr("Flipped 270°")]
                     onValueChanged: value => DisplayConfigState.setPendingChange(root.outputName, "transform", DisplayConfigState.getTransformValue(value))
                 }
             }
