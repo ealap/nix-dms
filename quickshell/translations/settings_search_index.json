@@ -4776,7 +4776,7 @@
       "security",
       "source"
     ],
-    "description": "Managed by the primary PAM source."
+    "description": "Managed by the primary PAM source"
   },
   {
     "section": "loginctlLockIntegration",
@@ -4823,7 +4823,7 @@
       "u2f",
       "yubikey"
     ],
-    "description": "Managed by the primary PAM source."
+    "description": "Managed by the primary PAM source"
   },
   {
     "section": "lockLayout",
@@ -7808,11 +7808,12 @@
       "managed",
       "pam",
       "removes",
+      "services",
       "stops",
-      "writing"
+      "write"
     ],
     "icon": "fingerprint",
-    "description": "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it"
+    "description": "DMS removes its managed block from /etc/pam.d/greetd and stops write services"
   },
   {
     "section": "greeterAutoLogin",
@@ -7880,7 +7881,7 @@
       "login",
       "screen"
     ],
-    "description": "Greeter only — format for the date on the login screen"
+    "description": "Format the date on the login screen"
   },
   {
     "section": "greeterDeps",
@@ -8026,11 +8027,12 @@
       "managed",
       "pam",
       "removes",
+      "services",
       "stops",
       "system",
-      "writing"
+      "write"
     ],
-    "description": "DMS removes its managed block from /etc/pam.d/greetd and stops writing to it"
+    "description": "DMS removes its managed block from /etc/pam.d/greetd and stops write services"
   },
   {
     "section": "muxType",
