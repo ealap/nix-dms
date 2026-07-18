@@ -30,14 +30,17 @@ ARCH ?= all
 all: build
 
 # Copy the quickshell UI into the embed dir (gitignored) so tagged builds
-# can bake it into the binary. Dev-only files are stripped. -L dereferences
-# the DankCommon submodule symlink; go:embed rejects symlinks.
+# can bake it into the binary. Dev-only files are stripped. tar -h dereferences
+# the DankCommon submodule symlink; go:embed rejects symlinks. .qmlls.ini is
+# excluded at copy time: it's a symlink into the quickshell runtime VFS and
+# dereferencing it fails whenever the shell isn't running.
 sync-shell:
 	@test -e $(SHELL_SRC)/DankCommon/Widgets/DankIcon.qml || { echo "DankCommon missing: run git submodule update --init"; exit 1; }
 	@rm -rf $(EMBED_DIR)
-	@cp -rL $(SHELL_SRC) $(EMBED_DIR)
+	@mkdir -p $(EMBED_DIR)
+	@tar -C $(SHELL_SRC) --exclude=.qmlls.ini -chf - . | tar -C $(EMBED_DIR) -xf -
 	@rm -rf $(EMBED_DIR)/scripts $(EMBED_DIR)/.claude $(EMBED_DIR)/.git* $(EMBED_DIR)/.github
-	@rm -f $(EMBED_DIR)/.qmlls.ini $(EMBED_DIR)/AGENTS.md $(EMBED_DIR)/qmlformat-all.sh
+	@rm -f $(EMBED_DIR)/AGENTS.md $(EMBED_DIR)/qmlformat-all.sh
 	@rm -f $(EMBED_DIR)/translations/*.py $(EMBED_DIR)/translations/WORKFLOW.md
 	@cd $(EMBED_DIR) && find . -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum | sha256sum | cut -c1-16 > .dankrev
 
